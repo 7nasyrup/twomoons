@@ -1,0 +1,421 @@
+import React, { useState, useEffect, useRef } from 'react';
+import GameFrame from './components/GameFrame';
+import SpriteSlot from './components/SpriteSlot';
+import DialogueBox from './components/DialogueBox';
+import CinemaLayer from './components/CinemaLayer';
+import AlertModal from './components/AlertModal';
+import DevConsole from './components/DevConsole';
+import BacklogOverlay from './components/BacklogOverlay';
+import { useNovelEngine } from './hooks/useNovelEngine';
+import { useAudioSystem } from './hooks/useAudioSystem';
+import { scenarioData } from './data/scenario';
+
+// Custom CSS-based visual representation of game backgrounds when WebP/PNG images are missing
+function BackgroundRenderer({ bgPath }) {
+  const [imageError, setImageError] = useState(false);
+
+  useEffect(() => {
+    setImageError(false);
+  }, [bgPath]);
+
+  if (!bgPath) return null;
+
+  // Fallback styling based on bg name
+  const isClassroom = bgPath.includes('cyber_classroom');
+  const isGiantMoon = bgPath.includes('giant_blue_moon');
+  const isSchoolGate = bgPath.includes('school_gate_evening');
+  const isTownDark1 = bgPath.includes('town_dark_1');
+  const isTownDark2 = bgPath.includes('town_dark_2');
+  const isRooftop = bgPath.includes('rooftop');
+
+  return (
+    <div className="absolute inset-0 w-full h-full select-none z-0">
+      {!imageError ? (
+        <img
+          src={bgPath}
+          alt="background"
+          className="w-full h-full object-cover transition-all duration-700"
+          onError={() => setImageError(true)}
+        />
+      ) : (
+        <div className="w-full h-full relative overflow-hidden transition-all duration-700">
+          {/* Cyberpunk Grid Background */}
+          <div className="absolute inset-0 bg-[#030712]" />
+
+          {isTownDark1 && (
+            <div className="absolute inset-0 bg-gradient-to-b from-[#080d22] via-[#050816] to-[#020308]">
+              {/* Skyline silhouette */}
+              <div className="absolute bottom-0 left-0 right-0 h-48 bg-[#04060c] clip-path-skyline border-t border-cyan-500/20 shadow-[0_-10px_30px_rgba(0,245,255,0.05)]" />
+              {/* Stars / Window lights */}
+              <div className="absolute inset-0 opacity-40 bg-[radial-gradient(rgba(0,245,255,0.15)_1px,transparent_1px)] [background-size:16px_16px]" />
+              <div className="absolute top-[30%] left-[20%] w-20 h-20 rounded-full bg-cyan-950/20 blur-2xl" />
+            </div>
+          )}
+
+          {isTownDark2 && (
+            <div className="absolute inset-0 bg-gradient-to-tr from-[#020308] via-[#050711] to-[#0b071a]">
+              {/* Alleyway perspective lines */}
+              <svg className="absolute inset-0 w-full h-full opacity-10 stroke-cyan-400" xmlns="http://www.w3.org/2000/svg">
+                <line x1="0" y1="1080" x2="800" y2="540" strokeWidth="2" />
+                <line x1="1920" y1="1080" x2="1120" y2="540" strokeWidth="2" />
+                <line x1="0" y1="900" x2="1920" y2="900" strokeWidth="1" />
+              </svg>
+              <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-black via-black/80 to-transparent" />
+            </div>
+          )}
+
+          {isGiantMoon && (
+            <div className="absolute inset-0 bg-gradient-to-b from-[#02040b] via-[#040714] to-[#010205] flex items-center justify-center">
+              {/* Massive artificial cyan moon */}
+              <div className="relative w-80 h-80 rounded-full bg-cyan-400/10 border-4 border-cyan-300/40 shadow-[0_0_100px_rgba(0,245,255,0.4),inset_0_0_40px_rgba(0,245,255,0.2)] animate-pulse">
+                {/* Tech lines inside the artificial moon */}
+                <div className="absolute inset-4 rounded-full border border-cyan-400/20 border-dashed" />
+                <div className="absolute inset-12 rounded-full border border-cyan-400/15" />
+                <div className="absolute top-1/2 left-0 right-0 h-[1px] bg-cyan-300/30" />
+                <div className="absolute left-1/2 top-0 bottom-0 w-[1px] bg-cyan-300/30" />
+              </div>
+              <div className="absolute inset-0 bg-[radial-gradient(rgba(0,245,255,0.05)_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
+            </div>
+          )}
+
+          {isClassroom && (
+            <div className="absolute inset-0 bg-gradient-to-b from-[#070b14] via-[#05070f] to-[#020408] flex items-center justify-center">
+              {/* Perspective grid lines */}
+              <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,245,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,245,255,0.03)_1px,transparent_1px)] [background-size:40px_40px]" />
+              {/* Cyber blackboard glow */}
+              <div className="absolute top-[10%] w-[60%] h-[30%] bg-cyan-950/20 border border-cyan-500/20 rounded-md shadow-[0_0_30px_rgba(0,245,255,0.05)] flex flex-col justify-center items-center">
+                <span className="text-cyan-500/40 font-orbitron text-xs tracking-[0.4em] mb-1">LECTURE HALL 07</span>
+                <span className="text-cyan-500/20 font-orbitron text-[10px]">WAVE RESONANCE RATIO: OPTIMAL</span>
+              </div>
+            </div>
+          )}
+
+          {isSchoolGate && (
+            <div className="absolute inset-0 bg-gradient-to-b from-[#1b0826] via-[#10061e] to-[#04020a]">
+              {/* Sunset orange horizon glow */}
+              <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-[#ff0055]/10 via-transparent to-transparent opacity-60" />
+              {/* Stars */}
+              <div className="absolute inset-0 bg-[radial-gradient(#ffe49e_1px,transparent_1px)] [background-size:32px_32px] opacity-20" />
+              <div className="absolute bottom-0 left-12 w-32 h-64 border-l-2 border-r-2 border-t-2 border-white/5 rounded-t-lg bg-white/2" />
+            </div>
+          )}
+
+          {isRooftop && (
+            <div className="absolute inset-0 bg-gradient-to-b from-[#010206] via-[#050818] to-[#03040c]">
+              {/* Distant skyline with two moons */}
+              <div className="absolute bottom-0 left-0 right-0 h-40 bg-[#020306] border-t border-cyan-500/10" />
+              {/* Handrails */}
+              <div className="absolute bottom-0 left-0 right-0 h-24 border-t-2 border-cyan-500/10 flex justify-around">
+                {[...Array(12)].map((_, i) => (
+                  <div key={i} className="w-[2px] h-full bg-cyan-500/10" />
+                ))}
+              </div>
+              {/* Giant Artificial Moon (Cyan) */}
+              <div className="absolute top-[10%] left-[25%] w-40 h-40 rounded-full bg-cyan-400/5 border-2 border-cyan-400/20 shadow-[0_0_60px_rgba(0,245,255,0.2)]" />
+              {/* Faint Real Moon (Gold) */}
+              <div className="absolute top-[8%] right-[25%] w-24 h-24 rounded-full bg-[#ffe49e]/5 border border-[#ffe49e]/20 shadow-[0_0_40px_rgba(255,228,158,0.15)] animate-pulse" />
+            </div>
+          )}
+
+          {/* Vignette effect */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/40 pointer-events-none" />
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default function App() {
+  const {
+    currentStep,
+    currentLine,
+    displayedText,
+    isTyping,
+    isWaitingForChoice,
+    backlog,
+    autoMode,
+    hudVisible,
+    nextStep,
+    selectChoice,
+    jumpToStep,
+    toggleAuto,
+    toggleHud,
+    setHudVisible,
+    totalSteps,
+  } = useNovelEngine(scenarioData);
+
+  const { playBGM, playSE, toggleMute } = useAudioSystem();
+
+  const [backlogOpen, setBacklogOpen] = useState(false);
+  const [alertActive, setAlertActive] = useState(false);
+  const [alertConfig, setAlertConfig] = useState({ title: '', message: '' });
+  const [shakeEffect, setShakeEffect] = useState(false);
+
+  // Character sprite visibility states
+  const [leftActive, setLeftActive] = useState(false);
+  const [rightActive, setRightActive] = useState(false);
+  const [focusSlot, setFocusSlot] = useState(null);
+  const [prevScene, setPrevScene] = useState('');
+
+  // Swipe gesture variables
+  const touchStartX = useRef(0);
+  const touchStartY = useRef(0);
+  const lastTap = useRef(0);
+
+  // Clear sprites on scene change
+  useEffect(() => {
+    if (currentLine?.scene && currentLine.scene !== prevScene) {
+      setPrevScene(currentLine.scene);
+      setLeftActive(false);
+      setRightActive(false);
+      setFocusSlot(null);
+    }
+  }, [currentLine?.scene, prevScene]);
+
+  // Audio system and sprite positioning logic based on active step details
+  useEffect(() => {
+    if (!currentLine) return;
+
+    // Background music changes based on scenes
+    if (currentLine.scene === 'PROLOGUE') {
+      playBGM('/assets/audio/bgm/deep_blue_moon.mp3');
+    } else if (currentLine.scene === '講義室出口' || currentLine.scene === '大学の廊下') {
+      playBGM('/assets/audio/bgm/mutsu_theme.mp3');
+    } else if (currentLine.scene === '月科学大講義室') {
+      playBGM('/assets/audio/bgm/classroom_ambient.mp3');
+    }
+
+    const action = currentLine.action;
+    if (action) {
+      // Sprite Slot actions
+      if (action === 'SHOW_SILHOUETTE_LEFT') {
+        setLeftActive(true);
+      } else if (action === 'SHOW_SILHOUETTE_RIGHT') {
+        setRightActive(true);
+      } else if (action === 'HIDE_SILHOUETTE_RIGHT') {
+        setRightActive(false);
+      } else if (action === 'SHOW_BOTH_SILHOUETTES') {
+        setLeftActive(true);
+        setRightActive(true);
+      } else if (action === 'FOCUS_SILHOUETTE_LEFT') {
+        setLeftActive(true);
+        setFocusSlot('left');
+      }
+
+      // SE Triggers
+      if (action === 'PLAY_CHIME_SE') {
+        playSE('/assets/audio/se/school_chime.mp3');
+      } else if (action === 'PLAY_RUNNING_SE') {
+        playSE('/assets/audio/se/running.mp3');
+      } else if (action === 'PLAY_FOOTSTEP_SE') {
+        playSE('/assets/audio/se/footsteps.mp3');
+      }
+
+      // Red Alert
+      if (action === 'TRIGGER_PHONE_RED_ALERT') {
+        playSE('/assets/audio/se/siren_alert.mp3');
+        setShakeEffect(true);
+        const timer = setTimeout(() => setShakeEffect(false), 800);
+        
+        setAlertConfig({
+          title: '⚠ LUNAR WAVE DETECTED',
+          message: currentLine.text
+        });
+        setAlertActive(true);
+
+        if ('vibrate' in navigator) {
+          navigator.vibrate([200, 100, 200]);
+        }
+        return () => clearTimeout(timer);
+      }
+    } else {
+      setFocusSlot(null);
+    }
+  }, [currentStep, currentLine, playBGM, playSE]);
+
+  // Cinema Mode Autoplay timers
+  useEffect(() => {
+    if (!currentLine) return;
+    if (currentLine.style === 'cinema') {
+      let delay = 3000;
+      if (currentLine.action === 'FADE_IN') delay = 2500;
+      if (currentLine.action === 'FADE_OUT') delay = 2000;
+      if (currentLine.action === 'WAIT_SECONDS') delay = 2000;
+      if (currentLine.action === 'SLOW_FADE_IN') delay = 3500;
+      if (currentLine.action === 'WAIT_SECONDS_AND_MOVE_MOON') delay = 4000;
+      if (currentLine.action === 'ALL_FADE_OUT') delay = 3000;
+
+      const timer = setTimeout(() => {
+        if (!isTyping) {
+          nextStep();
+        }
+      }, delay);
+      return () => clearTimeout(timer);
+    }
+  }, [currentStep, currentLine, isTyping, nextStep]);
+
+  // Handle touch events for gestures
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
+  };
+
+  const handleTouchEnd = (e) => {
+    const diffX = e.changedTouches[0].clientX - touchStartX.current;
+    const diffY = e.changedTouches[0].clientY - touchStartY.current;
+
+    if (Math.abs(diffX) > 50 || Math.abs(diffY) > 50) {
+      if (Math.abs(diffX) > Math.abs(diffY)) {
+        if (diffX > 50) {
+          toggleAuto();
+        }
+      } else {
+        if (diffY < -50) {
+          setBacklogOpen(true);
+        } else if (diffY > 50) {
+          toggleHud();
+        }
+      }
+    } else {
+      const now = Date.now();
+      if (now - lastTap.current < 250) {
+        toggleAuto();
+      } else {
+        if (!isWaitingForChoice && !alertActive && !backlogOpen) {
+          nextStep();
+        }
+      }
+      lastTap.current = now;
+    }
+  };
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (backlogOpen || alertActive) return;
+
+      if (e.key === ' ' || e.key === 'Enter') {
+        if (!isWaitingForChoice) {
+          nextStep();
+        }
+      } else if (e.key === 'h' || e.key === 'H') {
+        toggleHud();
+      } else if (e.key === 'a' || e.key === 'A') {
+        toggleAuto();
+      } else if (e.key === 'l' || e.key === 'L') {
+        setBacklogOpen(true);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [nextStep, toggleHud, toggleAuto, isWaitingForChoice, backlogOpen, alertActive]);
+
+  const handleDismissAlert = () => {
+    setAlertActive(false);
+    nextStep();
+  };
+
+  const isCinema = currentLine?.style === 'cinema';
+  const isDemoEnd = currentLine?.action === 'FADE_TO_DEMO_END';
+
+  return (
+    <div
+      className="w-full h-full select-none touch-none"
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
+      <GameFrame shakeEffect={shakeEffect}>
+        {/* Visual Background Fallback & Actual Renderer */}
+        <BackgroundRenderer bgPath={currentLine?.bg || scenarioData[Math.max(0, currentStep - 1)]?.bg} />
+
+        {/* Cinematic Black Letterbox Overlay */}
+        <CinemaLayer text={currentLine?.text} isActive={isCinema && !isDemoEnd} />
+
+        {/* Character Sprite Overlay */}
+        {!isCinema && !isDemoEnd && (
+          <SpriteSlot
+            leftActive={leftActive}
+            rightActive={rightActive}
+            focusSlot={focusSlot}
+          />
+        )}
+
+        {/* Subtitles & Normal Dialogue Boxes */}
+        {!isCinema && !isDemoEnd && !alertActive && (
+          <DialogueBox
+            speaker={currentLine?.speaker}
+            role={currentLine?.role}
+            text={displayedText}
+            isTyping={isTyping}
+            isVisible={hudVisible}
+            autoMode={autoMode}
+            onNext={nextStep}
+            onToggleAuto={toggleAuto}
+            onToggleHud={toggleHud}
+            onOpenLog={() => setBacklogOpen(true)}
+            choices={currentLine?.choices}
+            isWaitingForChoice={isWaitingForChoice}
+            onSelectChoice={selectChoice}
+          />
+        )}
+
+        {/* Warnings & Wave Anomaly Popups */}
+        <AlertModal
+          isActive={alertActive}
+          title={alertConfig.title}
+          message={alertConfig.message}
+          onDismiss={handleDismissAlert}
+        />
+
+        {/* Demo End Screen */}
+        {isDemoEnd && (
+          <div className="absolute inset-0 bg-black/90 flex flex-col items-center justify-center z-50 p-8 text-center animate-fadeIn">
+            {/* Holographic background moon */}
+            <div className="absolute w-[60vh] h-[60vh] rounded-full border border-cyan-500/10 shadow-[0_0_120px_rgba(0,245,255,0.05)] pointer-events-none" />
+            
+            <h1 className="text-4xl md:text-5xl font-orbitron font-extrabold text-cyan-400 tracking-[0.2em] mb-4 drop-shadow-[0_0_15px_rgba(0,245,255,0.5)]">
+              TO BE CONTINUED
+            </h1>
+            <p className="text-gray-400 font-noto tracking-widest text-sm md:text-base mb-12">
+              青い月の裏側で - Behind the Blue Moon Demo
+            </p>
+            
+            <button
+              onClick={() => jumpToStep(0)}
+              className="px-8 py-3 bg-cyan-950/40 border border-cyan-500/30 text-cyan-300 font-orbitron text-sm tracking-widest rounded
+                         hover:bg-cyan-500/20 hover:border-cyan-400 hover:text-white hover:shadow-[0_0_20px_rgba(0,245,255,0.3)]
+                         transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 active:scale-95"
+            >
+              REPLAY DEMO
+            </button>
+          </div>
+        )}
+
+        {/* Backlog overlay */}
+        <BacklogOverlay
+          isOpen={backlogOpen}
+          onClose={() => setBacklogOpen(false)}
+          backlog={backlog}
+        />
+
+        {/* Debug Console */}
+        <DevConsole
+          currentStep={currentStep}
+          totalSteps={totalSteps}
+          onJumpToStep={jumpToStep}
+          onToggleMute={toggleMute}
+          scenarioData={scenarioData}
+        />
+
+        {/* Bottom Ambient HUD Decorator */}
+        {hudVisible && !isCinema && !isDemoEnd && (
+          <div className="absolute top-4 left-6 pointer-events-none z-20 flex flex-col font-orbitron text-xs tracking-widest text-cyan-400/40">
+            <span>PROJECT: BEHIND THE BLUE MOON</span>
+            <span className="text-[10px] text-cyan-500/20">SYSTEM STATUS: COMPILING_</span>
+          </div>
+        )}
+      </GameFrame>
+    </div>
+  );
+}

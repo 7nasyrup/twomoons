@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-black text-gray-100 overflow-hidden font-noto select-none;
+  }
+}
+
+/* Custom visual novel engine scrollbar styling */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: rgba(0, 245, 255, 0.02);
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: rgba(0, 245, 255, 0.2);
+  border-radius: 3px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 245, 255, 0.4);
+}
+
+/* Glow effects */
+.glow-cyan {
+  text-shadow: 0 0 10px rgba(0, 245, 255, 0.6);
+}
+
+.glow-red {
+  text-shadow: 0 0 10px rgba(255, 0, 85, 0.6);
+}
+
+/* Full screen game canvas scaling */
+#game-canvas-wrapper {
+  aspect-ratio: 16 / 9;
+  width: 100vw;
+  max-height: 100vh;
+  max-width: 177.78vh; /* 100 * (16/9) */
+  position: relative;
+  overflow: hidden;
+  margin: auto;
+}
