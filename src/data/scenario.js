@@ -1639,7 +1639,13 @@ export const scenarioData = [
         speaker: "私（朔良）",
         role: "UNADAPTED",
         text: "二人でカバンを肩にかけ、賑わうキャンパスの正門へ向かって歩いていた、その時だった。",
-        bg: "school_gate_evening",
+        bg: "school_gate_evening"
+    },
+    {
+        scene: "廊下",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "",
         action: "FADE_TO_DEMO_END"
     }
 ];
