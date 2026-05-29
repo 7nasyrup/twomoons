@@ -2694,12 +2694,7 @@ export const scenarioData = [
         role: "UNADAPTED",
         text: "綺麗な黒髪。少し切れ長の、今は眠そうに伏せられた黒い瞳。"
     },
-    {
-        scene: "大学の講義室",
-        speaker: "私（朔良）",
-        role: "UNADAPTED",
-        text: "そして何より、──彼の白い頬にある、痛々しい火傷 of 痣。"
-    },
+
     {
         scene: "大学の講義室",
         speaker: "私（朔良）",
@@ -2748,12 +2743,7 @@ export const scenarioData = [
         role: "UNADAPTED",
         text: "ぶっきらぼうだけど、確かに昨日のお礼だった。"
     },
-    {
-        scene: "大学の講義室",
-        speaker: "私（朔良）",
-        role: "UNADAPTED",
-        text: "そして何より、──彼の白い頬にある、痛々しい火傷の痣。"
-    },
+
     {
         scene: "キャンパスの裏手",
         speaker: "私（朔良）",
