@@ -1641,8 +1641,185 @@ export const scenarioData = [
         text: "二人でカバンを肩にかけ、賑わうキャンパスの正門へ向かって歩いていた、その時だった。",
         bg: "school_gate_evening"
     },
+
+    // ================== #10 対峙「正門前の闖入者」 ==================
     {
-        scene: "廊下",
+        scene: "大学の正門前",
+        speaker: "？？？",
+        role: "UNKNOWN",
+        text: "「あ、見つけた。──やぁ、昨日の可愛い子」",
+        bg: "school_gate_evening"
+    },
+    {
+        scene: "大学の正門前",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "正面から降ってきた、鈴の鳴るような、ひどく甘くて整った声。"
+    },
+    {
+        scene: "大学の正門前",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "「えっ……」"
+    },
+    {
+        scene: "大学の正門前",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "心臓がドクンと嫌な音を立てた。"
+    },
+    {
+        scene: "大学の正門前",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "ハッとして顔を上げると、正門のレンガの壁に背中を預け、退屈そうにスマートフォンを弄っていた男が、こちらを見てにこりと完璧な微笑みを浮かべていた。"
+    },
+    {
+        scene: "大学の正門前",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "整いすぎた容姿に、モデルのような抜群のスタイル。周りの女子生徒がひそひそするほどの美貌だ。"
+    },
+    {
+        scene: "大学の正門前",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "しかしその正体は、昨日、夜道で私の腕を強引に掴み、「凪砂」と名乗ったあの不審な男だった。"
+    },
+    {
+        scene: "大学の正門前",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "「な、んで……ここに……」"
+    },
+    {
+        scene: "大学の正門前",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "恐怖で声が震え、思わず一歩後ずさる。"
+    },
+    {
+        scene: "大学の正門前",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "すると、私の隣を歩いていた睦典の空気が、一瞬でガラリと変わった。いつものおちゃらけた雰囲気が完全に消え失せ、その大きな身体で私を庇うように一歩前に出て、私に振り返る。"
+    },
+    {
+        scene: "大学の正門前",
+        speaker: "睦典",
+        role: "CLASSMATE",
+        text: "「この人、朔良の知り合い？」"
+    },
+    {
+        scene: "大学の正門前",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "「い、いや…」"
+    },
+    {
+        scene: "大学の正門前",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "全く知らない人、という訳では無いのだが……昨晩のことを説明するとさらにややこしくなるので、押し黙っていると、睦典は男に向き直る。"
+    },
+    {
+        scene: "大学の正門前",
+        speaker: "睦典",
+        role: "CLASSMATE",
+        text: "「誰だよ、お前。朔良に何か用か」"
+    },
+    {
+        scene: "大学の正門前",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "睦典の声は、これまで聞いたことがないほど低く、地を這うように冷たかった。その鋭い瞳は、目の前の男を明確に「危険人物」として捉え、強い警戒を宿している。"
+    },
+    {
+        scene: "大学の正門前",
+        speaker: "凪砂",
+        role: "UNKNOWN",
+        text: "「お前には話しかけてない」"
+    },
+    {
+        scene: "大学の正門前",
+        speaker: "睦典",
+        role: "CLASSMATE",
+        text: "「は？なんだよそれ。なんの用かって聞いてるんだけど」"
+    },
+    {
+        scene: "大学の正門前",
+        speaker: "凪砂",
+        role: "UNKNOWN",
+        text: "「うるさいな……。声が大きくて頭に響く。育ちが悪いんじゃない？」"
+    },
+    {
+        scene: "大学の正門前",
+        speaker: "睦典",
+        role: "CLASSMATE",
+        text: "「んだと……っ！？」"
+    },
+    {
+        scene: "大学の正門前",
+        speaker: "凪砂",
+        role: "UNKNOWN",
+        text: "「お前に用はない。俺が話したいのは、後ろの彼女」"
+    },
+    {
+        scene: "大学の正門前",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "凪砂は睦典を視界から外すように、その斜め後ろにいる私へと、冷酷なまでにギラついた瞳を向けた。薄い唇の端が、ほんの少しだけ歪に持ち上がる。"
+    },
+    {
+        scene: "大学の正門前",
+        speaker: "凪砂",
+        role: "UNKNOWN",
+        text: "「昨日、途中で逃げたでしょ。……生意気。連絡先、教えなよ」"
+    },
+    {
+        scene: "大学の正門前",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "「っ、な、んでここが分かったんですか……！」"
+    },
+    {
+        scene: "大学の正門前",
+        speaker: "凪砂",
+        role: "UNKNOWN",
+        text: "「学生証、カバンから見えてた。頭の悪そうな名前の大学。……ねぇ、朔良ちゃん」"
+    },
+    {
+        scene: "大学の正門前",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "名前を呼ばれ、背筋が凍る。一歩、凪砂が距離を詰めてくる。その一歩の圧迫感が凄まじくて、息が止まりそうになる。"
+    },
+    {
+        scene: "大学の正門前",
+        speaker: "睦典",
+        role: "CLASSMATE",
+        text: "「近づくな、って言ってんだろ」"
+    },
+    {
+        scene: "大学の正門前",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "間髪入れず、睦典が凪砂の胸元を力強く押し返すようにして割り込んだ。"
+    },
+    {
+        scene: "大学の正門前",
+        speaker: "凪砂",
+        role: "UNKNOWN",
+        text: "「……触らないで。汚れる。本当に、野蛮な男」"
+    },
+    {
+        scene: "大学の正門前",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "二人の間で、バチバチと火花が散るような、一触即発の険悪な空気が流れる。"
+    },
+    {
+        scene: "大学の正門前",
         speaker: "私（朔良）",
         role: "UNADAPTED",
         text: "",
