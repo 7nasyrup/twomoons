@@ -2619,6 +2619,12 @@ export const scenarioData = [
         scene: "時計塔前",
         speaker: "私（朔良）",
         role: "UNADAPTED",
+        text: "満と温かいココアを飲みながら過ごした時間は、まるで夢のようだった。 "
+    },
+    {
+        scene: "時計塔前",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
         text: "",
         action: "FADE_TO_DEMO_END"
     }

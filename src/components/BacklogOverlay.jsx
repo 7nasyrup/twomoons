@@ -19,6 +19,7 @@ export default function BacklogOverlay({ isOpen, onClose, backlog }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
+          onClick={(e) => e.stopPropagation()}
         >
           {/* Header */}
           <div className="flex items-center justify-between px-6 py-4 border-b border-cyan-500/10">
@@ -27,7 +28,10 @@ export default function BacklogOverlay({ isOpen, onClose, backlog }) {
               <span className="text-cyan-400 text-xs font-orbitron tracking-[0.3em]">BACKLOG</span>
             </div>
             <button
-              onClick={onClose}
+              onClick={(e) => {
+                e.stopPropagation();
+                onClose();
+              }}
               className="text-cyan-500/40 hover:text-cyan-400 transition-colors p-1"
             >
               <X size={18} />

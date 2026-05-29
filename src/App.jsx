@@ -292,7 +292,23 @@ export default function App() {
   // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (backlogOpen || alertActive) return;
+      if (alertActive) return;
+
+      // Handle backlog closing via keyboard
+      if (backlogOpen) {
+        if (e.key === 'Escape' || e.key === 'l' || e.key === 'L') {
+          setBacklogOpen(false);
+          e.preventDefault();
+        }
+        return;
+      }
+
+      // If HUD is hidden, any key press will restore it
+      if (!hudVisible) {
+        setHudVisible(true);
+        e.preventDefault();
+        return;
+      }
 
       if (e.key === ' ' || e.key === 'Enter') {
         if (!isWaitingForChoice) {
@@ -309,7 +325,7 @@ export default function App() {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [nextStep, toggleHud, toggleAuto, isWaitingForChoice, backlogOpen, alertActive]);
+  }, [nextStep, toggleHud, toggleAuto, isWaitingForChoice, backlogOpen, alertActive, hudVisible, setHudVisible]);
 
   const handleDismissAlert = () => {
     setAlertActive(false);
@@ -357,6 +373,17 @@ export default function App() {
             choices={currentLine?.choices}
             isWaitingForChoice={isWaitingForChoice}
             onSelectChoice={selectChoice}
+          />
+        )}
+
+        {/* HUD hidden overlay to restore HUD on click */}
+        {!hudVisible && !isCinema && !isDemoEnd && (
+          <div
+            className="absolute inset-0 z-20 cursor-pointer"
+            onClick={(e) => {
+              e.stopPropagation();
+              setHudVisible(true);
+            }}
           />
         )}
 
