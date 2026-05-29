@@ -75,7 +75,7 @@ export default function DevConsole({ currentStep, totalSteps, onJumpToStep, onTo
 
             {/* Scene quick jump */}
             <div className="text-cyan-500/40 text-[10px] font-orbitron tracking-wider mb-2">SCENES</div>
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-1 max-h-64 overflow-y-auto scrollbar-thin pr-1">
               {sceneBreaks.map((sb) => (
                 <button
                   key={sb.step}
