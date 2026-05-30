@@ -2846,8 +2846,119 @@ export const scenarioData = [
         role: "UNADAPTED",
         text: "（行く、しかない……。一人で……）"
     },
+
+    // ================== #16 本編「裏路地での邂逅」 ==================
     {
-        scene: "キャンパスの裏手",
+        scene: "裏路地",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "そして、すっかり太陽が沈み、人工月の青い光が街を不気味に照らし出す夜の20時。",
+        bg: "town_dark_2"
+    },
+    {
+        scene: "裏路地",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "私は指定された、人通りの全くない薄暗い西路地裏へと足を踏み入れていた。"
+    },
+    {
+        scene: "裏路地",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "ゴミ箱の生臭い臭いと湿った空気が足元から這い上がってきて、心臓の音がうるさいくらいにバクバクと鳴り響く。"
+    },
+    {
+        scene: "裏路地",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "「……誰も、いない……？」"
+    },
+    {
+        scene: "裏路地",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "壁に背を預け、怯えながら辺りを見回した、その時だった。"
+    },
+    {
+        scene: "裏路地",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "──すっ、と背後の闇から、気配もなく一つの影が滑り込んできた。"
+    },
+    {
+        scene: "裏路地",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "「え……？」"
+    },
+    {
+        scene: "裏路地",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "振り返るよりも早く、背後から強固な腕が私の身体をがっちりと拘束する。"
+    },
+    {
+        scene: "裏路地",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "驚きで声を上げようとした瞬間、容赦のない力で、薬品のツンとした鼻を突く匂いがする布が口と鼻に強く押し当てられた。"
+    },
+    {
+        scene: "裏路地",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "「むぐっ……！？ んん……っ！！」"
+    },
+    {
+        scene: "裏路地",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "必死に暴れて男の腕を振り払おうとするけれど、無能力者の私の力なんて、男の鉄のような腕の前には全く歯が立たない。"
+    },
+    {
+        scene: "裏路地",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "吸い込んでしまった冷たい薬品の匂いが、一瞬で頭の芯を真っ白に麻痺させていく。"
+    },
+    {
+        scene: "裏路地",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "薄れゆく意識の向こうで、私はその正体を見た。"
+    },
+    {
+        scene: "裏路地",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "「……………」"
+    },
+    {
+        scene: "裏路地",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "見上げるほどに高い身長と、岩のようにがっしりとした分厚い体格。右目に黒い眼帯を嵌めたその男を。"
+    },
+    {
+        scene: "裏路地",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "私の身体はそのまま崩れ落ち、大男の巨大な腕の中へと完全に回収された。"
+    },
+    {
+        scene: "裏路地",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "言葉もなく、ただ静かに日常が奪われていく。"
+    },
+    {
+        scene: "裏路地",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "人工月の青い光が、意識を失った私の顔を、ただ冷たく照らし出していた。"
+    },
+    {
+        scene: "裏路地",
         speaker: "私（朔良）",
         role: "UNADAPTED",
         text: "",
