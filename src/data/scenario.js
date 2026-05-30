@@ -2963,5 +2963,403 @@ export const scenarioData = [
         role: "UNADAPTED",
         text: "",
         action: "FADE_TO_DEMO_END"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "……っ、……ぅ……",
+        bg: "warehouse_dark"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "頭を殴られたような激しい頭痛と、鼻の奥に残る薬品の匂いで目が覚めた。"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "視界がぐにゃりと歪む中、自分が冷たいコンクリートの床に座らされ、手足が太いロープでがんじがらめに縛り付けられていることに気づく。"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "大男",
+        role: "BIG_MAN",
+        text: "「……気づいたか」",
+        action: "SHOW_SILHOUETTE_CENTER"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "低く、地響きのような声が聞こえ、私は弾かれたように顔を上げた。"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "そこは、薄暗い廃倉庫のような場所だった。"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "私の周りを取り囲むように、見るからにガラの悪い男たちが何人も立っている。そして、その中心にいたのは──さっき路地裏で私を襲った、右目に眼帯をつけたあの大男だった。見上げるほどの高身長と、威圧感のある凶悪な体格。まだ名前も知らないその大男が、冷徹な一歩を踏み出して私を見下ろす。"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "「どういうつもり……っ、あなたたち、何者なの……！？」"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "必死に声を絞り出して睨みつけるけれど、大男の表情はピクリとも動かない。私の問いを完全に無視して、ただ淡々と、低い声を響かせた。"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "大男",
+        role: "BIG_MAN",
+        text: "「お前に質問がある」"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "「答えてよ！ 私は無能力者だし、あなたたちに怨まれる覚えなんて──」"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "──ドンッ！！！",
+        action: "SHAKE_SCREEN"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "「ぐぅ……っ！？」"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "言葉の途中で、横にいた男の一人に容赦なく顔を殴り飛ばされた。"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "衝撃で視界が火花を散らし、口の中に鉄の味が広がる。縛られた身体が椅子ごと激しく揺れ、床に叩きつけられそうになるのを、大男が片手で強引に掴んで引き戻した。"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "大男",
+        role: "BIG_MAN",
+        text: "「質問に答えろ」"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "男はやはり無表情のまま、冷酷に言い放つ。"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "この人は何……？"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "恐怖と痛みに涙が滲むけれど、ここで怯えたら本当に殺される。私は痛む頬を抑えるようにして、大男を睨み返した。"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "大男",
+        role: "BIG_MAN",
+        text: "「お前の血縁者について質問がある」"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "「血縁者……？ お父さんのこと……？」"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "お父さんの研究データが目的だったの？ そう思った私に、大男は眼帯のない左の眼をさらに細め、冷たく言い渡した。"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "大男",
+        role: "BIG_MAN",
+        text: "「お前の血縁者──”弟”について、知っていることを教えろ」"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "「え……？」"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "言われた言葉の意味が、一瞬、理解できなかった。"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "お父さんのことじゃなくて、弟？私にはお父さんとお母さんしかいないはず…。"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "「どういうこと……？ 私に、弟なんていないわよ……っ！」"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "私の困惑の表情を見た大男は、その冷徹な瞳にさらに禍々しい闇を宿し、低く唸るように言った。"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "大男",
+        role: "BIG_MAN",
+        text: "「……とぼけるつもりか」"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "大男が顎で小さく合図を出す。"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "次の瞬間、横にいた男がニヤニヤと笑いながら、再び私に向けて拳を振り上げた。"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "「待っ、本当に知らないの──」"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "──ドカッ！！！",
+        action: "SHAKE_SCREEN"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "「あぐっ……ぅ、っ……！！」"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "再び激しい衝撃が走り、脳を揺さぶられるような痛みに視界が真っ白に染まる。口の端からツッと血が流れ落ち、あまりの痛みに息が詰まった。"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "なんなのこの人達は……！ 本当に何も知らないのに……っ！"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "大男",
+        role: "BIG_MAN",
+        text: "「吐くまで殴れ」"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "大男の冷酷な命令が下り、男たちが一斉に私を囲んで拳を構える。無能力者の私が、こんな大男たちの暴力に敵うわけがない。"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "恐怖に身体を強張らせ、ぎゅっと目を瞑って次の衝撃に備えた、その時だった。"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "？？？",
+        role: "UNKNOWN",
+        text: "「──おい。そいつから手を離せって言っただろ、デカブツ」",
+        action: "PLAY_FOOTSTEP_SE_FAST"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "「っ」"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "聞き覚えのある、生意気で、でもどこか必死な少年の声が、廃倉庫の凍りついた空気を切り裂いた。"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "ガタッと目を開けると、倉庫の割れた窓枠のところに、息を切らせたミカくんが立っていた。"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "その手に武器があるわけでもない。けれど、彼はその黒い瞳に強い意志を宿して、私を囲む男たちを鋭く睨みつけていた。"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "「ミカくん……っ！？」"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "大男",
+        role: "BIG_MAN",
+        text: "「チッ、またあのガキか」"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "大男が忌々しそうに首の骨を鳴らし、その巨体を揺らしてミカくんを睨みつける。異能なんて使わなくとも、その体格だけで十分に化け物じみた威圧感があった。"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "ミカくんが私を助けるために一歩を踏み出そうとした──まさにその瞬間だった。"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "ズズズズズズン……ッッ！！！！",
+        action: "SHAKE_SCREEN_VERY_LARGE"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "男たち",
+        role: "ENEMY",
+        text: "「うおっ！？ な、なんだぁっ！？」"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "男たち",
+        role: "ENEMY",
+        text: "「敵襲か！？ 爆発したぞ！！」"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "倉庫の頑丈な鉄扉が、外からの凄まじい衝撃波でボコボコに歪み、隙間から真っ赤な炎と不気味な煙が吹き込んできた。外から聞こえてくるのは、男たちの悲鳴と凄まじい破壊音。一瞬にしてアジト全体がパニックに陥る。"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "大男",
+        role: "BIG_MAN",
+        text: "「おい、外はどうなってる」"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "大男の一声で、男たちが一斉に外の様子を確認しようと私の前から離れた。"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "（今だ──！）"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "全員の意識が外の混乱に向いたその一瞬の隙を、ミカくんは見逃さなかった。"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "彼は音もなく私の元へ駆け寄ると、ポケットから取り出したナイフで、私を縛っていたロープを瞬く間に切り裂いた。",
+        action: "PLAY_SLICE_SE"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "ミカ",
+        role: "CHIMERA_BOY",
+        text: "「立てますか？ 朔良先輩」"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "「ミカくん……っ、うん！」"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "ミカ",
+        role: "CHIMERA_BOY",
+        text: "「声がデカい、静かに。……行きましょう」"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "自由になった私の手首を、ミカくんは迷いなく強い力で掴んだ。"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "昨日の路地裏ではあんなに弱り切っていたのに、今の彼の掌は驚くほど熱くて頼もしい。"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "ミカくんは私の歩調に合わせながら、崩落しかけているアジトの裏口のドアを蹴り開け、煙が立ち込める外の闇へと私をささっと連れ出した。",
+        action: "PLAY_FOOTSTEP_SE_FAST"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "冷たい夜風が、殴られた頬の熱を冷ましていく。"
+    },
+    {
+        scene: "廃倉庫",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "外では何かが激しく燃え盛り、別の勢力が大暴れしているような混沌とした音が響いていたけれど、私はただ、前を走るミカくんの背中を必死に追いかけて走るしかなかった。"
     }
 ];
