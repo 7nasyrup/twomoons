@@ -3642,6 +3642,6 @@ export const scenarioData = [
         speaker: "私（朔良）",
         role: "UNADAPTED",
         text: "こうして、ミカくんと、底の知れない謎の男凪砂という、最悪に奇妙で危険な組み合わせに挟まれたまま、私の命がけの逃亡劇が幕を開けた。",
-        action: "FADE_TO_DEMO_END"
+        action: "FADE_TO_EPISODE_END"
     }
 ];
