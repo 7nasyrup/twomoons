@@ -3643,5 +3643,287 @@ export const scenarioData = [
         role: "UNADAPTED",
         text: "こうして、ミカくんと、底の知れない謎の男凪砂という、最悪に奇妙で危険な組み合わせに挟まれたまま、私の命がけの逃亡劇が幕を開けた。",
         action: "FADE_TO_EPISODE_END"
+    },
+
+    // ================== #19 廃ビルの一室「再会、そして疑問」 ==================
+    {
+        scene: "廃ビルへの階段",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "背後から迫る【キメラ】の気配や街の騒音を振り切るようにして、私たちはとある寂れた廃ビルの3階部分まで一気に階段を駆け上がった。",
+        bg: "town_dark_2",
+        style: "novel"
+    },
+    {
+        scene: "廃ビルへの階段",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "息を切らしながら、ミカくんが一番奥にあるこじんまりとした部屋の扉を開ける。"
+    },
+    {
+        scene: "廃ビルの一室",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "薄暗い室内へと足を踏み入れた、その瞬間──。",
+        bg: "warehouse_dark",
+        action: "FADE_IN"
+    },
+    {
+        scene: "廃ビルの一室",
+        speaker: "？？？",
+        role: "UNKNOWN",
+        text: "「──っ、朔良！！」",
+        action: "SHOW_SILHOUETTE_LEFT"
+    },
+    {
+        scene: "廃ビルの一室",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "「ムッちゃん！？」"
+    },
+    {
+        scene: "廃ビルの一室",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "そこにいたのは、昼間に大学で別れたはずの、いつもの見慣れた友人だった。"
+    },
+    {
+        scene: "廃ビルの一室",
+        speaker: "睦典",
+        role: "CLASSMATE",
+        text: "「ああ良かった……無事だったんだな、朔良……っ！」",
+        action: "FOCUS_SILHOUETTE_LEFT"
+    },
+    {
+        scene: "廃ビルの一室",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "睦典は私の姿を見るなり、大きな身体を震わせて駆け寄り、涙目になりながら私の肩をがっしりと掴んだ。"
+    },
+    {
+        scene: "廃ビルの一室",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "ゆうべの事件から始まって、大男への監禁、路地裏での拉致、怪物【キメラ】の襲撃……あまりにも現実離れした光景ばかりを立て続けに目の当たりにしていたせいか、この日常の象徴とも言える馴染み深い顔を見た瞬間、張り詰めていた心の糸がふっと緩んで、心の底からほっと胸を撫で下ろした。"
+    },
+    {
+        scene: "廃ビルの一室",
+        speaker: "凪砂",
+        role: "STALKER",
+        text: "「はぁ……」",
+        action: "SHOW_SILHOUETTE_RIGHT"
+    },
+    {
+        scene: "廃ビルの一室",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "そんな感動の再会の空気をぶち破るように、背後から凪砂がこれ見よがしに、思いっきり大きなため息を吐き出した。"
+    },
+    {
+        scene: "廃ビルの一室",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "その不躾な態度にいち早く気づいた睦典が、一瞬で顔を険しくさせて不機嫌そうに身構える。"
+    },
+    {
+        scene: "廃ビルの一室",
+        speaker: "睦典",
+        role: "CLASSMATE",
+        text: "「お前……！ なんでここにいるんだよ」",
+        action: "FOCUS_SILHOUETTE_LEFT"
+    },
+    {
+        scene: "廃ビルの一室",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "昼間の大学での一件がある。睦典が凪砂を激しく敵視するのも当然だった。けれど、凪砂は相変わらず飄々とした笑みを浮かべ、わざとらしく肩をすくめて見せる。"
+    },
+    {
+        scene: "廃ビルの一室",
+        speaker: "凪砂",
+        role: "STALKER",
+        text: "「運命だよ。お前とは違ってね」",
+        action: "FOCUS_SILHOUETTE_RIGHT"
+    },
+    {
+        scene: "廃ビルの一室",
+        speaker: "睦典",
+        role: "CLASSMATE",
+        text: "「お前……ッ、ふざけんな！」",
+        action: "FOCUS_SILHOUETTE_LEFT"
+    },
+    {
+        scene: "廃ビルの一室",
+        speaker: "ミカ",
+        role: "CHIMERA_BOY",
+        text: "「はいはい、喧嘩は後。──アンタ達がどういう関係かはどうでもいいとして、この先どうするか考えましょう」",
+        action: "SHOW_SILHOUETTE_LEFT"
+    },
+    {
+        scene: "廃ビルの一室",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "一触即発の二人の間に、ミカくんが冷ややかな声を挟んで割り込んだ。その冷徹なトーンに、睦典も凪砂も一瞬だけ口を閉ざす。"
+    },
+    {
+        scene: "廃ビルの一室",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "「ま、待って！」"
+    },
+    {
+        scene: "廃ビルの一室",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "二人の喧嘩を止めるよりも先に、私にはどうしても消化しきれない疑問が山積みだった。"
+    },
+    {
+        scene: "廃ビルの一室",
+        speaker: "ミカ",
+        role: "CHIMERA_BOY",
+        text: "「なんでしょう」",
+        action: "FOCUS_SILHOUETTE_LEFT"
+    },
+    {
+        scene: "廃ビルの一室",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "ミカくんが私の正面に立ち、その深い黒い瞳で私を見つめ直す。"
+    },
+    {
+        scene: "廃ビルの一室",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "「その……どうしてミカくんは、私が裏路地に連れ去られた居場所がわかったの？ それに……どうしてこんな場所に、ムッちゃんがいるの……？」"
+    },
+    {
+        scene: "廃ビルの一室",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "私が疑問を口にすると、部屋の中に一瞬、奇妙な沈黙が流れた。"
+    },
+    {
+        scene: "廃ビルの一室",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "その沈黙を破るように、まずミカくんがめんどくさそうに頭を掻きながら口を開いた。"
+    },
+    {
+        scene: "廃ビルの一室",
+        speaker: "ミカ",
+        role: "CHIMERA_BOY",
+        text: "「……そこの睦典先輩に、頼まれたからですよ。『朔良と連絡が取れない』って、泣きつかれました」"
+    },
+    {
+        scene: "廃ビルの一室",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "「え、ムッちゃんに……？」"
+    },
+    {
+        scene: "廃ビルの一室",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "驚いて睦典を見上げると、ミカくんはそのまま淡々と言葉を続ける。"
+    },
+    {
+        scene: "廃ビルの一室",
+        speaker: "ミカ",
+        role: "CHIMERA_BOY",
+        text: "「そもそも俺、睦典先輩の店の常連で、よく通ってたんです。だから多少の融通は利くっていうか……」"
+    },
+    {
+        scene: "廃ビルの一室",
+        speaker: "睦典",
+        role: "CLASSMATE",
+        text: "「そうんだよ、朔良」",
+        action: "FOCUS_SILHOUETTE_LEFT"
+    },
+    {
+        scene: "廃ビルの一室",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "睦典が申し訳なさそうに、でも必死な面持ちで私の手を握り締めた。"
+    },
+    {
+        scene: "廃ビルの一室",
+        speaker: "睦典",
+        role: "CLASSMATE",
+        text: "「大学で別れた後、何回連絡しても全然返信が返ってこなくて……。いつもならすぐ返すお前にしては遅すぎるから、すごく心配だったんだ。それで、もしかして何かに巻き込まれたんじゃないかって焦って……たまたま店に来てたミカに相談したら、アイツが裏のツテを使って、お前のスマートフォンの電波から居場所を割り出してくれたんだよ」"
+    },
+    {
+        scene: "廃ビルの一室",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "「ミカくんが、場所を……」"
+    },
+    {
+        scene: "廃ビルの一室",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "まさか、裏でそんなことが起きていたなんて。驚いてミカくんを見ると、彼はフイッと気まずそうに視線を逸らした。"
+    },
+    {
+        scene: "廃ビルの一室",
+        speaker: "睦典",
+        role: "CLASSMATE",
+        text: "「俺は何かあった時の待機係として、ミカにここを教えられて待ってたんだ」",
+        action: "FOCUS_SILHOUETTE_LEFT"
+    },
+    {
+        scene: "廃ビルの一室",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "睦典は悔しそうに顔を歪め、ぎゅっと拳を握り締める。"
+    },
+    {
+        scene: "廃ビルの一室",
+        speaker: "睦典",
+        role: "CLASSMATE",
+        text: "「本当は俺もすぐに飛び出して助けに行きたかったんだけど……俺が足手まといになったら意味がないからって、ミカに止められてさ。大人しく待ってようと思ったら、突然外があんな爆発だの【キメラ】だので大混乱になって、出るに出れなくなっちゃって……。本当に、無事で良かった……っ」"
+    },
+    {
+        scene: "廃ビルの一室",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "大きな身体を縮めるようにしてホッとした笑みを浮かべる睦典。"
+    },
+    {
+        scene: "廃ビルの一室",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "馴染み深い二人が裏で繋がっていて、私のために必死に動いてくれていた。その事実は、恐怖で凍りついていた私の心をじんわりと温めていく。"
+    },
+    {
+        scene: "廃ビルの一室",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "けれど、そんな私たちの様子を壁に背を預けて眺めていた凪砂が、面白そうに目を細めて口を開いた。"
+    },
+    {
+        scene: "廃ビルの一室",
+        speaker: "凪砂",
+        role: "STALKER",
+        text: "「へぇ、なるほどね。バカの連携プレイってわけだ。……でもさ、一番大事なことが抜けてるんじゃない？」",
+        action: "FOCUS_SILHOUETTE_RIGHT"
+    },
+    {
+        scene: "廃ビルの一室",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "凪砂は壁から背を離すと、私に向かって一歩、距離を詰めてきた。"
+    },
+    {
+        scene: "廃ビルの一室",
+        speaker: "凪砂",
+        role: "STALKER",
+        text: "「外がどんな状況になってるか、知ってる？」"
+    },
+    {
+        scene: "廃ビルの一室",
+        speaker: "私（朔良）",
+        role: "UNADAPTED",
+        text: "「え……？」",
+        action: "FADE_TO_EPISODE_END"
     }
 ];
