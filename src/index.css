@@ -1,10 +1,14 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 @layer base {
   body {
-    @apply bg-black text-gray-100 overflow-hidden font-noto select-none;
+    background-color: #000000;
+    color: #f3f4f6;
+    overflow: hidden;
+    font-family: "Noto Sans JP", sans-serif;
+    user-select: none;
   }
 }
 
@@ -12,13 +16,16 @@
 .scrollbar-thin::-webkit-scrollbar {
   width: 6px;
 }
+
 .scrollbar-thin::-webkit-scrollbar-track {
   background: rgba(0, 245, 255, 0.02);
 }
+
 .scrollbar-thin::-webkit-scrollbar-thumb {
   background: rgba(0, 245, 255, 0.2);
   border-radius: 3px;
 }
+
 .scrollbar-thin::-webkit-scrollbar-thumb:hover {
   background: rgba(0, 245, 255, 0.4);
 }
@@ -37,7 +44,8 @@
   aspect-ratio: 16 / 9;
   width: 100vw;
   max-height: 100vh;
-  max-width: 177.78vh; /* 100 * (16/9) */
+  max-width: 177.78vh;
+  /* 100 * (16/9) */
   position: relative;
   overflow: hidden;
   margin: auto;

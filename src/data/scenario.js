@@ -2962,7 +2962,6 @@ export const scenarioData = [
         speaker: "私（朔良）",
         role: "UNADAPTED",
         text: "",
-        action: "FADE_TO_DEMO_END"
     },
     {
         scene: "廃倉庫",
@@ -3360,7 +3359,6 @@ export const scenarioData = [
         speaker: "私（朔良）",
         role: "UNADAPTED",
         text: "外では何かが激しく燃え盛り、別の勢力が大暴れしているような混沌とした音が響いていたけれど、私はただ、前を走るミカくんの背中を必死に追いかけて走るししか動かせなかった。",
-        action: "FADE_TO_DEMO_END"
     },
 
     // ================== #18 本編「手首を引かれ、外へ」 ==================
@@ -3642,7 +3640,6 @@ export const scenarioData = [
         speaker: "私（朔良）",
         role: "UNADAPTED",
         text: "こうして、ミカくんと、底の知れない謎の男凪砂という、最悪に奇妙で危険な組み合わせに挟まれたまま、私の命がけの逃亡劇が幕を開けた。",
-        action: "FADE_TO_EPISODE_END"
     },
 
     // ================== #19 廃ビルの一室「再会、そして疑問」 ==================
@@ -3924,6 +3921,6 @@ export const scenarioData = [
         speaker: "私（朔良）",
         role: "UNADAPTED",
         text: "「え……？」",
-        action: "FADE_TO_EPISODE_END"
+        action: "FADE_TO_DEMO_END"
     }
 ];
