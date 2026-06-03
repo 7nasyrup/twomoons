@@ -37,6 +37,11 @@ export default function DialogueBox({
         animate="visible"
         exit="exit"
       >
+        {/* LOG button - top left */}
+        <div className="fixed top-4 left-6 z-40">
+          <HudButton icon={<BookOpen size={16} />} label="LOG" onClick={onOpenLog} />
+        </div>
+
         {/* Choices */}
         {isWaitingForChoice && choices && (
           <div className="flex flex-col items-end gap-2 mb-3 mr-2">
@@ -70,9 +75,8 @@ export default function DialogueBox({
           </div>
         )}
 
-        {/* Control bar */}
+        {/* Control bar - AUTO & HIDE */}
         <div className="flex justify-end gap-2 mb-2 mr-2">
-          <HudButton icon={<BookOpen size={16} />} label="LOG" onClick={onOpenLog} />
           <HudButton
             icon={<FastForward size={16} />}
             label="AUTO"
