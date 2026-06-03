@@ -53,9 +53,9 @@ export default function DialogueBox({
                   className={`w-80 md:w-96 bg-[#080a10]/80 backdrop-blur border border-cyan-500/20 text-cyan-100 py-3 px-6 rounded
                              transition-all duration-300 text-left font-noto tracking-wide
                              ${isInteractive
-                               ? "hover:bg-cyan-500/10 hover:border-cyan-400/50 cursor-pointer"
-                               : "opacity-60 cursor-default"
-                             }`}
+                      ? "hover:bg-cyan-500/10 hover:border-cyan-400/50 cursor-pointer"
+                      : "opacity-60 cursor-default"
+                    }`}
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0, transition: { delay: idx * 0.1 } }}
                   whileHover={isInteractive ? { scale: 1.01 } : {}}
@@ -105,7 +105,7 @@ export default function DialogueBox({
           {/* Speaker name */}
           {speaker && (
             <div className="absolute -top-3.5 left-6 flex items-center gap-2">
-              <span className="bg-[#080a10] border border-cyan-500/30 text-cyan-400 text-xs md:text-sm font-orbitron px-4 md:px-5 py-1 md:py-1.5 rounded-sm tracking-widest uppercase">
+              <span className="bg-[#080a10] border border-cyan-500/30 text-cyan-400 text-base font-orbitron px-4 md:px-5 py-1 md:py-1.5 rounded-sm tracking-widest uppercase">
                 {speaker}
               </span>
               {role && role !== 'NARRATOR' && (
@@ -118,11 +118,11 @@ export default function DialogueBox({
 
           {/* Text content */}
           <div className="min-h-[88px] flex items-start pt-2">
-            <p className="text-gray-100 text-lg md:text-xl leading-relaxed font-noto tracking-wide">
+            <p className="text-gray-100 text-base leading-relaxed font-noto tracking-wide">
               {text}
               {isTyping && (
                 <motion.span
-                  className="inline-block w-[2px] h-5 md:h-[22px] bg-cyan-400 ml-1 align-middle"
+                  className="inline-block w-[2px] h-5 bg-cyan-400 ml-1 align-middle"
                   animate={{ opacity: [1, 0] }}
                   transition={{ duration: 0.5, repeat: Infinity }}
                 />
@@ -153,9 +153,9 @@ function HudButton({ icon, label, onClick, active }) {
       className={`flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-orbitron tracking-wider
                   border transition-all duration-200
                   ${active
-                    ? 'bg-cyan-500/20 border-cyan-400/50 text-cyan-300'
-                    : 'bg-[#080a10]/60 border-cyan-500/10 text-cyan-500/60 hover:border-cyan-500/30 hover:text-cyan-400'
-                  }`}
+          ? 'bg-cyan-500/20 border-cyan-400/50 text-cyan-300'
+          : 'bg-[#080a10]/60 border-cyan-500/10 text-cyan-500/60 hover:border-cyan-500/30 hover:text-cyan-400'
+        }`}
     >
       {icon}
       {label}
