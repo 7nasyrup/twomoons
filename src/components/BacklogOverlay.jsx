@@ -35,7 +35,7 @@ export default function BacklogOverlay({ isOpen, onClose, backlog }) {
                 e.stopPropagation();
                 onClose();
               }}
-              className="flex items-center justify-center w-8 h-8 rounded-full border border-cyan-500/30 bg-cyan-950/20 text-cyan-400 hover:bg-cyan-500/20 hover:border-cyan-400 hover:text-white transition-all duration-300"
+              className="flex items-center justify-center w-8 h-8 rounded-full border border-cyan-500/30 bg-cyan-950/20 text-cyan-400 hover:bg-cyan-500/20 hover:border-cyan-400 hover:text-white transition-all duration-300 mr-12"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
