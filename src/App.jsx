@@ -435,13 +435,7 @@ export default function App() {
           scenarioData={scenarioData}
         />
 
-        {/* Bottom Ambient HUD Decorator */}
-        {hudVisible && !isCinema && !isDemoEnd && (
-          <div className="absolute top-4 left-6 pointer-events-none z-20 flex flex-col font-orbitron text-xs tracking-widest text-cyan-400/40">
-            <span>PROJECT: BEHIND THE BLUE MOON</span>
-            <span className="text-[10px] text-cyan-500/20">SYSTEM STATUS: COMPILING_</span>
-          </div>
-        )}
+
       </GameFrame>
     </div>
   );
