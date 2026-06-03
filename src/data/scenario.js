@@ -5661,7 +5661,6 @@ export const scenarioData = [
         speaker: "私(朔良)",
         role: "UNADAPTED",
         text: "私の胸の奥に、冷たい、けれど確実に巨大な不信感が、じわじわと波紋のように広がっていった。",
-        action: "FADE_TO_DEMO_END"
     },
     {
         scene: "廃墟",
@@ -5885,6 +5884,7 @@ export const scenarioData = [
         role: "UNADAPTED",
         text: "私たちは紙面を握り締め、不気味な警告灯が明滅する研究所の不気味な廊下へと、一歩を踏み出した。"
     },
+    //ここでゲームを挟む
     {
         scene: "制御室",
         speaker: "私(朔良)",
@@ -5925,7 +5925,7 @@ export const scenarioData = [
         scene: "制御室",
         speaker: "私(朔良)",
         role: "UNADAPTED",
-        text: "研究所に入る前のあの異変が、データチップを集めて進むにつれて、明らかに悪化している。"
+        text: "研究所に入る前の睦典の様子が、データチップを集めて進むにつれて、明らかに悪化している。"
     },
     {
         scene: "制御室",
@@ -6616,5 +6616,786 @@ export const scenarioData = [
         speaker: "私(朔良)",
         role: "UNADAPTED",
         text: "外では、私たちの死神である黒騎士の足音が、静かに、確実に近づいてきていた。"
+    },
+    //ハッピーエンド
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "「そんな……っ！ 嘘、嘘だよムッちゃん……！」"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "私の声は、ひどく情けなく震えていた。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "彼の脳が、自我が、私を守るたびに消しゴムで消されるように摩耗していたなんて。私のために、彼はどれだけのものを失ってしまったのだろう。"
+    },
+    {
+        scene: "最奥",
+        speaker: "睦典",
+        role: "CLASSMATE",
+        text: "「逃げて、朔良……っ！ 俺が……君を殺しちゃう前に……早く、早く行けぇっ！！」"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "首筋に青筋を立て、涙を流しながら叫ぶ睦典。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "その瞳から、完全に光が消え失せようとしている。まるで底のない、濁った黒い沼のような闇が、彼の美しい瞳を急速に塗り潰していく。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "その時、絶望でパニックになりかけた私の脳裏に、道中の端末で目にした『機密データ』の最後の一行が、強烈なフラッシュバックとなって蘇った。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "──【適応者の脳の摩耗を止める唯一の鍵。それは、精神の拠り所となる“絶対的な存在”との、強い感情的な同調（シンクロ）である】"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "（あ……そうだったんだ──）"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "点と点が一瞬で繋がった。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "私には、異能の代償で狂い、化け物へと変貌していく適応者を、この世界に繋ぎ止めるための『楔（精神的安定剤）』としての適性があったんだ。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "私は、無力なんかじゃない。ムッちゃんを救えるのは、世界で私しかいない……！"
+    },
+    {
+        scene: "最奥",
+        speaker: "睦典",
+        role: "CLASSMATE",
+        text: "「ガ、アアアアアアアア……ッ！」"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "睦典の口から、人間離れした咆哮が漏れ始める。服の隙間から噴き出す紫黒色の不気味な霧が、彼の肉体を侵食していく。黒騎士が私たちの気配を察知し、大剣を引きずりながら、ガレキを蹴散らしてこちらへ歩みを進めてくる。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "化け物になりかけている親友と、迫り来る死神。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "でも、私の心から、恐怖は消え去っていた。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "「逃げない」"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "私は大きく一歩を踏み出し、サーバーラックの影から飛び出した。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "驚愕に目を見開く睦典の前に立ちはだかり、そのまま、禍々しい霧が渦巻く彼の胸へと迷わず飛び込んだ。"
+    },
+    {
+        scene: "最奥",
+        speaker: "睦典",
+        role: "CLASSMATE",
+        text: "「な、……に、して……っ！ 離れろ、朔良……！」"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "睦典が狂暴な力で私を突き飛ばそうとする。その手はすでに一部が硬質化しかけていて、触れるだけで肌が擦り切れて血がにじむ。痛い。それでも、私は絶対に手を離さなかった。彼の大きな背中に腕を回し、壊れそうなほど強く、強く抱きしめる。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "「忘れるなんて、絶対に許さない……！！」"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "彼の胸に顔を埋め、涙混じりの叫びを、彼の鼓動に叩きつけるようにぶつけた。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "「うどんの味も、大学のことも、全部私が覚えてる！ ムッちゃんが忘れたら、私が毎日、朝から晩まで全部数え直してあげる！ だから──」"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "私は顔を上げ、濁りきった彼の瞳を真っ直ぐに見つめた。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "「自分の名前も、私のことも、勝手に諦めて消さないでよ……！ ムッちゃんっ！！」"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "私の心からの叫びが、限界を迎えていた空間に響き渡る。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "──ゴォォッ……！ と、部屋の空気が鳴動する。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "私の身体の奥底から、温かく眩しい光の波紋が、溢れんばかりに広がった。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "その光は、睦典の身体を蝕んでいた紫黒色の霧をみるみるうちに浄化し、彼の脳を焼き尽くそうとしていた冷たい虚無（摩耗）を、私の身体を通して優しく吸い上げていく。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "バグを起こしていた彼の再生機能が、静かに正常な脈動を取り戻していく。"
+    },
+    {
+        scene: "最奥",
+        speaker: "睦典",
+        role: "CLASSMATE",
+        text: "「あ……、さく、ら……？」"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "睦典の身体から力が抜け、硬質化しかけていた皮膚が、みるみるうちに元の綺麗な肌へと戻っていく。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "その瞳には、さっきまでの狂気はどこにもない。私の姿をしっかりと捉え、いつものように優しく揺れている。"
+    },
+    {
+        scene: "最奥",
+        speaker: "睦典",
+        role: "CLASSMATE",
+        text: "「お待たせ、朔良。……もう, 何も怖くないや」" // Note: match user "……もう、何も怖くないや" but wait, did user type "……もう、何も怖くないや" with Full-width comma? Yes, 「お待たせ、朔良。……もう、何も怖くないや」 is full width comma.
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "睦典が力強く私の肩を抱き寄せ、立ち上がる。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "全身から先ほどとは違う、純粋で圧倒的なエネルギーのオーラが立ち上っていた。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "道中の端末にあったデータの通りだ。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "精神の拠り所（私）と強く同調した今の睦典は、異能の暴走を完全にコントロールしている。傷が治るたびに記憶が消えるあの恐ろしい呪いは、私が彼の隣に立ち、繋がっている間だけ、完全に「無効化」される──。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "つまり今の彼は、『記憶が消えない、真の不死身の適応者』だ。"
+    },
+    {
+        scene: "最奥",
+        speaker: "黒騎士",
+        role: "ENEMY",
+        text: "「ギ、ギギ……ッ」"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "標的が正気を取り戻したのを察知したのか、黒騎士が不気味な駆動音を立て、残った大剣の柄を構え直した。凄まじい殺気が部屋を満たす。"
+    },
+    {
+        scene: "最奥",
+        speaker: "睦典",
+        role: "CLASSMATE",
+        text: "「朔良、後ろに下がってろ。──いや、違うな」"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "睦典は不敵に笑うと、私の手をぎゅっと握りしめた。"
+    },
+    {
+        scene: "最奥",
+        speaker: "睦典",
+        role: "CLASSMATE",
+        text: "「俺の目になってくれ、朔良。二人で、あいつをぶっ飛ばそう」"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "「うん……っ！ 左から来るよ、ムッちゃん！」"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "ガレキを蹴り崩し、黒騎士が恐ろしい速度で突進してくる。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "私はゲーム中に培った観察力で、黒騎士の構えの癖や、崩落した天井の死角を瞬時に見抜き、睦典に鋭く指示を飛ばした。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "「そこ、ガレキが落ちてくる！ 右にステップして！」"
+    },
+    {
+        scene: "最奥",
+        speaker: "睦典",
+        role: "CLASSMATE",
+        text: "「おうっ！」"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "睦典は私の声と完全に呼吸を合わせ、大剣の重い一撃を紙一重で回避する。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "避けると同時に、睦典は爆発的な踏み込みで黒騎士の懐へ潜り込んだ。今度は暴走の力ではない、私を守るための100%の意志が乗った拳が、黒騎士の硬強な鎧へと叩き込まれる。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "ドガァァァァンッ！！！\n\nすさまじい衝撃波が部屋中に吹き荒れ、黒騎士の頑強な甲冑にメキメキと大きな亀裂が入る。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "黒騎士が怯んだ隙を逃さず、睦典はさらに連撃を叩き込んだ。どれだけ拳が傷つこうとも、私の存在が後ろにある限り、彼の身体は一瞬で、そして何の代償もなく完璧に超再生していく。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "圧倒的な、二人の完全なコンビネーション。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "何度も強烈な打撃を喰らい、ついに黒騎士は片膝を突き、その大剣を床に落とした。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "勝負は決した──そう思った、次の瞬間。"
+    },
+    {
+        scene: "最奥",
+        speaker: "黒騎士",
+        role: "ENEMY",
+        text: "「──チッ」"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "黒騎士の兜の奥で、冷徹なノイズが鳴った。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "奴は即座に撤退を判断したのだ。残った左腕を大きく振り上げると、私たちではなく、背後にある研究所の巨大な支柱に向けて、ありったけの力を込めて拳を叩きつけた。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "ズガガガガガッ！！！"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "凄まじい破壊音と共に支柱が破裂し、天井の大部分が連鎖的に崩落し始める。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "それと同時に、何十年もの間、月面に蓄積されていた白い月砂と、コンクリートの細かい粉塵が、視界を完全に遮る濃密な煙幕となって部屋中に爆発的に広がった。"
+    },
+    {
+        scene: "最奥",
+        speaker: "睦典",
+        role: "CLASSMATE",
+        text: "「ゲホッ、ゴホッ！ 朔良、大丈夫か！？」"
+    },
+    {
+        scene: "最奥",
+        speaker: "朔良",
+        role: "UNADAPTED",
+        text: "「うん、平気……っ！ でも、黒騎士は！？」"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "睦典が咄嗟に私を抱きかかえ、ガレキから身を守る。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "数秒後、激しく舞い散る白い塵の向こうを見据えたが──そこにはもう、漆黒の化け物の姿はなかった。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "ただ、破壊された壁の向こうへ続く、不気味な足跡だけが残されている。"
+    },
+    {
+        scene: "最奥",
+        speaker: "睦典",
+        role: "CLASSMATE",
+        text: "「チッ、逃げ足の速い野郎だ……。でも、追ってる時間はなさそうだな」"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "睦典が視線を戻した先。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "粉塵がゆっくりと晴れていく部屋の中央で、主を失った『コア』が、一段と激しく、暴走の光を放ちながら脈打ち始めていた──。"
+    },
+    {
+        scene: "最奥",
+        speaker: "睦典",
+        role: "CLASSMATE",
+        text: "「……っ、いよいよ、本番だな」"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "睦典が前を見据え、小さく息を吐き出す。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "黒騎士が去った部屋の中央で、システムを失い完全に制御を失った『コア』が、狂ったように点滅していた。部屋全体の温度が急激に上昇し、空気がジリジリと肌を焼く。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "手記にあった通り、もう物理的に壊すことはできない。残された手段は、睦典の異能のエネルギーを限界まで注ぎ込み、コアを過負荷（オーバーロード）させて強制シャットダウンすることだけ。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "だけど、さっきはそれで睦典の脳が焼き切れそうになった。私の胸に、一瞬だけ恐怖がよぎる。"
+    },
+    {
+        scene: "最奥",
+        speaker: "睦典",
+        role: "CLASSMATE",
+        text: "「……朔良」"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "睦典が、私の手をもう一度ぎゅっと握りしめた。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "さっきとは違う。今の彼の瞳には、迷いも、忘却への怯えも一切なかった。私をまっすぐに見つめるその瞳は、ただ純粋な信頼に満ちている。"
+    },
+    {
+        scene: "最奥",
+        speaker: "睦典",
+        role: "CLASSMATE",
+        text: "「さっきは一人でやろうとして失敗した。でも、今は朔良がいてくれる。……俺の力を全部注ぎ込む。暴走しそうになったら、お前が全部中和してくれ。──二人なら、いけるだろ？」"
+    },
+    {
+        scene: "最奥",
+        speaker: "朔良",
+        role: "UNADAPTED",
+        text: "「……うん！」"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "私は強く頷いた。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "私は無能力者なんかじゃない。ムッちゃんの盾になり、彼の心をこの世界に繋ぎ止める、世界で唯一のパートナーだ。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "二人は一歩、また一歩と、眩い光を放つコアへと近づいていく。"
+    },
+    {
+        scene: "最奥",
+        speaker: "睦典",
+        role: "CLASSMATE",
+        text: "「いくぞ、朔良……せーのっ！」"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "掛け声と同時に、私たちは重ね合わせた手を、光り輝く球体へと力強く突き出した。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "ブゥゥゥゥゥンッ──！！！！"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "触れた瞬間、鼓膜が引き裂かれそうなほどの高周波の音が響き、視界が真っ白な光で埋め尽くされた。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "睦典の身体から、これまでにないほどの莫大なエネルギーが激しい奔流となってコアへと流れ込んでいく。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "直後、コアから拒絶反応の凄まじい衝撃波（フィードバック）が、津波のように私たちを襲った。"
+    },
+    {
+        scene: "最奥",
+        speaker: "睦典",
+        role: "CLASSMATE",
+        text: "「くっ、あ、あああぁぁぁっ……！！」"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "睦典の身体が激しく拒絶反応に震え、彼の右腕の皮膚がミシミシと音を立てて裂け始める。莫大な負荷が、再び彼の自我を消し去ろうと脳へとなだれ込んでいく。"
+    },
+    {
+        scene: "最奥",
+        speaker: "朔良",
+        role: "UNADAPTED",
+        text: "「させない……っ！ ムッちゃんは、絶対に私が守る！！」"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "私は睦典の背中に両手を回し、体中の全ての力を込めて、その背中を強く抱きしめた。"
+    },
+    {
+        scene: "最奥",
+        speaker: "睦典",
+        role: "CLASSMATE",
+        text: "「あああああぁぁぁッ！！！」"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "私の身体を通して、睦典の脳を焼き切ろうとしていた過剰な負荷と、コアの暴走エネルギーが、恐ろしい勢いでなだれ込んでくる。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "全身の細胞が悲鳴を上げるような激痛。だけど私は、歯を食いしばってそれをすべて「吸収・中和」し続けた。私の『無能力（エネルギーの完全な許容・中和）』が、睦典の命を繋ぐ絶対の防壁になる。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "流れ込む睦典の光と、それを支える私の光。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "二人の絆が、エネルギーの濁流の中で溶け合い、一つになっていく。"
+    },
+    {
+        scene: "最奥",
+        speaker: "睦典",
+        role: "CLASSMATE",
+        text: "「──これで、終わりだぁぁぁッ！！！！」"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "睦典が最後の力を振り絞り、コアの奥深くへと全ての異能を叩き込んだ。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "限界を超えたコアが、一瞬、呼吸を止めるように不気味に収縮し──。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "パリィィィィィィンッ！！！！"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "まるで巨大なガラス細工が粉々に砕け散るような、美しく、そして圧倒的な音が部屋中に響き渡った。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "コアを形成していたエネルギーが光の粒子となって霧散し、隔離領域を包んでいた不気味な紫色の光が、潮が引くように消えていく。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "視界を覆っていた眩い光がゆっくりと収まっていき、私たちの周りには、柔らかな静寂だけが残されていた。"
+    },
+    {
+        scene: "最奥",
+        speaker: "睦典",
+        role: "CLASSMATE",
+        text: "「……終わった、んだな」"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "静まり返った部屋の中で、睦典がふらりとよろめき、私の肩に頭を預けてきた。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "私は慌ててその大きな身体を支える。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "彼の顔色はまだ青白いけれど、その肌からは、先ほどまでの冷徹な異能の気配は消え失せていた。代わりに、ドクンドクンと力強く脈打つ心臓の鼓動と、生温かい、確かな人間の体温が私の肌に伝わってくる。"
+    },
+    {
+        scene: "最奥",
+        speaker: "朔良",
+        role: "UNADAPTED",
+        text: "「ムッちゃん……っ、私のこと、わかる……？」"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "私は、震える声で彼の顔を覗き込んだ。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "一番怖かった質問。もし、コアを壊す代償で、私のことまで忘れてしまっていたら──。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "恐る恐る尋ねる私を見て、睦典は少しだけ大きく目を見開いた。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "それから、ふっと視線を和らげると、いつもの、あの悪戯っぽくて優しい笑顔を浮かべた。"
+    },
+    {
+        scene: "最奥",
+        speaker: "睦典",
+        role: "CLASSMATE",
+        text: "「あったり前だろ。お前を忘れるわけないじゃん。……っていうか、なんか急に、めちゃくちゃお腹空いてきちゃったな」"
+    },
+    {
+        scene: "最奥",
+        speaker: "朔良",
+        role: "UNADAPTED",
+        text: "「ムッちゃん……！」"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "その言葉を聞いた瞬間、堪えていた涙が一気にボロボロと溢れ出してきた。私の肩に回された彼の手に、きゅっと力がこもる。"
+    },
+    {
+        scene: "最奥",
+        speaker: "睦典",
+        role: "CLASSMATE",
+        text: "「泣くなって、朔良。ほら、上見てみろよ」"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "睦典に促されて、私は涙を拭いながら、破壊された天井のガラス越しに夜空を見上げた。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "そこには、隔離領域を覆っていた不気味なエネルギーの霧が晴れ、本来の姿を取り戻した、息を呑むほど美しい星空が広がっていた。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "そしてその中心で、これまで見たこともないほど鮮やかに、深く優しい『青』を湛えた地球が、私たちを包むように輝いている。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "人工の月ではなく、本当の宇宙の光が、私たちの足元を優しく照らしていた。"
+    },
+    {
+        scene: "最奥",
+        speaker: "朔良",
+        role: "UNADAPTED",
+        text: "「綺麗……」"
+    },
+    {
+        scene: "最奥",
+        speaker: "睦典",
+        role: "CLASSMATE",
+        text: "「あぁ。……これで、やっと帰れるな、地球に」"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "睦典が嬉しそうに目を細める。"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "失われかけていた彼の日常の記憶も、私との絆によって、奇跡的に少しずつ繋がりを取り戻し始めているようだった。"
+    },
+    {
+        scene: "最奥",
+        speaker: "睦典",
+        role: "CLASSMATE",
+        text: "「地球に帰ったらさ、俺の特製の『ルナ・エネルギーうどん』、真っ先に食わせてやるよ。お前、それ楽しみにここまで頑張ったんだろ？」"
+    },
+    {
+        scene: "最奥",
+        speaker: "朔良",
+        role: "UNADAPTED",
+        text: "「うん！ 絶対におかわりするからね」"
+    },
+    {
+        scene: "最奥",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "私たちは顔を見合わせて、小さく笑った。"
     }
 ];
