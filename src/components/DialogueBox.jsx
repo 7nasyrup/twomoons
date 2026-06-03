@@ -100,12 +100,12 @@ export default function DialogueBox({
 
           {/* Speaker name */}
           {speaker && (
-            <div className="absolute -top-4 left-6 flex items-center gap-2">
-              <span className="bg-[#080a10] border border-cyan-500/30 text-cyan-400 text-sm font-orbitron px-5 py-1.5 rounded-sm tracking-widest uppercase">
+            <div className="absolute -top-3.5 left-6 flex items-center gap-2">
+              <span className="bg-[#080a10] border border-cyan-500/30 text-cyan-400 text-xs md:text-sm font-orbitron px-4 md:px-5 py-1 md:py-1.5 rounded-sm tracking-widest uppercase">
                 {speaker}
               </span>
               {role && role !== 'NARRATOR' && (
-                <span className="bg-black/80 border border-cyan-500/20 text-cyan-500/50 text-[10px] font-orbitron px-2.5 py-1 rounded-sm tracking-widest uppercase">
+                <span className="bg-black/80 border border-cyan-500/20 text-cyan-500/50 text-[9px] md:text-[10px] font-orbitron px-2 md:px-2.5 py-0.5 md:py-1 rounded-sm tracking-widest uppercase">
                   {role}
                 </span>
               )}
@@ -113,12 +113,12 @@ export default function DialogueBox({
           )}
 
           {/* Text content */}
-          <div className="min-h-[96px] flex items-start pt-2">
-            <p className="text-gray-100 text-xl md:text-2xl leading-relaxed font-noto tracking-wide">
+          <div className="min-h-[88px] flex items-start pt-2">
+            <p className="text-gray-100 text-lg md:text-xl leading-relaxed font-noto tracking-wide">
               {text}
               {isTyping && (
                 <motion.span
-                  className="inline-block w-[2px] h-6 bg-cyan-400 ml-1 align-middle"
+                  className="inline-block w-[2px] h-5 md:h-[22px] bg-cyan-400 ml-1 align-middle"
                   animate={{ opacity: [1, 0] }}
                   transition={{ duration: 0.5, repeat: Infinity }}
                 />
