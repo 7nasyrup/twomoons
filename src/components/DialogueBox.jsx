@@ -31,7 +31,7 @@ export default function DialogueBox({
   return (
     <AnimatePresence>
       <motion.div
-        className="absolute bottom-8 left-0 right-0 z-30 px-4 pb-4"
+        className="absolute bottom-8 left-0 right-0 z-30 px-8 md:px-16 pb-4"
         variants={hudGlitchIn}
         initial="hidden"
         animate="visible"
