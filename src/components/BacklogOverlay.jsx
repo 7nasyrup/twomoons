@@ -20,6 +20,9 @@ export default function BacklogOverlay({ isOpen, onClose, backlog }) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={(e) => e.stopPropagation()}
+          onTouchStart={(e) => e.stopPropagation()}
+          onTouchMove={(e) => e.stopPropagation()}
+          onTouchEnd={(e) => e.stopPropagation()}
         >
           {/* Header */}
           <div className="flex items-center justify-between px-6 py-4 border-b border-cyan-500/10">
@@ -27,15 +30,17 @@ export default function BacklogOverlay({ isOpen, onClose, backlog }) {
               <ScrollText size={16} className="text-cyan-500/60" />
               <span className="text-cyan-400 text-xs font-orbitron tracking-[0.3em]">BACKLOG</span>
             </div>
-            <button
+            <motion.button
               onClick={(e) => {
                 e.stopPropagation();
                 onClose();
               }}
-              className="text-cyan-500/40 hover:text-cyan-400 transition-colors p-1"
+              className="flex items-center justify-center w-8 h-8 rounded-full border border-cyan-500/30 bg-cyan-950/20 text-cyan-400 hover:bg-cyan-500/20 hover:border-cyan-400 hover:text-white transition-all duration-300"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
             >
-              <X size={18} />
-            </button>
+              <X size={16} />
+            </motion.button>
           </div>
 
           {/* Log entries */}
