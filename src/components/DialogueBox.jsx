@@ -37,33 +37,21 @@ export default function DialogueBox({
         animate="visible"
         exit="exit"
       >
-        {/* Control bar */}
-        <div className="flex justify-end gap-2 mb-2 mr-2">
-          <HudButton icon={<BookOpen size={16} />} label="LOG" onClick={onOpenLog} />
-          <HudButton
-            icon={<FastForward size={16} />}
-            label="AUTO"
-            onClick={onToggleAuto}
-            active={autoMode}
-          />
-          <HudButton icon={<EyeOff size={16} />} label="HIDE" onClick={onToggleHud} />
-        </div>
-
         {/* Choices */}
         {isWaitingForChoice && choices && (
-          <div className="mb-3 flex flex-col gap-2">
+          <div className="flex flex-col items-end gap-2 mb-3 mr-2">
             {choices.map((choice, idx) => {
               const isInteractive = choice.targetLabel === "mutsunori_route_start";
               return (
                 <motion.button
                   key={idx}
-                  className={`w-full bg-[#080a10]/80 backdrop-blur border border-cyan-500/20 text-cyan-100 py-3 px-6 rounded
+                  className={`w-80 md:w-96 bg-[#080a10]/80 backdrop-blur border border-cyan-500/20 text-cyan-100 py-3 px-6 rounded
                              transition-all duration-300 text-left font-noto tracking-wide
                              ${isInteractive
                                ? "hover:bg-cyan-500/10 hover:border-cyan-400/50 cursor-pointer"
                                : "opacity-60 cursor-default"
                              }`}
-                  initial={{ opacity: 0, x: -20 }}
+                  initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0, transition: { delay: idx * 0.1 } }}
                   whileHover={isInteractive ? { scale: 1.01 } : {}}
                   whileTap={isInteractive ? { scale: 0.99 } : {}}
@@ -81,6 +69,18 @@ export default function DialogueBox({
             })}
           </div>
         )}
+
+        {/* Control bar */}
+        <div className="flex justify-end gap-2 mb-2 mr-2">
+          <HudButton icon={<BookOpen size={16} />} label="LOG" onClick={onOpenLog} />
+          <HudButton
+            icon={<FastForward size={16} />}
+            label="AUTO"
+            onClick={onToggleAuto}
+            active={autoMode}
+          />
+          <HudButton icon={<EyeOff size={16} />} label="HIDE" onClick={onToggleHud} />
+        </div>
 
         {/* Dialogue panel */}
         <div
