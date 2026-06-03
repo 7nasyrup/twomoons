@@ -4862,13 +4862,22 @@ export const scenarioData = [
         scene: "大学の敷地内",
         speaker: "私(朔良)",
         role: "UNADAPTED",
+        type: "choice",
         text: "満のあの光景を思い出して、力が抜けてしまったのかどこかに足を取られてしまい、咄嗟に私は……。",
+        choices: [
+            { text: "○見知った服の袖を掴んだ", targetLabel: "mutsunori_route_start" },
+            { text: "○小綺麗な服の袖を掴んだ", targetLabel: "route_fancy_start" },
+            { text: "○焦げあとのある服の袖を掴んだ", targetLabel: "route_burnt_start" },
+            { text: "○ひたすら大きな腕に掴まった", targetLabel: "route_large_start" }
+        ]
     },
+    //ここで分岐発生(睦典ルート)****************************************************************************************
     {
         scene: "大学の敷地内",
         speaker: "私(朔良)",
         role: "UNADAPTED",
         text: "見知った服の袖を掴んだ。",
+        label: "mutsunori_route_start"
     },
     {
         scene: "大学の敷地内",
@@ -7396,6 +7405,36 @@ export const scenarioData = [
         scene: "最奥",
         speaker: "私(朔良)",
         role: "UNADAPTED",
-        text: "私たちは顔を見合わせて、小さく笑った。"
+        text: "私たちは顔を見合わせて、小さく笑った。",
+    },
+    // 以下、分岐先のプレースホルダー
+    {
+        scene: "大学の敷地内",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "小綺麗な服の袖を掴んだ。……が、ここから先のシナリオは未完成だ。",
+        label: "route_fancy_start",
+    },
+    {
+        scene: "大学の敷地内",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "焦げあとのある服の袖を掴んだ。……が、ここから先のシナリオは未完成だ。",
+        label: "route_burnt_start",
+    },
+    {
+        scene: "大学の敷地内",
+        speaker: "私(朔良)",
+        role: "UNADAPTED",
+        text: "ひたすら大きな腕に掴まった。……が、ここから先のシナリオは未完成だ。",
+        label: "route_large_start",
+    },
+    {
+        scene: "大学の敷地内",
+        speaker: "システム",
+        role: "SYSTEM",
+        text: "（今後のアップデートをお楽しみに！）",
+        action: "FADE_TO_DEMO_END",
+        label: "route_under_construction"
     }
 ];

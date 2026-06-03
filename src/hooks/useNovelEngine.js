@@ -82,10 +82,20 @@ export function useNovelEngine(scenarioData) {
   }, [isTyping, isWaitingForChoice, currentStep, scenarioData.length, completeTypewriter, advanceStep]);
 
   const selectChoice = useCallback((choiceIndex) => {
-    // For demo, just advance regardless of choice
     setIsWaitingForChoice(false);
+    const selectedChoice = currentLine?.choices?.[choiceIndex];
+    if (selectedChoice && selectedChoice.targetLabel) {
+      const targetIdx = scenarioData.findIndex(line => line.label === selectedChoice.targetLabel);
+      if (targetIdx !== -1) {
+        if (currentLine) {
+          setBacklog(prev => [...prev, currentLine]);
+        }
+        setCurrentStep(targetIdx);
+        return;
+      }
+    }
     advanceStep();
-  }, [advanceStep]);
+  }, [currentLine, scenarioData, advanceStep]);
 
   const jumpToStep = useCallback((stepIndex) => {
     if (stepIndex >= 0 && stepIndex < scenarioData.length) {
