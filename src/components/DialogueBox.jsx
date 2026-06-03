@@ -31,7 +31,7 @@ export default function DialogueBox({
   return (
     <AnimatePresence>
       <motion.div
-        className="absolute bottom-8 left-0 right-0 z-30 px-8 md:px-16 pb-4"
+        className="absolute bottom-0 left-0 right-0 z-30"
         variants={hudGlitchIn}
         initial="hidden"
         animate="visible"
@@ -44,7 +44,7 @@ export default function DialogueBox({
 
         {/* Choices */}
         {isWaitingForChoice && choices && (
-          <div className="flex flex-col items-end gap-2 mb-3 mr-2">
+          <div className="flex flex-col items-end gap-2 mb-3 mr-12 md:mr-24">
             {choices.map((choice, idx) => {
               const isInteractive = choice.targetLabel === "mutsunori_route_start";
               return (
@@ -53,9 +53,9 @@ export default function DialogueBox({
                   className={`w-80 md:w-96 bg-[#080a10]/80 backdrop-blur border border-cyan-500/20 text-cyan-100 py-3 px-6 rounded
                              transition-all duration-300 text-left font-noto tracking-wide
                              ${isInteractive
-                               ? "hover:bg-cyan-500/10 hover:border-cyan-400/50 cursor-pointer"
-                               : "opacity-60 cursor-default"
-                             }`}
+                      ? "hover:bg-cyan-500/10 hover:border-cyan-400/50 cursor-pointer"
+                      : "opacity-60 cursor-default"
+                    }`}
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0, transition: { delay: idx * 0.1 } }}
                   whileHover={isInteractive ? { scale: 1.01 } : {}}
@@ -76,7 +76,7 @@ export default function DialogueBox({
         )}
 
         {/* Control bar - AUTO & HIDE */}
-        <div className="flex justify-end gap-2 mb-2 mr-2">
+        <div className="flex justify-end gap-2 mb-3 mr-12 md:mr-24">
           <HudButton
             icon={<FastForward size={16} />}
             label="AUTO"
@@ -88,41 +88,35 @@ export default function DialogueBox({
 
         {/* Dialogue panel */}
         <div
-          className="relative bg-[#080a10]/90 backdrop-blur-xl border border-cyan-500/20 rounded-lg p-6 cursor-pointer
-                     shadow-[0_0_40px_rgba(0,245,255,0.08),inset_0_1px_0_rgba(0,245,255,0.1)]
-                     hover:border-cyan-500/30 transition-colors duration-300"
+          className="relative bg-gradient-to-t from-black/95 via-black/80 to-transparent pt-16 pb-12 px-12 md:px-24 cursor-pointer transition-colors duration-300"
           onClick={onNext}
         >
-          {/* Corner decorations */}
-          <div className="absolute top-0 left-0 w-4 h-4 border-t border-l border-cyan-400/50" />
-          <div className="absolute top-0 right-0 w-4 h-4 border-t border-r border-cyan-400/50" />
-          <div className="absolute bottom-0 left-0 w-4 h-4 border-b border-l border-cyan-400/50" />
-          <div className="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-cyan-400/50" />
-
-          {/* Scanline effect */}
-          <div className="absolute inset-0 bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(0,245,255,0.02)_2px,rgba(0,245,255,0.02)_4px)] pointer-events-none rounded-lg" />
-
           {/* Speaker name */}
           {speaker && (
-            <div className="absolute -top-3.5 left-6 flex items-center gap-2">
-              <span className="bg-[#080a10] border border-cyan-500/30 text-cyan-400 text-xs md:text-sm font-orbitron px-4 md:px-5 py-1 md:py-1.5 rounded-sm tracking-widest uppercase">
+            <div className="flex items-center gap-3 mb-2">
+              <span className="text-white text-xl md:text-2xl font-bold tracking-widest font-noto">
                 {speaker}
               </span>
               {role && role !== 'NARRATOR' && (
-                <span className="bg-black/80 border border-cyan-500/20 text-cyan-500/50 text-[9px] md:text-[10px] font-orbitron px-2 md:px-2.5 py-0.5 md:py-1 rounded-sm tracking-widest uppercase">
+                <span className="text-white/40 text-[10px] md:text-xs font-orbitron px-2 py-0.5 border border-white/10 rounded tracking-widest uppercase">
                   {role}
                 </span>
               )}
             </div>
           )}
 
+          {/* Line between speaker and text */}
+          {speaker && (
+            <div className="w-full h-[1px] bg-gradient-to-r from-white/40 via-white/15 to-transparent mb-4" />
+          )}
+
           {/* Text content */}
-          <div className="min-h-[88px] flex items-start pt-2">
+          <div className="min-h-[80px] flex items-start">
             <p className="text-gray-100 text-lg md:text-xl leading-relaxed font-noto tracking-wide">
               {text}
               {isTyping && (
                 <motion.span
-                  className="inline-block w-[2px] h-5 md:h-[22px] bg-cyan-400 ml-1 align-middle"
+                  className="inline-block w-[2px] h-5 md:h-[22px] bg-white ml-1 align-middle"
                   animate={{ opacity: [1, 0] }}
                   transition={{ duration: 0.5, repeat: Infinity }}
                 />
@@ -133,11 +127,11 @@ export default function DialogueBox({
           {/* Next indicator */}
           {!isTyping && !isWaitingForChoice && (
             <motion.div
-              className="absolute bottom-2 right-4"
+              className="absolute bottom-4 right-12 md:right-24"
               animate={{ y: [0, 4, 0] }}
               transition={{ duration: 1, repeat: Infinity }}
             >
-              <ChevronRight size={20} className="text-cyan-400/60" />
+              <ChevronRight size={24} className="text-white/60" />
             </motion.div>
           )}
         </div>
@@ -153,9 +147,9 @@ function HudButton({ icon, label, onClick, active }) {
       className={`flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-orbitron tracking-wider
                   border transition-all duration-200
                   ${active
-                    ? 'bg-cyan-500/20 border-cyan-400/50 text-cyan-300'
-                    : 'bg-[#080a10]/60 border-cyan-500/10 text-cyan-500/60 hover:border-cyan-500/30 hover:text-cyan-400'
-                  }`}
+          ? 'bg-cyan-500/20 border-cyan-400/50 text-cyan-300'
+          : 'bg-[#080a10]/60 border-cyan-500/10 text-cyan-500/60 hover:border-cyan-500/30 hover:text-cyan-400'
+        }`}
     >
       {icon}
       {label}
