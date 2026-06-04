@@ -288,7 +288,7 @@ export default function App() {
       }, delay);
       return () => clearTimeout(timer);
     }
-  }, [currentStep, currentLine, nextStep]);
+  }, [currentStep, currentLine, nextStep, showTitle]);
 
   // Handle touch events for gestures
   const handleTouchStart = (e) => {
