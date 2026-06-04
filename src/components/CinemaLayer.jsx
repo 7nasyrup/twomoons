@@ -26,14 +26,20 @@ export default function CinemaLayer({ text, isActive }) {
           />
 
           {/* Center text */}
-          <motion.p
+          <div
             className="text-center text-cyan-100/90 text-2xl md:text-3xl font-noto font-light tracking-[0.2em] leading-relaxed px-8 max-w-[70%] z-50"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0, transition: { delay: 0.4, duration: 0.8 } }}
-            exit={{ opacity: 0 }}
           >
-            {text}
-          </motion.p>
+            {text.split("").map((char, index) => (
+              <motion.span
+                key={`${index}-${char}`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.25, ease: "easeOut", delay: 0.4 + index * 0.05 }}
+              >
+                {char}
+              </motion.span>
+            ))}
+          </div>
 
           {/* Ambient glow */}
           <div className="absolute inset-0 bg-gradient-radial from-cyan-900/10 via-transparent to-transparent pointer-events-none" />
