@@ -284,13 +284,11 @@ export default function App() {
       if (currentLine.action === 'ALL_FADE_OUT') delay = 3000;
 
       const timer = setTimeout(() => {
-        if (!isTyping) {
-          nextStep();
-        }
+        nextStep();
       }, delay);
       return () => clearTimeout(timer);
     }
-  }, [currentStep, currentLine, isTyping, nextStep]);
+  }, [currentStep, currentLine, nextStep]);
 
   // Handle touch events for gestures
   const handleTouchStart = (e) => {
