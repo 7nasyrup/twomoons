@@ -6,6 +6,7 @@ import CinemaLayer from './components/CinemaLayer';
 import AlertModal from './components/AlertModal';
 import DevConsole from './components/DevConsole';
 import BacklogOverlay from './components/BacklogOverlay';
+import TitleScreen from './components/TitleScreen';
 import { useNovelEngine } from './hooks/useNovelEngine';
 import { useAudioSystem } from './hooks/useAudioSystem';
 import { scenarioData } from './data/scenario';
@@ -146,10 +147,47 @@ export default function App() {
 
   const { playBGM, playSE, toggleMute } = useAudioSystem();
 
+  const [showTitle, setShowTitle] = useState(true);
+  const [hasSave, setHasSave] = useState(false);
   const [backlogOpen, setBacklogOpen] = useState(false);
   const [alertActive, setAlertActive] = useState(false);
   const [alertConfig, setAlertConfig] = useState({ title: '', message: '' });
   const [shakeEffect, setShakeEffect] = useState(false);
+
+  // Check if save data exists
+  useEffect(() => {
+    const savedStep = localStorage.getItem('twomoons_save_step');
+    setHasSave(savedStep !== null);
+  }, []);
+
+  // Auto-save progress
+  useEffect(() => {
+    if (!showTitle && currentStep !== null && currentStep !== undefined) {
+      localStorage.setItem('twomoons_save_step', currentStep.toString());
+      setHasSave(true);
+    }
+  }, [currentStep, showTitle]);
+
+  const handleStartGame = () => {
+    setShowTitle(false);
+    jumpToStep(0);
+  };
+
+  const handleContinueGame = () => {
+    const savedStep = localStorage.getItem('twomoons_save_step');
+    if (savedStep !== null) {
+      const stepIdx = parseInt(savedStep, 10);
+      jumpToStep(stepIdx);
+      setShowTitle(false);
+    }
+  };
+
+  // Play title music
+  useEffect(() => {
+    if (showTitle) {
+      playBGM('/assets/audio/bgm/deep_blue_moon.mp3');
+    }
+  }, [showTitle, playBGM]);
 
   // Character sprite visibility states
   const [leftActive, setLeftActive] = useState(false);
@@ -174,7 +212,7 @@ export default function App() {
 
   // Audio system and sprite positioning logic based on active step details
   useEffect(() => {
-    if (!currentLine) return;
+    if (!currentLine || showTitle) return;
 
     // Background music changes based on scenes
     if (currentLine.scene === 'PROLOGUE') {
@@ -216,7 +254,7 @@ export default function App() {
         playSE('/assets/audio/se/siren_alert.mp3');
         setShakeEffect(true);
         const timer = setTimeout(() => setShakeEffect(false), 800);
-        
+
         setAlertConfig({
           title: '⚠ LUNAR WAVE DETECTED',
           message: currentLine.text
@@ -235,7 +273,7 @@ export default function App() {
 
   // Cinema Mode Autoplay timers
   useEffect(() => {
-    if (!currentLine) return;
+    if (!currentLine || showTitle) return;
     if (currentLine.style === 'cinema') {
       let delay = 3000;
       if (currentLine.action === 'FADE_IN') delay = 2500;
@@ -261,6 +299,7 @@ export default function App() {
   };
 
   const handleTouchEnd = (e) => {
+    if (showTitle) return;
     const diffX = e.changedTouches[0].clientX - touchStartX.current;
     const diffY = e.changedTouches[0].clientY - touchStartY.current;
 
@@ -292,7 +331,7 @@ export default function App() {
   // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (alertActive) return;
+      if (showTitle || alertActive) return;
 
       // Handle backlog closing via keyboard
       if (backlogOpen) {
@@ -342,81 +381,102 @@ export default function App() {
       onTouchEnd={handleTouchEnd}
     >
       <GameFrame shakeEffect={shakeEffect}>
-        {/* Visual Background Fallback & Actual Renderer */}
-        <BackgroundRenderer bgPath={currentLine?.bg || scenarioData[Math.max(0, currentStep - 1)]?.bg} />
-
-        {/* Cinematic Black Letterbox Overlay */}
-        <CinemaLayer text={currentLine?.text} isActive={isCinema && !isDemoEnd} />
-
-        {/* Character Sprite Overlay */}
-        {!isCinema && !isDemoEnd && (
-          <SpriteSlot
-            leftActive={leftActive}
-            rightActive={rightActive}
-            focusSlot={focusSlot}
+        {showTitle ? (
+          <TitleScreen
+            onStart={handleStartGame}
+            onContinue={handleContinueGame}
+            hasSave={hasSave}
+            playBGM={playBGM}
           />
-        )}
+        ) : (
+          <>
+            {/* Visual Background Fallback & Actual Renderer */}
+            <BackgroundRenderer bgPath={currentLine?.bg || scenarioData[Math.max(0, currentStep - 1)]?.bg} />
 
-        {/* Subtitles & Normal Dialogue Boxes */}
-        {!isCinema && !isDemoEnd && !alertActive && (
-          <DialogueBox
-            speaker={currentLine?.speaker}
-            role={currentLine?.role}
-            text={displayedText}
-            isTyping={isTyping}
-            isVisible={hudVisible}
-            autoMode={autoMode}
-            onNext={nextStep}
-            onToggleAuto={toggleAuto}
-            onToggleHud={toggleHud}
-            onOpenLog={() => setBacklogOpen(true)}
-            choices={currentLine?.choices}
-            isWaitingForChoice={isWaitingForChoice}
-            onSelectChoice={selectChoice}
-          />
-        )}
+            {/* Cinematic Black Letterbox Overlay */}
+            <CinemaLayer text={currentLine?.text} isActive={isCinema && !isDemoEnd} />
 
-        {/* HUD hidden overlay to restore HUD on click */}
-        {!hudVisible && !isCinema && !isDemoEnd && (
-          <div
-            className="absolute inset-0 z-20 cursor-pointer"
-            onClick={(e) => {
-              e.stopPropagation();
-              setHudVisible(true);
-            }}
-          />
-        )}
+            {/* Character Sprite Overlay */}
+            {!isCinema && !isDemoEnd && (
+              <SpriteSlot
+                leftActive={leftActive}
+                rightActive={rightActive}
+                focusSlot={focusSlot}
+              />
+            )}
 
-        {/* Warnings & Wave Anomaly Popups */}
-        <AlertModal
-          isActive={alertActive}
-          title={alertConfig.title}
-          message={alertConfig.message}
-          onDismiss={handleDismissAlert}
-        />
+            {/* Subtitles & Normal Dialogue Boxes */}
+            {!isCinema && !isDemoEnd && !alertActive && (
+              <DialogueBox
+                speaker={currentLine?.speaker}
+                role={currentLine?.role}
+                text={displayedText}
+                isTyping={isTyping}
+                isVisible={hudVisible}
+                autoMode={autoMode}
+                onNext={nextStep}
+                onToggleAuto={toggleAuto}
+                onToggleHud={toggleHud}
+                onOpenLog={() => setBacklogOpen(true)}
+                choices={currentLine?.choices}
+                isWaitingForChoice={isWaitingForChoice}
+                onSelectChoice={selectChoice}
+              />
+            )}
 
-        {/* Demo End Screen */}
-        {isDemoEnd && (
-          <div className="absolute inset-0 bg-black/90 flex flex-col items-center justify-center z-50 p-8 text-center animate-fadeIn">
-            {/* Holographic background moon */}
-            <div className="absolute w-[60vh] h-[60vh] rounded-full border border-cyan-500/10 shadow-[0_0_120px_rgba(0,245,255,0.05)] pointer-events-none" />
-            
-            <h1 className="text-4xl md:text-5xl font-orbitron font-extrabold text-cyan-400 tracking-[0.2em] mb-4 drop-shadow-[0_0_15px_rgba(0,245,255,0.5)]">
-              TO BE CONTINUED
-            </h1>
-            <p className="text-gray-400 font-noto tracking-widest text-sm md:text-base mb-12">
-              青い月の裏側で - Behind the Blue Moon Demo
-            </p>
-            
-            <button
-              onClick={() => jumpToStep(0)}
-              className="px-8 py-3 bg-cyan-950/40 border border-cyan-500/30 text-cyan-300 font-orbitron text-sm tracking-widest rounded
-                         hover:bg-cyan-500/20 hover:border-cyan-400 hover:text-white hover:shadow-[0_0_20px_rgba(0,245,255,0.3)]
-                         transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 active:scale-95"
-            >
-              REPLAY DEMO
-            </button>
-          </div>
+            {/* HUD hidden overlay to restore HUD on click */}
+            {!hudVisible && !isCinema && !isDemoEnd && (
+              <div
+                className="absolute inset-0 z-20 cursor-pointer"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setHudVisible(true);
+                }}
+              />
+            )}
+
+            {/* Warnings & Wave Anomaly Popups */}
+            <AlertModal
+              isActive={alertActive}
+              title={alertConfig.title}
+              message={alertConfig.message}
+              onDismiss={handleDismissAlert}
+            />
+
+            {/* Demo End Screen */}
+            {isDemoEnd && (
+              <div className="absolute inset-0 bg-black/90 flex flex-col items-center justify-center z-50 p-8 text-center animate-fadeIn">
+                {/* Holographic background moon */}
+                <div className="absolute w-[60vh] h-[60vh] rounded-full border border-cyan-500/10 shadow-[0_0_120px_rgba(0,245,255,0.05)] pointer-events-none" />
+
+                <h1 className="text-4xl md:text-5xl font-orbitron font-extrabold text-cyan-400 tracking-[0.2em] mb-4 drop-shadow-[0_0_15px_rgba(0,245,255,0.5)]">
+                  TO BE CONTINUED
+                </h1>
+                <p className="text-gray-400 font-noto tracking-widest text-sm md:text-base mb-12">
+                  青い月の裏側で - Behind the Blue Moon Demo
+                </p>
+
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <button
+                    onClick={() => jumpToStep(0)}
+                    className="px-8 py-3 bg-cyan-950/40 border border-cyan-500/30 text-cyan-300 font-orbitron text-sm tracking-widest rounded
+                               hover:bg-cyan-500/20 hover:border-cyan-400 hover:text-white hover:shadow-[0_0_20px_rgba(0,245,255,0.3)]
+                               transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 active:scale-95"
+                  >
+                    REPLAY DEMO
+                  </button>
+                  <button
+                    onClick={() => setShowTitle(true)}
+                    className="px-8 py-3 bg-indigo-950/40 border border-indigo-500/30 text-indigo-300 font-orbitron text-sm tracking-widest rounded
+                               hover:bg-indigo-500/20 hover:border-indigo-400 hover:text-white hover:shadow-[0_0_20px_rgba(99,102,241,0.3)]
+                               transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 active:scale-95"
+                  >
+                    RETURN TO TITLE
+                  </button>
+                </div>
+              </div>
+            )}
+          </>
         )}
 
         {/* Backlog overlay */}
