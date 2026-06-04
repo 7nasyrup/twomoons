@@ -1,11 +1,12 @@
 import { motion, AnimatePresence } from 'framer-motion';
 
-export default function CinemaLayer({ text, isActive }) {
+export default function CinemaLayer({ text, isActive, isTyping, onNext }) {
   return (
     <AnimatePresence>
       {isActive && (
         <motion.div
-          className="absolute inset-0 z-40 flex flex-col justify-center items-center"
+          className="absolute inset-0 z-40 flex flex-col justify-center items-center cursor-pointer"
+          onClick={onNext}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, transition: { duration: 1.0 } }}
           exit={{ opacity: 0, transition: { duration: 1.0 } }}
@@ -34,7 +35,7 @@ export default function CinemaLayer({ text, isActive }) {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: isTyping ? 1.0 : 0, ease: [0.16, 1, 0.3, 1] }}
               >
                 {text}
               </motion.p>

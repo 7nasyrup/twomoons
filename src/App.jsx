@@ -392,7 +392,12 @@ export default function App() {
             <BackgroundRenderer bgPath={currentLine?.bg || scenarioData[Math.max(0, currentStep - 1)]?.bg} />
 
             {/* Cinematic Black Letterbox Overlay */}
-            <CinemaLayer text={currentLine?.text} isActive={isCinema && !isDemoEnd} />
+            <CinemaLayer
+              text={currentLine?.text}
+              isActive={isCinema && !isDemoEnd}
+              isTyping={isTyping}
+              onNext={nextStep}
+            />
 
             {/* Character Sprite Overlay */}
             {!isCinema && !isDemoEnd && (
