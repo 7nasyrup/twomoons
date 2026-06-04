@@ -94,7 +94,7 @@ export default function DialogueBox({
           {/* Speaker name */}
           {speaker && (
             <div className="flex items-center gap-3 mb-2">
-              <span className="text-white text-lg md:text-xl font-bold tracking-widest font-noto">
+              <span className="text-white text-base md:text-lg font-bold tracking-widest font-noto">
                 {speaker}
               </span>
               {role && role !== 'NARRATOR' && (
