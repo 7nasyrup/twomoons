@@ -26,19 +26,19 @@ export default function CinemaLayer({ text, isActive }) {
           />
 
           {/* Center text */}
-          <div
-            className="text-center text-cyan-100/90 text-2xl md:text-3xl font-noto font-light tracking-[0.2em] leading-relaxed px-8 max-w-[70%] z-50"
-          >
-            {text.split("").map((char, index) => (
-              <motion.span
-                key={`${index}-${char}`}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.25, ease: "easeOut", delay: 0.4 + index * 0.05 }}
+          <div className="flex justify-center items-center h-40 z-50 max-w-[70%]">
+            <AnimatePresence mode="wait">
+              <motion.p
+                key={text}
+                className="text-center text-cyan-100/90 text-2xl md:text-3xl font-noto font-light tracking-[0.2em] leading-relaxed px-8"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
               >
-                {char}
-              </motion.span>
-            ))}
+                {text}
+              </motion.p>
+            </AnimatePresence>
           </div>
 
           {/* Ambient glow */}
