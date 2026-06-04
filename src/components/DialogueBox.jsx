@@ -94,7 +94,7 @@ export default function DialogueBox({
           {/* Speaker name */}
           {speaker && (
             <div className="flex items-center gap-3 mb-2">
-              <span className="text-white text-xl md:text-2xl font-bold tracking-widest font-noto">
+              <span className="text-white text-lg md:text-xl font-bold tracking-widest font-noto">
                 {speaker}
               </span>
               {role && role !== 'NARRATOR' && (
@@ -112,11 +112,11 @@ export default function DialogueBox({
 
           {/* Text content */}
           <div className="min-h-[80px] flex items-start">
-            <p className="text-gray-100 text-lg md:text-xl leading-relaxed font-noto tracking-wide">
+            <p className="text-gray-100 text-base md:text-lg leading-relaxed font-noto tracking-wide">
               {text}
               {isTyping && (
                 <motion.span
-                  className="inline-block w-[2px] h-5 md:h-[22px] bg-white ml-1 align-middle"
+                  className="inline-block w-[2px] h-4 md:h-[18px] bg-white ml-1 align-middle"
                   animate={{ opacity: [1, 0] }}
                   transition={{ duration: 0.5, repeat: Infinity }}
                 />
