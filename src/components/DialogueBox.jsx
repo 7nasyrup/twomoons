@@ -114,7 +114,7 @@ export default function DialogueBox({
           )}
 
           {/* Line between speaker and text */}
-          {showSpeaker && (
+          {speaker && (
             <div className="w-full h-[1px] bg-gradient-to-r from-white/40 via-white/15 to-transparent mb-4" />
           )}
 
