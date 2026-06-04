@@ -420,6 +420,7 @@ export default function App() {
                 choices={currentLine?.choices}
                 isWaitingForChoice={isWaitingForChoice}
                 onSelectChoice={selectChoice}
+                onExit={() => setShowTitle(true)}
               />
             )}
 

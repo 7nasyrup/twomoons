@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight, FastForward, BookOpen, EyeOff } from 'lucide-react';
+import { ChevronRight, FastForward, BookOpen, EyeOff, LogOut } from 'lucide-react';
 
 const hudGlitchIn = {
   hidden: { opacity: 0, scale: 0.98 },
@@ -26,6 +26,7 @@ export default function DialogueBox({
   isWaitingForChoice,
   onSelectChoice,
   fullText,
+  onExit,
 }) {
   if (!isVisible) return null;
 
@@ -51,13 +52,18 @@ export default function DialogueBox({
           <HudButton icon={<EyeOff size={16} />} label="HIDE" onClick={onToggleHud} />
         </div>
 
-        {/* AUTO button - top right */}
-        <div className="fixed top-4 right-16 z-40">
+        {/* AUTO & EXIT buttons - top right */}
+        <div className="fixed top-4 right-24 z-40 flex gap-2">
           <HudButton
             icon={<FastForward size={16} />}
             label="AUTO"
             onClick={onToggleAuto}
             active={autoMode}
+          />
+          <HudButton
+            icon={<LogOut size={16} />}
+            label="EXIT"
+            onClick={onExit}
           />
         </div>
 
