@@ -45,9 +45,20 @@ export default function DialogueBox({
         animate="visible"
         exit="exit"
       >
-        {/* LOG button - top left */}
-        <div className="fixed top-4 left-6 z-40">
+        {/* LOG & HIDE buttons - top left */}
+        <div className="fixed top-4 left-6 z-40 flex gap-2">
           <HudButton icon={<BookOpen size={16} />} label="LOG" onClick={onOpenLog} />
+          <HudButton icon={<EyeOff size={16} />} label="HIDE" onClick={onToggleHud} />
+        </div>
+
+        {/* AUTO button - top right */}
+        <div className="fixed top-4 right-16 z-40">
+          <HudButton
+            icon={<FastForward size={16} />}
+            label="AUTO"
+            onClick={onToggleAuto}
+            active={autoMode}
+          />
         </div>
 
         {/* Choices */}
@@ -83,16 +94,6 @@ export default function DialogueBox({
           </div>
         )}
 
-        {/* Control bar - AUTO & HIDE */}
-        <div className="flex justify-end gap-2 mb-3 mr-12 md:mr-24">
-          <HudButton
-            icon={<FastForward size={16} />}
-            label="AUTO"
-            onClick={onToggleAuto}
-            active={autoMode}
-          />
-          <HudButton icon={<EyeOff size={16} />} label="HIDE" onClick={onToggleHud} />
-        </div>
 
         {/* Dialogue panel */}
         <div
