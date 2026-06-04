@@ -25,8 +25,16 @@ export default function DialogueBox({
   choices,
   isWaitingForChoice,
   onSelectChoice,
+  fullText,
 }) {
   if (!isVisible) return null;
+
+  const isSakuraMonologue =
+    (speaker === "私（朔良）" || speaker === "私(朔良)") &&
+    fullText &&
+    !fullText.includes("「");
+
+  const showSpeaker = speaker && !isSakuraMonologue;
 
   return (
     <AnimatePresence>
@@ -92,7 +100,7 @@ export default function DialogueBox({
           onClick={onNext}
         >
           {/* Speaker name */}
-          {speaker && (
+          {showSpeaker && (
             <div className="flex items-center gap-3 mb-2">
               <span className="text-white text-base md:text-lg font-bold tracking-widest font-noto">
                 {speaker}
@@ -106,7 +114,7 @@ export default function DialogueBox({
           )}
 
           {/* Line between speaker and text */}
-          {speaker && (
+          {showSpeaker && (
             <div className="w-full h-[1px] bg-gradient-to-r from-white/40 via-white/15 to-transparent mb-4" />
           )}
 

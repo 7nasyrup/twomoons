@@ -409,6 +409,7 @@ export default function App() {
                 speaker={currentLine?.speaker}
                 role={currentLine?.role}
                 text={displayedText}
+                fullText={currentLine?.text}
                 isTyping={isTyping}
                 isVisible={hudVisible}
                 autoMode={autoMode}
