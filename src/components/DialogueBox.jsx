@@ -113,7 +113,16 @@ export default function DialogueBox({
           {/* Text content */}
           <div className="min-h-[80px] flex items-start">
             <p className="text-gray-100 text-base md:text-lg leading-relaxed font-noto tracking-wide">
-              {text}
+              {text.split('').map((char, index) => (
+                <motion.span
+                  key={`${index}-${char}`}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.25, ease: "easeOut" }}
+                >
+                  {char}
+                </motion.span>
+              ))}
               {isTyping && (
                 <motion.span
                   className="inline-block w-[2px] h-4 md:h-[18px] bg-white ml-1 align-middle"
