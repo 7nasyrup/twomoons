@@ -33,7 +33,7 @@ export default function CinemaLayer({ text, isActive }) {
                 className="text-center text-cyan-100/90 text-2xl md:text-3xl font-noto font-light tracking-[0.2em] leading-relaxed px-8"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -15 }}
+                exit={{ opacity: 0 }}
                 transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
               >
                 {text}
