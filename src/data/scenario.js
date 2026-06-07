@@ -1442,7 +1442,7 @@ export const scenarioData = [
         speaker: "私（朔良）",
         role: "UNADAPTED",
         text: "その姿が画面から消え去る直前、カメラのレンズを、あるいはテレビの前の私を嘲笑うかのように、黒い兜の奥で双眸が怪しく明滅した――。"
-        action: "SHAKE_SCREEN"
+        //action: "SHAKE_SCREEN"
     },
     {
         scene: "朔良の部屋",
