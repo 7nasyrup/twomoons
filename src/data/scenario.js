@@ -162,7 +162,7 @@ export const scenarioData = [
         speaker: "私（朔良）",
         role: "UNADAPTED",
         text: "手元のスマートフォンを開くと、画面には『月波観測庁』が発令した最新の警告ポップアップが、不吉な赤色で明滅していた。",
-        action: "TRIGGER_PHONE_RED_ALERT"
+        //action: "TRIGGER_PHONE_RED_ALERT"
     },
     {
         scene: "月科学大講義室",
