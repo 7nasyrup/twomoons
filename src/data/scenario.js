@@ -328,7 +328,7 @@ export const scenarioData = [
     },
     {
         scene: "講義室出口",
-        speaker: "睦典",
+        speaker: "？？？",
         role: "CLASSMATE",
         text: "「朔良、今日の講義これだけでしょ？頼む、僕のレポート手伝って！ ヒルミ教授の課題、マジで暗号にしか見えなくてさぁ！」",
         action: "SHOW_SILHOUETTE_LEFT"
@@ -4975,10 +4975,10 @@ export const scenarioData = [
         type: "choice",
         text: "満のあの光景を思い出して、力が抜けてしまったのかどこかに足を取られてしまい、咄嗟に私は……。",
         choices: [
-            { text: "○見知った服の袖を掴んだ", targetLabel: "mutsunori_route_start" },
-            { text: "○小綺麗な服の袖を掴んだ", targetLabel: "route_fancy_start" },
-            { text: "○焦げあとのある服の袖を掴んだ", targetLabel: "route_burnt_start" },
-            { text: "○ひたすら大きな腕に掴まった", targetLabel: "route_large_start" }
+            { text: "見知った服の袖を掴んだ", targetLabel: "mutsunori_route_start" },
+            { text: "小綺麗な服の袖を掴んだ", targetLabel: "nagisa_route_start" },
+            { text: "焦げあとのある服の袖を掴んだ", targetLabel: "mika_route_start" },
+            { text: "ひたすら大きな腕に掴まった", targetLabel: "big_man_route_start" }
         ]
     },
     //ここで分岐発生(睦典ルート)****************************************************************************************
