@@ -249,6 +249,17 @@ export default function App() {
         playSE('/assets/audio/se/footsteps.mp3');
       }
 
+      // Shake Screen
+      if (action === 'SHAKE_SCREEN') {
+        setShakeEffect(true);
+        const timer = setTimeout(() => setShakeEffect(false), 600);
+        return () => clearTimeout(timer);
+      } else if (action === 'SHAKE_SCREEN_VERY_LARGE') {
+        setShakeEffect('large');
+        const timer = setTimeout(() => setShakeEffect(false), 800);
+        return () => clearTimeout(timer);
+      }
+
       // Red Alert
       if (action === 'TRIGGER_PHONE_RED_ALERT') {
         playSE('/assets/audio/se/siren_alert.mp3');
