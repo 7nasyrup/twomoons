@@ -5081,7 +5081,7 @@ export const scenarioData = [
     },
     {
         scene: "研究室",
-        speaker: "教授",
+        speaker: "ヒルミ教授",
         role: "PROFESSOR",
         text: "「待っていたよ。よく無事でたどり着いてくれたね、二人とも」",
     },
@@ -5111,7 +5111,7 @@ export const scenarioData = [
     },
     {
         scene: "研究室",
-        speaker: "教授",
+        speaker: "ヒルミ教授",
         role: "PROFESSOR",
         text: "「…説明はあまりしていられない、君たちにはこれからこのロケットに乗って、あの青い月まで行ってもらう」",
     },
@@ -5147,7 +5147,7 @@ export const scenarioData = [
     },
     {
         scene: "研究室",
-        speaker: "教授",
+        speaker: "ヒルミ教授",
         role: "PROFESSOR",
         text: "「残りの彼らの心配ならいらない。全員、自力で生き残るだけの力を持った怪物たちだからね」",
     },
@@ -5159,19 +5159,19 @@ export const scenarioData = [
     },
     {
         scene: "研究室",
-        speaker: "私(朔良)",
-        role: "UNADAPTED",
+        speaker: "ヒルミ教授",
+        role: "PROFESSOR",
         text: "「あの青い月には、この狂った世界のすべての元凶である『研究所のコア』がある。世界を元に戻したければ、そこへ行ってコアを止めてきなさい。君たちにしかできない仕事だ」",
     },
     {
         scene: "研究室",
-        speaker: "教授",
+        speaker: "ヒルミ教授",
         role: "PROFESSOR",
         text: "「詳しいことはこの資料に全て書いた。落ち着いた時に読みなさい」",
     },
     {
         scene: "研究室",
-        speaker: "教授",
+        speaker: "ヒルミ教授",
         role: "PROFESSOR",
         text: "そう言って教授は私たちに文字がびっしり書かれた薄い紙束を手渡した。",
     },
@@ -5183,7 +5183,7 @@ export const scenarioData = [
     },
     {
         scene: "研究室",
-        speaker: "教授",
+        speaker: "ヒルミ教授",
         role: "PROFESSOR",
         text: "「…私についても、心配は無用さ。さぁタイムリミットだ。──行きなさい、朔良」",
     },
