@@ -68,10 +68,21 @@ export function useNovelEngine(scenarioData) {
       if (currentLine) {
         setBacklog(prev => [...prev, currentLine]);
       }
+
+      // Check if current line has a jumpTo property
+      if (currentLine?.jumpTo) {
+        const targetIdx = scenarioData.findIndex(line => line.label === currentLine.jumpTo);
+        if (targetIdx !== -1) {
+          setCurrentStep(targetIdx);
+          setIsWaitingForChoice(false);
+          return;
+        }
+      }
+
       setCurrentStep(prev => prev + 1);
       setIsWaitingForChoice(false);
     }
-  }, [currentStep, scenarioData.length, currentLine]);
+  }, [currentStep, scenarioData, currentLine]);
 
   const nextStep = useCallback(() => {
     if (isTyping) {

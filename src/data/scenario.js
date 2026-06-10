@@ -5202,7 +5202,8 @@ export const scenarioData = [
         scene: "教授の研究室",
         speaker: "私（朔良）",
         role: "UNADAPTED",
-        text: "背後で迫る危機を感じ取ったのか、凪砂さんが髪をくしゃりと掻き回しながら、観念したように息を吐く。"
+        text: "背後で迫る危機を感じ取ったのか、凪砂さんが髪をくしゃりと掻き回しながら、観念したように息を吐く。",
+        jumpTo: "route_under_construction"
     },
     //ここで分岐発生(睦典ルート)****************************************************************************************
     {
@@ -7739,6 +7740,7 @@ export const scenarioData = [
         speaker: "私(朔良)",
         role: "UNADAPTED",
         text: "私たちは顔を見合わせて、小さく笑った。",
+        jumpTo: "route_under_construction"
     },
     // 以下、分岐先のプレースホルダー
     {

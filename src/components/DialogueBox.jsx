@@ -71,7 +71,9 @@ export default function DialogueBox({
         {isWaitingForChoice && choices && (
           <div className="flex flex-col items-end gap-2 mb-3 mr-12 md:mr-24">
             {choices.map((choice, idx) => {
-              const isInteractive = choice.targetLabel === "mutsunori_route_start";
+              const isInteractive =
+                choice.targetLabel === "mutsunori_route_start" ||
+                choice.targetLabel === "nagisa_route_start";
               return (
                 <motion.button
                   key={idx}
