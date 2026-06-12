@@ -31,7 +31,7 @@ export default function DialogueBox({
   if (!isVisible) return null;
 
   const isSakuraMonologue =
-    (speaker === "私（朔良）" || speaker === "私(朔良)") &&
+    speaker === "朔良" &&
     fullText &&
     !fullText.trim().startsWith("「");
 
