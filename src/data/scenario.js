@@ -321,13 +321,15 @@ export const scenarioData = [
         scene: "講義室出口",
         speaker: "？？？",
         text: "「おーーい！ 朔良ーー！！」",
-        action: "PLAY_RUNNING_SE"
+        action: "PLAY_RUNNING_SE",
+        speaker_sprite: "Mutsunori_default"
     },
     {
         scene: "講義室出口",
         speaker: "？？？",
         text: "「朔良、今日の講義これだけでしょ？頼む、僕のレポート手伝って！ ヒルミ教授の課題、マジで暗号にしか見えなくてさぁ！」",
-        action: "SHOW_SILHOUETTE_LEFT"
+        action: "SHOW_SILHOUETTE_LEFT",
+        speaker_sprite: "Mutsunori_default"
     },
     {
         scene: "講義室出口",
