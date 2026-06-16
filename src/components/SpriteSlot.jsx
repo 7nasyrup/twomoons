@@ -29,7 +29,7 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot }) {
               <div
                 id="char-left-img"
                 className="absolute inset-0 w-full h-full bg-contain bg-bottom bg-no-repeat transition-all duration-300"
-                style={{ backgroundImage: `url(/illust/Mutsunori_default.webp)` }}
+                style={{ backgroundImage: 'url(/illust/Mutsunori_default.webp)' }}
               />
             </div>
             {/* Tag */}
@@ -65,7 +65,6 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot }) {
               <div
                 id="char-right-img"
                 className="absolute inset-0 w-full h-full bg-contain bg-bottom bg-no-repeat transition-all duration-300"
-                style={{ backgroundImage: `url(/illust/Professor_default.webp)` }}
               />
             </div>
             {/* Tag */}
