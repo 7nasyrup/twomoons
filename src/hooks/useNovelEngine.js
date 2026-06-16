@@ -48,10 +48,15 @@ export function useNovelEngine(scenarioData) {
     if (currentLine?.type === 'choice') {
       setIsWaitingForChoice(true);
     }
-    if (currentLine?.speaker_sprite) {
+    if (currentLine?.speaker_sprite && currentLine.speaker_sprite === 'Mutsunori_default') {
       const charLeftImg = document.getElementById("char-left-img");
       if (charLeftImg) {
         charLeftImg.style.backgroundImage = `url(/illust/${currentLine.speaker_sprite}.webp)`;
+      }
+    } else if (currentLine?.speaker_sprite && currentLine.speaker_sprite === 'Professor_default') {
+      const charRightImg = document.getElementById("char-right-img");
+      if (charRightImg) {
+        charRightImg.style.backgroundImage = `url(/illust/${currentLine.speaker_sprite}.webp)`;
       }
     }
   }, [currentStep, currentLine, triggerTypewriter]);
