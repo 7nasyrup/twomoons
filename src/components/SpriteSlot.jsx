@@ -8,15 +8,15 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot }) {
       <AnimatePresence>
         {leftActive && (
           <motion.div
-            className={`absolute bottom-0 left-[6%] w-[30%] h-[82%] flex flex-col justify-end items-center transition-all duration-500
-              ${focusSlot === 'right' ? 'opacity-30 scale-95 blur-[1px]' : 'opacity-100 scale-100'}`}
+            className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-[40%] h-[95%] flex flex-col justify-end items-center transition-all duration-500
+                  ${focusSlot === 'right' ? 'opacity-30 scale-95 blur-[1px]' : 'opacity-100 scale-100'}`}
             initial={{ x: -100, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: -100, opacity: 0 }}
             transition={{ type: 'spring', stiffness: 100, damping: 16 }}
           >
             {/* Silhouette box */}
-            <div className="relative w-full h-[90%] overflow-hidden">
+            <div className="relative w-full h-full overflow-hidden">
               {/* Dynamic Image Layer (allows setting bg image from code/DOM) */}
               <div
                 id="char-left-img"
@@ -37,7 +37,7 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot }) {
         {rightActive && (
           <motion.div
             className={`absolute bottom-0 right-[6%] w-[30%] h-[82%] flex flex-col justify-end items-center transition-all duration-500
-              ${focusSlot === 'left' ? 'opacity-30 scale-95 blur-[1px]' : 'opacity-100 scale-100'}`}
+                  ${focusSlot === 'left' ? 'opacity-30 scale-95 blur-[1px]' : 'opacity-100 scale-100'}`}
             initial={{ x: 100, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: 100, opacity: 0 }}
