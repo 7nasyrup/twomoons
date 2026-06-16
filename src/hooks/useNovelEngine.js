@@ -18,7 +18,7 @@ export function useNovelEngine(scenarioData) {
     clearInterval(typingTimer.current);
     setIsTyping(true);
     fullTextRef.current = text;
-    
+
     let currentString = '';
     setDisplayedText('');
 
@@ -47,6 +47,12 @@ export function useNovelEngine(scenarioData) {
     }
     if (currentLine?.type === 'choice') {
       setIsWaitingForChoice(true);
+    }
+    if (currentLine?.speaker_sprite) {
+      const charLeftImg = document.getElementById("char-left-img");
+      if (charLeftImg) {
+        charLeftImg.style.backgroundImage = `url(/illust/${currentLine.speaker_sprite}.webp)`;
+      }
     }
   }, [currentStep, currentLine, triggerTypewriter]);
 
