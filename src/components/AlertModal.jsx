@@ -10,6 +10,7 @@ export default function AlertModal({ isActive, title, message, onDismiss }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
+          onClick={(e) => e.stopPropagation()}
         >
           {/* Backdrop */}
           <div className="absolute inset-0 bg-red-900/20 backdrop-blur-sm" />

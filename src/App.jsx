@@ -385,9 +385,14 @@ export default function App() {
 
   return (
     <div
-      className="w-full h-full select-none touch-none"
+      className="w-full h-full select-none touch-none cursor-pointer"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
+      onClick={() => {
+        if (!showTitle && !isWaitingForChoice && !alertActive && !backlogOpen) {
+          nextStep();
+        }
+      }}
     >
       <GameFrame shakeEffect={shakeEffect}>
         {showTitle ? (

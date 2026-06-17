@@ -106,7 +106,10 @@ export default function DialogueBox({
         {/* Dialogue panel */}
         <div
           className="relative bg-gradient-to-t from-black/95 via-black/80 to-transparent pt-16 pb-12 px-12 md:px-24 cursor-pointer transition-colors duration-300"
-          onClick={onNext}
+          onClick={(e) => {
+            e.stopPropagation();
+            onNext();
+          }}
         >
           {/* Speaker name */}
           {showSpeaker && (

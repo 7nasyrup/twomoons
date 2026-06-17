@@ -17,7 +17,10 @@ export default function DevConsole({ currentStep, totalSteps, onJumpToStep, onTo
     <>
       {/* Toggle button */}
       <button
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={(e) => {
+          e.stopPropagation();
+          setIsOpen(!isOpen);
+        }}
         className="absolute top-3 right-3 z-[60] bg-[#080a10]/80 border border-cyan-500/20 text-cyan-500/60
                    p-2 rounded hover:border-cyan-400/40 hover:text-cyan-400 transition-all"
       >
@@ -27,6 +30,7 @@ export default function DevConsole({ currentStep, totalSteps, onJumpToStep, onTo
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            onClick={(e) => e.stopPropagation()}
             className="absolute top-12 right-3 z-[60] bg-[#080a10]/95 backdrop-blur-xl border border-cyan-500/20
                        rounded-lg p-4 w-72 shadow-[0_0_40px_rgba(0,245,255,0.1)]"
             initial={{ opacity: 0, y: -10, scale: 0.95 }}
