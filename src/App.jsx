@@ -194,6 +194,7 @@ export default function App() {
   const [rightActive, setRightActive] = useState(false);
   const [focusSlot, setFocusSlot] = useState(null);
   const [prevScene, setPrevScene] = useState('');
+  const [presentCharacters, setPresentCharacters] = useState([]);
 
   // Swipe gesture variables
   const touchStartX = useRef(0);
@@ -207,8 +208,60 @@ export default function App() {
       setLeftActive(false);
       setRightActive(false);
       setFocusSlot(null);
+      setPresentCharacters([]); // シーン切り替え時に画面内の登場キャラをリセット
     }
   }, [currentLine?.scene, prevScene]);
+
+  // Track present characters (including manual triggers)
+  useEffect(() => {
+    if (!currentLine || showTitle) return;
+
+    // 1. Force Clear all illustrations
+    if (currentLine.clearIllust) {
+      setPresentCharacters([]);
+      return;
+    }
+
+    let nextList = [...presentCharacters];
+    let listChanged = false;
+
+    // 2. Force Hide specific illustrations
+    if (Array.isArray(currentLine.hideIllust)) {
+      currentLine.hideIllust.forEach(char => {
+        if (nextList.includes(char)) {
+          nextList = nextList.filter(c => c !== char);
+          listChanged = true;
+        }
+      });
+    }
+
+    // 3. Force Show specific illustrations
+    if (Array.isArray(currentLine.showIllust)) {
+      currentLine.showIllust.forEach(char => {
+        if (!nextList.includes(char)) {
+          nextList.push(char);
+          listChanged = true;
+        }
+      });
+    }
+
+    // 4. Default Auto-show fallback when no manual action is specified for this speaker
+    const speaker = currentLine.speaker;
+    const targetSpeakers = ["睦典", "ミカ", "凪砂", "大男"];
+    if (speaker && targetSpeakers.includes(speaker)) {
+      const isManuallyHidden = Array.isArray(currentLine.hideIllust) && currentLine.hideIllust.includes(speaker);
+      const isNightMutsunoriException = currentLine.scene === "夜の帰り道" && speaker === "睦典";
+
+      if (!isManuallyHidden && !isNightMutsunoriException && !nextList.includes(speaker)) {
+        nextList.push(speaker);
+        listChanged = true;
+      }
+    }
+
+    if (listChanged) {
+      setPresentCharacters(nextList);
+    }
+  }, [currentLine, showTitle, presentCharacters]);
 
   // Audio system and sprite positioning logic based on active step details
   useEffect(() => {
@@ -421,6 +474,9 @@ export default function App() {
                 leftActive={leftActive}
                 rightActive={rightActive}
                 focusSlot={focusSlot}
+                currentSpeaker={currentLine?.speaker}
+                presentCharacters={presentCharacters}
+                currentLine={currentLine}
               />
             )}
 
