@@ -8,7 +8,7 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot }) {
       <AnimatePresence>
         {leftActive && (
           <motion.div
-            className={`absolute bottom-[-200px] left-0 right-0 mx-auto w-[55%] h-[105%] flex flex-col justify-end items-center transition-all duration-500
+            className={`absolute bottom-[-300px] left-0 right-0 mx-auto w-[55%] h-[105%] flex flex-col justify-end items-center transition-all duration-500
                   ${focusSlot === 'right' ? 'opacity-30 scale-95 blur-[1px]' : 'opacity-100 scale-100'}`}
             initial={{ x: -100, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
