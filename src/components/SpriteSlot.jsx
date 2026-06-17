@@ -8,7 +8,7 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot }) {
       <AnimatePresence>
         {leftActive && (
           <motion.div
-            className={`absolute bottom-[120px] left-1/2 -translate-x-1/2 w-[70%] h-[140%] flex flex-col justify-end items-center transition-all duration-500
+            className={`absolute bottom-[120px] left-0 right-0 mx-auto w-[55%] h-[105%] flex flex-col justify-end items-center transition-all duration-500
                   ${focusSlot === 'right' ? 'opacity-30 scale-95 blur-[1px]' : 'opacity-100 scale-100'}`}
             initial={{ x: -100, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
@@ -20,7 +20,7 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot }) {
               {/* Dynamic Image Layer (allows setting bg image from code/DOM) */}
               <div
                 id="char-left-img"
-                className="absolute inset-0 w-full h-full bg-contain bg-bottom bg-no-repeat transition-all duration-300"
+                className="absolute inset-0 w-full h-full bg-contain bg-top bg-no-repeat transition-all duration-300"
                 style={{ backgroundImage: 'url(/illust/Mutsunori_default.webp)' }}
               />
             </div>
