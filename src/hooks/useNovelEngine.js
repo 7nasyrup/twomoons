@@ -1,11 +1,12 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 
 export function useNovelEngine(scenarioData) {
+  const prologueLines = scenarioData ? scenarioData.filter(line => line.scene === "PROLOGUE") : [];
   const [currentStep, setCurrentStep] = useState(0);
   const [displayedText, setDisplayedText] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [isWaitingForChoice, setIsWaitingForChoice] = useState(false);
-  const [backlog, setBacklog] = useState([]);
+  const [backlog, setBacklog] = useState(prologueLines);
   const [autoMode, setAutoMode] = useState(false);
   const [hudVisible, setHudVisible] = useState(true);
   const typingTimer = useRef(null);
@@ -75,8 +76,8 @@ export function useNovelEngine(scenarioData) {
 
   const advanceStep = useCallback(() => {
     if (currentStep < scenarioData.length - 1) {
-      // Add to backlog
-      if (currentLine) {
+      // Add to backlog (exclude prologue since it is pre-populated)
+      if (currentLine && currentLine.scene !== "PROLOGUE") {
         setBacklog(prev => [...prev, currentLine]);
       }
 
@@ -109,7 +110,7 @@ export function useNovelEngine(scenarioData) {
     if (selectedChoice && selectedChoice.targetLabel) {
       const targetIdx = scenarioData.findIndex(line => line.label === selectedChoice.targetLabel);
       if (targetIdx !== -1) {
-        if (currentLine) {
+        if (currentLine && currentLine.scene !== "PROLOGUE") {
           setBacklog(prev => [...prev, currentLine]);
         }
         setCurrentStep(targetIdx);
@@ -128,6 +129,10 @@ export function useNovelEngine(scenarioData) {
 
   const toggleAuto = useCallback(() => setAutoMode(prev => !prev), []);
   const toggleHud = useCallback(() => setHudVisible(prev => !prev), []);
+  const clearBacklog = useCallback(() => {
+    const prologue = scenarioData ? scenarioData.filter(line => line.scene === "PROLOGUE") : [];
+    setBacklog(prologue);
+  }, [scenarioData]);
 
   // Cleanup
   useEffect(() => {
@@ -152,6 +157,7 @@ export function useNovelEngine(scenarioData) {
     toggleAuto,
     toggleHud,
     setHudVisible,
+    clearBacklog,
     totalSteps: scenarioData.length,
   };
 }

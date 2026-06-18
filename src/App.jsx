@@ -142,6 +142,7 @@ export default function App() {
     toggleAuto,
     toggleHud,
     setHudVisible,
+    clearBacklog,
     totalSteps,
   } = useNovelEngine(scenarioData);
 
@@ -169,6 +170,7 @@ export default function App() {
   }, [currentStep, showTitle]);
 
   const handleStartGame = () => {
+    clearBacklog();
     setShowTitle(false);
     jumpToStep(0);
   };
@@ -497,7 +499,9 @@ export default function App() {
                 choices={currentLine?.choices}
                 isWaitingForChoice={isWaitingForChoice}
                 onSelectChoice={selectChoice}
-                onExit={() => setShowTitle(true)}
+                onExit={() => {
+                  setShowTitle(true);
+                }}
               />
             )}
 
@@ -535,7 +539,10 @@ export default function App() {
 
                 <div className="flex flex-col sm:flex-row gap-4">
                   <button
-                    onClick={() => jumpToStep(0)}
+                    onClick={() => {
+                      clearBacklog();
+                      jumpToStep(0);
+                    }}
                     className="px-8 py-3 bg-cyan-950/40 border border-cyan-500/30 text-cyan-300 font-orbitron text-sm tracking-widest rounded
                                hover:bg-cyan-500/20 hover:border-cyan-400 hover:text-white hover:shadow-[0_0_20px_rgba(0,245,255,0.3)]
                                transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 active:scale-95"
@@ -543,7 +550,9 @@ export default function App() {
                     REPLAY DEMO
                   </button>
                   <button
-                    onClick={() => setShowTitle(true)}
+                    onClick={() => {
+                      setShowTitle(true);
+                    }}
                     className="px-8 py-3 bg-indigo-950/40 border border-indigo-500/30 text-indigo-300 font-orbitron text-sm tracking-widest rounded
                                hover:bg-indigo-500/20 hover:border-indigo-400 hover:text-white hover:shadow-[0_0_20px_rgba(99,102,241,0.3)]
                                transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 active:scale-95"

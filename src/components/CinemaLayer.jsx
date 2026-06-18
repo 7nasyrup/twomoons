@@ -6,7 +6,10 @@ export default function CinemaLayer({ text, isActive, isTyping, onNext }) {
       {isActive && (
         <motion.div
           className="absolute inset-0 z-40 flex flex-col justify-center items-center cursor-pointer"
-          onClick={onNext}
+          onClick={(e) => {
+            e.stopPropagation();
+            onNext();
+          }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, transition: { duration: 1.0 } }}
           exit={{ opacity: 0, transition: { duration: 1.0 } }}
