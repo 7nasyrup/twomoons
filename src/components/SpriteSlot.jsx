@@ -20,7 +20,7 @@ const SPEAKER_CONFIGS = {
   }
 };
 
-export default function SpriteSlot({ leftActive, rightActive, focusSlot, currentSpeaker, presentCharacters = [], currentLine }) {
+export default function SpriteSlot({ leftActive, rightActive, focusSlot, currentSpeaker, presentCharacters = [], currentLine, currentStep, scenarioData = [] }) {
   // 表示対象の全キャラクター名（累積表示メンバー ＋ 現在の発言者。重複排除）
   const displayList = Array.from(new Set([
     ...presentCharacters,
@@ -35,12 +35,44 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
           const config = SPEAKER_CONFIGS[charName];
           if (!config) return null;
 
-          // 基本判定：現在の発言者とキャラクター名が一致している場合
+          // 1. 基本判定：現在の発言者とキャラクター名が一致している場合
           // シナリオ側で talker: "キャラクター名" が明示的に指定されている場合は、それを優先して明るく（フォーカス）します。
-          // これにより、speaker: "？？？" のように名前を伏せつつ特定の立ち絵を明るくしたり、
-          // 別のキャラのセリフの際に画面上のキャラが誤って明るくなるのを100%防げます。
           const activeTalker = currentLine?.talker || currentSpeaker;
-          const isSpeaker = activeTalker === charName;
+          let isSpeaker = activeTalker === charName;
+
+          // 2. 自動判定拡張：
+          // 発言者が「？？？」で、かつテキストに「」や『』が含まれており（セリフであり）、
+          // そのキャラクターが現在表示されている（displayList に含まれている）場合。
+          if (!isSpeaker && (currentSpeaker === "？？？" || currentSpeaker === "？？?")) {
+            const hasDialogue = currentLine?.text && (currentLine.text.includes("「") || currentLine.text.includes("『"));
+            
+            if (hasDialogue) {
+              // 画面上に立ち絵が表示されており、かつ、そのキャラクターの本名（例：「ミカ」）が
+              // このシーンに入ってから現在までに一度も speaker として登場していない場合のみ、
+              // 「？？？」はそのキャラクター（凪砂など）を指していると自動で判定して明るくフォーカスします！
+              // すでに本名で会話を行っている（正体が割れている）ミカのようなキャラクターは暗いまま維持されます。
+              const currentScene = currentLine?.scene;
+              let hasSpokenInThisScene = false;
+              
+              if (Array.isArray(scenarioData) && typeof currentStep === 'number') {
+                for (let i = currentStep - 1; i >= 0; i--) {
+                  const line = scenarioData[i];
+                  // 別のシーンに到達したら探索を終了
+                  if (line?.scene !== currentScene) {
+                    break;
+                  }
+                  if (line?.speaker === charName) {
+                    hasSpokenInThisScene = true;
+                    break;
+                  }
+                }
+              }
+
+              if (!hasSpokenInThisScene && displayList.includes(charName)) {
+                isSpeaker = true;
+              }
+            }
+          }
 
           return (
             <motion.div
