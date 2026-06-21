@@ -121,7 +121,7 @@ export default function TapCommunication({ onComplete }) {
       <img
         src="/scene/school.jpg"
         alt="school bench bg"
-        className="absolute inset-0 w-full h-full object-cover filter brightness-[0.2] pointer-events-none select-none z-0"
+        className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none z-0"
       />
       <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/20 pointer-events-none z-10" />
 

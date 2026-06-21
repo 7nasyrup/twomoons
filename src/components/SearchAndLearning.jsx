@@ -61,7 +61,7 @@ export default function SearchAndLearning({ onComplete }) {
       <img
         src="/scene/room.jpg"
         alt="room bg"
-        className="absolute inset-0 w-full h-full object-cover filter brightness-[0.25] pointer-events-none select-none z-0"
+        className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none z-0"
       />
 
       {/* Header Info Overlay */}
