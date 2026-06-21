@@ -57,11 +57,11 @@ export default function SearchAndLearning({ onComplete }) {
 
   return (
     <div className="absolute inset-0 bg-[#030712] z-50 overflow-hidden select-none font-orbitron">
-      {/* Background image: 一人部屋２（日中）.jpg (Full Screen) */}
-      <img 
-        src="/scene/一人部屋２（日中）.jpg" 
-        alt="room bg" 
-        className="absolute inset-0 w-full h-full object-cover z-0"
+      {/* Background image: room.jpg (Full Screen) */}
+      <img
+        src="/scene/room.jpg"
+        alt="room bg"
+        className="absolute inset-0 w-full h-full object-cover filter brightness-[0.25] pointer-events-none select-none z-0"
       />
 
       {/* Header Info Overlay */}

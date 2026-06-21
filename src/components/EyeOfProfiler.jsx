@@ -184,11 +184,11 @@ export default function EyeOfProfiler({ onComplete }) {
             transform: `translate(-${panX}px, -${panY}px)`
           }}
         >
-          {/* Background image: 住宅街（夜・灯り無し）.jpg */}
+          {/* Background image: night.jpg */}
           {!imageError ? (
-            <img 
-              src="/scene/住宅街（夜・灯り無し）.jpg" 
-              alt="residential street night" 
+            <img
+              src="/scene/night.jpg"
+              alt="residential street night"
               className="w-full h-full object-cover pointer-events-none select-none filter brightness-50 contrast-125"
               onError={() => setImageError(true)}
             />

@@ -117,11 +117,11 @@ export default function TapCommunication({ onComplete }) {
 
   return (
     <div className="absolute inset-0 bg-black z-50 overflow-hidden font-orbitron">
-      {/* Background image: 学校のベンチ（日中）.jpg (Full Screen) */}
-      <img 
-        src="/scene/学校のベンチ（日中）.jpg" 
-        alt="school bench bg" 
-        className="absolute inset-0 w-full h-full object-cover z-0"
+      {/* Background image: school.jpg (Full Screen) */}
+      <img
+        src="/scene/school.jpg"
+        alt="school bench bg"
+        className="absolute inset-0 w-full h-full object-cover filter brightness-[0.2] pointer-events-none select-none z-0"
       />
       <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/20 pointer-events-none z-10" />
 
