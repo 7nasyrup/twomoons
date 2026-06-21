@@ -7,6 +7,11 @@ import AlertModal from './components/AlertModal';
 import DevConsole from './components/DevConsole';
 import BacklogOverlay from './components/BacklogOverlay';
 import TitleScreen from './components/TitleScreen';
+import TypingGame from './components/TypingGame';
+import SearchAndLearning from './components/SearchAndLearning';
+import SilentScore from './components/SilentScore';
+import TapCommunication from './components/TapCommunication';
+import EyeOfProfiler from './components/EyeOfProfiler';
 import { useNovelEngine } from './hooks/useNovelEngine';
 import { useAudioSystem } from './hooks/useAudioSystem';
 import { scenarioData } from './data/scenario';
@@ -399,7 +404,7 @@ export default function App() {
 
       // Handle backlog closing via keyboard
       if (backlogOpen) {
-        if (e.key === 'Escape' || e.key === 'l' || e.key === 'L') {
+        if (e.key === 'Escape') {
           setBacklogOpen(false);
           e.preventDefault();
         }
@@ -417,12 +422,6 @@ export default function App() {
         if (!isWaitingForChoice) {
           nextStep();
         }
-      } else if (e.key === 'h' || e.key === 'H') {
-        toggleHud();
-      } else if (e.key === 'a' || e.key === 'A') {
-        toggleAuto();
-      } else if (e.key === 'l' || e.key === 'L') {
-        setBacklogOpen(true);
       }
     };
 
@@ -437,6 +436,58 @@ export default function App() {
 
   const isCinema = currentLine?.style === 'cinema';
   const isDemoEnd = currentLine?.action === 'FADE_TO_DEMO_END';
+  const isTypingGameActive = currentLine?.action === 'TRIGGER_TYPING_GAME';
+  const isSearchAndLearningActive = currentLine?.action === 'TRIGGER_SEARCH_AND_LEARNING';
+  const isSilentScoreActive = currentLine?.action === 'TRIGGER_SILENT_SCORE';
+  const isTapCommunicationActive = currentLine?.action === 'TRIGGER_TAP_COMMUNICATION';
+  const isEyeOfProfilerActive = currentLine?.action === 'TRIGGER_EYE_OF_PROFILER';
+
+  const handleEyeOfProfilerComplete = (success) => {
+    setEyeOfProfilerSuccess(success);
+    nextStep();
+  };
+
+  const handleTapCommunicationComplete = (scores) => {
+    setTapCommunicationScores(scores);
+    nextStep();
+  };
+
+  const handleSearchAndLearningComplete = (score) => {
+    setLearningScore(score);
+    nextStep();
+  };
+
+  const handleSilentScoreComplete = (scoreData) => {
+    setSilentScoreResult(scoreData);
+    nextStep();
+  };
+
+  const handleTypingGameComplete = (success) => {
+    if (success) {
+      // 成功ルートにジャンプ
+      const targetIdx = scenarioData.findIndex(line => line.label === 'typing_success_start');
+      if (targetIdx !== -1) {
+        jumpToStep(targetIdx);
+      } else {
+        nextStep();
+      }
+    } else {
+      // 失敗ルートにジャンプ
+      const targetIdx = scenarioData.findIndex(line => line.label === 'typing_fail_start');
+      if (targetIdx !== -1) {
+        jumpToStep(targetIdx);
+      } else {
+        nextStep();
+      }
+    }
+  };
+
+  const filteredChoices = currentLine?.choices?.filter(choice => {
+    if (choice.condition === 'learning_max') {
+      return learningScore === 3;
+    }
+    return true;
+  }) || [];
 
   return (
     <div
@@ -444,7 +495,7 @@ export default function App() {
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
       onClick={() => {
-        if (!showTitle && !isWaitingForChoice && !alertActive && !backlogOpen) {
+        if (!showTitle && !isWaitingForChoice && !alertActive && !backlogOpen && !isTypingGameActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive) {
           nextStep();
         }
       }}
@@ -462,10 +513,35 @@ export default function App() {
             {/* Visual Background Fallback & Actual Renderer */}
             <BackgroundRenderer bgPath={currentLine?.bg || scenarioData[Math.max(0, currentStep - 1)]?.bg} />
 
+            {/* Typing Game Overlay */}
+            {isTypingGameActive && (
+              <TypingGame onComplete={handleTypingGameComplete} />
+            )}
+
+            {/* Search & Learning Overlay */}
+            {isSearchAndLearningActive && (
+              <SearchAndLearning onComplete={handleSearchAndLearningComplete} />
+            )}
+
+            {/* Tap Communication Overlay */}
+            {isTapCommunicationActive && (
+              <TapCommunication onComplete={handleTapCommunicationComplete} />
+            )}
+
+            {/* Eye Of Profiler Overlay */}
+            {isEyeOfProfilerActive && (
+              <EyeOfProfiler onComplete={handleEyeOfProfilerComplete} />
+            )}
+
+            {/* Silent Score Overlay */}
+            {isSilentScoreActive && (
+              <SilentScore onComplete={handleSilentScoreComplete} />
+            )}
+
             {/* Cinematic Black Letterbox Overlay */}
             <CinemaLayer
               text={currentLine?.text}
-              isActive={isCinema && !isDemoEnd}
+              isActive={isCinema && !isDemoEnd && !isTypingGameActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive}
               isTyping={isTyping}
               onNext={nextStep}
             />
@@ -483,7 +559,7 @@ export default function App() {
             )}
 
             {/* Subtitles & Normal Dialogue Boxes */}
-            {!isCinema && !isDemoEnd && !alertActive && (
+            {!isCinema && !isDemoEnd && !alertActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isTypingGameActive && (
               <DialogueBox
                 speaker={currentLine?.speaker}
                 role={currentLine?.role}
@@ -496,7 +572,7 @@ export default function App() {
                 onToggleAuto={toggleAuto}
                 onToggleHud={toggleHud}
                 onOpenLog={() => setBacklogOpen(true)}
-                choices={currentLine?.choices}
+                choices={filteredChoices}
                 isWaitingForChoice={isWaitingForChoice}
                 onSelectChoice={selectChoice}
                 onExit={() => {

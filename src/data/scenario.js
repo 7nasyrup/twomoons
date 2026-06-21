@@ -10905,8 +10905,124 @@ export const scenarioData = [
         scene: "大学の敷地内",
         speaker: "システム",
         role: "SYSTEM",
+        text: "（今後のアップデートをお楽しみに！ 開発中のミニゲームシステムを体験してみましょう！）",
+        choices: [
+            { text: "システムA：サーチ＆ラーニング（自室探索）を体験する", targetLabel: "search_learning_only_trigger" },
+            { text: "システムB：リミット・タイピング（ハッキング防御）を体験する", targetLabel: "typing_game_only_trigger" },
+            { text: "システムC：サイレント・スコア（波長リズムゲーム）を体験する", targetLabel: "silent_score_only_trigger" },
+            { text: "システムD：タップ・コミュニケーション（拠点クリック対話）を体験する", targetLabel: "tap_communication_only_trigger" },
+            { text: "システムE：アイ・オブ・プロファイラー（FPS風・視点探索）を体験する", targetLabel: "eye_of_profiler_only_trigger" },
+            { text: "そのままデモを終了する", targetLabel: "route_under_construction_final" }
+        ],
+        type: "choice",
+        label: "route_under_construction"
+    },
+    // ================== SEARCH & LEARNING SYSTEM A (ONLY TEST) ==================
+    {
+        scene: "ゲームA",
+        speaker: "システム",
+        role: "SYSTEM",
+        text: "【システムA：サーチ＆ラーニング】の体験を開始します。部屋のいくつかのポイントを調べてみてください。",
+        bg: "town_dark_1",
+        label: "search_learning_only_trigger"
+    },
+    {
+        scene: "ゲームA",
+        action: "TRIGGER_SEARCH_AND_LEARNING"
+    },
+    {
+        scene: "ゲームA",
+        speaker: "システム",
+        role: "SYSTEM",
+        text: "探索が完了しました。体験用選択肢に戻ります。",
+        jumpTo: "route_under_construction"
+    },
+    // ================== TYPING GAME SYSTEM B (ONLY TEST) ==================
+    {
+        scene: "ゲームB",
+        speaker: "システム",
+        role: "SYSTEM",
+        text: "【システムB：リミット・タイピング】の体験を開始します。制限時間内にコマンドを正確に入力してください。",
+        bg: "town_dark_1",
+        label: "typing_game_only_trigger"
+    },
+    {
+        scene: "ゲームB",
+        action: "TRIGGER_TYPING_GAME"
+    },
+    {
+        scene: "ゲームB",
+        speaker: "システム",
+        role: "SYSTEM",
+        text: "ハッキング防御シークエンスを終了しました。体験用選択肢に戻ります。",
+        jumpTo: "route_under_construction"
+    },
+    // ================== SILENT SCORE SYSTEM C (ONLY TEST) ==================
+    {
+        scene: "ゲームC",
+        speaker: "システム",
+        role: "SYSTEM",
+        text: "【システムC：サイレント・スコア】の体験を開始します。波長を合わせてノーツを正確に入力してください。",
+        bg: "town_dark_1",
+        label: "silent_score_only_trigger"
+    },
+    {
+        scene: "ゲームC",
+        action: "TRIGGER_SILENT_SCORE"
+    },
+    {
+        scene: "ゲームC",
+        speaker: "システム",
+        role: "SYSTEM",
+        text: "波長同調シークエンスを終了しました。体験用選択肢に戻ります。",
+        jumpTo: "route_under_construction"
+    },
+    // ================== TAP COMMUNICATION SYSTEM D (ONLY TEST) ==================
+    {
+        scene: "ゲームD",
+        speaker: "システム",
+        role: "SYSTEM",
+        text: "【システムD：タップ・コミュニケーション】の体験を開始します。放課後の特別ロビーでメンバーと対話してください。",
+        bg: "town_dark_1",
+        label: "tap_communication_only_trigger"
+    },
+    {
+        scene: "ゲームD",
+        action: "TRIGGER_TAP_COMMUNICATION"
+    },
+    {
+        scene: "ゲームD",
+        speaker: "システム",
+        role: "SYSTEM",
+        text: "拠点タップ・コミュニケーションを終了しました。体験用選択肢に戻ります。",
+        jumpTo: "route_under_construction"
+    },
+    // ================== EYE OF PROFILER SYSTEM E (ONLY TEST) ==================
+    {
+        scene: "ゲームE",
+        speaker: "システム",
+        role: "SYSTEM",
+        text: "【システムE：アイ・オブ・プロファイラー】の体験を開始します。暗視スコープを使い、制限時間内に4つの不審な影をエイム・スキャンしてください。",
+        bg: "town_dark_1",
+        label: "eye_of_profiler_only_trigger"
+    },
+    {
+        scene: "ゲームE",
+        action: "TRIGGER_EYE_OF_PROFILER"
+    },
+    {
+        scene: "ゲームE",
+        speaker: "システム",
+        role: "SYSTEM",
+        text: "拠点タップ・コミュニケーションを終了しました。体験用選択肢に戻ります。",
+        jumpTo: "route_under_construction"
+    },
+    {
+        scene: "大学の敷地内",
+        speaker: "システム",
+        role: "SYSTEM",
         text: "（今後のアップデートをお楽しみに！）",
         action: "FADE_TO_DEMO_END",
-        label: "route_under_construction"
+        label: "route_under_construction_final"
     }
 ];
