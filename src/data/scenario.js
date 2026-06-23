@@ -160,7 +160,7 @@ export const scenarioData = [
         speaker: "朔良",
         role: "SAKURA",
         text: "手元のスマートフォンを開くと、画面には『月波観測庁』が発令した最新の警告ポップアップが、不吉な赤色で明滅していた。",
-        //action: "TRIGGER_PHONE_RED_ALERT"
+        action: "TRIGGER_PHONE_RED_ALERT"
     },
     {
         scene: "月科学大講義室",
@@ -433,8 +433,8 @@ export const scenarioData = [
     },
     {
         scene: "大学の廊下",
-        speaker: "睦典",
-        role: "MUTSUNORI",
+        speaker: "朔良",
+        role: "SAKURA",
         text: "あはは、と睦典が緊張感のない声で笑う。",
         bg: "cyber_corridor"
     },
@@ -466,7 +466,13 @@ export const scenarioData = [
         scene: "大学の廊下",
         speaker: "朔良",
         role: "SAKURA",
-        text: "──だって私は、この中で唯一、本当に何も持っていない『無能力者』だから。もし彼らに私の無能力が、あるいは彼らの異能が不用意にバレれば、その時点でこの静かな日常のバランスは崩壊する。誰もが隠し事という名のナイフをポケットに忍ばせているような、そんな静かな狂気が、この日常には満ちていた。"
+        text: "──だって私は、この中で唯一、本当に何も持っていない『無能力者』だから。"
+    },
+    {
+        scene: "大学の廊下",
+        speaker: "朔良",
+        role: "SAKURA",
+        text: "もし彼らに私の無能力が、あるいは彼らの異能が不用意にバレれば、その時点でこの静かな日常のバランスは崩壊する。誰もが隠し事という名のナイフをポケットに忍ばせているような、そんな静かな狂気が、この日常には満ちていた。"
     },
     {
         scene: "大学の廊下",
@@ -482,8 +488,8 @@ export const scenarioData = [
     },
     {
         scene: "大学の廊下",
-        speaker: "睦典",
-        role: "MUTSUNORI",
+        speaker: "朔良",
+        role: "SAKURA",
         text: "睦典が自分の右手をまじまじと見つめながら、のん気につぶやく。"
     },
     {
@@ -508,7 +514,8 @@ export const scenarioData = [
         scene: "大学の廊下",
         speaker: "睦典",
         role: "MUTSUNORI",
-        text: "「よーし、そうと決まれば早くレポート終わらせて店に行こ！ 朔良、遅れないでついてきてね！」"
+        text: "「よーし、そうと決まれば早くレポート終わらせて店に行こ！ 朔良、遅れないでついてきてね！」",
+        hideIllust: ["睦典"]
     },
     {
         scene: "大学の廊下",
@@ -676,8 +683,8 @@ export const scenarioData = [
     },
     {
         scene: "大学の廊下",
-        speaker: "ヒルミ教授",
-        role: "PROFESSOR",
+        speaker: "朔良",
+        role: "SAKURA",
         text: "教授はそう言うと、いつもの掴みどころのない笑顔に戻り、ポンと私の肩を軽く叩いた。"
     },
     {
@@ -706,8 +713,8 @@ export const scenarioData = [
     },
     {
         scene: "大学の廊下",
-        speaker: "睦典",
-        role: "MUTSUNORI",
+        speaker: "朔良",
+        role: "SAKURA",
         text: "睦典が不満げに頬を膨らませながら、遠くなった教授に怪訝な視線を向けて小声でボヤいている。"
     },
     {
@@ -807,7 +814,6 @@ export const scenarioData = [
     {
         scene: "商店街",
         speaker: "街頭スピーカー",
-        role: "SYSTEM",
         text: "『――現在、月波観測予報は警戒レベル３です。体調に異変を感じた方、または周囲に適応不全の兆候が見られる場合は、速やかに最寄りの防衛局へ……』",
         action: "PLAY_ALERT_SE"
     },
@@ -1276,7 +1282,8 @@ export const scenarioData = [
         scene: "夜の帰り道",
         speaker: "朔良",
         role: "SAKURA",
-        text: "こちらへゆっくりと近寄ってくるが、不思議と先程の意地悪さや強引さは感じない。彼はまるで、何事も無かったかのように携帯を私に差し出すと、そのまま私の前から静かに去っていった。"
+        text: "こちらへゆっくりと近寄ってくるが、不思議と先程の意地悪さや強引さは感じない。彼はまるで、何事も無かったかのように携帯を私に差し出すと、そのまま私の前から静かに去っていった。",
+        hideIllust: ["凪砂"]
     },
     {
         scene: "夜の帰り道",
@@ -1380,14 +1387,12 @@ export const scenarioData = [
     {
         scene: "朔良の部屋",
         speaker: "テレビ",
-        role: "SYSTEM",
         text: "『――続いてのニュースです。本日18時頃、〇〇区において発生した限定的な月波のバーストにより、警戒レベル３が発令されました』",
         action: "PLAY_ALERT_SE"
     },
     {
         scene: "朔良の部屋",
         speaker: "テレビ",
-        role: "SYSTEM",
         text: "『しかし、今回の現場ではこれまでにない極めて異常な事態が発生しています』",
         action: "PLAY_ALERT_SE"
     },
@@ -1406,13 +1411,11 @@ export const scenarioData = [
     {
         scene: "朔良の部屋",
         speaker: "テレビ",
-        role: "SYSTEM",
         text: "『現場に防衛局が到着した際、すでに多数の【キメラ】が統率された動きで街を破壊しており、それらを引き連れるようにして立つ、漆黒の武装を身にまとった正体不明の能力者――ネット上で【黒騎士】と呼ばれている人物の姿が確認されました』"
     },
     {
         scene: "朔良の部屋",
         speaker: "テレビ",
-        role: "SYSTEM",
         text: "『これまでの【キメラ】は本能で暴れるだけでしたが、【黒騎士】がそれらを\"使役\"している可能性が高く、防衛局は最大級の警戒を呼びかけています』"
     },
     {
@@ -2257,7 +2260,13 @@ export const scenarioData = [
         scene: "帰り道",
         speaker: "朔良",
         role: "SAKURA",
-        text: "──満。私の幼い頃からの幼馴染。幼い記憶が朧気な私にとっても、満との思い出はどれも色鮮やかなものだった。最近は遠くに引っ越してしまって、頻繁に会うことはなくなってしまったけれど。でもたまに、こうやって「会いたい」と連絡してくれる。"
+        text: "──満。私の幼い頃からの幼馴染。幼い記憶が朧気な私にとっても、満との思い出はどれも色鮮やかなものだった。"
+    },
+    {
+        scene: "帰り道",
+        speaker: "朔良",
+        role: "SAKURA",
+        text: "最近は遠くに引っ越してしまって、頻繁に会うことはなくなってしまったけれど。でもたまに、こうやって「会いたい」と連絡してくれる。"
     },
     {
         scene: "帰り道",
@@ -2419,7 +2428,7 @@ export const scenarioData = [
     {
         scene: "夜の裏路地",
         speaker: "？？？",
-        text: "「……」"
+        text: "「……z…」"
     },
     {
         scene: "夜の裏路地",
@@ -2800,7 +2809,9 @@ export const scenarioData = [
         scene: "大学の講義室",
         speaker: "朔良",
         role: "SAKURA",
-        text: "綺麗な黒髪。少し切れ長の、今は眠そうに伏せられた黒い瞳。"
+        text: "綺麗な黒髪。少し切れ長の、今は眠そうに伏せられた黒い瞳。",
+        showIllust: ["ミカ"]
+
     },
 
     {
@@ -2814,7 +2825,6 @@ export const scenarioData = [
         speaker: "朔良",
         role: "SAKURA",
         text: "（嘘……ミカくん……！？）",
-        showIllust: ["ミカ"]
     },
     {
         scene: "大学の講義室",
@@ -3836,7 +3846,13 @@ export const scenarioData = [
         scene: "廃ビルの一室",
         speaker: "朔良",
         role: "SAKURA",
-        text: "ゆうべの事件から始まって、大男への監禁、路地裏での拉致、怪物【キメラ】の襲撃……あまりにも現実離れした光景ばかりを立て続けに目の当たりにしていたせいか、この日常の象徴とも言える馴染み深い顔を見た瞬間、張り詰めていた心の糸がふっと緩んで、心の底からほっと胸を撫で下ろした。"
+        text: "ゆうべの事件から始まって、大男への監禁、路地裏での拉致、怪物【キメラ】の襲撃……"
+    },
+    {
+        scene: "廃ビルの一室",
+        speaker: "朔良",
+        role: "SAKURA",
+        text: "あまりにも現実離れした光景ばかりを立て続けに目の当たりにしていたせいか、この日常の象徴とも言える馴染み深い顔を見た瞬間、張り詰めていた心の糸がふっと緩んで、心の底からほっと胸を撫で下ろした。"
     },
     {
         scene: "廃ビルの一室",
@@ -4550,6 +4566,7 @@ export const scenarioData = [
         speaker: "朔良",
         role: "SAKURA",
         text: "激しい爆風、巻き上がる土煙、視界を覆い尽くす黒煙と炎の照り返し──。",
+        //煙のエフェクトで、立ち絵がだんだん見えなくなっていく演出
     },
     {
         scene: "廃ビルの外",
@@ -4685,7 +4702,6 @@ export const scenarioData = [
     },
     {
         scene: "大学の敷地内",
-        speaker: "？？？",
         text: "──グサァッッ！！",
     },
     {
@@ -8229,7 +8245,6 @@ export const scenarioData = [
     {
         scene: "ロケット内部",
         speaker: "システム",
-        role: "SYSTEM",
         text: "『システム起動。カウントダウン、最終シークエンスへ移行』",
     },
     {
@@ -8349,7 +8364,6 @@ export const scenarioData = [
     {
         scene: "ロケット内部",
         speaker: "システム",
-        role: "SYSTEM",
         text: "『警告。推進システムに致命的なエラー。第一、第二エンジン共に停止。機体の制御が不可能です』",
     },
     {
@@ -8384,8 +8398,8 @@ export const scenarioData = [
     },
     {
         scene: "ロケット内部",
-        speaker: "システム",
-        role: "SYSTEM",
+        speaker: "朔良",
+        role: "SAKURA",
         text: "ガガガガガガガッ！！！ と激しく揺れる視界の中、私は、ただ迫り来る死の恐怖に、声を上げることもできず目を見開いた。",
     },
     {
@@ -8501,6 +8515,7 @@ export const scenarioData = [
         speaker: "朔良",
         role: "SAKURA",
         text: "彼の大きな手を掴んで、私はよろよろと大破したロケットの外へと這い出した。",
+        hideillust: true
     },
     {
         scene: "月面",
@@ -8569,6 +8584,7 @@ export const scenarioData = [
         text: "睦典が、地球のすぐ傍ら、天の特等席を指差した。",
     },
     {
+        //ここで、人工月と黄色い月のイラスト
         scene: "月面",
         speaker: "朔良",
         role: "SAKURA",
@@ -8804,139 +8820,139 @@ export const scenarioData = [
     },
     {
         scene: "月面",
-        speaker: "ヒルミ教授",
+        speaker: "ヒルミ教授の手記",
         role: "PROFESSOR",
-        text: "――（紙面） 突然変なことに巻き込んで済まないね、朔良。"
+        text: "――突然変なことに巻き込んで済まないね、朔良。"
     },
     {
         scene: "月面",
-        speaker: "ヒルミ教授",
+        speaker: "ヒルミ教授の手記",
         role: "PROFESSOR",
         text: "口で説明している暇はなかっただろうから、今回の“実習”の概要をここで説明しよう。"
     },
     {
         scene: "月面",
-        speaker: "ヒルミ教授",
+        speaker: "ヒルミ教授の手記",
         role: "PROFESSOR",
         text: "私が手短に話した『コア』についてだが……君たちが降り立った研究所で、開発が進められていたものだ。"
     },
     {
         scene: "月面",
-        speaker: "ヒルミ教授",
+        speaker: "ヒルミ教授の手記",
         role: "PROFESSOR",
         text: "形状として、白く輝く、手のひらサイズの球体だ。おそらく研究所の最奥―本当の月の光が当たるところに厳重に保管されているはずだ。"
     },
     {
         scene: "月面",
-        speaker: "ヒルミ教授",
+        speaker: "ヒルミ教授の手記",
         role: "PROFESSOR",
         text: "この『コア』によって生み出されるのは、我々の生活を支えるエネルギーだけではない。同時に【キメラ】をも生み出している。"
     },
     {
         scene: "月面",
-        speaker: "ヒルミ教授",
+        speaker: "ヒルミ教授の手記",
         role: "PROFESSOR",
         text: "当然ながら、そんなこと世間は知らない。【キメラ】騒動に関しても、この月との関係は伏せられるだろう。"
     },
     {
         scene: "月面",
-        speaker: "ヒルミ教授",
+        speaker: "ヒルミ教授の手記",
         role: "PROFESSOR",
         text: "…本題に入ろう。ではどのように『コア』を止めるか。"
     },
     {
         scene: "月面",
-        speaker: "ヒルミ教授",
+        speaker: "ヒルミ教授の手記",
         role: "PROFESSOR",
         text: "先ほども書いたように『コア』は研究所の最奥に保管されている。"
     },
     {
         scene: "月面",
-        speaker: "ヒルミ教授",
+        speaker: "ヒルミ教授の手記",
         role: "PROFESSOR",
         text: "当然ながら、そこへ至る道中には最高ランクの防衛セキュリティが敷かれているはずだ。"
     },
     {
         scene: "月面",
-        speaker: "ヒルミ教授",
+        speaker: "ヒルミ教授の手記",
         role: "PROFESSOR",
         text: "普通に行けば、君たちは最奥にたどり着く前にシステムに消去されるだろう。"
     },
     {
         scene: "月面",
-        speaker: "ヒルミ教授",
+        speaker: "ヒルミ教授の手記",
         role: "PROFESSOR",
         text: "そこで、この手記の裏面を見てほしい。"
     },
     {
         scene: "月面",
-        speaker: "ヒルミ教授",
+        speaker: "ヒルミ教授の手記",
         role: "PROFESSOR",
         text: "私が事前にハッキングして抜き出しておいた、【研究所のセキュリティ解除コードの断片（フラグメント）】のデータ配置図が記載されているはずだ。"
     },
     {
         scene: "月面",
-        speaker: "ヒルミ教授",
+        speaker: "ヒルミ教授の手記",
         role: "PROFESSOR",
         text: "最奥の扉を開くには、君たちが力を合わせて、研究所の各エリアに散らばるデータチップ（フラグメント）をすべて『収集』しなければならない。"
     },
     {
         scene: "月面",
-        speaker: "ヒルミ教授",
+        speaker: "ヒルミ教授の手記",
         role: "PROFESSOR",
         text: "一人が端末をハッキングしてデータを回収している間、もう一人が背後から迫る防衛プログラムを食い止めるか、あるいは二人で物陰をくまなく探索してチップを探し出すか──。"
     },
     {
         scene: "月面",
-        speaker: "ヒルミ教授",
+        speaker: "ヒルミ教授の手記",
         role: "PROFESSOR",
         text: "いずれにせよ、君たちの『呼吸』が合わなければ、システムに見つかり、そこで即座に肉体を細切れにされる。"
     },
     {
         scene: "月面",
-        speaker: "ヒルミ教授",
+        speaker: "ヒルミ教授の手記",
         role: "PROFESSOR",
         text: "最後に、コアの止め方について書き添えておこう。"
     },
     {
         scene: "月面",
-        speaker: "ヒルミ教授",
+        speaker: "ヒルミ教授の手記",
         role: "PROFESSOR",
         text: "あのコアは物理的な破壊は通用しない。外衝撃を与えれば、そのエネルギーが暴走し、この隔離領域ごと君たちは塵に還るだろう。"
     },
     {
         scene: "月面",
-        speaker: "ヒルミ教授",
+        speaker: "ヒルミ教授の手記",
         role: "PROFESSOR",
         text: "コアを止める方法は唯一つ。"
     },
     {
         scene: "月面",
-        speaker: "ヒルミ教授",
+        speaker: "ヒルミ教授の手記",
         role: "PROFESSOR",
         text: "エネルギーの「過負荷（オーバーロード）」による強制シャットダウンだ。"
     },
     {
         scene: "月面",
-        speaker: "ヒルミ教授",
+        speaker: "ヒルミ教授の手記",
         role: "PROFESSOR",
         text: "適応者の持つ強力な【異能の力】を、コアの許容量を超えるまで力尽くで「注ぎ込む」しかない。"
     },
     {
         scene: "月面",
-        speaker: "ヒルミ教授",
+        speaker: "ヒルミ教授の手記",
         role: "PROFESSOR",
         text: "当然、それには大きなリスクが伴う。くれぐれも、選択を誤らないことだ。"
     },
     {
         scene: "月面",
-        speaker: "ヒルミ教授",
+        speaker: "ヒルミ教授の手記",
         role: "PROFESSOR",
         text: "健闘を祈るよ。君たちの単位は、この実習の成否にかかっているからね。"
     },
     {
         scene: "月面",
-        speaker: "ヒルミ教授",
+        speaker: "ヒルミ教授の手記",
         role: "PROFESSOR",
         text: "──ヒルミ"
     },
@@ -9221,7 +9237,7 @@ export const scenarioData = [
         scene: "研究所の最奥",
         speaker: "朔良",
         role: "SAKURA",
-        text: "（カチリ──。最後のチップが収まり、重厚なゲートがゆっくりと左右に開き始める）"
+        text: "カチリ──。最後のチップが収まり、重厚なゲートがゆっくりと左右に開き始める"
     },
     {
         scene: "研究所の最奥",
@@ -9425,7 +9441,13 @@ export const scenarioData = [
         scene: "研究所の最奥",
         speaker: "朔良",
         role: "SAKURA",
-        text: "睦典が頭を掻きむしり、その場に激しくのたうち回った。彼の肌からさらに生気が失われ、瞳の奥の光が、急速に濁った闇へと塗り潰されていく。力を注ごうとした弊害──その莫大な負荷によって、彼の自我の摩耗が一気に限界を超えようとしていた。"
+        text: "睦典が頭を掻きむしり、その場に激しくのたうち回った。彼の肌からさらに生気が失われ、瞳の奥の光が、急速に濁った闇へと塗り潰されていく。"
+    },
+    {
+        scene: "研究所の最奥",
+        speaker: "朔良",
+        role: "SAKURA",
+        text: "「力を注ごうとした弊害──その莫大な負荷によって、彼の自我の摩耗が一気に限界を超えようとしていた。"
     },
     {
         scene: "研究所の最奥",
@@ -10880,27 +10902,7 @@ export const scenarioData = [
     },
 
     // 以下、分岐先のプレースホルダー
-    {
-        scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
-        text: "小綺麗な服の袖を掴んだ。……が、ここから先のシナリオは未完成だ。",
-        label: "route_fancy_start",
-    },
-    {
-        scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
-        text: "焦げあとのある服の袖を掴んだ。……が、ここから先のシナリオは未完成だ。",
-        label: "route_burnt_start",
-    },
-    {
-        scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
-        text: "ひたすら大きな腕に掴まった。……が、ここから先のシナリオは未完成だ。",
-        label: "route_large_start",
-    },
+
     {
         scene: "大学の敷地内",
         speaker: "システム",
