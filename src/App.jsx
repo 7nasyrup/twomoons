@@ -254,8 +254,9 @@ export default function App() {
 
     // 4. Default Auto-show fallback when no manual action is specified for this speaker
     const speaker = currentLine.speaker;
-    const targetSpeakers = ["睦典", "ミカ", "凪砂", "大男"];
-    if (speaker && targetSpeakers.includes(speaker)) {
+    const targetSpeakers = ["睦典", "ミカ", "凪砂", "大男", "ヒルミ教授"];
+    const isTransmission = currentLine?.text?.trim().startsWith('『');
+    if (speaker && targetSpeakers.includes(speaker) && !isTransmission) {
       const isManuallyHidden = Array.isArray(currentLine.hideIllust) && currentLine.hideIllust.includes(speaker);
       const isNightMutsunoriException = currentLine.scene === "夜の帰り道" && speaker === "睦典";
 

@@ -6,6 +6,10 @@ const SPEAKER_CONFIGS = {
     path: "/illust/Mutsunori_default.webp",
     positionClass: "left-[5%] w-[45%] h-[95%]"
   },
+  "ヒルミ教授": {
+    path: "/illust/Hirumi_default.webp",
+    positionClass: "right-[5%] w-[45%] h-[95%]"
+  },
   "ミカ": {
     path: "/illust/Mika_default.webp",
     positionClass: "right-[5%] w-[45%] h-[95%]"
@@ -21,10 +25,11 @@ const SPEAKER_CONFIGS = {
 };
 
 export default function SpriteSlot({ leftActive, rightActive, focusSlot, currentSpeaker, presentCharacters = [], currentLine, currentStep, scenarioData = [] }) {
+  const isTransmission = currentLine?.text?.trim().startsWith('『');
   // 表示対象の全キャラクター名（累積表示メンバー ＋ 現在の発言者。重複排除）
   const displayList = Array.from(new Set([
     ...presentCharacters,
-    ...(SPEAKER_CONFIGS[currentSpeaker] ? [currentSpeaker] : [])
+    ...(!isTransmission && SPEAKER_CONFIGS[currentSpeaker] ? [currentSpeaker] : [])
   ]));
 
   return (
@@ -45,7 +50,7 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
           // そのキャラクターが現在表示されている（displayList に含まれている）場合。
           if (!isSpeaker && (currentSpeaker === "？？？" || currentSpeaker === "？？?")) {
             const hasDialogue = currentLine?.text && (currentLine.text.includes("「") || currentLine.text.includes("『"));
-            
+
             if (hasDialogue) {
               // 画面上に立ち絵が表示されており、かつ、そのキャラクターの本名（例：「ミカ」）が
               // このシーンに入ってから現在までに一度も speaker として登場していない場合のみ、
@@ -53,7 +58,7 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
               // すでに本名で会話を行っている（正体が割れている）ミカのようなキャラクターは暗いまま維持されます。
               const currentScene = currentLine?.scene;
               let hasSpokenInThisScene = false;
-              
+
               if (Array.isArray(scenarioData) && typeof currentStep === 'number') {
                 for (let i = currentStep - 1; i >= 0; i--) {
                   const line = scenarioData[i];
@@ -79,8 +84,8 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
               key={charName}
               className={`absolute bottom-[-50px] flex flex-col justify-end items-center ${config.positionClass}`}
               initial={{ opacity: 0, y: 30 }}
-              animate={{ 
-                opacity: 1, 
+              animate={{
+                opacity: 1,
                 y: 0,
                 scale: 1.0, // サイズの拡大縮小は行わず等倍で表示
                 filter: isSpeaker ? "brightness(1) drop-shadow(0 10px 20px rgba(0,0,0,0.5))" : "brightness(0.4) drop-shadow(0 5px 10px rgba(0,0,0,0.3))",

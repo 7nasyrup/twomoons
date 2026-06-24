@@ -16,15 +16,21 @@ export default function SilentScore({ onComplete }) {
   const [timeLeft, setTimeLeft] = useState(20); // 20 seconds
   const [judgement, setJudgement] = useState(''); // Perfect, Great, Good, Miss
   const [judgementColor, setJudgementColor] = useState('text-cyan-400');
-  const [notes, setNotes] = useState([]); // Array of { id, lane, y (0 to 100) }
 
-  const timerRef = useRef(null);
+  const canvasRef = useRef(null);
+  const requestRef = useRef(null);
+  const audioCtxRef = useRef(null);
   const noteIdCounter = useRef(0);
   const spawnTimer = useRef(0);
   const timeLeftRef = useRef(20);
+  const prevDisplayTimeRef = useRef(20);
+  const lastTimeRef = useRef(0);
 
-  // We use this ref to synchronously track game state within the setInterval callback
-  // to avoid React Render Phase conflicts and Stale Closure bugs entirely!
+  const notesRef = useRef([]); // Array of { id, lane, spawnTime, targetTime, hit, missed }
+  const effectsRef = useRef([]); // Array of hit animation effects
+  const pressedKeysRef = useRef({ 0: false, 1: false, 2: false });
+
+  // Game state reference for reading/writing synchronously inside animation frame callback
   const gameStateRef = useRef({
     score: 0,
     combo: 0,
@@ -32,6 +38,61 @@ export default function SilentScore({ onComplete }) {
     syncedRate: 10,
     isPlaying: false
   });
+
+  // Synthesize a zero-latency pitch-dropped synth tap sound using Web Audio API
+  const playHitSound = (frequency = 600, duration = 0.08) => {
+    try {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      if (!AudioContext) return;
+
+      if (!audioCtxRef.current) {
+        audioCtxRef.current = new AudioContext();
+      }
+
+      const ctx = audioCtxRef.current;
+      if (ctx.state === 'suspended') {
+        ctx.resume();
+      }
+
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(frequency, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(100, ctx.currentTime + duration);
+
+      gain.gain.setValueAtTime(0.15, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+
+      osc.start();
+      osc.stop(ctx.currentTime + duration);
+    } catch (e) {
+      console.warn('Audio synthesis failed', e);
+    }
+  };
+
+  const addHitEffect = (laneId, color) => {
+    effectsRef.current.push({
+      id: Math.random(),
+      lane: laneId,
+      startTime: performance.now(),
+      color: color,
+      particles: Array.from({ length: 12 }, () => {
+        const angle = Math.random() * Math.PI * 2;
+        const speed = 1.0 + Math.random() * 2.5;
+        return {
+          x: 0,
+          y: 0,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          size: 1.5 + Math.random() * 2.5
+        };
+      })
+    });
+  };
 
   // Start the 3-Lane scrolling rhythm game
   const startGame = () => {
@@ -50,131 +111,148 @@ export default function SilentScore({ onComplete }) {
     setMaxCombo(0);
     setSyncedRate(15);
     setTimeLeft(20);
-    setNotes([]);
     setJudgement('START!');
     setJudgementColor('text-indigo-400');
+
     timeLeftRef.current = 20;
+    prevDisplayTimeRef.current = 20;
+    spawnTimer.current = 0;
+    noteIdCounter.current = 0;
+    notesRef.current = [];
+    effectsRef.current = [];
+    lastTimeRef.current = performance.now();
 
-    if (timerRef.current) clearInterval(timerRef.current);
+    if (requestRef.current) cancelAnimationFrame(requestRef.current);
 
-    // Clean 30ms timer loop (no requestAnimationFrame rendering conflicts!)
-    timerRef.current = setInterval(() => {
+    // Main animation & game loop logic
+    const tick = () => {
+      if (!gameStateRef.current.isPlaying) return;
+
+      const now = performance.now();
+      const delta = now - lastTimeRef.current;
+      lastTimeRef.current = now;
+
       // 1. Time Update
-      timeLeftRef.current = Math.max(0, timeLeftRef.current - 0.03);
-      setTimeLeft(Number(timeLeftRef.current.toFixed(2)));
+      timeLeftRef.current = Math.max(0, timeLeftRef.current - delta / 1000);
+      const displayTime = Number(timeLeftRef.current.toFixed(1));
+      if (displayTime !== prevDisplayTimeRef.current) {
+        setTimeLeft(displayTime);
+        prevDisplayTimeRef.current = displayTime;
+      }
 
       if (timeLeftRef.current <= 0) {
         endGame();
         return;
       }
 
-      // 2. Note Spawning
-      spawnTimer.current += 0.03;
-      if (spawnTimer.current >= 0.7) { // Spawn a note every 0.7 seconds
-        spawnTimer.current = 0;
+      // 2. Note Spawning (700ms intervals)
+      spawnTimer.current += delta;
+      if (spawnTimer.current >= 700) {
+        spawnTimer.current -= 700;
         const randomLane = Math.floor(Math.random() * LANES.length);
-        setNotes((prevNotes) => [
-          ...prevNotes,
-          { id: noteIdCounter.current++, lane: randomLane, y: 0 }
-        ]);
+        notesRef.current.push({
+          id: noteIdCounter.current++,
+          lane: randomLane,
+          spawnTime: now,
+          targetTime: now + 850,
+          hit: false,
+          missed: false
+        });
       }
 
-      // 3. Note Movement & Miss collision detection
-      setNotes((prevNotes) => {
-        let hasMissed = false;
-        const movedNotes = prevNotes.map((note) => ({
-          ...note,
-          y: note.y + 3.0 // Move down by 3% every 30ms (takes ~1.0s to cross line)
-        }));
+      // 3. Note Movement & Miss Collision Detection
+      const activeNotes = [];
+      for (const note of notesRef.current) {
+        const elapsed = now - note.spawnTime;
+        const yPercentage = elapsed / 10; // 1000ms = 100% position
 
-        const activeNotes = movedNotes.filter((note) => {
-          if (note.y > 100) { // Crossed the hit line too far (Miss)
-            hasMissed = true;
-            return false;
-          }
-          return true;
-        });
+        if (yPercentage > 103 && !note.hit && !note.missed) {
+          note.missed = true;
+          // Trigger miss penalty
+          const state = gameStateRef.current;
+          state.combo = 0;
+          state.syncedRate = Math.max(0, state.syncedRate - 5);
 
-        // Trigger miss state outside the React state setting callback to prevent React crashes!
-        if (hasMissed) {
-          setTimeout(() => {
-            const state = gameStateRef.current;
-            if (!state.isPlaying) return;
-            state.combo = 0;
-            state.syncedRate = Math.max(0, state.syncedRate - 5);
-            
-            setJudgement('MISS');
-            setJudgementColor('text-red-500 animate-pulse');
-            setCombo(0);
-            setSyncedRate(state.syncedRate);
-          }, 0);
+          setJudgement('MISS');
+          setJudgementColor('text-red-500 animate-pulse');
+          setCombo(0);
+          setSyncedRate(state.syncedRate);
+          playHitSound(220, 0.12); // Buzz tone for miss
         }
 
-        return activeNotes;
-      });
-    }, 30);
+        // Keep note in array if not hit and not completed off-screen
+        if (elapsed < 1100 && !note.hit) {
+          activeNotes.push(note);
+        }
+      }
+      notesRef.current = activeNotes;
+
+      // 4. Render current frame to canvas
+      draw();
+
+      requestRef.current = requestAnimationFrame(tick);
+    };
+
+    requestRef.current = requestAnimationFrame(tick);
   };
 
   const endGame = () => {
-    if (timerRef.current) clearInterval(timerRef.current);
+    if (requestRef.current) cancelAnimationFrame(requestRef.current);
     gameStateRef.current.isPlaying = false;
     setIsPlaying(false);
     setIsGameOver(true);
   };
 
-  // Keyboard hit handling (A, S, D keys)
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (!isPlaying) return;
-      const keyUpper = e.key.toUpperCase();
-      const lane = LANES.find((l) => l.key === keyUpper);
-      if (lane !== undefined) {
-        triggerHit(lane.id);
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isPlaying, notes]);
-
-  // Hit scoring mechanics
+  // Keyboard hit handling
   const triggerHit = (laneId) => {
     const state = gameStateRef.current;
     if (!state.isPlaying) return;
 
-    // Find closest note in the hit lane
+    const now = performance.now();
     let closestNote = null;
-    let closestDistance = 100;
+    let closestDiff = Infinity;
 
-    notes.forEach((note) => {
-      if (note.lane === laneId) {
-        const distance = Math.abs(note.y - 85); // 85% y is the perfect hit line
-        if (distance < closestDistance) {
-          closestDistance = distance;
+    // Find the closest active note in target lane
+    for (const note of notesRef.current) {
+      if (note.lane === laneId && !note.hit && !note.missed) {
+        const diff = now - note.targetTime;
+        if (Math.abs(diff) < Math.abs(closestDiff)) {
+          closestDiff = diff;
           closestNote = note;
         }
       }
-    });
+    }
 
-    if (closestNote && closestDistance < 25) { // Hit window limit
-      // Remove hit note
-      setNotes((prevNotes) => prevNotes.filter((n) => n.id !== closestNote.id));
+    // Hit window check (maximum 250ms offset)
+    if (closestNote && Math.abs(closestDiff) < 250) {
+      closestNote.hit = true;
+      const absDiff = Math.abs(closestDiff);
 
       let hitJudgement = 'GOOD';
       let hitColor = 'text-green-400';
       let scoreAdd = 50;
       let rateAdd = 3;
+      let effectColor = 'rgba(74, 222, 128, 0.8)';
+      let synthFreq = 500;
 
-      if (closestDistance < 6) {
+      if (absDiff < 60) {
         hitJudgement = 'PERFECT';
         hitColor = 'text-yellow-300 drop-shadow-[0_0_12px_rgba(253,224,71,0.8)] font-black scale-105';
         scoreAdd = 150;
         rateAdd = 10;
-      } else if (closestDistance < 13) {
+        effectColor = 'rgba(253, 224, 71, 0.8)';
+        synthFreq = 800; // Bright pitch
+      } else if (absDiff < 130) {
         hitJudgement = 'GREAT';
         hitColor = 'text-cyan-300 font-bold';
         scoreAdd = 100;
         rateAdd = 6;
+        effectColor = 'rgba(34, 211, 238, 0.8)';
+        synthFreq = 650; // Medium-bright pitch
       }
+
+      playHitSound(synthFreq, 0.08);
+      addHitEffect(laneId, effectColor);
 
       state.score += scoreAdd;
       state.syncedRate = Math.min(100, state.syncedRate + rateAdd);
@@ -188,21 +266,218 @@ export default function SilentScore({ onComplete }) {
       setJudgement(hitJudgement);
       setJudgementColor(hitColor);
     } else {
-      // Empty hit or bad timing
+      // Empty tap/incorrect timing
       state.combo = 0;
       state.syncedRate = Math.max(0, state.syncedRate - 4);
-      
+
       setCombo(0);
       setSyncedRate(state.syncedRate);
       setJudgement('BAD HIT');
       setJudgementColor('text-orange-500');
+      playHitSound(250, 0.08); // Dull pitch
     }
   };
 
-  // Clean up timer interval on unmount
+  const handleButtonDown = (laneId) => {
+    pressedKeysRef.current[laneId] = true;
+    triggerHit(laneId);
+  };
+
+  const handleButtonUp = (laneId) => {
+    pressedKeysRef.current[laneId] = false;
+  };
+
+  // Render game scene elements to HTML5 Canvas
+  const draw = () => {
+    if (!canvasRef.current) return;
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext('2d');
+    const dpr = window.devicePixelRatio || 1;
+    const rect = canvas.getBoundingClientRect();
+
+    // Scale canvas buffer size by DPI for ultra-crisp vector drawings
+    const targetWidth = Math.floor(rect.width * dpr);
+    const targetHeight = Math.floor(rect.height * dpr);
+    if (canvas.width !== targetWidth || canvas.height !== targetHeight) {
+      canvas.width = targetWidth;
+      canvas.height = targetHeight;
+    }
+
+    const cssW = canvas.width / dpr;
+    const cssH = canvas.height / dpr;
+
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.scale(dpr, dpr);
+    ctx.clearRect(0, 0, cssW, cssH);
+
+    // 1. Draw vertical lane dividers
+    ctx.strokeStyle = 'rgba(99, 102, 241, 0.15)';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(cssW / 3, 0);
+    ctx.lineTo(cssW / 3, cssH);
+    ctx.moveTo(2 * cssW / 3, 0);
+    ctx.lineTo(2 * cssW / 3, cssH);
+    ctx.stroke();
+
+    // 2. Draw vertical active lane glow under tap buttons
+    for (let i = 0; i < 3; i++) {
+      const laneCenterX = i === 0 ? cssW / 6 : i === 1 ? cssW / 2 : 5 * cssW / 6;
+      if (pressedKeysRef.current[i]) {
+        const grad = ctx.createLinearGradient(laneCenterX, cssH, laneCenterX, 0);
+        grad.addColorStop(0, 'rgba(168, 85, 247, 0.15)');
+        grad.addColorStop(0.5, 'rgba(99, 102, 241, 0.05)');
+        grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+        ctx.fillStyle = grad;
+        ctx.fillRect(laneCenterX - cssW / 6, 0, cssW / 3, cssH);
+      }
+    }
+
+    // 3. Draw horizontal judgement line at y = 85%
+    const judgementY = cssH * 0.85;
+    ctx.save();
+    ctx.shadowBlur = 15;
+    ctx.shadowColor = 'rgba(34, 211, 238, 0.8)';
+    ctx.strokeStyle = '#22d3ee';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(0, judgementY);
+    ctx.lineTo(cssW, judgementY);
+    ctx.stroke();
+    ctx.restore();
+
+    // 4. Draw lane receptor circles
+    for (let i = 0; i < 3; i++) {
+      const laneCenterX = i === 0 ? cssW / 6 : i === 1 ? cssW / 2 : 5 * cssW / 6;
+      const isPressed = pressedKeysRef.current[i];
+
+      ctx.save();
+      ctx.beginPath();
+      const radius = 26;
+      ctx.arc(laneCenterX, judgementY, radius, 0, Math.PI * 2);
+
+      if (isPressed) {
+        ctx.fillStyle = 'rgba(236, 72, 153, 0.3)';
+        ctx.fill();
+        ctx.strokeStyle = '#f43f5e';
+        ctx.shadowBlur = 15;
+        ctx.shadowColor = 'rgba(244, 63, 94, 0.8)';
+      } else {
+        ctx.strokeStyle = 'rgba(99, 102, 241, 0.6)';
+        ctx.shadowBlur = 5;
+        ctx.shadowColor = 'rgba(99, 102, 241, 0.4)';
+      }
+      ctx.lineWidth = 3;
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    // 5. Draw active notes
+    const now = performance.now();
+    for (const note of notesRef.current) {
+      if (note.hit) continue;
+
+      const elapsed = now - note.spawnTime;
+      const yPercentage = elapsed / 10;
+      const noteY = cssH * (yPercentage / 100);
+      const laneCenterX = note.lane === 0 ? cssW / 6 : note.lane === 1 ? cssW / 2 : 5 * cssW / 6;
+      const noteRadius = 22;
+
+      ctx.save();
+      ctx.shadowBlur = 12;
+      ctx.shadowColor = 'rgba(168, 85, 247, 0.8)';
+
+      const grad = ctx.createRadialGradient(laneCenterX, noteY, 2, laneCenterX, noteY, noteRadius);
+      grad.addColorStop(0, '#ffffff');
+      grad.addColorStop(0.3, '#ec4899');
+      grad.addColorStop(1, '#6366f1');
+      ctx.fillStyle = grad;
+
+      ctx.beginPath();
+      ctx.arc(laneCenterX, noteY, noteRadius, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.strokeStyle = '#ffffff';
+      ctx.lineWidth = 1.5;
+      ctx.shadowBlur = 0;
+      ctx.stroke();
+
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 12px Orbitron, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(LANES[note.lane].key, laneCenterX, noteY);
+      ctx.restore();
+    }
+
+    // 6. Draw visual hit effects (expanding wave rings and sparks)
+    const activeEffects = [];
+    for (const effect of effectsRef.current) {
+      const elapsed = now - effect.startTime;
+      const duration = 250;
+      const progress = Math.min(1, elapsed / duration);
+
+      if (progress < 1) {
+        const laneCenterX = effect.lane === 0 ? cssW / 6 : effect.lane === 1 ? cssW / 2 : 5 * cssW / 6;
+
+        ctx.save();
+        const startRadius = 26;
+        const endRadius = 60;
+        const currentRadius = startRadius + progress * (endRadius - startRadius);
+        const opacity = 1 - progress;
+
+        ctx.strokeStyle = effect.color.replace('0.8', opacity.toString());
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.arc(laneCenterX, judgementY, currentRadius, 0, Math.PI * 2);
+        ctx.stroke();
+
+        for (const p of effect.particles) {
+          p.x = laneCenterX + p.vx * progress * 20;
+          p.y = judgementY + p.vy * progress * 20;
+          p.alpha = 1 - progress;
+
+          ctx.fillStyle = effect.color.replace('0.8', p.alpha.toString());
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.restore();
+
+        activeEffects.push(effect);
+      }
+    }
+    effectsRef.current = activeEffects;
+  };
+
+  // Mount/Unmount event listener management
   useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (!gameStateRef.current.isPlaying) return;
+      const keyUpper = e.key.toUpperCase();
+      const lane = LANES.find((l) => l.key === keyUpper);
+      if (lane !== undefined) {
+        pressedKeysRef.current[lane.id] = true;
+        triggerHit(lane.id);
+      }
+    };
+
+    const handleKeyUp = (e) => {
+      const keyUpper = e.key.toUpperCase();
+      const lane = LANES.find((l) => l.key === keyUpper);
+      if (lane !== undefined) {
+        pressedKeysRef.current[lane.id] = false;
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('keyup', handleKeyUp);
+
     return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('keyup', handleKeyUp);
+      if (requestRef.current) cancelAnimationFrame(requestRef.current);
+      gameStateRef.current.isPlaying = false;
     };
   }, []);
 
@@ -262,7 +537,7 @@ export default function SilentScore({ onComplete }) {
           <h3 className="text-base font-bold text-white tracking-[0.2em] mb-4 uppercase">
             SYNCHRONIZATION RESULTS
           </h3>
-          
+
           <div className="w-full bg-[#04091a]/80 border border-indigo-500/20 rounded-xl p-5 space-y-3.5 mb-8 font-mono text-left">
             <div className="flex justify-between border-b border-indigo-500/10 pb-2">
               <span className="text-gray-400 text-xs uppercase tracking-wider">FINAL SYNCED RATE</span>
@@ -307,27 +582,10 @@ export default function SilentScore({ onComplete }) {
 
           {/* Gameplay Scrolling Lanes */}
           <div className="flex-1 w-full bg-[#030514]/90 rounded-xl border border-indigo-500/20 relative flex overflow-hidden min-h-[42vh] my-2 select-none">
-            {/* Lane Dividing Lines */}
-            <div className="absolute top-0 bottom-0 left-1/3 w-[1px] bg-indigo-500/10" />
-            <div className="absolute top-0 bottom-0 right-1/3 w-[1px] bg-indigo-500/10" />
-
-            {/* Perfect Judgement Hit Line */}
-            <div className="absolute bottom-[15%] left-0 right-0 h-[2px] bg-gradient-to-r from-indigo-500/20 via-cyan-400 to-indigo-500/20 shadow-[0_0_15px_rgba(34,211,238,0.5)] z-10" />
-
-            {/* Scrolling Notes */}
-            {notes.map((note) => (
-              <div
-                key={note.id}
-                className="absolute w-9 h-9 rounded-full bg-gradient-to-tr from-indigo-500 to-pink-500 border-2 border-white shadow-[0_0_12px_rgba(168,85,247,0.6)] transform -translate-x-1/2 flex items-center justify-center text-xs text-white font-extrabold font-mono transition-all duration-75"
-                style={{
-                  left: note.lane === 0 ? '16.66%' : note.lane === 1 ? '50%' : '83.33%',
-                  top: `${note.y}%`,
-                  transform: 'translate(-50%, -50%) scale(1.1)'
-                }}
-              >
-                {LANES[note.lane].key}
-              </div>
-            ))}
+            <canvas
+              ref={canvasRef}
+              className="absolute inset-0 w-full h-full block z-0"
+            />
 
             {/* Judgement Feedback Floating Text */}
             {judgement && (
@@ -344,12 +602,22 @@ export default function SilentScore({ onComplete }) {
             )}
 
             {/* Bottom Hit Indicators (Clickable/Tappable) */}
-            <div className="absolute bottom-[5%] left-0 right-0 h-16 flex justify-around items-center px-4">
+            <div className="absolute bottom-[5%] left-0 right-0 h-16 flex justify-around items-center px-4 z-20">
               {LANES.map((lane) => (
                 <button
                   key={lane.id}
-                  onClick={() => triggerHit(lane.id)}
-                  className="w-14 h-14 rounded-full border-2 border-indigo-500/40 bg-indigo-950/40 flex flex-col justify-center items-center group active:scale-95 hover:border-pink-500/80 transition-all duration-100 z-20 shadow-[inset_0_0_12px_rgba(99,102,241,0.15)]"
+                  onMouseDown={() => handleButtonDown(lane.id)}
+                  onMouseUp={() => handleButtonUp(lane.id)}
+                  onMouseLeave={() => handleButtonUp(lane.id)}
+                  onTouchStart={(e) => {
+                    e.preventDefault();
+                    handleButtonDown(lane.id);
+                  }}
+                  onTouchEnd={(e) => {
+                    e.preventDefault();
+                    handleButtonUp(lane.id);
+                  }}
+                  className="w-14 h-14 rounded-full border-2 border-indigo-500/40 bg-indigo-950/40 flex flex-col justify-center items-center group active:scale-95 hover:border-pink-500/80 transition-all duration-100 shadow-[inset_0_0_12px_rgba(99,102,241,0.15)] cursor-pointer"
                 >
                   <span className="text-xs font-bold text-indigo-300 group-hover:text-pink-300 font-mono">
                     {lane.key}

@@ -703,7 +703,8 @@ export const scenarioData = [
         scene: "大学の廊下",
         speaker: "朔良",
         role: "SAKURA",
-        text: "教授は長い白衣を軽やかに翻し、今度こそ廊下の奥へと歩き去っていった。"
+        text: "教授は長い白衣を軽やかに翻し、今度こそ廊下の奥へと歩き去っていった。",
+        hideIllust: ["ヒルミ教授"]
     },
     {
         scene: "大学の廊下",
@@ -2037,7 +2038,8 @@ export const scenarioData = [
         scene: "大学の正門前",
         speaker: "朔良",
         role: "SAKURA",
-        text: "教授はそれだけ言うと、じゃあね、と手をヒラヒラ振って、マイペースな足取りで去っていった。"
+        text: "教授はそれだけ言うと、じゃあね、と手をヒラヒラ振って、マイペースな足取りで去っていった。",
+        hideIllust: ["ヒルミ教授"]
     },
     {
         scene: "大学の正門前",
