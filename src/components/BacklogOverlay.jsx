@@ -49,16 +49,26 @@ export default function BacklogOverlay({ isOpen, onClose, backlog }) {
               {backlog.length === 0 ? (
                 <p className="text-cyan-500/30 text-sm font-noto text-center mt-12">バックログは空です</p>
               ) : (
-                backlog.map((entry, idx) => (
-                  <div key={idx} className="border-b border-cyan-500/5 pb-3">
-                    {entry.speaker && (
-                      <span className="text-cyan-400/70 text-sm font-orbitron tracking-wider">
-                        {entry.speaker}
-                      </span>
-                    )}
-                    <p className="text-gray-300/80 text-base md:text-lg font-noto leading-relaxed mt-1">{entry.text}</p>
-                  </div>
-                ))
+                backlog.map((entry, idx) => {
+                  let displaySpeaker = entry.speaker;
+                  if (!displaySpeaker && entry.text && entry.text.trim().startsWith("（")) {
+                    const isSystemMessage = entry.text.includes("ありがとうございました") || entry.text.includes("アップデート");
+                    if (!isSystemMessage) {
+                      displaySpeaker = "朔良";
+                    }
+                  }
+
+                  return (
+                    <div key={idx} className="border-b border-cyan-500/5 pb-3">
+                      {displaySpeaker && (
+                        <span className="text-cyan-400/70 text-sm font-orbitron tracking-wider">
+                          {displaySpeaker}
+                        </span>
+                      )}
+                      <p className="text-gray-300/80 text-base md:text-lg font-noto leading-relaxed mt-1">{entry.text}</p>
+                    </div>
+                  );
+                })
               )}
             </div>
           </div>

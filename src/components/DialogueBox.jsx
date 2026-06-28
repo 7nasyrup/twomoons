@@ -30,13 +30,19 @@ export default function DialogueBox({
 }) {
   if (!isVisible) return null;
 
-  const isSakuraMonologue =
-    speaker === "朔良" &&
-    fullText &&
-    !fullText.trim().startsWith("「");
+  let displaySpeaker = speaker;
+  let displayRole = role;
+  if (!displaySpeaker && fullText && fullText.trim().startsWith("（")) {
+    const isSystemMessage = fullText.includes("ありがとうございました") || fullText.includes("アップデート");
+    if (!isSystemMessage) {
+      displaySpeaker = "朔良";
+      if (!displayRole) {
+        displayRole = "SAKURA";
+      }
+    }
+  }
 
-  const showSpeaker = speaker && !isSakuraMonologue;
-
+  const showSpeaker = !!displaySpeaker;
   return (
     <AnimatePresence>
       <motion.div
@@ -114,20 +120,18 @@ export default function DialogueBox({
           {showSpeaker && (
             <div className="flex items-center gap-3 mb-2">
               <span className="text-white text-base md:text-lg font-bold tracking-widest font-noto">
-                {speaker}
+                {displaySpeaker}
               </span>
-              {role && role !== 'NARRATOR' && (
+              {displayRole && displayRole !== 'NARRATOR' && (
                 <span className="text-white/40 text-[10px] md:text-xs font-orbitron px-2 py-0.5 border border-white/10 rounded tracking-widest uppercase">
-                  {role}
+                  {displayRole}
                 </span>
               )}
             </div>
           )}
 
           {/* Line between speaker and text */}
-          {speaker && (
-            <div className="w-full h-[1px] bg-gradient-to-r from-white/40 via-white/15 to-transparent mb-4" />
-          )}
+          <div className="w-full h-[1px] bg-gradient-to-r from-white/40 via-white/15 to-transparent mb-4" />
 
           {/* Text content */}
           <div className="min-h-[80px] flex items-start">

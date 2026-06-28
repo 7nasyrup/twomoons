@@ -9,8 +9,6 @@ export const scenarioData = [
     },
     {
         scene: "PROLOGUE",
-        speaker: "ナレーター",
-        role: "NARRATOR",
         text: "いつもと変わらない、光景。",
         bg: "town_dark_2",
         style: "cinema",
@@ -18,8 +16,6 @@ export const scenarioData = [
     },
     {
         scene: "PROLOGUE",
-        speaker: "ナレーター",
-        role: "NARRATOR",
         text: "いつもと変わらない…",
         bg: "town_dark_2",
         style: "cinema",
@@ -27,8 +23,6 @@ export const scenarioData = [
     },
     {
         scene: "PROLOGUE",
-        speaker: "ナレーター",
-        role: "NARRATOR",
         text: "空。",
         bg: "giant_blue_moon",
         style: "cinema",
@@ -36,8 +30,6 @@ export const scenarioData = [
     },
     {
         scene: "PROLOGUE",
-        speaker: "ナレーター",
-        role: "NARRATOR",
         text: "青白く光る───大きな月が、\nいつまでも、いつまでも、",
         bg: "giant_blue_moon",
         style: "cinema",
@@ -45,8 +37,6 @@ export const scenarioData = [
     },
     {
         scene: "PROLOGUE",
-        speaker: "ナレーター",
-        role: "NARRATOR",
         text: "私たちを、見つめている。",
         bg: "giant_blue_moon",
         style: "cinema",
@@ -56,64 +46,44 @@ export const scenarioData = [
     // ================== #1 CLASSROOM SCENE ==================
     {
         scene: "月科学大講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "窓ガラスの向こう、白昼の空に、凍てついたような青い光がぎらぎらと輝いている。",
         bg: "cyber_classroom",
         style: "novel"
     },
     {
-        speaker: "朔良",
-        role: "SAKURA",
         scene: "月科学大講義室",
         text: "見上げる空に浮かぶのは、一つの不気味な月だ。"
     },
     {
         scene: "月科学大講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "……いや、それは正確ではない。"
     },
     {
         scene: "月科学大講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そこにあるのは、人類が誕生する遥か昔から夜空に君臨してきた、優しく黄色みがかった『本物の月』を完全に覆い隠すように、ぴったりと重なった――『人工の月』。"
     },
     {
         scene: "月科学大講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "本物の月の質量を全て飲み込み、圧殺するように重なり合ったその機械の球体は、昼だというのに太陽の光を侵食し、世界をうっすらと冷たい青色に染め上げていた。"
     },
     {
         scene: "月科学大講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "今からちょうど50年前。世界的なエネルギー危機の救世主として、国家規模の極秘プロジェクトにより打ち上げられたというその人工月は、今や地球のあらゆるインフラを支える莫大な新エネルギーを供給していた。"
     },
     {
         scene: "月科学大講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "けれど、それは決して無償の恵みなどではない。人工月は、地球の生態系をじわじわと侵食する「未知の毒」でもあった。"
     },
     {
         scene: "月科学大講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "50年という歳月は、世界の景色を塗り替えるには十分すぎる時間だ。二つの月が完全に重なり合っているがゆえに、同時にその２つを目にすることは決してできない。"
     },
     {
         scene: "月科学大講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "今や、人工月に遮られることのない『本物の月』の、本来の美しく静かな光を知る者は老人だけとなり、いつしか人々は、その裏側に隠された本物の姿を忘れてしまっていた。"
     },
     {
         scene: "月科学大講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "その、逃れられない青い光が斜めに差し込む大講義室は、学生たちの眠気と、教授の退屈な声で満たされていた。"
     },
     {
@@ -132,112 +102,76 @@ export const scenarioData = [
     },
     {
         scene: "月科学大講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "チョークが黒板を削る硬い音が、広い室内に不規則に響く。"
     },
     {
         scene: "月科学大講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "複雑な分子構造式を淡々と書き連ねているのは、若くして教鞭を執るヒルミ教授だ。",
-        action: "HIDE_SILHOUETTE_RIGHT"
     },
     {
         scene: "月科学大講義室",
-        speaker: "朔良",
-        role: "SAKURA",
-        text: "白衣をラフに羽織り、眼鏡の奥の瞳はどこか飄々としていて掴みどころがない。けれど、彼が教える『月科学エネルギー学部』は、国からの支援を受ける超エリート学術機関であり、講義の内容はどれも血生臭い現実と隣り合わせだった。"
+        text: "白衣をラフに羽織り、眼鏡の奥の瞳はどこか飄々としていて掴みどころがない。けれど、彼が教える『月科学エネルギー学部』は、国からの支援を受ける超エリート学術機関であり、講義の内容はどれも血生臭い現実と隣り合わせだった。",
+        hideIllust: ["ヒルミ教授"]
     },
     {
         scene: "月科学大講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ノートの端にカリカリとペンを走らせながら、私は小さく息を吐く。"
     },
     {
         scene: "月科学大講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "手元のスマートフォンを開くと、画面には『月波観測庁』が発令した最新の警告ポップアップが、不吉な赤色で明滅していた。",
         action: "TRIGGER_PHONE_RED_ALERT"
     },
     {
         scene: "月科学大講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "この世界には、人工月が放つエネルギーに対する「二つの警戒」が存在する。"
     },
     {
         scene: "月科学大講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "一つは、人間への影響。月波を浴びた人間の中から、時折、常人離れした『異能力』に目覚める者が現れる。"
     },
     {
         scene: "月科学大講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "今やそれは珍しいことではない。だが、それは誰もが隠し持っている秘密であり、公にすれば国の研究機関に目をつけられるリスクを伴うため、皆「自分は普通の人間だ」と互いに探り合いながら生きている。"
     },
     {
         scene: "月科学大講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そしてもう一つの警戒が、生態系の破壊――『【キメラ】』の発生だ。"
     },
     {
         scene: "月科学大講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "人工月のエネルギーに適応できず、遺伝子が崩壊して怪物と化した動植物や元・人間の成れの果て。"
     },
     {
         scene: "月科学大講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "それらは人工月の「失敗作」として地球の各地に適当に放たれ、人に危害を加える脅威として牙を剥いていた。"
     },
     {
         scene: "月科学大講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "警戒レベルが上がっているということは、今夜あたり、またあの化け物どもが街を徘徊し始めるかもしれない、という恐怖の裏返しだった。"
     },
     {
         scene: "月科学大講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "（大学にまで入ってこんな不気味な科学を勉強してるのに……私には、何の関係もない話）"
     },
     {
         scene: "月科学大講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私は自分の手元を見つめる。"
     },
     {
         scene: "月科学大講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "この過酷な学部に入学したものの、私――朔良（さくら）には、そんな異能力は微塵も存在しない。周囲の優秀な――何らかの力を隠し持っているであろう特待生たちとは違う、人工月の恩恵を一切受けられなかった、ただの『無能力者』。"
     },
     {
         scene: "月科学大講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "この世界において、本当に何も持たない一般人でいるということは、牙を持たない羊として生きるのと同じだ。"
     },
     {
         scene: "月科学大講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "だからこそ、私のこの圧倒的な「無能力」は、隠し事だらけのこの環境において、逆に歪に目立ってしまっているような気がしてならなかった。"
     },
     {
         scene: "月科学大講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "それなのに、なぜ私がこの最先端の、そして危険な『月科学エネルギー学部』を選んだのか。理由は、今はもう私の隣にはいない、父の言葉だった。"
     },
     {
@@ -248,50 +182,34 @@ export const scenarioData = [
     },
     {
         scene: "月科学大講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "幼い頃、父は私によく、月の話をしてくれた。おとぎ話を聞かせるように、人工月の光に怯えながら、隠されてしまった本物の月の姿を、何度も、何度も。"
     },
     {
         scene: "月科学大講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "父が何を求めて、私の前からなぜ消えてしまったのか、その真相を知りたくて、私は無能力者でありながらこの学部の門を叩いたのだ。"
     },
     {
         scene: "月科学大講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "けれど、現実は甘くない。化け物が現れれば逃げるしかなく、異能者が暴れれば巻き込まれるだけの、脆くてちっぽけな存在。"
     },
     {
         scene: "月科学大講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "だからこそ、目立たないように、波風を立てないように、ただ二十歳の学生としての静かな日常を消化することだけが、私の生存戦略だった。"
     },
     {
         scene: "月科学大講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "チクタクと進む時計の音。"
     },
     {
         scene: "月科学大講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "窓の外には、昼間だというのに、本物の月を侵食するようにぎらぎらと輝く青い人工の月が見えている。"
     },
     {
         scene: "月科学大講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "あの美しい青が、時折地球に凶悪な【キメラ】を落とし、人々の平穏を惨殺しているのだと思うと、肌が粟立つような冷たい心地がした。"
     },
     {
         scene: "月科学大講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "やがて、授業の終了を告げる重々しいチャイムが鳴り響く。",
         action: "PLAY_CHIME_SE"
     },
@@ -304,15 +222,11 @@ export const scenarioData = [
     },
     {
         scene: "月科学大講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ヒルミ教授がパタンと教科書を閉じると、講義室のあちこちから「ええー……」「終わんねえよ」と絶望の地鳴りのような声が上がった。教授はそれをどこか楽しそうに眺めながら、片手をひらひらと振って教壇を去っていく。",
         action: "HIDE_SILHOUETTE_RIGHT"
     },
     {
         scene: "月科学大講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "周りの学生たちが愚痴をこぼしながら片付けを始める中、私もペンをペンケースに収め、教科書をカバンに仕舞う。"
     },
 
@@ -331,32 +245,22 @@ export const scenarioData = [
     },
     {
         scene: "講義室出口",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "重いカバンを肩にかけ、講義室の出口へ向かおうとしたその時。後ろの席から、私の名前を呼ぶ、やたらと元気でこの不穏な世界観に似合わない、緊張感のない声が響き渡った。"
     },
     {
         scene: "講義室出口",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "振り返るよりも早く、ドタバタと大きな足音が近づいてきて、私の目の前でぴたりと止まる。"
     },
     {
         scene: "講義室出口",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "大型犬のように眉を下げて情けない顔をしているのは、同級生の睦典（むつのり）だ。高身長で、黙っていればそこらのモデル顔負けの整った顔立ちの美男子。"
     },
     {
         scene: "講義室出口",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "……なのだが、絶妙にヨレた私服のセンスと、今にも泣き出しそうな間の抜けた表情のせいで、そのイケメン台無しオーラが凄まじいことになっている。オマケにアホだ。"
     },
     {
         scene: "講義室出口",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "女子からの人気は、ある意味で非常にマスコット的だった。"
     },
     {
@@ -373,8 +277,6 @@ export const scenarioData = [
     },
     {
         scene: "講義室出口",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そして睦典の実家は割烹料理屋で、料理の腕も、練習中ではあるが非常に高い。たまに食べさせてもらうことがあるが、いつも私は大絶賛している。"
     },
     {
@@ -385,8 +287,6 @@ export const scenarioData = [
     },
     {
         scene: "講義室出口",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私が呆れ顔で言うと、睦典は「あっちゃー」という風に、わざとらしく照れくさそうに自分の額を手のひらで叩いた。"
     },
     {
@@ -397,8 +297,6 @@ export const scenarioData = [
     },
     {
         scene: "講義室出口",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "…アホだ。"
     },
     {
@@ -421,8 +319,6 @@ export const scenarioData = [
     },
     {
         scene: "講義室出口",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そう言いながら、携帯で試作品らしき写真を見せてくる。"
     },
     {
@@ -433,51 +329,35 @@ export const scenarioData = [
     },
     {
         scene: "大学の廊下",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "あはは、と睦典が緊張感のない声で笑う。",
         bg: "cyber_corridor"
     },
     {
         scene: "大学の廊下",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "廊下に出ると、窓からは相変わらず人工月の冷たい青い光が差し込んでいた。"
     },
     {
         scene: "大学の廊下",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "すれ違う学生たちは、一見すると普通の大学生のように談笑している。"
     },
     {
         scene: "大学の廊下",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "けれど、誰もがどこかピリピリとした警戒心を肌にまとわせ、互いの動向を探り合っていた。"
     },
     {
         scene: "大学の廊下",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "この学部、ひいてはこの街にいる人間のほとんどは、人工月の光を浴びて何らかの『異能力』を身につけた適応者たちだ。もちろん、私の隣でヘラヘラ笑っている睦典が、裏でどんな異能を隠し持っているのかも、私は知らない。彼も私にそんな話は絶対にしない。"
     },
     {
         scene: "大学の廊下",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "──だって私は、この中で唯一、本当に何も持っていない『無能力者』だから。"
     },
     {
         scene: "大学の廊下",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "もし彼らに私の無能力が、あるいは彼らの異能が不用意にバレれば、その時点でこの静かな日常のバランスは崩壊する。誰もが隠し事という名のナイフをポケットに忍ばせているような、そんな静かな狂気が、この日常には満ちていた。"
     },
     {
         scene: "大学の廊下",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "もちろん、睦典がどんな力を隠し持っているのかも、私は知らないし、彼も私にそんな話はしない。"
     },
     {
@@ -488,8 +368,6 @@ export const scenarioData = [
     },
     {
         scene: "大学の廊下",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典が自分の右手をまじまじと見つめながら、のん気につぶやく。"
     },
     {
@@ -500,8 +378,6 @@ export const scenarioData = [
     },
     {
         scene: "大学の廊下",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "不意に、睦典がいつものアホっぽい笑顔を引っ込めて、少しだけ真面目な、だけどひどく人懐っこい瞳で私を見つめてきた。気の優しい、絶妙にダサくてモテない、私の大切な友人。"
     },
     {
@@ -519,8 +395,6 @@ export const scenarioData = [
     },
     {
         scene: "大学の廊下",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "現金なやつ。睦典は一瞬で元の笑顔に戻ると、大きな身体を揺らしながら、キャンパスの廊下を小走りで先を行く。私は苦笑しながら、その背中を追いかけようとして――。"
     },
 
@@ -533,14 +407,10 @@ export const scenarioData = [
     },
     {
         scene: "大学の廊下",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "カツン、と。ローファーが床を蹴る音が耳に響いた。その響きを押し潰すように、頭上から低く、けれどよく通る声が降ってくる。",
     },
     {
         scene: "大学の廊下",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "釘を刺すような、どこか楽しげでいて逃げ道を塞ぐような鋭い声が背後から聞こえた。驚いて勢いよく振り返ると、そこにはいつの間にか、長い白衣を翻したヒルミ教授が立っていた。"
     },
     {
@@ -557,8 +427,6 @@ export const scenarioData = [
     },
     {
         scene: "大学の廊下",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "数歩先を歩いていた睦典が、まるで不意打ちの雷に打たれたように飛び上がり、大袈裟に身を縮こまらせる。"
     },
     {
@@ -575,14 +443,10 @@ export const scenarioData = [
     },
     {
         scene: "大学の廊下",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典がわかりやすく冷や汗を流しながら、直立不動で敬礼のポーズを取る。その様子を、教授は楽しそうに薄い唇の端を上げて見つめていた。"
     },
     {
         scene: "大学の廊下",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私は慌てて、教授の前に一歩踏み出す。"
     },
     {
@@ -593,8 +457,6 @@ export const scenarioData = [
     },
     {
         scene: "大学の廊下",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私が必死に弁解しようとすると、教授は眼鏡のブリッジを中指で少しだけ押し上げ、講義中からは想像もつかないような柔らかな笑みを私に向けてくれた。"
     },
     {
@@ -611,8 +473,6 @@ export const scenarioData = [
     },
     {
         scene: "大学の廊下",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典が自分のことを「さておき」で片付けられたことに、少し不服そうな顔をして教授を睨む。口を尖らせて私の斜め後ろに一歩下がる姿は、お気に入りのおもちゃを取られそうになった子供のようだ。"
     },
     {
@@ -623,8 +483,6 @@ export const scenarioData = [
     },
     {
         scene: "大学の廊下",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "教授は手元に抱えていたバインダーをトントンと指先で叩いた。"
     },
     {
@@ -647,8 +505,6 @@ export const scenarioData = [
     },
     {
         scene: "大学の廊下",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "心臓が、トクンと小さく跳ねる。それは、かつて父が私に毎晩のように語ってくれた、おとぎ話のような記憶をまとめたものだった。"
     },
     {
@@ -665,8 +521,6 @@ export const scenarioData = [
     },
     {
         scene: "大学の廊下",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "教授は優しく目を細め、私の顔をじっと見つめた。その瞳の奥には、いつもののんびりとした態度とは違う、どこか深い色が含まれているような気がした。"
     },
     {
@@ -683,8 +537,6 @@ export const scenarioData = [
     },
     {
         scene: "大学の廊下",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "教授はそう言うと、いつもの掴みどころのない笑顔に戻り、ポンと私の肩を軽く叩いた。"
     },
     {
@@ -701,8 +553,6 @@ export const scenarioData = [
     },
     {
         scene: "大学の廊下",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "教授は長い白衣を軽やかに翻し、今度こそ廊下の奥へと歩き去っていった。",
         hideIllust: ["ヒルミ教授"]
     },
@@ -714,8 +564,6 @@ export const scenarioData = [
     },
     {
         scene: "大学の廊下",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典が不満げに頬を膨らませながら、遠くなった教授に怪訝な視線を向けて小声でボヤいている。"
     },
     {
@@ -732,29 +580,21 @@ export const scenarioData = [
     },
     {
         scene: "大学の廊下",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "教授の言葉に残された、ほんの少しの引っかかりを振り払うように、私は睦典の背中を追って、青い光の差し込む廊下を走り出した。"
     },
 
     // ================== #4 帰り道「商店街と、本物の月」 ==================
     {
         scene: "キャンパス外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "カバンを揺らしながら追いかけると、大学の重厚なエントランスを抜けた瞬間、全身が一段と濃い「青」に包まれた。",
         bg: "school_gate_evening"
     },
     {
         scene: "キャンパス外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "頭上を見上げれば、太陽の輝きを遮るようにして居座る人工の月。"
     },
     {
         scene: "キャンパス外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "その鉄の境界線から漏れ出す青い光が、キャンパスの並木道も、行き交う学生たちの横顔も、すべてを一様に染め上げている。"
     },
     {
@@ -765,8 +605,6 @@ export const scenarioData = [
     },
     {
         scene: "駐輪場",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "駐輪場に滑り込んだ睦典が、自分の愛車である（そして絶妙に実家の割烹のステッカーが貼られたダサい）自転車にしがみついて息を吐く。"
     },
     {
@@ -795,21 +633,15 @@ export const scenarioData = [
     },
     {
         scene: "駐輪場",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典は長い足を器用に回して自転車を降りると、私の歩幅に合わせてゆっくりと歩き出した。"
     },
     {
         scene: "商店街",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "キャンパスの正門を出て、駅へと続く少し賑やかな通りに入る。",
         bg: "shopping_street"
     },
     {
         scene: "商店街",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "商店街の街頭スピーカーからは、お馴染みの電子音声が流れていた。"
     },
     {
@@ -826,8 +658,6 @@ export const scenarioData = [
     },
     {
         scene: "商店街",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典が自転車のハンドルを握る手に、少しだけ力を込めたように見えた。"
     },
     {
@@ -850,8 +680,6 @@ export const scenarioData = [
     },
     {
         scene: "商店街",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典が思い出したように、不思議そうに空を見上げた。彼の瞳に映っているのは、ぎらぎらと冷たく輝く青い球体だけだ。"
     },
     {
@@ -874,20 +702,14 @@ export const scenarioData = [
     },
     {
         scene: "商店街",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私がクスッと笑うと、睦典も「あはは」と嬉しそうに頭を掻いた。"
     },
     {
         scene: "商店街",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "人々の記憶から消えかけた、優しい光の月。"
     },
     {
         scene: "商店街",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "その姿をいつかこの目で見てみたいと願うのは、私の小さな、誰にも言えない秘密だ。"
     },
     {
@@ -899,14 +721,10 @@ export const scenarioData = [
     },
     {
         scene: "割烹『むつ』前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "商店街の喧騒から一本路地に入った場所に佇む、年季の入った木造の店構え。"
     },
     {
         scene: "割烹『むつ』前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "暖簾をくぐる睦典の背中を見ながら、私は小さく息をつく。"
     },
 
@@ -920,14 +738,10 @@ export const scenarioData = [
     },
     {
         scene: "夜の帰り道",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "気がつけば、周囲はすっかり人工月の青い夜に包まれていた。"
     },
     {
         scene: "夜の帰り道",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典の壊滅的なレポートの面倒をみながら、彼が自信満々に差し出してきた「青色の食欲減退うどん」の試食を恐る恐る（けれど予想外に出汁だけは美味しくて悔しい思いをしながら）手伝っていたせいで、すっかり日が暮れてしまったのだ。"
     },
     {
@@ -938,8 +752,6 @@ export const scenarioData = [
     },
     {
         scene: "夜の帰り道",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "申し訳なさそうに、けれど本気で心配そうにそう言ってくれた睦典だったけれど、私は「大丈夫だよ、お店の片付けもあるでしょ」と笑って断り、一人で帰路につこうと歩き出した。"
     },
     {
@@ -950,14 +762,10 @@ export const scenarioData = [
     },
     {
         scene: "夜の帰り道",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "少し歩いたところで、ふと、なんとなくスマートフォンを確認しようとジャケットのポケットを探る。"
     },
     {
         scene: "夜の帰り道",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "けれど、指先に触れるはずの薄くて硬い感触がない。"
     },
     {
@@ -968,14 +776,10 @@ export const scenarioData = [
     },
     {
         scene: "夜の帰り道",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "カバンの中をひっくり返すように探しても、どこにも見当たらない。"
     },
     {
         scene: "夜の帰り道",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "やばい、携帯がない。もしかして、お店を出てからここまでの間に落としたかも！？"
     },
     {
@@ -986,14 +790,10 @@ export const scenarioData = [
     },
     {
         scene: "夜の帰り道",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "焦った私は、今歩いてきたばかりの帰り道を少し戻ることにした。記憶を頼りに、街灯の青い光が届かない地面の影を、しゃがみ込むようにして必死に目で辿る。"
     },
     {
         scene: "夜の帰り道",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "けれど、液晶の反射すら見つからない。見つからないよー、と半ば泣きそうになりながらさらに視線を落とした、その時だった。"
     },
     {
@@ -1011,20 +811,14 @@ export const scenarioData = [
     },
     {
         scene: "夜の帰り道",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "不意に背後からかけられた、鈴の鳴るような、ひどく整った男の人の声。"
     },
     {
         scene: "夜の帰り道",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "驚いて勢いよく振り返ると、そこには見知らぬ男性が立っていた。"
     },
     {
         scene: "夜の帰り道",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私の顔を覗き込むようにして、至近距離から大きな瞳が見つめてくる。整いすぎたその顔立ちに、思わず心臓がドキッとする。"
     },
     {
@@ -1035,8 +829,6 @@ export const scenarioData = [
     },
     {
         scene: "夜の帰り道",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "突然のことに言葉を詰まらせる私を見て、彼はふっと優しげに表情を和らげた。"
     },
     {
@@ -1046,20 +838,14 @@ export const scenarioData = [
     },
     {
         scene: "夜の帰り道",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "にこやかに笑う彼。人当たりが良くて、すごく優しそうなお兄さん……に見える。"
     },
     {
         scene: "夜の帰り道",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "なのに、何だろう。向けられた完璧な笑みの奥で、彼の双眸は驚くほど冷たく凍りついているように見えた。"
     },
     {
         scene: "夜の帰り道",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "気のせいだと自分に言い聞かせ、私は慌てて頭を下げた。"
     },
     {
@@ -1081,8 +867,6 @@ export const scenarioData = [
     },
     {
         scene: "夜の帰り道",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "初対面の、しかもこんな夜道で親切に手を貸そうとしてくれる彼に恐縮していると、私の反応がツボに入ったのか、彼はくすくすとおかしそうに口角を上げた。"
     },
     {
@@ -1103,28 +887,20 @@ export const scenarioData = [
     },
     {
         scene: "夜の帰り道",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "本物の月の色と同じ、お気に入りの黄色。彼は一瞬だけ、私を見ながら何かを思うように目を細めた。少し怪訝に思ったが、こんな夜道でせっかく親切にしてくれているのだし、お言葉に甘えることにした。"
     },
     {
         scene: "夜の帰り道",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "彼はスマートな足取りで、少し離れた自動販売機の裏手や、街灯の影を熱心に見始めてくれた。私も負けじと、草むらの近くやアスファルトの隙間に視線を走らせる。"
     },
     {
         scene: "夜の帰り道",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "人工月の青い光のせいで、探している『黄色』が奇妙にくすんで見えてしまい、視界が酷くもどかしかった。"
     },
 
     // ================== #6 夜道「凪砂」 ==================
     {
         scene: "夜の帰り道",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "数分が経ち、やっぱり警察に届けるしかないのかな……と諦めかけた、その時だった。"
     },
     {
@@ -1134,14 +910,10 @@ export const scenarioData = [
     },
     {
         scene: "夜の帰り道",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "声のする方を振り向くと、彼が指先でひらひらと、見覚えのあるスマートフォンを掲げていた。"
     },
     {
         scene: "夜の帰り道",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "間違いない。私のスマホだ！"
     },
     {
@@ -1152,14 +924,10 @@ export const scenarioData = [
     },
     {
         scene: "夜の帰り道",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "暗闇の中に差し込んだ救いの光に、思わず大きな声を出す。すぐに駆け寄って受け取ろうと手を伸ばした。"
     },
     {
         scene: "夜の帰り道",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "でも、その男性は私の携帯を返そうとしない。それどころか、スマホを持った手をすっと後ろに引き、私から距離を置いた。"
     },
     {
@@ -1170,8 +938,6 @@ export const scenarioData = [
     },
     {
         scene: "夜の帰り道",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "差し出した私の手が、行き場をなくして空を切る。先程までの人当たりの良い雰囲気とは一変し、まるで獲物を品定めするような冷たい雰囲気が彼から立ち上り、背筋が凍る。"
     },
     {
@@ -1181,8 +947,6 @@ export const scenarioData = [
     },
     {
         scene: "夜の帰り道",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "形の良い唇を吊り上げ、意地悪い笑みを浮かべたその男性。私が戸惑う暇もなく、彼は途端に私の腕を掴む。細身の見た目からは想像もつかないほど、力強い。",
         action: "SHAKE_SCREEN"
     },
@@ -1194,14 +958,10 @@ export const scenarioData = [
     },
     {
         scene: "夜の帰り道",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "骨が軋むかと思うほどの力でホールドされ、逃げ出そうとしても掴まれて逃げられない。恐怖で息が詰まる。"
     },
     {
         scene: "夜の帰り道",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "けれど、パニックになる私以上に、なぜか目の前の彼の表情が、驚愕と、それから酷くどす黒い感情で塗り潰されていくのが分かった。"
     },
     {
@@ -1211,8 +971,6 @@ export const scenarioData = [
     },
     {
         scene: "夜の帰り道",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "彼は掴んだ私の腕を見つめたまま、氷のような冷たさの小声でつぶやく。その言葉の意図を理解できないままでいると、彼は口を開いた。"
     },
     {
@@ -1222,8 +980,6 @@ export const scenarioData = [
     },
     {
         scene: "夜の帰り道",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "怖い。男の人との圧倒的な体格差も、見透かされているような曇った瞳も、全部が怖い。けれど、このまま捕まっていたらもっと大変なことになる。無能力者の私が身を守るためには、ここで怯えてちゃダメだ……！"
     },
     {
@@ -1239,8 +995,6 @@ export const scenarioData = [
     },
     {
         scene: "夜の帰り道",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "怖心に負けず、私は火事場の馬鹿力で思い切り彼の腕を振りほどいた。男の人は予想外の抵抗に驚いたのか、呆気なく私の腕が自由になる。"
     },
     {
@@ -1251,8 +1005,6 @@ export const scenarioData = [
     },
     {
         scene: "夜の帰り道",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "身の危険を本能で察知し、一刻も早くこの場から逃げようと背を向けた、その時。後ろから、低く、どこか楽しげな鈴の鳴るような声がかかった"
     },
     {
@@ -1269,8 +1021,6 @@ export const scenarioData = [
     },
     {
         scene: "夜の帰り道",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ハッとして振り返ると、そこには私の怯える様子などどこ吹く風で、相変わらず内心を掴ませない様子の彼が立ち尽くしていた。"
     },
     {
@@ -1281,8 +1031,6 @@ export const scenarioData = [
     },
     {
         scene: "夜の帰り道",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "こちらへゆっくりと近寄ってくるが、不思議と先程の意地悪さや強引さは感じない。彼はまるで、何事も無かったかのように携帯を私に差し出すと、そのまま私の前から静かに去っていった。",
         hideIllust: ["凪砂"]
     },
@@ -1294,14 +1042,10 @@ export const scenarioData = [
     },
     {
         scene: "夜の帰り道",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "地面に残された彼のはっきりとした足音だけが、今の出来事が現実だったと証明している。"
     },
     {
         scene: "夜の帰り道",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "暴れる心臓を抑え、私は返ってきたスマートフォンをぎゅっと握りしめた。"
     },
 
@@ -1315,20 +1059,14 @@ export const scenarioData = [
     },
     {
         scene: "朔良の部屋",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "鍵を開けて入ったワンルームの部屋は、ひっそりと静まり返っていた。"
     },
     {
         scene: "朔良の部屋",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "お父さんがいなくなり、お母さんが病死して、この静けさにもうずいぶんと慣れたはずだった。けれど、今夜ばかりは、部屋の暗闇がいつもより少しだけ不気味に感じられる。"
     },
     {
         scene: "朔良の部屋",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "パチリ、と壁のスイッチを押すと、天井の蛍光灯が味気ない白で部屋を照らし出した。"
     },
     {
@@ -1339,50 +1077,34 @@ export const scenarioData = [
     },
     {
         scene: "朔良の部屋",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "カバンを床に置き、ベッドの端に腰掛ける。"
     },
     {
         scene: "朔良の部屋",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "きつく掴まれていた手首を見ると、そこにはうっすらと赤紫色の指の跡が残っていた。あの『凪砂』と名乗った男の、凍りついたような奇妙な瞳が脳裏にフラッシュバックして、思わず自分の肩を抱く。"
     },
     {
         scene: "朔良の部屋",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "（……早く、忘れよう。お風呂に入って、寝ちゃえば大丈夫）"
     },
     {
         scene: "朔良の部屋",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "お気に入りの黄色いカバーのスマートフォンをドレッサーの上に置くと、私は浴室へと向かった。"
     },
     {
         scene: "朔良の部屋",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "温かいシャワーを浴びて、今日あったたくさんの出来事――ヒルミ教授のレポート、睦典のアホなうどん、そして夜道の不審な男――を、すべてお湯と一緒に洗い流すように、頭からきれいに流していく。"
     },
     {
         scene: "朔良の部屋",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "お風呂から上がり、髪を乾かしてパジャマに着替えると、ようやく少しだけ人心地がついた。"
     },
     {
         scene: "朔良の部屋",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "少しだけ部屋の寂しさを紛らわせたくて、リモコンを操作してテレビの電源を入れる。"
     },
     {
         scene: "朔良の部屋",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "液晶画面に映し出されたのは、深夜の報道番組だった。"
     },
     {
@@ -1399,14 +1121,10 @@ export const scenarioData = [
     },
     {
         scene: "朔良の部屋",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "アナウンサーのトーンが、怯えたように一段と重くなる。"
     },
     {
         scene: "朔良の部屋",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "画面が切り替わり、規制線が張られた薄暗い路地を映す、ひどく手ブレした視聴者提供の映像が流れた。"
     },
     {
@@ -1421,93 +1139,63 @@ export const scenarioData = [
     },
     {
         scene: "朔良の部屋",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "画面の奥、青い月光に照らされたアスファルトの上。悍ましい姿をした数体の【キメラ】たちの中心で、ゆらりと佇む黒い影が映る。"
     },
     {
         scene: "朔良の部屋",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "その姿が画面から消え去る直前、カメラのレンズを、あるいはテレビの前の私を嘲笑うかのように、黒い兜の奥で双眸が怪しく明滅した――。"
         //action: "SHAKE_SCREEN"
     },
     {
         scene: "朔良の部屋",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "（【黒騎士】……【キメラ】を引き連れる、化け物たちの王……）"
     },
     {
         scene: "朔良の部屋",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "最近、SNSのオカルト掲示板や大学の噂話でも囁かれている、最凶の都市伝説。"
     },
     {
         scene: "朔良の部屋",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "それが、私がつい数時間前まで歩いていた商店街の、ほんの数ブロックしか離れていない場所に出没したのだ。"
     },
     {
         scene: "朔良の部屋",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "パチン、とテレビの電源を切る。"
     },
     {
         scene: "朔良の部屋",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "画面の中では、無音のまま、防衛局の特殊部隊が【キメラ】に破壊し尽くされた凄惨な現場を調査している光景が流れていた。"
     },
     {
         scene: "朔良の部屋",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "（すぐ、近くだったんだ……）"
     },
     {
         scene: "朔良の部屋",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "もし、睦典のレポートを手伝っていなかったら。"
     },
     {
         scene: "朔良の部屋",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "もし、帰り道でスマートフォンを落としていなくて、あの場所に留まっていなかったら。"
     },
     {
         scene: "朔良の部屋",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私はあの化け物たちや、その中心にいたという恐ろしい【黒騎士】に、今頃無惨に襲われていたかもしれない。"
     },
     {
         scene: "朔良の部屋",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "じわりと冷たい汗が背中を伝う。"
     },
     {
         scene: "朔良の部屋",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "枕元のカーテンを少しだけ開け、夜空を見上げる。"
     },
     {
         scene: "朔良の部屋",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ガラスの向こうには、太陽のいない夜の闇の中で、昼間よりも一層おどろおどろしく、傲慢なほどの青い輝きを放つ人工の月が浮かんでいた。"
     },
     {
         scene: "朔良の部屋",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "その裏側にあるはずの、お父さんが教えてくれた優しくて静かな『本物の月』の姿は、影も形も見えない。"
     },
     {
@@ -1518,47 +1206,33 @@ export const scenarioData = [
     },
     {
         scene: "朔良の部屋",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ぽつりと、今はもうここにいない家族の名前を呟いてみる。"
     },
     {
         scene: "朔良の部屋",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "スマートフォンのアラームをセットし、掛け布団を頭まで被って目を閉じる。"
     },
     {
         scene: "朔良の部屋",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "微かに聞こえる、遠くの街のサイレンの音を子守唄代わりにしながら、私は祈るような気持ちで深い眠りへと落ちていった。"
     },
     {
         scene: "朔良の部屋",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "明日もまた、何事もない普通の日常が始まりますように、と。"
     },
 
     // ================== #8 朝「日常のノイズと、学食」 ==================
     {
         scene: "朔良の部屋",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ピピッ、ピピッ、ピピッ――。",
         bg: "sakura_room"
     },
     {
         scene: "朔良の部屋",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "朝の静寂を切り裂くアラームの音で、私は強制的に意識を引き戻された。"
     },
     {
         scene: "朔良の部屋",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "重い瞼を開けると、遮光カーテンの隙間から、今日も変わらずに冷たい青みを帯びた光が部屋に差し込んでいる。"
     },
     {
@@ -1569,45 +1243,31 @@ export const scenarioData = [
     },
     {
         scene: "朔良の部屋",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "時計の針は午前7時45分を指している。"
     },
     {
         scene: "朔良の部屋",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ゆうべはあのニュースのせいで何度も目が覚めてしまい、睡眠不足のせいで頭がズキズキと重い。"
     },
     {
         scene: "朔良の部屋",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "けれど、大学をサボるわけにはいかない。私は重い身体を引きずるようにしてベッドから這い出し、急いで身支度を整えた。"
     },
     {
         scene: "朔良の部屋",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "トーストを口に押し込み、お気に入りの黄色いカバーのスマートフォンをカバンに放り込む。ドアを開けると、ツンと冷えた朝の空気が頬を刺した。見上げた空には、太陽の光に負けないほどの存在感で、人工月が白白と輝いている。"
     },
     {
         scene: "通学路",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "急ぎ足で大学へ向かう道中、街はいつも通りの朝を迎えているように見えた。",
         bg: "shopping_street"
     },
     {
         scene: "通学路",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "けれど、駅前の電光掲示板には『昨夜の〇〇区における事案について』という防衛局の大きな文字が躍っており、すれ違うサラリーマンや学生たちも、どこか落ち着かない様子でスマートフォンの画面をスクロールしている。"
     },
     {
         scene: "通学路",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "誰もが口には出さないが、昨夜の【黒騎士】と【キメラ】の噂で持ちきりなのだ。"
     },
     {
@@ -1619,8 +1279,6 @@ export const scenarioData = [
     },
     {
         scene: "大学の正門前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "大学の正門前で合流した睦典は、いつもの元気はどこへやら、絵に描いたような寝不足のクマを目の下に作って幽霊のように佇んでいた。"
     },
     {
@@ -1655,20 +1313,14 @@ export const scenarioData = [
     },
     {
         scene: "大学の正門前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "もしかして……眠れなかったのって、私を思ってくれてたからかな…？"
     },
     {
         scene: "大学の正門前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そう考えると胸の中が暖かくなる。私のことを大切に思ってくれてる人がいるって、それだけでも生きる活力になる。"
     },
     {
         scene: "大学の正門前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "それに、やっぱりムッちゃんって抜けてるところはあるけど、優しいんだな。と心から思う。"
     },
     {
@@ -1691,27 +1343,19 @@ export const scenarioData = [
     },
     {
         scene: "講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ドタバタと坂道を駆け上がり、私たちは1限の講義室へと滑り込んだ。",
         bg: "cyber_classroom"
     },
     {
         scene: "講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "階段状の広い教室内は、いつもより少しだけピリついた、落ち着かない熱気に包まれている。学生たちの会話から漏れ聞こえてくるのは、やはり【黒騎士】のワードばかりだ。"
     },
     {
         scene: "講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "その後の午前中の講義は、驚くほど平穏に過ぎていった。"
     },
     {
         scene: "講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "お腹を空かせた睦典が、隣の席で「あー、お腹減った。今日の日替わり定食なんだろ……」とずっと小さく呟いていたこと以外は、至って普通の大学生活だ。"
     },
     {
@@ -1734,8 +1378,6 @@ export const scenarioData = [
     },
     {
         scene: "廊下",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "二人でカバンを肩にかけ、賑わうキャンパスの正門へ向かって歩いていた、その時だった。",
         bg: "school_gate_evening"
     },
@@ -1749,8 +1391,6 @@ export const scenarioData = [
     },
     {
         scene: "大学の正門前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "正面から降ってきた、鈴の鳴るような、ひどく甘くて整った声。"
     },
     {
@@ -1761,27 +1401,19 @@ export const scenarioData = [
     },
     {
         scene: "大学の正門前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "心臓がドクンと嫌な音を立てた。"
     },
     {
         scene: "大学の正門前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ハッとして顔を上げると、正門のレンガの壁に背中を預け、退屈そうにスマートフォンを弄っていた男が、こちらを見てにこりと完璧な微笑みを浮かべていた。",
         showIllust: ["凪砂"]
     },
     {
         scene: "大学の正門前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "整いすぎた容姿に、モデルのような抜群のスタイル。周りの女子生徒がひそひそするほどの美貌だ。"
     },
     {
         scene: "大学の正門前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "しかしその正体は、昨日、夜道で私の腕を強引に掴み、「凪砂」と名乗ったあの不審な男だった。"
     },
     {
@@ -1792,14 +1424,10 @@ export const scenarioData = [
     },
     {
         scene: "大学の正門前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "恐怖で声が震え、思わず一歩後ずさる。"
     },
     {
         scene: "大学の正門前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "すると、私の隣を歩いていた睦典の空気が、一瞬でガラリと変わった。いつものおちゃらけた雰囲気が完全に消え失せ、その大きな身体で私を庇うように一歩前に出て、私に振り返る。"
     },
     {
@@ -1816,8 +1444,6 @@ export const scenarioData = [
     },
     {
         scene: "大学の正門前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "全く知らない人、という訳では無いのだが……昨晩のことを説明するとさらにややこしくなるので、押し黙っていると、睦典は男に向き直る。"
     },
     {
@@ -1828,8 +1454,6 @@ export const scenarioData = [
     },
     {
         scene: "大学の正門前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典の声は、これまで聞いたことがないほど低く、地を這うように冷たかった。その鋭い瞳は、目の前の男を明確に「危険人物」として捉え、強い警戒を宿している。"
     },
     {
@@ -1864,8 +1488,6 @@ export const scenarioData = [
     },
     {
         scene: "大学の正門前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "凪砂は睦典を視界から外すように、その斜め後ろにいる私へと、冷酷なまでにギラついた瞳を向けた。薄い唇の端が、ほんの少しだけ歪に持ち上がる。"
     },
     {
@@ -1888,8 +1510,6 @@ export const scenarioData = [
     },
     {
         scene: "大学の正門前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "名前を呼ばれ、背筋が凍る。一歩、凪砂が距離を詰めてくる。その一歩の圧迫感が凄まじくて、息が止まりそうになる。"
     },
     {
@@ -1900,8 +1520,6 @@ export const scenarioData = [
     },
     {
         scene: "大学の正門前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "間髪入れず、睦典が凪砂の胸元を力強く押し返すようにして割り込んだ。"
     },
     {
@@ -1912,16 +1530,12 @@ export const scenarioData = [
     },
     {
         scene: "大学の正門前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "二人の間で、バチバチと火花が散るような、一触即発の険悪な空気が流れる。"
     },
 
     // ================== #11 介入「嵐の去り際」 ==================
     {
         scene: "大学の正門前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "一触即発……。あまりにも冷え切った二人の空気を感じて、周囲を行き交う学生たちも足を止め、遠巻きにざわつき始めたそんな時だった。",
         bg: "school_gate_evening"
     },
@@ -1933,8 +1547,6 @@ export const scenarioData = [
     },
     {
         scene: "大学の正門前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "飄々とした軽い声と共に、長い白衣をなびかせたヒルミ教授がヌッと現れた。教授は二人の間に割って入ると、睦典と凪砂、それぞれの肩に手をポン、と置いた。"
     },
     {
@@ -1951,8 +1563,6 @@ export const scenarioData = [
     },
     {
         scene: "大学の正門前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "大声を上げて飛び上がった睦典は驚愕し、凪砂はまるで汚物に触れられたかのように激しく不快そうに顔を歪めて、教授の手を強引に振り払う。"
     },
     {
@@ -1975,14 +1585,10 @@ export const scenarioData = [
     },
     {
         scene: "大学の正門前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典が言い募ろうとした瞬間、凪砂が盛大に舌打ちをした。"
     },
     {
         scene: "大学の正門前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "凪砂は不機嫌さを隠そうともせず、冷え切った視線で私と睦典、そして教授を順に睨みつける。これ以上ここにいても面倒なだけだと判断したのか、彼はポケットに手を突っ込むと、私にだけ聞こえるような低い声でボソッと呟いた。"
     },
     {
@@ -1994,8 +1600,6 @@ export const scenarioData = [
     },
     {
         scene: "大学の正門前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "吐き捨てるようにそう言うと、凪砂は綺麗な背中を翻し、大股で正門の向こうへと去っていった。その姿が人混みに消えるのを、私は呆然と見送る。"
     },
     {
@@ -2006,8 +1610,6 @@ export const scenarioData = [
     },
     {
         scene: "大学の正門前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "恐怖から解放されて、へなへなと力が抜けそうになりながら私がお礼を言うと、教授はいつも通りの朗らかな笑みを浮かべた。"
     },
     {
@@ -2018,8 +1620,6 @@ export const scenarioData = [
     },
     {
         scene: "大学の正門前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "あまりにも突拍子もないことを言われた。驚きでパチクリとする私を余所に、睦典がすかさず反論する。"
     },
     {
@@ -2036,15 +1636,11 @@ export const scenarioData = [
     },
     {
         scene: "大学の正門前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "教授はそれだけ言うと、じゃあね、と手をヒラヒラ振って、マイペースな足取りで去っていった。",
         hideIllust: ["ヒルミ教授"]
     },
     {
         scene: "大学の正門前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "嵐のような時間が過ぎ去り、正門前には私と、まだ興奮冷めやらぬ様子で鼻息を荒くしている睦典だけが取り残された。"
     },
     {
@@ -2055,8 +1651,6 @@ export const scenarioData = [
     },
     {
         scene: "大学の正門前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典が私の両肩を掴み、大きな身体を屈めて心配そうに顔を覗き込んでくる。その瞳には、私を心配する純粋な光だけが宿っていた。"
     },
     {
@@ -2067,8 +1661,6 @@ export const scenarioData = [
     },
     {
         scene: "大学の正門前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "お礼を告げると、鼻の下を指で擦ってふふん、と息を吐く。"
     },
     {
@@ -2085,14 +1677,10 @@ export const scenarioData = [
     },
     {
         scene: "大学の正門前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典の優しさに救われながら、私は再び歩き出す。"
     },
     {
         scene: "大学の正門前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "凪砂の去り際の「またね」という言葉が耳の奥にこびりついて離れなかったけれど、隣を歩く幼馴染の存在が、その不安を少しだけ和らげてくれた。"
     },
     {
@@ -2109,8 +1697,6 @@ export const scenarioData = [
     },
     {
         scene: "学生食堂",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "正門前の騒ぎですっかり消費してしまったエネルギーを補給するべく、私達はキャンパスの奥にある学生食堂へと向かった。",
         bg: "cyber_classroom"
     },
@@ -2118,8 +1704,6 @@ export const scenarioData = [
     // ================== #12 逢瀬「時計塔からの報せ」 ==================
     {
         scene: "学生食堂",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "お昼時の学食は、どんよりとした昨夜のニュースの空気なんてどこへやら、たくさんの学生たちの活気と美味しそうな匂いで満ちている。",
         bg: "cyber_classroom"
     },
@@ -2131,8 +1715,6 @@ export const scenarioData = [
     },
     {
         scene: "学生食堂",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典がトレイに載せて運んできてくれたのは、湯気が立ち上る温かい狐うどんだった。"
     },
     {
@@ -2143,14 +1725,10 @@ export const scenarioData = [
     },
     {
         scene: "学生食堂",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ズズッと出汁を一口すすると、じんわりと身体の緊張が解けていくのが分かった。"
     },
     {
         scene: "学生食堂",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典は自分の特大唐揚げ定食をもの凄い勢いで口に放り込みながらも、時折、心配そうに私の様子を窺ってくる。"
     },
     {
@@ -2173,14 +1751,10 @@ export const scenarioData = [
     },
     {
         scene: "学生食堂",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "いつもはお調子者の睦典が、真剣な目でそう指を立てて約束を迫ってくる。"
     },
     {
         scene: "学生食堂",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私のことを心から心配してくれているのが伝わってきて、胸の奥が温かくなった。"
     },
     {
@@ -2197,53 +1771,37 @@ export const scenarioData = [
     },
     {
         scene: "学生食堂",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "にこっといつもの太陽みたいな笑顔に戻った睦典を見て、私もようやく心から笑うことができた。"
     },
     {
         scene: "帰り道",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "午後の講義もすべて終わり、大学を出る頃には、空はすっかり人工月の青い夕暮れに浸食されていた。",
         bg: "school_gate_evening"
     },
     {
         scene: "帰り道",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典は実家の割烹の仕込みがあるとのことで、「本当に気をつけて帰るんだよ！？」と何度も後ろを振り返りながら駅の方へと向かって行った。"
     },
     {
         scene: "帰り道",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "一人になって、いつもの帰路を歩き始めた時。",
         bg: "night_street"
     },
     {
         scene: "帰り道",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "カバンのポケットで、スマートフォンが短く、静かに震えた。",
         action: "PLAY_ALERT_SE"
     },
     {
         scene: "帰り道",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "画面を見ると、そこには通知が表示されている。"
     },
     {
         scene: "帰り道",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "差出人の名前に、ドクン、と心臓が切ない音を立てた。"
     },
     {
         scene: "帰り道",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "【 満 】"
     },
     {
@@ -2254,53 +1812,37 @@ export const scenarioData = [
     },
     {
         scene: "帰り道",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "世界の真実や難しいことなんて何も書いていない、ただ私に会いたいという連絡。"
     },
     {
         scene: "帰り道",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "──満。私の幼い頃からの幼馴染。幼い記憶が朧気な私にとっても、満との思い出はどれも色鮮やかなものだった。"
     },
     {
         scene: "帰り道",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "最近は遠くに引っ越してしまって、頻繁に会うことはなくなってしまったけれど。でもたまに、こうやって「会いたい」と連絡してくれる。"
     },
     {
         scene: "帰り道",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "さっきの凪砂の件もあり、心がすり減っていた私にとって、満のその一言は何よりも救いだった。"
     },
     {
         scene: "帰り道",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "（満が待ってる……早く行かなきゃ！）"
     },
     {
         scene: "帰り道",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私は期待と少しの緊張を胸に、指定された時計塔へと向かうため、人通りの少ない裏路地のショートカットへと足を踏み入れた。"
     },
 
     // ================== #13 出逢い「路地裏のミカ」 ==================
     {
         scene: "夜の裏路地",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "急ぎ足で薄暗い路地を進む。",
         bg: "town_dark_2"
     },
     {
         scene: "夜の裏路地",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "街灯の青い光が届かない、ゴミ箱が並ぶビルの隙間を通り抜けようとした、その時。"
     },
     {
@@ -2310,8 +1852,6 @@ export const scenarioData = [
     },
     {
         scene: "夜の裏路地",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "壁の影から、衣服が擦れる音と、押し殺したような苦しげな呻き声が聞こえた。"
     },
     {
@@ -2322,27 +1862,19 @@ export const scenarioData = [
     },
     {
         scene: "夜の裏路地",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "足を止め、恐る恐る暗がりのゴミ箱の横を覗き込む。"
     },
     {
         scene: "夜の裏路地",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そこには、地面に膝をつき、お腹を押さえるようにしてぐったりと倒れ込んでいる、一人の少年がいた。",
         showIllust: ["ミカ"]
     },
     {
         scene: "夜の裏路地",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "年齢は私と同じか、少し下くらいだろうか。"
     },
     {
         scene: "夜の裏路地",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "夜の闇を溶かしたような綺麗な髪の隙間から、ひどく整った、けれど今は苦痛に歪んだ横顔が見える。"
     },
     {
@@ -2353,32 +1885,22 @@ export const scenarioData = [
     },
     {
         scene: "夜の裏路地",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "思わず駆け寄り、声をかける。"
     },
     {
         scene: "夜の裏路地",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私の声に反応したのか、少年はゆっくりと重そうな瞼を持ち上げた。"
     },
     {
         scene: "夜の裏路地",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "人工月の青い光を反射して、彼の切れ長の瞳が、一瞬だけ怪しく、血のような【赤】に明滅する。──能力者の目だ。"
     },
     {
         scene: "夜の裏路地",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "よく見ると、彼の端正な顔の半分には、何かに激しく焼かれたような痛々しい火傷の痣があった。息を呑む私を、少年は鋭く睨みつける。"
     },
     {
         scene: "夜の裏路地",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "けれど次の瞬間には、彼の瞳は吸い込まれそうなほど深い黒へと戻り、彼は私を睨みつけるようにして、掠れた声でボソッと呟いた。"
     },
     {
@@ -2388,14 +1910,10 @@ export const scenarioData = [
     },
     {
         scene: "夜の裏路地",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "冷徹で低い声で唸った彼に、私は恐怖を感じて思わず一歩後ずさりした。"
     },
     {
         scene: "夜の裏路地",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "暗がりですぐには見えなかったが、目を凝らしてよく見ると、彼はお腹のあたりを深く負傷していた。服は破れ、そこからどくどくと赤黒い血が地面に垂れている。"
     },
     {
@@ -2411,8 +1929,6 @@ export const scenarioData = [
     },
     {
         scene: "夜の裏路地",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "激しく拒絶するように、少年が私の言葉を遮った。傷口を押さえる彼の指先が、怒りと痛みのせいでガタガタと震えている。公にできない事情があるのか、その必死な形相に私はそれ以上言葉を重ねることができなかった。"
     },
     {
@@ -2423,8 +1939,6 @@ export const scenarioData = [
     },
     {
         scene: "夜の裏路地",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私はカバンから自分のハンカチを取り出し、近くの自販機で今買ったばかりの未開封のミネラルウォーターと一緒に彼へと手渡す。せめてもの応急処置に使ってほしかった。"
     },
     {
@@ -2434,20 +1948,14 @@ export const scenarioData = [
     },
     {
         scene: "夜の裏路地",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "少年は何も言わなかったが、拒むことなく、促されるままにそれらを受け取った。ハンカチを傷口に強く押し当て、痛みに耐えるようにじっと俯く。"
     },
     {
         scene: "夜の裏路地",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "彼の傷は酷く気になるけれど、救急車すら呼んじゃいけない状況なんて、普通じゃない。"
     },
     {
         scene: "夜の裏路地",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "彼が一体どんな状況下に置かれているのか、無能力者の私には想像もつかないし、今は深く関わる気は起きなかった。それに、何より私には──満との約束もある。"
     },
     {
@@ -2458,8 +1966,6 @@ export const scenarioData = [
     },
     {
         scene: "夜の裏路地",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ささっとその場を後にしようと背を向けると、後ろから引き留めるような声がかかった。"
     },
     {
@@ -2475,8 +1981,6 @@ export const scenarioData = [
     },
     {
         scene: "夜の裏路地",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "振り返ると、少年は水を滴らせたハンカチで傷を抑えたまま、私をじっと見つめていた。その瞳には、先ほどまでの刺々しい警戒心とは違う、どこか奇妙な色が混ざっている。"
     },
     {
@@ -2504,41 +2008,29 @@ export const scenarioData = [
     },
     {
         scene: "夜の裏路地",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私はそれだけ言い残すと、今度こそ彼の前から立ち去って、満との約束場所へ向かって夜の路地を急いだ。"
     },
 
     // ================== #14 逢瀬「時計塔の下で」 ==================
     {
         scene: "時計塔前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "裏通りを抜け、少し開けた広場に出ると、そこには街のランドマークである古い時計塔が、人工月の青い光を浴びてひっそりと佇んでいた。",
         bg: "night_street"
     },
     {
         scene: "時計塔前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "（満……！）"
     },
     {
         scene: "時計塔前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "息を切らせて広場を見渡すと、時計塔の真下、深い影が落ちる街灯のそばに、一人の青年が立っているのが見えた。"
     },
     {
         scene: "時計塔前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "すっと通った高い鼻筋に、どこか現実離れした儚さを纏った、綺麗な顔立ち。"
     },
     {
         scene: "時計塔前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "人工月の光を背負って立つその姿は、周囲の景色からそこだけ切り取られたかのように幻想的で、どこか神聖ですらある。"
     },
     {
@@ -2549,14 +2041,10 @@ export const scenarioData = [
     },
     {
         scene: "時計塔前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私が声をかけると、彼はゆっくりとこちらを振り返った。"
     },
     {
         scene: "時計塔前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "その瞬間、彼のいつもの穏やかで、すべてを包み込むような優しい瞳が私を捉え、その薄い唇がふわりと綻ぶ。"
     },
     {
@@ -2573,14 +2061,10 @@ export const scenarioData = [
     },
     {
         scene: "時計塔前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ミカくんのことを思い出して一瞬言葉を詰まらせた私を、満は責める風でもなく、ただ愛おしそうにじっと見つめていた。"
     },
     {
         scene: "時計塔前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "一歩、彼が距離を詰める。それだけで、ゆうべからずっと私の心を支配していた恐怖や緊張が、嘘のように溶けていく気がした。"
     },
     {
@@ -2597,8 +2081,6 @@ export const scenarioData = [
     },
     {
         scene: "時計塔前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "幼い頃から変わらない、少し意地悪で、でも私を特別扱いしてくれる満のトーン。無能力者で、色んな事件に怯えるだけの私にとって、彼の前だけは唯一「普通の女の子」でいられる安心の場所だった。"
     },
     {
@@ -2609,8 +2091,6 @@ export const scenarioData = [
     },
     {
         scene: "時計塔前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "満がそっと手を伸ばし、私の頬に触れようとする。その指先が、冷たい夜風の中で微かに震えているように見えて、胸がキュッとした。"
     },
     {
@@ -2621,57 +2101,39 @@ export const scenarioData = [
     },
     {
         scene: "時計塔前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "誰も彼もが裏に危険な能力を隠し持っていて、虎視眈々と互いの隙を窺っている。無能力者の私にとって、この世界は一歩歩くごとに神経がすり減るような場所だ。"
     },
     {
         scene: "時計塔前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そういえば、と私は満の美しい横顔を見つめる。"
     },
     {
         scene: "時計塔前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "幼馴染のムッちゃんですら、隠しているだけで本当は何かの適応者なんだろう。"
     },
     {
         scene: "時計塔前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "……じゃあ、目の前にいる満は、一体どんな異能を隠し持っているんだろう？ 幼い頃からずっと一緒にいるけれど、満がその力を私の前で見せたことは一度もないし、尋ねたこともなかった。"
     },
     {
         scene: "時計塔前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そんなことをぼんやりと考えた、次の瞬間。"
     },
     {
         scene: "時計塔前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ぐらり、と視界が大きく歪んだ。",
         action: "SHAKE_SCREEN"
     },
     {
         scene: "時計塔前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "頭の芯が急激にカッカと焼けつくように熱くなり、地面がぐにゃりと傾くような凄まじい目眩が私を襲う。"
     },
     {
         scene: "時計塔前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "（あ……あれ……？）"
     },
     {
         scene: "時計塔前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "頽れそうになる身体を必死に堪え、自分の額を押さえる。"
     },
     {
@@ -2682,8 +2144,6 @@ export const scenarioData = [
     },
     {
         scene: "時計塔前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "心配そうな声がかけられ、ハッと意識が引き戻される。気がつくと、満がすぐ近くまで顔を寄せて、私の顔を覗き込んでいた。その端正な顔が、本気で私を心配して曇っている。"
     },
     {
@@ -2706,8 +2166,6 @@ export const scenarioData = [
     },
     {
         scene: "時計塔前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "満はそっと私の肩を支えると、その冷たくて心地いい掌で、私の乱れた前髪を優しく払ってくれた。彼の手に触れられている間だけは、不思議と頭の熱さが少しだけ引いていくような気がする。"
     },
     {
@@ -2718,69 +2176,47 @@ export const scenarioData = [
     },
     {
         scene: "時計塔前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "満はそう言って、私に歩調を合わせるようにゆっくりと歩き出した。"
     },
     {
         scene: "時計塔前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "人工月に照らされた二人の影が、アスファルトの上に長く伸びていく。"
     },
     {
         scene: "時計塔前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "不穏な事件ばかりが起きるこの街で、満の隣だけは、私にとって変わらない暖かな日常そのものだった。"
     },
     {
         scene: "時計塔前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "満と温かいココアを飲みながら過ごした時間は、まるで夢のようだった。 "
     },
     {
         scene: "時計塔前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "他愛のない大学の話を聞いてもらい、彼と別れて家に帰る頃には、あれほど怯えていた心が嘘のように穏やかになっていた。"
     },
     {
         scene: "時計塔前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "（やっぱり、満の隣が一番安心するな……）"
     },
     {
         scene: "時計塔前",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そんな幸せな余韻に浸りながら眠りにつき──そして、翌朝。"
     },
     {
         scene: "大学の講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私はいつも通り、大学の講義室へと足を運んでいた。",
         bg: "cyber_classroom"
     },
     {
         scene: "大学の講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "一限目のチャイムが鳴り、教授が教壇に立つ。"
     },
     {
         scene: "大学の講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "いつも通りの退屈で、でも平和な日常の講義が始まった。"
     },
     {
         scene: "大学の講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "──はずだった。"
     },
     {
@@ -2791,26 +2227,18 @@ export const scenarioData = [
     },
     {
         scene: "大学の講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "講義が始まって数分後。前方のドアがガラリと開き、一人の男子学生が気まずそうに入ってきた。"
     },
     {
         scene: "大学の講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "教授の「次からは遅れるなよ」という軽い注意を受けながら、その学生がそそくさと空いている席を探して、私のいる列の通路を歩いてくる。"
     },
     {
         scene: "大学の講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "その瞬間、私は息が止まりそうになった。"
     },
     {
         scene: "大学の講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "綺麗な黒髪。少し切れ長の、今は眠そうに伏せられた黒い瞳。",
         showIllust: ["ミカ"]
 
@@ -2818,26 +2246,18 @@ export const scenarioData = [
 
     {
         scene: "大学の講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そして何より、──彼の白い頬にある、痛々しい火傷の痣。"
     },
     {
         scene: "大学の講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "（嘘……ミカくん……！？）",
     },
     {
         scene: "大学の講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "驚きで固まる私を余所に、彼は私の数個隣の空席にカバンを置いた。"
     },
     {
         scene: "大学の講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ふと、彼が顔を上げる。バチッと、私と彼の視線が真っ向から交錯した。"
     },
     {
@@ -2848,8 +2268,6 @@ export const scenarioData = [
     },
     {
         scene: "大学の講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ミカくんは一瞬だけ丸く目を見開いたが、すぐにいつもの生意気そうな、ツンとした表情に戻る。"
     },
     {
@@ -2860,15 +2278,11 @@ export const scenarioData = [
     },
     {
         scene: "大学の講義室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ぶっきらぼうだけど、確かに昨日のお礼だった。"
     },
 
     {
         scene: "キャンパスの裏手",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "あの後すぐにどこかへ消えてしまったミカくんのことが気になり、私は一人で彼を探してキャンパスの裏手へと歩いていた。"
     },
     {
@@ -2879,32 +2293,22 @@ export const scenarioData = [
     },
     {
         scene: "キャンパスの裏手",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "古い講堂の裏、人気のない木陰に差し掛かった、その時。"
     },
     {
         scene: "キャンパスの裏手",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "チカッ、と手元のスマートフォンが短く震えた。"
     },
     {
         scene: "キャンパスの裏手",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "一瞬、お散歩の余韻から満からの連絡かと思って跳ね上がった胸は、画面をよく見た瞬間にすうっと冷めていく。"
     },
     {
         scene: "キャンパスの裏手",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "差出人は、英数字が不規則に並んだ完全にアドレス不明の不審なメールだった。"
     },
     {
         scene: "キャンパスの裏手",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "恐る恐るメールを開くと、そこには簡潔で、けれど心臓を鷲掴みにされるような一文が並んでいた。"
     },
     {
@@ -2920,83 +2324,57 @@ export const scenarioData = [
     },
     {
         scene: "キャンパスの裏手",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "スマホを握る指先がガタガタと震え出す。"
     },
     {
         scene: "キャンパスの裏手",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "お父さんの研究のことも、私の無能力のことも……限られた人しか知らないはずなのに。"
     },
     {
         scene: "キャンパスの裏手",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "同時に、頭の奥に冷たい恐怖がぶわっと広がった。"
     },
     {
         scene: "キャンパスの裏手",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "もし、私が完全に「何も持たない無能力者」であることが、国や裏の組織に完全にバレてしまったらどうなるだろう。"
     },
     {
         scene: "キャンパスの裏手",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "講義でヒルミ教授が言っていた。異能を持つ適応者たちは、国の研究機関に目をつけられるリスクを恐れて力を隠している、と。"
     },
     {
         scene: "キャンパスの裏手",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "だけど、誰もが何かしらの力を持つこの狂った世界において、逆に『人工月の恩恵を一切受けず、キメラ化もしない完全な無能力者』という存在は、適応者以上にある意味で異常な、極めて稀少なサンプルだ。"
     },
     {
         scene: "キャンパスの裏手",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "もし捕まれば、私は生きたまま不気味な研究所の奥底に監禁され、お父さんの残した秘密ともども、肉体をバラバラに解剖されて実験体にされるかもしれない。"
     },
     {
         scene: "キャンパスの裏手",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "無能力者の私には、迫り来る異能の暴力から自分を護る盾も、抵抗する牙も、何一つないのだ。"
     },
     {
         scene: "キャンパスの裏手",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "悪質なイタズラかもしれない、罠かもしれない。けれど、もし周りの人達に危険が及んだら──そう思うと、無能力者の私には、警察に通報する勇気すら湧かなかった。"
     },
     {
         scene: "キャンパスの裏手",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "（行く、しかない……。一人で……）"
     },
 
     // ================== #16 本編「裏路地での邂逅」 ==================
     {
         scene: "裏路地",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そして、すっかり太陽が沈み、人工月の青い光が街を不気味に照らし出す夜の20時。",
         bg: "town_dark_2"
     },
     {
         scene: "裏路地",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私は指定された、人通りの全くない薄暗い西路地裏へと足を踏み入れていた。"
     },
     {
         scene: "裏路地",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ゴミ箱の生臭い臭いと湿った空気が足元から這い上がってきて、心臓の音がうるさいくらいにバクバクと鳴り響く。"
     },
     {
@@ -3007,14 +2385,10 @@ export const scenarioData = [
     },
     {
         scene: "裏路地",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "壁に背を預け、怯えながら辺りを見回した、その時だった。"
     },
     {
         scene: "裏路地",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "──すっ、と背後の闇から、気配もなく一つの影が滑り込んできた。"
     },
     {
@@ -3025,14 +2399,10 @@ export const scenarioData = [
     },
     {
         scene: "裏路地",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "振り返るよりも早く、背後から強固な腕が私の身体をがっちりと拘束する。"
     },
     {
         scene: "裏路地",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "驚きで声を上げようとした瞬間、容赦のない力で、薬品のツンとした鼻を突く匂いがする布が口と鼻に強く押し当てられた。"
     },
     {
@@ -3043,20 +2413,14 @@ export const scenarioData = [
     },
     {
         scene: "裏路地",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "必死に暴れて男の腕を振り払おうとするけれど、無能力者の私の力なんて、男の鉄のような腕の前には全く歯が立たない。"
     },
     {
         scene: "裏路地",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "吸い込んでしまった冷たい薬品の匂いが、一瞬で頭の芯を真っ白に麻痺させていく。"
     },
     {
         scene: "裏路地",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "薄れゆく意識の向こうで、私はその正体を見た。"
     },
     {
@@ -3068,28 +2432,20 @@ export const scenarioData = [
     },
     {
         scene: "裏路地",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "見上げるほどに高い身長と、岩のようにがっしりとした分厚い体格。右目に黒い眼帯を嵌めたその男を。",
     },
     {
         scene: "裏路地",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私の身体はそのまま崩れ落ち、大男の巨大な腕の中へと完全に回収された。",
         hideIllust: ["大男"]
 
     },
     {
         scene: "裏路地",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "言葉もなく、ただ静かに日常が奪われていく。"
     },
     {
         scene: "裏路地",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "人工月の青い光が、意識を失った私の顔を、ただ冷たく照らし出していた。"
     },
     {
@@ -3101,14 +2457,10 @@ export const scenarioData = [
     },
     {
         scene: "廃倉庫",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "頭を殴られたような激しい頭痛と、鼻の奥に残る薬品の匂いで目が覚めた。"
     },
     {
         scene: "廃倉庫",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "視界がぐにゃりと歪む中、自分が冷たいコンクリートの床に座らされ、手足が太いロープでがんじがらめに縛り付けられていることに気づく。"
     },
     {
@@ -3119,26 +2471,18 @@ export const scenarioData = [
     },
     {
         scene: "廃倉庫",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "低く、地響きのような声が聞こえ、私は弾かれたように顔を上げた。"
     },
     {
         scene: "廃倉庫",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そこは、薄暗い廃倉庫のような場所だった。"
     },
     {
         scene: "廃倉庫",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私の周りを取り囲むように、見るからにガラの悪い男たちが何人も立っている。そして、その中心にいたのは──さっき路地裏で私を襲った、右目に眼帯をつけたあの大男だった。"
     },
     {
         scene: "廃倉庫",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "見上げるほどの高身長と、威圧感のある凶悪な体格。まだ名前も知らないその大男が、冷徹な一歩を踏み出して私を見下ろす。"
     },
     {
@@ -3149,8 +2493,6 @@ export const scenarioData = [
     },
     {
         scene: "廃倉庫",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "必死に声を絞り出して睨みつけるけれど、大男の表情はピクリとも動かない。私の問いを完全に無視して、ただ淡々と、低い声を響かせた。"
     },
     {
@@ -3167,8 +2509,6 @@ export const scenarioData = [
     },
     {
         scene: "廃倉庫",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "──ドンッ！！！",
         action: "SHAKE_SCREEN"
     },
@@ -3180,14 +2520,10 @@ export const scenarioData = [
     },
     {
         scene: "廃倉庫",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "言葉の途中で、横にいた男の一人に容赦なく顔を殴り飛ばされた。"
     },
     {
         scene: "廃倉庫",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "衝撃で視界が火花を散らし、口の中に鉄の味が広がる。縛られた身体が椅子ごと激しく揺れ、床に叩きつけられそうになるのを、大男が片手で強引に掴んで引き戻した。"
     },
     {
@@ -3198,20 +2534,14 @@ export const scenarioData = [
     },
     {
         scene: "廃倉庫",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "男はやはり無表情のまま、冷酷に言い放つ。"
     },
     {
         scene: "廃倉庫",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "この人は何……？"
     },
     {
         scene: "廃倉庫",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "恐怖と痛みに涙が滲むけれど、ここで怯えたら本当に殺される。私は痛む頬を抑えるようにして、大男を睨み返した。"
     },
     {
@@ -3228,8 +2558,6 @@ export const scenarioData = [
     },
     {
         scene: "廃倉庫",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "お父さんの研究データが目的だったの？ そう思った私に、大男は眼帯のない左の眼をさらに細め、冷たく言い渡した。"
     },
     {
@@ -3246,14 +2574,10 @@ export const scenarioData = [
     },
     {
         scene: "廃倉庫",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "言われた言葉の意味が、一瞬、理解できなかった。"
     },
     {
         scene: "廃倉庫",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "お父さんのことじゃなくて、弟？私にはお父さんとお母さんしかいないはず…。"
     },
     {
@@ -3264,8 +2588,6 @@ export const scenarioData = [
     },
     {
         scene: "廃倉庫",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私の困惑の表情を見た大男は、その冷徹な瞳にさらに禍々しい闇を宿し、低く唸るように言った。"
     },
     {
@@ -3276,14 +2598,10 @@ export const scenarioData = [
     },
     {
         scene: "廃倉庫",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "大男が顎で小さく合図を出す。"
     },
     {
         scene: "廃倉庫",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "次の瞬間、横にいた男がニヤニヤと笑いながら、再び私に向けて拳を振り上げた。"
     },
     {
@@ -3294,8 +2612,6 @@ export const scenarioData = [
     },
     {
         scene: "廃倉庫",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "──ドカッ！！！",
         action: "SHAKE_SCREEN"
     },
@@ -3307,14 +2623,10 @@ export const scenarioData = [
     },
     {
         scene: "廃倉庫",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "再び激しい衝撃が走り、脳を揺さぶられるような痛みに視界が真っ白に染まる。口の端からツッと血が流れ落ち、あまりの痛みに息が詰まった。"
     },
     {
         scene: "廃倉庫",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "なんなのこの人達は……！ 本当に何も知らないのに……っ！"
     },
     {
@@ -3325,14 +2637,10 @@ export const scenarioData = [
     },
     {
         scene: "廃倉庫",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "大男の冷酷な命令が下り、男たちが一斉に私を囲んで拳を構える。無能力者の私が、こんな大男たちの暴力に敵うわけがない。"
     },
     {
         scene: "廃倉庫",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "恐怖に身体を強張らせ、ぎゅっと目を瞑って次の衝撃に備えた、その時だった。"
     },
     {
@@ -3348,21 +2656,15 @@ export const scenarioData = [
     },
     {
         scene: "廃倉庫",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "聞き覚えのある、生意気で、でもどこか必死な少年の声が、廃倉庫の凍りついた空気を切り裂いた。"
     },
     {
         scene: "廃倉庫",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ガタッと目を開けると、倉庫の割れた窓枠のところに、息を切らせたミカくんが立っていた。",
         showIllust: ["ミカ"]
     },
     {
         scene: "廃倉庫",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "その手に武器があるわけでもない。けれど、彼はその黒い瞳に強い意志を宿して、私を囲む男たちを鋭く睨みつけていた。"
     },
     {
@@ -3379,20 +2681,14 @@ export const scenarioData = [
     },
     {
         scene: "廃倉庫",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "大男が忌々しそうに首の骨を鳴らし、その巨体を揺らしてミカくんを睨みつける。異能なんて使わなくとも、その体格だけで十分に化け物じみた威圧感があった。"
     },
     {
         scene: "廃倉庫",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ミカくんが私を助けるために一歩を踏み出そうとした──まさにその瞬間だった。"
     },
     {
         scene: "廃倉庫",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ズズズズズズン……ッッ！！！！",
         action: "SHAKE_SCREEN_VERY_LARGE"
     },
@@ -3408,14 +2704,10 @@ export const scenarioData = [
     },
     {
         scene: "廃倉庫",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "倉庫の頑丈な鉄扉が、外からの凄まじい衝撃波でボコボコに歪み、隙間から真っ赤な炎と不気味な煙が吹き込んできた。"
     },
     {
         scene: "廃倉庫",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "外から聞こえてくるのは、男たちの悲鳴と凄まじい破壊音。一瞬にしてアジト全体がパニックに陥る。"
     },
     {
@@ -3426,26 +2718,18 @@ export const scenarioData = [
     },
     {
         scene: "廃倉庫",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "大男の一声で、男たちが一斉に外の様子を確認しようと私の前から離れた。"
     },
     {
         scene: "廃倉庫",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "（今だ──！）"
     },
     {
         scene: "廃倉庫",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "全員の意識が外の混乱に向いたその一瞬の隙を、ミカくんは見逃さなかった。"
     },
     {
         scene: "廃倉庫",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "彼は音もなく私の元へ駆け寄ると、ポケットから取り出したナイフで、私を縛っていたロープを瞬く間に切り裂いた。",
         action: "PLAY_SLICE_SE"
     },
@@ -3469,49 +2753,35 @@ export const scenarioData = [
     },
     {
         scene: "廃倉庫",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "自由になった私の手首を、ミカくんは迷いなく強い力で掴んだ。",
         hideIllust: ["大男"]
     },
     {
         scene: "廃倉庫",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "昨日の路地裏ではあんなに弱り切っていたのに、今の彼の掌は驚くほど熱くて頼もしい。"
     },
     {
         scene: "廃倉庫",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ミカくんは私の歩調に合わせながら、崩落しかけているアジトの裏口のドアを蹴り開け、煙が立ち込める外の闇へと私をささっと連れ出した。",
         action: "PLAY_FOOTSTEP_SE_FAST"
     },
     {
         scene: "廃倉庫",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "冷たい夜風が、殴られた頬の熱を冷ましていく。"
     },
     {
         scene: "廃倉庫",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "外では何かが激しく燃え盛り、別の勢力が大暴れしているような混沌とした音が響いていたけれど、私はただ、前を走るミカくんの背中を必死に追いかけて走るししか動かせなかった。",
     },
 
     // ================== #18 本編「手首を引かれ、外へ」 ==================
     {
         scene: "アジトの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ミカくんに手首を引かれ、煙の立ち込めるアジトの外へと飛び出す。けれど、一歩外へ出た瞬間、私は周囲の光景に息を呑んだ。",
         bg: "town_dark_1"
     },
     {
         scene: "アジトの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "あたり一帯の建物は激しく炎上し、瓦礫が散乱している。大男の部下たちが血を流して倒れ伏す中、不気味な咆哮が夜の街に響き渡っていた。外がここまで騒然としていたのは、防衛隊と【キメラ】の戦闘が行われていたからだ。"
     },
     {
@@ -3528,8 +2798,6 @@ export const scenarioData = [
     },
     {
         scene: "アジトの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "必死に足を動かす。けれど、路地の角を曲がろうとしたその瞬間──。"
     },
     {
@@ -3540,14 +2808,10 @@ export const scenarioData = [
     },
     {
         scene: "アジトの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "突如、目の前のビルの影から、何匹もの生物が歪に融合したかのような、巨大な【キメラ】が躍り出てきた。"
     },
     {
         scene: "アジトの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "人工月の青い光に照らされたその巨体は、禍々しい粘液を滴らせながら、私たちの進路を完全に塞ぐ。"
     },
     {
@@ -3558,8 +2822,6 @@ export const scenarioData = [
     },
     {
         scene: "アジトの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "目の前の圧倒的な怪物の存在に、私の足がすくむ。けれど、隣のミカくんは私の手をさらに強く握り締め、鋭い視線を周囲に走らせた。"
     },
     {
@@ -3570,8 +2832,6 @@ export const scenarioData = [
     },
     {
         scene: "アジトの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "その低く、極限状態でも信じられないほど冷静なミカくんの声が、恐怖で麻痺しかけていた私の心を奮い立たせる。"
     },
     {
@@ -3582,32 +2842,22 @@ export const scenarioData = [
     },
     {
         scene: "アジトの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ミカくんの合図で、私たちは【キメラ】の巨体の脇をすり抜けようと一気に地を蹴った。"
     },
     {
         scene: "アジトの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "しかし、人間の接近を察知した【キメラ】が、まるで巨大な丸太のような太い尾を、凄まじい風切り音と共にこちらへ向かって一閃させる。"
     },
     {
         scene: "アジトの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ヒュンッ！！！と夜風を引き裂く凶悪な一撃。"
     },
     {
         scene: "アジトの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "（あ……っ、攻撃がくる……！ 避けられない……！）"
     },
     {
         scene: "アジトの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "身体が完全に反応を拒否し、死を覚悟してぎゅっと目を瞑った、まさにその時だった。"
     },
     {
@@ -3617,33 +2867,23 @@ export const scenarioData = [
     },
     {
         scene: "アジトの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "低く、耳に心地よく響く、どこか聞き覚えのある声が頭上から降ってきた。"
     },
     {
         scene: "アジトの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "同時に、私の身体が強い力でグイッと真横に引き寄せられる。"
     },
     {
         scene: "アジトの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ドゴォォォンッ！！！",
         action: "SHAKE_SCREEN_VERY_LARGE"
     },
     {
         scene: "アジトの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "間一髪、私たちがさっきまでいたアスファルトが粉々に砕け散り、激しい土煙が舞い上がった。"
     },
     {
         scene: "アジトの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "間一髪でその直撃を免れ、誰かの胸の中にすっぽりと抱きとめられていた私は、恐る恐るその顔を見上げる。"
     },
     {
@@ -3655,14 +2895,10 @@ export const scenarioData = [
     },
     {
         scene: "アジトの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "昼間、大学の正門前で私をナンパしてきた、あの謎の男だった。"
     },
     {
         scene: "アジトの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "彼は私を抱きとめたまま、目の前で咆咆を上げる巨大な【キメラ】を気にする風でもなく、まるで夜の散歩でも楽しんでいるかのようにクスクスと楽しそうに笑う。"
     },
     {
@@ -3679,8 +2915,6 @@ export const scenarioData = [
     },
     {
         scene: "アジトの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "驚愕する私の傍らで、ミカくんが瞬時に私を凪砂から引き離すように腕を引き、眼前の謎の男へ怪訝そうな表情を向けた。その黒い瞳には、明確な警戒の色が宿っている。"
     },
     {
@@ -3697,8 +2931,6 @@ export const scenarioData = [
     },
     {
         scene: "アジトの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "凪砂は肩をすくめ、ひらひらと手を振ってミカくんの質問を煙に巻く。そして、薄暗い街の奥へと視線を向けながら、意味深に嫌悪が混じった顔をした。"
     },
     {
@@ -3715,8 +2947,6 @@ export const scenarioData = [
     },
     {
         scene: "アジトの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "一体誰のことだろう、と私が尋ねようとした瞬間、ミカくんがハッとしたように目を見開き、より一層眉間のシワを増やして凪砂を睨みつけた。"
     },
     {
@@ -3733,14 +2963,10 @@ export const scenarioData = [
     },
     {
         scene: "アジトの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "凪砂はどこまでも飄々とした態度を崩さない。"
     },
     {
         scene: "アジトの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ミカくんは忌々しそうにチッと舌打ちをしたが、アジトが壊滅し、大男の追手や他の【キメラ】がいつ迫ってくるかも分からない今、ここでこの謎の男と揉めている時間はないと判断したようだ。"
     },
     {
@@ -3757,8 +2983,6 @@ export const scenarioData = [
     },
     {
         scene: "アジトの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ミカくんに促され、再び走り出そうとした私達の後ろから、凪砂の軽快な足音がついてくる。"
     },
     {
@@ -3769,8 +2993,6 @@ export const scenarioData = [
     },
     {
         scene: "アジトの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ミカくんが鋭く振り返るが、凪砂は微笑みを崩さないまま、楽しそうに言った。"
     },
     {
@@ -3781,36 +3003,26 @@ export const scenarioData = [
     },
     {
         scene: "アジトの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "い、一体何なのこの人は……！？まるで【キメラ】の動きを予知しているようだったし、そもそもミカくんの計画をなにか知っているみたいだった。"
     },
     {
         scene: "アジトの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "こうして、ミカくんと、底の知れない謎の男凪砂という、最悪に奇妙で危険な組み合わせに挟まれたまま、私の命がけの逃亡劇が幕を開けた。",
     },
 
     // ================== #19 廃ビルの一室「再会、そして疑問」 ==================
     {
         scene: "廃ビルへの階段",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "背後から迫る【キメラ】の気配や街の騒音を振り切るようにして、私たちはとある寂れた廃ビルの3階部分まで一気に階段を駆け上がった。",
         bg: "town_dark_2",
         style: "novel"
     },
     {
         scene: "廃ビルへの階段",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "息を切らしながら、ミカくんが一番奥にあるこじんまりとした部屋の扉を開ける。"
     },
     {
         scene: "廃ビルの一室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "薄暗い室内へと足を踏み入れた、その瞬間──。",
         bg: "warehouse_dark",
         action: "FADE_IN"
@@ -3828,8 +3040,6 @@ export const scenarioData = [
     },
     {
         scene: "廃ビルの一室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そこにいたのは、昼間に大学で別れたはずの、いつもの見慣れた友人だった。"
     },
     {
@@ -3840,20 +3050,14 @@ export const scenarioData = [
     },
     {
         scene: "廃ビルの一室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典は私の姿を見るなり、大きな身体を震わせて駆け寄り、涙目になりながら私の肩をがっしりと掴んだ。"
     },
     {
         scene: "廃ビルの一室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ゆうべの事件から始まって、大男への監禁、路地裏での拉致、怪物【キメラ】の襲撃……"
     },
     {
         scene: "廃ビルの一室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "あまりにも現実離れした光景ばかりを立て続けに目の当たりにしていたせいか、この日常の象徴とも言える馴染み深い顔を見た瞬間、張り詰めていた心の糸がふっと緩んで、心の底からほっと胸を撫で下ろした。"
     },
     {
@@ -3864,14 +3068,10 @@ export const scenarioData = [
     },
     {
         scene: "廃ビルの一室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そんな感動の再会の空気をぶち破るように、背後から凪砂がこれ見よがしに、思いっきり大きなため息を吐き出した。"
     },
     {
         scene: "廃ビルの一室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "その不躾な態度にいち早く気づいた睦典が、一瞬で顔を険しくさせて不機嫌そうに身構える。"
     },
     {
@@ -3882,8 +3082,6 @@ export const scenarioData = [
     },
     {
         scene: "廃ビルの一室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "昼間の大学での一件がある。睦典が凪砂を激しく敵視するのも当然だった。けれど、凪砂は相変わらず飄々とした笑みを浮かべ、わざとらしく肩をすくめて見せる。"
     },
     {
@@ -3906,8 +3104,6 @@ export const scenarioData = [
     },
     {
         scene: "廃ビルの一室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "一触即発の二人の間に、ミカくんが冷ややかな声を挟んで割り込んだ。その冷徹なトーンに、睦典も凪砂も一瞬だけ口を閉ざす。"
     },
     {
@@ -3918,8 +3114,6 @@ export const scenarioData = [
     },
     {
         scene: "廃ビルの一室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "二人の喧嘩を止めるよりも先に、私にはどうしても消化しきれない疑問が山積みだった。"
     },
     {
@@ -3930,8 +3124,6 @@ export const scenarioData = [
     },
     {
         scene: "廃ビルの一室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ミカくんが私の正面に立ち、その深い黒い瞳で私を見つめ直す。"
     },
     {
@@ -3942,14 +3134,10 @@ export const scenarioData = [
     },
     {
         scene: "廃ビルの一室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私が疑問を口にすると、部屋の中に一瞬、奇妙な沈黙が流れた。"
     },
     {
         scene: "廃ビルの一室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "その沈黙を破るように、まずミカくんがめんどくさそうに頭を掻きながら口を開いた。"
     },
     {
@@ -3966,8 +3154,6 @@ export const scenarioData = [
     },
     {
         scene: "廃ビルの一室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "驚いて睦典を見上げると、ミカくんはそのまま淡々と言葉を続ける。"
     },
     {
@@ -3984,8 +3170,6 @@ export const scenarioData = [
     },
     {
         scene: "廃ビルの一室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典が申し訳なさそうに、でも必死な面持ちで私の手を握り締めた。"
     },
     {
@@ -4008,8 +3192,6 @@ export const scenarioData = [
     },
     {
         scene: "廃ビルの一室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "まさか、裏でそんなことが起きていたなんて。驚いてミカくんを見ると、彼はフイッと気まずそうに視線を逸らした。"
     },
     {
@@ -4020,8 +3202,6 @@ export const scenarioData = [
     },
     {
         scene: "廃ビルの一室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典は悔しそうに顔を歪め、ぎゅっと拳を握り締める。"
     },
     {
@@ -4038,20 +3218,14 @@ export const scenarioData = [
     },
     {
         scene: "廃ビルの一室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "大きな身体を縮めるようにしてホッとした笑みを浮かべる睦典。"
     },
     {
         scene: "廃ビルの一室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "馴染み深い二人が裏で繋がっていて、私のために必死に動いてくれていた。その事実は、恐怖で凍りついていた私の心をじんわりと温めていく。"
     },
     {
         scene: "廃ビルの一室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "けれど、そんな私たちの様子を壁に背を預けて眺めていた凪砂が、面白そうに目を細めて口を開いた。"
     },
     {
@@ -4063,8 +3237,6 @@ export const scenarioData = [
     },
     {
         scene: "廃ビルの一室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "凪砂は壁から背を離すと、私に向かって一歩、距離を詰めてきた。"
     },
     {
@@ -4081,8 +3253,6 @@ export const scenarioData = [
     },
     {
         scene: "廃ビルの一室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私がきょとんとしていると、凪砂はポケットから自分のスマートフォンを取り出し、その画面をこちらに向けて見せてきた。"
     },
     {
@@ -4092,20 +3262,14 @@ export const scenarioData = [
     },
     {
         scene: "廃ビルの一室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "画面の向こうで、絶叫するアナウンサーの映像が激しいノイズと共に途切れる。背景に映っていたのは、私たちがさっきまでいたあの街が、無数の【キメラ】と激しい炎によって文字通り生き地獄と化している光景だった。"
     },
     {
         scene: "廃ビルの一室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "（そ…そんな……っ）"
     },
     {
         scene: "廃ビルの一室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "あまりの凄惨さに言葉を失う。大学の正門前で【キメラ】が出た時とは、規模が違いすぎる。"
     },
     {
@@ -4116,44 +3280,30 @@ export const scenarioData = [
     },
     {
         scene: "廃ビルの一室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "凪砂に淡々とそう告げられて、私の心にじわじわと絶望が広がっていく。"
     },
     {
         scene: "廃ビルの一室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "監禁から逃げ出せば、またいつもの平和な日常に戻れると思っていた。でも、もう戻るべき日常そのものが、外で粉々に砕け散ろうとしている。"
     },
     {
         scene: "廃ビルの一室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "部屋の中に、重苦しい沈黙が訪れた。"
     },
     {
         scene: "廃ビルの一室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典も言葉を失い、ただ私の肩を抱く手に力を込めることしかできない。"
     },
     {
         scene: "廃ビルの一室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "──チリリリリンッ！"
     },
     {
         scene: "廃ビルの一室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "その静寂を切り裂くように、今度はミカくんのポケットでスマートフォンの着信音がけたたましく鳴り響いた。"
     },
     {
         scene: "廃ビルの一室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ミカくんは画面を確認すると、気まずそうに私へと視線を向けた。"
     },
     {
@@ -4164,8 +3314,6 @@ export const scenarioData = [
     },
     {
         scene: "廃ビルの一室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ミカくんはそう説明しながら、通話ボタンを押して耳元に当てた。"
     },
     {
@@ -4176,8 +3324,6 @@ export const scenarioData = [
     },
     {
         scene: "廃ビルの一室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "スピーカーにしているわけでもないのに、静まり返った室内には、焦ったような教授の声が漏れて聞こえてくる。"
     },
     {
@@ -4206,8 +3352,6 @@ export const scenarioData = [
     },
     {
         scene: "廃ビルの一室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "隣からスピーカー越しに聞こえる声に向かって、睦典が悲痛な声をあげる。けれど、電話の向こうの教授はひどく痛ましい、けれど冷静な声で事実を告げた。"
     },
     {
@@ -4218,8 +3362,6 @@ export const scenarioData = [
     },
     {
         scene: "廃ビルの一室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "それだけを一方的に話すと、通話はブツリと途切れてしまった。プー、プー、と無機質な音が薄暗い部屋に虚しく響く。"
     },
     {
@@ -4230,8 +3372,6 @@ export const scenarioData = [
     },
     {
         scene: "廃ビルの一室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典が不安そうに、けれど私を安心させるように、そっと肩に手を置いて呟いた。"
     },
     {
@@ -4242,8 +3382,6 @@ export const scenarioData = [
     },
     {
         scene: "廃ビルの一室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "凪砂がスマートフォンの画面から目を離し、珍しく真面目なトーンで窓の外を見やる。街のあちこちから、未だに黒い煙が立ち上っていた。"
     },
     {
@@ -4254,8 +3392,6 @@ export const scenarioData = [
     },
     {
         scene: "廃ビルの一室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ミカくんがそう言って、慎重に現状を分析しようと言葉を紡ぐ。私や睦典を連れての移動はリスクが高すぎる、そう言いたげな彼の言葉を、私は遮った。"
     },
     {
@@ -4272,8 +3408,6 @@ export const scenarioData = [
     },
     {
         scene: "廃ビルの一室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ミカくんが驚いたように黒い瞳を丸くする。私はぎゅっと拳を握りしめ、自分に言い聞かせるように言葉を重ねた。"
     },
     {
@@ -4284,8 +3418,6 @@ export const scenarioData = [
     },
     {
         scene: "廃ビルの一室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "怖いのは山々だ。外に出れば、またあの大男や、恐ろしい【キメラ】に襲われるかもしれない。身体の震えは止まらないけれど、私を気遣ってくれた教授のことを考えると、どうしても居ても立ってもいられなかった。"
     },
     {
@@ -4296,8 +3428,6 @@ export const scenarioData = [
     },
     {
         scene: "廃ビルの一室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典が私の前に一歩踏み出し、頼もしく胸を叩く。その真っ直ぐな言葉に、凪砂がくすくすと意地悪そうに笑った。"
     },
     {
@@ -4308,8 +3438,6 @@ export const scenarioData = [
     },
     {
         scene: "廃ビルの一室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "いつもなら「なんだとコラ！」と怒鳴り散らすはずの睦典が、珍しく静かに、けれど底知れない怒りを宿した瞳で凪砂を見据えた。"
     },
     {
@@ -4320,14 +3448,10 @@ export const scenarioData = [
     },
     {
         scene: "廃ビルの一室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "その、覚悟が決まりすぎている睦典の言い回しに、私はほんの少しだけ妙な引っかかりを覚えた。ただの学校の友人のセリフにしては、どこか重すぎるような、そんな違和感。"
     },
     {
         scene: "廃ビルの一室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "けれど、今はそれを突き詰めている時間なんてない。私は深く、深く呼吸をして、胸のザワつきを押し殺した。"
     },
     {
@@ -4338,20 +3462,14 @@ export const scenarioData = [
     },
     {
         scene: "廃ビルの一室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私たちは覚悟を決め、ヒルミ教授が待つ大学の研究室へと向かうため、再び廃ビルの階段を駆け下り始めた。",
     },
     {
         scene: "廃ビルの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "廃ビルを飛び出した私たちを待っていたのは、夜の闇に紛れて街を蹂躙する、異形の怪物──【キメラ】たちの群れだった。",
     },
     {
         scene: "廃ビルの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "人工月の青い光に照らされた街路は、割れたアスファルトと炎上する車の黒煙で埋め尽くされている。大学までの距離は、無能力者の私にとっては果てしなく遠い死線そのものだった。",
     },
     {
@@ -4362,20 +3480,14 @@ export const scenarioData = [
     },
     {
         scene: "廃ビルの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ミカくんの鋭い警告と同時に、ビルの壁を蹴って、巨大な蜘蛛のような脚を生やした【キメラ】が飛びかかってきた。",
     },
     {
         scene: "廃ビルの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ミカくんは一切怯むことなく地を蹴ると、低空へ滑り込むようにしてその爪撃をかわす。すれ違いざま、手首を返して逆手に握った軍用ナイフを、【キメラ】の無数にある眼球へと正確に突き刺した。",
     },
     {
         scene: "廃ビルの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ギチチチチッ、と怪物が悲鳴を上げる。ナイフを引き抜き、返り血を浴びながら着地するミカくんの動きには、およそ普通の大学生とは思えない、冷徹な戦闘の「慣れ」が染み付いていた。",
     },
     {
@@ -4386,14 +3498,10 @@ export const scenarioData = [
     },
     {
         scene: "廃ビルの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そのすぐ隣、犬と猛禽類が混ざったような獰猛な【キメラ】が、鋭い牙を剥いて凪砂の首元へ跳びかかる。",
     },
     {
         scene: "廃ビルの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "しかし凪砂は、まるでスローモーションの映像でも見ているかのように、一歩だけ横にスライドしてそれを避けた。コートの裾をひらりと翻し、風を切るような爪の軌道を、髪の毛一筋の差ですべて見切っている。",
     },
     {
@@ -4404,26 +3512,18 @@ export const scenarioData = [
     },
     {
         scene: "廃ビルの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "彼の無慈悲な一言が空気を切り裂く。次の瞬間、凪砂の姿が掻き消えた。",
     },
     {
         scene: "廃ビルの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "凪砂は避けた勢いのまま、【キメラ】の巨体を軽く足蹴にして軌道を変えさせ、私から遠ざける。",
     },
     {
         scene: "廃ビルの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "武器も持たず、異能の光すら見せないのに、ただの『反射神経』だけで化け物を翻弄していくその姿は、見ていて鳥肌が立つほどに不気味だった。",
     },
     {
         scene: "廃ビルの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そして睦典は、とにかく私の前に立ち塞がり、その大きな身体を盾にして頑張ってくれていた。",
     },
     {
@@ -4434,14 +3534,10 @@ export const scenarioData = [
     },
     {
         scene: "廃ビルの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "迫り来る小型の【キメラ】の体当たりを、睦典はガチッと両腕で受け止める。凄まじい衝撃に足元のアスファルトが削れるが、睦典は歯を食いしばってそれを押し返した。",
     },
     {
         scene: "廃ビルの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "だが、その背後──瓦礫の影から、もう一匹の【キメラ】が、鉄塊のような太い尾を鞭のようにしならせて睦典の脇腹を強襲した。",
     },
     {
@@ -4457,14 +3553,10 @@ export const scenarioData = [
     },
     {
         scene: "廃ビルの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そう、それはまるで、彼がかつて、この『化け物』の群れに慣れ親しんでいたかのような──。",
     },
     {
         scene: "廃ビルの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "鈍い衝撃音が響き、睦典の巨体が真横へ激しく吹き飛ばされる。近くのコンクリート壁に背中から叩きつけられ、激しい土煙が舞い上がった。",
     },
     {
@@ -4475,14 +3567,10 @@ export const scenarioData = [
     },
     {
         scene: "廃ビルの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "心臓が凍りつく。あんな一撃、無能力者の人間が喰らえば、骨が砕けて内臓が破裂してもおかしくない。",
     },
     {
         scene: "廃ビルの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "血の気が引く思いで駆け寄ったけれど──土煙の向こうで、睦典は何事もなかったかのように、ゆっくりと上体を起こした。",
     },
     {
@@ -4493,8 +3581,6 @@ export const scenarioData = [
     },
     {
         scene: "廃ビルの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ボロボロに破れた衣服の隙間から見える肌を買いま見るが、血の一滴すら流れていない。大きな痣すらなく、完全に……無傷だ。",
     },
     {
@@ -4505,68 +3591,46 @@ export const scenarioData = [
     },
     {
         scene: "廃ビルの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典はいつもと変わらない優しい笑顔で、汚れた服を払いながら立ち上がる。そっか、怪我がなくて本当に良かった。",
     },
     {
         scene: "廃ビルの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そう安堵しかけたけれど、私の身体にも別の「異変」が起き始めていた。",
     },
     {
         scene: "廃ビルの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "（何、これ……身体が、熱い……？）",
     },
     {
         scene: "廃ビルの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "息を切らす私の肺に、外気に充満するひどく冷たくて、けれどドロドロとした不気味な気配──【キメラ】たちが撒き散らしている異能の残滓のようなものが、じわじわと細胞の奥深くまで流し込まれているような感覚がする。",
     },
     {
         scene: "廃ビルの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "視界が急激に歪み、頭の芯がカッカと焼けつくように熱くなっていく。",
     },
     {
         scene: "廃ビルの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "（ダメ……っ！ 気を確かに持って、私……！ 今倒れたら、みんなの足手まといに……！）",
     },
     {
         scene: "廃ビルの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "自分の両頬をパチンと強く叩き、無理やり意識を現実へと繋ぎ止める。",
     },
     {
         scene: "廃ビルの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "けれど、地獄は終わらない。",
     },
     {
         scene: "廃ビルの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "さらに大型の【キメラ】が地響きを立てて現れ、ミカくんと凪砂がそれを迎撃するために前方へと躍り出た。",
     },
     {
         scene: "廃ビルの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典も私を背に庇いながら、押し寄せる化け物の群れに肉体一つで立ち向かっていく。",
     },
     {
         scene: "廃ビルの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "激しい爆風、巻き上がる土煙、視界を覆い尽くす黒煙と炎の照り返し──。",
         //煙のエフェクトで、立ち絵がだんだん見えなくなっていく演出
     },
@@ -4584,14 +3648,10 @@ export const scenarioData = [
     },
     {
         scene: "廃ビルの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "誰かの声が聞こえた気がして、私は煙の中へ必死に手を伸ばした。",
     },
     {
         scene: "廃ビルの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "けれど、急激に襲ってきた目眩のせいで足元がふらつき、瓦礫に躓いて激しく転倒してしまう。",
     },
     {
@@ -4602,38 +3662,26 @@ export const scenarioData = [
     },
     {
         scene: "廃ビルの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "慌てて起き上がり、煙の向こうを見渡したけれど……。",
     },
     {
         scene: "廃ビルの外",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そこにはもう、誰もいなかった。激しい戦闘の音だけが、少し離れた場所から響いてくる。",
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "（嘘……はぐれちゃった……？）",
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "気がつくと私は、混乱の中でみんなとはぐれ、夜の大学の敷地内で、完全に一人きりで迷子になっていた。",
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "静まり返ったキャンパス。自分の荒い呼吸の音と、身体の奥に流れ込んでくる謎の熱さの恐怖に押しつぶされそうになりながら、私はふらふらと、前方の木々が鬱蒼と茂る庭園のほうへと足を進めた。",
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "青い人工月の光が、冷たく木々の隙間から差し込んでいる。その光の真下に、ぽつんと、静かに佇む人影が見えた。",
     },
     {
@@ -4644,8 +3692,6 @@ export const scenarioData = [
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "炎の熱気も、血の臭いも、化け物の咆哮も。その人の周りだけは、まるで最初から存在しないかのように、凛として、儚く、美しい静寂が守られている。",
     },
     {
@@ -4662,20 +3708,14 @@ export const scenarioData = [
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そこにいたのは、間違いなく、この前お散歩をして別れたばかりの満だった。",
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私の悲痛な声に気づいて振り返った彼の瞳に、いつもの、すべてを包み込んでくれるような深い優しさが灯る。",
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私は目から溢れそうになる涙を拭うことも忘れて、縋り付くような思いで、満の元へと駆け出した。",
     },
     {
@@ -4686,20 +3726,14 @@ export const scenarioData = [
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "地獄のような有様の中で見つけた、唯一の救い。私は泣き出しそうなのを必死に堪え、彼を目掛けて一心不乱に駆け出した。",
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "満も私に気づいて、愛おしそうな表情でその両腕を広げてくれる。"
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "あと数歩で、その温かい胸の中に飛び込める──まさに、その瞬間だった。",
     },
     {
@@ -4708,8 +3742,6 @@ export const scenarioData = [
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "重苦しく、肉を、骨を無慈悲に破壊する鈍い音が、静かな庭園に響き渡った。",
     },
     {
@@ -4720,32 +3752,22 @@ export const scenarioData = [
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "目の前の光景が、一瞬、理解できなかった。",
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "スローモーションのように世界が止まる。",
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "満の胸の真ん中から、ドス黒い、禍々しい鉄の剣が鋭く突き出ていた。",
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "彼の背後の闇からいつの間にか現れていたのは、頭からつま先まで、禍々しい漆黒の鎧に身を包んだ──",
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "──異様な存在【黒騎士】。",
     },
     {
@@ -4756,8 +3778,6 @@ export const scenarioData = [
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "満の綺麗な瞳から、急速に光が失われていく。彼は血を吐きながら、最期まで私に向けて手を伸ばそうとして──。",
     },
     {
@@ -4768,14 +3788,10 @@ export const scenarioData = [
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私の絶叫が響き渡る中、【黒騎士】は一切の感情を排した動作で、満の身体から無慈悲に剣を引き抜いた。",
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "支えを失った満の身体が、まるで魂の抜けた人形のように、ドサリと冷たい地面へ崩れ落ちる。",
     },
     {
@@ -4786,8 +3802,6 @@ export const scenarioData = [
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "狂ったように満の元へ駆け寄ろうとした。けれど、その身体が前に進むことはなかった。",
     },
     {
@@ -4798,14 +3812,10 @@ export const scenarioData = [
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "後ろから、まるで子猫の首根っこでも掴むかのような圧倒的な力で、グイッと服の襟を引っ掴まれて持ち上げられる。",
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "恐怖と怒りで涙をボロボロと流しながら振り返ると、そこにいたのは──。",
     },
     {
@@ -4816,14 +3826,10 @@ export const scenarioData = [
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "眼帯をした、あの大男──アジトで私を監禁していた大男だった。",
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "なぜここにいるのか、なぜ私を捕まえたのか。そんなことはどうでもよかった。",
     },
     {
@@ -4834,8 +3840,6 @@ export const scenarioData = [
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "暴れて大男の岩のような腕を叩くけれど、びくともしない。大男は、黒い鎧だけを一身に睨みつけていた。",
     },
     {
@@ -4852,14 +3856,10 @@ export const scenarioData = [
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "煙の向こうから、ミカくん、睦典、凪砂の三人が息を切らせて飛び込んできた。",
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典は、私を掴んでいる大男を見るなり、怒髪天を突く勢いで大男を睨みつける。",
     },
     {
@@ -4870,32 +3870,22 @@ export const scenarioData = [
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "大男が鋭い声で睦典を制した。その視線の先──満の亡骸の前に立つ、圧倒的な死のオーラを放つ【黒騎士】の存在に、適応者であるミカくんも凪砂も、一瞬で総毛立っているのが分かった。",
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "満が目の前で刺し殺された。その現実があまりにも凄惨すぎて、頭が現実を拒否し、どこか悪い夢を見ているような感覚に陥る。",
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そんな私のポケットの中で、チリリリリ、と場違いなスマートフォンの電子音が鳴り響いた。",
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "画面には『ヒルミ教授』の文字。",
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私はガタガタと震える指先で、画面をスワイプして耳に当てた。",
     },
     {
@@ -4912,14 +3902,10 @@ export const scenarioData = [
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "その時、【黒騎士】が、満を無慈悲に貫いたその大剣を、ゆっくりとこちらへ向けて構えた。",
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "兜の奥の、血のように赤い眼光が、明確に私たちをロックオンする。",
     },
     {
@@ -4936,20 +3922,14 @@ export const scenarioData = [
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "教授の悲鳴がスピーカーから漏れた瞬間、【黒騎士】の姿がブレた。",
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ドォッッ！！！と、空気が爆発するような凄まじい速度。",
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "一瞬で距離を詰めてきた【黒騎士】が、私たちの首を一網打尽にする軌道で、大剣を真横に一閃させる。",
     },
     {
@@ -4966,14 +3946,10 @@ export const scenarioData = [
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "大男が私を小脇に抱えたまま凄まじい力でバックステップする。睦典がその肉体で爆風を受け止め、凪砂が冷や汗を流しながら執念で刃を紙一重でかわした。",
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ミカくんも、周りの凶暴化した【キメラ】を一つ一つ振りほどいていた。"
     },
     {
@@ -4984,8 +3960,6 @@ export const scenarioData = [
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "地面が、背後の大木が、触れてもいないのに衝撃波だけで真っ二つに裂ける。",
     },
     {
@@ -4996,20 +3970,14 @@ export const scenarioData = [
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "大男の合図に、私たちは満の遺体を残したまま、大学の敷地内を全力で巻き戻るように逃げ出した。",
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "背後からは、鎧の擦れる不気味な音と、地を割るような絶望の足音が、ものすごいスピードで追いかけてきていた──。",
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私は一心不乱にキャンパスを走った。だけど──。",
     },
     {
@@ -5021,8 +3989,6 @@ export const scenarioData = [
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         type: "choice",
         text: "満のあの光景を思い出して、力が抜けてしまったのかどこかに足を取られてしまい、咄嗟に私は……。",
         choices: [
@@ -5044,14 +4010,10 @@ export const scenarioData = [
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "低く、耳に心地よい声が頭上から降ってくる。 抱きとめられるようにしてその胸に飛び込んでしまった私は、慌てて顔を上げた。"
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "端正な顔立ちに、完璧に計算されたような優しい笑みを浮かべた青年──凪砂さんだった。"
     },
     {
@@ -5062,8 +4024,6 @@ export const scenarioData = [
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "走りながら一切息を切らさず、それどころか楽しそうに私を見つめる。",
     },
     {
@@ -5080,8 +4040,6 @@ export const scenarioData = [
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私の必死の訴えに、凪砂さんは一瞬だけいつもの笑みを消し、背後の不穏な空気へと視線を走らせた。",
     },
     {
@@ -5098,14 +4056,10 @@ export const scenarioData = [
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "凪砂さんは私の手を引いて力強く走り出した。睦則や他の人の姿が見えないことを聞こうとしようとしたけど、そんな暇を与えられないまま引っ張られてしまう。 "
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "けれど、走るスピードが上がるにつれて、私の腕を掴む彼の強張った手に、何か異様な熱を感じ始める。 "
     },
     {
@@ -5116,34 +4070,24 @@ export const scenarioData = [
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "掴まれた腕の痛みに耐えながら、私は必死に声を張り上げ、自分が通う月科学エネルギー学部の研究棟へと凪砂さんを案内した。"
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "背後から迫る黒騎士の凄まじいプレッシャーに背中を押されるようにして、私たちは廊下を駆け抜け、目的の部屋へと滑り込む。"
     },
     {
         scene: "教授の研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "乱暴にドアを閉めて鍵をかける。 たどり着いた教授の研究室。",
         bg: "lab_professor_room_dark",
         action: "HIDE_NAGISA_LEFT"
     },
     {
         scene: "教授の研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "静まり返った室内には、無数のモニターが青白い光を放ち、部屋の中央には信じられないほど巨大な、金属製のハッチが口を開けていた。"
     },
     {
         scene: "教授の研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そこには白衣を羽織り、眼鏡の奥で相変わらず本心の読めない薄笑いを浮かべたヒルミ教授が、静かにデスクに腰掛けていた。"
     },
     {
@@ -5155,8 +4099,6 @@ export const scenarioData = [
     },
     {
         scene: "教授の研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "教授は突然の侵入者である私たちを見やると、ニヤリと口元を歪め、凪砂さんを値踏みするように目を細めた。"
     },
     {
@@ -5167,21 +4109,15 @@ export const scenarioData = [
     },
     {
         scene: "教授の研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "部屋の奥から、いつもと変わらない白衣を羽織り、眼鏡の奥の瞳を細めたヒルミ教授が歩み寄ってきた。外の惨劇や追っ手の恐怖から、ようやく彼のもとへ逃げ込めた安堵で膝が震える。",
         action: "HIDE_PROFESSOR_LEFT"
     },
     {
         scene: "教授の研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "しかし、教授は私たちの乱れた息を気にする風でもなく、部屋の中央にある巨大なハッチ──いや、地下へと続く『ロケット』の搭乗口を厳しい目で見つめた。",
     },
     {
         scene: "教授の研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "その手元にある管制モニターには、カウントダウンの赤い数字が冷酷に刻まれている。",
     },
     {
@@ -5193,8 +4129,6 @@ export const scenarioData = [
     },
     {
         scene: "教授の研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ヒルミ教授は、私たちに、あそこの月へ行けって…？"
     },
     {
@@ -5205,14 +4139,10 @@ export const scenarioData = [
     },
     {
         scene: "教授の研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "朔良の隣で、凪砂さんが冷徹な声を響かせた。 腕を組み、教授を真っ直ぐに見据えるその態度は、どこまでも冷静。けれど、有無を言わせない断固とした拒絶の意志が、その鋭い瞳の奥に宿っている。"
     },
     {
         scene: "教授の研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "しかし、デスクの向こうに佇む教授の背中は、微塵も揺るがなかった。"
     },
     {
@@ -5223,20 +4153,14 @@ export const scenarioData = [
     },
     {
         scene: "教授の研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "白衣のポケットに手を入れ、静かに、けれど逃げ道を塞ぐような重みのある声で教授が諭す。"
     },
     {
         scene: "教授の研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "その頑なな態度に、凪砂さんは「はぁ……」と深いため息をつき、大袈裟に肩をすくめてみせた。隠そうともしない、ひどく面倒くさそうな顔だ。"
     },
     {
         scene: "教授の研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そんな二人の緊張感などお構いなしに、教授はデスクの上のモニターを指し示した。"
     },
     {
@@ -5253,8 +4177,6 @@ export const scenarioData = [
     },
     {
         scene: "教授の研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そう言って教授は、私たちに文字がびっしり書かれた薄い紙束──教授の手記を手渡した。"
     },
     {
@@ -5265,8 +4187,6 @@ export const scenarioData = [
     },
     {
         scene: "教授の研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "不穏な空気とあまりのスケールの話に、私は手渡された紙束を握りしめたまま、声を震わせる。置いていこうとしているかのような教授の物言いに、胸のざわつきが止まらない。"
     },
     {
@@ -5277,8 +4197,6 @@ export const scenarioData = [
     },
     {
         scene: "教授の研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "教授は躊躇いなく、コンソールのコントロールパネルにある、赤い起動ボタンを押し込んだ。"
     },
     {
@@ -5288,8 +4206,6 @@ export const scenarioData = [
     },
     {
         scene: "教授の研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "その瞬間、遠くの防壁を力任せに叩き割るような、凄まじい爆音が響き渡った。ビリビリと足元から研究室全体が激しく揺れる。 間違いない。アイツが、すぐそこまで来ている。"
     },
     {
@@ -5300,14 +4216,10 @@ export const scenarioData = [
     },
     {
         scene: "教授の研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "背後で迫る危機を感じ取ったのか、凪砂さんが髪をくしゃりと掻き回しながら、観念したように息を吐く。"
     },
     {
         scene: "教授の研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "口元は相変わらず不機嫌そうに歪んでいるけれど、その足は迷いなく、起動を始めた脱出艇（ロケット）のハッチへと向かっていた。"
     },
     {
@@ -5324,8 +4236,6 @@ export const scenarioData = [
     },
     {
         scene: "教授の研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "凪砂さんは私の腕を乱暴に、だけど確実に安全な機内へと引っ張り上げる。"
     },
     {
@@ -5336,56 +4246,38 @@ export const scenarioData = [
     },
     {
         scene: "教授の研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "──教授のその言葉が最後の警告だったかのように、私たちが乗り込んだ直後、重厚なハッチが金属音を立てて完全に閉鎖された。"
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ロケットの内部は、無機質な計器類と二人分のシートがあるだけの、おそろしく狭い空間だった。"
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私たちがシートになだれ込み、安全ベルトを締めると同時に、頭上のハッチが金属音を立てて完全に閉鎖される。"
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "重苦しい密閉音が響き、外の音が一切聞こえなくなった。"
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "──途端に訪れる、心臓が痛くなるほどの無言。"
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ひどく気まずい空気が、狭い機内に充満していく。隣に座る凪砂さんの横顔を盗み見ながら、私は押し潰されそうな不安を抱えていた。"
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そもそもこの人は、学校関係者でもないのに私の後を付け回してくる、何を考えているのか全く分からない人だ。"
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "先ほどのキメラ騒動以上に、この先彼と二人きりでやっていけるのか、不安で頭がおかしくなりそうだった。"
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そんな私のガチガチの緊張を破ったのは、あまりにも場違いな彼の声だった。"
     },
     {
@@ -5402,20 +4294,14 @@ export const scenarioData = [
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私は思わず声を裏返して、隣のシートを振り返った。"
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "何言ってるのこの人！ どれだけ街が大惨事だったか、あの大パニックを特等席で見ていながら、どうしてそんな冗談が出てくるんだろう……！？"
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "抗議の言葉を続けようとした、その時だった。"
     },
     {
@@ -5426,26 +4312,18 @@ export const scenarioData = [
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "凪砂さんは何も言わず、ただじっと私を見つめていた。"
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ハッとして彼の瞳の奥を覗き込んだ瞬間、私の背筋に冷たいものが走る。"
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "──目が、笑っていない。"
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "言葉とは裏腹に、そこにあるのは底冷えするような昏い光。冷徹で、全てを見透かすような鋭い瞳が、まっすぐに私を射抜いていた。"
     },
     {
@@ -5456,14 +4334,10 @@ export const scenarioData = [
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そのあまりの鋭さと威圧感に気圧され、私は息を呑んで思わず目をそらしてしまう。"
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "すると、私の反応を待っていたかのように、凪砂さんはふっと喉を鳴らした。"
     },
     {
@@ -5474,20 +4348,14 @@ export const scenarioData = [
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "楽しげに細められた彼の瞳の奥に、私は、先ほどの言葉がただの冗談ではない、もっと別の「意図」があるような気がしてならなかった。"
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "それが一体どういう意味なのか、震える声を振り絞って問おうとした、まさにその時──。"
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "──ピピッ、ピピッ、ピピピピピピピッ！！！"
     },
     {
@@ -5498,8 +4366,6 @@ export const scenarioData = [
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "冷酷な機械音声と同時に、フワリと身体が浮き上がるような感覚──重力を失い、ロケットがその推進力を完全に失ったことを意味していた。"
     },
     {
@@ -5516,20 +4382,14 @@ export const scenarioData = [
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "窓の外で不気味に輝く青い月が、激しく回転し始める。"
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "世界がひっくり返るような全方位からのGと、摩擦による激しい熱、そして引き裂かれそうな金属音が機体を包み込む。"
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ガガガガガガガッ！！！ と激しく揺れる視界の中、私は、ただ迫り来る死の恐怖に、声を上げることもできず目を見開いた。"
     },
     {
@@ -5540,32 +4400,22 @@ export const scenarioData = [
     },
     {
         scene: "ロケット内部(墜落後)",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "重い瞼をこじ開けると、視界に飛び込んできたのは、無機質な計器類がひしゃげ、激しく火花を散らしているロケットの無惨な内部だった。"
     },
     {
         scene: "ロケット内部(墜落後)",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "コックピットを包むのは、不気味なほどの静寂と、どこか鉄の匂いが混ざった冷たい空気。"
     },
     {
         scene: "ロケット内部(墜落後)",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "額に鈍い痛みを感じながら、私がかろうじて上体を起こすと──少し離れた場所で、パチパチと音を立てる制御パネルの残骸に、静かに手を触れている人影があった。"
     },
     {
         scene: "ロケット内部(墜落後)",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "凪砂さんだ。彼は壊れた機体の周辺を淡々と探索していたようだった。"
     },
     {
         scene: "ロケット内部(墜落後)",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私が身動きをさせた気配に気づき、彼は音もなくこちらへと振り返る。"
     },
     {
@@ -5576,14 +4426,10 @@ export const scenarioData = [
     },
     {
         scene: "ロケット内部(墜落後)",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "怪我一つない涼しい顔で、凪砂さんはいつもの温度のない笑みを浮かべてそう言いた。"
     },
     {
         scene: "ロケット内部(墜落後)",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "あの絶望的な墜落の最中にいたとは到底思えない彼の飄々とした態度に、私は唖然としながらも、痛む身体をなんとか動かして起き上がる。"
     },
     {
@@ -5600,26 +4446,18 @@ export const scenarioData = [
     },
     {
         scene: "ロケット内部(墜落後)",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "呆れたように吐き捨てられた教授への批判に、私の胸がちくりと痛む。確かに信じられないほど危険な目に遭ったけれど、あの人はあの状況で、命懸けで私たちを逃がしてくれた人だ。"
     },
     {
         scene: "ロケット内部(墜落後)",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そう反論したい気持ちが喉まで出かかったけれど、目の前の惨状を見れば、彼の言い分ももっともで、私は言葉を飲み込むしかなかった。"
     },
     {
         scene: "ロケット内部(墜落後)",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私たちはこれからどうなってしまうんだろう。"
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "不安を紛らわせるように、私はよろよろと立ち上がり、大破したロケットの外へと這い出した。"
     },
     {
@@ -5630,44 +4468,30 @@ export const scenarioData = [
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "外に足を踏み出した瞬間、私はその光景に息を呑んだ。"
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そこは、私たちがよく知る大学のキャンパスでも、見慣れた街並みでもなかった。"
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "地面は白く乾いた砂のような岩肌に覆われ、周囲にはいつの時代のものかもわからない、不気味に風化した巨大な建造物の「廃墟」が、墓標のようにどこまでも連なっている。"
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そして見上げれば──空には、私たちがさっきまでいたはずの地球が、世界のすべてを支配するかのように異常な大きさで君臨していた。"
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "青と白の、息を呑むほど美しい、私たちの故郷。"
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "空気はある。呼吸もできる。けれど、世界から一切の生命の気配が消え去ったような、背筋が凍るほどの寒気と静けさが、この不気味な廃墟を支配していた。"
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そこには、あの禍々しい青い人工月とは明らかに違う、優しく、けれど圧倒的な存在感を放つ『黄金色の天体』が静かに浮かんでいた。"
     },
     {
@@ -5678,14 +4502,10 @@ export const scenarioData = [
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "凪砂さんが地球のすぐ傍ら、天の特等席を指差した。"
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "教科書や古い資料の中でしか見たことのなかった、本物の月。"
     },
     {
@@ -5696,26 +4516,18 @@ export const scenarioData = [
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "人工の光に汚されていない、柔らかい光を放つその姿に、私の胸は震えた。ずっとおとぎ話だと思っていた世界の真実が、今、目の前に広がっている。"
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "お父さんの言っていたことは、本当だったんだ。"
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "……お父さん。"
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "あの飄々とした教授の言葉が、耳の奥で蘇る。"
     },
     {
@@ -5726,20 +4538,14 @@ export const scenarioData = [
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私たちに課せられた、あまりにも重大な義務。"
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "これから向かう場所には、きっと世界の謎も、そして──突然私の前から姿を消した、お父さんの行方の手がかりも眠っているはずだ。"
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "怖い。足が震えるほど怖いけれど、行かなくちゃいけない。"
     },
     {
@@ -5750,32 +4556,22 @@ export const scenarioData = [
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "冷たい声に意識を引き戻される。"
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "振り返ると、凪砂さんは腕を組んだまま、つまらなそうに私を見下ろしていた。彼だってこの本物の月を見るのは初めてのはずなのに、感動する素振りどころか、その瞳には一切の興味がなさそうに冷えている。"
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "……やっぱりこの人、どこかズレてる。"
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "いつだって完璧な笑顔で周囲を魅了しているけれど、ふとした瞬間にこういう不気味なまでの冷淡さが顔を出す。"
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "前々から、それこそ一番最初に出会った時から薄々そう思ってはいたけれど──この世界の崩壊を前にしても、彼の態度はあまりにも他人事のようだった。"
     },
     {
@@ -5786,38 +4582,26 @@ export const scenarioData = [
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "凪砂さんはいつもの優しい微笑みを貼り直すこともせず、ぶっきらぼうに手を差し出してきた。"
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私は渋々、ロケット出発前に教授に手渡された紙面をポケットから取り出す。"
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "よかった。不時着した時に無くしてしまったのではないかと一瞬不安に思ったけど、折りたたんで私のポケットの中に入っていた。"
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ポケットから、出発の間際にヒルミ教授から押し付けられたクシャクシャの紙を取り出す。"
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "それを凪砂さんの方へ差し出そうとした──その刹那。"
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "スッ、と凪砂さんが迷いなく一歩を踏み込み、私との距離を一気にゼロにした。"
     },
     {
@@ -5828,20 +4612,14 @@ export const scenarioData = [
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "あまりの突然さに息が止まる。"
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "肩が触れ合うどころではない。見上げる私の額に、彼の前髪がかすりそうなほどの超至近距離。凪砂さんが軽く頭を下げて私の手元を覗き込んできたため、耳のすぐ後ろに、彼の冷たい吐息がかかる。"
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "いくら紙を一緒に読むためとはいえ、あまりにも近すぎる。もう少し離れて読んでくれたっていいはずなのに、彼は後退する気配すら見せない。"
     },
     {
@@ -5852,14 +4630,10 @@ export const scenarioData = [
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "耐えかねて、私は紙を持ったまま小さく悲鳴を上げて身をよじった。"
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "すると、私の過剰な反応が面白かったのか、凪砂さんは顔を近づけたまま「ふっ」と意地の悪い笑みをこぼした。"
     },
     {
@@ -5870,20 +4644,14 @@ export const scenarioData = [
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "意地悪な甘いトーンが鼓膜を震わせる。"
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "本当に見えにくいだけなのか、それとも私をからかって楽しんでいるのか──やっぱりこの人の考えていることは、さっぱり分からない。"
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "不意に跳ね上がってしまった心拍数を必死に無視しながら、私は凪砂から逃げるように、強張った指先で紙面の字を読み進めることにした。"
     },
     {
@@ -6020,20 +4788,14 @@ export const scenarioData = [
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "手記を読み終えた凪砂さんが、これみよがしに溜息をつく。"
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私の肩に触れるか触れないかの距離から、彼はすっと身を起こした。先ほどまでの、吐息が届くほどの至近距離が嘘のように、その足取りは冷淡で容赦がない。"
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私の心臓がまだうるさく鳴っていることなんて、最初から視界に入っていないみたいに。"
     },
     {
@@ -6050,8 +4812,6 @@ export const scenarioData = [
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私が紙を見つめたまま小さく呟くと、凪砂さんはふっと鼻で笑った。",
     },
     {
@@ -6080,26 +4840,18 @@ export const scenarioData = [
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "その言い方に、胸の奥がチクリと痛む。出会ったばかりの頃の、あの底抜けに優しかった彼はどこに行ってしまったんだろう。",
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "今目の前にいるのは、他人の感情なんてどうでもいいと切り捨てているような、冷酷な見知らぬ男だった。",
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "気まずい沈黙が、冷たい空気の中に満ちていく。彼が何を考えているのか分からないし、向こうも私に歩み寄るつもりはさらさらないらしい。",
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "けれど、こんな不気味な場所で、私たちは互いしか頼る相手がいないのだ。",
     },
     {
@@ -6110,14 +4862,10 @@ export const scenarioData = [
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私は凪砂さんから目を背け、これ以上の会話を拒むようにして歩き出した。",
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "紙面を握り締め、不気味な警告灯が明滅する研究所の不気味な廊下へと、一歩を踏み出した。"
     },
     //ここでミニゲームを挟む
@@ -6129,8 +4877,6 @@ export const scenarioData = [
     },
     {
         scene: "制御室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "薄暗い制御室の端末からプラスチックの小さなチップを抜き取り、私は大きく息を吐き出した。手元には、最奥のゲートを開くためのすべてのフラグメントが揃っている。"
     },
     {
@@ -6141,14 +4887,10 @@ export const scenarioData = [
     },
     {
         scene: "制御室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "振り返ると、凪砂さんは壁に背を預けたまま、苛立ったように前髪をかき上げている。その表情はいつになく険しく、心なしか視線が定まっていない。"
     },
     {
         scene: "制御室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "激しい眩暈に耐えているかのように、その指先は小さく震えていた。"
     },
     {
@@ -6165,32 +4907,22 @@ export const scenarioData = [
     },
     {
         scene: "制御室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ピシャリと言い放たれ、私は言葉を失う。機密ファイルで読んだ、あの恐ろしい文字が脳裏をよぎった。"
     },
     {
         scene: "制御室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "──過負荷による感覚拒絶。彼は今、私の声すら、脳を焼き尽くす濁流の一部として苦しんでいるのかもしれない。そんな私の気遣いすら、今の彼には煩わしいだけのようだった。"
     },
     {
         scene: "制御室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ギスギスとした沈黙を引きずったまま、私たちは歩を進める。"
     },
     {
         scene: "最深部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "曲がり角を過ぎ、私たちはついに、研究所の最深部へとたどり着いた。"
     },
     {
         scene: "最深部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "目の前にそびえ立つのは、重厚な鋼鉄の巨大なゲート。その中央には、はめ込み式のスロットがあり、これまで集めてきたデータチップを差し込むようになっている。"
     },
     {
@@ -6201,8 +4933,6 @@ export const scenarioData = [
     },
     {
         scene: "最深部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ようやくここまで来られた安堵から、深く息を吸い込もうとした──その瞬間だった。"
     },
     {
@@ -6213,8 +4943,6 @@ export const scenarioData = [
     },
     {
         scene: "最深部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "見ると、凪砂さんが自分の頭をひどく乱暴に抱え込み、苦しそうに顔を歪めている。"
     },
     {
@@ -6225,8 +4953,6 @@ export const scenarioData = [
     },
     {
         scene: "最深部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "慌てて駆け寄ろうとした私を、突然、強い衝撃が襲った。凪砂さんが、遮二無二に私を引っ張り込み、無言で、狂ったような力で抱きついてきたのだ。"
     },
     {
@@ -6237,20 +4963,14 @@ export const scenarioData = [
     },
     {
         scene: "最深部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "あまりの力に骨が軋みそうになる。息が詰まるほどの強引な抱擁。けれど、私に触れたその瞬間から、彼の荒い呼吸がすうっと静まっていくのが分かった。"
     },
     {
         scene: "最深部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "まるで、私の身体から流れ出る何かが、彼の脳内を狂わせていた濁流を瞬時に消し去っていくかのように──。"
     },
     {
         scene: "最深部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "驚きと混乱で固まる私を他所に、凪砂さんはすぐに腕の力を緩めると、何事も無かったかのようにすたすたとゲートの前へ歩き出し、背を向けた。"
     },
     {
@@ -6261,74 +4981,50 @@ export const scenarioData = [
     },
     {
         scene: "最深部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "本当に、この人の考えていることは分からない。さっきまであんなに冷たく私を突き放していたのに。残された腕の痛みをさすりながら、私は彼の冷徹な背中を見つめるしかなかった。"
     },
     {
         scene: "最深部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私は震える手で、揃えたデータチップをスロットへと差し込んでいく。カチリ、カチリと、ロックが解除される音が静まり返った空間に響く。"
     },
     {
         scene: "最深部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "──この扉の向こうに『コア』がある。"
     },
     {
         scene: "最深部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "重々しい駆動音が響き、鋼鉄の門がゆっくりと左右に開き始める。"
     },
     {
         scene: "最深部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "暗闇が口を開けていくその向こう側を凝視しながら、私の胸には、世界の謎だけでなく、凪砂という人間の──あの張り付いた笑顔の奥にある、冷酷で寂しい真の姿を知ることになるかもしれないという、確かな予感が込み上げていた。"
     },
     {
         scene: "最深部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "カチリ──。最後のチップが収まり、重厚なゲートがゆっくりと左右に開き始める"
     },
     {
         scene: "最深部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "空気の抜けるような低い音が響き、扉の向こうから、息を呑むほど美しく、そして冷徹な光が溢れ出した。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そこは、研究所の最奥。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "天井の一部がガラス張りになっており、そこから差し込む「本当の月の光」を浴びて、それは宙に浮かんでいた。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "白く輝く、手のひらサイズの球体──『コア』。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "心臓のように不規則に脈打つその球体からは、目に見えないほどの高密度なエネルギーが、波紋のように絶え間なく放出されている。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "周囲の計器類は狂ったように針を揺らし、部屋全体が微かにブーイングのような唸りを上げていた。"
     },
     {
@@ -6339,14 +5035,10 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "圧倒されて一歩退がった私の隣に並び、凪砂さんはその巨大な光の質量を、まるでショーウインドウの硝子ガラス越しに品定めするかのように、じっくりと観察し始めた。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "これだけのエネルギーを前にしているというのに、彼の瞳には恐怖も高揚も、何の感慨も見当たらない。ただ冷徹に、その構造や仕組みを頭の中で解体しているようだった。"
     },
     {
@@ -6357,20 +5049,14 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "まるで、落ちているゴミを拾って捨てるかのように、凪砂さんは軽々と言ってのけた。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "世界を破滅に導いている元凶を前にして、その態度があまりにも淡々としていて、私はただ彼の横顔を見つめることしかできない。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "教授の手記に書かれていたことを思い返す。",
     },
     {
@@ -6381,32 +5067,22 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ぽつりと呟いた言葉が、無機質な空間に虚しく響く。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私はただの無能力者だ。私には、コアに注ぎ込めるような力なんて何一つない。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "つまり、この世界の命運も、ここにたどり着くまでのすべてのリスクも、彼一人に任せるしかないということだ。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "いくら普段の態度がズレていて、冷酷な本性が見え隠れする人だとしても、やっぱり心配だった。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "手記にあった『大きなリスク』という不穏な言葉が、胸の奥で嫌な音を立てて渦巻いている。"
     },
     {
@@ -6417,8 +5093,6 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "思わず彼の顔を覗き込むと、凪砂さんは私の視線に気づき、いつも通りの、どこか人を食ったような笑みをふっと浮かべた。"
     },
     {
@@ -6435,20 +5109,14 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "からかうような物言いに反論したかったけれど、彼にかかる負担を思うとそれ以上は言葉が続かず、私は押し黙るしかなかった。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "もし、上手くいかなかったら。もし、この人が壊れてしまったら──。押し寄せる最悪の想像に、私の指先は小さく震える。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "けれど凪砂さんは、そんな私の不安な気持ちなんて露知らず、躊躇いのない足取りでコアへと近寄っていく。その背中が、なんだかとても遠くに見えた。"
     },
     {
@@ -6459,14 +5127,10 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私は思わず、彼の背中に向かって声をかけていた。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "呼び止められた凪砂さんは、億劫そうに足を止め、肩越しに私を振り返る。"
     },
     {
@@ -6483,32 +5147,22 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "咄嗟に声を張り上げたものの、その後に続く言葉が見つからない。「気をつけて」なんて、この期に及んで何の気休めにもならない気がした。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私が口籠っていると、凪砂さんは小さく溜息をつき、あきれたようにこちらへ戻ってきた。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そして、戸惑う私の前に立つと、手袋に包まれた長い指先で、私の顎をすっと優しく持ち上げた。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "上を向かされた私の視線が、彼の綺麗な瞳とまっすぐに絡み合う。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そこに宿る冷徹な光はいつもと変わらないはずなのに、触れられた場所から、じんわりと熱が広がっていくような錯覚に陥る。"
     },
     {
@@ -6519,38 +5173,26 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "不意打ちのような言葉に、私の思考は完全にフリーズした。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "耳を疑うようなセリフをそれだけ言い残すと、彼は指を離し、何事もなかったかのようにまたコアへと向き直った。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私の返事なんて最初から求めていないかのように。けれど、その背中はさっきよりも少しだけ、私の近くにあるように思えた。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "凪砂さんがコアへと手を伸ばすと、眩い光の帯がコアへと流れ込む"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "これで終わる──。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そう信じた瞬間だった。"
     },
     {
@@ -6561,20 +5203,14 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "突如、凪砂さんが短い悲鳴を上げて苦しみ出した。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "コアに注ぎ込んだはずのエネルギーが、まるで拒絶反応を起こしたかのように暴走し、逆に凪砂さんの体内へとなだれ込んでいく。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "彼の精神透視の異能が、コアの持つ膨大な情報量に耐えきれず、完全に逆流しているのだ。"
     },
     {
@@ -6585,8 +5221,6 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私は叫び、膝を着いて倒れた凪砂さんの元へ遮二無二走りよった。"
     },
     {
@@ -6597,38 +5231,26 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "恐る恐る触れた彼の肌は、驚くほど熱い。凪砂さんはきつく目を閉じ、激しく荒い息を切らしている。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ドオオォン──！！！"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "その時、凄まじい地響きと共に、部屋の天井が激しく崩落した。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "爆風と白煙が部屋中に吹き荒れ、私は凪砂さんを庇うようにして顔を伏せる。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "煙の向こうから、周囲の空気を凍りつかせるような凄まじい威圧感を放ちながら、ゆっくりと姿を現す影があった。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "漆黒の甲冑に身を包み、身の丈ほどもある大剣を携えた、あの異形の化け物。"
     },
     {
@@ -6639,38 +5261,26 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "なぜ、ここに──。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "動けない凪砂さんを抱えたまま、私は恐怖で身体を強張らせた。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "絶体絶命の窮地に、最悪のタイミングで現れた強敵。その禍々しい兜の奥にある冷酷な視線が、真っ直ぐに私たちを射抜いていた。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "大剣が床を容赦なく叩き割り、激しい衝撃波が私たちを襲う。黒騎士は一切の容赦なく、凄まじい猛攻を仕掛けてきた。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "凪砂さんを支えながら、私は必死にその攻撃を避けようと足を動かした。けれど、ガレキに足を取られて視界が大きくブレる。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "どこへ逃げればいいのか分からず、恐怖で頭が真っ白になりかけた、その時だった。"
     },
     {
@@ -6681,26 +5291,18 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "いつもはあんなに冷淡な凪砂さんが、喉を裂くような声で叫んだ。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "その言葉に弾かれたように、私が全力で後退した直後──。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "直前まで私たちがいた床に、黒騎士の大剣がもの凄い速度で振りかざされ、激しい火花を散らした。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "もし、今凪砂さんが指示してくれなかったら、私は間違いなくあの刃の餌食になっていた。"
     },
     {
@@ -6711,26 +5313,18 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ここで足を止めたら二人とも死ぬ。私は彼の腕を自分の肩に回し、再び全力で走り出す。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "黒騎士の追撃を間一髪でかわし、私たちは部屋の隅にある、辛うじて崩落を免れた強固なサーバーラックの隙間へと滑り込む。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ハァ、ハァ、と激しい呼吸音が狭い空間に響く。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "黒騎士はまだ私たちの行方を探して、ガレキを蹴散らしながら遠くを徘徊している。"
     },
     {
@@ -6741,14 +5335,10 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ひとまず彼を横たえ、私はその体を支える。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "先ほどよりも呼吸は明らかに荒くなっており、触れた額の熱もさらに上がっているのが分かった。"
     },
     {
@@ -6759,8 +5349,6 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "必死に呼びかけると、彼はうっすらと、どこか焦点の定まらないぼんやりとした目を開いた。私を捉えているのかも分からないその瞳のまま、彼はふわりと口元を緩める。"
     },
     {
@@ -6771,14 +5359,10 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "自慢げに、無邪気な顔でそう笑う。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "それは、いつも張り付いている完璧な「王子様の仮面」からはおよそ考えられないような、子供っぽくて、酷く人懐っこい笑顔だった。"
     },
     {
@@ -6789,8 +5373,6 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "胸の奥がキュッと締め付けられる。冷酷で掴みどころのなかった彼の、初めて見る剥き出しの素顔が、あまりにも脆そうで、目を離せなくなる。"
     },
     {
@@ -6807,8 +5389,6 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私がオウム返しに尋ねると、彼は熱に浮かされたように、けれどどこか寂しそうなトーンで言葉を紡いだ。"
     },
     {
@@ -6819,14 +5399,10 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "だから、あの強烈な猛攻の中でも、彼は的確に回避の指示が出せたのだ。相手の思考をダイレクトに読み解く、彼の持つ精神透視の異能。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "それは戦闘においては無敵の力かもしれないけれど、同時に、悍ましい化け物の思考まで脳内に強制的に流れ込んでくるという、あまりにも残酷な暴力のはずだった。"
     },
     {
@@ -6843,14 +5419,10 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "凪砂さんはそこまで一通り語り終えると、熱い溜息をふぅと吐き出し、ぐったりと壁に頭を預けた。その横顔は今も苦しげで、限界が近いのは火を見るより明らかだった。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "でも──私には、どうしても今、彼に聞きたいことがあった。"
     },
     {
@@ -6861,14 +5433,10 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私の問いかけに対し、狭いラックの隙間に重苦しい沈黙が流れた。遠くでガレキを壊しながら迫ってくる黒騎士の足音が、心臓に悪いリズムで響いている。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "凪砂さんはゆっくりと視線を動かし、焦点の定まらない瞳で、じっと私の顔を見つめた。"
     },
     {
@@ -6885,8 +5453,6 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "予想外の答えに、私は小さく声を漏らす。誰の思考も感情も、望まなくても勝手に流れ込んでくる。そんな恐ろしい力を持っているはずの彼が、酷く弱々しく首を振ったのだ。"
     },
     {
@@ -6897,8 +5463,6 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "凪砂さんは自嘲気味に、どこか寂しそうに唇を歪めた。"
     },
     {
@@ -6909,32 +5473,22 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "その言葉が、私の胸にすとんと落ちてきた。これまで彼が、時に強引に距離を縮めてきたり、私を絶対に手放そうとしなかった本当の理由。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "完璧な笑顔の裏で、他人のどす黒い本音の嵐に晒され、頭を焼き尽くされそうになっていた彼にとって──私の隣は、唯一訪れる「完全な静寂の避難所」だったのだ。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "彼が私に執着していた理由の真実に、私は今、ようやく合点がいった。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "無能力者の私が持つこの「中和」の力こそが、彼の過負荷を止められる楔になる。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私は彼の苦しみを少しでも和らげたくて、熱くなった彼の両手を、自分の両手でぎゅっと強く包み込んだ。"
     },
     {
@@ -6945,26 +5499,18 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ガレキを踏み荒らす黒騎士の不気味な金属音がすぐ近くまで迫り、冷たい冷気がラックの隙間を吹き抜ける中、凪砂さんは掠れた声で私を突き放そうとした。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "自分を犠牲にしようとするその言葉とは裏腹に、私に握られた彼の指先は、冷たい闇に怯える子供のように、縋るように微かに震えていた。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "その手の震えが、私の胸を激しく締め付ける。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "この人はずっと、誰も信じられず、誰のことも信じようとせず、他人のどす黒い本音の嵐の中でたった一人で耐えてきたのだ。その孤独の深さが、伝ってくる熱の熱さとなって私の手のひらに流れ込んでくる。"
     },
     {
@@ -6975,20 +5521,14 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "真っ直ぐに彼の瞳を見つめ、必死に言葉を紡ぐ。もう二度と、この人をあの孤独な濁流の中に帰したくはなかった。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私の声が彼に届いた、その瞬間──。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "凪砂さんの脳内を苛んでいた悍ましい濁流が、堰を切ったように、劇的な静寂へと変わっていくのが、手に取るように分かった。張り詰めていた彼の身体から、ふっと強張りが消えていく。"
     },
     {
@@ -6999,8 +5539,6 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "熱に浮かされていた彼の瞳に、みるみるうちに確かな光と、いつもの鋭い生気が戻っていく。世界の騒音から遮断されたその瞳には、今や世界でたった一人、私の姿だけが真っ直ぐに映り込んでいた。"
     },
     {
@@ -7011,14 +5549,10 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そう言って、凪砂さんはふっと、いつもの意地悪で、けれどどこか心から愛おしそうな、本当の笑顔を浮かべた。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "出会った頃の偽物の笑顔でも、途中の冷酷な仮面でもない、私にしか見せない剥き出しの彼がそこにあった。通じ合った確かな絆が、凍りついた空間をじんわりと溶かしていく。"
     },
     {
@@ -7029,14 +5563,10 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "震えの止まった彼の手を引き、私はその身体を支えながら、力強く立ち上がった。もう、私たちの間に、あの冷たい壁はどこにもなかった。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "サーバーラックの狭い隙間から這い出た私たちを、待ち構えていたかのような轟音が出迎えた。"
     },
     {
@@ -7047,20 +5577,14 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "地獄の底から響くような地鳴り混じりの咆哮。爆煙の向こうから、黒騎士がその巨躯を揺らしてこちらへ向き直る。禍々しい漆黒の甲冑に反射するコアの光が、血のように赤く狂気的にぎらついていた。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "手にした大剣が床を引きずり、不快な金属音と激しい火花を散らしながら、一直線にこちらへと迫ってくる。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "その凄まじい風圧と威圧感に、私の足が一瞬すくみかけた。"
     },
     {
@@ -7083,32 +5607,22 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "凪砂さんの的なナビゲーションが耳に飛び込んでくる。けれど、黒騎士が踏み込んだ瞬間の速度は、こちらの身体能力の限界を遥かに超えていた。指示通りに後退しようとした私の足元で、砕けたコンクリートの破片がパラパラと崩れる。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "（しまっ──避けれな──）"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "脳が恐怖で制動をかけるより早く、私の身体が勝手に動いていた。凪砂さんの指示をただなぞるのではなく、私自身の目に見えた「大剣の軌道のブレ」に合わせて、反射的に彼の身体を巻き込むようにして左側へと鋭く身を躱す。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "直後、鼓膜をぶち破るような衝撃音が炸裂した。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私たちが一瞬前までいた空間を、大剣の重い刃が通り過ぎ、巻き起こった凄まじい烈風が私たちの髪を激しく乱す。"
     },
     {
@@ -7131,20 +5645,14 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "凪砂さんは不敵に口元を歪めると、私を庇うようにして一歩前に出た。今や私たちの間には、迷いは微塵もない。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "互いの感覚と判断を完全に信じ合い、背中を預け合える圧倒的な信頼──確かな絆が、この絶望的な戦場の中で完全に噛み合っていた。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "黒騎士は、己の渾身の一撃が完全に空を切ったことに激昂したのか、さらに深く大剣を構え直す。しかし、大振りの攻撃の直後、その漆黒の肉体には、ほんの一瞬だけの「硬直」が生じていた。"
     },
     {
@@ -7155,14 +5663,10 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私たちは一斉に地を蹴った。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "回復した凪砂さんの異能が、黒騎士が次に繰り出しようとする防御行動をことごとく先読みし、私に伝える。"
     },
     {
@@ -7179,38 +5683,26 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私は手にした武器を握り締め、凪砂さんの指示通りに、黒騎士の防具の継ぎ目──赤く脈打つエネルギーの露出部へと文字通り肉薄する。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "凪砂さんもまた、流れるような無駄のない動きで私の死角をカバーし、黒騎士の反撃の芽をことごとく摘み取っていく。完璧な連携。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私たちの波状攻撃が、あの難攻不落だった黒騎士の巨躯を確実に捉え、その強固な甲冑に次々と深い亀裂を刻み込んでいった。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ガキィィンッ！ と激しい火花が散り、ついに黒騎士の体勢が大きく崩れる。漆黒の化け物が、屈辱に震えるように不気味な声を漏らした。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "このまま押し切れる──そう確信した、次の瞬間だった。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "黒騎士は残された僅かな力を振り絞るように、大剣を両手で逆手に持ち替えた。突如、その全身から禍々しい黒いオーラが爆発的に膨れ上がる。"
     },
     {
@@ -7221,38 +5713,26 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "凪砂さんが叫び、私の身体を背後へと強く引き戻す。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "黒騎士の放った一撃は、私たちではなく──私たちの背後にある、研究所の頑強な外壁へと向けられていた。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ズガァァァァァンッ！！！！"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "鼓膜を震わせる凄まじい大爆発。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "黒騎士の放った渾身の重撃により、強固なコンクリートと鉄筋で造られていた研究所の壁が、まるで紙細工のように派手に壊された。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "凄まじい爆風と共に、大量のガレキと白煙が周囲に巻き散らされ、視界が完全に遮られる。"
     },
     {
@@ -7263,26 +5743,18 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私たちは腕で顔を覆いながら、激しい風圧に耐える。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "やがて、もうもうと立ち込める煙が外気へと流され、視界が晴れていくと──そこには、不自然にぽっかりと開いた巨大な穴と、その向こうに広がる荒涼とした外の世界が見えるだけだった。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "大剣を引きずりながら、壁の向こうの暗闇へと姿を消していく漆黒の背中が、一瞬だけ視界の端を過る。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "形勢不利と踏み、これ以上の戦闘は無意味と判断しての、強行突破による逃亡だった。"
     },
     {
@@ -7293,20 +5765,14 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "凪砂さんが武器を収め、大きく息を吐き出しながら呟く。その表情には悔しさよりも、まずは二人で生き延びられたことへの、深い安堵の色が滲んでいた。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "崩壊した壁から吹き込む冷たい夜風が、私たちの火照った身体を静かに冷ましていく。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "壁の向こうへと消え去った黒騎士の足音が完全に途絶え、静まり返った部屋に、再びコアの放つ重苦しい駆動音が響き渡る。"
     },
     {
@@ -7317,26 +5783,18 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "凪砂さんは崩れた壁から視線を戻し、部屋の中央で不気味に脈動する巨大なコアを見上げた。その瞳には、先ほどまでの迷いや恐怖はもうない。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "けれど、コアに近づくにつれて、彼の端正な横顔が再び緊張に強張っていくのを私は見逃さなかった。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "これから行うのは、手記にあった通り、己の異能を限界を超えて注ぎ込むという命がけの行為だ。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私の「中和」があるとはいえ、世界の心臓部を相手にする負担がどれほどのものか、想像するだけで胸が締め付けられる。"
     },
     {
@@ -7353,14 +5811,10 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "凪砂さんは少しだけ悪戯っぽく微笑むと、意を決してコアの制御パネルへと両手を伸ばした。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "バチバチッ、と激しい火花が散り、光の帯が彼の指先からコアへと流れ込み始める。"
     },
     {
@@ -7371,14 +5825,10 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "次の瞬間、凪砂さんの口から壮れた悲鳴が上がった。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "いくら中和しているとはいえ、世界中のエネルギーが逆流してくるかのような凄まじい衝撃が彼を襲う。彼の身体がガタガタと激しく震え、あまりの苦痛に今にも崩れ落ちそうになる。"
     },
     {
@@ -7389,14 +5839,10 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私はすかさず彼の背後に回り込み、その細い腰を、そして震える両腕を、後ろから包み込むようにして必死に支えた。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "冷たい汗で濡れた彼の背中から、尋常ではない熱と、張り裂けそうな鼓動がダイレクトに伝わってくる。情報の濁流が、再び彼の脳を、五感を焼き尽くそうと暴れ狂っているのだ。"
     },
     {
@@ -7407,14 +5853,10 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "耳元で、力の限り叫び続ける。私の肌が触れている部分から、必死に彼の過負荷を吸い上げるように、強く、強くその身体を抱きしめた。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私の拒絶反応の中和が、彼の異能を一本の「鋭い楔」へと研ぎ澄ましていく。"
     },
     {
@@ -7425,38 +5867,26 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "凪砂さんが血を吐き出すように叫び、最後の力を振り絞って両手に力を込めた。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "その瞬間、コアの輝きが限界を迎えた電球のように、一際眩しく爆発的に膨れ上がった。視界が純白の光で埋め尽くされ、何も見えなくなる。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "──キィィィィン……"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "鼓膜を突き刺すような高音が響き渡り、次の瞬間、世界から全ての音が消えた。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ゆっくりと光が収束していく。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "恐る恐る目を開けると、そこには、あれほど圧倒的な存在感を放っていた巨大なコアの姿はなかった。ただの巨大な、光を失った煤けた機械の塊が、機能を完全に停止して沈黙している。"
     },
     {
@@ -7467,8 +5897,6 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私が呆然と呟くと、支えていた凪砂さんの身体から、完全に力が抜けた。"
     },
     {
@@ -7479,14 +5907,10 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "崩れ落ちる彼を、私は一緒に床に膝を突くようにして、優しく抱きとめる。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "凪砂さんはハァハァと浅い呼吸を繰り返しながら、私の胸に顔を埋めたまま、ゆっくりと目を開いた。その瞳は、もう熱に浮かされてなどいない。いつもの、けれど仮面の奥にある本当の、穏やかで綺麗な瞳だった。"
     },
     {
@@ -7497,14 +5921,10 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "凪砂さんは満足そうにそう呟くと、私の服の裾をぎゅっと弱々しく握りしめた。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "世界を破滅から救った実感が、静寂に包まれた部屋の中で、じわじわと二人の間に広がっていく。私たちは、確かにやり遂げたのだ。"
     },
     {
@@ -7521,14 +5941,10 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "凪砂さんは私の胸に頭を預けたまま、安心したように小さく息を漏らした。機能を完全に停止したコアからは、もうあの不気味な脈動も、私たちを威圧するような光も感じられない。静寂だけが、壊れた部屋を優しく満たしていた。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "安堵に胸をなでおろしながら、私はポケットから、先ほど手に入れた教授の手記の断片を取り出し、最後の数行に目を落とした。"
     },
     {
@@ -7542,8 +5958,6 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "手記の言葉を裏付けるように、足元から不穏な地鳴りが響き渡った。天井からパラパラとコンクリートの粉が舞い落ち、制御パネルのあちこちから、赤色の警告灯が激しく明滅し始める。"
     },
     {
@@ -7560,20 +5974,14 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "凪砂さんは少しだけ気恥ずかしそうに微笑むと、私の肩を借りてゆっくりと立ち上がった。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私たちは手記の指示に従い、崩落していく研究所の通路を必死に駆け抜けた。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "背後で壁が崩れ、天井が落ちてくる轟音が響く中、たどり着いた最下層のハッチを開けると──そこには、白くそびえ立つ一基の脱出用ロケットが格納されていた。"
     },
     {
@@ -7585,8 +5993,6 @@ export const scenarioData = [
     },
     {
         scene: "脱出用ロケット内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "二人で滑り込むようにして狭いコックピットに乗り込み、ハッチを完全に閉鎖する。凪砂さんが慣れた手つきでメインコンソールを叩くと、シートベルトが自動で私たちの身体を固定した。"
     },
     {
@@ -7597,20 +6003,14 @@ export const scenarioData = [
     },
     {
         scene: "脱出用ロケット内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "機械的なアナウンスの直後、凄まじい重力とGが私たちの身体を襲った。"
     },
     {
         scene: "脱出用ロケット内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "轟音と共にロケットが射出され、私たちは崩壊していく研究所を、そしてこの長く暗い悪夢の舞台となった場所を後にした。"
     },
     {
         scene: "宇宙空間",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "窓の外に目をやると、激しい振動の向こう側に、どこまでも深く、青く輝く美しい球体が見えてくる。"
     },
     {
@@ -7621,14 +6021,10 @@ export const scenarioData = [
     },
     {
         scene: "宇宙空間",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "不意に、隣のシートから凪砂さんが声をかけてきた。"
     },
     {
         scene: "宇宙空間",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "その瞳は、宇宙の闇に浮かぶ地球の青い光を真っ直ぐに映し出している。"
     },
     {
@@ -7639,8 +6035,6 @@ export const scenarioData = [
     },
     {
         scene: "宇宙空間",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "凪砂さんはそう言って、シートの隙間から私の手をそっと探り、自分の指を絡めてきた。今度の手は、あの激痛に震えていた時とは違う、優しくて、とても温かい確かな体温だった。"
     },
     {
@@ -7663,8 +6057,6 @@ export const scenarioData = [
     },
     {
         scene: "宇宙空間",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "少しだけ意地悪に、けれどこれまでで一番子供みたいに純粋な笑顔を浮かべる凪砂さんに、私はもう呆れることも、突き放すこともしなかった。"
     },
     {
@@ -7675,38 +6067,26 @@ export const scenarioData = [
     },
     {
         scene: "宇宙空間",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "絡めた指先にぎゅっと力を込めると、凪砂さんは満足そうに目を細めた。"
     },
     {
         scene: "宇宙空間",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "窓の外で、青い地球がどんどん近づいてくる。私たちの帰る場所、そして、二人で新しく始める未来の光が、すぐ目の前で輝いていた。"
     },
     {
         scene: "地球",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私たちの日常は、驚くほどあっけなく戻ってきた。"
     },
     {
         scene: "地球",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "教授の手記とデータチップを持ち帰ったおかげで、実習の単位は無事に出たし──それどころか、世界を救った大功績として学部内でちょっとした騒ぎになったけれど──世界も何事もなかったかのように平穏な時を刻んでいる。"
     },
     {
         scene: "地球",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "あんなに街を恐怖に陥れていたキメラ騒動は、驚くべき速さで鎮圧へと向かった。対策本部が総力を挙げて開発した中和剤によって、異形化していた生物たちは次々と元の姿を取り戻し、崩壊しかけていたインフラも急速に復興を遂げている。"
     },
     {
         scene: "地球",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そして、私たちの運命を引っくり返した張本人であるヒルミ教授はというと──。"
     },
     {
@@ -7718,26 +6098,18 @@ export const scenarioData = [
     },
     {
         scene: "研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "なんて、大学のいつもの研究室で、お気に入りのコーヒーカップを片手にのほほんと言ってのけた。"
     },
     {
         scene: "研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "あれだけの修羅場を仕組んでおいて、いつも通り白衣のポケットに手を突っ込み、飄々とした笑みを浮かべている姿には、怒りを通り越して呆れるしかなかったけれど……"
     },
     {
         scene: "研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "でも、教授のあのどこか超然とした「いつも通り」の態度を見たとき、あぁ、私たちは本当に地獄から帰ってきたんだな、と心の底から実感できたのも確かだった。"
     },
     {
         scene: "研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そして、そんな中変わったことと言えば──。"
     },
     {
@@ -7749,26 +6121,18 @@ export const scenarioData = [
     },
     {
         scene: "待ち合わせ場所",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私は待ち合わせの場所まで大急ぎで走っていた。最後の講義が予定より大幅に長引いてしまったのだ。"
     },
     {
         scene: "待ち合わせ場所",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "息を切らしながら約束の場所へと近づくと、駅前にある古い時計台のふもとに、お目当ての人物の姿が見えた。"
     },
     {
         scene: "待ち合わせ場所",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "石造りの壁に背をもたれ、所在なさげに腕時計を見つめながら、周囲をぼんやりと見渡している。"
     },
     {
         scene: "待ち合わせ場所",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "その端正な横顔に、通りかかる女子たちが「ねぇ、あの人……」と頬を染めて見惚れていた。外見は、やっぱり悔しいくらいに格好いい。"
     },
     {
@@ -7785,14 +6149,10 @@ export const scenarioData = [
     },
     {
         scene: "待ち合わせ場所",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "息を弾ませて駆け寄った私の言葉は、ピシャリと途中で遮られた。"
     },
     {
         scene: "待ち合わせ場所",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "凪砂くんは視線を腕時計から私へと移し、形の良い眉を少しだけひそめる。"
     },
     {
@@ -7809,26 +6169,18 @@ export const scenarioData = [
     },
     {
         scene: "待ち合わせ場所",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "フッと呆れたように吐き捨てられた意地悪な物言いに、私は小さくムッとして唇を尖らせた。"
     },
     {
         scene: "待ち合わせ場所",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "だけど、彼の顔をよく見ると、怒っている風には全く見えなかった。むしろ、子供が新しそうなおもちゃを見つけたときのような、どこか無邪気で愉しげな光がその瞳に宿っている。"
     },
     {
         scene: "待ち合わせ場所",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "……おかしい。なんだか、すごく嫌な予感がする。"
     },
     {
         scene: "待ち合わせ場所",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "身構える私に、凪砂くんは一歩、音もなく距離を詰めてくると、楽しそうに目を細めた。"
     },
     {
@@ -7845,20 +6197,14 @@ export const scenarioData = [
     },
     {
         scene: "待ち合わせ場所",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "──あれから、私たちの関係は大きく変わった。"
     },
     {
         scene: "待ち合わせ場所",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "あの狂った月面で生死を共にしてから、彼の私に対する態度はあからさまに変化し、今ではこうして日常的に私を振り回すようになっていた。"
     },
     {
         scene: "待ち合わせ場所",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "突然の言葉に私が激しく動揺していると、そんな動揺をさらに加速させるように、彼の顔が不意にぐっと近づいてくる。整った顔立ちが目の前に迫り、息が止まりそうになった瞬間──。"
     },
     {
@@ -7869,14 +6215,10 @@ export const scenarioData = [
     },
     {
         scene: "待ち合わせ場所",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私のおでこに、柔らかくて温かいものがそっと当たった。"
     },
     {
         scene: "待ち合わせ場所",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "あまりの出来事に完全にフリーズしてしまった私を見て、凪砂くんは一歩身を引くと、お腹を抱えるようにして吹き出した。"
     },
     {
@@ -7893,14 +6235,10 @@ export const scenarioData = [
     },
     {
         scene: "待ち合わせ場所",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "一気に顔に熱が集まっていくのを感じて、私は真っ赤になりながら、照れかくしで彼をキッと睨みつけた。けれど、彼はそんな私の抵抗が面白くてたまらないといった様子で、さらに大きな声で笑う。"
     },
     {
         scene: "待ち合わせ場所",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "当然、周囲の「えっ、何あれ……」「バカップル？」という好奇の視線が一斉に突き刺さり、恥ずかしさで消え入ってしまいたかった。"
     },
     {
@@ -7911,8 +6249,6 @@ export const scenarioData = [
     },
     {
         scene: "待ち合わせ場所",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "凪砂くんは悪びれる様子もなく、いまだに顔を赤くしている私を見下ろして、意地悪く、でもどこか愛おしそうに微笑んだ。"
     },
     {
@@ -7923,8 +6259,6 @@ export const scenarioData = [
     },
     {
         scene: "待ち合わせ場所",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "小さくため息をつきながら抗議すると、彼は満足したように私の手を今度は優しく握り直す。"
     },
     {
@@ -7941,26 +6275,18 @@ export const scenarioData = [
     },
     {
         scene: "待ち合わせ場所",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "繋がれた手から伝わってくる彼の体温は、あのおそろしく冷たかった月面の廃墟の記憶を、温かく溶かしていくようだった。"
     },
     {
         scene: "待ち合わせ場所",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "目が笑っていなくて、意地悪で、何を考えているか分からない天才。"
     },
     {
         scene: "待ち合わせ場所",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "それでも、私の日常を甘く激しく狂わせていく彼の手を、私はもう、振りほどくつもりはなかった。"
     },
     {
         scene: "待ち合わせ場所",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私たちは引き合うように歩幅を合わせ、眩しい太陽が照らす街中へと、二人で一歩を踏み出した。"
     },
     {
@@ -7975,8 +6301,6 @@ export const scenarioData = [
     //ここで分岐発生(ミカルート)****************************************************************************************
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "焦げあとのある服の袖を掴んだ。",
         label: "mika_route_start"
     },
@@ -7988,14 +6312,10 @@ export const scenarioData = [
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私の身体が地面に叩きつけられる寸前、鋭い踏み込みの音と共に、強い力でその腕を引き戻された。"
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "焦げあとのある彼の服の袖をぎゅっと掴んだまま、私は荒い息を吐き出す。息を切らしながら私の身体を真っ直ぐに支えてくれたのは、ミカくんだった。"
     },
     {
@@ -8006,8 +6326,6 @@ export const scenarioData = [
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "周囲の暗がりに必死で視線を巡らせるけれど、黒い木々の隙間には誰も見当たらない。激しい戦闘の音が遠くで響いているだけだった。ミカくんは悔しそうに眉をひそめ、私の手をきゅっと握り締める。"
     },
     {
@@ -8018,26 +6336,18 @@ export const scenarioData = [
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "混乱する頭のまま、私はミカくんに手を引かれて再び走り出した。キャンパスのレンガ道を蹴り、冷たい夜風を切り裂いて進む。背後を振り返る余裕なんてなかったけれど、肌を刺すような冷たいプレッシャーで分かった。"
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "あの不気味な重圧──黒騎士が、確実に私たちのすぐ後ろまで迫ってきている。まるで、獲物を特定の場所へと追い詰める猟犬のように。"
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "心臓が破裂しそうなほどの恐怖の中、私たちは月科学エネルギー学部の研究棟へと滑り込み、エレベーターを待つ時間すら惜しんで階段を駆け上がった。"
     },
     {
         scene: "教授の研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "最上階の廊下の突き当たり、明かりの漏れる部屋の前に辿り着き、ミカくんが勢いよくドアを開ける。中に飛び込んだ瞬間に急いで扉を閉め、内側から鍵をガチャンと回した。"
     },
     {
@@ -8049,8 +6359,6 @@ export const scenarioData = [
     },
     {
         scene: "教授の研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ドアに背中を預けて激しく肩を上下させる私に向かって、部屋の奥から聞き慣れた、酷くのんびりとした声が降ってきた。"
     },
     {
@@ -8061,14 +6369,10 @@ export const scenarioData = [
     },
     {
         scene: "教授の研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "デスクに腰掛け、いつもと変わらない飄々とした様子で文庫本を閉じたのはヒルミ教授だった。"
     },
     {
         scene: "教授の研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "外のキャンパスでは、キメラや黒騎士が暴れ回り、悲鳴が響き渡る凄惨な状況になっているというのに、落ち着き払っている。その温度差に、私はたまらず教授へと詰め寄った。"
     },
     {
@@ -8085,20 +6389,14 @@ export const scenarioData = [
     },
     {
         scene: "教授の研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ヒルミ教授は白衣を翻して立ち上がると、いつものマイペースな口調のまま、デスクの引き出しから鈍く光るカードキーを取り出した。"
     },
     {
         scene: "教授の研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "画面に映し出されたのは、学部の地下に極秘裏に建造されていたらしい、巨大な鉄塊──ロケットの姿だった。"
     },
     {
         scene: "教授の研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ヒルミ教授は、私たちに、あそこの月へ行けって…？"
     },
     {
@@ -8121,14 +6419,10 @@ export const scenarioData = [
     },
     {
         scene: "教授の研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "世界の元凶。そんな壮大すぎる話、急に言われても頭が追いつかない。"
     },
     {
         scene: "教授の研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "混乱して立ち尽くす私の隣で、ミカくんが小さく息を吸い込むのが分かった。彼は焦げあとの残る自分の袖をきゅっと握りしめ、覚悟を決めたような真っ直ぐな瞳で私を見つめた。"
     },
     {
@@ -8139,14 +6433,10 @@ export const scenarioData = [
     },
     {
         scene: "教授の研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ミカくんは何か言いたげな顔をして、一瞬だけ唇を噛んだ。お父さんのこと、自分の身体のこと──彼の脳裏にどんな想いが過ったのか、今の私には分からない。"
     },
     {
         scene: "教授の研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "けれど彼はそれ以上何も語らず、翻ってそのままロケットの搭乗口へと足を進め、中へと乗り込んでいってしまった。"
     },
     {
@@ -8157,8 +6447,6 @@ export const scenarioData = [
     },
     {
         scene: "教授の研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "呼びかける私の背中に、教授のどこか寂しげで、けれど穏やかな声がかけられる。"
     },
     {
@@ -8169,8 +6457,6 @@ export const scenarioData = [
     },
     {
         scene: "教授の研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そう言って、教授は私に文字がびっしり書かれた薄い紙束を渡してきた。"
     },
     {
@@ -8181,8 +6467,6 @@ export const scenarioData = [
     },
     {
         scene: "教授の研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "思わず振り返って尋ねると、教授は眼鏡の奥の瞳を細め、いつもの意地悪な微笑ではなく、酷く柔らかな笑みを浮かべた。"
     },
     {
@@ -8193,8 +6477,6 @@ export const scenarioData = [
     },
     {
         scene: "教授の研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そう言って、教授の指先が冷たいコントロールパネルへと伸びた。"
     },
     {
@@ -8205,32 +6487,22 @@ export const scenarioData = [
     },
     {
         scene: "教授の研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "教授が起動ボタンを静かに押し込む。"
     },
     {
         scene: "教授の研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "その瞬間、ゴオオオ……と地響きのような重低音が研究室の足元から響き渡り、ロケットのハッチが閉まり始めた。"
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ロケットの内部は、無機質な計器機と二人分のシートがあるだけの、おそろしく狭い空間だった。"
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私たちがシートになだれ込み、安全ベルトを締めると同時に、頭上のハッチが金属音を立てて完全に閉鎖される。"
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "重苦しい密閉音が響き、外の音が一切聞こえなくなった。"
     },
     {
@@ -8241,32 +6513,22 @@ export const scenarioData = [
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "機械的なアナウンスが室内に鳴り響き、足元から、世界がひっくり返るような凄まじい振動が這い上がってきた。"
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私たちはただ、背後から迫る恐怖から逃れるように、青白い光を放つ人工月へと向かって、轟音と共に地を蹴り上げた。"
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "──重力の檻が、私たちの身体をシートに深く叩きつける。"
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "窓の外は、一瞬で青い光を放つ夜空へと切り替わり、地上の喧騒がみるみる遠ざかっていく。"
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私は大きく息を吐き出し、ようやく身体の強張りを解いた。"
     },
     {
@@ -8277,8 +6539,6 @@ export const scenarioData = [
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "心配そうに私の顔を覗き込むミカくん。この前知り合ったばかりの、あどけなさが残る少年の表情。けれど今、この極限状態で私を守ろうとしてくれている彼は、誰よりも頼もしい。思わず、小さく頬が緩んだ。"
     },
     {
@@ -8289,8 +6549,6 @@ export const scenarioData = [
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "心配をかけないように冗談めかして笑ってみせると、ミカくんは申し訳なさそうな顔で俯いた。"
     },
     {
@@ -8307,32 +6565,22 @@ export const scenarioData = [
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "不意打ちの感謝の言葉に、私は首を傾げる。非日常な出来事が連発しすぎて、記憶が混濁している。……ああ、そうだ。数日前の夜、路地裏で肩を怪我して蹲っていたミカくんを見つけて、水とハンカチを渡したんだっけ。"
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そしてその後に……。"
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "満と、話しながら散歩をして──。"
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "……満。"
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "あの衝撃が、胸の奥底からフラッシュバックする。焼けるような痛みと、得体の知れない吐き気。けれど、隣にいるミカくんの前で泣いてなんていられない。私は懸命に呼吸を整え、努めて明るい声を作った。"
     },
     {
@@ -8343,8 +6591,6 @@ export const scenarioData = [
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "こんな極限下でも、彼が向けてくれる誠実な眼差しに、張り詰めていた緊張の糸が少しだけ緩む。"
     },
     {
@@ -8355,21 +6601,15 @@ export const scenarioData = [
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ミカくんが何かを言いかけた、その時だった。"
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "──ピピッ、ピピッ、ピピピピピピピッ！！！",
         action: "SHAKE_SCREEN"
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "鼓膜を突き刺すような、真っ赤な緊急アラームが狭い機内に鳴り響いた。"
     },
     {
@@ -8379,8 +6619,6 @@ export const scenarioData = [
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "冷酷な機械音声と同時に、フワリと身体が浮き上がるような感覚──重力を失い、ロケットがその推進力を完全に失ったことを意味していた。"
     },
     {
@@ -8391,26 +6629,18 @@ export const scenarioData = [
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "思考が停止する間もなく、今度は突き落とされるような感覚が私を襲った。"
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ロケットが、墜落する。"
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "爆音を上げていたエンジンの音がピタリと止んだ静寂の中で、機体が空中で大きくあえいだ。姿勢を制御するブースターも死に絶え、ロケットはただの巨大な鉄塊と化して、無重力の闇の中でぐるりと回転を始める。"
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "窓の外に映っていた青い月が、ぐるりと視界を反転して遠ざかっていく。次の瞬間、機体が凄まじい大気圏の摩擦に捉えられ、悲鳴のような金属音を上げ始めた。"
     },
     {
@@ -8427,27 +6657,19 @@ export const scenarioData = [
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "機体の隔壁が熱を持ち、火花が散る。制御不能のロケットは、まるで手負いの獣のように激しく震えながら、地上の暗闇へと一直線に落下していく。"
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "シートベルトが食い込み、骨が軋むほどの重圧が何度も襲う。私たちは、死の速度で、死の場所へ向かってただ落ちていくしかなかった。",
         action: "SHAKE_SCREEN_VERY_LARGE"
     },
     {
         scene: "ロケット内部(墜落後)",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "激しい墜落の衝撃、そして耳をつんざくような金属の断裂音が爆発した瞬間から、私の意識は暗闇の中に沈んでいた。"
     },
     {
         scene: "ロケット内部(墜落後)",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "どれほどの時間が経ったのだろう。冷たい虚無の底から、何かを削り取るような高い金属音が、頭の奥に響く。"
     },
     {
@@ -8458,8 +6680,6 @@ export const scenarioData = [
     },
     {
         scene: "ロケット内部(墜落後)",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "遠い。まるで深い水の底から聞こえてくるような、酷い耳鳴りが頭蓋骨を揺らしていた。誰かが、必死に私の名前を呼んでいる。その声は、泣き出しそうなほどに震えていた。"
     },
     {
@@ -8470,8 +6690,6 @@ export const scenarioData = [
     },
     {
         scene: "ロケット内部(墜落後)",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "鼓膜を突き刺すような悲痛な叫びが、私の意識を強制的に引き戻した。はっと息を吸い込み、重い、あまりにも重い瞼をどうにか押し上げる。"
     },
     {
@@ -8482,20 +6700,14 @@ export const scenarioData = [
     },
     {
         scene: "ロケット内部(墜落後)",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "視界が引っくり返っていた。"
     },
     {
         scene: "ロケット内部(墜落後)",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "最初に目に飛び込んできたのは、ひび割れた窓から差し込む、人工月の不気味な青白い光。そして、無機質だったロケットの内部は、見るも無残にボロボロに破壊されていた。"
     },
     {
         scene: "ロケット内部(墜落後)",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "何本もの配線が引きちぎれて火花を散らし、ひしゃげた計器類からは真っ白な白煙が絶え間なく噴き出している。天井だったはずの鉄板は無惨に変形し、私たちは潰れた缶詰の底のような狭い空間に取り残されていた。"
     },
     {
@@ -8506,14 +6718,10 @@ export const scenarioData = [
     },
     {
         scene: "ロケット内部(墜落後)",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "すぐ目の前で、涙とすすで顔を汚したミカくんが、私の顔を覗き込んでいた。"
     },
     {
         scene: "ロケット内部(墜落後)",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "いつの間にか安全ベルトは外されており、私は床に倒れた状態で、ミカくんの腕の中にすっぽりと抱きしめられている。"
     },
     {
@@ -8524,8 +6732,6 @@ export const scenarioData = [
     },
     {
         scene: "ロケット内部(墜落後)",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私の瞳に光が戻ったのを見て、ミカくんの顔に安堵が広がった。張り詰めていた緊張の糸が切れたのか、彼は私の肩にぽつりと額を預け、言葉にならない声を漏らして震えている。"
     },
     {
@@ -8536,26 +6742,18 @@ export const scenarioData = [
     },
     {
         scene: "ロケット内部(墜落後)",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "呆然と呟きながら、私は自分の身体を見下ろした。"
     },
     {
         scene: "ロケット内部(墜落後)",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "あれだけの高さから真っ逆さまに墜落したのだ。身体がバラバラになっていてもおかしくないはずなのに、不思議なほど、私には大きな痛みがなかった。ただ、頭がクラクラするだけ。"
     },
     {
         scene: "ロケット内部(墜落後)",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "どうして、私は無傷なのだろう。"
     },
     {
         scene: "ロケット内部(墜落後)",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "その疑問の答えは、目の前の光景がすべてを物語っていた。"
     },
     {
@@ -8566,14 +6764,10 @@ export const scenarioData = [
     },
     {
         scene: "ロケット内部(墜落後)",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私を抱きしめているミカくんの背中──彼の服は、激しい衝撃と火花によってボロボロに引き裂かれ、露出した肌には痛々しい擦り傷や火傷が幾重にも走っていた。"
     },
     {
         scene: "ロケット内部(墜落後)",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ロケットが地面に激突するその瞬間、彼は自分のシートベルトを強引に引きちぎり、私の身体の上に覆い被さったのだ。剥き出しの鉄屑や、飛び散る破片、そして凄まじい衝撃のすべてから、自分の身体を“盾”にして私を守ってくれた。"
     },
     {
@@ -8584,20 +6778,14 @@ export const scenarioData = [
     },
     {
         scene: "ロケット内部(墜落後)",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ミカくんは私の無事を確認できたことがただ嬉しいように、痛みを堪えて、健気に、優しく微笑んだ。"
     },
     {
         scene: "ロケット内部(墜落後)",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "その細い身体のどこにそんな強さがあったのだろう。守ってあげなきゃいけないと思っていた後輩が、血を流しながら、私の命を繋ぎ止めてくれていた。"
     },
     {
         scene: "ロケット内部(墜落後)",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "唖然としていると、ミカくんが痛む身体を押して立ち上がり、私に向かって優しく手を伸ばした。"
     },
     {
@@ -8608,14 +6796,10 @@ export const scenarioData = [
     },
     {
         scene: "ロケット内部(墜落後)",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "煤にまみれ、私のせいで傷だらけになってしまった彼の手。私はその手をぎゅっと掴み返し、立ち上がる。胸の奥が、彼への申し訳ない気持ちと、それでも守られたという事実でいっぱいになり、涙が出そうだった。"
     },
     {
         scene: "ロケット内部(墜落後)",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ひしゃげたハッチの隙間から、二人で外へと這い出す。"
     },
     {
@@ -8626,38 +6810,26 @@ export const scenarioData = [
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "外に足を踏み出した瞬間、私はその光景に息を呑んだ。"
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そこは、私たちがよく知る大学のキャンパスでも、見慣れた街並みでもなかった。"
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "足元の地面は白く乾いた砂のような岩肌に覆われ、周囲にはいつの時代のものかもわからない、不気味に風化した巨大な建造物の「廃墟」が、墓標のようにどこまでも連なっていた。"
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そして見上げれば──。"
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "夜空ではなく、漆黒の宇宙の真ん中に、私たちがさっきまでいたはずの「地球」が、世界のすべてを支配するかのように異常な大きさで君臨していた。"
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "青と白の、息を呑むほど美しい、私たちの故郷。"
     },
     {
@@ -8668,14 +6840,10 @@ export const scenarioData = [
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ミカくんが、地球の光に照らされながら、ポツリと呟いた。"
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "空気はある。呼吸もできる。けれど、世界から一切の生命の気配が消え去ったような、背筋が凍るほどの寒気と静けさが、この不気味な廃墟を支配していた。"
     },
     {
@@ -8686,14 +6854,10 @@ export const scenarioData = [
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "はっとして、思わずある天体を指さした。"
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そこには、あの禍々しい青い人工月とは明らかに違う、優しく、けれど圧倒的な存在感を放つ『黄金色の天体』が静かに浮かんでいた。"
     },
     {
@@ -8704,26 +6868,18 @@ export const scenarioData = [
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "人工の光に汚されていない、柔らかい光を放つその姿に、私の胸は震えた。ずっとおとぎ話だと思っていた世界の真真実が、今、目の前に広がっている。"
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "お父さんの言っていたことは、本当だったんだ。"
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "……お父さん。"
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "あの飄々とした教授の言葉が、耳の奥で蘇る。"
     },
     {
@@ -8734,20 +6890,14 @@ export const scenarioData = [
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私たちに課せられた、あまりにも重大な義務。"
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "これから向かう場所には、きっと世界の謎も、そして──突然私の前から姿を消した、お父さんの行方の手がかりも眠っているはずだ。"
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "怖い。足が震えるほど怖いけれど、行かなくちゃいけない。そう覚悟を決めて、隣のミカくんに声をかけようとした時だった。"
     },
     {
@@ -8764,8 +6914,6 @@ export const scenarioData = [
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "隣でミカくんが突然激しく苦しみ出し、自分の首元を強く抑えてその場に膝を突いた。 見れば、彼の首筋から鎖骨にかけて、まるで生き物のように不気味な黒いアザが蠢き、広がろうとしている。"
     },
     {
@@ -8776,14 +6924,10 @@ export const scenarioData = [
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私が慌てて彼の背中に手を当てると、不思議なことに、彼の肌を蝕んでいた黒いアザの侵食がぴたりと止まった。まるで、私の身体が彼の毒をじわじわと吸い上げているかのように──"
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ハァハァと荒い呼吸を繰り返しながら、ミカくんは私の顔を見上げ、痛みに耐えるように無理に笑ってみせる。"
     },
     {
@@ -8794,8 +6938,6 @@ export const scenarioData = [
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "彼のその言葉で、私はハッと自分のポケットの存在を思い出した。"
     },
     {
@@ -8806,14 +6948,10 @@ export const scenarioData = [
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私はギュッと握りしめていた教授からの紙束を、震える手で広げた。その紙には、ヒルミ教授のあの独特な、少し丸みのある筆跡で、この場所の秘密と、これからの進むべき道がびっしりと書き連ねられていた。"
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "――（紙面）"
     },
     {
@@ -8962,8 +7100,6 @@ export const scenarioData = [
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "読み終えたところに、隣でミカくんが限界を迎えたように膝をつく。彼の首元の黒いアザは、今や顎のラインにまで達しようとしていた。"
     },
     {
@@ -8974,8 +7110,6 @@ export const scenarioData = [
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私は紙束をポケットに押し込むと、ミカくんの震える肩を抱き寄せ、その身を支えた。不思議と、彼に触れていると、彼の呼吸が落ち着いていく。"
     },
     {
@@ -8986,45 +7120,31 @@ export const scenarioData = [
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ミカくんは荒い息の隙間から、消え入りそうな声で「はい……」と頷き、私の肩を借りてどうにか立ち上がった。"
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "紙面の内容に驚いている暇はない。恐怖でちぎれそうな心を奮い立たせ、私はミカくんの手をしっかりと握り締め、白い砂を踏み締めて一歩を歩み出した。"
     },
     //ここでゲームを挟む
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "カチリ──。最後のチップが収まり、重厚なゲートがゆっくりと左右に開き始める。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "空気の抜けるような低い音が響き、扉の向こうから、息を呑むほど美しく、そして冷徹な光が溢れ出した。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "天井の一部がガラス張りになっており、そこから差し込む「本当の月の光」を浴びて、それは宙に浮かんでいた。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "白く輝く、手のひらサイズの球体──『コア』。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "心臓のように不規則に脈打つその球体からは、目に見えないほどの高密度なエネルギーが、波紋のように絶え間なく放出されている。周囲の計器類は狂ったように針を揺らし、部屋全体が微かにブーイングのような唸りを上げていた。"
     },
     {
@@ -9035,8 +7155,6 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私が圧倒されているところで、ミカくんは物怖じもせず前に進んでいく。"
     },
     {
@@ -9047,14 +7165,10 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "白い光に照らされた彼の瞳は、白とは違うなんらかの感情の色を宿していた。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "──教授の手記にはこうあった。 物理的な破壊は通用しない。止めるには、適応者の強力な『異能の力』を過負荷になるまで注ぎ込むしかない。"
     },
     {
@@ -9065,32 +7179,22 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "手記の言葉を読み上げながら、私の指先が凍りついたように動かなくなった。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私は適応者なんかじゃない。力なんて何一つ持たない、ただの無能力者。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "対して、ミカくんには──具体的なことは明かされなかったものの、強大で、そして使うたびに彼を削っていく『異能』がある。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "つまり、このコアを止めるために力を注げるのは、ここにいる二人のうち、ミカくんしかいないのだ。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "彼にそんな命を削るような真似をさせなければいけないなんて。"
     },
     {
@@ -9101,8 +7205,6 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "不安と恐怖で押し潰されそうな私を安心させるように、ミカくんは振り返り、いつも通りのあどけない笑みを私に投げかけた。"
     },
     {
@@ -9119,20 +7221,14 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私の声は震えていた。ここまで来る道中だって、セキュリティを防ぐたびに彼の首元のアザは濃くなり、痛みに耐えるように呼吸は荒くなっていた。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "これ以上力を注ぎ込めば、彼がどうなってしまうか、想像するだけで胸が引き裂かれそうになる。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そんな私を見つめるミカくんの瞳は、どこか遠くを見るように、酷く静かだった。"
     },
     {
@@ -9149,8 +7245,6 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ミカくんの言葉の意味を問い詰めようとした、その瞬間だった。"
     },
     {
@@ -9160,14 +7254,10 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "頭上から、部屋全体のスピーカーから響き渡るような、酷く歪んだ電子音声が響き渡った。姿は見えない。けれど、どこからか冷徹に私たちを確実に見下ろしている。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "──その気味の悪い声に、私は周囲を見回して身構えた。"
     },
     {
@@ -9188,8 +7278,6 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "突如として突きつけられた、悪魔の誘い。スピーカーの向こうの主は、ミカくんの命を盾に私に迫ってくる。けれど、ミカくんは苦しそうに首元を押さえながらも、鋭い眼差しで上空を睨みつけた。"
     },
     {
@@ -9205,8 +7293,6 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "嘲笑うような歪んだ電子音が、冷酷に真実を剥ぎ取っていく。"
     },
     {
@@ -9227,14 +7313,10 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "スピーカーの声を遮るように、私は叫んでいた。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "恐怖で震える足を踏み出し、ミカくんを背中に庇うようにして、見えない敵に向かって声を張り上げる。"
     },
     {
@@ -9251,8 +7333,6 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "背後で、ミカくんが呆然と目を見開く気配がした。"
     },
     {
@@ -9263,14 +7343,10 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私の必死の叫びが、無機質な最奥の部屋に虚しく響く。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "しかし、スピーカーから返ってきたのは、私たちの絶望をさらに深めるような、いっそ愉しげな笑い声だった。"
     },
     {
@@ -9280,8 +7356,6 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "スピーカーから響く声は、人の命を泥とも思っていない残酷さに満ちていた。"
     },
     {
@@ -9297,14 +7371,10 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ミカくんが膝をつき、激しく咳き込む。彼の首元のアザは今や顔の半分にまで侵食し、禍々しい黒い光を放っていた。もう猶予はない。コアを強制シャットダウンさせるために異能を注げば、ミカくんの命は確実に燃え尽きてしまう。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私は、息を呑むほど美しい地球の光が差し込むこの部屋で、最悪の選択を突きつけられていた。"
     },
     //ハッピーエンド
@@ -9316,8 +7386,6 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私は、そのどちらの選択肢も、激しく拒絶するように首を振った。"
     },
     {
@@ -9334,26 +7402,18 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "限界を迎えたミカくんが、それでも私を庇うように、震える手で私の足を押し戻そうとする。 私はその手を拒まなかった。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "それどころか、床に膝をつき、彼の煤と血にまみれた傷だらけの手を、両手でぎゅっと、壊れ物を扱うように力強く握り締めた。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ただ、彼を救いたい。 この誠実な男の子を、絶対にここで死なせたくない──。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "胸の奥から湧き上がった烈火のような願いに呼応するように、私の身体の奥深く、これまでずっと眠っていた『何か』が、ドクンと激しく脈打った。"
     },
     {
@@ -9364,14 +7424,10 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "その瞬間、部屋の空気が一変した。 ミカくんの手を握る私の手のひらから、温かい、けれど底知れないエネルギーが奔流となって溢れ出したのだ。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ジュウウウ、と激しい音が鳴り響く。 ミカくんの身体を蝕んでいたはずのあの黒いアザが、まるで私の手に吸い寄せられるように、濁流となって私の体内へと流れ込み始めたのだ。"
     },
     {
@@ -9382,20 +7438,14 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ミカくんの目が驚愕に見開かれる。彼の顔や首元を覆っていた黒いアザは、嘘のように綺麗に消え去り、彼の呼吸は一瞬にして劇的に安定していった。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "代わりに、私の腕から首元にかけて、あの黒い幾何学模様のアザが急速に浮かび上がってくる。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "けれど──痛くない。 暴走するはずのキメラの因子は、私の体内に取り込まれた瞬間、まるで主人を迎えた従者のように静まり返り、純粋な【異能の力】へと変換されていくのが分かった。"
     },
     {
@@ -9405,20 +7455,14 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "スピーカーの向こうから、あざけるような声が聞こえた。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "姿は見えない声の主は、私の身に起きた現象の「正体」を知っているようだった。けれど、今の私にはそんなことはどうでもよかった。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "なぜかはわからないけど…力が身体にみなぎるのを感じた。"
     },
     {
@@ -9429,8 +7473,6 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私は立ち上がり、みなぎる異能の光をその身に纏いながら、白く輝く『コア』へと一歩を踏み出した。ミカくんから受け継いだこの強大な力を、今度はコアの許容量を超えるまで力尽くで注ぎ込むために。"
     },
     {
@@ -9441,8 +7483,6 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "驚きから立ち上がったミカくんが手を伸ばす。私は振り返り、彼に最高に頼もしい笑みを返した。"
     },
     {
@@ -9453,14 +7493,10 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私は、自分の内に満ちた光の塊を、惜しみなくコアへと放出した。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "まばゆい黄金の奔流が、私の両手から『コア』へと一直線に伸びていく。"
     },
     {
@@ -9471,14 +7507,10 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "コアに触れた瞬間、脳が沸騰するような凄まじい衝撃が私を襲った。ミカくんから引き受けた異能は、コアの底知れないエネルギーと衝突し、私の身体の中でバチバチと激しい火花を散らす。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "身体が内側から破裂しそうなほどの過負荷（オーバーロード）。 物理的な破壊が通用しないなら、このまま私のすべての力を、コアの許容量を超えるまで注ぎ込むしかない。"
     },
     {
@@ -9494,14 +7526,10 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私は歯を食いしばり、さらに深く足を踏み込んだ。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "視界が白く染まっていく。全身の骨が軋み、意識が遠のきそうになる。 だけど、ここで倒れるわけにはいかない。世界を元に戻すため、お父さんを探すため、そして──命を懸けて私を守ってくれたミカくんの未来のために！"
     },
     {
@@ -9512,8 +7540,6 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "後ろから、力強い声が響いた。 ハッとして目を見開くと、アザの消えたミカくんが、私の背中にぴったりと寄り添うようにして、私の両手を後ろから包み込むように重ねていた。"
     },
     {
@@ -9530,14 +7556,10 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ミカくんの掌から、残されたわずかな、けれど純粋で温かい生命のエネルギーが、私の身体へと流れ込んでくる。彼の温もりが触れた瞬間、暴れ狂っていた私の内の異能が、奇跡のように一つの綺麗な指向性を持ってまとまった。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "二人分の想いが、一つの巨大な光の矢となる。"
     },
     {
@@ -9547,32 +7569,22 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私たちの絶叫とともに、限界を超えたエネルギーがコアの最深部へと突き刺さった。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "白く輝いていた手のひらサイズの球体に、無数の亀裂が走る。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "次の瞬間、コアは眩い閃光を放ち──研究所のシステム一帯を巻き込みながら、完全にその機能を停止させた。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "世界を包んでいた、あの不気味な電子の駆動音が、嘘のようにぷつりと途切れる。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "それと同時に、周囲を不気味に照らしていた青い人工月の光がみるみる退色し、消えていく。"
     },
     {
@@ -9583,32 +7595,22 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "光が収まった部屋の中で、私とミカくんは、重なるようにしてその場に崩れ落ちた。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "身体は鉛のように重く、指一本動かすのも億劫だったけれど、胸の奥を満たしているのは、確かな達成感だった。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "コアの機能が完全に停止した今、あれほど室内を騒がせていた警告音も、不快に耳を劈いていたスピーカーからの電子音声も、もうどこからも聞こえなくなっていた。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "あの少年のような声の主がどこで何を企んでいようとも、ひとまずは世界の崩壊を止めることができた。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "あたりを支配するのは、かつてないほどに穏やかで、静かな月の静寂。"
     },
     {
@@ -9619,8 +7621,6 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "隣で倒れ込んだまま、ミカくんがかすかに声を漏らした。アザが消え去った彼の顔には、もうあの悍ましい苦悶の表情はない。ただ、私を守り抜いたという誇らしげな、そして少しだけ眠そうな、等身大の男の子の表情がそこにあった。"
     },
     {
@@ -9637,20 +7637,14 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ミカくんはそっと手を伸ばし、私の泥にまみれた手をもう一度、今度は優しく握り返してくれた。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "異能の力を使い果たした私の身体はひどく冷え切っていたけれど、彼の手の温もりだけが、私たちが今ここに生きているという何よりの証明だった。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "安堵に胸をなでおろしながら、私はポケットから、先ほど手に入れた教授の手記の断片を取り出し、最後の数行に目を落とした。"
     },
     {
@@ -9661,8 +7655,6 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ズガガガガガッ……！"
     },
     {
@@ -9673,14 +7665,10 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "と、地鳴りのような凄まじい振動が私たちの足元を揺らした。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "天井の鉄骨が軋み、パラパラと乾いたコンクリートの破片が落ちてくる。手記の通りだ。コアを失った研究所が、悲鳴を上げるようにして崩壊を始めている。"
     },
     {
@@ -9697,56 +7685,39 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "背後で壁が崩れ、天井が落ちてくる轟音が響く中、私たちはガレキの嵐を駆け抜けた。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "たどり着いた最下層の重厚なハッチを開けると──そこには、薄暗い格納庫の真ん中で、白くそびえ立つ一基の脱出用ロケットが静かに格納されていた。"
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "滑り込むようにハッチを閉め、二人分の狭いシートになだれ込んで安全ベルトを締める。"
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "すると、ミカくんがまるで最初から扱いを知っていたかのような、無駄のない手慣れた様子でコンソールのレバーを引き、目まぐるしく点滅するスイッチを押していった。"
     },
     {
         scene: "ロケット内部",
         speaker: "システム",
-        role: "SYSTEM",
         text: "『緊急離脱システム起動。地球への帰還コースを固定──』"
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "機械のアナウンスと同時に、足元から凄まじい衝撃波が突き上げる。ロケットは自壊する研究所を突き破り、重力の檻を振り払って、漆黒の宇宙空間へと静かに滑り出した。"
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "窓の外では、私たちがいた研究所が静かに崩壊し、あの不気味だった青い月の光が遠ざかっていく。代わりにコックピットの正面を穏やかに照らしたのは、私たちが目指す、本当の、優しくて美しい青い地球の姿だった。"
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "自動操縦に切り替わった機体が安定し、張り詰めていた緊張がふっと解ける。 お互いの無事を確認するように、私は隣のシートのミカくんを見た。"
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "アザの消えた彼の横顔を見つめているうちに、ここへ来る前にずっと引っかかっていた、ある疑問が口をついて出た。"
     },
     {
@@ -9769,8 +7740,6 @@ export const scenarioData = [
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ミカくんはコンソールから手を離し、少しだけ困ったように、けれど隠し事はもうしないというように静かに微笑んだ。"
     },
     {
@@ -9781,8 +7750,6 @@ export const scenarioData = [
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "彼は自分の手のひらを見つめながら、ぽつりぽつりと続けた。"
     },
     {
@@ -9799,8 +7766,6 @@ export const scenarioData = [
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "事情を説明してくれた彼の言葉に、胸がぎゅっと締め付けられる。彼は最初から、自分の命を懸けて私を送り届けるために、あのロケットに一緒に乗ってくれたのだ。"
     },
     {
@@ -9817,38 +7782,26 @@ export const scenarioData = [
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "二人の間に、温かい沈黙が流れる。 ゴゴゴゴゴ……と、機体が大気圏に接触し、激しい振動と摩擦の赤い光が窓の外を染め上げた。けれど、もう恐怖はなかった。シートベルト越しに、お互いの存在を確かに感じ合えているから。"
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "大気圏突入の激しい振動を乗り越え、私たちは今度こそ、あの青い故郷へと帰ってきた。"
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私たちの日常は、驚くほどあっけなく戻ってきた。"
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "教授の手記とデータチップを持ち帰ったおかげで、実習の単位は無事に出たし─それどころか、世界を救った大功績として学部内でちょっとした騒ぎになったけれど─世界も何事もなかったかのように平穏な時を刻んでいる。"
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "あんなに街を恐怖に陥れていたキメラ騒動は、驚くべき速さで鎮圧へと向かった。対策本部が総力を挙げて開発した中和剤によって、異形化していた生物たちは次々と元の姿を取り戻し、崩壊しかけていたインフラも急速に復興を遂げている。"
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そして、私たちの運命を引っくり返した張本人であるヒルミ教授はというと──。"
     },
     {
@@ -9859,26 +7812,18 @@ export const scenarioData = [
     },
     {
         scene: "大学の研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "なんて、大学のいつもの研究室で、お気に入りのコーヒーカップを片手にのほほんと言ってのけた。"
     },
     {
         scene: "大学の研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "あれだけの修羅場を仕組んでおいて、いつも通り白衣のポケットに手を突っ込み、飄々とした笑みを浮かべている姿には、怒りを通り越して呆れるしかなかったけれど……。"
     },
     {
         scene: "大学の研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "でも、教授のあのどこか超然とした「いつも通り」の態度を見たとき、あぁ、私たちは本当に地獄から帰ってきたんだな、と心の底から実感できたのも確かだった。",
     },
     {
         scene: "大学の研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そして、そんな中変わったことと言えば──。",
         hideIllust: ["ヒルミ教授"]
     },
@@ -9890,20 +7835,14 @@ export const scenarioData = [
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そう言って私の手から分厚いバインダーをひょいと取り上げたミカくんの手が、私の指先に一瞬、優しく触れる。ただそれだけのことなのに、心臓が跳ね上がるほどドギマギしてしまう自分がいた。"
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "以前の彼は、いつも私の斜め後ろを一歩引いて歩くような、どこか怯えていた。"
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "けれど今の彼は違う。首元を覆っていたあの悍ましい黒いアザは綺麗に消え去り、実験体としての呪いから解放された彼は、眩しいくらいに一人の端正な男の子として、私の隣に並んで歩いている。"
     },
     {
@@ -9914,8 +7853,6 @@ export const scenarioData = [
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "照れ隠しに、私は澄み切った初夏の青空を見上げた。"
     },
     {
@@ -9926,8 +7863,6 @@ export const scenarioData = [
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ミカくんは歩調を緩めると、私と肩が触れ合うほどの距離までそっと近づいてきた。 その綺麗な瞳が、まっすぐに私だけを映し出す。"
     },
     {
@@ -9944,26 +7879,18 @@ export const scenarioData = [
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そっぽを向いた私の耳たぶが、夕焼けみたいに熱くなっていくのが自分でも分かった。 大学の中庭を行き交う女子生徒たちが、「ねえ、あの1年生、最近すごくかっこよくなったよね」と遠巻きにミカくんを見て噂している。"
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そんな彼が、今は私だけを見て、私のためだけに甘い微熱を孕んだ視線を向けている。"
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "あの研究所の最奥で聴いた謎の声、お父さんの行方、私の身体に眠る強大な力──世界の謎はまだ何も解決していないし、これは束の間の平穏なのかもしれない。"
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "だけど、私の指先に触れる彼の体温が、何よりも確かな現実として私を支えていた。"
     },
     {
@@ -9974,14 +7901,10 @@ export const scenarioData = [
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "不意に、ミカくんがバインダーを持っていない方の手で、私の空いた手をそっと包み込んだ。大学の敷地内なのに、周りに人がいるのに、彼はもう躊躇わない。"
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "男の子らしい少し大きな熱い手のひらが、私の指を一本ずつ絡めるようにして、ぎゅっと深く繋がれる。"
     },
     {
@@ -9992,8 +7915,6 @@ export const scenarioData = [
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "悪戯っぽく、けれど最高に過保護な笑みを浮かべる彼に、私はもう敵いそうになかった。"
     },
     {
@@ -10010,14 +7931,10 @@ export const scenarioData = [
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "繋いだ手から伝わる、トクン、トクンというお互いの愛おしい心臓の鼓動。 あの黄金色の月の下で、ひとつに重なり合った私たちの『呼吸』は、これからどんな未来が訪れようとも、もう二度と離れることはない。"
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私は彼の大きな手に優しく引かれながら、愛しさに胸を弾ませて、光に満ちたキャンパスの雑踏の中へと歩き出した。",
         jumpTo: "route_under_construction"
     },
@@ -10025,8 +7942,6 @@ export const scenarioData = [
     //ここで分岐発生(睦典ルート)****************************************************************************************
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "見知った服の袖を掴んだ。",
         label: "mutsunori_route_start"
     },
@@ -10038,14 +7953,10 @@ export const scenarioData = [
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "強い力で腕を引かれ、私は硬い胸の中に抱きとめられる。",
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "見上げれば、息を切らせた睦典が、いつものおちゃらけた表情を完全に消し去って私を見下ろしていた。",
     },
     {
@@ -10056,14 +7967,10 @@ export const scenarioData = [
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "狂ったように鳴り響くサイレン、空を覆う異様な警戒色。凪砂も、ミカくんも、あの恐ろしい大男も、混沌としたキャンパスの人混みの中でいつの間にかはぐれてしまっていた。",
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "けれど、睦典だけは私の手を離さなかった。いや、離せなかったのだ。",
     },
     {
@@ -10074,38 +7981,26 @@ export const scenarioData = [
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "背後から迫る、すべてを薙ぎ払うような圧倒的な質量と、漆黒のプレッシャー。",
     },
     {
         scene: "大学の敷地内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私は満の幻影を必死に脳裏から振り払い、睦典に引っ張られるがままに、私を呼び出した差出人のいる場所──月科学エネルギー学部の特級研究棟へ向かって、一心不乱に足を突き動かした。",
     },
     {
         scene: "研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "息が苦しい。肺が焼けるようだ。",
     },
     {
         scene: "研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典が重い防火扉を背中で押し開け、私を室内に滑り込ませてから鍵を荒々しく閉める。",
     },
     {
         scene: "研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "たどり着いた教授の研究室。",
     },
     {
         scene: "研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "静まり返った室内には、無数のモニターが青白い光を放ち、部屋の中央には信じられないほど巨大な、金属製のハッチが口を開けていた。",
     },
     {
@@ -10116,8 +8011,6 @@ export const scenarioData = [
     },
     {
         scene: "研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典が私の肩を抱きながら、激しく上下する胸を押さえた、その時。",
     },
     {
@@ -10128,32 +8021,22 @@ export const scenarioData = [
     },
     {
         scene: "研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "部屋の奥から、いつもと変わらない白衣を羽織り、眼鏡の奥の瞳を細めたヒルミ教授が歩み寄ってきた。",
     },
     {
         scene: "研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "教授がこちらに近づく。",
     },
     {
         scene: "研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "外の惨劇や追っ手の恐怖から、ようやく彼のもとへ逃げ込めた安堵で膝が震える。",
     },
     {
         scene: "研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "しかし、教授は私たちの乱れた息を気にする風でもなく、部屋の中央にある巨大なハッチ──いや、地下へと続く『ロケット』の搭乗口を厳しい目で見つめた。",
     },
     {
         scene: "研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "その手元にある管制モニターには、カウントダウンの赤い数字が冷酷に刻まれている。"
     },
     {
@@ -10164,8 +8047,6 @@ export const scenarioData = [
     },
     {
         scene: "研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ヒルミ教授は、私たちに、あそこの月へ行けって…？",
     },
     {
@@ -10176,14 +8057,10 @@ export const scenarioData = [
     },
     {
         scene: "研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私の肩を抱く睦典の手に、ぎゅっと力がこもる。",
     },
     {
         scene: "研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "その声は純粋な戦慄に震えていた。私もパニックになりそうな頭で、開かれたハッチの奥に鈍く光る金属の塊を凝視する。",
     },
     {
@@ -10200,8 +8077,6 @@ export const scenarioData = [
     },
     {
         scene: "研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ヒルミ教授はいつもと変わらない、様子で私の言葉を遮った。",
     },
     {
@@ -10236,14 +8111,10 @@ export const scenarioData = [
     },
     {
         scene: "研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "教授は躊躇いなくコントロールパネルの起動ボタンを押した。",
     },
     {
         scene: "研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "遠くから防壁を叩き割るような凄まじい爆音が響き、研究室全体が大きく揺れた。アイツが、すぐそこまで来ている。",
     },
     {
@@ -10254,26 +8125,18 @@ export const scenarioData = [
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典が私の手を強く引き、躊躇うことなくハッチの奥へと飛び込んだ。私も引きずられるようにして、暗いはしごを駆け下りる。",
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ロケットの内部は、無機質な計器類と二人分のシートがあるだけの、おそろしく狭い空間だった。",
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私たちがシートになだれ込み、安全ベルトを締めると同時に、頭上のハッチが金属音を立てて完全に閉鎖される。",
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "重苦しい密閉音が響き、外の音が一切聞こえなくなった。",
     },
     {
@@ -10284,14 +8147,10 @@ export const scenarioData = [
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "隣のシートから、睦典が精一杯作ったいつもの能天気な声が聞こえた。",
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "だけど、横目で見た彼の横顔は、恐怖を押し殺すように真っ白で、その瞳は深淵を覗くように底知れず冷え切っていた。",
     },
     {
@@ -10301,32 +8160,22 @@ export const scenarioData = [
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "機械的なアナウンスが室内に鳴り響き、足元から、世界がひっくり返るような凄まじい振動が這い上がってきた。",
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私たちはただ、背後から迫る恐怖から逃れるように、青白い光を放つ人工月へと向かって、轟音と共に地を蹴り上げた。",
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "──重力の檻が、私たちの身体をシートに深く叩きつける。",
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "窓の外は、一瞬で青い光を放つ夜空へと切り替わり、地上の喧騒がみるみる遠ざかっていく。",
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "激しい風切り音とエンジンの爆音が響くロケットの内部で、彼の焦った声が鼓膜に飛び込んでくる。",
     },
     {
@@ -10343,8 +8192,6 @@ export const scenarioData = [
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "あまりの急展開に心臓はバクバクと鳴っていたけれど、私よりも睦典の方が、今にも限界を迎えそうな顔をしていた。私は彼を宥めるように、シートに固定されたまま声を張る。",
     },
     {
@@ -10355,14 +8202,10 @@ export const scenarioData = [
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "あの周りの惨劇と睦典の大切なうどん店の光景が重なる。こんな事態になって、お店はどうなってしまうのだろう。",
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典は一瞬、眉を八の字に曲げてどこか不安そうな表情を浮かべたけれど、すぐに無理やりいつものような軽い笑顔を作ってみせた。",
     },
     {
@@ -10385,8 +8228,6 @@ export const scenarioData = [
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "帰ってきたらうどんを作る──。そのいつもの日常の延長線上にある約束に、私の胸の奥の強張りが、すっと解けていくのがわかった。",
     },
     {
@@ -10397,20 +8238,14 @@ export const scenarioData = [
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私がホッとして微笑んだ、次の瞬間だった。",
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "──ピピッ、ピピッ、ピピピピピピピッ！！！",
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "鼓膜を突き刺すような、真っ赤な緊急アラームが狭い機内に鳴り響いた。",
     },
     {
@@ -10420,8 +8255,6 @@ export const scenarioData = [
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "冷酷な機械音声と同時に、フワリと身体が浮き上がるような感覚──重力を失い、ロケットがその推進力を完全に失ったことを意味していた。",
     },
     {
@@ -10438,20 +8271,14 @@ export const scenarioData = [
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "窓の外で不気味に輝く青い月が、激しく回転し始める。",
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "世界がひっくり返るような全方位からのGと、摩擦による激しい熱、そして引き裂かれそうな金属音が機体を包み込む。",
     },
     {
         scene: "ロケット内部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ガガガガガガガッ！！！ と激しく揺れる視界の中、私は、ただ迫り来る死の恐怖に、声を上げることもできず目を見開いた。",
     },
     {
@@ -10462,8 +8289,6 @@ export const scenarioData = [
     },
     {
         scene: "ロケット内部(墜落後)",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "激しい耳鳴りの向こう側で、誰かが私の名前を必死に呼んでいる。",
     },
     {
@@ -10474,8 +8299,6 @@ export const scenarioData = [
     },
     {
         scene: "ロケット内部(墜落後)",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "頰を優しく叩く手の温もりと、焦燥に駆られたその声で、私は辛うじて意識の底から引きずり上げられた。",
     },
     {
@@ -10498,14 +8321,10 @@ export const scenarioData = [
     },
     {
         scene: "ロケット内部(墜落後)",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私の意識が戻ったのを見て、睦典が心の底から安堵したように、私の肩にぐったりと額を預けてきた。",
     },
     {
         scene: "ロケット内部(墜落後)",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "シートベルトを外して私をのぞき込んでいた彼の身体は、激しく震えている。",
     },
     {
@@ -10516,20 +8335,14 @@ export const scenarioData = [
     },
     {
         scene: "ロケット内部(墜落後)",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "かすれる声で問いかけながら、自分の身体に視線を落とす。",
     },
     {
         scene: "ロケット内部(墜落後)",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "あれだけの衝撃のなか、墜落したのだ。五体満足でいられるはずがない──そう身構えたのに、不思議なことに、私の身体にはどこにも激しい痛みはなかった。少し頭がクラクラするのと、かすり傷がある程度。",
     },
     {
         scene: "ロケット内部(墜落後)",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "まるで、落ちる直前に凄まじい衝撃のすべてが、嘘みたいに『消えてしまった』かのように。",
     },
     {
@@ -10540,14 +8353,10 @@ export const scenarioData = [
     },
     {
         scene: "ロケット内部(墜落後)",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典はそう言って、いつものようにへらりと頼りない笑みを浮かべた。",
     },
     {
         scene: "ロケット内部(墜落後)",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "けれど、彼の額からはタラリと冷や汗が流れていて、その笑顔はどこか無理に作ったもののようにも見えた。",
     },
     {
@@ -10558,14 +8367,10 @@ export const scenarioData = [
     },
     {
         scene: "ロケット内部(墜落後)",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典が歪んだハッチを力任せにこじ開け、私に手を差し伸べる。",
     },
     {
         scene: "ロケット内部(墜落後)",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "彼の大きな手を掴んで、私はよろよろと大破したロケットの外へと這い出した。",
         hideillust: true
     },
@@ -10577,32 +8382,22 @@ export const scenarioData = [
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "外に足を踏み出した瞬間、私はその光景に息を呑んだ。",
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そこは、私たちがよく知る大学のキャンパスでも、見慣れた街並みでもなかった。",
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "地面は白く乾いた砂のような岩肌に覆われ、周囲にはいつの時代のものかもわからない、不気味に風化した巨大な建造物の「廃墟」が、墓標のようにどこまでも連なっている。",
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そして見上げれば──空には、私たちがさっきまでいたはずの地球が、世界のすべてを支配するかのように異常な大きさで君臨していた。",
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "青と白の、息を呑むほど美しい、私たちの故郷。",
     },
     {
@@ -10613,14 +8408,10 @@ export const scenarioData = [
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典が呆然と呟く。",
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "空気はある。呼吸もできる。けれど、世界から一切の生命の気配が消え去ったような、背筋が凍るほどの寒気と静けさが、この不気味な廃墟を支配していた。",
     },
     {
@@ -10631,21 +8422,15 @@ export const scenarioData = [
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典が、地球のすぐ傍ら、天の特等席を指差した。",
     },
     {
         //ここで、人工月と黄色い月のイラスト
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そこには、あの禍々しい青い人工月とは明らかに違う、優しく、けれど圧倒的な存在感を放つ『黄金色の天体』が静かに浮かんでいた。",
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "教科書や古い資料の中でしか見たことのなかった、本物の月。",
     },
     {
@@ -10656,26 +8441,18 @@ export const scenarioData = [
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "人工の光に汚されていない、柔らかい光を放つその姿に、私の胸は震えた。ずっとおとぎ話だと思っていた世界の真実が、今、目の前に広がっている。",
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "お父さんの言っていたことは、本当だったんだ。",
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "……お父さん。",
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "あの飄々とした教授の言葉が、耳の奥で蘇る。",
     },
     {
@@ -10686,20 +8463,14 @@ export const scenarioData = [
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私たちに課せられた、あまりにも重大な義務。",
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "これから向かう場所には、きっと世界の謎も、そして──突然私の前から姿を消した、お父さんの行方の手がかりも眠っているはずだ。",
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "怖い。足が震えるほど怖いけれど、行かなくちゃいけない",
     },
     {
@@ -10710,20 +8481,14 @@ export const scenarioData = [
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "決意を固めるために、私は隣に立つ彼に声をかけた。",
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "だけど、返事がない。",
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ただ呆然と前を見つめたまま、睦典はピクリとも動かなかった。",
     },
     {
@@ -10734,8 +8499,6 @@ export const scenarioData = [
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "怪訝に思った私は、彼の前に回り込むようにして、その顔を覗き込んだ。",
     },
     {
@@ -10746,26 +8509,18 @@ export const scenarioData = [
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "息が止まりそうになった。",
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "覗き込んだ睦典の顔は、ほんの数分の間に信じられないほど酷くやつれ、まるで血の気が引いたように真っ白になっていたのだ。生気を失ったその瞳は、私の姿すら映していないように虚空を彷徨っている。",
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "数秒の、引き裂かれそうなほど長い沈黙。",
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "やがて、私の怯えた視線にようやく気がついたかのように、睦典の瞳にふっと光が戻った。",
     },
     {
@@ -10776,14 +8531,10 @@ export const scenarioData = [
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "瞬きをひとつ。",
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "次の瞬間には、彼の顔にはいつもの調子の大どんでん返しのような、明るく呑気な表情が張り付いていた。あまりの切り替わりの早さに、私は自分の見間違いだったのかと錯覚しそうになる。",
     },
     {
@@ -10800,32 +8551,22 @@ export const scenarioData = [
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "何事もなかったかのように私の前を歩き出す、睦典の背中。",
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "………………。",
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ムッちゃん、どうしちゃったんだろう。",
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "こんな非日常的な出来事続きで、疲れる気持ちはもちろんわかるけど……それとはまた違う、何かがか隠されているような。",
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私の胸の奥に、冷たい、けれど確実に巨大な不信感が、じわじわと波紋のように広がっていった。",
     },
     {
@@ -10836,8 +8577,6 @@ export const scenarioData = [
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "途方もない、というように陸典が肩をすくめる。それでようやく思い出した。"
     },
     {
@@ -10848,14 +8587,10 @@ export const scenarioData = [
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ロケット出発前に教授に手渡された紙面をポケットから取り出す。"
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "よかった。不時着した時に無くしてしまったのではないかと一瞬不安に思ったけど、折りたたんで私のポケットの中に入っていた。"
     },
     {
@@ -10866,8 +8601,6 @@ export const scenarioData = [
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ムッちゃんは私の持っている紙を覗き込む。"
     },
     {
@@ -11016,8 +8749,6 @@ export const scenarioData = [
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "手記を読み終えた睦典が、呆れたように額を押さえる。でも、その声にはいつもの軽快さが戻っていて、私は少しだけホッとした。"
     },
     {
@@ -11034,8 +8765,6 @@ export const scenarioData = [
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典はそう言って、悪戯っぽく不敵に笑ってみせる。"
     },
     {
@@ -11046,8 +8775,6 @@ export const scenarioData = [
     },
     {
         scene: "月面",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私たちは紙面を握り締め、不気味な警告灯が明滅する研究所の不気味な廊下へと、一歩を踏み出した。"
     },
     //ここでミニゲームを挟む
@@ -11059,8 +8786,6 @@ export const scenarioData = [
     },
     {
         scene: "制御室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "薄暗い制御室の端末からプラスチックの小さなチップを抜き取り、私は大きく息を吐き出した。手元には、最奥のゲートを開くためのすべてのフラグメントが揃っている。"
     },
     {
@@ -11071,32 +8796,22 @@ export const scenarioData = [
     },
     {
         scene: "制御室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "背後から睦典が声をかけてくる。"
     },
     {
         scene: "制御室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "その声に振り返った瞬間、私の胸はドクンと嫌な高鳴りをあげた。"
     },
     {
         scene: "制御室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "……おかしい。"
     },
     {
         scene: "制御室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "研究所に入る前の睦典の様子が、データチップを集めて進むにつれて、明らかに悪化している。"
     },
     {
         scene: "制御室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "さっき、防衛システムと戦った時にできたはずの傷は、いつの間にか綺麗に消えている。だけどその代償を支払うかのように、睦典の顔色は今や土気色を通り越して、幽霊のように真っ白だった。"
     },
     {
@@ -11113,20 +8828,14 @@ export const scenarioData = [
     },
     {
         scene: "制御室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典はいつものように笑おうとした。"
     },
     {
         scene: "制御室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "けれど、その口元は微かに引きつり、笑顔の形を保つことすらできていない。"
     },
     {
         scene: "制御室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "時折、自分の足元すらおぼつかない様子で、壁に手をついて辛うじて立っている。"
     },
     {
@@ -11137,50 +8846,34 @@ export const scenarioData = [
     },
     {
         scene: "制御室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "彼は私にそれ以上踏み込ませないように、わざとらしくおどけてみせると、先に立って歩き出した。"
     },
     {
         scene: "廊下",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "カツン、カツンと、無機質な廊下に二人の足音が響く。"
     },
     {
         scene: "廊下",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "けれど、前を行く彼の背中は、どこかひどく小さく見えた。"
     },
     {
         scene: "廊下",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "いつもなら、私の歩幅を気にして何度も振り返ってくれるはずなのに、今の彼はただ、何かに追われるようにまっすぐ前だけを見つめている。"
     },
     {
         scene: "廊下",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "その右手が、かすかに震えているのを、私は見逃さなかった。"
     },
     {
         scene: "最深部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "曲がり角を過ぎ、私たちはついに、研究所の最深部へとたどり着いた。"
     },
     {
         scene: "最深部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "目の前にそびえ立つのは、重厚な鋼鉄の巨大なゲート。"
     },
     {
         scene: "最深部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "その中央には、はめ込み式のスロットがあり、これまで集めてきたデータチップを差し込むようになっている。"
     },
     {
@@ -11191,8 +8884,6 @@ export const scenarioData = [
     },
     {
         scene: "最深部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私が手元のチップを見つめていると、隣に並んだ睦典が、ぽつりと静かな声で呟いた。"
     },
     {
@@ -11209,8 +8900,6 @@ export const scenarioData = [
     },
     {
         scene: "最深部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "振り返ると、睦典はゲートの冷たい金属壁に寄りかかるようにして、どこか遠い目をして浮かぶ地球を見つめていた。その瞳にはいつものおちゃらけた光はなく、すべてを察したような、酷く哀しげな色が滲んでいる。"
     },
     {
@@ -11221,8 +8910,6 @@ export const scenarioData = [
     },
     {
         scene: "最深部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "彼は自分の頭を軽く掻くと、ひどく掠れた声で、静かに語り始めた。"
     },
     {
@@ -11239,8 +8926,6 @@ export const scenarioData = [
     },
     {
         scene: "最深部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私の胸の奥に、冷たい、けれど確実に巨大な不信感と恐怖が、じわじわと広がっていく。"
     },
     {
@@ -11251,74 +8936,50 @@ export const scenarioData = [
     },
     {
         scene: "最深部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典はすぐにいつもの明るい表情を張り付かせ、私の背中を軽く押した。"
     },
     {
         scene: "最深部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "だけど、その触れた手のひらは──驚くほど冷たかった。"
     },
     {
         scene: "最深部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私は震える手で、揃えたデータチップをスロットへと差し込んでいく。"
     },
     {
         scene: "最深部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "カチリ、カチリと、ロックが解除される音が静まり返った空間に響く。"
     },
     {
         scene: "最深部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "──この扉の向こうに『コア』がある。"
     },
     {
         scene: "最深部",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そして、この扉を開けたとき、私は睦典が隠し続けている「本当のこと」を知ることになる。そんな予感が、私の心を激しく揺さぶっていた。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "カチリ──。最後のチップが収まり、重厚なゲートがゆっくりと左右に開き始める"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "空気の抜けるような低い音が響き、扉の向こうから、息を呑むほど美しく、そして冷徹な光が溢れ出した。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そこは、研究所の最奥。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "天井の一部がガラス張りになっており、そこから差し込む「本当の月の光」を浴びて、それは宙に浮かんでいた。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "白く輝く、手のひらサイズの球体──『コア』。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "心臓のように不規則に脈打つその球体からは、目に見えないほどの高密度なエネルギーが、波紋のように絶え間なく放出されている。周囲の計器類は狂ったように針を揺らし、部屋全体が微かにブーイングのような唸りを上げていた。"
     },
     {
@@ -11329,14 +8990,10 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "圧倒されて一歩退がった私の前に、睦典がすっと進み出た。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ゲートの光に照らされた彼の横顔は、やはり痛々しいほど白い。けれど、その瞳だけは、コアの光を反射して怪しくギラリと輝いていた。"
     },
     {
@@ -11347,20 +9004,14 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典が拳を固く握りしめる。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "教授の手記に書かれていたことを思い返す。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "――\n\nコアを止める方法は唯一つ。\n\nエネルギーの「過負荷（オーバーロード）」による強制シャットダウンだ。\n\n適応者の持つ強力な【異能の力】を、コアの許容量を超えるまで力尽くで「注ぎ込む」しかない。\n\n――"
     },
     {
@@ -11371,32 +9022,22 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "手記の言葉を読み上げながら、私の指先が凍りついたように動かなくなった。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "道中の端末で嫌でも突きつけられた事実が、頭を殴られたように蘇る。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私は適応者なんかじゃない。力なんて何一つ持たない、ただの無能力者。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "対して、睦典には──具体的なことは明かされなかったものの、強大で、そして使うたびに彼を削っていく『異能』がある。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "つまり、このコアを止めるために力を注げるのは、ここにいる二人のうち、睦典しかいないのだ。"
     },
     {
@@ -11407,8 +9048,6 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私はたまらず、彼のボロボロの袖を掴んだ。"
     },
     {
@@ -11419,14 +9058,10 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私が必死に声を絞り出すと、睦典はゆっくりとこちらを振り返った。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "その顔は幽霊のように真っ白で、瞳の焦点もかすかにブレている。それでも、彼は私の手を優しく包み込むように握り直すと、酷く穏やかに、ふわりと笑った。"
     },
     {
@@ -11449,26 +9084,18 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典は私の手をそっと離し、眩い光を放つコアへと、その拳を力強く突き出した。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "彼の肌から、不気味なまでの高密度なエネルギーが、激しい光の帯となってコアへと流れ込んでいく。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "──これで、終わる。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そう信じた、次の瞬間だった。"
     },
     {
@@ -11479,8 +9106,6 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "コアに注ぎ込んだはずのエネルギーが、まるで拒絶反応を起こしたかのように暴走し、逆に睦典の体内へとなだれ込んでいく。"
     },
     {
@@ -11491,8 +9116,6 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典が頭を掻きむしり、その場に激しくのたうち回った。彼の肌からさらに生気が失われ、瞳の奥の光が、急速に濁った闇へと塗り潰されていく。"
     },
     {
@@ -11509,32 +9132,22 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私が泣き叫びながら彼に駆け寄ろうとした、その時──。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ドォォォォンッ！！！"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "地響きと共に、部屋の天井が激しく崩落した。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "爆煙の向こうから、凄まじい威圧感を放ちながら、ゆっくりと姿を現す影。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "漆黒の甲冑に身を包み、大剣を携えた、あの異形の化け物。"
     },
     {
@@ -11545,20 +9158,14 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "絶体絶命の窮地に、最悪のタイミングで現れた強敵。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "のたうち回る睦典を守るように、私は絶望の光が満ちる最奥の部屋で、黒騎士と対峙した。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "黒騎士が容赦なく大剣を振り上げ、私たちに襲いかかる──！"
     },
     {
@@ -11569,20 +9176,14 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "まともな武器も持たない私は、のたうち回る睦典の手を必死に引きながら、崩落するガレキの陰へと逃げ惑うことしかできなかった。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "しかし、黒騎士の動きは容赦がない。無機質な足音が迫ったかと思うと、頭上から空気を切り裂くような凄まじい一撃が振り下ろされる。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "直撃する──そう目をつぶった瞬間。"
     },
     {
@@ -11593,14 +9194,10 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "鋭い叫び声と共に、強い力で身体を突き飛ばされた。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ガレキの床に激しく転がり、痛みに耐えながら目を開けた私の視界に、最悪の光景が飛び込んでくる。"
     },
     {
@@ -11611,14 +9208,10 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典が、私の身代わりになって黒騎士の刃を受け止めていた。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "大剣が彼の身体を深く切り裂き、鮮血が飛び散る。"
     },
     {
@@ -11629,32 +9222,22 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "叫び声をあげて駆け寄ろうとしたけれど、次の瞬間、私は自分の目を疑った。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ゲーム中、道中の罠やガレキから私を守ってくれた時も、彼の傷が異常な速度で治っていくのは見ていた。だけど、今回はレベルが違った。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "──ジチチ、と不気味な音が鳴る。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "深々と刻まれたはずの致命傷が、肉を編み直すかのような猛烈なスピードで、ものの数秒で完全に塞がっていく。服の破れ目の向こうには、すでに傷跡一つない白い肌が戻っていた。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "あまりの回復速度の異常さに、私は一瞬、恐怖すら覚えてその場に立ち尽くしてしまう。"
     },
     {
@@ -11665,20 +9248,14 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典は信じられないほどの力で私の手を掴むと、傷など最初からなかったかのように猛然と走り出した。黒騎士の追撃を間一髪でかわし、私たちは部屋の隅にある、辛うじて崩落を免れた強固なサーバーラックの隙間へと滑り込む。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ハァ、ハァ、と激しい呼吸音が狭い空間に響く。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "黒騎士はまだ私たちの行方を探して、ガレキを蹴散らしながら遠くを徘徊している。"
     },
     {
@@ -11689,8 +9266,6 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私は震える声で、彼の服の破れ目に手を伸ばした。血は付いているのに、傷は綺麗に消えている。"
     },
     {
@@ -11701,14 +9276,10 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典は壁に背中を預け、ずるずるとその場に座り込んだ。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "傷は治っている。なのに、彼の顔色は今や生気を感じられないほど真っ白で、額からは嫌な汗がだらだらと流れていた。"
     },
     {
@@ -11719,8 +9290,6 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典は自嘲気味に、力なく笑った。その瞳は、すぐ近くにいる私の姿すら、もうはっきりと捉えられていないように泳いでいる。"
     },
     {
@@ -11731,8 +9300,6 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "彼は自分の頭を強く指先で叩いた。ガチガチと、奥歯が震える音が聞こえる。"
     },
     {
@@ -11755,8 +9322,6 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典はひどく掠れた声で、静かに、絶望的な真実を告白した。"
     },
     {
@@ -11779,14 +9344,10 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "命が削れていくような、切実すぎる彼の言葉。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "外では、私たちの死神である黒騎士の足音が、静かに、確実に近づいてきていた。"
     },
     //ハッピーエンド
@@ -11798,14 +9359,10 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私の声は、ひどく情けなく震えていた。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "彼の脳が、自我が、私を守るたびに消しゴムで消されるように摩耗していたなんて。私のために、彼はどれだけのものを失ってしまったのだろう。"
     },
     {
@@ -11816,50 +9373,34 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "首筋に青筋を立て、涙を流しながら叫ぶ睦典。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "その瞳から、完全に光が消え失せようとしている。まるで底のない、濁った黒い沼のような闇が、彼の美しい瞳を急速に塗り潰していく。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "その時、絶望でパニックになりかけた私の脳裏に、道中の端末で目にした『機密データ』の最後の一行が、強烈なフラッシュバックとなって蘇った。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "──【適応者の脳の摩耗を止める唯一の鍵。それは、精神の拠り所となる“絶対的な存在”との、強い感情的な同調（シンクロ）である】"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "（あ……そうだったんだ──）"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "点と点が一瞬で繋がった。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私には、異能の代償で狂い、化け物へと変貌していく適応者を、この世界に繋ぎ止めるための『楔（精神的安定剤）』としての適性があったんだ。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私は、無力なんかじゃない。ムッちゃんを救えるのは、世界で私しかいない……！"
     },
     {
@@ -11870,20 +9411,14 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典の口から、人間離れした咆哮が漏れ始める。服の隙間から噴き出す紫黒色の不気味な霧が、彼の肉体を侵食していく。黒騎士が私たちの気配を察知し、大剣を引きずりながら、ガレキを蹴散らしてこちらへ歩みを進めてくる。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "化け物になりかけている親友と、迫り来る死神。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "でも、私の心から、恐怖は消え去っていた。"
     },
     {
@@ -11894,14 +9429,10 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私は大きく一歩を踏み出し、サーバーラックの影から飛び出した。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "驚愕に目を見開く睦典の前に立ちはだかり、そのまま、禍々しい霧が渦巻く彼の胸へと迷わず飛び込んだ。"
     },
     {
@@ -11912,8 +9443,6 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典が狂暴な力で私を突き飛ばそうとする。その手はすでに一部が硬質化しかけていて、触れるだけで肌が擦り切れて血がにじむ。痛い。それでも、私は絶対に手を離さなかった。彼の大きな背中に腕を回し、壊れそうなほど強く、強く抱きしめる。"
     },
     {
@@ -11924,8 +9453,6 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "彼の胸に顔を埋め、涙混じりの叫びを、彼の鼓動に叩きつけるようにぶつけた。"
     },
     {
@@ -11936,8 +9463,6 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私は顔を上げ、濁りきった彼の瞳を真っ直ぐに見つめた。"
     },
     {
@@ -11948,32 +9473,22 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私の心からの叫びが、限界を迎えていた空間に響き渡る。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "──ゴォォッ……！ と、部屋の空気が鳴動する。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私の身体の奥底から、温かく眩しい光の波紋が、溢れんばかりに広がった。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "その光は、睦典の身体を蝕んでいた紫黒色の霧をみるみるうちに浄化し、彼の脳を焼き尽くそうとしていた冷たい虚無（摩耗）を、私の身体を通して優しく吸い上げていく。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "バグを起こしていた彼の再生機能が、静かに正常な脈動を取り戻していく。"
     },
     {
@@ -11984,14 +9499,10 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典の身体から力が抜け、硬質化しかけていた皮膚が、みるみるうちに元の綺麗な肌へと戻っていく。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "その瞳には、さっきまでの狂気はどこにもない。私の姿をしっかりと捉え、いつものように優しく揺れている。"
     },
     {
@@ -12002,32 +9513,22 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典が力強く私の肩を抱き寄せ、立ち上がる。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "全身から先ほどとは違う、純粋で圧倒的なエネルギーのオーラが立ち上っていた。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "道中の端末にあったデータの通りだ。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "精神の拠り所（私）と強く同調した今の睦典は、異能の暴走を完全にコントロールしている。傷が治るたびに記憶が消えるあの恐ろしい呪いは、私が彼の隣に立ち、繋がっている間だけ、完全に「無効化」される──。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "つまり今の彼は、『記憶が消えない、真の不死身の適応者』だ。"
     },
     {
@@ -12038,8 +9539,6 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "標的が正気を取り戻したのを察知したのか、黒騎士が不気味な駆動音を立て、残った大剣の柄を構え直した。凄まじい殺気が部屋を満たす。"
     },
     {
@@ -12050,8 +9549,6 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典は不敵に笑うと、私の手をぎゅっと握りしめた。"
     },
     {
@@ -12068,14 +9565,10 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ガレキを蹴り崩し、黒騎士が恐ろしい速度で突進してくる。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私はゲーム中に培った観察力で、黒騎士の構えの癖や、崩落した天井の死角を瞬時に見抜き、睦典に鋭く指示を飛ばした。"
     },
     {
@@ -12092,44 +9585,30 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典は私の声と完全に呼吸を合わせ、大剣の重い一撃を紙一重で回避する。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "避けると同時に、睦典は爆発的な踏み込みで黒騎士の懐へ潜り込んだ。今度は暴走の力ではない、私を守るための100%の意志が乗った拳が、黒騎士の硬強な鎧へと叩き込まれる。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ドガァァァァンッ！！！すさまじい衝撃波が部屋中に吹き荒れ、黒騎士の頑強な甲冑にメキメキと大きな亀裂が入る。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "黒騎士が怯んだ隙を逃さず、睦典はさらに連撃を叩き込んだ。どれだけ拳が傷つこうとも、私の存在が後ろにある限り、彼の身体は一瞬で、そして何の代償もなく完璧に超再生していく。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "圧倒的な、二人の完全なコンビネーション。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "何度も強烈な打撃を喰らい、ついに黒騎士は片膝を突き、その大剣を床に落とした。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "勝負は決した──そう思った、次の瞬間。"
     },
     {
@@ -12140,32 +9619,22 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "黒騎士の兜の奥で、冷徹なノイズが鳴った。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "奴は即座に撤退を判断したのだ。残った左腕を大きく振り上げると、私たちではなく、背後にある研究所の巨大な支柱に向けて、ありったけの力を込めて拳を叩きつけた。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ズガガガガガッ！！！"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "凄まじい破壊音と共に支柱が破裂し、天井の大部分が連鎖的に崩落し始める。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "それと同時に、何十年もの間、月面に蓄積されていた白い月砂と、コンクリートの細かい粉塵が、視界を完全に遮る濃密な煙幕となって部屋中に爆発的に広がった。"
     },
     {
@@ -12182,20 +9651,14 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典が咄嗟に私を抱きかかえ、ガレキから身を守る。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "数秒後、激しく舞い散る白い塵の向こうを見据えたが──そこにはもう、漆黒の化け物の姿はなかった。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ただ、破壊された壁の向こうへ続く、不気味な足跡だけが残されている。"
     },
     {
@@ -12206,14 +9669,10 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典が視線を戻した先。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "粉塵がゆっくりと晴れていく部屋の中央で、主を失った『コア』が、一段と激しく、暴走の光を放ちながら脈打ち始めていた──。"
     },
     {
@@ -12224,26 +9683,18 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典が前を見据え、小さく息を吐き出す。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "黒騎士が去った部屋の中央で、システムを失い完全に制御を失った『コア』が、狂ったように点滅していた。部屋全体の温度が急激に上昇し、空気がジリジリと肌を焼く。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "手記にあった通り、もう物理的に壊すことはできない。残された手段は、睦典の異能のエネルギーを限界まで注ぎ込み、コアを過負荷（オーバーロード）させて強制シャットダウンすることだけ。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "だけど、さっきはそれで睦典の脳が焼き切れそうになった。私の胸に、一瞬だけ恐怖がよぎる。"
     },
     {
@@ -12254,14 +9705,10 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典が、私の手をもう一度ぎゅっと握りしめた。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "さっきとは違う。今の彼の瞳には、迷いも、忘却への怯えも一切なかった。私をまっすぐに見つめるその瞳は、ただ純粋な信頼に満ちている。"
     },
     {
@@ -12278,20 +9725,14 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私は強く頷いた。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私は無能力者なんかじゃない。ムッちゃんの盾になり、彼の心をこの世界に繋ぎ止める、世界で唯一のパートナーだ。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "二人は一歩、また一歩と、眩い光を放つコアへと近づいていく。"
     },
     {
@@ -12302,32 +9743,22 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "掛け声と同時に、私たちは重ね合わせた手を、光り輝く球体へと力強く突き出した。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ブゥゥゥゥゥンッ──！！！！"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "触れた瞬間、鼓膜が引き裂かれそうなほどの高周波の音が響き、視界が真っ白な光で埋め尽くされた。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典の身体から、これまでにないほどの莫大なエネルギーが激しい奔流となってコアへと流れ込んでいく。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "直後、コアから拒絶反応の凄まじい衝撃波（フィードバック）が、津波のように私たちを襲った。"
     },
     {
@@ -12338,8 +9769,6 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典の身体が激しく拒絶反応に震え、彼の右腕の皮膚がミシミシと音を立てて裂け始める。莫大な負荷が、再び彼の自我を消し去ろうと脳へとなだれ込んでいく。"
     },
     {
@@ -12350,8 +9779,6 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私は睦典の背中に両手を回し、体中の全ての力を込めて、その背中を強く抱きしめた。"
     },
     {
@@ -12362,26 +9789,18 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私の身体を通して、睦典の脳を焼き切ろうとしていた過剰な負荷と、コアの暴走エネルギーが、恐ろしい勢いでなだれ込んでくる。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "全身の細胞が悲鳴を上げるような激痛。だけど私は、歯を食いしばってそれをすべて「吸収・中和」し続けた。私の『無能力（エネルギーの完全な許容・中和）』が、睦典の命を繋ぐ絶対の防壁になる。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "流れ込む睦典の光と、それを支える私の光。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "二人の絆が、エネルギーの濁流の中で溶け合い、一つになっていく。"
     },
     {
@@ -12392,38 +9811,26 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典が最後の力を振り絞り、コアの奥深くへと全ての異能を叩き込んだ。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "限界を超えたコアが、一瞬、呼吸を止めるように不気味に収縮し──。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "パリィィィィィィンッ！！！！"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "まるで巨大なガラス細工が粉々に砕け散るような、美しく、そして圧倒的な音が部屋中に響き渡った。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "コアを形成していたエネルギーが光の粒子となって霧散し、隔離領域を包んでいた不気味な紫色の光が、潮が引くように消えていく。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "視界を覆っていた眩い光がゆっくりと収まっていき、私たちの周りには、柔らかな静寂だけが残されていた。"
     },
     {
@@ -12434,20 +9841,14 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "静まり返った部屋の中で、睦典がふらりとよろめき、私の肩に頭を預けてきた。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私は慌ててその大きな身体を支える。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "彼の顔色はまだ青白いけれど、その肌からは、先ほどまでの冷徹な異能の気配は消え失せていた。代わりに、ドクンドクンと力強く脈打つ心臓の鼓動と、生温かい、確かな人間の体温が私の肌に伝わってくる。"
     },
     {
@@ -12458,26 +9859,18 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私は、震える声で彼の顔を覗き込んだ。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "一番怖かった質問。もし、コアを壊す代償で、私のことまで忘れてしまっていたら──。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "恐る恐る尋ねる私を見て、睦典は少しだけ大きく目を見開いた。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "それから、ふっと視線を和らげると、いつもの、あの悪戯っぽくて優しい笑顔を浮かべた。"
     },
     {
@@ -12494,8 +9887,6 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "その言葉を聞いた瞬間、堪えていた涙が一気にボロボロと溢れ出してきた。私の肩に回された彼の手に、きゅっと力がこもる。"
     },
     {
@@ -12506,26 +9897,18 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典に促されて、私は涙を拭いながら、破壊された天井のガラス越しに夜空を見上げた。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そこには、隔離領域を覆っていた不気味なエネルギーの霧が晴れ、本来の姿を取り戻した、息を呑むほど美しい星空が広がっていた。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そしてその中心で、これまで見たこともないほど鮮やかに、深く優しい『青』を湛えた地球が、私たちを包むように輝いている。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "人工の月ではなく、本当の宇宙の光が、私たちの足元を優しく照らしていた。"
     },
     {
@@ -12542,20 +9925,14 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典が嬉しそうに目を細める。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "失われかけていた彼の日常の記憶も、私との絆によって、奇跡的に少しずつ繋がりを取り戻し始めているようだった。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "安堵に胸をなでおろしながら、私はポケットから、先ほど手に入れた教授の手記の断片を取り出し、最後の数行に目を落とした。"
     },
     {
@@ -12570,14 +9947,10 @@ export const scenarioData = [
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "ズガガガガガッ……！ と、地鳴りのような振動が私たちの足元を揺らした。"
     },
     {
         scene: "研究所の最奥",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "手記の通りだ。コアを失った研究所が、悲鳴を上げるように崩壊を始めている。"
     },
     {
@@ -12594,50 +9967,34 @@ export const scenarioData = [
     },
     {
         scene: "最下層",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "背後で壁が崩れ、天井が落ちてくる轟音が響く中、私たちはガレキの嵐を駆け抜けた。"
     },
     {
         scene: "最下層",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "たどり着いた最下層の重厚なハッチを開けると──そこには、薄暗い格納庫の真ん中で、白くそびえ立つ一基の脱出用ロケットが静かに格納されていた。"
     },
     {
         scene: "脱出用ロケット内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "滑り込むようにハッチを閉め、二人分の狭いシートになだれ込んで安全ベルトを締める。"
     },
     {
         scene: "脱出用ロケット内",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典が慣れない手つきでコンソールの起動スイッチを押すと、激しい駆動音と共に、ロケットが月面を蹴って漆黒の宇宙へと打ち上がった。"
     },
     {
         scene: "宇宙空間",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "窓の外では、私たちがいた研究所が静かに崩壊し、あの不気味だった青い月の光が遠ざかっていく。"
     },
     {
         scene: "宇宙空間",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "代わりにコックピットの正面を穏やかに照らしたのは、私たちが目指す、本当の、優しくて美しい青い地球の姿だった。"
     },
     {
         scene: "宇宙空間",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "機体が安定し、張り詰めていた緊張がふっと解ける。"
     },
     {
         scene: "宇宙空間",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "お互いの無事を確認するように、私は隣のシートの睦典を見た。"
     },
     {
@@ -12648,8 +10005,6 @@ export const scenarioData = [
     },
     {
         scene: "宇宙空間",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "こんな宇宙のド真ん中で、相変わらず場違いで、でも最高に安心する言葉。"
     },
     {
@@ -12660,50 +10015,34 @@ export const scenarioData = [
     },
     {
         scene: "宇宙空間",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私たちは顔を見合わせて、小さく笑った。もう、繋いだ手が冷たくなることも、お互いを忘れてしまうこともない。"
     },
     {
         scene: "宇宙空間",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "機体を包むのは、あの気まずかった往路とは違う、温かくて穏やかな静寂だった。"
     },
     {
         scene: "地球",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "大気圏突入の激しい振動を乗り越え、私たちは今度こそ、あの青い故郷へと帰ってきた。"
     },
     {
         scene: "いつもの大学",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私たちの日常は、驚くほどあっけなく戻ってきた。"
     },
     {
         scene: "いつもの大学",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "教授の手記とデータチップを持ち帰ったおかげで、実習の単位は無事に出たし──それどころか、世界を救った大功績として学部内でちょっとした騒ぎになったけれど──世界も何事もなかったかのように平穏な時を刻んでいる。"
     },
     {
         scene: "いつもの大学",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "あんなに街を恐怖に陥れていたキメラ騒動は、驚くべき速さで鎮圧へと向かった。"
     },
     {
         scene: "いつもの大学",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "対策本部が総力を挙げて開発した中和剤によって、異形化していた生物たちは次々と元の姿を取り戻し、崩壊しかけていたインフラも急速に復興を遂げている。"
     },
     {
         scene: "いつもの大学",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そして、私たちの運命を引っくり返した張本人であるヒルミ教授はというと──。"
     },
     {
@@ -12720,26 +10059,18 @@ export const scenarioData = [
     },
     {
         scene: "研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "なんて、大学のいつもの研究室で、お気に入りのコーヒーカップを片手にのほほんと言ってのけた。"
     },
     {
         scene: "研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "あれだけの修羅場を仕組んでおいて、いつも通り白衣のポケットに手を突っ込み、飄々とした笑みを浮かべている姿には、怒りを通り越して呆れるしかなかったけれど……"
     },
     {
         scene: "研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "でも、教授のあのどこか超然とした「いつも通り」の態度を見たとき、あぁ、私たちは本当に地獄から帰ってきたんだな、と心の底から実感できたのも確かだった。"
     },
     {
         scene: "研究室",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "そして、そんな中変わったことと言えば──。"
     },
     {
@@ -12750,8 +10081,6 @@ export const scenarioData = [
     },
     {
         scene: "割烹『むつ』",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "目の前にコト、と置かれたのは、湯気がふんわりと立ち上るお馴染みのうどん。黄金色の出汁の真ん中に、ぷるぷるの卵黄が綺麗に浮かんでいる。"
     },
     {
@@ -12768,20 +10097,14 @@ export const scenarioData = [
     },
     {
         scene: "割烹『むつ』",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典は照れくさそうに頭を掻きながら、私の目の前の席に腰掛けた。"
     },
     {
         scene: "割烹『むつ』",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "彼の顔には、もうあの時の幽霊のような白さはない。健康的な血色が戻り、私を見つめる瞳には、温かく悪戯っぽい、大好きな「ムッちゃん」の光が完全に満ちている。"
     },
     {
         scene: "割烹『むつ』",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "異能の力は、あのコアの破壊とともに綺麗に消え去った。傷が一瞬で治るチート能力もなくなったけれど、その代わり、彼の記憶がこれ以上零れ落ちることもなくなったのだ。"
     },
     {
@@ -12792,14 +10115,10 @@ export const scenarioData = [
     },
     {
         scene: "割烹『むつ』",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "お箸を手にとって、ずずっと麺をすする。"
     },
     {
         scene: "割烹『むつ』",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "出汁の優しい味が口いっぱいに広がって、胸の奥がじんわりと熱くなった。"
     },
     {
@@ -12816,14 +10135,10 @@ export const scenarioData = [
     },
     {
         scene: "割烹『むつ』",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "睦典はふっと真面目な顔になると、テーブル越しに私の手をそっと包み込んだ。"
     },
     {
         scene: "割烹『むつ』",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "あの月面の底で、凍えるほど冷たかった彼の手のひらは、今は私の体温を追い越すくらい、あたたかい。"
     },
     {
@@ -12840,14 +10155,10 @@ export const scenarioData = [
     },
     {
         scene: "割烹『むつ』",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "彼の真っ直ぐな視線が私を射抜く。"
     },
     {
         scene: "割烹『むつ』",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "少し耳を赤くしながらも、睦典は繋いだ手にぎゅっと力を込めた。"
     },
     {
@@ -12864,14 +10175,10 @@ export const scenarioData = [
     },
     {
         scene: "割烹『むつ』",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "心臓が、トクンと大きな音を立てる。"
     },
     {
         scene: "割烹『むつ』",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "月面で見せたどんな強敵への立ち向かい方よりも、今の彼の真っ直ぐな言葉のほうが、私の胸を激しく揺さぶった。"
     },
     {
@@ -12882,14 +10189,10 @@ export const scenarioData = [
     },
     {
         scene: "割烹『むつ』",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "少しだけ不安そうに揺れる彼の瞳が、愛おしくてたまらなくなる。"
     },
     {
         scene: "割烹『むつ』",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私は溢れそうになる笑みを堪えきれずに、繋いだ手を強く握り返した。"
     },
     {
@@ -12900,14 +10203,10 @@ export const scenarioData = [
     },
     {
         scene: "割烹『むつ』",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私の答えを聞いた瞬間、睦典の顔がパッと輝いた。"
     },
     {
         scene: "割烹『むつ』",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "世界を救ったヒーローとは思えないくらい、子供みたいに嬉しそうな笑顔。"
     },
     {
@@ -12930,26 +10229,18 @@ export const scenarioData = [
     },
     {
         scene: "割烹『むつ』",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "窓の外を見上げると、抜けるような青空が広がっている。"
     },
     {
         scene: "割烹『むつ』",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "かつて見上げた、冷たくて遠いあの青い星は、今、私たちの足元で確かに息づいている。"
     },
     {
         scene: "割烹『むつ』",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "もう二度と、彼の手が冷たくなることはない。"
     },
     {
         scene: "割烹『むつ』",
-        speaker: "朔良",
-        role: "SAKURA",
         text: "私たちは繋いだ手の温もりを確かめ合いながら、新しく始まる、最高に甘くて騒がしい日常へ向かって、二人で幸せそうに笑い合った。"
     },
 
