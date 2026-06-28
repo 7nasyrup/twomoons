@@ -37,8 +37,26 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
       {/* Automatic Speaker Sprite Slot */}
       <AnimatePresence>
         {displayList.map((charName) => {
-          const config = SPEAKER_CONFIGS[charName];
+          let config = SPEAKER_CONFIGS[charName];
           if (!config) return null;
+
+          if (charName === "ミカ") {
+            let isMikaRoute = false;
+            if (Array.isArray(scenarioData) && typeof currentStep === 'number') {
+              for (let i = currentStep; i >= 0; i--) {
+                if (scenarioData[i]?.label === "mika_route_start") {
+                  isMikaRoute = true;
+                  break;
+                }
+              }
+            }
+            if (isMikaRoute) {
+              config = {
+                ...config,
+                positionClass: "left-[5%] w-[45%] h-[95%]"
+              };
+            }
+          }
 
           // 1. 基本判定：現在の発言者とキャラクター名が一致している場合
           // シナリオ側で talker: "キャラクター名" が明示的に指定されている場合は、それを優先して明るく（フォーカス）します。
