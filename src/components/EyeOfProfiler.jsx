@@ -189,7 +189,7 @@ export default function EyeOfProfiler({ onComplete }) {
             <img
               src="/scene/night.jpg"
               alt="residential street night"
-              className="w-full h-full object-cover pointer-events-none select-none filter brightness-50 contrast-125"
+              className="w-full h-full object-cover pointer-events-none select-none filter brightness-10 contrast-125"
               onError={() => setImageError(true)}
             />
           ) : (
