@@ -556,6 +556,8 @@ export default function App() {
                 currentSpeaker={currentLine?.speaker}
                 presentCharacters={presentCharacters}
                 currentLine={currentLine}
+                currentStep={currentStep}
+                scenarioData={scenarioData}
               />
             )}
 
