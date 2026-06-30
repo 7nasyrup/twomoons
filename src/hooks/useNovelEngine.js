@@ -52,12 +52,12 @@ export function useNovelEngine(scenarioData) {
     if (currentLine?.speaker_sprite && currentLine.speaker_sprite === 'Mutsunori_default') {
       const charLeftImg = document.getElementById("char-left-img");
       if (charLeftImg) {
-        charLeftImg.style.backgroundImage = `url(/illust/${currentLine.speaker_sprite}.webp)`;
+        charLeftImg.style.backgroundImage = `url(/character/Mutsunori/${currentLine.speaker_sprite}.png)`;
       }
     } else if (currentLine?.speaker_sprite && currentLine.speaker_sprite === 'Professor_default') {
       const charRightImg = document.getElementById("char-right-img");
       if (charRightImg) {
-        charRightImg.style.backgroundImage = `url(/illust/${currentLine.speaker_sprite}.webp)`;
+        charRightImg.style.backgroundImage = `url(/character/Hirumi/Hirumi_default.png)`;
       }
     }
   }, [currentStep, currentLine, triggerTypewriter]);

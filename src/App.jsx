@@ -235,8 +235,11 @@ export default function App() {
     // 2. Force Hide specific illustrations
     if (Array.isArray(currentLine.hideIllust)) {
       currentLine.hideIllust.forEach(char => {
-        if (nextList.includes(char)) {
-          nextList = nextList.filter(c => c !== char);
+        const baseName = char.split('_')[0];
+        const initialLen = nextList.length;
+        // 表情名が付いていても、ベース名が一致するキャラを全て削除
+        nextList = nextList.filter(c => c.split('_')[0] !== baseName);
+        if (nextList.length !== initialLen) {
           listChanged = true;
         }
       });
@@ -245,7 +248,15 @@ export default function App() {
     // 3. Force Show specific illustrations
     if (Array.isArray(currentLine.showIllust)) {
       currentLine.showIllust.forEach(char => {
-        if (!nextList.includes(char)) {
+        const baseName = char.split('_')[0];
+        // 同じベース名を持つキャラクターが既にリストにいれば、それを新しい表情に置き換える
+        const existingIndex = nextList.findIndex(c => c.split('_')[0] === baseName);
+        if (existingIndex !== -1) {
+          if (nextList[existingIndex] !== char) {
+            nextList[existingIndex] = char;
+            listChanged = true;
+          }
+        } else {
           nextList.push(char);
           listChanged = true;
         }
@@ -254,15 +265,52 @@ export default function App() {
 
     // 4. Default Auto-show fallback when no manual action is specified for this speaker
     const speaker = currentLine.speaker;
-    const targetSpeakers = ["睦典", "ミカ", "凪砂", "大男", "ヒルミ教授"];
+    const targetSpeakers = ["睦典", "ミカ", "凪砂", "大男", "ヒルミ教授", "満", "黒騎士"];
     const isTransmission = currentLine?.text?.trim().startsWith('『');
     if (speaker && targetSpeakers.includes(speaker) && !isTransmission) {
-      const isManuallyHidden = Array.isArray(currentLine.hideIllust) && currentLine.hideIllust.includes(speaker);
+      const isManuallyHidden = Array.isArray(currentLine.hideIllust) && currentLine.hideIllust.some(c => c.split('_')[0] === speaker);
       const isNightMutsunoriException = currentLine.scene === "夜の帰り道" && speaker === "睦典";
 
-      if (!isManuallyHidden && !isNightMutsunoriException && !nextList.includes(speaker)) {
+      // 既にそのキャラクター（どの表情であっても）が表示リストに含まれていない場合のみ自動追加
+      const isAlreadyPresent = nextList.some(c => c.split('_')[0] === speaker);
+      if (!isManuallyHidden && !isNightMutsunoriException && !isAlreadyPresent) {
         nextList.push(speaker);
         listChanged = true;
+      }
+    }
+
+    // 5. Apply `currentLine.illust` to update expression and persist it
+    if (currentLine.illust) {
+      const parts = currentLine.illust.split('_');
+      if (parts.length === 2) {
+        const engBase = parts[0];
+        const exp = parts[1];
+
+        // Map English to Japanese base names
+        const engToJp = {
+          "Mutsunori": "睦典",
+          "Hirumi": "ヒルミ教授",
+          "Mika": "ミカ",
+          "Nagisa": "凪砂",
+          "Akane": "大男",
+          "Mitsuru": "満"
+        };
+        const jpBase = engToJp[engBase];
+
+        if (jpBase) {
+          const newCharStr = `${jpBase}_${exp}`;
+          const existingIndex = nextList.findIndex(c => c.split('_')[0] === jpBase);
+
+          if (existingIndex !== -1) {
+            if (nextList[existingIndex] !== newCharStr) {
+              nextList[existingIndex] = newCharStr;
+              listChanged = true;
+            }
+          } else {
+            nextList.push(newCharStr);
+            listChanged = true;
+          }
+        }
       }
     }
 

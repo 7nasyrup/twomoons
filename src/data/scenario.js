@@ -218,12 +218,11 @@ export const scenarioData = [
         speaker: "ヒルミ教授",
         role: "PROFESSOR",
         text: "「はい、今日の講義はここまで。週末までに、月波が人体に与える精神的拒減反応についてのレポートを提出するように。遅れたら、容赦なく単位は落とすからね」",
-        action: "SHOW_SILHOUETTE_RIGHT"
+        hideIllust: ["ヒルミ教授"]
     },
     {
         scene: "月科学大講義室",
         text: "ヒルミ教授がパタンと教科書を閉じると、講義室のあちこちから「ええー……」「終わんねえよ」と絶望の地鳴りのような声が上がった。教授はそれをどこか楽しそうに眺めながら、片手をひらひらと振って教壇を去っていく。",
-        action: "HIDE_SILHOUETTE_RIGHT"
     },
     {
         scene: "月科学大講義室",
@@ -236,7 +235,7 @@ export const scenarioData = [
         speaker: "？？？",
         text: "「おーーい！ 朔良ーー！！」",
         action: "PLAY_RUNNING_SE",
-        showIllust: ["睦典"],
+        showIllust: ["睦典_smile"],
     },
     {
         scene: "講義室出口",
@@ -273,7 +272,8 @@ export const scenarioData = [
         scene: "講義室出口",
         speaker: "睦典",
         role: "MUTSUNORI",
-        text: "「そんな冷たいこと言わないでよ～！ ほら、僕、実家の割烹料理屋を継ぐための修行で毎日忙しいじゃん？ 仕込みとか、出汁のブレンドの特訓とか！」"
+        text: "「そんな冷たいこと言わないでよ～！ ほら、僕、実家の割烹料理屋を継ぐための修行で毎日忙しいじゃん？ 仕込みとか、出汁のブレンドの特訓とか！」",
+        showIllust: ["睦典_pout"]
     },
     {
         scene: "講義室出口",
@@ -801,7 +801,7 @@ export const scenarioData = [
         speaker: "？？？",
         text: "「ねぇそこの君。何か探し物かい？」",
         action: "PLAY_FOOTSTEP_SE",
-        showIllust: ["凪砂"],
+        showIllust: ["凪砂_smile"],
     },
     {
         scene: "夜の帰り道",
@@ -967,7 +967,8 @@ export const scenarioData = [
     {
         scene: "夜の帰り道",
         speaker: "？？？",
-        text: "「………なんで」"
+        text: "「………なんで」",
+        showIllust: ["凪砂_neutral"],
     },
     {
         scene: "夜の帰り道",
@@ -976,7 +977,8 @@ export const scenarioData = [
     {
         scene: "夜の帰り道",
         speaker: "？？？",
-        text: "「ねぇ、俺さ、君のこと気になっちゃった。この携帯返して欲しかったら、俺と連絡先交換しよう」"
+        text: "「ねぇ、俺さ、君のこと気になっちゃった。この携帯返して欲しかったら、俺と連絡先交換しよう」",
+        showIllust: ["凪砂_smile"],
     },
     {
         scene: "夜の帰り道",
@@ -991,7 +993,8 @@ export const scenarioData = [
     {
         scene: "夜の帰り道",
         speaker: "？？？",
-        text: "「……っ」"
+        text: "「……っ」",
+        showIllust: ["凪砂_neutral"],
     },
     {
         scene: "夜の帰り道",
@@ -1275,7 +1278,8 @@ export const scenarioData = [
         speaker: "睦典",
         role: "MUTSUNORI",
         text: "「おはよ、朔良……。お互い、よく生きて朝を迎えられたね……」",
-        bg: "school_gate_evening"
+        bg: "school_gate_evening",
+        illust: "Mutsunori_smile" // 疲れ気味だが安堵のニュアンス
     },
     {
         scene: "大学の正門前",
@@ -1291,7 +1295,8 @@ export const scenarioData = [
         scene: "大学の正門前",
         speaker: "睦典",
         role: "MUTSUNORI",
-        text: "「だってさぁ！ 朔良と別れたあと、うちの店のすぐ近くのブロックが封鎖されたんだよ！？ 防衛局のサイレンは鳴り響くし、ネット見たら【黒騎士】が【キメラ】の軍勢率いて現れたって書いてあるし！ 怖くて一睡もできなかったよ～！」"
+        text: "「だってさぁ！ 朔良と別れたあと、うちの店のすぐ近くのブロックが封鎖されたんだよ！？ 防衛局のサイレンは鳴り響くし、ネット見たら【黒騎士】が【キメラ】の軍勢率いて現れたって書いてあるし！ 怖くて一睡もできなかったよ～！」",
+        illust: "Mutsunori_pout" // 怖かった・不満・泣きごとのニュアンス
     },
     {
         scene: "大学の正門前",
@@ -1303,7 +1308,8 @@ export const scenarioData = [
         scene: "大学の正門前",
         speaker: "睦典",
         role: "MUTSUNORI",
-        text: "「うん……。やっぱり家まで送ればよかったってすごい後悔して……」"
+        text: "「うん……。やっぱり家まで送ればよかったってすごい後悔して……」",
+        illust: "Mutsunori_smile" // 反省・しゅんとした優しさ。sadがないためsmile // TODO: 要確認
     },
     {
         scene: "大学の正門前",
@@ -1327,7 +1333,8 @@ export const scenarioData = [
         scene: "大学の正門前",
         speaker: "睦典",
         role: "MUTSUNORI",
-        text: "「そのお詫びと言ってはなんだけど……完成したら『ルナ・エネルギーうどん』、無償で食べさせてやる！！あ〜朔良に食べさせるためにも、早く帰って修行しなきゃな〜！」"
+        text: "「そのお詫びと言ってはなんだけど……完成したら『ルナ・エネルギーうどん』、無償で食べさせてやる！！あ〜朔良に食べさせるためにも、早く帰って修行しなきゃな〜！」",
+        illust: "Mutsunori_happy" // テンション上がって元気満々
     },
     {
         scene: "大学の正門前",
@@ -1339,7 +1346,8 @@ export const scenarioData = [
         scene: "大学の正門前",
         speaker: "睦典",
         role: "MUTSUNORI",
-        text: "「ひええ、待ってよ朔良～！」"
+        text: "「ひええ、待ってよ朔良～！」",
+        illust: "Mutsunori_pout" // 慌てて焦るニュアンス
     },
     {
         scene: "講義室",
@@ -1362,7 +1370,8 @@ export const scenarioData = [
         scene: "講義室",
         speaker: "睦典",
         role: "MUTSUNORI",
-        text: "「終わったーー！ 朔良、早く行こ！ 今日は学食の唐揚げ定食が僕を待ってる！」"
+        text: "「終わったーー！ 朔良、早く行こ！ 今日は学食の唐揚げ定食が僕を待ってる！」",
+        illust: "Mutsunori_happy" // 解放感・テンション高め
     },
     {
         scene: "講義室",
@@ -1374,7 +1383,8 @@ export const scenarioData = [
         scene: "講義室",
         speaker: "睦典",
         role: "MUTSUNORI",
-        text: "「でしょ？ よーし、席取りは僕に任せて───」"
+        text: "「でしょ？ よーし、席取りは僕に任せて───」",
+        illust: "Mutsunori_happy" // 張り切っているノリ
     },
     {
         scene: "廊下",
@@ -1406,7 +1416,8 @@ export const scenarioData = [
     {
         scene: "大学の正門前",
         text: "ハッとして顔を上げると、正門のレンガの壁に背中を預け、退屈そうにスマートフォンを弄っていた男が、こちらを見てにこりと完璧な微笑みを浮かべていた。",
-        showIllust: ["凪砂"]
+        showIllust: ["凪砂"],
+        illust: "Nagisa_smile" // 完璧な微笑みを浮かべている描写
     },
     {
         scene: "大学の正門前",
@@ -1460,7 +1471,8 @@ export const scenarioData = [
         scene: "大学の正門前",
         speaker: "凪砂",
         role: "NAGISA",
-        text: "「お前には話しかけてない」"
+        text: "「お前には話しかけてない」",
+        illust: "Nagisa_serious" // 冷徹に無視・威圧的な態度
     },
     {
         scene: "大学の正門前",
@@ -1472,7 +1484,8 @@ export const scenarioData = [
         scene: "大学の正門前",
         speaker: "凪砂",
         role: "NAGISA",
-        text: "「うるさいな……。声が大きくて頭に響く。育ちが悪いんじゃない？」"
+        text: "「うるさいな……。声が大きくて頭に響く。育ちが悪いんじゃない？」",
+        illust: "Nagisa_serious" // 冷たく見下した態度
     },
     {
         scene: "大学の正門前",
@@ -1484,7 +1497,8 @@ export const scenarioData = [
         scene: "大学の正門前",
         speaker: "凪砂",
         role: "NAGISA",
-        text: "「お前に用はない。俺が話したいのは、後ろの彼女」"
+        text: "「お前に用はない。俺が話したいのは、後ろの彼女」",
+        illust: "Nagisa_neutral" // 無関心・淡々と目的だけを口にする
     },
     {
         scene: "大学の正門前",
@@ -1494,7 +1508,8 @@ export const scenarioData = [
         scene: "大学の正門前",
         speaker: "凪砂",
         role: "NAGISA",
-        text: "「昨日、途中で逃げたでしょ。……生意気。連絡先、教えなよ」"
+        text: "「昨日、途中で逃げたでしょ。……生意気。連絡先、教えなよ」",
+        illust: "Nagisa_serious" // ギラついた目・圧迫感のある表情の描写に対応
     },
     {
         scene: "大学の正門前",
@@ -1506,7 +1521,8 @@ export const scenarioData = [
         scene: "大学の正門前",
         speaker: "凪砂",
         role: "NAGISA",
-        text: "「学生証、カバンから見えてた。頭の悪そうな名前の大学。……ねぇ、朔良ちゃん」"
+        text: "「学生証、カバンから見えてた。頭の悪そうな名前の大学。……ねぇ、朔良ちゃん」",
+        illust: "Nagisa_smile" // 薄い唇の端が歪に持ち上がる描写に対応
     },
     {
         scene: "大学の正門前",
@@ -1526,7 +1542,8 @@ export const scenarioData = [
         scene: "大学の正門前",
         speaker: "凪砂",
         role: "NAGISA",
-        text: "「……触らないで。汚れる。本当に、野蛮な男」"
+        text: "「……触らないで。汚れる。本当に、野蛮な男」",
+        illust: "Nagisa_serious" // 嫌悪感をあらわにして激しく不快そうな表情
     },
     {
         scene: "大学の正門前",
@@ -1553,13 +1570,15 @@ export const scenarioData = [
         scene: "大学の正門前",
         speaker: "睦典",
         role: "MUTSUNORI",
-        text: "「っうわ！？ 教授！？」"
+        text: "「っうわ！？ 教授！？」",
+        illust: "Mutsunori_pout" // 突然の出現に飛び上がって驚く
     },
     {
         scene: "大学の正門前",
         speaker: "凪砂",
         role: "NAGISA",
-        text: "「…ッ」"
+        text: "「…ッ」",
+        illust: "Nagisa_serious" // 警戒・動揺を押し殺した表情
     },
     {
         scene: "大学の正門前",
@@ -1575,13 +1594,15 @@ export const scenarioData = [
         scene: "大学の正門前",
         speaker: "睦典",
         role: "MUTSUNORI",
-        text: "「っ、いや、教授！ こいつが朔良に──」"
+        text: "「っ、いや、教授！ こいつが朔良に──」",
+        illust: "Mutsunori_serious" // まだ怒りが収まっていない
     },
     {
         scene: "大学の正門前",
         speaker: "凪砂",
         role: "NAGISA",
-        text: "「……チッ」"
+        text: "「……チッ」",
+        illust: "Nagisa_serious" // 不機嫌な舌打ち
     },
     {
         scene: "大学の正門前",
@@ -3765,6 +3786,7 @@ export const scenarioData = [
     {
         scene: "大学の敷地内",
         text: "彼の背後の闇からいつの間にか現れていたのは、頭からつま先まで、禍々しい漆黒の鎧に身を包んだ──",
+        showIllust: ["黒騎士"],
     },
     {
         scene: "大学の敷地内",
@@ -3779,6 +3801,7 @@ export const scenarioData = [
     {
         scene: "大学の敷地内",
         text: "満の綺麗な瞳から、急速に光が失われていく。彼は血を吐きながら、最期まで私に向けて手を伸ばそうとして──。",
+        hideIllust: ["満", "黒騎士"]
     },
     {
         scene: "大学の敷地内",

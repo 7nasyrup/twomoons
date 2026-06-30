@@ -6,7 +6,7 @@ const CHAR_DATA = {
   mutsunori: {
     name: '睦典',
     englishName: 'MUTSUNORI',
-    image: '/illust/Mutsunori_default.webp',
+    image: '/character/Mutsunori/Mutsunori_default.png',
     color: '#bc84ee', // Purple
     dialogue: `「あ、朔良！ちょうど新メニューの試作スープについて考えててさ。
 ……あ、危ないから、この鍋には触っちゃダメだよ？ 
@@ -23,7 +23,7 @@ const CHAR_DATA = {
   mika: {
     name: 'ミカ',
     englishName: 'MIKA',
-    image: '/illust/Mika_default.webp',
+    image: '/character/Mika/Mika_default.png',
     color: '#ff758f', // Pink
     dialogue: `「せんぱ〜い！僕に話しかけてくれるなんて、やっぱり運命ですね！
 ねぇ、先輩の目には、今の僕がどんな風に映ってますか？
@@ -39,7 +39,7 @@ const CHAR_DATA = {
   nagisa: {
     name: '凪砂',
     englishName: 'NAGISA',
-    image: '/illust/Nagisa_default.webp',
+    image: '/character/Nagisa/Nagisa_default.png',
     color: '#4cc9f0', // Cyan
     dialogue: `「……君か。不意に声をかけられると、視界の因果律が狂う.
 だが……不思議だな。君の隣にいるときだけは、私の脳を刺す
@@ -55,7 +55,7 @@ const CHAR_DATA = {
   akane: {
     name: 'アカネ',
     englishName: 'AKANE',
-    image: '/illust/Akane_default.webp',
+    image: '/character/Akane/Akane_default.png',
     color: '#ffb703', // Yellow/Gold
     dialogue: `「……俺に用か。……怪我はないな？
 お前の周囲の重力が、僅かに乱れているのを感じた。
