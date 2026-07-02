@@ -247,7 +247,7 @@ export default function SearchAndLearning({ onComplete }) {
             key="spot-tv"
             onClick={() => handleSelectObject('tv')}
             className="absolute transform -translate-x-1/2 -translate-y-1/2 hover:scale-110 active:scale-95 transition-all duration-300 focus:outline-none z-20 flex items-center justify-center w-12 h-12"
-            style={{ top: '50%', left: '70%' }}
+            style={{ top: '38%', left: '82%' }}
           >
             {visited.tv ? (
               <div className="w-6 h-6 rounded-full bg-white/20 border border-white/40 flex items-center justify-center shadow-[0_0_8px_rgba(255,255,255,0.3)]">
@@ -266,7 +266,7 @@ export default function SearchAndLearning({ onComplete }) {
             key="spot-newspaper"
             onClick={() => handleSelectObject('newspaper')}
             className="absolute transform -translate-x-1/2 -translate-y-1/2 hover:scale-110 active:scale-95 transition-all duration-300 focus:outline-none z-20 flex items-center justify-center w-12 h-12"
-            style={{ top: '75%', left: '55%' }}
+            style={{ top: '75%', left: '63%' }}
           >
             {visited.newspaper ? (
               <div className="w-6 h-6 rounded-full bg-white/20 border border-white/40 flex items-center justify-center shadow-[0_0_8px_rgba(255,255,255,0.3)]">
