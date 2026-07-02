@@ -265,7 +265,7 @@ export default function App() {
 
     // 4. Default Auto-show fallback when no manual action is specified for this speaker
     const speaker = currentLine.speaker;
-    const targetSpeakers = ["睦典", "ミカ", "凪砂", "大男", "ヒルミ教授", "満", "黒騎士"];
+    const targetSpeakers = ["睦典", "ミカ", "凪砂", "大男", "アカネ", "ヒルミ教授", "満", "黒騎士", "ルキ", "朔良"];
     const isTransmission = currentLine?.text?.trim().startsWith('『');
     if (speaker && targetSpeakers.includes(speaker) && !isTransmission) {
       const isManuallyHidden = Array.isArray(currentLine.hideIllust) && currentLine.hideIllust.some(c => c.split('_')[0] === speaker);
