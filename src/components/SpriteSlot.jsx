@@ -32,9 +32,15 @@ const SPEAKER_CONFIGS = {
     defaultExpression: "neutral",
     positionClass: "right-[22%] w-[45%] h-[95%]"
   },
+  "アカネ": {
+    folder: "/character/Akane",
+    baseFileName: "Akane",
+    defaultExpression: "neutral",
+    positionClass: "right-[22%] w-[45%] h-[95%]"
+  },
   "満": {
-    folder: "/character/Mitsuru",
-    baseFileName: "Mitsuru",
+    folder: "/character/Michiru",
+    baseFileName: "Michiru",
     defaultExpression: "smile",
     positionClass: "left-[15%] w-[45%] h-[95%]"
   },
@@ -117,6 +123,22 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
               }
             }
             if (isMikaRoute) {
+              config = { ...config, positionClass: "left-[5%] w-[45%] h-[95%]" };
+            }
+          }
+
+          // アカネルートでの立ち位置変更
+          if (baseCharName === "アカネ" || baseCharName === "大男") {
+            let isAkaneRoute = false;
+            if (Array.isArray(scenarioData) && typeof currentStep === 'number') {
+              for (let i = currentStep; i >= 0; i--) {
+                if (scenarioData[i]?.label === "akane_route_start") {
+                  isAkaneRoute = true;
+                  break;
+                }
+              }
+            }
+            if (isAkaneRoute) {
               config = { ...config, positionClass: "left-[5%] w-[45%] h-[95%]" };
             }
           }

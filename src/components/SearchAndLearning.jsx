@@ -6,7 +6,7 @@ const ITEM_DECORATIONS = {
   // 新聞紙（souji_shinbunshi.png）のスタイル設定
   souji_shinbunshi: {
     top: '75%',         // Y座標（上からの位置）
-    left: '55%',        // X座標（左からの位置）
+    left: '63%',        // X座標（左からの位置）
     width: '64px',      // 横幅
     height: '64px',     // 縦幅
     zIndex: '10'        // 重なりの順序
@@ -79,7 +79,7 @@ const OBJECT_DETAILS = {
 export default function SearchAndLearning({ onComplete }) {
   const [visited, setVisited] = useState({ tv: false, newspaper: false, bookshelf: false, artificial_moon: false, calendar: false });
   const [activeObj, setActiveObj] = useState(null);
-  const [bgImage, setBgImage] = useState('/scene/living_room2.jpg');
+  const [bgImage, setBgImage] = useState('/scene/room_tv.png');
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isBlackout, setIsBlackout] = useState(false);
 
@@ -126,7 +126,7 @@ export default function SearchAndLearning({ onComplete }) {
     if (activeDialogue) return;
     setIsTransitioning(true);
     setIsBlackout(true); // 暗転開始
-    
+
     // 暗転完了タイミング（300ms後）で背景切り替え ＆ フェードアウト開始
     setTimeout(() => {
       setBgImage('/scene/moon.jpg');
@@ -143,9 +143,9 @@ export default function SearchAndLearning({ onComplete }) {
     if (activeDialogue) return;
     setIsTransitioning(true);
     setIsBlackout(true); // 暗転開始
-    
+
     setTimeout(() => {
-      setBgImage('/scene/living_room2.jpg');
+      setBgImage('/scene/room_tv.png');
       setIsBlackout(false);
     }, 300);
 
@@ -166,7 +166,7 @@ export default function SearchAndLearning({ onComplete }) {
     setDisplayedDialogue('');
     setIsTyping(true);
     let currentString = '';
-    
+
     typingTimer.current = setInterval(() => {
       if (currentString.length < activeDialogue.length) {
         currentString += activeDialogue.charAt(currentString.length);
@@ -186,7 +186,7 @@ export default function SearchAndLearning({ onComplete }) {
 
   return (
     <div className="absolute inset-0 bg-[#030712] z-50 overflow-hidden select-none font-orbitron">
-      {/* Background image (living_room2.jpg or moon.jpg) */}
+      {/* Background image (room_tv.png or moon.jpg) */}
       <img
         src={bgImage}
         alt="bg"
@@ -195,9 +195,8 @@ export default function SearchAndLearning({ onComplete }) {
 
       {/* Blackout overlay for cinematic transition */}
       <div
-        className={`absolute inset-0 bg-black z-40 pointer-events-none transition-opacity duration-300 ${
-          isBlackout ? 'opacity-100' : 'opacity-0'
-        }`}
+        className={`absolute inset-0 bg-black z-40 pointer-events-none transition-opacity duration-300 ${isBlackout ? 'opacity-100' : 'opacity-0'
+          }`}
       />
 
       {/* Header Info Overlay */}
@@ -391,7 +390,7 @@ export default function SearchAndLearning({ onComplete }) {
                   {OBJECT_DETAILS[activeObj].title}
                 </h3>
               </div>
-              <button 
+              <button
                 onClick={handleCloseDetail}
                 className="text-gray-400 hover:text-white p-1 hover:bg-white/5 rounded transition-all"
               >
@@ -423,7 +422,7 @@ export default function SearchAndLearning({ onComplete }) {
 
       {/* --- Game Main Dialogue Box style Overlay (本編同様のメッセージウィンドウ) --- */}
       {activeDialogue && (
-        <div 
+        <div
           onClick={handleNextDialogue}
           className="absolute inset-x-0 bottom-0 z-50 flex flex-col justify-end bg-gradient-to-t from-black/95 via-black/80 to-transparent pt-24 pb-12 px-12 md:px-24 cursor-pointer animate-slideUp font-noto"
         >

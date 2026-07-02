@@ -293,7 +293,7 @@ export default function App() {
           "Mika": "ミカ",
           "Nagisa": "凪砂",
           "Akane": "大男",
-          "Mitsuru": "満"
+          "Michiru": "満"
         };
         const jpBase = engToJp[engBase];
 
