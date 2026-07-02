@@ -224,14 +224,15 @@ export default function TapCommunication({ onComplete }) {
               initial={{ y: 50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 50, opacity: 0 }}
-              className="w-full max-w-3xl bg-black/95 border-2 rounded-xl p-6 relative shadow-2xl flex flex-col justify-between"
-              style={{ borderColor: `${activeChar.color}60` }}
+              className="w-full max-w-3xl bg-black/80 border border-white/10 rounded-sm p-8 md:p-10 relative shadow-2xl flex flex-col justify-between backdrop-blur-md"
             >
               {/* Modal Header */}
-              <div className="flex justify-between items-center border-b pb-2 mb-4" style={{ borderColor: `${activeChar.color}20` }}>
-                <h3 className="font-bold text-md tracking-wider" style={{ color: activeChar.color }}>
-                  {activeChar.name}
-                </h3>
+              <div className="flex justify-between items-center mb-6">
+                <div className="flex items-center gap-3">
+                  <h3 className="text-lg font-light tracking-[0.2em]" style={{ color: activeChar.color }}>
+                    {activeChar.name}
+                  </h3>
+                </div>
                 <button
                   onClick={handleCloseDialogue}
                   className="text-gray-400 hover:text-white p-1 hover:bg-white/5 rounded transition-all"
@@ -241,21 +242,17 @@ export default function TapCommunication({ onComplete }) {
               </div>
 
               {/* Text Content */}
-              <div className="font-noto tracking-wider text-sm text-gray-200 leading-relaxed whitespace-pre-line mb-6 pl-2 border-l-2" style={{ borderColor: activeChar.color }}>
+              <div className="font-light tracking-[0.2em] text-base text-gray-200 leading-[2.2] whitespace-pre-line mb-8">
                 {activeChar.dialogue}
               </div>
 
               {/* Modal Footer */}
-              <div className="flex justify-end">
+              <div className="flex justify-end mt-auto">
                 <button
                   onClick={handleCloseDialogue}
-                  className="px-6 py-2 text-xs font-bold tracking-widest uppercase transition-all rounded text-white cursor-pointer"
-                  style={{
-                    backgroundColor: activeChar.color,
-                    boxShadow: `0 4px 10px ${activeChar.color}40`
-                  }}
+                  className="text-sm text-gray-400 hover:text-white transition-colors tracking-[0.2em] font-light"
                 >
-                  対話を終了する
+                  [ 対話を終了する ]
                 </button>
               </div>
             </motion.div>
@@ -271,24 +268,24 @@ export default function TapCommunication({ onComplete }) {
             animate={{ opacity: 1 }}
             className="absolute inset-0 bg-black/95 flex flex-col items-center justify-center p-6 z-50"
           >
-            <div className="w-full max-w-md border border-white/10 rounded-xl p-8 bg-black/90 relative flex flex-col items-center text-center shadow-2xl">
-              <Award className="w-12 h-14 text-cyan-400 mb-4 animate-bounce" />
+            <div className="w-full max-w-md border border-white/10 rounded-sm p-10 bg-black/80 backdrop-blur-md relative flex flex-col items-center text-center shadow-2xl">
+              <Award className="w-10 h-10 text-cyan-400 mb-6 animate-bounce" />
               
-              <h2 className="text-lg font-bold text-cyan-400 tracking-[0.15em] mb-4">
+              <h2 className="text-lg font-light text-cyan-400 tracking-[0.2em] mb-6">
                 対話共鳴フェーズ完了
               </h2>
 
-              <p className="text-gray-300 font-noto text-xs leading-relaxed mb-6 max-w-xs">
+              <p className="text-gray-300 font-light tracking-[0.2em] leading-[2.2] text-sm mb-8 max-w-xs">
                 メンバーたちとの特別な対話を終えました。<br />
                 深まった共鳴は、今後の選択に影響を与えます。
               </p>
 
               {/* Visualized end resonance statuses */}
-              <div className="w-full grid grid-cols-2 gap-4 mb-6">
+              <div className="w-full grid grid-cols-2 gap-4 mb-8">
                 {Object.entries(CHAR_DATA).map(([key, char]) => (
-                  <div key={key} className="p-3 bg-white/5 border border-white/10 rounded-lg flex flex-col items-center">
-                    <span className="text-[11px] font-bold text-gray-300 mb-1">{char.name}</span>
-                    <span className="text-sm font-bold font-mono" style={{ color: char.color }}>
+                  <div key={key} className="p-3 bg-white/5 border border-white/10 rounded flex flex-col items-center">
+                    <span className="text-[11px] font-light text-gray-300 mb-1 tracking-wider">{char.name}</span>
+                    <span className="text-sm font-light font-mono" style={{ color: char.color }}>
                       {scores[key]}%
                     </span>
                     <div className="w-full h-1 bg-gray-950 rounded-full mt-1.5 overflow-hidden">
@@ -300,9 +297,9 @@ export default function TapCommunication({ onComplete }) {
 
               <button
                 onClick={handleFinish}
-                className="px-8 py-2.5 bg-gradient-to-r from-cyan-600 to-blue-500 hover:from-cyan-500 hover:to-blue-400 text-white font-bold tracking-widest text-xs rounded shadow-md transition-all duration-300"
+                className="mt-2 text-white/60 hover:text-white transition-all text-sm font-light tracking-[0.2em] flex items-center gap-2"
               >
-                本編へ戻る
+                [ 本編へ戻る ]
               </button>
             </div>
           </motion.div>

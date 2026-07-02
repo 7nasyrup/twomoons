@@ -98,7 +98,7 @@ export default function TypingGame({ onComplete }) {
       ref={containerRef}
       className={`absolute inset-0 bg-[#030712]/95 backdrop-blur-sm flex flex-col items-center justify-center z-50 transition-all duration-500 font-orbitron p-6 overflow-hidden ${
         shake ? 'animate-shake' : ''
-      } ${timeLeft <= 10 ? 'border-4 border-red-600/50' : 'border-4 border-cyan-500/30'}`}
+      } ${timeLeft <= 10 ? 'border border-red-600/50' : ''}`}
     >
       {/* Scanline effect */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.03),rgba(0,255,0,0.01),rgba(0,0,255,0.03))] bg-[length:100%_4px,3px_100%] pointer-events-none z-10 opacity-30" />
@@ -112,16 +112,15 @@ export default function TypingGame({ onComplete }) {
           <h2 className="text-2xl text-cyan-400 tracking-[0.2em] font-bold mb-4">
             リミット・タイピング
           </h2>
-          <p className="text-gray-400 font-noto tracking-wider text-sm mb-8 leading-relaxed">
+          <p className="text-gray-300 font-light tracking-[0.2em] leading-[2.2] text-sm mb-8">
             何者かがあなたの端末ポート経由でシステムへハッキングを仕掛けています。<br />
             制限時間内に指定された防衛セキュリティコードを入力し、ハッキングを遮断、および逆探知を成功させてください！
           </p>
           <button
             onClick={() => setHasStarted(true)}
-            className="px-12 py-4 bg-red-950/40 border-2 border-red-500/60 text-red-400 font-bold text-lg tracking-[0.3em] rounded-lg
-                       hover:bg-red-500 hover:text-white hover:shadow-[0_0_30px_rgba(239,68,68,0.5)] transition-all duration-300"
+            className="text-red-400/80 hover:text-red-400 bg-gray-900/50 backdrop-blur-sm px-6 py-3 rounded-md shadow border border-red-500/20 font-light tracking-[0.3em] transition-all duration-300"
           >
-            防衛プログラム起動
+            [ 防衛プログラム起動 ]
           </button>
         </div>
       ) : (
@@ -165,7 +164,7 @@ export default function TypingGame({ onComplete }) {
                     <h1 className="text-4xl md:text-5xl font-extrabold text-green-400 tracking-[0.2em] mb-4 drop-shadow-[0_0_20px_rgba(74,222,128,0.4)]">
                       TRACE COMPLETED
                     </h1>
-                    <p className="text-gray-300 font-noto tracking-widest text-sm md:text-base">
+                    <p className="text-gray-300 font-light tracking-[0.2em] leading-[2.2] text-sm md:text-base mt-4">
                       ハッキングの遮断に成功！ 侵入者の逆探知を完了しました。
                     </p>
                   </div>
@@ -174,14 +173,14 @@ export default function TypingGame({ onComplete }) {
                     <h1 className="text-4xl md:text-5xl font-extrabold text-red-500 tracking-[0.2em] mb-4 drop-shadow-[0_0_20px_rgba(239,68,68,0.4)]">
                       CONNECTION LOST
                     </h1>
-                    <p className="text-gray-400 font-noto tracking-widest text-sm md:text-base">
+                    <p className="text-gray-300 font-light tracking-[0.2em] leading-[2.2] text-sm md:text-base mt-4">
                       ファイアウォールが突破されました。強制シャットダウンを実行します。
                     </p>
                   </div>
                 )}
               </div>
             ) : (
-              <div className="relative p-8 bg-black/60 border border-cyan-500/30 rounded-xl shadow-[inset_0_0_30px_rgba(6,182,212,0.05)]">
+              <div className="relative p-10 bg-black/80 border border-white/10 rounded-sm shadow-2xl">
                 {/* Visual of currently typing word */}
                 <div className="text-4xl md:text-5xl font-bold tracking-[0.1em] mb-6 flex justify-center flex-wrap select-none">
                   {currentWord.split('').map((char, index) => {
@@ -198,8 +197,8 @@ export default function TypingGame({ onComplete }) {
                     );
                   })}
                 </div>
-                <div className="text-xs text-cyan-500/60 tracking-widest uppercase">
-                  キーボードから直接上記の英数字を入力してください（大文字小文字は自動で認識されます）
+                <div className="text-xs text-cyan-500/60 tracking-[0.2em] font-light mt-6 text-center">
+                  キーボードから直接上記の英数字を入力してください
                 </div>
               </div>
             )}

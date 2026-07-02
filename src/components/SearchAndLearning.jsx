@@ -14,9 +14,9 @@ const ITEM_DECORATIONS = {
   // 壁掛けカレンダー（calender_kabekake.png）のスタイル設定
   calender_kabekake: {
     top: '25%',         // Y座標（上からの位置）
-    left: '30%',        // X座標（左からの位置）
-    width: '60px',      // 横幅
-    height: '70px',     // 縦幅
+    left: '45%',        // X座標（左からの位置）
+    width: '70px',      // 横幅
+    height: '80px',     // 縦幅
     zIndex: '10'        // 重なりの順序
   }
 };
@@ -200,12 +200,14 @@ export default function SearchAndLearning({ onComplete }) {
       />
 
       {/* Header Info Overlay */}
-      <div className="absolute top-4 left-4 right-4 flex justify-between items-center z-20 border-b border-cyan-500/20 pb-2 bg-black/40 px-3 py-1.5 rounded-md backdrop-blur-sm">
-        <h2 className="text-sm font-bold text-cyan-400 tracking-[0.15em] flex items-center gap-2">
-          <span className="inline-block w-2 h-2 rounded-full bg-cyan-500 animate-pulse" />
+      <div className="absolute top-8 left-8 z-20 pointer-events-none bg-gray-900/50 backdrop-blur-sm px-5 py-2.5 rounded-md shadow">
+        <h2 className="text-sm font-light text-white/90 tracking-[0.2em] flex items-center gap-3 font-noto">
+          <span className="inline-block w-1.5 h-1.5 rounded-full bg-white/70 animate-pulse" />
           {isMoonView ? '窓の外：妖しく光る人工の月' : '深夜の自室：世界観探索'}
         </h2>
-        <span className="text-xs font-bold text-cyan-400 font-mono">
+      </div>
+      <div className="absolute top-8 right-8 z-20 pointer-events-none bg-gray-900/50 backdrop-blur-sm px-5 py-2.5 rounded-md shadow">
+        <span className="text-sm font-light text-white/80 font-orbitron tracking-[0.2em]">
           SCAN: {totalVisited} / 5
         </span>
       </div>
@@ -363,57 +365,59 @@ export default function SearchAndLearning({ onComplete }) {
           <button
             key="btn-back-to-room"
             onClick={handleBackToRoom}
-            className="absolute bottom-6 left-6 px-6 py-2.5 bg-cyan-950/80 border border-cyan-500/30 text-cyan-300 hover:bg-cyan-500/20 hover:text-white transition-none text-xs font-bold rounded tracking-widest z-20 backdrop-blur-sm"
+            className="absolute bottom-8 left-8 bg-gray-900/50 backdrop-blur-sm px-5 py-3 rounded-md shadow text-white/80 hover:text-white hover:bg-gray-800/60 transition-all text-sm font-light tracking-[0.2em] font-noto z-20 flex items-center gap-2"
           >
+            <ChevronRight className="w-4 h-4 rotate-180" />
             部屋に戻る
           </button>
         </div>
       )}
 
-      {/* Extremely Simple Close Button in Bottom-Right */}
+      {/* Simple Close Button in Bottom-Right */}
       <button
         onClick={handleFinishSearch}
-        className="absolute bottom-6 right-6 px-6 py-2.5 bg-cyan-950/80 border border-cyan-500/30 text-cyan-300 hover:bg-cyan-500/20 hover:text-white transition-all text-xs font-bold rounded tracking-widest z-20 backdrop-blur-sm"
+        className="absolute bottom-8 right-8 bg-gray-900/50 backdrop-blur-sm px-5 py-3 rounded shadow text-white/80 hover:text-white hover:bg-gray-800/60 transition-all text-sm font-light tracking-[0.2em] font-noto z-20 flex items-center gap-2"
       >
         {totalVisited === 5 ? '探索を終了する' : '探索を一時終了'}
+        <ChevronRight className="w-4 h-4" />
       </button>
 
       {/* Detail Overlay Popup */}
       {activeObj && (
-        <div className="absolute inset-0 bg-black/90 flex justify-center items-center p-6 z-30 animate-fadeIn">
-          <div className="w-full max-w-2xl bg-[#02050e] border-2 border-cyan-500/40 rounded-xl p-6 relative flex flex-col h-[70vh] shadow-[0_0_50px_rgba(0,245,255,0.1)]">
+        <div 
+          className="absolute inset-0 bg-black/60 backdrop-blur-sm flex justify-center items-center p-6 z-30 animate-fadeIn"
+          onClick={handleCloseDetail}
+        >
+          <div 
+            className="w-full max-w-2xl bg-black/80 border border-white/10 p-10 relative flex flex-col shadow-2xl"
+            onClick={e => e.stopPropagation()}
+          >
             {/* Header */}
-            <div className="flex justify-between items-center border-b border-cyan-500/20 pb-4 mb-4">
-              <div className="flex items-center gap-2">
-                {React.createElement(OBJECT_DETAILS[activeObj].icon, { className: 'w-6 h-6 text-cyan-400' })}
-                <h3 className="font-bold text-lg text-cyan-400 tracking-wider">
+            <div className="flex justify-between items-center mb-8">
+              <div className="flex items-center gap-3">
+                {React.createElement(OBJECT_DETAILS[activeObj].icon, { className: 'w-5 h-5 text-gray-400' })}
+                <h3 className="text-lg font-light text-white/90 tracking-[0.15em] font-noto">
                   {OBJECT_DETAILS[activeObj].title}
                 </h3>
               </div>
-              <button
-                onClick={handleCloseDetail}
-                className="text-gray-400 hover:text-white p-1 hover:bg-white/5 rounded transition-all"
-              >
-                <X className="w-5 h-5" />
-              </button>
             </div>
 
-            {/* Scrollable content body (Now ONLY Narration text, no Sakura's dialogue) */}
-            <div className="flex-1 overflow-y-auto mb-6 text-sm text-gray-300 leading-relaxed font-noto tracking-wider pr-2 whitespace-pre-line">
+            {/* Scrollable content body */}
+            <div className="flex-1 overflow-y-auto mb-10 text-base text-gray-300 leading-[2.2] font-noto tracking-wider whitespace-pre-line">
               {OBJECT_DETAILS[activeObj].text}
             </div>
 
             {/* Notification / Learning Badge */}
-            <div className="border-t border-cyan-500/10 pt-4 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-mono">
-              <span className="text-green-400 flex items-center gap-1.5 font-bold tracking-widest font-noto">
-                <Check className="w-4 h-4 text-green-400" />
+            <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row justify-between items-end gap-4">
+              <span className="text-cyan-200/70 text-xs flex items-center gap-2 font-noto tracking-widest">
+                <Check className="w-4 h-4" />
                 {OBJECT_DETAILS[activeObj].pointDesc}
               </span>
               <button
                 onClick={handleCloseDetail}
-                className="px-6 py-2 bg-cyan-500 border border-cyan-400 text-white font-bold tracking-widest uppercase hover:bg-cyan-400 transition-all rounded w-full sm:w-auto text-center"
+                className="text-xs text-gray-400 hover:text-white transition-colors tracking-[0.2em] font-noto"
               >
-                閉じる
+                [ 閉じる ]
               </button>
             </div>
           </div>
@@ -424,35 +428,35 @@ export default function SearchAndLearning({ onComplete }) {
       {activeDialogue && (
         <div
           onClick={handleNextDialogue}
-          className="absolute inset-x-0 bottom-0 z-50 flex flex-col justify-end bg-gradient-to-t from-black/95 via-black/80 to-transparent pt-24 pb-12 px-12 md:px-24 cursor-pointer animate-slideUp font-noto"
+          className="absolute inset-x-0 bottom-0 z-50 flex flex-col justify-end bg-gradient-to-t from-black/95 via-black/80 to-transparent pt-32 pb-12 px-12 md:px-32 cursor-pointer animate-slideUp"
         >
           {/* Speaker name */}
-          <div className="flex items-center gap-3 mb-2 select-none">
-            <span className="text-white text-base md:text-lg font-bold tracking-widest">
+          <div className="flex items-center gap-3 mb-4 select-none">
+            <span className="text-white/90 text-lg md:text-xl font-light tracking-[0.2em]">
               朔良
             </span>
-            <span className="text-white/40 text-[10px] md:text-xs font-orbitron px-2 py-0.5 border border-white/10 rounded tracking-widest uppercase">
+            <span className="text-white/30 text-xs font-orbitron tracking-[0.2em] uppercase">
               SAKURA
             </span>
           </div>
 
           {/* Line between speaker and text */}
-          <div className="w-full h-[1px] bg-gradient-to-r from-white/40 via-white/15 to-transparent mb-4 select-none" />
+          <div className="w-full h-px bg-white/20 mb-6 select-none" />
 
           {/* Text content with cursor indicator */}
-          <div className="min-h-[80px] flex items-start">
-            <p className="text-gray-100 text-base md:text-lg leading-relaxed tracking-wide">
+          <div className="min-h-[100px] flex items-start">
+            <p className="text-gray-200 text-lg md:text-xl leading-[2.2] font-light tracking-[0.2em]">
               {displayedDialogue}
               {isTyping && (
-                <span className="inline-block w-[2px] h-4 md:h-[18px] bg-white ml-1 align-middle animate-pulse" />
+                <span className="inline-block w-[2px] h-5 bg-white/80 ml-2 align-middle animate-pulse" />
               )}
             </p>
           </div>
 
           {/* Next Indicator */}
           {!isTyping && (
-            <div className="absolute bottom-4 right-12 md:right-24 animate-bounce">
-              <ChevronRight size={24} className="text-white/60" />
+            <div className="absolute bottom-8 right-12 md:right-32 animate-pulse">
+              <ChevronRight size={24} className="text-white/40" />
             </div>
           )}
         </div>

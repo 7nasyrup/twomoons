@@ -266,35 +266,32 @@ export default function EyeOfProfiler({ onComplete }) {
         </div>
       </div>
 
-      {/* Header UI (Absolute Overlay) */}
-      <div className="absolute top-4 left-4 right-4 flex justify-between items-center border-b border-green-500/20 pb-2 z-30 bg-black/40 px-3 py-2 rounded">
-        <div className="flex flex-col">
-          <span className="text-green-500/60 text-[9px] block tracking-[0.3em] mb-0.5">EYE OF PROFILER // ACTIVE</span>
-          <h2 className="text-sm font-bold text-green-400 tracking-[0.15em] flex items-center gap-2">
-            <Eye className="w-3.5 h-3.5 text-green-400 animate-pulse" />
-            暗闇の監視網：住宅街（夜）視点探索
-          </h2>
+      {/* Header Info Overlay */}
+      <div className="absolute top-8 left-8 z-20 pointer-events-none bg-gray-900/50 backdrop-blur-sm px-5 py-2.5 rounded-md shadow">
+        <h2 className="text-sm font-light text-green-400 tracking-[0.2em] flex items-center gap-3">
+          <span className="inline-block w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+          暗闇の監視網：住宅街（夜）視点探索
+        </h2>
+      </div>
+      <div className="absolute top-8 right-8 z-20 pointer-events-none bg-gray-900/50 backdrop-blur-sm px-5 py-2.5 rounded-md shadow flex gap-6 text-right">
+        <div>
+          <span className="text-[8px] text-green-500/60 block uppercase font-mono tracking-[0.2em]">TIMER</span>
+          <span className={`text-sm font-light font-mono tracking-[0.2em] ${timeLeft <= 5 ? 'text-red-500 animate-pulse' : 'text-green-400'}`}>
+            00:{timeLeft < 10 ? `0${timeLeft}` : timeLeft}
+          </span>
         </div>
-        <div className="flex gap-4">
-          <div className="text-right">
-            <span className="text-[8px] text-green-500/60 block uppercase font-mono">TIMER</span>
-            <span className={`text-sm font-bold font-mono ${timeLeft <= 5 ? 'text-red-500 animate-pulse' : 'text-green-400'}`}>
-              00:{timeLeft < 10 ? `0${timeLeft}` : timeLeft}
-            </span>
-          </div>
-          <div className="text-right">
-            <span className="text-[8px] text-green-500/60 block uppercase font-mono">SCAN</span>
-            <span className="text-sm font-bold font-mono text-green-400">
-              {totalScanned} / 4
-            </span>
-          </div>
+        <div>
+          <span className="text-[8px] text-green-500/60 block uppercase font-mono tracking-[0.2em]">SCAN</span>
+          <span className="text-sm font-light font-mono text-green-400 tracking-[0.2em]">
+            {totalScanned} / 4
+          </span>
         </div>
       </div>
 
       {/* Footer Instructions / Info (Absolute Overlay) */}
-      <div className="absolute bottom-4 left-4 right-4 z-30 bg-black/60 px-4 py-2 border border-green-500/10 rounded flex justify-between items-center text-[10px] text-green-500/60 font-noto tracking-wider">
-        <span>【ドラッグ：上下左右視点移動】 【クリック：エイム・スキャン】</span>
-        <span className="text-green-400 font-bold">100%特定で裏イベント解放</span>
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 bg-gray-900/50 backdrop-blur-sm px-6 py-3 rounded-md shadow flex items-center gap-4 text-xs font-light tracking-[0.2em]">
+        <span className="text-green-500/60">【ドラッグ：視点移動】 【クリック：スキャン】</span>
+        <span className="text-green-400">100%特定で裏イベント解放</span>
       </div>
 
       {/* Single Target Profiling Popup */}
@@ -310,19 +307,12 @@ export default function EyeOfProfiler({ onComplete }) {
               initial={{ scale: 0.9, y: 15 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 15 }}
-              className="w-full max-w-xl bg-[#011408] border-2 rounded-xl p-5 relative flex flex-col shadow-2xl h-[55vh] justify-between overflow-hidden"
-              style={{ borderColor: `${TARGETS_DATA[activeProfile].color}80` }}
+              className="w-full max-w-2xl bg-black/80 border border-white/10 rounded-sm p-10 relative flex flex-col shadow-2xl h-[55vh] justify-between overflow-hidden backdrop-blur-md"
             >
-              {/* Green side glow marker */}
-              <div className="absolute top-0 bottom-0 left-0 w-1.5" style={{ backgroundColor: TARGETS_DATA[activeProfile].color }} />
-
               {/* Modal Header */}
-              <div className="flex justify-between items-center border-b pb-2" style={{ borderColor: 'rgba(34,197,94,0.15)' }}>
-                <div className="flex items-center gap-2">
-                  <span className="text-[9px] px-2 py-0.5 rounded text-white font-bold font-mono" style={{ backgroundColor: TARGETS_DATA[activeProfile].color }}>
-                    PROFILING TARGET ACTIVE
-                  </span>
-                  <h3 className="font-bold text-md tracking-wider text-green-400">
+              <div className="flex justify-between items-center mb-8">
+                <div className="flex items-center gap-3">
+                  <h3 className="text-lg font-light tracking-[0.2em] text-green-400">
                     {TARGETS_DATA[activeProfile].name}
                   </h3>
                 </div>
@@ -335,26 +325,23 @@ export default function EyeOfProfiler({ onComplete }) {
               </div>
 
               {/* Modal Body */}
-              <div className="flex-1 flex flex-col gap-3 py-4 font-noto tracking-wider text-sm overflow-y-auto">
-                <span className="text-[10px] text-green-500/50 uppercase font-mono tracking-widest block">
-                  SYSTEM PROFILE SUMMARY //
-                </span>
-                <div className="text-gray-300 leading-relaxed text-xs md:text-sm pl-2 border-l border-green-500/20 whitespace-pre-line">
+              <div className="flex-1 flex flex-col gap-3 py-4 overflow-y-auto">
+                <div className="text-gray-300 font-light tracking-[0.2em] leading-[2.2] text-sm md:text-base whitespace-pre-line">
                   {TARGETS_DATA[activeProfile].resultText}
                 </div>
               </div>
 
               {/* Modal Footer */}
-              <div className="border-t pt-3 flex flex-col sm:flex-row justify-between items-center gap-3" style={{ borderColor: 'rgba(34,197,94,0.15)' }}>
-                <span className="text-green-400 flex items-center gap-1.5 text-[10px] font-bold">
-                  <Check className="w-3.5 h-3.5 text-green-400 animate-pulse" />
-                  ターゲットの特定データをスキャナーにロードしました。
+              <div className="flex flex-col sm:flex-row justify-between items-end gap-4 mt-auto">
+                <span className="text-green-400/80 flex items-center gap-2 text-xs font-light tracking-[0.2em]">
+                  <Check className="w-4 h-4 text-green-400" />
+                  ターゲットの特定データをロードしました。
                 </span>
                 <button
                   onClick={handleCloseProfile}
-                  className="px-6 py-2 bg-green-900/40 border border-green-500/30 text-green-400 text-xs font-bold tracking-widest uppercase hover:bg-green-500/20 hover:text-white transition-all rounded w-full sm:w-auto text-center cursor-pointer"
+                  className="text-xs text-gray-400 hover:text-white transition-colors tracking-[0.2em] font-light"
                 >
-                  探索を続ける
+                  [ 探索を続ける ]
                 </button>
               </div>
             </motion.div>
@@ -373,42 +360,36 @@ export default function EyeOfProfiler({ onComplete }) {
             {/* Holographic background radar */}
             <div className="absolute w-[60vh] h-[60vh] rounded-full border border-green-500/5 shadow-[0_0_80px_rgba(34,197,94,0.03)] pointer-events-none" />
 
-            <div className="w-full max-w-xl border border-green-500/30 rounded-xl p-8 bg-black/80 backdrop-blur-md relative flex flex-col items-center text-center shadow-[0_0_50px_rgba(34,197,94,0.1)]">
+            <div className="w-full max-w-xl border border-white/10 rounded-sm p-10 bg-black/80 backdrop-blur-md relative flex flex-col items-center text-center shadow-2xl">
               {gameState === 'won' ? (
                 <>
-                  <Award className="w-14 h-14 text-green-400 mb-4 animate-bounce" />
-                  <span className="text-green-500/60 text-[10px] tracking-[0.3em] font-mono mb-2">PROFILING SEQUENCE COMPLETE</span>
-                  <h2 className="text-xl md:text-2xl font-bold text-green-400 tracking-[0.15em] mb-4">
+                  <Award className="w-12 h-12 text-green-400 mb-6 animate-bounce" />
+                  <h2 className="text-lg md:text-xl font-light text-green-400 tracking-[0.2em] mb-6">
                     100% プロファイリング成功！
                   </h2>
-                  <p className="text-gray-400 font-noto text-xs md:text-sm leading-relaxed mb-6 max-w-md">
+                  <p className="text-gray-300 font-light tracking-[0.2em] leading-[2.2] text-sm md:text-base mb-8 max-w-md">
                     素晴らしい観察眼です。制限時間内にすべての不審信号の特定に成功しました。<br />
-                    隠密行動中の彼らの日常の裏にある真の顔を完全にプロファイリングし、特別な裏イベントへの分岐フラグが獲得されました。
+                    彼らの日常の裏にある真の顔をプロファイリングし、特別な裏イベントへの分岐フラグを獲得しました。
                   </p>
                 </>
               ) : (
                 <>
-                  <ShieldAlert className="w-14 h-14 text-red-500 mb-4 animate-pulse" />
-                  <span className="text-red-500/60 text-[10px] tracking-[0.3em] font-mono mb-2">PROFILING TIMEOUT</span>
-                  <h2 className="text-xl md:text-2xl font-bold text-red-500 tracking-[0.15em] mb-4">
+                  <ShieldAlert className="w-12 h-12 text-red-500 mb-6 animate-pulse" />
+                  <h2 className="text-lg md:text-xl font-light text-red-500 tracking-[0.2em] mb-6">
                     プロファイリング失敗
                   </h2>
-                  <p className="text-gray-400 font-noto text-xs md:text-sm leading-relaxed mb-6 max-w-md">
+                  <p className="text-gray-300 font-light tracking-[0.2em] leading-[2.2] text-sm md:text-base mb-8 max-w-md">
                     制限時間内にすべてのターゲットを特定できませんでした。<br />
-                    不審な視線の影を暴けないまま、何者かの甘く冷酷な包囲網に包まれるような、不穏な通常ルートへシームレスに進行します。
+                    不審な視線の影を暴けないまま、不穏な通常ルートへ進行します。
                   </p>
                 </>
               )}
 
               <button
                 onClick={() => handleFinish(gameState === 'won')}
-                className={`px-8 py-2.5 font-bold tracking-widest text-xs rounded transition-all duration-300 transform hover:-translate-y-0.5 ${
-                  gameState === 'won'
-                    ? 'bg-gradient-to-r from-emerald-600 to-green-500 hover:from-emerald-500 hover:to-green-400 text-white shadow-green-500/20 hover:shadow-green-500/40'
-                    : 'bg-red-950/50 border border-red-500/30 text-red-400 hover:bg-red-500/20 hover:text-white'
-                }`}
+                className="mt-2 text-white/60 hover:text-white transition-all text-sm font-light tracking-[0.2em] flex items-center gap-2"
               >
-                {gameState === 'won' ? '裏イベント・本編を体験する' : '通常シナリオへ戻る'}
+                [ {gameState === 'won' ? '裏イベント・本編を体験する' : '通常シナリオへ戻る'} ]
               </button>
             </div>
           </motion.div>

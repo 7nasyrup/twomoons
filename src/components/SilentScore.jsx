@@ -482,25 +482,23 @@ export default function SilentScore({ onComplete }) {
   }, []);
 
   return (
-    <div className="absolute inset-0 bg-[#020510]/95 flex flex-col items-center justify-between z-50 p-6 font-orbitron border-4 border-indigo-500/30 overflow-hidden select-none">
+    <div className="absolute inset-0 bg-[#020510]/95 flex flex-col items-center justify-between z-50 p-6 font-orbitron overflow-hidden select-none">
       {/* Scanline / Neon Grids */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(99,102,241,0.03),rgba(0,0,0,0),rgba(99,102,241,0.03))] bg-[length:100%_4px,3px_100%] pointer-events-none z-10 opacity-30" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.05)_0%,transparent_70%)] pointer-events-none" />
 
       {/* Header Info */}
-      <div className="w-full max-w-2xl flex justify-between items-center border-b border-indigo-500/20 pb-3 z-20">
-        <div>
-          <span className="text-indigo-400 text-[10px] tracking-[0.3em] uppercase block mb-0.5">SYSTEM C: SILENT SCORE</span>
-          <h2 className="text-base md:text-lg font-bold text-cyan-400 tracking-wider">
-            波長中和・同調率シンクロ
-          </h2>
-        </div>
-        <div className="text-right">
-          <span className="text-[10px] text-gray-500 block">TIME REMAINING</span>
-          <span className={`text-lg font-mono font-bold ${timeLeft <= 5 ? 'text-red-500 animate-pulse' : 'text-indigo-300'}`}>
-            {Math.max(0, timeLeft).toFixed(1)}s
-          </span>
-        </div>
+      <div className="absolute top-8 left-8 z-20 pointer-events-none bg-gray-900/50 backdrop-blur-sm px-5 py-2.5 rounded-md shadow">
+        <h2 className="text-sm font-light text-cyan-400 tracking-[0.2em] flex items-center gap-3">
+          <span className="text-indigo-400 uppercase tracking-[0.3em]">SYSTEM C //</span>
+          波長中和・同調率シンクロ
+        </h2>
+      </div>
+      <div className="absolute top-8 right-8 z-20 pointer-events-none bg-gray-900/50 backdrop-blur-sm px-5 py-2.5 rounded-md shadow text-right">
+        <span className="text-[10px] text-gray-400 block tracking-[0.2em]">TIME REMAINING</span>
+        <span className={`text-sm font-light font-mono tracking-[0.2em] ${timeLeft <= 5 ? 'text-red-500 animate-pulse' : 'text-indigo-300'}`}>
+          {Math.max(0, timeLeft).toFixed(1)}s
+        </span>
       </div>
 
       {/* Game Content */}
@@ -508,56 +506,53 @@ export default function SilentScore({ onComplete }) {
         // Start Screen
         <div className="flex-1 flex flex-col items-center justify-center text-center max-w-md z-20 animate-fadeIn p-4">
           <div className="relative w-16 h-16 flex items-center justify-center mb-6">
-            <div className="absolute inset-0 rounded-full border-2 border-pink-500/30 animate-ping" />
+            <div className="absolute inset-0 rounded-full border border-pink-500/30 animate-ping" />
             <div className="absolute inset-2 rounded-full border border-pink-400/50" />
             <span className="text-2xl">❤️</span>
           </div>
-          <h3 className="text-lg font-bold text-indigo-300 tracking-[0.2em] mb-3">
-            サイレント・スコア
-          </h3>
-          <p className="text-gray-400 text-xs leading-relaxed mb-8 font-noto tracking-wider">
+          <p className="text-gray-300 text-sm leading-[2.2] mb-8 font-light tracking-[0.2em]">
             攻略対象の男が、異能の暴走（過負荷）で激痛に苦しんでいます。<br />
             あなたの「中和」の波長を彼と完璧に同調させ、精神を繋ぎ止めてください！<br /><br />
-            <span className="text-indigo-400 font-bold">【操作方法】</span><br />
+            <span className="text-indigo-400">【操作方法】</span><br />
             上から降ってくるノーツが下部の判定サークル（丸枠）に重なるタイミングで、<br />
-            キーボードの <span className="text-white font-mono bg-indigo-950 px-2 py-0.5 rounded border border-indigo-500/30 font-bold text-sm">A</span>, <span className="text-white font-mono bg-indigo-950 px-2 py-0.5 rounded border border-indigo-500/30 font-bold text-sm">S</span>, <span className="text-white font-mono bg-indigo-950 px-2 py-0.5 rounded border border-indigo-500/30 font-bold text-sm">D</span> キーを押すか、<br />
+            キーボードの <span className="text-white font-mono bg-indigo-950/50 px-2 py-0.5 rounded border border-indigo-500/30 font-light text-xs">A</span>, <span className="text-white font-mono bg-indigo-950/50 px-2 py-0.5 rounded border border-indigo-500/30 font-light text-xs">S</span>, <span className="text-white font-mono bg-indigo-950/50 px-2 py-0.5 rounded border border-indigo-500/30 font-light text-xs">D</span> キーを押すか、<br />
             下部の各レーンの判定ボタンを直接タップしてください！
           </p>
           <button
             onClick={startGame}
-            className="px-12 py-3.5 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 hover:from-indigo-500 hover:to-pink-500 text-white font-bold tracking-[0.3em] text-sm rounded-lg shadow-lg shadow-indigo-500/20 transition-all duration-300 transform active:scale-95"
+            className="text-pink-400/80 hover:text-pink-400 bg-gray-900/50 backdrop-blur-sm px-6 py-3 rounded-md shadow border border-pink-500/20 font-light tracking-[0.3em] transition-all duration-300"
           >
-            同調シンクロ開始
+            [ 同調シンクロ開始 ]
           </button>
         </div>
       ) : isGameOver ? (
         // Results Screen
         <div className="flex-1 flex flex-col items-center justify-center text-center max-w-md z-20 animate-fadeIn p-4">
-          <div className="text-yellow-400 text-4xl mb-3">🏆</div>
-          <h3 className="text-base font-bold text-white tracking-[0.2em] mb-4 uppercase">
+          <div className="text-yellow-400 text-4xl mb-6">🏆</div>
+          <h3 className="text-base font-light text-white tracking-[0.2em] mb-6 uppercase">
             SYNCHRONIZATION RESULTS
           </h3>
 
-          <div className="w-full bg-[#04091a]/80 border border-indigo-500/20 rounded-xl p-5 space-y-3.5 mb-8 font-mono text-left">
-            <div className="flex justify-between border-b border-indigo-500/10 pb-2">
-              <span className="text-gray-400 text-xs uppercase tracking-wider">FINAL SYNCED RATE</span>
-              <span className="text-pink-400 font-bold text-base">{syncedRate}%</span>
+          <div className="w-full bg-black/80 border border-white/10 rounded-sm p-8 space-y-4 mb-8 font-mono text-left shadow-2xl backdrop-blur-sm">
+            <div className="flex justify-between border-b border-white/10 pb-2">
+              <span className="text-gray-400 text-xs uppercase tracking-[0.2em] font-light">FINAL SYNCED RATE</span>
+              <span className="text-pink-400 font-light text-base tracking-[0.2em]">{syncedRate}%</span>
             </div>
-            <div className="flex justify-between border-b border-indigo-500/10 pb-2">
-              <span className="text-gray-400 text-xs uppercase tracking-wider">TOTAL SCORE</span>
-              <span className="text-indigo-300 font-bold text-base">{score} pts</span>
+            <div className="flex justify-between border-b border-white/10 pb-2">
+              <span className="text-gray-400 text-xs uppercase tracking-[0.2em] font-light">TOTAL SCORE</span>
+              <span className="text-indigo-300 font-light text-base tracking-[0.2em]">{score} pts</span>
             </div>
             <div className="flex justify-between pb-1">
-              <span className="text-gray-400 text-xs uppercase tracking-wider">MAX COMBO</span>
-              <span className="text-yellow-400 font-bold text-base">{maxCombo} Combo</span>
+              <span className="text-gray-400 text-xs uppercase tracking-[0.2em] font-light">MAX COMBO</span>
+              <span className="text-yellow-400 font-light text-base tracking-[0.2em]">{maxCombo} Combo</span>
             </div>
           </div>
 
           <button
             onClick={() => onComplete({ score, maxCombo, syncedRate })}
-            className="px-12 py-3.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold tracking-[0.2em] text-sm rounded-lg shadow-md hover:shadow-lg transition-all transform active:scale-95"
+            className="mt-2 text-white/60 hover:text-white transition-all text-sm font-light tracking-[0.2em] flex items-center gap-2"
           >
-            体験を完了する
+            [ 体験を完了する ]
           </button>
         </div>
       ) : (
