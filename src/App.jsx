@@ -203,6 +203,12 @@ export default function App() {
   const [prevScene, setPrevScene] = useState('');
   const [presentCharacters, setPresentCharacters] = useState([]);
 
+  // Minigame result states
+  const [learningScore, setLearningScore] = useState(0);
+  const [eyeOfProfilerSuccess, setEyeOfProfilerSuccess] = useState(false);
+  const [tapCommunicationScores, setTapCommunicationScores] = useState(null);
+  const [silentScoreResult, setSilentScoreResult] = useState(null);
+
   // Swipe gesture variables
   const touchStartX = useRef(0);
   const touchStartY = useRef(0);
@@ -468,7 +474,15 @@ export default function App() {
       }
 
       if (e.key === ' ' || e.key === 'Enter') {
-        if (!isWaitingForChoice) {
+        const isMinigameActive = [
+          'TRIGGER_TYPING_GAME',
+          'TRIGGER_SEARCH_AND_LEARNING',
+          'TRIGGER_SILENT_SCORE',
+          'TRIGGER_TAP_COMMUNICATION',
+          'TRIGGER_EYE_OF_PROFILER'
+        ].includes(currentLine?.action);
+
+        if (!isWaitingForChoice && !isMinigameActive) {
           nextStep();
         }
       }
@@ -476,7 +490,7 @@ export default function App() {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [nextStep, toggleHud, toggleAuto, isWaitingForChoice, backlogOpen, alertActive, hudVisible, setHudVisible]);
+  }, [nextStep, toggleHud, toggleAuto, isWaitingForChoice, backlogOpen, alertActive, hudVisible, setHudVisible, currentLine]);
 
   const handleDismissAlert = () => {
     setAlertActive(false);
