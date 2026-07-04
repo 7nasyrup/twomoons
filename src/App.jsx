@@ -27,7 +27,7 @@ function BackgroundRenderer({ bgPath }) {
   if (!bgPath) return null;
 
   // Fallback styling based on bg name
-  const isClassroom = bgPath.includes('cyber_classroom');
+  const isClassroom = bgPath.includes('cyber_classroom') || bgPath.includes('classroom.png');
   const isGiantMoon = bgPath.includes('giant_blue_moon');
   const isSchoolGate = bgPath.includes('school_gate_evening');
   const isTownDark1 = bgPath.includes('town_dark_1');
@@ -538,6 +538,22 @@ export default function App() {
     return true;
   }) || [];
 
+  const computedBgPath = React.useMemo(() => {
+    let bg = currentLine?.bg;
+    if (!bg && currentStep > 0) {
+      for (let i = currentStep - 1; i >= 0; i--) {
+        if (scenarioData[i]?.bg) {
+          bg = scenarioData[i].bg;
+          break;
+        }
+      }
+    }
+    if (currentLine?.scene === "月科学大講義室") {
+      bg = "/scene/classroom.png";
+    }
+    return bg;
+  }, [currentLine, currentStep, scenarioData]);
+
   return (
     <div
       className="w-full h-full select-none touch-none cursor-pointer"
@@ -560,7 +576,7 @@ export default function App() {
         ) : (
           <>
             {/* Visual Background Fallback & Actual Renderer */}
-            <BackgroundRenderer bgPath={currentLine?.bg || scenarioData[Math.max(0, currentStep - 1)]?.bg} />
+            <BackgroundRenderer bgPath={computedBgPath} />
 
             {/* Typing Game Overlay */}
             {isTypingGameActive && (

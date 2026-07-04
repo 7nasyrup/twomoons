@@ -109,7 +109,7 @@ export default function DialogueBox({
 
         {/* Dialogue panel */}
         <div
-          className="relative bg-gradient-to-t from-black/95 via-black/80 to-transparent pt-16 pb-12 px-12 md:px-24 cursor-pointer transition-colors duration-300"
+          className="relative bg-gradient-to-t from-black/95 via-black/80 to-transparent pt-16 pb-24 px-12 md:px-24 cursor-pointer transition-colors duration-300"
           onClick={(e) => {
             e.stopPropagation();
             onNext();
@@ -149,7 +149,7 @@ export default function DialogueBox({
           {/* Next indicator */}
           {!isTyping && !isWaitingForChoice && (
             <motion.div
-              className="absolute bottom-4 right-12 md:right-24"
+              className="absolute bottom-12 right-12 md:right-24"
               animate={{ y: [0, 4, 0] }}
               transition={{ duration: 1, repeat: Infinity }}
             >
