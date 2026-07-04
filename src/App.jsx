@@ -12,6 +12,7 @@ import SearchAndLearning from './components/SearchAndLearning';
 import SilentScore from './components/SilentScore';
 import TapCommunication from './components/TapCommunication';
 import EyeOfProfiler from './components/EyeOfProfiler';
+import FragmentCollect from './components/FragmentCollect';
 import { useNovelEngine } from './hooks/useNovelEngine';
 import { useAudioSystem } from './hooks/useAudioSystem';
 import { scenarioData } from './data/scenario';
@@ -202,12 +203,14 @@ export default function App() {
   const [focusSlot, setFocusSlot] = useState(null);
   const [prevScene, setPrevScene] = useState('');
   const [presentCharacters, setPresentCharacters] = useState([]);
+  const [displayedItem, setDisplayedItem] = useState(null);
 
   // Minigame result states
   const [learningScore, setLearningScore] = useState(0);
   const [eyeOfProfilerSuccess, setEyeOfProfilerSuccess] = useState(false);
   const [tapCommunicationScores, setTapCommunicationScores] = useState(null);
   const [silentScoreResult, setSilentScoreResult] = useState(null);
+  const [fragmentCollectResult, setFragmentCollectResult] = useState(null);
 
   // Swipe gesture variables
   const touchStartX = useRef(0);
@@ -222,8 +225,22 @@ export default function App() {
       setRightActive(false);
       setFocusSlot(null);
       setPresentCharacters([]); // シーン切り替え時に画面内の登場キャラをリセット
+      setDisplayedItem(null);
     }
   }, [currentLine?.scene, prevScene]);
+
+  // Track present items
+  useEffect(() => {
+    if (!currentLine || showTitle) return;
+
+    if (currentLine.hideItem || currentLine.clearItem) {
+      setDisplayedItem(null);
+    }
+
+    if (currentLine.showItem) {
+      setDisplayedItem(currentLine.showItem);
+    }
+  }, [currentLine, showTitle]);
 
   // Track present characters (including manual triggers)
   useEffect(() => {
@@ -416,6 +433,30 @@ export default function App() {
     }
   }, [currentStep, currentLine, nextStep, showTitle]);
 
+  // Handle conditional branching and special actions
+  useEffect(() => {
+    if (!currentLine) return;
+    
+    if (currentLine.action === 'EVALUATE_FRAGMENT_COLLECT_BRANCH') {
+      if (fragmentCollectResult && fragmentCollectResult.files >= 4) {
+        const targetIdx = scenarioData.findIndex(line => line.label === 'happy_end_start');
+        if (targetIdx !== -1) jumpToStep(targetIdx);
+      } else {
+        const targetIdx = scenarioData.findIndex(line => line.label === 'bad_end_start');
+        if (targetIdx !== -1) {
+          jumpToStep(targetIdx);
+        } else {
+          setShowTitle(true);
+          jumpToStep(0);
+        }
+      }
+    } else if (currentLine.action === 'GAME_OVER') {
+      // Return to title
+      setShowTitle(true);
+      jumpToStep(0);
+    }
+  }, [currentStep, currentLine, jumpToStep, fragmentCollectResult]);
+
   // Handle touch events for gestures
   const handleTouchStart = (e) => {
     touchStartX.current = e.touches[0].clientX;
@@ -479,7 +520,8 @@ export default function App() {
           'TRIGGER_SEARCH_AND_LEARNING',
           'TRIGGER_SILENT_SCORE',
           'TRIGGER_TAP_COMMUNICATION',
-          'TRIGGER_EYE_OF_PROFILER'
+          'TRIGGER_EYE_OF_PROFILER',
+          'TRIGGER_FRAGMENT_COLLECT'
         ].includes(currentLine?.action);
 
         if (!isWaitingForChoice && !isMinigameActive) {
@@ -504,9 +546,15 @@ export default function App() {
   const isSilentScoreActive = currentLine?.action === 'TRIGGER_SILENT_SCORE';
   const isTapCommunicationActive = currentLine?.action === 'TRIGGER_TAP_COMMUNICATION';
   const isEyeOfProfilerActive = currentLine?.action === 'TRIGGER_EYE_OF_PROFILER';
+  const isFragmentCollectActive = currentLine?.action === 'TRIGGER_FRAGMENT_COLLECT';
 
   const handleEyeOfProfilerComplete = (success) => {
     setEyeOfProfilerSuccess(success);
+    nextStep();
+  };
+
+  const handleFragmentCollectComplete = (result) => {
+    setFragmentCollectResult(result);
     nextStep();
   };
 
@@ -558,7 +606,7 @@ export default function App() {
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
       onClick={() => {
-        if (!showTitle && !isWaitingForChoice && !alertActive && !backlogOpen && !isTypingGameActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive) {
+        if (!showTitle && !isWaitingForChoice && !alertActive && !backlogOpen && !isTypingGameActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isFragmentCollectActive) {
           nextStep();
         }
       }}
@@ -596,6 +644,11 @@ export default function App() {
               <EyeOfProfiler onComplete={handleEyeOfProfilerComplete} />
             )}
 
+            {/* Fragment Collect Overlay */}
+            {isFragmentCollectActive && (
+              <FragmentCollect onComplete={handleFragmentCollectComplete} />
+            )}
+
             {/* Silent Score Overlay */}
             {isSilentScoreActive && (
               <SilentScore onComplete={handleSilentScoreComplete} />
@@ -604,7 +657,7 @@ export default function App() {
             {/* Cinematic Black Letterbox Overlay */}
             <CinemaLayer
               text={currentLine?.text}
-              isActive={isCinema && !isDemoEnd && !isTypingGameActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive}
+              isActive={isCinema && !isDemoEnd && !isTypingGameActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isFragmentCollectActive}
               isTyping={isTyping}
               onNext={nextStep}
             />
@@ -623,8 +676,19 @@ export default function App() {
               />
             )}
 
+            {/* Item Sprite Overlay */}
+            {displayedItem && !isCinema && !isDemoEnd && (
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-[15]">
+                <img
+                  src={displayedItem}
+                  alt="item"
+                  className="max-w-[40%] max-h-[60%] object-contain drop-shadow-2xl animate-fadeIn"
+                />
+              </div>
+            )}
+
             {/* Subtitles & Normal Dialogue Boxes */}
-            {!isCinema && !isDemoEnd && !alertActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isTypingGameActive && (
+            {!isCinema && !isDemoEnd && !alertActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isTypingGameActive && !isFragmentCollectActive && (
               <DialogueBox
                 speaker={currentLine?.speaker}
                 role={currentLine?.role}

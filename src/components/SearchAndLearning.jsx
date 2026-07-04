@@ -4,22 +4,20 @@ import { Tv, BookOpen, FileText, Check, Search, X, ChevronRight } from 'lucide-r
 
 const OBJECT_DETAILS = {
   tv: {
-    title: 'ニュースキャスター',
-    text: [
-      `『――さて、次のニュースです。世界的なエネルギー危機の救世主として、国家規模の極秘プロジェクトによりあの「人工月」が打ち上げられてから、ちょうど50年』`,
-      `『今や、我々のあらゆる生活インフラを支える莫大な新エネルギーが、あの美しい青い光から供給され続けています』`,
-    ],
-    dialogue: `「今年で50年か…人工月打ち上げられてから」`,
-    afterText: [
-      `世界的なエネルギー危機の救世主として、国家規模の極秘プロジェクトにより打ち上げられたというその人工月は、今や地球のあらゆるインフラを支える莫大な新エネルギーを供給していた。`,
-      `けれど、それは決して無償の恵みなどではない。人工月は、地球の生態系をじわじわと侵食する「未知の毒」でもある。`
-    ],
+    messages: [
+      { role: 'info', speaker: 'ニュースキャスター', text: `『――さて、次のニュースです。世界的なエネルギー危機の救世主として、国家規模の極秘プロジェクトによりあの「人工月」が打ち上げられてから、ちょうど50年』` },
+      { role: 'info', speaker: 'ニュースキャスター', text: `『今や、我々のあらゆる生活インフラを支える莫大な新エネルギーが、あの美しい青い光から供給され続けています』` },
+      { role: 'sakura', text: `「今年で50年か…人工月打ち上げられてから」` },
+      { role: 'narrative', text: `世界的なエネルギー危機の救世主として、国家規模の極秘プロジェクトにより打ち上げられたというその人工月は、今や地球のあらゆるインフラを支える莫大な新エネルギーを供給していた。` },
+      { role: 'narrative', text: `けれど、それは決して無償の恵みなどではない。人工月は、地球の生態系をじわじわと侵食する「未知の毒」でもある。` }
+    ]
   },
+
 
 
   bookshelf: {
     messages: [
-      { role: 'narrative', text: `カバンを閉めようとしたとき、机の隅に置かれた、いまはもう私の隣にはいない父との写真が目に留まった。` },
+      { role: 'narrative', text: `カバンに教科書を入れようとしたとき、本棚に置かれた、いまはもう私の隣にはいない父の論文が目に入った。` },
       { role: 'narrative', text: `幼い頃、父は私によく、おとぎ話を聞かせるように月の話を語ってくれた。けれど、ある日を境に父は私の前から突然消えてしまった。` },
       { role: 'sakura', text: `（お父さん……。私はまだ、何も突き止められてないよ）` },
       { role: 'narrative', text: `小さく首を振って思考を振り払い、私はカバンを肩にかけた。` }
@@ -27,8 +25,66 @@ const OBJECT_DETAILS = {
   },
 };
 
+const InfoParticle = ({ startX, startY, targetX, targetY, onComplete }) => {
+  const [style, setStyle] = useState({
+    left: startX,
+    top: startY,
+    opacity: 0,
+    transform: 'translate(-50%, -50%) scale(0.5)'
+  });
+
+  useEffect(() => {
+    let flyTimer;
+    let completeTimer;
+
+    const raf = requestAnimationFrame(() => {
+      setStyle({
+        left: startX,
+        top: startY - 40,
+        opacity: 1,
+        transform: 'translate(-50%, -50%) scale(1.5)',
+        transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+      });
+
+      flyTimer = setTimeout(() => {
+        setStyle({
+          left: targetX,
+          top: targetY,
+          opacity: 0.8,
+          transform: 'translate(-50%, -50%) scale(0.3)',
+          transition: 'all 0.6s cubic-bezier(0.5, 0, 0.2, 1)'
+        });
+      }, 300);
+
+      completeTimer = setTimeout(() => {
+        onComplete();
+      }, 900);
+    });
+
+    return () => {
+      cancelAnimationFrame(raf);
+      clearTimeout(flyTimer);
+      clearTimeout(completeTimer);
+    };
+  }, [startX, startY, targetX, targetY, onComplete]);
+
+  return (
+    <div
+      className="fixed z-[100] pointer-events-none flex items-center justify-center"
+      style={style}
+    >
+      <div className="w-4 h-4 rounded-full bg-cyan-200 shadow-[0_0_15px_5px_rgba(103,232,249,0.8)]" />
+      <div className="absolute w-8 h-8 rounded-full bg-cyan-400/40 animate-ping" />
+      <div className="absolute w-1.5 h-1.5 rounded-full bg-white" />
+    </div>
+  );
+};
+
 export default function SearchAndLearning({ onComplete }) {
   const [visited, setVisited] = useState({ tv: false, newspaper: false, bookshelf: false, artificial_moon: false, calendar: false });
+  const [visuallyVisited, setVisuallyVisited] = useState({ tv: false, newspaper: false, bookshelf: false, artificial_moon: false, calendar: false });
+  const [animations, setAnimations] = useState([]);
+  const [pendingParticle, setPendingParticle] = useState(null);
   const [bgImage, setBgImage] = useState('/scene/room_tv.png');
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isBlackout, setIsBlackout] = useState(false);
@@ -42,9 +98,41 @@ export default function SearchAndLearning({ onComplete }) {
   const [isTyping, setIsTyping] = useState(false);
   const typingTimer = useRef(null);
 
-  const handleSelectObject = (key) => {
+  const triggerParticle = useCallback((startX, startY, key) => {
+    setTimeout(() => {
+      const targetEl = document.getElementById('info-collection-target');
+      let targetX = 50;
+      let targetY = window.innerHeight - 50;
+      if (targetEl) {
+        const targetRect = targetEl.getBoundingClientRect();
+        targetX = targetRect.left + targetRect.width / 2;
+        targetY = targetRect.top + targetRect.height / 2;
+      }
+
+      const newAnim = { id: Date.now() + Math.random(), key, startX, startY, targetX, targetY };
+      setAnimations(prev => [...prev, newAnim]);
+    }, 50);
+  }, []);
+
+  const handleParticleComplete = useCallback((animId, key) => {
+    setAnimations(prev => prev.filter(a => a.id !== animId));
+    setVisuallyVisited(prev => ({ ...prev, [key]: true }));
+  }, []);
+
+  const handleSelectObject = (key, e) => {
     if (isTransitioning || currentMessage) return;
-    setVisited((prev) => ({ ...prev, [key]: true }));
+
+    if (!visited[key]) {
+      if (e) {
+        const rect = e.currentTarget.getBoundingClientRect();
+        const startX = rect.left + rect.width / 2;
+        const startY = rect.top + rect.height / 2;
+        setPendingParticle({ key, startX, startY });
+      } else {
+        setPendingParticle({ key, startX: window.innerWidth / 2, startY: window.innerHeight / 2 });
+      }
+      setVisited((prev) => ({ ...prev, [key]: true }));
+    }
 
     const obj = OBJECT_DETAILS[key];
 
@@ -105,17 +193,34 @@ export default function SearchAndLearning({ onComplete }) {
         if (bgImage === '/scene/moon.jpg') {
           setHasSeenMoonIntro(true);
         }
+
+        if (pendingParticle) {
+          triggerParticle(pendingParticle.startX, pendingParticle.startY, pendingParticle.key);
+          setPendingParticle(null);
+        }
       }
     }
-  }, [messageQueue, currentMessage, isTyping, bgImage]);
+  }, [messageQueue, currentMessage, isTyping, bgImage, pendingParticle, triggerParticle]);
 
   const handleFinishSearch = () => {
     const score = ['tv', 'bookshelf', 'artificial_moon'].filter(k => visited[k]).length;
     onComplete(score);
   };
 
-  const handleOpenWindow = () => {
+  const handleOpenWindow = (e) => {
     if (currentMessage) return;
+
+    if (!visited.artificial_moon) {
+      if (e) {
+        const rect = e.currentTarget.getBoundingClientRect();
+        const startX = rect.left + rect.width / 2;
+        const startY = rect.top + rect.height / 2;
+        setPendingParticle({ key: 'artificial_moon', startX, startY });
+      } else {
+        setPendingParticle({ key: 'artificial_moon', startX: window.innerWidth / 2, startY: window.innerHeight / 2 });
+      }
+    }
+
     setIsTransitioning(true);
     setIsBlackout(true); // 暗転開始
     setHasSeenMoonIntro(false); // 演出開始時にリセット
@@ -229,6 +334,15 @@ export default function SearchAndLearning({ onComplete }) {
           }`}
       />
 
+      {/* New Collection Target UI */}
+      {!isMoonIntroPlaying && (
+        <div className="absolute bottom-8 left-8 z-20 pointer-events-none">
+          <div id="info-collection-target" className="w-12 h-12 bg-gray-900/50 backdrop-blur-sm rounded-full shadow flex items-center justify-center border border-white/10">
+            <FileText className="w-5 h-5 text-cyan-400" />
+          </div>
+        </div>
+      )}
+
       {/* Header Info Overlay */}
       {!isMoonIntroPlaying && (
         <div className="absolute top-8 left-8 z-20 pointer-events-none flex flex-col gap-12">
@@ -239,16 +353,16 @@ export default function SearchAndLearning({ onComplete }) {
             </h2>
           </div>
           <div className="bg-gray-900/50 backdrop-blur-sm px-6 py-5 rounded-md shadow flex flex-col gap-3.5 w-max">
-            <div className={`text-sm font-noto tracking-wider flex items-center gap-3 text-white/90 ${visited.artificial_moon ? 'line-through' : ''}`}>
-              <div className={`w-1.5 h-1.5 rounded-full ${visited.artificial_moon ? 'bg-gray-500' : 'bg-white/80'}`} />
+            <div id="info-artificial_moon" className={`text-sm font-noto tracking-wider flex items-center gap-3 transition-all duration-500 ${visuallyVisited.artificial_moon ? 'text-white/40 line-through' : 'text-white/90'}`}>
+              <div className={`w-1.5 h-1.5 rounded-full transition-colors duration-500 ${visuallyVisited.artificial_moon ? 'bg-white/40' : 'bg-white/80 shadow-[0_0_8px_rgba(255,255,255,0.8)]'}`} />
               カーテンを開ける
             </div>
-            <div className={`text-sm font-noto tracking-wider flex items-center gap-3 text-white/90 ${visited.tv ? 'line-through' : ''}`}>
-              <div className={`w-1.5 h-1.5 rounded-full ${visited.tv ? 'bg-gray-500' : 'bg-white/80'}`} />
+            <div id="info-tv" className={`text-sm font-noto tracking-wider flex items-center gap-3 transition-all duration-500 ${visuallyVisited.tv ? 'text-white/40 line-through' : 'text-white/90'}`}>
+              <div className={`w-1.5 h-1.5 rounded-full transition-colors duration-500 ${visuallyVisited.tv ? 'bg-white/40' : 'bg-white/80 shadow-[0_0_8px_rgba(255,255,255,0.8)]'}`} />
               テレビを消す
             </div>
-            <div className={`text-sm font-noto tracking-wider flex items-center gap-3 text-white/90 ${visited.bookshelf ? 'line-through' : ''}`}>
-              <div className={`w-1.5 h-1.5 rounded-full ${visited.bookshelf ? 'bg-gray-500' : 'bg-white/80'}`} />
+            <div id="info-bookshelf" className={`text-sm font-noto tracking-wider flex items-center gap-3 transition-all duration-500 ${visuallyVisited.bookshelf ? 'text-white/40 line-through' : 'text-white/90'}`}>
+              <div className={`w-1.5 h-1.5 rounded-full transition-colors duration-500 ${visuallyVisited.bookshelf ? 'bg-white/40' : 'bg-white/80 shadow-[0_0_8px_rgba(255,255,255,0.8)]'}`} />
               カバンに教科書を入れる
             </div>
           </div>
@@ -261,7 +375,7 @@ export default function SearchAndLearning({ onComplete }) {
           {/* Object 1: TV */}
           <button
             key="spot-tv"
-            onClick={() => handleSelectObject('tv')}
+            onClick={(e) => handleSelectObject('tv', e)}
             className="absolute transform -translate-x-1/2 -translate-y-1/2 hover:scale-110 active:scale-95 transition-all duration-300 focus:outline-none z-20 flex items-center justify-center w-12 h-12"
             style={{ top: '38%', left: '82%' }}
           >
@@ -271,8 +385,9 @@ export default function SearchAndLearning({ onComplete }) {
               </div>
             ) : (
               <>
-                <span className="animate-ping absolute inline-flex h-8 w-8 rounded-full bg-white/30 opacity-60"></span>
-                <span className="relative inline-flex rounded-full h-4 w-4 bg-white shadow-[0_0_10px_#ffffff] opacity-80"></span>
+                <span className="animate-ping absolute inline-flex h-8 w-8 rounded-full bg-white/40 opacity-60"></span>
+                <span className="animate-ping absolute inline-flex h-10 w-10 rounded-full bg-black/40 opacity-40 delay-75"></span>
+                <span className="relative inline-flex rounded-full h-4 w-4 bg-white shadow-[0_0_10px_rgba(0,0,0,0.5)] opacity-90 border border-black/20"></span>
               </>
             )}
           </button>
@@ -282,9 +397,9 @@ export default function SearchAndLearning({ onComplete }) {
           {/* Object 3: Bookshelf */}
           <button
             key="spot-bookshelf"
-            onClick={() => handleSelectObject('bookshelf')}
+            onClick={(e) => handleSelectObject('bookshelf', e)}
             className="absolute transform -translate-x-1/2 -translate-y-1/2 hover:scale-110 active:scale-95 transition-all duration-300 focus:outline-none z-20 flex items-center justify-center w-12 h-12"
-            style={{ top: '55%', left: '95%' }}
+            style={{ top: '58%', left: '93%' }}
           >
             {visited.bookshelf ? (
               <div className="w-6 h-6 rounded-full bg-white/20 border border-white/40 flex items-center justify-center shadow-[0_0_8px_rgba(255,255,255,0.3)]">
@@ -292,8 +407,9 @@ export default function SearchAndLearning({ onComplete }) {
               </div>
             ) : (
               <>
-                <span className="animate-ping absolute inline-flex h-8 w-8 rounded-full bg-white/30 opacity-60"></span>
-                <span className="relative inline-flex rounded-full h-4 w-4 bg-white shadow-[0_0_10px_#ffffff] opacity-80"></span>
+                <span className="animate-ping absolute inline-flex h-8 w-8 rounded-full bg-white/40 opacity-60"></span>
+                <span className="animate-ping absolute inline-flex h-10 w-10 rounded-full bg-black/40 opacity-40 delay-75"></span>
+                <span className="relative inline-flex rounded-full h-4 w-4 bg-white shadow-[0_0_10px_rgba(0,0,0,0.5)] opacity-90 border border-black/20"></span>
               </>
             )}
           </button>
@@ -301,9 +417,9 @@ export default function SearchAndLearning({ onComplete }) {
           {/* Object 4: Window (Interact to switch view) */}
           <button
             key="spot-window"
-            onClick={handleOpenWindow}
+            onClick={(e) => handleOpenWindow(e)}
             className="absolute transform -translate-x-1/2 -translate-y-1/2 hover:scale-110 active:scale-95 transition-all duration-300 focus:outline-none z-20 flex flex-col items-center justify-center w-16 h-16"
-            style={{ top: '30%', left: '60%' }}
+            style={{ top: '25%', left: '68%' }}
           >
             {visited.artificial_moon ? (
               <div className="w-6 h-6 rounded-full bg-white/20 border border-white/40 flex items-center justify-center shadow-[0_0_8px_rgba(255,255,255,0.3)]">
@@ -311,8 +427,9 @@ export default function SearchAndLearning({ onComplete }) {
               </div>
             ) : (
               <>
-                <span className="animate-ping absolute inline-flex h-10 w-10 rounded-full bg-white/30 opacity-60"></span>
-                <span className="relative inline-flex rounded-full h-4 w-4 bg-white shadow-[0_0_12px_#ffffff] opacity-80"></span>
+                <span className="animate-ping absolute inline-flex h-10 w-10 rounded-full bg-white/40 opacity-60"></span>
+                <span className="animate-ping absolute inline-flex h-12 w-12 rounded-full bg-black/40 opacity-40 delay-75"></span>
+                <span className="relative inline-flex rounded-full h-4 w-4 bg-white shadow-[0_0_12px_rgba(0,0,0,0.5)] opacity-90 border border-black/20"></span>
               </>
             )}
           </button>
@@ -326,7 +443,7 @@ export default function SearchAndLearning({ onComplete }) {
             <button
               key="btn-back-to-room"
               onClick={handleBackToRoom}
-              className="absolute bottom-8 left-8 bg-gray-900/50 backdrop-blur-sm px-5 py-3 rounded-md shadow text-white/80 hover:text-white hover:bg-gray-800/60 transition-all text-sm font-light tracking-[0.2em] font-noto z-20 flex items-center gap-2"
+              className="absolute bottom-8 left-28 bg-gray-900/50 backdrop-blur-sm px-5 py-3 rounded-md shadow text-white/80 hover:text-white hover:bg-gray-800/60 transition-all text-sm font-light tracking-[0.2em] font-noto z-20 flex items-center gap-2"
             >
               <ChevronRight className="w-4 h-4 rotate-180" />
               部屋に戻る
@@ -345,6 +462,18 @@ export default function SearchAndLearning({ onComplete }) {
           <ChevronRight className="w-4 h-4" />
         </button>
       )}
+
+      {/* Information Particles */}
+      {animations.map(anim => (
+        <InfoParticle
+          key={anim.id}
+          startX={anim.startX}
+          startY={anim.startY}
+          targetX={anim.targetX}
+          targetY={anim.targetY}
+          onComplete={() => handleParticleComplete(anim.id, anim.key)}
+        />
+      ))}
 
       {/* Message overlay capture */}
       {currentMessage && (

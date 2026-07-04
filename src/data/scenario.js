@@ -68,7 +68,7 @@ export const scenarioData = [
     },
     {
         scene: "朔良の部屋",
-        text: "私は鍵を閉め、あの逃れられない青い光が満ちる街へと踏み出した。"
+        text: "私は鍵を閉め、青い光が満ちる街へと踏み出した。"
     },
 
     // ================== #1 CLASSROOM SCENE ==================
@@ -113,15 +113,12 @@ export const scenarioData = [
     {
         scene: "月科学大講義室",
         text: "手元のスマートフォンを開くと、画面には『月波観測庁』が発令した最新の警告ポップアップが、不吉な赤色で明滅していた。",
-        action: "TRIGGER_PHONE_RED_ALERT"
+        showItem: "/item/phone.png"
     },
     {
         scene: "月科学大講義室",
-        text: "【月波観測予報：警戒レベル3（厳重警戒）】\n本日、人工月の活性化に伴い、地上への月波照射量が基準値を大幅に超過。\n一般市民は不要不急の外出を控え、特に『適応不全（【キメラ】化）』の兆候がある個体への接近に注意してください。"
-    },
-    {
-        scene: "月科学大講義室",
-        text: "この世界には、人工月が放つエネルギーに対する「二つの警戒」が存在する。"
+        text: "この世界には、人工月が放つエネルギーに対する「二つの警戒」が存在する。",
+        hideItem: true
     },
     {
         scene: "月科学大講義室",
@@ -9093,9 +9090,12 @@ export const scenarioData = [
     },
     {
         scene: "月面",
-        text: "私たちは紙面を握り締め、不気味な警告灯が明滅する研究所の不気味な廊下へと、一歩を踏み出した。"
+        text: "私たちは紙面を握り締め、不気味な警告灯が明滅する研究所の不気味な廊下へと、一歩を踏み出した。",
     },
-    //ここでミニゲームを挟む
+    {
+        scene: "フラグメントコレクト",
+        action: "TRIGGER_FRAGMENT_COLLECT"
+    },
     {
         scene: "制御室",
         speaker: "朔良",
@@ -9712,8 +9712,20 @@ export const scenarioData = [
         scene: "研究所の最奥",
         text: "外では、私たちの死神である黒騎士の足音が、静かに、確実に近づいてきていた。"
     },
+    {
+        action: "EVALUATE_FRAGMENT_COLLECT_BRANCH"
+    },
+    {
+        label: "bad_end_start",
+        scene: "研究所の最奥",
+        text: "【BAD END】条件を満たせなかったため、ここで物語は途切れた……。"
+    },
+    {
+        action: "GAME_OVER"
+    },
     //ハッピーエンド
     {
+        label: "happy_end_start",
         scene: "研究所の最奥",
         speaker: "朔良",
         role: "SAKURA",
@@ -12103,5 +12115,26 @@ export const scenarioData = [
         text: "（今後のアップデートをお楽しみに！）",
         action: "FADE_TO_DEMO_END",
         label: "route_under_construction_final"
-    }
+    },
+    // ================== FRAGMENT COLLECT SYSTEM F (ONLY TEST) ==================
+    {
+        scene: "ゲームF",
+        speaker: "システム",
+        role: "SYSTEM",
+        text: "【システムF：フラグメント・コレクト】の体験を開始します。研究所内を探索し、セキュリティコードの断片（データチップ×5）と睦典の機密ファイル（×4）を収集してください。",
+        bg: "town_dark_1",
+        label: "fragment_collect_only_trigger"
+    },
+    {
+        scene: "ゲームF",
+        action: "TRIGGER_FRAGMENT_COLLECT"
+    },
+    {
+        scene: "ゲームF",
+        speaker: "システム",
+        role: "SYSTEM",
+        text: "フラグメント・コレクトを終了しました。体験用選択肢に戻ります。",
+        jumpTo: "route_under_construction"
+    },
+
 ];
