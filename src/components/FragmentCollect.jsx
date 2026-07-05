@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Check, Shield, FileText, ArrowLeftRight, Clock } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Check, Shield, FileText, ArrowLeftRight, Clock, Sparkles, Circle, CheckCircle2 } from 'lucide-react';
 
 // ─── 研究所エリア定義 ────────────────────────────────────────────────────────────
 const ROOMS = [
@@ -244,52 +244,45 @@ function FCDialogueBox({ currentMessage, displayedText, isTyping, onNext }) {
     <AnimatePresence>
       <motion.div
         key="fc-dlg"
-        className="absolute bottom-0 left-0 right-0 z-50"
+        className="absolute bottom-0 left-0 right-0 z-50 flex flex-col items-center"
         initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
         transition={{ duration: 0.2 }}
       >
         {/* クリックで画面全体どこでも次へ（透過レイヤー） */}
         <div className="fixed inset-0 z-[-1]" onClick={onNext} />
+        
+        {/* Dialogue Box (Clean AR Style) */}
         <div
-          className="relative bg-gradient-to-t from-black/95 via-black/80 to-transparent pt-16 pb-12 px-12 md:px-24 cursor-pointer z-50"
+          className="relative glass-panel rounded-[2rem] pt-8 pb-10 px-10 md:px-16 mx-8 md:mx-24 mb-12 cursor-pointer shadow-[0_20px_40px_rgba(0,0,0,0.4)] w-full"
+          style={{ width: 'calc(100% - 4rem)' }} // Account for mx-8
           onClick={onNext}
         >
-          {/* スピーカー名 */}
-          {currentMessage.speaker && (
-            <div className="flex items-center gap-3 mb-2">
-              <span className={`text-base md:text-lg font-bold tracking-widest font-noto ${isSystem ? 'text-cyan-300' : 'text-white'}`}>
-                {currentMessage.speaker}
-              </span>
-              {currentMessage.role && currentMessage.role !== 'NARRATOR' && (
-                <span className={`text-[10px] md:text-xs font-orbitron px-2 py-0.5 border rounded tracking-widest uppercase ${isSystem ? 'text-cyan-400/70 border-cyan-400/30' : 'text-white/40 border-white/10'}`}>
-                  {currentMessage.role}
-                </span>
-              )}
+          {/* Speaker name Plate (Sticking out) - Always visible */}
+          <div className="absolute -top-5 left-6 md:left-10 h-[40px] flex items-center z-10">
+            <div className={`bg-slate-800 border border-white/60 text-white text-sm font-bold tracking-[0.2em] px-6 py-2 rounded-xl shadow-[0_4px_15px_rgba(0,0,0,0.5)] min-w-[180px] h-full flex items-center justify-center gap-2`}>
+              {isSystem && currentMessage?.speaker && <Sparkles className="w-4 h-4 text-white" />}
+              {currentMessage?.speaker || ""}
             </div>
-          )}
-          {/* セパレーター */}
-          <div className="w-full h-[1px] bg-gradient-to-r from-white/40 via-white/15 to-transparent mb-4" />
-          {/* テキスト */}
-          <div className="min-h-[80px] flex items-start">
-            <p className={`text-base md:text-lg leading-relaxed font-noto tracking-wide whitespace-pre-line ${isSystem ? 'text-cyan-100' : 'text-gray-100'}`}>
+          </div>
+
+          {/* Text content */}
+          <div className="min-h-[100px] flex items-start pt-2">
+            <p className="text-gray-100 text-lg md:text-xl leading-[2.2] font-noto tracking-wide whitespace-pre-line">
               {displayedText}
               {isTyping && (
-                <motion.span
-                  className="inline-block w-[2px] h-4 md:h-[18px] bg-white ml-1 align-middle"
-                  animate={{ opacity: [1, 0] }}
-                  transition={{ duration: 0.5, repeat: Infinity }}
-                />
+                <span className={`inline-block w-2 h-2 rounded-full ml-2 align-middle animate-pulse ${isSystem ? 'bg-cyan-200/60' : 'bg-white/60'}`} />
               )}
             </p>
           </div>
+
           {/* 次へ矢印 */}
           {!isTyping && (
             <motion.div
-              className="absolute bottom-4 right-12 md:right-24"
+              className="absolute bottom-6 right-8 md:right-12"
               animate={{ y: [0, 4, 0] }}
               transition={{ duration: 1, repeat: Infinity }}
             >
-              <ChevronRight size={24} className="text-white/60" />
+              <ChevronRight size={24} className="text-white/40" />
             </motion.div>
           )}
         </div>
@@ -743,7 +736,6 @@ export default function FragmentCollect({ onComplete }) {
     setAnimations(p => p.filter(a => a.id !== id));
   }, []);
 
-  // ─── スポットのレンダー ───────────────────────────────────────────────────────
   const renderSpot = (item, type, handler) => {
     const isCollected = type === 'chip' ? collectedChips.has(item.id) : collectedFiles.has(item.id);
     const isChip = type === 'chip';
@@ -753,48 +745,21 @@ export default function FragmentCollect({ onComplete }) {
         key={item.id}
         onClick={(e) => handler(item, e)}
         disabled={isCollected}
-        className="absolute transform -translate-x-1/2 -translate-y-1/2 hover:scale-110 active:scale-95 transition-all duration-300 focus:outline-none z-20 flex flex-col items-center justify-center w-14 h-14 gap-1"
+        className="absolute transform -translate-x-1/2 -translate-y-1/2 hover:scale-110 active:scale-95 transition-all duration-300 focus:outline-none z-20 flex items-center justify-center group"
         style={item.pos}
       >
-        {isCollected ? (
-          <div className="w-7 h-7 rounded-full bg-white/20 border border-white/40 flex items-center justify-center shadow-[0_0_8px_rgba(255,255,255,0.3)]">
-            <Check className="w-4 h-4 text-white" />
-          </div>
-        ) : (
-          <>
-            {/* SearchAndLearningと同じpingアニメ（色だけ変える） */}
-            <span
-              className="animate-ping absolute inline-flex h-9 w-9 rounded-full opacity-60"
-              style={{ background: isChip ? 'rgba(103,232,249,0.4)' : 'rgba(74,222,128,0.4)' }}
-            />
-            <span
-              className="animate-ping absolute inline-flex h-11 w-11 rounded-full opacity-30"
-              style={{
-                background: isChip ? 'rgba(103,232,249,0.2)' : 'rgba(74,222,128,0.2)',
-                animationDelay: '75ms'
-              }}
-            />
-            <span
-              className="relative inline-flex rounded-full h-4 w-4 opacity-90 border"
-              style={{
-                background: isChip ? '#67e8f9' : '#4ade80',
-                borderColor: isChip ? 'rgba(255,255,255,0.5)' : 'rgba(255,255,255,0.5)',
-                boxShadow: isChip ? '0 0 12px rgba(103,232,249,0.7)' : '0 0 12px rgba(74,222,128,0.7)',
-              }}
-            />
-            <span className={`text-[9px] font-orbitron tracking-widest ${isChip ? 'text-cyan-300/80' : 'text-green-300/80'}`}>
-              {isChip ? 'CHIP' : 'FILE'}
-            </span>
-          </>
-        )}
+        <div className={`relative w-14 h-14 rounded-full backdrop-blur-md flex items-center justify-center transition-all ${isCollected ? (isChip ? 'border border-cyan-400/50 bg-cyan-500/10' : 'border border-green-400/50 bg-green-500/10') : 'border-2 border-white/60 bg-white/20 shadow-[0_0_15px_rgba(255,255,255,0.4)] hover:border-white hover:bg-white/30'}`}>
+          <Circle className={`w-10 h-10 transition-all duration-500 ${isCollected ? (isChip ? 'text-cyan-400 opacity-50 scale-125' : 'text-green-400 opacity-50 scale-125') : 'text-white opacity-100 group-hover:scale-110 drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] animate-pulse'}`} strokeWidth={2} />
+          {isCollected && <CheckCircle2 className={`absolute w-5 h-5 drop-shadow-md ${isChip ? 'text-cyan-300' : 'text-green-300'}`} strokeWidth={2} />}
+        </div>
+        {!isCollected && <span className="absolute -bottom-6 text-[10px] text-white/70 tracking-widest opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">{isChip ? 'CHIP' : 'FILE'}</span>}
       </button>
     );
   };
 
   return (
     <div className="absolute inset-0 bg-[#030712] z-50 overflow-hidden select-none">
-
-      {/* ─── 探索エリア（マウスの動きでスキャナー移動） ─── */}
+      {/* Removed inline glass-panel style since it is globally defined in index.css */}
       <div
         ref={containerRef}
         className="absolute inset-0 w-full h-full select-none z-10"
@@ -915,24 +880,24 @@ export default function FragmentCollect({ onComplete }) {
           {/* 左側：エリア名＋記憶ゲージ */}
           <div className="flex flex-col gap-2">
             {/* エリア名 */}
-            <div className="bg-gray-900/60 backdrop-blur-sm px-5 py-2.5 rounded-md shadow">
-              <h2 className="text-sm font-light text-white/90 tracking-[0.2em] flex items-center gap-3 font-noto">
-                <span className="inline-block w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+            <div className="glass-panel px-6 py-3 rounded-full flex items-center gap-3">
+              <span className="inline-block w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+              <h2 className="text-sm font-medium text-white tracking-[0.2em]">
                 {currentRoom.name}
               </h2>
             </div>
             {/* 睦典の記憶（ライフ）ゲージ */}
             {ENABLE_STEALTH_MODE && (
-            <div className="bg-gray-900/70 backdrop-blur-sm px-4 py-2 rounded-md shadow flex items-center gap-3 border border-red-700/30">
+            <div className="glass-panel px-6 py-3 rounded-full flex items-center gap-3 border border-red-700/30">
               <Shield className="w-4 h-4 text-red-400" />
-              <span className="text-[9px] font-orbitron text-red-300/70 tracking-widest">HP</span>
-              <div className="flex gap-1">
+              <span className="text-[10px] font-orbitron text-red-300/70 tracking-widest">HP</span>
+              <div className="flex gap-1.5">
                 {[0, 1, 2].map(i => (
                   <div
                     key={i}
                     className={`w-3.5 h-4 rounded-sm transition-all duration-500 ${i < mutsunoriHealth
                       ? 'bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.7)]'
-                      : 'bg-gray-700/60 border border-gray-600'
+                      : 'bg-white/10 border border-white/20'
                       }`}
                   />
                 ))}
@@ -944,7 +909,7 @@ export default function FragmentCollect({ onComplete }) {
           {/* コレクション状況＆タイマー */}
           <div className="flex flex-col gap-2 items-end">
             {/* タイマー */}
-            <div className={`bg-gray-900/80 backdrop-blur-sm px-4 py-2 rounded-md shadow flex items-center gap-2 border transition-colors ${timeLeft <= 30 ? 'border-red-500/50 animate-pulse text-red-400' : 'border-gray-600/50 text-gray-300'}`}>
+            <div className={`glass-panel px-6 py-3 rounded-full flex items-center gap-3 transition-colors ${timeLeft <= 30 ? 'border-red-500/50 animate-pulse text-red-400' : 'text-gray-300'}`}>
               <Clock className="w-4 h-4" />
               <span className="text-xs font-orbitron tracking-widest font-bold">
                 {Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')}
@@ -952,10 +917,10 @@ export default function FragmentCollect({ onComplete }) {
             </div>
 
             <div id="fc-chip-counter"
-              className="bg-gray-900/60 backdrop-blur-sm px-4 py-2 rounded-md shadow flex items-center gap-3">
+              className="glass-panel px-6 py-3 rounded-full flex items-center gap-3">
               <Shield className="w-4 h-4 text-cyan-400" />
               <span className="text-xs font-orbitron text-cyan-300/80 tracking-widest">CHIP</span>
-              <div className="flex items-center gap-1.5">
+              <div className="flex items-center gap-2">
                 {Array.from({ length: totalChips }, (_, i) => (
                   <div key={i} className={`w-3 h-3 rounded-full border transition-all duration-500 ${i < chipCount
                     ? 'bg-cyan-400 border-cyan-300 shadow-[0_0_8px_rgba(103,232,249,0.8)]'
@@ -965,10 +930,10 @@ export default function FragmentCollect({ onComplete }) {
               </div>
             </div>
             <div id="fc-file-counter"
-              className="bg-gray-900/60 backdrop-blur-sm px-4 py-2 rounded-md shadow flex items-center gap-3">
+              className="glass-panel px-6 py-3 rounded-full flex items-center gap-3">
               <FileText className="w-4 h-4 text-green-400" />
               <span className="text-xs font-orbitron text-green-300/80 tracking-widest">FILE</span>
-              <div className="flex items-center gap-1.5">
+              <div className="flex items-center gap-2">
                 {Array.from({ length: 4 }, (_, i) => (
                   <div key={i} className={`w-3 h-3 rounded-full border transition-all duration-500 ${i < fileCount
                     ? 'bg-green-400 border-green-300 shadow-[0_0_8px_rgba(74,222,128,0.8)]'
@@ -989,24 +954,24 @@ export default function FragmentCollect({ onComplete }) {
             <button
               onClick={() => moveRoom(-1)}
               disabled={isTransitioning}
-              className="absolute left-4 top-1/2 -translate-y-1/2 z-30 w-12 h-20 flex items-center justify-center
-                         bg-gray-900/50 backdrop-blur-sm border border-white/10 rounded-md
-                         hover:bg-gray-700/60 hover:border-white/30 transition-all duration-200
+              className="absolute left-6 top-1/2 -translate-y-1/2 z-30 w-14 h-24 flex items-center justify-center
+                         glass-panel rounded-2xl
+                         hover:bg-white/10 hover:border-white/30 transition-all duration-200
                          disabled:opacity-30"
             >
-              <ChevronLeft className="w-7 h-7 text-white/80" />
+              <ChevronLeft className="w-8 h-8 text-white/80" />
             </button>
           )}
           {roomIndex < ROOMS.length - 1 && (
             <button
               onClick={() => moveRoom(1)}
               disabled={isTransitioning}
-              className="absolute right-4 top-1/2 -translate-y-1/2 z-30 w-12 h-20 flex items-center justify-center
-                         bg-gray-900/50 backdrop-blur-sm border border-white/10 rounded-md
-                         hover:bg-gray-700/60 hover:border-white/30 transition-all duration-200
+              className="absolute right-6 top-1/2 -translate-y-1/2 z-30 w-14 h-24 flex items-center justify-center
+                         glass-panel rounded-2xl
+                         hover:bg-white/10 hover:border-white/30 transition-all duration-200
                          disabled:opacity-30"
             >
-              <ChevronRight className="w-7 h-7 text-white/80" />
+              <ChevronRight className="w-8 h-8 text-white/80" />
             </button>
           )}
         </>
