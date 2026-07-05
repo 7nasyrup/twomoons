@@ -323,6 +323,8 @@ export default function App() {
   useEffect(() => {
     if (!currentLine || showTitle) return;
 
+    let cleanups = [];
+
     // Background music changes based on scenes
     if (currentLine.scene === 'PROLOGUE') {
       playBGM('/assets/audio/bgm/deep_blue_moon.mp3');
@@ -330,6 +332,10 @@ export default function App() {
       playBGM('/assets/audio/bgm/mutsu_theme.mp3');
     } else if (currentLine.scene === '月科学大講義室') {
       playBGM('/assets/audio/bgm/classroom_ambient.mp3');
+    }
+
+    if (currentLine.se) {
+      playSE(currentLine.se, currentLine.seDuration);
     }
 
     const action = currentLine.action;
@@ -362,11 +368,11 @@ export default function App() {
       if (action === 'SHAKE_SCREEN') {
         setShakeEffect(true);
         const timer = setTimeout(() => setShakeEffect(false), 600);
-        return () => clearTimeout(timer);
+        cleanups.push(() => clearTimeout(timer));
       } else if (action === 'SHAKE_SCREEN_VERY_LARGE') {
         setShakeEffect('large');
         const timer = setTimeout(() => setShakeEffect(false), 800);
-        return () => clearTimeout(timer);
+        cleanups.push(() => clearTimeout(timer));
       }
 
       // Red Alert
@@ -384,11 +390,15 @@ export default function App() {
         if ('vibrate' in navigator) {
           navigator.vibrate([200, 100, 200]);
         }
-        return () => clearTimeout(timer);
+        cleanups.push(() => clearTimeout(timer));
       }
     } else {
       setFocusSlot(null);
     }
+
+    return () => {
+      cleanups.forEach(cleanup => cleanup());
+    };
   }, [currentStep, currentLine, playBGM, playSE]);
 
   // Cinema Mode Autoplay timers

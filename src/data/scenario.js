@@ -98,11 +98,12 @@ export const scenarioData = [
         speaker: "ヒルミ教授",
         role: "PROFESSOR",
         text: "「この月波こそが、我々人類の細胞遺伝子に干渉し、突然変異――いわゆる『異能力』を発現させるトリガーとなるわけですが……」",
-        action: "SHOW_SILHOUETTE_RIGHT"
     },
     {
         scene: "月科学大講義室",
-        text: "チョークが黒板を削る硬い音が、広い室内に不規則に響く。"
+        text: "チョークが黒板を削る硬い音が、広い室内に不規則に響く。",
+        se: "/SE/chalk.mp3",
+        seDuration: 1.0
     },
     {
         scene: "月科学大講義室",

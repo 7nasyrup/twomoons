@@ -33,7 +33,7 @@ export function useAudioSystem() {
     currentBgmSrc.current = src;
   }, []);
 
-  const playSE = useCallback((src) => {
+  const playSE = useCallback((src, duration = null) => {
     if (!src) return;
     // Simple pooling: create or reuse Howl for this src
     if (!sePool.current[src]) {
@@ -42,7 +42,22 @@ export function useAudioSystem() {
         volume: seVolume.current * masterVolume.current,
       });
     }
-    sePool.current[src].play();
+    const soundId = sePool.current[src].play();
+
+    if (duration) {
+      setTimeout(() => {
+        if (sePool.current[src]) {
+          const currentVol = sePool.current[src].volume();
+          sePool.current[src].fade(currentVol, 0, 300, soundId);
+          setTimeout(() => {
+            if (sePool.current[src]) {
+              sePool.current[src].stop(soundId);
+              sePool.current[src].volume(currentVol, soundId); // reset volume for next play
+            }
+          }, 300);
+        }
+      }, duration * 1000);
+    }
   }, []);
 
   const stopBGM = useCallback((fadeDuration = 1000) => {
