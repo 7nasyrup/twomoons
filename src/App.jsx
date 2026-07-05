@@ -142,6 +142,7 @@ export default function App() {
     backlog,
     autoMode,
     hudVisible,
+    currentBg,
     nextStep,
     selectChoice,
     jumpToStep,
@@ -622,7 +623,7 @@ export default function App() {
         ) : (
           <>
             {/* Visual Background Fallback & Actual Renderer */}
-            <BackgroundRenderer bgPath={currentLine?.bg || scenarioData[Math.max(0, currentStep - 1)]?.bg} />
+            <BackgroundRenderer bgPath={currentBg} />
 
             {/* Typing Game Overlay */}
             {isTypingGameActive && (

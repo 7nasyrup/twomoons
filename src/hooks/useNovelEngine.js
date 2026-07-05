@@ -9,6 +9,7 @@ export function useNovelEngine(scenarioData) {
   const [backlog, setBacklog] = useState(prologueLines);
   const [autoMode, setAutoMode] = useState(false);
   const [hudVisible, setHudVisible] = useState(true);
+  const [currentBg, setCurrentBg] = useState('');
   const typingTimer = useRef(null);
   const autoTimer = useRef(null);
   const fullTextRef = useRef('');
@@ -59,6 +60,10 @@ export function useNovelEngine(scenarioData) {
       if (charRightImg) {
         charRightImg.style.backgroundImage = `url(/character/Hirumi/Hirumi_default.png)`;
       }
+    }
+    
+    if (currentLine?.bg) {
+      setCurrentBg(currentLine.bg);
     }
   }, [currentStep, currentLine, triggerTypewriter]);
 
@@ -151,6 +156,7 @@ export function useNovelEngine(scenarioData) {
     backlog,
     autoMode,
     hudVisible,
+    currentBg,
     nextStep,
     selectChoice,
     jumpToStep,

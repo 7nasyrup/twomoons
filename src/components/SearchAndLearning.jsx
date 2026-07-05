@@ -85,7 +85,7 @@ export default function SearchAndLearning({ onComplete }) {
   const [visuallyVisited, setVisuallyVisited] = useState({ tv: false, newspaper: false, bookshelf: false, artificial_moon: false, calendar: false });
   const [animations, setAnimations] = useState([]);
   const [pendingParticle, setPendingParticle] = useState(null);
-  const [bgImage, setBgImage] = useState('/scene/room_tv.png');
+  const [bgImage, setBgImage] = useState('/scene/sakura_room.png');
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isBlackout, setIsBlackout] = useState(false);
   const [hasSeenMoonIntro, setHasSeenMoonIntro] = useState(false);
@@ -256,7 +256,7 @@ export default function SearchAndLearning({ onComplete }) {
     setIsBlackout(true); // 暗転開始
 
     setTimeout(() => {
-      setBgImage('/scene/room_tv.png');
+      setBgImage('/scene/sakura_room.png');
       setIsBlackout(false);
     }, 300);
 

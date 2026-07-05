@@ -77,7 +77,7 @@ export const scenarioData = [
         speaker: "ヒルミ教授",
         role: "PROFESSOR",
         text: "「――いいですか。人工月が放つ『月波（げっぱ）』の総量は、周期によって変動します。この月波こそが、我々人類の細胞遺伝子に干渉し、突然変異――いわゆる『異能力』を発現させるトリガーとなるわけですが……」",
-        bg: "cyber_classroom",
+        bg: "/scene/classroom.png",
         style: "novel",
         action: "SHOW_SILHOUETTE_RIGHT"
     },
@@ -213,6 +213,7 @@ export const scenarioData = [
         speaker: "？？？",
         text: "「おーーい！ 朔良ーー！！」",
         action: "PLAY_RUNNING_SE",
+        bg: "/scene/classroom.png",
         showIllust: ["睦典_smile"],
     },
     {
@@ -314,7 +315,7 @@ export const scenarioData = [
     {
         scene: "大学の廊下",
         text: "あはは、と睦典が緊張感のない声で笑う。",
-        bg: "cyber_corridor"
+        bg: "/scene/university_rouka.png"
     },
     {
         scene: "大学の廊下",
@@ -1386,7 +1387,7 @@ export const scenarioData = [
     {
         scene: "講義室",
         text: "ドタバタと坂道を駆け上がり、私たちは1限の講義室へと滑り込んだ。",
-        bg: "cyber_classroom"
+        bg: "/scene/classroom.png"
     },
     {
         scene: "講義室",
@@ -1794,14 +1795,14 @@ export const scenarioData = [
     {
         scene: "学生食堂",
         text: "正門前の騒ぎですっかり消費してしまったエネルギーを補給するべく、私達はキャンパスの奥にある学生食堂へと向かった。",
-        bg: "cyber_classroom"
+        bg: "/scene/classroom.png"
     },
 
     // ================== #12 逢瀬「時計塔からの報せ」 ==================
     {
         scene: "学生食堂",
         text: "お昼時の学食は、どんよりとした昨夜のニュースの空気なんてどこへやら、たくさんの学生たちの活気と美味しそうな匂いで満ちている。",
-        bg: "cyber_classroom"
+        bg: "/scene/classroom.png"
     },
     {
         scene: "学生食堂",
@@ -2308,7 +2309,7 @@ export const scenarioData = [
     {
         scene: "大学の講義室",
         text: "私はいつも通り、大学の講義室へと足を運んでいた。",
-        bg: "cyber_classroom"
+        bg: "/scene/classroom.png"
     },
     {
         scene: "大学の講義室",
