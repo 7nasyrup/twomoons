@@ -39,6 +39,7 @@ function BackgroundRenderer({ bgPath }) {
 
   return (
     <div className="absolute inset-0 w-full h-full select-none z-0">
+      {!imageError ? (
         <img
           src={assetPath(bgPath)}
           alt="background"
