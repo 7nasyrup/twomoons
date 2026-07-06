@@ -167,9 +167,7 @@ const ROOM_ITEMS = {
   },
 
   lab4: {
-    chips: [
-      { id: 'chip_5', pos: { top: '42%', left: '55%' }, label: 'コード断片⑤' },
-    ],
+    chips: [],
     files: [
       {
         id: 'file_4',
@@ -411,6 +409,15 @@ export default function FragmentCollect({ onComplete }) {
   const [timeLeft, setTimeLeft] = useState(180);
   const [isGameOver, setIsGameOver] = useState(false);
 
+  // ─── ビューモード切替 ──────────────────────────────────────────────
+  const USE_FPS_VIEW = true; // ★ true: FPS（疑似3D視点）、false: スキャナー（既存）
+  const xRatio = typeof window !== 'undefined' ? (lightX / window.innerWidth) * 2 - 1 : 0;
+  const yRatio = typeof window !== 'undefined' ? (lightY / window.innerHeight) * 2 - 1 : 0;
+  
+  // FPS視点の移動量（画面サイズの何割移動するか。数値を上げると移動範囲が広がる）
+  const maxPanX = typeof window !== 'undefined' ? window.innerWidth * 0.35 : 0;
+  const maxPanY = typeof window !== 'undefined' ? window.innerHeight * 0.35 : 0;
+
   // ─── ハイド＆シーク（ステルス）用状態 ──────────────────────────────────────────
   const ENABLE_STEALTH_MODE = false; // ★ここを true にすると再び敵が出るようになります
 
@@ -426,7 +433,7 @@ export default function FragmentCollect({ onComplete }) {
   const isWarningRef = useRef(isWarning);
   isWarningRef.current = isWarning;
 
-  const totalChips = 5;
+  const totalChips = 4;
   const chipCount = collectedChips.size;
   const fileCount = collectedFiles.size;
   const symptomLevel = Math.min(chipCount, 3);
@@ -553,34 +560,44 @@ export default function FragmentCollect({ onComplete }) {
     WebkitClipPath: `inset(100% 100% 100% 100%)`,
   };
 
-  // ─── スポットライト移動ハンドラ ──────────────────────────────────────────────
-  const handleMouseMove = (e) => {
+  // ─── ドラッグ視点移動ハンドラ ──────────────────────────────────────────────
+  const [isDragging, setIsDragging] = useState(false);
+  const lastMousePos = useRef({ x: 0, y: 0 });
+
+  const handlePointerDown = (e) => {
     if (currentMessage || activeFile || isTransitioning || isGameOver) return;
-    if (containerRef.current) {
-      const rect = containerRef.current.getBoundingClientRect();
-      const rawX = e.clientX - rect.left;
-      const rawY = e.clientY - rect.top;
-      // スキャナーが画面外に出ないようにクランプする
-      setLightX(Math.max(halfSize, Math.min(rect.width - halfSize, rawX)));
-      setLightY(Math.max(halfSize, Math.min(rect.height - halfSize, rawY)));
-    } else {
-      setLightX(e.clientX);
-      setLightY(e.clientY);
-    }
+    // アイテム（ボタン）をクリックした場合はドラッグを開始しない
+    if (e.target.closest('button')) return;
+    setIsDragging(true);
+    lastMousePos.current = { x: e.clientX, y: e.clientY };
   };
 
-  const handleTouchMove = (e) => {
+  const handlePointerUp = () => setIsDragging(false);
+
+  const handlePointerMove = (e) => {
     if (currentMessage || activeFile || isTransitioning || isGameOver) return;
-    if (containerRef.current) {
-      const rect = containerRef.current.getBoundingClientRect();
-      const rawX = e.touches[0].clientX - rect.left;
-      const rawY = e.touches[0].clientY - rect.top;
-      // スキャナーが画面外に出ないようにクランプする
-      setLightX(Math.max(halfSize, Math.min(rect.width - halfSize, rawX)));
-      setLightY(Math.max(halfSize, Math.min(rect.height - halfSize, rawY)));
+    
+    if (USE_FPS_VIEW) {
+      if (!isDragging) return;
+      const deltaX = e.clientX - lastMousePos.current.x;
+      const deltaY = e.clientY - lastMousePos.current.y;
+      lastMousePos.current = { x: e.clientX, y: e.clientY };
+      
+      // ドラッグ方向と逆にカメラ（lightX/Y）を移動させることで画像を引っ張る感覚にする
+      setLightX(prev => Math.max(0, Math.min(window.innerWidth, prev - deltaX * 1.5)));
+      setLightY(prev => Math.max(0, Math.min(window.innerHeight, prev - deltaY * 1.5)));
     } else {
-      setLightX(e.touches[0].clientX);
-      setLightY(e.touches[0].clientY);
+      // スキャナー用の既存ロジック
+      if (containerRef.current) {
+        const rect = containerRef.current.getBoundingClientRect();
+        const rawX = e.clientX - rect.left;
+        const rawY = e.clientY - rect.top;
+        setLightX(Math.max(halfSize, Math.min(rect.width - halfSize, rawX)));
+        setLightY(Math.max(halfSize, Math.min(rect.height - halfSize, rawY)));
+      } else {
+        setLightX(e.clientX);
+        setLightY(e.clientY);
+      }
     }
   };
 
@@ -763,48 +780,77 @@ export default function FragmentCollect({ onComplete }) {
       <div
         ref={containerRef}
         className="absolute inset-0 w-full h-full select-none z-10"
-        onMouseMove={handleMouseMove}
-        onTouchMove={handleTouchMove}
-        style={{ cursor: 'crosshair' }}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}
+        onPointerLeave={handlePointerUp}
+        style={{ cursor: USE_FPS_VIEW ? (isDragging ? 'grabbing' : 'grab') : 'crosshair' }}
       >
-        {/* 背景画像（常に明るく全体表示） */}
-        <img
-          src={currentRoom.bg}
-          alt="bg"
-          className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none z-0"
-        />
+        {USE_FPS_VIEW ? (
+          <div style={{ perspective: '1000px' }} className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+            <div 
+              className="absolute w-[180%] h-[180%] -left-[40%] -top-[40%] transition-transform duration-150 ease-out"
+              style={{
+                // 酔い対策：rotateを抑えつつ、ドラッグ時のレスポンスを確保するduration設定
+                transform: `translateX(${xRatio * -maxPanX}px) translateY(${yRatio * -maxPanY}px) rotateX(${yRatio * -2}deg) rotateY(${xRatio * 4}deg)`
+              }}
+            >
+              <img
+                src={currentRoom.bg}
+                alt="bg"
+                className="absolute inset-0 w-full h-full object-cover select-none"
+              />
+              {/* アイテムスポット */}
+              <div className="absolute inset-0 z-20 pointer-events-auto" style={isHiding ? { display: 'none' } : {}}>
+                {currentRoomItems.chips.map(c => renderSpot(c, 'chip', handleChipClick))}
+                {currentRoomItems.files.map(f => renderSpot(f, 'file', handleFileClick))}
+              </div>
+            </div>
+            {/* FPS用周辺減光（ビネット） */}
+            <div className="absolute inset-0 pointer-events-none shadow-[inset_0_0_150px_rgba(0,0,0,0.9)] z-30" />
+          </div>
+        ) : (
+          <>
+            {/* 背景画像（常に明るく全体表示） */}
+            <img
+              src={currentRoom.bg}
+              alt="bg"
+              className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none z-0"
+            />
 
-        {/* ─── サイバースキャナーレンズ（UI・背景フィルター） ─── */}
-        <div
-          className="absolute pointer-events-none z-10 flex items-center justify-center border border-green-500/20"
-          style={{
-            width: scannerSize,
-            height: scannerSize,
-            left: lightX - halfSize,
-            top: lightY - halfSize,
-            backdropFilter: 'invert(1) hue-rotate(180deg) sepia(0.2) contrast(1.2)',
-            WebkitBackdropFilter: 'invert(1) hue-rotate(180deg) sepia(0.2) contrast(1.2)'
-          }}
-        >
-          {/* 四隅のレティクル */}
-          <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-green-400" />
-          <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-green-400" />
-          <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-green-400" />
-          <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-green-400" />
+            {/* ─── サイバースキャナーレンズ（UI・背景フィルター） ─── */}
+            <div
+              className="absolute pointer-events-none z-10 flex items-center justify-center border border-green-500/20"
+              style={{
+                width: scannerSize,
+                height: scannerSize,
+                left: lightX - halfSize,
+                top: lightY - halfSize,
+                backdropFilter: 'invert(1) hue-rotate(180deg) sepia(0.2) contrast(1.2)',
+                WebkitBackdropFilter: 'invert(1) hue-rotate(180deg) sepia(0.2) contrast(1.2)'
+              }}
+            >
+              {/* 四隅のレティクル */}
+              <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-green-400" />
+              <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-green-400" />
+              <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-green-400" />
+              <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-green-400" />
 
-          {/* 中央の十字 */}
-          <div className="absolute w-8 h-[1px] bg-green-500/40" />
-          <div className="absolute w-[1px] h-8 bg-green-500/40" />
+              {/* 中央の十字 */}
+              <div className="absolute w-8 h-[1px] bg-green-500/40" />
+              <div className="absolute w-[1px] h-8 bg-green-500/40" />
 
-          {/* 走査線エフェクト */}
-          <div className="absolute inset-0 bg-[linear-gradient(transparent_50%,rgba(0,255,0,0.05)_50%)] bg-[length:100%_4px] pointer-events-none mix-blend-overlay" />
-        </div>
+              {/* 走査線エフェクト */}
+              <div className="absolute inset-0 bg-[linear-gradient(transparent_50%,rgba(0,255,0,0.05)_50%)] bg-[length:100%_4px] pointer-events-none mix-blend-overlay" />
+            </div>
 
-        {/* ─── アイテムスポット（スキャナー内のみ表示・クリック可能） ─── */}
-        <div className="absolute inset-0 z-20" style={clipPathStyle}>
-          {currentRoomItems.chips.map(c => renderSpot(c, 'chip', handleChipClick))}
-          {currentRoomItems.files.map(f => renderSpot(f, 'file', handleFileClick))}
-        </div>
+            {/* ─── アイテムスポット（スキャナー内のみ表示・クリック可能） ─── */}
+            <div className="absolute inset-0 z-20" style={clipPathStyle}>
+              {currentRoomItems.chips.map(c => renderSpot(c, 'chip', handleChipClick))}
+              {currentRoomItems.files.map(f => renderSpot(f, 'file', handleFileClick))}
+            </div>
+          </>
+        )}
       </div>
 
 
@@ -870,7 +916,7 @@ export default function FragmentCollect({ onComplete }) {
           transition={{ delay: 4, duration: 1 }}
         >
           <ArrowLeftRight className="w-4 h-4 animate-bounce" />
-          MOVE MOUSE TO EXPLORE
+          {USE_FPS_VIEW ? 'DRAG TO EXPLORE' : 'MOVE MOUSE TO EXPLORE'}
         </motion.div>
       )}
 

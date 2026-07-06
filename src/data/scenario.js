@@ -46,7 +46,7 @@ export const scenarioData = [
     // ================== #0.5 朔良の部屋 ==================
     {
         scene: "朔良の部屋",
-        text: "カーテンを閉めていても、窓の隙間から冷たい青い光が部屋に忍び込んでくる。",
+        text: "窓の外から、青い月明かりが差し込む。",
         bg: "sakura_room",
         style: "novel"
     },
@@ -113,7 +113,7 @@ export const scenarioData = [
     {
         scene: "月科学大講義室",
         text: "手元のスマートフォンを開くと、画面には『月波観測庁』が発令した最新の警告ポップアップが、不吉な赤色で明滅していた。",
-        showItem: "/item/phone.png"
+        //showItem: "/item/phone.png"
     },
     {
         scene: "月科学大講義室",
