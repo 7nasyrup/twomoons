@@ -12,6 +12,7 @@ import SearchAndLearning from './components/SearchAndLearning';
 import SilentScore from './components/SilentScore';
 import TapCommunication from './components/TapCommunication';
 import EyeOfProfiler from './components/EyeOfProfiler';
+import FragmentCollect from './components/FragmentCollect';
 import { useNovelEngine } from './hooks/useNovelEngine';
 import { useAudioSystem } from './hooks/useAudioSystem';
 import { scenarioData } from './data/scenario';
@@ -27,7 +28,7 @@ function BackgroundRenderer({ bgPath }) {
   if (!bgPath) return null;
 
   // Fallback styling based on bg name
-  const isClassroom = bgPath.includes('cyber_classroom') || bgPath.includes('classroom.png');
+  const isClassroom = bgPath.includes('cyber_classroom');
   const isGiantMoon = bgPath.includes('giant_blue_moon');
   const isSchoolGate = bgPath.includes('school_gate_evening');
   const isTownDark1 = bgPath.includes('town_dark_1');
@@ -140,11 +141,15 @@ export default function App() {
     isWaitingForChoice,
     backlog,
     autoMode,
+    skipMode,
     hudVisible,
+    currentBg,
     nextStep,
     selectChoice,
     jumpToStep,
     toggleAuto,
+    toggleSkip,
+    setSkipMode,
     toggleHud,
     setHudVisible,
     clearBacklog,
@@ -202,6 +207,14 @@ export default function App() {
   const [focusSlot, setFocusSlot] = useState(null);
   const [prevScene, setPrevScene] = useState('');
   const [presentCharacters, setPresentCharacters] = useState([]);
+  const [displayedItem, setDisplayedItem] = useState(null);
+
+  // Minigame result states
+  const [learningScore, setLearningScore] = useState(0);
+  const [eyeOfProfilerSuccess, setEyeOfProfilerSuccess] = useState(false);
+  const [tapCommunicationScores, setTapCommunicationScores] = useState(null);
+  const [silentScoreResult, setSilentScoreResult] = useState(null);
+  const [fragmentCollectResult, setFragmentCollectResult] = useState(null);
 
   // Swipe gesture variables
   const touchStartX = useRef(0);
@@ -216,8 +229,22 @@ export default function App() {
       setRightActive(false);
       setFocusSlot(null);
       setPresentCharacters([]); // シーン切り替え時に画面内の登場キャラをリセット
+      setDisplayedItem(null);
     }
   }, [currentLine?.scene, prevScene]);
+
+  // Track present items
+  useEffect(() => {
+    if (!currentLine || showTitle) return;
+
+    if (currentLine.hideItem || currentLine.clearItem) {
+      setDisplayedItem(null);
+    }
+
+    if (currentLine.showItem) {
+      setDisplayedItem(currentLine.showItem);
+    }
+  }, [currentLine, showTitle]);
 
   // Track present characters (including manual triggers)
   useEffect(() => {
@@ -323,8 +350,6 @@ export default function App() {
   useEffect(() => {
     if (!currentLine || showTitle) return;
 
-    let cleanups = [];
-
     // Background music changes based on scenes
     if (currentLine.scene === 'PROLOGUE') {
       playBGM('/assets/audio/bgm/deep_blue_moon.mp3');
@@ -332,10 +357,6 @@ export default function App() {
       playBGM('/assets/audio/bgm/mutsu_theme.mp3');
     } else if (currentLine.scene === '月科学大講義室') {
       playBGM('/assets/audio/bgm/classroom_ambient.mp3');
-    }
-
-    if (currentLine.se) {
-      playSE(currentLine.se, currentLine.seDuration);
     }
 
     const action = currentLine.action;
@@ -368,11 +389,11 @@ export default function App() {
       if (action === 'SHAKE_SCREEN') {
         setShakeEffect(true);
         const timer = setTimeout(() => setShakeEffect(false), 600);
-        cleanups.push(() => clearTimeout(timer));
+        return () => clearTimeout(timer);
       } else if (action === 'SHAKE_SCREEN_VERY_LARGE') {
         setShakeEffect('large');
         const timer = setTimeout(() => setShakeEffect(false), 800);
-        cleanups.push(() => clearTimeout(timer));
+        return () => clearTimeout(timer);
       }
 
       // Red Alert
@@ -390,15 +411,11 @@ export default function App() {
         if ('vibrate' in navigator) {
           navigator.vibrate([200, 100, 200]);
         }
-        cleanups.push(() => clearTimeout(timer));
+        return () => clearTimeout(timer);
       }
     } else {
       setFocusSlot(null);
     }
-
-    return () => {
-      cleanups.forEach(cleanup => cleanup());
-    };
   }, [currentStep, currentLine, playBGM, playSE]);
 
   // Cinema Mode Autoplay timers
@@ -419,6 +436,30 @@ export default function App() {
       return () => clearTimeout(timer);
     }
   }, [currentStep, currentLine, nextStep, showTitle]);
+
+  // Handle conditional branching and special actions
+  useEffect(() => {
+    if (!currentLine) return;
+    
+    if (currentLine.action === 'EVALUATE_FRAGMENT_COLLECT_BRANCH') {
+      if (fragmentCollectResult && fragmentCollectResult.files >= 4) {
+        const targetIdx = scenarioData.findIndex(line => line.label === 'happy_end_start');
+        if (targetIdx !== -1) jumpToStep(targetIdx);
+      } else {
+        const targetIdx = scenarioData.findIndex(line => line.label === 'bad_end_start');
+        if (targetIdx !== -1) {
+          jumpToStep(targetIdx);
+        } else {
+          setShowTitle(true);
+          jumpToStep(0);
+        }
+      }
+    } else if (currentLine.action === 'GAME_OVER') {
+      // Return to title
+      setShowTitle(true);
+      jumpToStep(0);
+    }
+  }, [currentStep, currentLine, jumpToStep, fragmentCollectResult]);
 
   // Handle touch events for gestures
   const handleTouchStart = (e) => {
@@ -478,7 +519,22 @@ export default function App() {
       }
 
       if (e.key === ' ' || e.key === 'Enter') {
-        if (!isWaitingForChoice) {
+        if (skipMode) {
+          setSkipMode(false);
+          e.preventDefault();
+          return;
+        }
+
+        const isMinigameActive = [
+          'TRIGGER_TYPING_GAME',
+          'TRIGGER_SEARCH_AND_LEARNING',
+          'TRIGGER_SILENT_SCORE',
+          'TRIGGER_TAP_COMMUNICATION',
+          'TRIGGER_EYE_OF_PROFILER',
+          'TRIGGER_FRAGMENT_COLLECT'
+        ].includes(currentLine?.action);
+
+        if (!isWaitingForChoice && !isMinigameActive) {
           nextStep();
         }
       }
@@ -486,7 +542,7 @@ export default function App() {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [nextStep, toggleHud, toggleAuto, isWaitingForChoice, backlogOpen, alertActive, hudVisible, setHudVisible]);
+  }, [nextStep, toggleHud, toggleAuto, isWaitingForChoice, backlogOpen, alertActive, hudVisible, setHudVisible, currentLine, skipMode, setSkipMode, showTitle]);
 
   const handleDismissAlert = () => {
     setAlertActive(false);
@@ -500,9 +556,15 @@ export default function App() {
   const isSilentScoreActive = currentLine?.action === 'TRIGGER_SILENT_SCORE';
   const isTapCommunicationActive = currentLine?.action === 'TRIGGER_TAP_COMMUNICATION';
   const isEyeOfProfilerActive = currentLine?.action === 'TRIGGER_EYE_OF_PROFILER';
+  const isFragmentCollectActive = currentLine?.action === 'TRIGGER_FRAGMENT_COLLECT';
 
   const handleEyeOfProfilerComplete = (success) => {
     setEyeOfProfilerSuccess(success);
+    nextStep();
+  };
+
+  const handleFragmentCollectComplete = (result) => {
+    setFragmentCollectResult(result);
     nextStep();
   };
 
@@ -548,29 +610,17 @@ export default function App() {
     return true;
   }) || [];
 
-  const computedBgPath = React.useMemo(() => {
-    let bg = currentLine?.bg;
-    if (!bg && currentStep > 0) {
-      for (let i = currentStep - 1; i >= 0; i--) {
-        if (scenarioData[i]?.bg) {
-          bg = scenarioData[i].bg;
-          break;
-        }
-      }
-    }
-    if (currentLine?.scene === "月科学大講義室") {
-      bg = "/scene/classroom.png";
-    }
-    return bg;
-  }, [currentLine, currentStep, scenarioData]);
-
   return (
     <div
       className="w-full h-full select-none touch-none cursor-pointer"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
       onClick={() => {
-        if (!showTitle && !isWaitingForChoice && !alertActive && !backlogOpen && !isTypingGameActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive) {
+        if (skipMode) {
+          setSkipMode(false);
+          return;
+        }
+        if (!showTitle && !isWaitingForChoice && !alertActive && !backlogOpen && !isTypingGameActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isFragmentCollectActive) {
           nextStep();
         }
       }}
@@ -586,7 +636,7 @@ export default function App() {
         ) : (
           <>
             {/* Visual Background Fallback & Actual Renderer */}
-            <BackgroundRenderer bgPath={computedBgPath} />
+            <BackgroundRenderer bgPath={currentBg} />
 
             {/* Typing Game Overlay */}
             {isTypingGameActive && (
@@ -608,6 +658,11 @@ export default function App() {
               <EyeOfProfiler onComplete={handleEyeOfProfilerComplete} />
             )}
 
+            {/* Fragment Collect Overlay */}
+            {isFragmentCollectActive && (
+              <FragmentCollect onComplete={handleFragmentCollectComplete} />
+            )}
+
             {/* Silent Score Overlay */}
             {isSilentScoreActive && (
               <SilentScore onComplete={handleSilentScoreComplete} />
@@ -616,7 +671,7 @@ export default function App() {
             {/* Cinematic Black Letterbox Overlay */}
             <CinemaLayer
               text={currentLine?.text}
-              isActive={isCinema && !isDemoEnd && !isTypingGameActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive}
+              isActive={isCinema && !isDemoEnd && !isTypingGameActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isFragmentCollectActive}
               isTyping={isTyping}
               onNext={nextStep}
             />
@@ -635,8 +690,19 @@ export default function App() {
               />
             )}
 
+            {/* Item Sprite Overlay */}
+            {displayedItem && !isCinema && !isDemoEnd && (
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-[15]">
+                <img
+                  src={displayedItem}
+                  alt="item"
+                  className="max-w-[40%] max-h-[60%] object-contain drop-shadow-2xl animate-fadeIn"
+                />
+              </div>
+            )}
+
             {/* Subtitles & Normal Dialogue Boxes */}
-            {!isCinema && !isDemoEnd && !alertActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isTypingGameActive && (
+            {!isCinema && !isDemoEnd && !alertActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isTypingGameActive && !isFragmentCollectActive && (
               <DialogueBox
                 speaker={currentLine?.speaker}
                 role={currentLine?.role}
@@ -645,8 +711,10 @@ export default function App() {
                 isTyping={isTyping}
                 isVisible={hudVisible}
                 autoMode={autoMode}
+                skipMode={skipMode}
                 onNext={nextStep}
                 onToggleAuto={toggleAuto}
+                onToggleSkip={toggleSkip}
                 onToggleHud={toggleHud}
                 onOpenLog={() => setBacklogOpen(true)}
                 choices={filteredChoices}

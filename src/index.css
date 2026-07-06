@@ -1,6 +1,7 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Klee+One:wght@400;600&display=swap');
 
 @layer base {
   body {
@@ -28,6 +29,19 @@
 
 .scrollbar-thin::-webkit-scrollbar-thumb:hover {
   background: rgba(0, 245, 255, 0.4);
+}
+
+/* Clean White Glassmorphism UI */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.9) !important;
+  /* White semi-transparent background */
+  backdrop-filter: blur(16px) !important;
+  border: 0px solid rgba(231, 202, 177, 0.9) !important;
+  /* Milk tea border */
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.08) !important;
+  /* Soft drop shadow */
+  color: #1e293b !important;
+  /* Slate dark text */
 }
 
 /* Glow effects */
