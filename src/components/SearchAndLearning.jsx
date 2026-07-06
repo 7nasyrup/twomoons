@@ -14,12 +14,12 @@ const OBJECT_DETAILS = {
     ]
   },
 
-  bookshelf: {
+  photo: {
     messages: [
-      { role: 'narrative', text: `カバンに教科書を入れようとしたとき、本棚に置かれた、いまはもう私の隣にはいない父の論文が目に入った。` },
-      { role: 'narrative', text: `幼い頃、父は私によく、おとぎ話を聞かせるように月の話を語ってくれた。けれど、ある日を境に父は私の前から突然消えてしまった。` },
-      { role: 'sakura', text: `（お父さん……。私はまだ、何も突き止められてないよ）` },
-      { role: 'narrative', text: `小さく首を振って思考を振り払い、私はカバンを肩にかけた。` }
+      { role: 'narrative', text: `棚の特等席に飾られた、若き日の優しい父親と、まだ幼い私が写った写真に触れる。` },
+      { role: 'father', speaker: '父', text: `『朔良、あの青い月を見ちゃダメだ。あの裏側にはね、もっと優しくて、満ちたり欠けたりしながら、ただ静かに僕たちを照らしてくれていた本物の月があるんだよ』` },
+      { role: 'sakura', text: `（父は私によく、隠されてしまった本物の月の姿を、何度も何度も話してくれた。そして、私の前から突然消えてしまった）` },
+      { role: 'sakura', text: `（父が何を求めて失踪したのか、その真相を知りたくて、私はこの最先端の、そして危険な『月科学エネルギー学部』の門を叩いたのだ）` }
     ]
   },
 };
@@ -82,8 +82,8 @@ const InfoParticle = ({ startX, startY, targetX, targetY, onComplete }) => {
 };
 
 export default function SearchAndLearning({ onComplete }) {
-  const [visited, setVisited] = useState({ tv: false, newspaper: false, bookshelf: false, artificial_moon: false, calendar: false });
-  const [visuallyVisited, setVisuallyVisited] = useState({ tv: false, newspaper: false, bookshelf: false, artificial_moon: false, calendar: false });
+  const [visited, setVisited] = useState({ tv: false, newspaper: false, photo: false, artificial_moon: false, calendar: false });
+  const [visuallyVisited, setVisuallyVisited] = useState({ tv: false, newspaper: false, photo: false, artificial_moon: false, calendar: false });
   const [animations, setAnimations] = useState([]);
   const [pendingParticle, setPendingParticle] = useState(null);
   const [bgImage, setBgImage] = useState('/scene/sakura_room.png');
@@ -224,7 +224,7 @@ export default function SearchAndLearning({ onComplete }) {
   }, [messageQueue, currentMessage, isTyping, bgImage, pendingParticle, triggerParticle]);
 
   const handleFinishSearch = () => {
-    const score = ['tv', 'bookshelf', 'artificial_moon'].filter(k => visited[k]).length;
+    const score = ['tv', 'photo', 'artificial_moon'].filter(k => visited[k]).length;
     onComplete(score);
   };
 
@@ -241,33 +241,20 @@ export default function SearchAndLearning({ onComplete }) {
       } else {
         setPendingParticle({ key: 'artificial_moon', startX: window.innerWidth / 2, startY: window.innerHeight / 2 });
       }
+      setVisited((prev) => ({ ...prev, artificial_moon: true }));
     }
 
-    setIsTransitioning(true);
-    setIsBlackout(true);
-    setHasSeenMoonIntro(false);
+    const queue = [
+      { role: 'narrative', speaker: '', text: `画面を点灯させると、『月波観測庁』が発令した最新の警告通知が、不吉な赤色で明滅していた。` },
+      { role: 'info', speaker: '警告通知', text: `【月波観測予報：警戒レベル3（厳重警戒）】 本日、人工月の活性化に伴い、地上への月波照射量が基準値を大幅に超過。一般市民は不要不急の外出を控え、特に『適応不全（【キメラ】化）』の兆候がある個体への接近に注意してください。` },
+      { role: 'sakura', speaker: '', text: `（月波（げっぱ）を浴びた人間の中から、常人離れした『異能力』に目覚める者が現れる）` },
+      { role: 'sakura', speaker: '', text: `（今やそれは珍しいことではないけれど、みんな国の研究機関に目をつけられるリスクを恐れて力を隠し、互いに探り合いながら生きている）` },
+      { role: 'sakura', speaker: '', text: `（そしてもう一つの警戒が、生態系の破壊──『キメラ』の発生。人工月のエネルギーに適応できず、怪物と化した動植物や元・人間の成れの果て）` },
+      { role: 'sakura', speaker: '', text: `（警戒レベル3ってことは、今夜あたり、またあの化け物どもが街を徘徊し始めるかもしれない）` }
+    ];
 
-    setTimeout(() => {
-      setBgImage('/scene/moon.png');
-      setVisited((prev) => ({ ...prev, artificial_moon: true }));
-      setIsBlackout(false);
-    }, 300);
-
-    setTimeout(() => {
-      const moonText = [
-        `窓の外を見上げる。そこにあるのは、人類が誕生する遥か昔から夜空に君臨してきた、優しく黄色みがかった『本物の月』を完全に覆い隠すように、ぴったりと重なった――『人工の月』。`,
-        `白昼の空に、凍てついたような青い光がぎらぎらと輝いている。`
-      ];
-
-      const queue = moonText.map(t => ({
-        speaker: '', text: t, role: 'narrative'
-      }));
-
-      setMessageQueue(queue.slice(1));
-      setCurrentMessage(queue[0]);
-
-      setIsTransitioning(false);
-    }, 1200);
+    setMessageQueue(queue.slice(1));
+    setCurrentMessage(queue[0]);
   };
 
   const handleBackToRoom = () => {
@@ -323,7 +310,7 @@ export default function SearchAndLearning({ onComplete }) {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [currentMessage, isTyping, messageQueue, handleNextMessage]);
 
-  const totalVisited = ['tv', 'bookshelf', 'artificial_moon'].filter(k => visited[k]).length;
+  const totalVisited = ['tv', 'photo', 'artificial_moon'].filter(k => visited[k]).length;
   const isMoonView = bgImage === '/scene/moon.png';
   const isNewsView = bgImage === '/scene/news.png';
   const isMoonIntroPlaying = isMoonView && !hasSeenMoonIntro;
@@ -354,7 +341,7 @@ export default function SearchAndLearning({ onComplete }) {
         <div className="absolute top-8 right-8 z-20 pointer-events-none flex flex-col gap-4 items-end">
           <div className="bg-white/90 backdrop-blur-xl shadow-sm border border-white/60 px-6 py-3 rounded-full flex items-center gap-3">
             <h2 className="text-sm font-bold text-slate-800 tracking-[0.2em]">
-              {isMoonView ? '窓の外' : '朔良の部屋'}
+              朔良の部屋
             </h2>
           </div>
 
@@ -365,11 +352,25 @@ export default function SearchAndLearning({ onComplete }) {
 
             <motion.div layout id="task-artificial_moon" className={`text-sm font-bold tracking-wider flex items-center gap-4 transition-all duration-500 ${visuallyVisited.artificial_moon ? 'text-slate-300 line-through' : (hoveredSpot === 'artificial_moon' ? 'text-sky-500 drop-shadow-[0_0_8px_rgba(14,165,233,0.4)] scale-105 origin-left' : 'text-slate-700')}`}>
               <CheckCircle2 className={`w-5 h-5 transition-colors ${visuallyVisited.artificial_moon ? 'text-sky-400' : 'text-slate-200'}`} strokeWidth={2} />
-              窓の外を確認
+              スマートフォンを手に取る
             </motion.div>
 
             <AnimatePresence>
               {visuallyVisited.artificial_moon && (
+                <div
+                  key="task-photo"
+                  className="flex items-center gap-3 overflow-hidden group"
+                >
+                  <p
+                    className={`text-sm font-bold tracking-wider flex items-center gap-4 transition-all duration-500 ${visuallyVisited.photo ? 'text-slate-300 line-through' : (hoveredSpot === 'photo' ? 'text-sky-500 drop-shadow-[0_0_8px_rgba(14,165,233,0.4)] scale-105 origin-left' : 'text-slate-700')}`}
+                  >
+                    <CheckCircle2 className={`w-5 h-5 transition-colors ${visuallyVisited.photo ? 'text-sky-400' : 'text-slate-200'}`} strokeWidth={2} />
+                    机の上の古い写真
+                  </p>
+                </div>
+              )}
+
+              {visuallyVisited.photo && (
                 <motion.div
                   key="task-tv"
                   initial={{ opacity: 0, x: -20, height: 0 }}
@@ -378,18 +379,6 @@ export default function SearchAndLearning({ onComplete }) {
                 >
                   <CheckCircle2 className={`w-5 h-5 transition-colors ${visuallyVisited.tv ? 'text-sky-400' : 'text-slate-200'}`} strokeWidth={2} />
                   ニュースをチェック
-                </motion.div>
-              )}
-
-              {visuallyVisited.tv && (
-                <motion.div
-                  key="task-bookshelf"
-                  initial={{ opacity: 0, x: -20, height: 0 }}
-                  animate={{ opacity: 1, x: 0, height: 'auto' }}
-                  className={`text-sm font-bold tracking-wider flex items-center gap-4 transition-all duration-500 ${visuallyVisited.bookshelf ? 'text-slate-300 line-through' : (hoveredSpot === 'bookshelf' ? 'text-sky-500 drop-shadow-[0_0_8px_rgba(14,165,233,0.4)] scale-105 origin-left' : 'text-slate-700')}`}
-                >
-                  <CheckCircle2 className={`w-5 h-5 transition-colors ${visuallyVisited.bookshelf ? 'text-sky-400' : 'text-slate-200'}`} strokeWidth={2} />
-                  カバンに荷物を詰める
                 </motion.div>
               )}
             </AnimatePresence>
@@ -409,7 +398,7 @@ export default function SearchAndLearning({ onComplete }) {
       {bgImage === '/scene/sakura_room.png' ? (
         <div key="living-room-container" className="absolute inset-0">
           {/* Object 1: TV */}
-          {visuallyVisited.artificial_moon && (
+          {visuallyVisited.photo && (
             <button
               key="spot-tv"
               onClick={(e) => handleSelectObject('tv', e)}
@@ -425,22 +414,21 @@ export default function SearchAndLearning({ onComplete }) {
               {!visited.tv && <span className="absolute -bottom-6 text-[10px] text-white/70 tracking-widest opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">テレビ</span>}
             </button>
           )}
-
-          {/* Object 3: Bookshelf */}
-          {visuallyVisited.tv && (
+          {/* Object 2: Photo */}
+          {visuallyVisited.artificial_moon && (
             <button
-              key="spot-bookshelf"
-              onClick={(e) => handleSelectObject('bookshelf', e)}
-              onMouseEnter={() => setHoveredSpot('bookshelf')}
+              key="spot-photo"
+              onClick={(e) => handleSelectObject('photo', e)}
+              onMouseEnter={() => setHoveredSpot('photo')}
               onMouseLeave={() => setHoveredSpot(null)}
               className="absolute transform -translate-x-1/2 -translate-y-1/2 hover:scale-110 active:scale-95 transition-all duration-300 focus:outline-none z-20 flex items-center justify-center group"
               style={{ top: '35%', left: '30%' }}
             >
-              <div className={`relative w-10 h-10 rounded-full backdrop-blur-md flex items-center justify-center transition-all ${visited.bookshelf ? 'border border-cyan-400/50 bg-cyan-500/10' : 'border-2 border-white/60 bg-white/20 shadow-[0_0_15px_rgba(255,255,255,0.4)] hover:border-white hover:bg-white/30'}`}>
-                <Circle className={`w-6 h-6 transition-all duration-500 ${visited.bookshelf ? 'text-cyan-400 opacity-50 scale-125' : 'text-white opacity-100 group-hover:scale-110 drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] animate-pulse'}`} strokeWidth={2} />
-                {visited.bookshelf && <CheckCircle2 className="absolute text-cyan-300 w-4 h-4 drop-shadow-md" strokeWidth={2} />}
+              <div className={`relative w-10 h-10 rounded-full backdrop-blur-md flex items-center justify-center transition-all ${visited.photo ? 'border border-cyan-400/50 bg-cyan-500/10' : 'border-2 border-white/60 bg-white/20 shadow-[0_0_15px_rgba(255,255,255,0.4)] hover:border-white hover:bg-white/30'}`}>
+                <Circle className={`w-6 h-6 transition-all duration-500 ${visited.photo ? 'text-cyan-400 opacity-50 scale-125' : 'text-white opacity-100 group-hover:scale-110 drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] animate-pulse'}`} strokeWidth={2} />
+                {visited.photo && <CheckCircle2 className="absolute text-cyan-300 w-4 h-4 drop-shadow-md" strokeWidth={2} />}
               </div>
-              {!visited.bookshelf && <span className="absolute -bottom-6 text-[10px] text-white/70 tracking-widest opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">本棚</span>}
+              {!visited.photo && <span className="absolute -bottom-6 text-[10px] text-white/70 tracking-widest opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">机の上の古い写真</span>}
             </button>
           )}
 
@@ -515,7 +503,6 @@ export default function SearchAndLearning({ onComplete }) {
           {/* Speaker name Plate (Sticking out) - Always visible */}
           <div className="absolute -top-5 left-6 md:left-10 h-[40px] flex items-center z-10">
             <div className="bg-white text-slate-800 text-base font-bold tracking-[0.2em] px-6 py-2 rounded-xl shadow-[0_4px_15px_rgba(0,0,0,0.05)] min-w-[180px] h-full flex items-center justify-center gap-2">
-              {currentMessage?.role === 'info' && currentMessage?.speaker && <Sparkles className="w-4 h-4 text-sky-500" />}
               {currentMessage?.speaker || (currentMessage?.role === 'sakura' ? '朔良' : '')}
             </div>
           </div>

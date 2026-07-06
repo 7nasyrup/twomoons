@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import GameFrame from './components/GameFrame';
 import SpriteSlot from './components/SpriteSlot';
 import DialogueBox from './components/DialogueBox';
@@ -165,6 +166,7 @@ export default function App() {
   const [backlogOpen, setBacklogOpen] = useState(false);
   const [alertActive, setAlertActive] = useState(false);
   const [alertConfig, setAlertConfig] = useState({ title: '', message: '' });
+  const [isFadingBlack, setIsFadingBlack] = useState(false);
   const [shakeEffect, setShakeEffect] = useState(false);
   const [saveToast, setSaveToast] = useState(null); // 'saved' | 'loaded' | null
   // セーブスロットモーダル
@@ -448,6 +450,12 @@ export default function App() {
         return () => clearTimeout(timer);
       }
 
+      // Screen Effects
+      if (action === 'FADE_TO_BLACK') {
+        setIsFadingBlack(true);
+        setTimeout(() => setIsFadingBlack(false), 2000);
+      }
+
       // Red Alert
       if (action === 'TRIGGER_PHONE_RED_ALERT') {
         playSE(assetPath('/assets/audio/se/siren_alert.mp3'));
@@ -481,6 +489,7 @@ export default function App() {
       if (currentLine.action === 'SLOW_FADE_IN') delay = 3500;
       if (currentLine.action === 'WAIT_SECONDS_AND_MOVE_MOON') delay = 4000;
       if (currentLine.action === 'ALL_FADE_OUT') delay = 3000;
+      if (currentLine.action === 'FADE_TO_BLACK') delay = 2500;
 
       const timer = setTimeout(() => {
         nextStep();
@@ -798,6 +807,19 @@ export default function App() {
               message={alertConfig.message}
               onDismiss={handleDismissAlert}
             />
+
+            {/* Fade To Black Overlay */}
+            <AnimatePresence>
+              {isFadingBlack && (
+                <motion.div
+                  className="absolute inset-0 z-[60] pointer-events-none bg-black"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 1 }}
+                />
+              )}
+            </AnimatePresence>
 
             {/* Demo End Screen */}
             {isDemoEnd && (
