@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { Tv, BookOpen, CheckCircle2, ChevronRight, Camera, Sparkles, Circle } from 'lucide-react';
+import { Tv, BookOpen, CheckCircle2, ChevronRight, Camera, Sparkles, Circle, EyeOff, FastForward, LogOut } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const OBJECT_DETAILS = {
   tv: {
     messages: [
-      { role: 'info', speaker: 'SYSTEM AR', text: `『――さて、次のニュースです。世界的なエネルギー危機の救世主として、国家規模の極秘プロジェクトによりあの「人工月」が打ち上げられてから、ちょうど50年』` },
-      { role: 'info', speaker: 'SYSTEM AR', text: `『今や、我々のあらゆる生活インフラを支える莫大な新エネルギーが、あの美しい青い光から供給され続けています』` },
+      { role: 'info', speaker: 'ニュースキャスター', text: `『――さて、次のニュースです。世界的なエネルギー危機の救世主として、国家規模の極秘プロジェクトによりあの「人工月」が打ち上げられてから、ちょうど50年』` },
+      { role: 'info', speaker: 'ニュースキャスター', text: `『今や、我々のあらゆる生活インフラを支える莫大な新エネルギーが、あの美しい青い光から供給され続けています』` },
       { role: 'sakura', text: `「今年で50年か…人工月打ち上げられてから」` },
       { role: 'narrative', text: `世界的なエネルギー危機の救世主として、国家規模の極秘プロジェクトにより打ち上げられたというその人工月は、今や地球のあらゆるインフラを支える莫大な新エネルギーを供給していた。` },
       { role: 'narrative', text: `けれど、それは決して無償の恵みなどではない。人工月は、地球の生態系をじわじわと侵食する「未知の毒」でもある。` }
@@ -128,6 +128,39 @@ export default function SearchAndLearning({ onComplete }) {
   const handleSelectObject = (key, e) => {
     if (isTransitioning || currentMessage) return;
 
+    if (key === 'tv') {
+      setIsTransitioning(true);
+      setIsBlackout(true);
+
+      if (!visited.tv) {
+        triggerARScan();
+        if (e) {
+          const rect = e.currentTarget.getBoundingClientRect();
+          const startX = rect.left + rect.width / 2;
+          const startY = rect.top + rect.height / 2;
+          setPendingParticle({ key, startX, startY });
+        } else {
+          setPendingParticle({ key, startX: window.innerWidth / 2, startY: window.innerHeight / 2 });
+        }
+        setVisited((prev) => ({ ...prev, tv: true }));
+      }
+
+      setTimeout(() => {
+        setBgImage('/scene/news.png');
+        setIsBlackout(false);
+      }, 300);
+
+      setTimeout(() => {
+        const obj = OBJECT_DETAILS[key];
+        if (obj.messages) {
+          setMessageQueue(obj.messages.slice(1));
+          setCurrentMessage(obj.messages[0]);
+        }
+        setIsTransitioning(false);
+      }, 1200);
+      return;
+    }
+
     if (!visited[key]) {
       triggerARScan();
       if (e) {
@@ -165,8 +198,20 @@ export default function SearchAndLearning({ onComplete }) {
         setCurrentMessage(null);
         setDisplayedText('');
         setIsTyping(false);
-        if (bgImage === '/scene/moon.jpg') {
+        if (bgImage === '/scene/moon.png') {
           setHasSeenMoonIntro(true);
+        }
+
+        if (bgImage === '/scene/news.png') {
+          setIsTransitioning(true);
+          setIsBlackout(true);
+          setTimeout(() => {
+            setBgImage('/scene/sakura_room.png');
+            setIsBlackout(false);
+          }, 300);
+          setTimeout(() => {
+            setIsTransitioning(false);
+          }, 700);
         }
 
         if (pendingParticle) {
@@ -202,7 +247,7 @@ export default function SearchAndLearning({ onComplete }) {
     setHasSeenMoonIntro(false);
 
     setTimeout(() => {
-      setBgImage('/scene/moon.jpg');
+      setBgImage('/scene/moon.png');
       setVisited((prev) => ({ ...prev, artificial_moon: true }));
       setIsBlackout(false);
     }, 300);
@@ -278,7 +323,8 @@ export default function SearchAndLearning({ onComplete }) {
   }, [currentMessage, isTyping, messageQueue, handleNextMessage]);
 
   const totalVisited = ['tv', 'bookshelf', 'artificial_moon'].filter(k => visited[k]).length;
-  const isMoonView = bgImage === '/scene/moon.jpg';
+  const isMoonView = bgImage === '/scene/moon.png';
+  const isNewsView = bgImage === '/scene/news.png';
   const isMoonIntroPlaying = isMoonView && !hasSeenMoonIntro;
 
   return (
@@ -303,21 +349,21 @@ export default function SearchAndLearning({ onComplete }) {
       />
 
       {/* Header Info Overlay - Clean AR Glass Style */}
-      {!isMoonIntroPlaying && (
+      {!isMoonIntroPlaying && !isNewsView && (
         <div className="absolute top-8 right-8 z-20 pointer-events-none flex flex-col gap-4 items-end">
-          <div className="glass-panel px-6 py-3 rounded-full flex items-center gap-3">
-            <h2 className="text-sm font-medium text-white tracking-[0.2em]">
+          <div className="bg-white/90 backdrop-blur-xl shadow-sm border border-white/60 px-6 py-3 rounded-full flex items-center gap-3">
+            <h2 className="text-sm font-bold text-slate-800 tracking-[0.2em]">
               {isMoonView ? '窓の外' : '朔良の部屋'}
             </h2>
           </div>
 
-          <div className="glass-panel px-8 py-6 rounded-3xl flex flex-col gap-5 min-w-[280px]">
-            <h3 className="text-[10px] font-bold text-white/50 tracking-widest border-b border-white/10 pb-3 uppercase">
+          <div className="bg-white/90 backdrop-blur-xl shadow-[0_10px_30px_rgba(0,0,0,0.05)] border border-white/60 px-8 py-6 rounded-3xl flex flex-col gap-5 min-w-[280px]">
+            <h3 className="text-[10px] font-bold text-slate-400 tracking-widest border-b border-slate-200 pb-3 uppercase">
               Morning Routine Tasks
             </h3>
 
-            <motion.div layout id="task-artificial_moon" className={`text-sm tracking-wider flex items-center gap-4 transition-all duration-500 ${visuallyVisited.artificial_moon ? 'text-white/30 line-through' : (hoveredSpot === 'artificial_moon' ? 'text-cyan-300 drop-shadow-[0_0_8px_rgba(103,232,249,0.8)] scale-105 origin-left' : 'text-white')}`}>
-              <CheckCircle2 className={`w-5 h-5 transition-colors ${visuallyVisited.artificial_moon ? 'text-cyan-400/50' : 'text-white/20'}`} strokeWidth={1.5} />
+            <motion.div layout id="task-artificial_moon" className={`text-sm font-bold tracking-wider flex items-center gap-4 transition-all duration-500 ${visuallyVisited.artificial_moon ? 'text-slate-300 line-through' : (hoveredSpot === 'artificial_moon' ? 'text-sky-500 drop-shadow-[0_0_8px_rgba(14,165,233,0.4)] scale-105 origin-left' : 'text-slate-700')}`}>
+              <CheckCircle2 className={`w-5 h-5 transition-colors ${visuallyVisited.artificial_moon ? 'text-sky-400' : 'text-slate-200'}`} strokeWidth={2} />
               窓の外を確認
             </motion.div>
 
@@ -327,9 +373,9 @@ export default function SearchAndLearning({ onComplete }) {
                   key="task-tv"
                   initial={{ opacity: 0, x: -20, height: 0 }}
                   animate={{ opacity: 1, x: 0, height: 'auto' }}
-                  className={`text-sm tracking-wider flex items-center gap-4 transition-all duration-500 ${visuallyVisited.tv ? 'text-white/30 line-through' : (hoveredSpot === 'tv' ? 'text-cyan-300 drop-shadow-[0_0_8px_rgba(103,232,249,0.8)] scale-105 origin-left' : 'text-white')}`}
+                  className={`text-sm font-bold tracking-wider flex items-center gap-4 transition-all duration-500 ${visuallyVisited.tv ? 'text-slate-300 line-through' : (hoveredSpot === 'tv' ? 'text-sky-500 drop-shadow-[0_0_8px_rgba(14,165,233,0.4)] scale-105 origin-left' : 'text-slate-700')}`}
                 >
-                  <CheckCircle2 className={`w-5 h-5 transition-colors ${visuallyVisited.tv ? 'text-cyan-400/50' : 'text-white/20'}`} strokeWidth={1.5} />
+                  <CheckCircle2 className={`w-5 h-5 transition-colors ${visuallyVisited.tv ? 'text-sky-400' : 'text-slate-200'}`} strokeWidth={2} />
                   ニュースをチェック
                 </motion.div>
               )}
@@ -339,9 +385,9 @@ export default function SearchAndLearning({ onComplete }) {
                   key="task-bookshelf"
                   initial={{ opacity: 0, x: -20, height: 0 }}
                   animate={{ opacity: 1, x: 0, height: 'auto' }}
-                  className={`text-sm tracking-wider flex items-center gap-4 transition-all duration-500 ${visuallyVisited.bookshelf ? 'text-white/30 line-through' : (hoveredSpot === 'bookshelf' ? 'text-cyan-300 drop-shadow-[0_0_8px_rgba(103,232,249,0.8)] scale-105 origin-left' : 'text-white')}`}
+                  className={`text-sm font-bold tracking-wider flex items-center gap-4 transition-all duration-500 ${visuallyVisited.bookshelf ? 'text-slate-300 line-through' : (hoveredSpot === 'bookshelf' ? 'text-sky-500 drop-shadow-[0_0_8px_rgba(14,165,233,0.4)] scale-105 origin-left' : 'text-slate-700')}`}
                 >
-                  <CheckCircle2 className={`w-5 h-5 transition-colors ${visuallyVisited.bookshelf ? 'text-cyan-400/50' : 'text-white/20'}`} strokeWidth={1.5} />
+                  <CheckCircle2 className={`w-5 h-5 transition-colors ${visuallyVisited.bookshelf ? 'text-sky-400' : 'text-slate-200'}`} strokeWidth={2} />
                   カバンに荷物を詰める
                 </motion.div>
               )}
@@ -359,7 +405,7 @@ export default function SearchAndLearning({ onComplete }) {
       )}
 
       {/* Spots visible in Living Room Room View */}
-      {!isMoonView ? (
+      {bgImage === '/scene/sakura_room.png' ? (
         <div key="living-room-container" className="absolute inset-0">
           {/* Object 1: TV */}
           {visuallyVisited.artificial_moon && (
@@ -371,9 +417,9 @@ export default function SearchAndLearning({ onComplete }) {
               className="absolute transform -translate-x-1/2 -translate-y-1/2 hover:scale-110 active:scale-95 transition-all duration-300 focus:outline-none z-20 flex items-center justify-center group"
               style={{ top: '45%', left: '12%' }}
             >
-              <div className={`relative w-14 h-14 rounded-full backdrop-blur-md flex items-center justify-center transition-all ${visited.tv ? 'border border-cyan-400/50 bg-cyan-500/10' : 'border-2 border-white/60 bg-white/20 shadow-[0_0_15px_rgba(255,255,255,0.4)] hover:border-white hover:bg-white/30'}`}>
-                <Circle className={`w-10 h-10 transition-all duration-500 ${visited.tv ? 'text-cyan-400 opacity-50 scale-125' : 'text-white opacity-100 group-hover:scale-110 drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] animate-pulse'}`} strokeWidth={2} />
-                {visited.tv && <CheckCircle2 className="absolute text-cyan-300 w-5 h-5 drop-shadow-md" strokeWidth={2} />}
+              <div className={`relative w-10 h-10 rounded-full backdrop-blur-md flex items-center justify-center transition-all ${visited.tv ? 'border border-cyan-400/50 bg-cyan-500/10' : 'border-2 border-white/60 bg-white/20 shadow-[0_0_15px_rgba(255,255,255,0.4)] hover:border-white hover:bg-white/30'}`}>
+                <Circle className={`w-6 h-6 transition-all duration-500 ${visited.tv ? 'text-cyan-400 opacity-50 scale-125' : 'text-white opacity-100 group-hover:scale-110 drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] animate-pulse'}`} strokeWidth={2} />
+                {visited.tv && <CheckCircle2 className="absolute text-cyan-300 w-4 h-4 drop-shadow-md" strokeWidth={2} />}
               </div>
               {!visited.tv && <span className="absolute -bottom-6 text-[10px] text-white/70 tracking-widest opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">テレビ</span>}
             </button>
@@ -389,9 +435,9 @@ export default function SearchAndLearning({ onComplete }) {
               className="absolute transform -translate-x-1/2 -translate-y-1/2 hover:scale-110 active:scale-95 transition-all duration-300 focus:outline-none z-20 flex items-center justify-center group"
               style={{ top: '35%', left: '30%' }}
             >
-              <div className={`relative w-14 h-14 rounded-full backdrop-blur-md flex items-center justify-center transition-all ${visited.bookshelf ? 'border border-cyan-400/50 bg-cyan-500/10' : 'border-2 border-white/60 bg-white/20 shadow-[0_0_15px_rgba(255,255,255,0.4)] hover:border-white hover:bg-white/30'}`}>
-                <Circle className={`w-10 h-10 transition-all duration-500 ${visited.bookshelf ? 'text-cyan-400 opacity-50 scale-125' : 'text-white opacity-100 group-hover:scale-110 drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] animate-pulse'}`} strokeWidth={2} />
-                {visited.bookshelf && <CheckCircle2 className="absolute text-cyan-300 w-5 h-5 drop-shadow-md" strokeWidth={2} />}
+              <div className={`relative w-10 h-10 rounded-full backdrop-blur-md flex items-center justify-center transition-all ${visited.bookshelf ? 'border border-cyan-400/50 bg-cyan-500/10' : 'border-2 border-white/60 bg-white/20 shadow-[0_0_15px_rgba(255,255,255,0.4)] hover:border-white hover:bg-white/30'}`}>
+                <Circle className={`w-6 h-6 transition-all duration-500 ${visited.bookshelf ? 'text-cyan-400 opacity-50 scale-125' : 'text-white opacity-100 group-hover:scale-110 drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] animate-pulse'}`} strokeWidth={2} />
+                {visited.bookshelf && <CheckCircle2 className="absolute text-cyan-300 w-4 h-4 drop-shadow-md" strokeWidth={2} />}
               </div>
               {!visited.bookshelf && <span className="absolute -bottom-6 text-[10px] text-white/70 tracking-widest opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">本棚</span>}
             </button>
@@ -406,16 +452,16 @@ export default function SearchAndLearning({ onComplete }) {
             className="absolute transform -translate-x-1/2 -translate-y-1/2 hover:scale-110 active:scale-95 transition-all duration-300 focus:outline-none z-20 flex items-center justify-center group"
             style={{ top: '25%', left: '63%' }}
           >
-            <div className={`relative w-14 h-14 rounded-full backdrop-blur-md flex items-center justify-center transition-all ${visited.artificial_moon ? 'border border-cyan-400/50 bg-cyan-500/10' : 'border-2 border-white/60 bg-white/20 shadow-[0_0_15px_rgba(255,255,255,0.4)] hover:border-white hover:bg-white/30'}`}>
-              <Circle className={`w-10 h-10 transition-all duration-500 ${visited.artificial_moon ? 'text-cyan-400 opacity-50 scale-125' : 'text-white opacity-100 group-hover:scale-110 drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] animate-pulse'}`} strokeWidth={2} />
-              {visited.artificial_moon && <CheckCircle2 className="absolute text-cyan-300 w-5 h-5 drop-shadow-md" strokeWidth={2} />}
+            <div className={`relative w-10 h-10 rounded-full backdrop-blur-md flex items-center justify-center transition-all ${visited.artificial_moon ? 'border border-cyan-400/50 bg-cyan-500/10' : 'border-2 border-white/60 bg-white/20 shadow-[0_0_15px_rgba(255,255,255,0.4)] hover:border-white hover:bg-white/30'}`}>
+              <Circle className={`w-6 h-6 transition-all duration-500 ${visited.artificial_moon ? 'text-cyan-400 opacity-50 scale-125' : 'text-white opacity-100 group-hover:scale-110 drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] animate-pulse'}`} strokeWidth={2} />
+              {visited.artificial_moon && <CheckCircle2 className="absolute text-cyan-300 w-4 h-4 drop-shadow-md" strokeWidth={2} />}
             </div>
             {!visited.artificial_moon && <span className="absolute -bottom-6 text-[10px] text-white/70 tracking-widest opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">窓の外</span>}
           </button>
         </div>
       ) : (
         <div key="moon-view-container" className="absolute inset-0">
-          {!isMoonIntroPlaying && (
+          {!isMoonIntroPlaying && isMoonView && (
             <button
               key="btn-back-to-room"
               onClick={handleBackToRoom}
@@ -429,7 +475,7 @@ export default function SearchAndLearning({ onComplete }) {
       )}
 
       {/* Finish Button - Clean Pill style */}
-      {!isMoonIntroPlaying && totalVisited === 3 && (
+      {!isMoonIntroPlaying && !isNewsView && totalVisited === 3 && (
         <button
           onClick={handleFinishSearch}
           className="absolute bottom-12 right-12 bg-white text-black px-10 py-4 rounded-full shadow-[0_10px_30px_rgba(255,255,255,0.2)] hover:scale-105 hover:bg-cyan-50 transition-all text-sm font-bold tracking-[0.2em] z-20 flex items-center gap-3 group"
@@ -463,30 +509,30 @@ export default function SearchAndLearning({ onComplete }) {
       {currentMessage && (
         <div
           onClick={handleNextMessage}
-          className="absolute inset-x-8 md:inset-x-24 bottom-12 z-50 flex flex-col justify-end glass-panel rounded-[2rem] pt-8 pb-10 px-10 md:px-16 cursor-pointer"
+          className="absolute inset-x-8 md:inset-x-24 bottom-12 z-50 flex flex-col justify-end bg-white/95 backdrop-blur-xl border border-white/60 rounded-[2rem] shadow-[0_20px_40px_rgba(0,0,0,0.1)] pt-8 pb-10 px-10 md:px-16 cursor-pointer"
         >
           {/* Speaker name Plate (Sticking out) - Always visible */}
           <div className="absolute -top-5 left-6 md:left-10 h-[40px] flex items-center z-10">
-            <div className={`bg-slate-800 border border-white/60 text-white text-sm font-bold tracking-[0.2em] px-6 py-2 rounded-xl shadow-[0_4px_15px_rgba(0,0,0,0.5)] min-w-[180px] h-full flex items-center justify-center gap-2`}>
-              {currentMessage?.role === 'info' && currentMessage?.speaker && <Sparkles className="w-4 h-4 text-white" />}
-              {currentMessage?.speaker || ""}
+            <div className="bg-white text-slate-800 text-base font-bold tracking-[0.2em] px-6 py-2 rounded-xl shadow-[0_4px_15px_rgba(0,0,0,0.05)] min-w-[180px] h-full flex items-center justify-center gap-2">
+              {currentMessage?.role === 'info' && currentMessage?.speaker && <Sparkles className="w-4 h-4 text-sky-500" />}
+              {currentMessage?.speaker || (currentMessage?.role === 'sakura' ? '朔良' : '')}
             </div>
           </div>
 
           {/* Text content */}
           <div className="min-h-[100px] flex items-start pt-2">
             {currentMessage.role === 'sakura' ? (
-              <p className="text-gray-100 text-lg md:text-xl leading-[2.2] font-noto tracking-wide whitespace-pre-line">
+              <p className="text-slate-800 text-lg md:text-xl leading-[2.2] font-noto tracking-wide whitespace-pre-line">
                 {displayedText}
                 {isTyping && (
-                  <span className="inline-block w-2 h-2 rounded-full bg-white/60 ml-2 align-middle animate-pulse" />
+                  <motion.span className="inline-block w-2.5 h-2.5 rounded-full bg-sky-400 ml-2 align-middle" animate={{ opacity: [1, 0.2] }} transition={{ duration: 0.8, repeat: Infinity, ease: "easeInOut" }} />
                 )}
               </p>
             ) : (
-              <p className="text-gray-100 text-lg md:text-xl leading-[2.2] font-noto tracking-wide whitespace-pre-line">
+              <p className="text-slate-800 text-lg md:text-xl leading-[2.2] font-noto tracking-wide whitespace-pre-line">
                 {displayedText}
                 {isTyping && (
-                  <span className="inline-block w-2 h-2 rounded-full bg-cyan-200/60 ml-2 align-middle animate-pulse" />
+                  <motion.span className="inline-block w-2.5 h-2.5 rounded-full bg-sky-400 ml-2 align-middle" animate={{ opacity: [1, 0.2] }} transition={{ duration: 0.8, repeat: Infinity, ease: "easeInOut" }} />
                 )}
               </p>
             )}
@@ -494,12 +540,32 @@ export default function SearchAndLearning({ onComplete }) {
 
           {/* Next Indicator */}
           {!isTyping && (
-            <div className="absolute bottom-10 right-10 animate-bounce">
-              <ChevronRight className="w-6 h-6 text-white/50" />
-            </div>
+            <motion.div className="absolute bottom-12 right-10" animate={{ y: [0, 5, 0] }} transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}>
+              <ChevronRight className="w-6 h-6 text-slate-400" />
+            </motion.div>
           )}
+
+          {/* HUD Buttons (Bottom Right, sticking out) */}
+          <div className="absolute bottom-0 right-6 md:right-10 translate-y-[50%] flex gap-2 z-20">
+            <HudButton icon={<BookOpen size={14} />} label="LOG" onClick={() => console.log('Log placeholder')} />
+            <HudButton icon={<EyeOff size={14} />} label="HIDE" onClick={() => console.log('Hide placeholder')} />
+            <HudButton icon={<FastForward size={14} />} label="AUTO" onClick={() => console.log('Auto placeholder')} />
+            <HudButton icon={<LogOut size={14} />} label="EXIT" onClick={() => console.log('Exit placeholder')} />
+          </div>
         </div>
       )}
     </div>
+  );
+}
+
+function HudButton({ icon, label, onClick, active }) {
+  return (
+    <button
+      onClick={(e) => { e.stopPropagation(); onClick && onClick(); }}
+      className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold tracking-widest font-noto transition-all duration-300 shadow-sm backdrop-blur-md ${active ? 'bg-slate-100 text-slate-800' : 'bg-white/90 text-slate-600 hover:bg-slate-100 hover:text-slate-900'}`}
+    >
+      {icon}
+      {label}
+    </button>
   );
 }

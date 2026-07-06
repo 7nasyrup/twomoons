@@ -141,12 +141,15 @@ export default function App() {
     isWaitingForChoice,
     backlog,
     autoMode,
+    skipMode,
     hudVisible,
     currentBg,
     nextStep,
     selectChoice,
     jumpToStep,
     toggleAuto,
+    toggleSkip,
+    setSkipMode,
     toggleHud,
     setHudVisible,
     clearBacklog,
@@ -516,6 +519,12 @@ export default function App() {
       }
 
       if (e.key === ' ' || e.key === 'Enter') {
+        if (skipMode) {
+          setSkipMode(false);
+          e.preventDefault();
+          return;
+        }
+
         const isMinigameActive = [
           'TRIGGER_TYPING_GAME',
           'TRIGGER_SEARCH_AND_LEARNING',
@@ -533,7 +542,7 @@ export default function App() {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [nextStep, toggleHud, toggleAuto, isWaitingForChoice, backlogOpen, alertActive, hudVisible, setHudVisible, currentLine]);
+  }, [nextStep, toggleHud, toggleAuto, isWaitingForChoice, backlogOpen, alertActive, hudVisible, setHudVisible, currentLine, skipMode, setSkipMode, showTitle]);
 
   const handleDismissAlert = () => {
     setAlertActive(false);
@@ -607,6 +616,10 @@ export default function App() {
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
       onClick={() => {
+        if (skipMode) {
+          setSkipMode(false);
+          return;
+        }
         if (!showTitle && !isWaitingForChoice && !alertActive && !backlogOpen && !isTypingGameActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isFragmentCollectActive) {
           nextStep();
         }
@@ -698,8 +711,10 @@ export default function App() {
                 isTyping={isTyping}
                 isVisible={hudVisible}
                 autoMode={autoMode}
+                skipMode={skipMode}
                 onNext={nextStep}
                 onToggleAuto={toggleAuto}
+                onToggleSkip={toggleSkip}
                 onToggleHud={toggleHud}
                 onOpenLog={() => setBacklogOpen(true)}
                 choices={filteredChoices}

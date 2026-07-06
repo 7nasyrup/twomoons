@@ -219,10 +219,6 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
                 style={{ backgroundImage: 'url(/character/Mutsunori/Mutsunori_smile.png)' }}
               />
             </div>
-            {/* Tag */}
-            <div className="bg-black/80 border border-[#bc84ee]/40 text-[#bc84ee] font-orbitron text-[10px] px-4 py-0.5 rounded-sm mt-1.5 tracking-widest uppercase">
-              MUTSUNORI
-            </div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -245,10 +241,6 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
                 id="char-right-img"
                 className="absolute inset-0 w-full h-full bg-contain bg-bottom bg-no-repeat transition-all duration-300"
               />
-            </div>
-            {/* Tag */}
-            <div className="bg-black/80 border border-[#48cae4]/40 text-[#48cae4] font-orbitron text-[10px] px-4 py-0.5 rounded-sm mt-1.5 tracking-widest uppercase">
-              PROF. HIRUMI
             </div>
           </motion.div>
         )}

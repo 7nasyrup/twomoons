@@ -257,20 +257,20 @@ function FCDialogueBox({ currentMessage, displayedText, isTyping, onNext }) {
           style={{ width: 'calc(100% - 4rem)' }} // Account for mx-8
           onClick={onNext}
         >
-          {/* Speaker name Plate (Sticking out) - Always visible */}
+          {/* Speaker name Plate */}
           <div className="absolute -top-5 left-6 md:left-10 h-[40px] flex items-center z-10">
-            <div className={`bg-slate-800 border border-white/60 text-white text-sm font-bold tracking-[0.2em] px-6 py-2 rounded-xl shadow-[0_4px_15px_rgba(0,0,0,0.5)] min-w-[180px] h-full flex items-center justify-center gap-2`}>
-              {isSystem && currentMessage?.speaker && <Sparkles className="w-4 h-4 text-white" />}
+            <div className="bg-white border border-slate-200 text-slate-800 text-sm font-bold tracking-[0.2em] px-6 py-2 rounded-xl shadow-[0_4px_15px_rgba(0,0,0,0.05)] min-w-[180px] h-full flex items-center justify-center gap-2">
+              {isSystem && currentMessage?.speaker && <Sparkles className="w-4 h-4 text-sky-500" />}
               {currentMessage?.speaker || ""}
             </div>
           </div>
 
           {/* Text content */}
           <div className="min-h-[100px] flex items-start pt-2">
-            <p className="text-gray-100 text-lg md:text-xl leading-[2.2] font-noto tracking-wide whitespace-pre-line">
+            <p className="text-slate-800 text-lg md:text-xl leading-[2.2] font-noto tracking-wide whitespace-pre-line font-medium">
               {displayedText}
               {isTyping && (
-                <span className={`inline-block w-2 h-2 rounded-full ml-2 align-middle animate-pulse ${isSystem ? 'bg-cyan-200/60' : 'bg-white/60'}`} />
+                <span className={`inline-block w-2 h-2 rounded-full ml-2 align-middle animate-pulse ${isSystem ? 'bg-sky-500' : 'bg-slate-400'}`} />
               )}
             </p>
           </div>
@@ -282,7 +282,7 @@ function FCDialogueBox({ currentMessage, displayedText, isTyping, onNext }) {
               animate={{ y: [0, 4, 0] }}
               transition={{ duration: 1, repeat: Infinity }}
             >
-              <ChevronRight size={24} className="text-white/40" />
+              <ChevronRight size={24} className="text-slate-400" />
             </motion.div>
           )}
         </div>
@@ -881,8 +881,8 @@ export default function FragmentCollect({ onComplete }) {
           <div className="flex flex-col gap-2">
             {/* エリア名 */}
             <div className="glass-panel px-6 py-3 rounded-full flex items-center gap-3">
-              <span className="inline-block w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-              <h2 className="text-sm font-medium text-white tracking-[0.2em]">
+              <span className="inline-block w-1.5 h-1.5 rounded-full bg-sky-500 animate-pulse" />
+              <h2 className="text-sm font-bold text-slate-800 tracking-[0.2em]">
                 {currentRoom.name}
               </h2>
             </div>
@@ -890,14 +890,14 @@ export default function FragmentCollect({ onComplete }) {
             {ENABLE_STEALTH_MODE && (
             <div className="glass-panel px-6 py-3 rounded-full flex items-center gap-3 border border-red-700/30">
               <Shield className="w-4 h-4 text-red-400" />
-              <span className="text-[10px] font-orbitron text-red-300/70 tracking-widest">HP</span>
+              <span className="text-[10px] font-orbitron text-red-500 tracking-widest font-bold">HP</span>
               <div className="flex gap-1.5">
                 {[0, 1, 2].map(i => (
                   <div
                     key={i}
                     className={`w-3.5 h-4 rounded-sm transition-all duration-500 ${i < mutsunoriHealth
-                      ? 'bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.7)]'
-                      : 'bg-white/10 border border-white/20'
+                      ? 'bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.4)]'
+                      : 'bg-slate-200 border border-slate-300'
                       }`}
                   />
                 ))}
@@ -909,7 +909,7 @@ export default function FragmentCollect({ onComplete }) {
           {/* コレクション状況＆タイマー */}
           <div className="flex flex-col gap-2 items-end">
             {/* タイマー */}
-            <div className={`glass-panel px-6 py-3 rounded-full flex items-center gap-3 transition-colors ${timeLeft <= 30 ? 'border-red-500/50 animate-pulse text-red-400' : 'text-gray-300'}`}>
+            <div className={`glass-panel px-6 py-3 rounded-full flex items-center gap-3 transition-colors ${timeLeft <= 30 ? 'border-red-500/50 animate-pulse text-red-500' : 'text-slate-700'}`}>
               <Clock className="w-4 h-4" />
               <span className="text-xs font-orbitron tracking-widest font-bold">
                 {Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')}
@@ -918,8 +918,8 @@ export default function FragmentCollect({ onComplete }) {
 
             <div id="fc-chip-counter"
               className="glass-panel px-6 py-3 rounded-full flex items-center gap-3">
-              <Shield className="w-4 h-4 text-cyan-400" />
-              <span className="text-xs font-orbitron text-cyan-300/80 tracking-widest">CHIP</span>
+              <Shield className="w-4 h-4 text-sky-500" />
+              <span className="text-xs font-orbitron text-slate-600 tracking-widest font-bold">CHIP</span>
               <div className="flex items-center gap-2">
                 {Array.from({ length: totalChips }, (_, i) => (
                   <div key={i} className={`w-3 h-3 rounded-full border transition-all duration-500 ${i < chipCount
@@ -931,8 +931,8 @@ export default function FragmentCollect({ onComplete }) {
             </div>
             <div id="fc-file-counter"
               className="glass-panel px-6 py-3 rounded-full flex items-center gap-3">
-              <FileText className="w-4 h-4 text-green-400" />
-              <span className="text-xs font-orbitron text-green-300/80 tracking-widest">FILE</span>
+              <FileText className="w-4 h-4 text-green-500" />
+              <span className="text-xs font-orbitron text-slate-600 tracking-widest font-bold">FILE</span>
               <div className="flex items-center gap-2">
                 {Array.from({ length: 4 }, (_, i) => (
                   <div key={i} className={`w-3 h-3 rounded-full border transition-all duration-500 ${i < fileCount

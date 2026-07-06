@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight, FastForward, BookOpen, EyeOff, LogOut, Sparkles } from 'lucide-react';
+import { ChevronRight, FastForward, BookOpen, EyeOff, LogOut, Sparkles, SkipForward } from 'lucide-react';
 
 const hudGlitchIn = {
   hidden: { opacity: 0 },
@@ -17,8 +17,10 @@ export default function DialogueBox({
   isTyping,
   isVisible,
   autoMode,
+  skipMode,
   onNext,
   onToggleAuto,
+  onToggleSkip,
   onToggleHud,
   onOpenLog,
   choices,
@@ -54,26 +56,7 @@ export default function DialogueBox({
         exit="exit"
       >
         {/* Removed inline glass-panel style since it is globally defined in index.css */}
-        {/* LOG & HIDE buttons - top left */}
-        <div className="fixed top-6 left-8 z-40 flex gap-3">
-          <HudButton icon={<BookOpen size={16} />} label="LOG" onClick={onOpenLog} />
-          <HudButton icon={<EyeOff size={16} />} label="HIDE" onClick={onToggleHud} />
-        </div>
 
-        {/* AUTO & EXIT buttons - top right */}
-        <div className="fixed top-6 right-8 z-40 flex gap-3">
-          <HudButton
-            icon={<FastForward size={16} />}
-            label="AUTO"
-            onClick={onToggleAuto}
-            active={autoMode}
-          />
-          <HudButton
-            icon={<LogOut size={16} />}
-            label="EXIT"
-            onClick={onExit}
-          />
-        </div>
 
         {/* Choices */}
         {isWaitingForChoice && choices && (
@@ -83,10 +66,10 @@ export default function DialogueBox({
               return (
                 <motion.button
                   key={idx}
-                  className={`w-80 md:w-96 glass-panel text-white py-4 px-6 rounded-3xl
+                  className={`w-80 md:w-96 glass-panel py-4 px-6 rounded-xl
                              transition-all duration-300 text-left font-noto tracking-wide relative overflow-hidden group
-                             ${isInteractive
-                      ? "hover:bg-white/20 hover:border-white/50 cursor-pointer shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]"
+                              ${isInteractive
+                      ? "hover:bg-slate-100/50 cursor-pointer shadow-[0_4px_10px_rgba(0,0,0,0.05)] hover:shadow-[0_8px_20px_rgba(0,0,0,0.08)]"
                       : "opacity-60 cursor-default"
                     }`}
                   initial={{ opacity: 0, x: 20 }}
@@ -100,8 +83,8 @@ export default function DialogueBox({
                     }
                   }}
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:animate-[shimmer_1s_infinite]" />
-                  <span className="text-cyan-200/80 font-bold text-xs mr-4 tracking-widest bg-cyan-900/30 px-2 py-1 rounded-full">{String(idx + 1).padStart(2, '0')}</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-slate-400/10 to-transparent -translate-x-full group-hover:animate-[shimmer_1s_infinite]" />
+                  <span className="text-slate-500 font-bold text-xs mr-4 tracking-widest bg-slate-100 px-2 py-1 rounded-full">{String(idx + 1).padStart(2, '0')}</span>
                   {choice.text}
                 </motion.button>
               );
@@ -111,28 +94,32 @@ export default function DialogueBox({
 
         {/* Dialogue panel */}
         <div
-          className="relative glass-panel rounded-[2rem] pt-8 pb-10 px-10 md:px-16 mx-8 md:mx-24 mb-12 cursor-pointer shadow-[0_20px_40px_rgba(0,0,0,0.4)]"
+          className="relative glass-panel rounded-xl pt-8 pb-10 px-10 md:px-16 mx-8 md:mx-24 mb-12 cursor-pointer shadow-[0_20px_40px_rgba(0,0,0,0.4)]"
           onClick={(e) => {
             e.stopPropagation();
-            onNext();
+            if (skipMode) {
+              onToggleSkip();
+            } else {
+              onNext();
+            }
           }}
         >
           {/* Speaker name Plate (Sticking out) - Always visible */}
           <div className="absolute -top-5 left-6 md:left-10 h-[40px] flex items-center z-10">
-            <div className="bg-slate-800 border border-white/60 text-white text-base font-bold tracking-[0.2em] px-6 py-2 rounded-xl shadow-[0_4px_15px_rgba(0,0,0,0.5)] min-w-[180px] h-full flex items-center justify-center">
+            <div className="bg-white text-slate-800 text-base font-bold tracking-[0.2em] px-6 py-2 rounded-xl shadow-[0_4px_15px_rgba(0,0,0,0.05)] min-w-[180px] h-full flex items-center justify-center">
               {showSpeaker ? displaySpeaker : ""}
             </div>
           </div>
 
           {/* Text content */}
-          <div className="min-h-[100px] flex items-start pt-2">
-            <p className="text-gray-100 text-lg md:text-xl leading-[2.2] font-noto tracking-wide whitespace-pre-line">
+          <div className="h-[100px] flex items-start pt-2">
+            <p className="text-slate-800 text-lg md:text-xl leading-[2.2] font-noto tracking-wide whitespace-pre-line">
               {text}
               {isTyping && (
                 <motion.span
-                  className="inline-block w-2 h-2 rounded-full bg-cyan-200/60 ml-2 align-middle"
-                  animate={{ opacity: [1, 0] }}
-                  transition={{ duration: 0.6, repeat: Infinity }}
+                  className="inline-block w-2.5 h-2.5 rounded-full bg-sky-400 ml-2 align-middle"
+                  animate={{ opacity: [1, 0.2] }}
+                  transition={{ duration: 0.8, repeat: Infinity, ease: "easeInOut" }}
                 />
               )}
             </p>
@@ -141,13 +128,22 @@ export default function DialogueBox({
           {/* Next indicator */}
           {!isTyping && !isWaitingForChoice && (
             <motion.div
-              className="absolute bottom-10 right-10"
+              className="absolute bottom-12 right-10"
               animate={{ y: [0, 5, 0] }}
               transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
             >
-              <ChevronRight size={24} className="text-white/50" />
+              <ChevronRight size={24} className="text-slate-400" />
             </motion.div>
           )}
+
+          {/* HUD Buttons (Bottom Right, sticking out) */}
+          <div className="absolute bottom-0 right-6 md:right-10 translate-y-[50%] flex gap-2 z-20">
+            <HudButton icon={<SkipForward size={14} />} label="SKIP" onClick={onToggleSkip} active={skipMode} />
+            <HudButton icon={<BookOpen size={14} />} label="LOG" onClick={onOpenLog} />
+            <HudButton icon={<EyeOff size={14} />} label="HIDE" onClick={onToggleHud} />
+            <HudButton icon={<FastForward size={14} />} label="AUTO" onClick={onToggleAuto} active={autoMode} />
+            <HudButton icon={<LogOut size={14} />} label="EXIT" onClick={onExit} />
+          </div>
         </div>
       </motion.div>
     </AnimatePresence>
@@ -161,8 +157,8 @@ function HudButton({ icon, label, onClick, active }) {
       className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold tracking-widest font-noto
                   transition-all duration-300 shadow-sm backdrop-blur-md
                   ${active
-          ? 'bg-[#4169e1] border border-[#4169e1] text-white shadow-[0_0_15px_rgba(65,105,225,0.5)]'
-          : 'bg-slate-900/80 border border-white/60 text-white/80 hover:bg-[#4169e1] hover:border-[#4169e1] hover:text-white'
+          ? 'bg-slate-100 text-slate-800'
+          : 'bg-white/90 text-slate-600 hover:bg-slate-100 hover:text-slate-900'
         }`}
     >
       {icon}

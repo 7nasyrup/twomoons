@@ -67,17 +67,9 @@ export function useNovelEngine(scenarioData) {
     }
   }, [currentStep, currentLine, triggerTypewriter]);
 
-  // Auto mode
-  useEffect(() => {
-    if (autoMode && !isTyping && !isWaitingForChoice) {
-      autoTimer.current = setTimeout(() => {
-        if (currentStep < scenarioData.length - 1) {
-          advanceStep();
-        }
-      }, 2500);
-    }
-    return () => clearTimeout(autoTimer.current);
-  }, [autoMode, isTyping, isWaitingForChoice, currentStep]);
+  const [skipMode, setSkipMode] = useState(false);
+  const skipTimer = useRef(null);
+  const toggleSkip = useCallback(() => setSkipMode(prev => !prev), []);
 
   const advanceStep = useCallback(() => {
     if (currentStep < scenarioData.length - 1) {
@@ -139,11 +131,45 @@ export function useNovelEngine(scenarioData) {
     setBacklog(prologue);
   }, [scenarioData]);
 
+  // Auto mode
+  useEffect(() => {
+    if (autoMode && !isTyping && !isWaitingForChoice) {
+      autoTimer.current = setTimeout(() => {
+        if (currentStep < scenarioData.length - 1) {
+          advanceStep();
+        }
+      }, 2500);
+    }
+    return () => clearTimeout(autoTimer.current);
+  }, [autoMode, isTyping, isWaitingForChoice, currentStep, scenarioData, advanceStep]);
+
+  // Skip mode
+  useEffect(() => {
+    if (skipMode) {
+      if (currentLine?.type === 'choice' || currentLine?.action?.startsWith('TRIGGER_')) {
+        setSkipMode(false);
+        return;
+      }
+      
+      if (!isTyping && !isWaitingForChoice) {
+        skipTimer.current = setTimeout(() => {
+          if (currentStep < scenarioData.length - 1) {
+            advanceStep();
+          }
+        }, 50);
+      } else if (isTyping) {
+        completeTypewriter();
+      }
+    }
+    return () => clearTimeout(skipTimer.current);
+  }, [skipMode, isTyping, isWaitingForChoice, currentStep, currentLine, scenarioData, advanceStep, completeTypewriter]);
+
   // Cleanup
   useEffect(() => {
     return () => {
       clearInterval(typingTimer.current);
       clearTimeout(autoTimer.current);
+      clearTimeout(skipTimer.current);
     };
   }, []);
 
@@ -155,12 +181,15 @@ export function useNovelEngine(scenarioData) {
     isWaitingForChoice,
     backlog,
     autoMode,
+    skipMode,
     hudVisible,
     currentBg,
     nextStep,
     selectChoice,
     jumpToStep,
     toggleAuto,
+    toggleSkip,
+    setSkipMode,
     toggleHud,
     setHudVisible,
     clearBacklog,
