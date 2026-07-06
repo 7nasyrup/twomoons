@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight, FastForward, BookOpen, EyeOff, LogOut, Sparkles, SkipForward } from 'lucide-react';
+import { ChevronRight, FastForward, BookOpen, EyeOff, LogOut, Sparkles, SkipForward, Save, FolderOpen, X } from 'lucide-react';
 
 const hudGlitchIn = {
   hidden: { opacity: 0 },
@@ -27,6 +27,8 @@ export default function DialogueBox({
   isWaitingForChoice,
   onSelectChoice,
   fullText,
+  onSave,
+  onLoad,
   onExit,
 }) {
   if (!isVisible) return null;
@@ -49,7 +51,7 @@ export default function DialogueBox({
   return (
     <AnimatePresence>
       <motion.div
-        className="absolute bottom-0 left-0 right-0 z-30 font-noto"
+        className="absolute inset-0 z-30 font-noto pointer-events-none"
         variants={hudGlitchIn}
         initial="hidden"
         animate="visible"
@@ -57,10 +59,17 @@ export default function DialogueBox({
       >
         {/* Removed inline glass-panel style since it is globally defined in index.css */}
 
+        {/* EXIT Button (Top Left) */}
+        <div className="absolute top-6 left-8 z-50 pointer-events-auto">
+          <HudButton icon={<LogOut size={14} />} label="EXIT" onClick={onExit} />
+        </div>
+
+        {/* Bottom Area Wrapper */}
+        <div className="absolute bottom-0 left-0 right-0 pointer-events-none">
 
         {/* Choices */}
         {isWaitingForChoice && choices && (
-          <div className="flex flex-col items-end gap-3 mb-6 mr-12 md:mr-24">
+          <div className="flex flex-col items-end gap-3 mb-6 mr-12 md:mr-24 pointer-events-auto">
             {choices.map((choice, idx) => {
               const isInteractive = true;
               return (
@@ -94,7 +103,7 @@ export default function DialogueBox({
 
         {/* Dialogue panel */}
         <div
-          className="relative glass-panel rounded-xl pt-8 pb-10 px-10 md:px-16 mx-8 md:mx-24 mb-12 cursor-pointer shadow-[0_20px_40px_rgba(0,0,0,0.4)]"
+          className="relative glass-panel rounded-xl pt-8 pb-10 px-10 md:px-16 mx-8 md:mx-24 mb-12 cursor-pointer shadow-[0_20px_40px_rgba(0,0,0,0.4)] pointer-events-auto"
           onClick={(e) => {
             e.stopPropagation();
             if (skipMode) {
@@ -110,6 +119,18 @@ export default function DialogueBox({
               {showSpeaker ? displaySpeaker : ""}
             </div>
           </div>
+
+          {/* Hide Button (Top Right X) */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onToggleHud();
+            }}
+            className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full p-1.5 transition-all z-20"
+            title="UIを隠す"
+          >
+            <X size={20} />
+          </button>
 
           {/* Text content */}
           <div className="h-[100px] flex items-start pt-2">
@@ -138,12 +159,13 @@ export default function DialogueBox({
 
           {/* HUD Buttons (Bottom Right, sticking out) */}
           <div className="absolute bottom-0 right-6 md:right-10 translate-y-[50%] flex gap-2 z-20">
+            <HudButton icon={<Save size={14} />} label="SAVE" onClick={onSave} />
+            <HudButton icon={<FolderOpen size={14} />} label="LOAD" onClick={onLoad} />
             <HudButton icon={<SkipForward size={14} />} label="SKIP" onClick={onToggleSkip} active={skipMode} />
             <HudButton icon={<BookOpen size={14} />} label="LOG" onClick={onOpenLog} />
-            <HudButton icon={<EyeOff size={14} />} label="HIDE" onClick={onToggleHud} />
             <HudButton icon={<FastForward size={14} />} label="AUTO" onClick={onToggleAuto} active={autoMode} />
-            <HudButton icon={<LogOut size={14} />} label="EXIT" onClick={onExit} />
           </div>
+        </div>
         </div>
       </motion.div>
     </AnimatePresence>

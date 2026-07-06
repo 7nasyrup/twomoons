@@ -13,6 +13,7 @@ import SilentScore from './components/SilentScore';
 import TapCommunication from './components/TapCommunication';
 import EyeOfProfiler from './components/EyeOfProfiler';
 import FragmentCollect from './components/FragmentCollect';
+import SaveSlotModal, { SAVE_KEY_PREFIX, loadAllSlots } from './components/SaveSlotModal';
 import { useNovelEngine } from './hooks/useNovelEngine';
 import { useAudioSystem } from './hooks/useAudioSystem';
 import { scenarioData } from './data/scenario';
@@ -164,20 +165,16 @@ export default function App() {
   const [alertActive, setAlertActive] = useState(false);
   const [alertConfig, setAlertConfig] = useState({ title: '', message: '' });
   const [shakeEffect, setShakeEffect] = useState(false);
+  const [saveToast, setSaveToast] = useState(null); // 'saved' | 'loaded' | null
+  // セーブスロットモーダル
+  const [slotModalMode, setSlotModalMode] = useState(null); // 'save' | 'load' | null
+  const [slotModalSlots, setSlotModalSlots] = useState([]);
 
-  // Check if save data exists
+  // セーブデータが1件以上あるかチェック
   useEffect(() => {
-    const savedStep = localStorage.getItem('twomoons_save_step');
-    setHasSave(savedStep !== null);
+    const slots = loadAllSlots();
+    setHasSave(slots.some(s => s !== null));
   }, []);
-
-  // Auto-save progress
-  useEffect(() => {
-    if (!showTitle && currentStep !== null && currentStep !== undefined) {
-      localStorage.setItem('twomoons_save_step', currentStep.toString());
-      setHasSave(true);
-    }
-  }, [currentStep, showTitle]);
 
   const handleStartGame = () => {
     clearBacklog();
@@ -185,12 +182,66 @@ export default function App() {
     jumpToStep(0);
   };
 
-  const handleContinueGame = () => {
-    const savedStep = localStorage.getItem('twomoons_save_step');
-    if (savedStep !== null) {
-      const stepIdx = parseInt(savedStep, 10);
-      jumpToStep(stepIdx);
+  // タイトルの CONTINUE → ロードモーダルを開く
+  const handleOpenLoadFromTitle = () => {
+    const slots = loadAllSlots();
+    setSlotModalSlots(slots);
+    setSlotModalMode('load');
+  };
+
+  // ─── セーブモーダルを開く ──────────────────────────────────────────────────
+  const handleSave = () => {
+    if (showTitle || currentStep === null || currentStep === undefined) return;
+    const slots = loadAllSlots();
+    setSlotModalSlots(slots);
+    setSlotModalMode('save');
+  };
+
+  // ─── ロードモーダルを開く（ゲーム中） ─────────────────────────────────────
+  const handleLoad = () => {
+    const slots = loadAllSlots();
+    setSlotModalSlots(slots);
+    setSlotModalMode('load');
+  };
+
+  // ─── スロット選択ハンドラ ──────────────────────────────────────────────────
+  const handleSelectSlot = (slotIndex, slotData) => {
+    if (slotModalMode === 'save') {
+      // セーブ実行
+      const sceneName = currentLine?.scene || '';
+      const saveData = {
+        step: currentStep,
+        sceneName,
+        savedAt: new Date().toISOString(),
+        bgPath: currentBg || '',
+        currentText: currentLine?.text || '',
+        currentSpeaker: currentLine?.speaker || '',
+        presentCharacters: [...presentCharacters],
+        displayedItem: displayedItem || null,
+        fragmentCollectResult,
+        learningScore,
+        eyeOfProfilerSuccess,
+        tapCommunicationScores,
+        silentScoreResult,
+      };
+      localStorage.setItem(`${SAVE_KEY_PREFIX}${slotIndex}`, JSON.stringify(saveData));
+      setHasSave(true);
+      setSlotModalMode(null);
+      setSaveToast('saved');
+      setTimeout(() => setSaveToast(null), 2000);
+    } else if (slotModalMode === 'load') {
+      // ロード実行
+      if (!slotData) return;
+      if (slotData.fragmentCollectResult !== undefined) setFragmentCollectResult(slotData.fragmentCollectResult);
+      if (slotData.learningScore !== undefined) setLearningScore(slotData.learningScore);
+      if (slotData.eyeOfProfilerSuccess !== undefined) setEyeOfProfilerSuccess(slotData.eyeOfProfilerSuccess);
+      if (slotData.tapCommunicationScores !== undefined) setTapCommunicationScores(slotData.tapCommunicationScores);
+      if (slotData.silentScoreResult !== undefined) setSilentScoreResult(slotData.silentScoreResult);
+      jumpToStep(slotData.step);
       setShowTitle(false);
+      setSlotModalMode(null);
+      setSaveToast('loaded');
+      setTimeout(() => setSaveToast(null), 2000);
     }
   };
 
@@ -629,7 +680,7 @@ export default function App() {
         {showTitle ? (
           <TitleScreen
             onStart={handleStartGame}
-            onContinue={handleContinueGame}
+            onContinue={handleOpenLoadFromTitle}
             hasSave={hasSave}
             playBGM={playBGM}
           />
@@ -720,6 +771,8 @@ export default function App() {
                 choices={filteredChoices}
                 isWaitingForChoice={isWaitingForChoice}
                 onSelectChoice={selectChoice}
+                onSave={handleSave}
+                onLoad={handleLoad}
                 onExit={() => {
                   setShowTitle(true);
                 }}
@@ -784,6 +837,32 @@ export default function App() {
               </div>
             )}
           </>
+        )}
+
+        {/* Save / Load Toast Notification */}
+        {saveToast && (
+          <div
+            className="fixed bottom-36 left-1/2 -translate-x-1/2 z-[200] px-6 py-2.5 rounded-full text-sm font-bold tracking-widest font-noto pointer-events-none glass-panel"
+            style={{
+              animation: 'fadeIn 0.2s ease',
+              color: saveToast === 'saved' ? '#0ea5e9' : '#4f46e5', // 視認性の良いシアン・インディゴ
+              border: `1px solid ${
+                saveToast === 'saved' ? 'rgba(14,165,233,0.3)' : 'rgba(79,70,229,0.3)'
+              }`
+            }}
+          >
+            {saveToast === 'saved' ? '💾 セーブしました' : '📂 ロードしました'}
+          </div>
+        )}
+
+        {/* Save Slot Modal */}
+        {slotModalMode && (
+          <SaveSlotModal
+            mode={slotModalMode}
+            slots={slotModalSlots}
+            onClose={() => setSlotModalMode(null)}
+            onSelectSlot={handleSelectSlot}
+          />
         )}
 
         {/* Backlog overlay */}
