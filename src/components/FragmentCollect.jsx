@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Check, Shield, FileText, ArrowLeftRight, Clock, Sparkles, Circle, CheckCircle2 } from 'lucide-react';
+import { assetPath } from '../utils/assetPath';
 
 // ─── 研究所エリア定義 ────────────────────────────────────────────────────────────
 const ROOMS = [
@@ -319,7 +320,7 @@ function FCSprite({ currentMessage }) {
         exit={{ opacity: 0, y: 20 }}
         transition={{ duration: 0.3, ease: 'easeOut' }}
       >
-        <img src={imgPath} alt={base} className="w-full h-full object-contain object-bottom" />
+        <img src={assetPath(imgPath)} alt={base} className="w-full h-full object-contain object-bottom" />
       </motion.div>
     </AnimatePresence>
   );
@@ -796,8 +797,8 @@ export default function FragmentCollect({ onComplete }) {
               }}
             >
               <img
-                src={currentRoom.bg}
-                alt="bg"
+                src={assetPath(currentRoom.bg)}
+                alt="bg front"
                 className="absolute inset-0 w-full h-full object-cover select-none"
               />
               {/* アイテムスポット */}
@@ -813,8 +814,8 @@ export default function FragmentCollect({ onComplete }) {
           <>
             {/* 背景画像（常に明るく全体表示） */}
             <img
-              src={currentRoom.bg}
-              alt="bg"
+              src={assetPath(currentRoom.bg)}
+              alt="bg blur"
               className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none z-0"
             />
 

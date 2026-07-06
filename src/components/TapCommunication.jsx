@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Award, Heart } from 'lucide-react';
+import { assetPath } from '../utils/assetPath';
 
 const CHAR_DATA = {
   mutsunori: {
@@ -119,7 +120,7 @@ export default function TapCommunication({ onComplete }) {
     <div className="absolute inset-0 bg-black z-50 overflow-hidden font-orbitron">
       {/* Background image: school.jpg (Full Screen) */}
       <img
-        src="/scene/school.jpg"
+        src={assetPath('/scene/school.jpg')}
         alt="school bench bg"
         className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none z-0"
       />
@@ -196,7 +197,7 @@ export default function TapCommunication({ onComplete }) {
                 {/* Standing image */}
                 <div className="relative w-full h-full pointer-events-none flex items-end justify-center overflow-visible">
                   <img
-                    src={char.image}
+                    src={assetPath(char.image)}
                     alt={char.name}
                     className="max-h-full object-contain object-bottom transition-transform duration-300 select-none origin-bottom"
                     style={{

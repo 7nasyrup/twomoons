@@ -17,6 +17,7 @@ import SaveSlotModal, { SAVE_KEY_PREFIX, loadAllSlots } from './components/SaveS
 import { useNovelEngine } from './hooks/useNovelEngine';
 import { useAudioSystem } from './hooks/useAudioSystem';
 import { scenarioData } from './data/scenario';
+import { assetPath } from './utils/assetPath';
 
 // Custom CSS-based visual representation of game backgrounds when WebP/PNG images are missing
 function BackgroundRenderer({ bgPath }) {
@@ -38,9 +39,8 @@ function BackgroundRenderer({ bgPath }) {
 
   return (
     <div className="absolute inset-0 w-full h-full select-none z-0">
-      {!imageError ? (
         <img
-          src={bgPath}
+          src={assetPath(bgPath)}
           alt="background"
           className="w-full h-full object-cover transition-all duration-700"
           onError={() => setImageError(true)}
@@ -248,7 +248,7 @@ export default function App() {
   // Play title music
   useEffect(() => {
     if (showTitle) {
-      playBGM('/assets/audio/bgm/deep_blue_moon.mp3');
+      playBGM(assetPath('/assets/audio/bgm/deep_blue_moon.mp3'));
     }
   }, [showTitle, playBGM]);
 
@@ -403,11 +403,11 @@ export default function App() {
 
     // Background music changes based on scenes
     if (currentLine.scene === 'PROLOGUE') {
-      playBGM('/assets/audio/bgm/deep_blue_moon.mp3');
+      playBGM(assetPath('/assets/audio/bgm/deep_blue_moon.mp3'));
     } else if (currentLine.scene === '講義室出口' || currentLine.scene === '大学の廊下') {
-      playBGM('/assets/audio/bgm/mutsu_theme.mp3');
+      playBGM(assetPath('/assets/audio/bgm/mutsu_theme.mp3'));
     } else if (currentLine.scene === '月科学大講義室') {
-      playBGM('/assets/audio/bgm/classroom_ambient.mp3');
+      playBGM(assetPath('/assets/audio/bgm/classroom_ambient.mp3'));
     }
 
     const action = currentLine.action;
@@ -429,11 +429,11 @@ export default function App() {
 
       // SE Triggers
       if (action === 'PLAY_CHIME_SE') {
-        playSE('/assets/audio/se/school_chime.mp3');
+        playSE(assetPath('/assets/audio/se/school_chime.mp3'));
       } else if (action === 'PLAY_RUNNING_SE') {
-        playSE('/assets/audio/se/running.mp3');
+        playSE(assetPath('/assets/audio/se/running.mp3'));
       } else if (action === 'PLAY_FOOTSTEP_SE') {
-        playSE('/assets/audio/se/footsteps.mp3');
+        playSE(assetPath('/assets/audio/se/footsteps.mp3'));
       }
 
       // Shake Screen
@@ -449,7 +449,7 @@ export default function App() {
 
       // Red Alert
       if (action === 'TRIGGER_PHONE_RED_ALERT') {
-        playSE('/assets/audio/se/siren_alert.mp3');
+        playSE(assetPath('/assets/audio/se/siren_alert.mp3'));
         setShakeEffect(true);
         const timer = setTimeout(() => setShakeEffect(false), 800);
 
@@ -745,7 +745,7 @@ export default function App() {
             {displayedItem && !isCinema && !isDemoEnd && (
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-[15]">
                 <img
-                  src={displayedItem}
+                  src={assetPath(displayedItem)}
                   alt="item"
                   className="max-w-[40%] max-h-[60%] object-contain drop-shadow-2xl animate-fadeIn"
                 />

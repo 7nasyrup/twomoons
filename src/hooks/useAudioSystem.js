@@ -1,5 +1,8 @@
 import { useRef, useCallback, useEffect } from 'react';
-import { Howl } from 'howler';
+import { Howl, Howler } from 'howler';
+
+// HTML5 Audioプールが枯渇する警告を防ぐためにサイズを拡張
+Howler.html5PoolSize = 100;
 
 export function useAudioSystem() {
   const bgmRef = useRef(null);

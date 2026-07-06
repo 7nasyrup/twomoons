@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Save, FolderOpen, X, Clock, MapPin, ChevronRight } from 'lucide-react';
+import { assetPath } from '../utils/assetPath';
 
 // ─── 定数 ────────────────────────────────────────────────────────────────────
 export const SAVE_SLOT_COUNT = 10;
@@ -47,7 +48,7 @@ function SceneThumbnail({ data }) {
       ? charKey.substring(underscoreIdx + 1)
       : cfg.defaultExpression;
     return {
-      src: `${cfg.folder}/${cfg.baseFileName}_${expression}.png`,
+      src: assetPath(`${cfg.folder}/${cfg.baseFileName}_${expression}.png`),
       posX: cfg.posX,
       width: cfg.width,
       key: charKey,

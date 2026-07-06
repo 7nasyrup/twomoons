@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Tv, BookOpen, CheckCircle2, ChevronRight, Camera, Sparkles, Circle, EyeOff, FastForward, LogOut } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { assetPath } from '../utils/assetPath';
 
 const OBJECT_DETAILS = {
   tv: {
@@ -333,8 +334,8 @@ export default function SearchAndLearning({ onComplete }) {
 
       {/* Background image */}
       <img
-        src={bgImage}
-        alt="bg"
+        src={assetPath(bgImage)}
+        alt="room view"
         className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none z-0 transition-all duration-1000 opacity-90 mix-blend-screen"
       />
 

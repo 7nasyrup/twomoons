@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { assetPath } from '../utils/assetPath';
 
 export default function TitleScreen({ onStart, onContinue, hasSave, playBGM }) {
     const [showCredits, setShowCredits] = useState(false);
@@ -6,7 +7,7 @@ export default function TitleScreen({ onStart, onContinue, hasSave, playBGM }) {
     // Play title BGM when component mounts
     useEffect(() => {
         if (playBGM) {
-            playBGM('/assets/audio/bgm/deep_blue_moon.mp3');
+            playBGM(assetPath('/assets/audio/bgm/deep_blue_moon.mp3'));
         }
     }, [playBGM]);
 

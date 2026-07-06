@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { assetPath } from '../utils/assetPath';
 
 const SPEAKER_CONFIGS = {
   "睦典": {
@@ -109,7 +110,7 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
           const expression = underscoreIndex !== -1 ? charName.substring(underscoreIndex + 1) : config.defaultExpression;
 
           // 画像パスを動的に構築
-          const imagePath = `${config.folder}/${config.baseFileName}_${expression}.png`;
+          const imagePath = assetPath(`${config.folder}/${config.baseFileName}_${expression}.png`);
 
           // ミカルートでの立ち位置変更
           if (baseCharName === "ミカ") {
@@ -216,7 +217,7 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
               <div
                 id="char-left-img"
                 className="absolute inset-0 w-full h-full bg-contain bg-top bg-no-repeat transition-all duration-300"
-                style={{ backgroundImage: 'url(/character/Mutsunori/Mutsunori_smile.png)' }}
+                style={{ backgroundImage: `url(${assetPath('/character/Mutsunori/Mutsunori_smile.png')})` }}
               />
             </div>
           </motion.div>

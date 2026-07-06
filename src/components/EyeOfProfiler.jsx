@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Eye, ShieldAlert, Check, X, Crosshair, Award, ArrowLeftRight } from 'lucide-react';
+import { assetPath } from '../utils/assetPath';
 
 const TARGETS_DATA = {
   drone: {
@@ -187,7 +188,7 @@ export default function EyeOfProfiler({ onComplete }) {
           {/* Background image: night.jpg */}
           {!imageError ? (
             <img
-              src="/scene/night.jpg"
+              src={assetPath('/scene/night.jpg')}
               alt="residential street night"
               className="w-full h-full object-cover pointer-events-none select-none filter brightness-10 contrast-125"
               onError={() => setImageError(true)}
