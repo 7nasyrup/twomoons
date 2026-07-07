@@ -97,7 +97,10 @@ export default function DialogueBox({
           )}
 
           {/* FUI Dialogue Box based on user image */}
-          <div className="w-full max-w-[1200px] px-4 md:px-16 mb-8 md:mb-12 cursor-pointer pointer-events-auto relative mt-8 flex flex-col items-center">
+          <div 
+            className="w-full max-w-[1200px] px-4 md:px-16 mb-8 md:mb-12 cursor-pointer pointer-events-auto relative mt-8 flex flex-col items-center"
+            onClick={onNext}
+          >
 
             <div className="w-full relative shadow-[0_10px_40px_rgba(0,0,0,0.3)] rounded-xl overflow-hidden border-b-8 border-[#4dd0e1] flex flex-col">
 

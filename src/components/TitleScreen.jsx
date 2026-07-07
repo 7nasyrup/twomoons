@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { assetPath } from '../utils/assetPath';
-import FuiShowcase from './FuiShowcase';
-
-export default function TitleScreen({ onStart, onContinue, hasSave, playBGM }) {
+import { assetPath } from '../utils/assetPath';export default function TitleScreen({ onStart, onContinue, hasSave, playBGM }) {
     const [showCredits, setShowCredits] = useState(false);
-    const [showFui, setShowFui] = useState(false);
 
     // Play title BGM when component mounts
     useEffect(() => {
@@ -80,14 +76,6 @@ export default function TitleScreen({ onStart, onContinue, hasSave, playBGM }) {
                     >
                         CREDITS
                     </button>
-
-                    {/* FUI Showcase Button */}
-                    <button
-                        onClick={() => setShowFui(true)}
-                        className="w-full py-2 mt-4 border border-[#e53935]/40 text-[#e53935] hover:bg-[#e53935] hover:text-white font-orbitron text-xs tracking-[0.2em] rounded transition-all duration-300"
-                    >
-                        UI SHOWCASE
-                    </button>
                 </div>
             </div>
 
@@ -137,11 +125,6 @@ export default function TitleScreen({ onStart, onContinue, hasSave, playBGM }) {
                         </button>
                     </div>
                 </div>
-            )}
-
-            {/* FUI Showcase Overlay */}
-            {showFui && (
-                <FuiShowcase onClose={() => setShowFui(false)} />
             )}
         </div>
     );
