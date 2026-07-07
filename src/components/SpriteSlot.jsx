@@ -3,49 +3,43 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { assetPath } from '../utils/assetPath';
 
 const SPEAKER_CONFIGS = {
-  "睦典": {
+  "Mutsunori": {
     folder: "/character/Mutsunori",
     baseFileName: "Mutsunori",
     defaultExpression: "smile",
     positionClass: "left-[5%] w-[45%] h-[95%]"
   },
-  "ヒルミ教授": {
+  "Hirumi": {
     folder: "/character/Hirumi",
     baseFileName: "Hirumi",
     defaultExpression: "smile",
     positionClass: "right-[5%] w-[45%] h-[95%]"
   },
-  "ミカ": {
+  "Mika": {
     folder: "/character/Mika",
     baseFileName: "Mika",
     defaultExpression: "neutral",
     positionClass: "right-[5%] w-[45%] h-[95%]"
   },
-  "凪砂": {
+  "Nagisa": {
     folder: "/character/Nagisa",
     baseFileName: "Nagisa",
     defaultExpression: "neutral",
     positionClass: "left-[22%] w-[45%] h-[95%]"
   },
-  "大男": {
+  "Akane": {
     folder: "/character/Akane",
     baseFileName: "Akane",
     defaultExpression: "neutral",
     positionClass: "right-[22%] w-[45%] h-[95%]"
   },
-  "アカネ": {
-    folder: "/character/Akane",
-    baseFileName: "Akane",
-    defaultExpression: "neutral",
-    positionClass: "right-[22%] w-[45%] h-[95%]"
-  },
-  "満": {
+  "Michiru": {
     folder: "/character/Michiru",
     baseFileName: "Michiru",
     defaultExpression: "smile",
     positionClass: "left-[15%] w-[45%] h-[95%]"
   },
-  "黒騎士": {
+  "BlackKnight": {
     folder: "/character/Hirumi",
     baseFileName: "Hirumi",
     defaultExpression: "black_knight",
@@ -53,67 +47,69 @@ const SPEAKER_CONFIGS = {
   }
 };
 
+const SPEAKER_TO_ROMAJI = {
+  "睦典": "Mutsunori",
+  "ヒルミ教授": "Hirumi",
+  "ミカ": "Mika",
+  "凪砂": "Nagisa",
+  "大男": "Akane",
+  "アカネ": "Akane",
+  "満": "Michiru",
+  "黒騎士": "BlackKnight"
+};
+
 export default function SpriteSlot({ leftActive, rightActive, focusSlot, currentSpeaker, presentCharacters = [], currentLine, currentStep, scenarioData = [] }) {
   const isTransmission = currentLine?.text?.trim().startsWith('『');
 
-  // ─────────────────────────────────────────────────────────────────
-  // レンダー時に表示マップを直接計算する（useEffect の遅延を回避）
-  //   resolvedDisplayMap: { baseCharName → expressionKey }
-  //   例: { "睦典": "睦典_angry", "凪砂": "凪砂" }
-  // ─────────────────────────────────────────────────────────────────
   const resolvedDisplayMap = {};
 
-  // 1. presentCharacters（state）をベースに登録
   presentCharacters.forEach(c => {
-    const base = c.split('_')[0];
+    const rawBase = c.split('_')[0];
+    const base = SPEAKER_TO_ROMAJI[rawBase] || rawBase;
     if (SPEAKER_CONFIGS[base]) {
       resolvedDisplayMap[base] = c;
     }
   });
 
-  // 2. currentLine.hideIllust をレンダー時に即座に反映
   if (Array.isArray(currentLine?.hideIllust)) {
     currentLine.hideIllust.forEach(c => {
-      const base = c.split('_')[0];
+      const rawBase = c.split('_')[0];
+      const base = SPEAKER_TO_ROMAJI[rawBase] || rawBase;
       delete resolvedDisplayMap[base];
     });
   }
 
-  // 3. currentLine.showIllust をレンダー時に即座に反映（タイミング問題の根本対処）
   if (Array.isArray(currentLine?.showIllust)) {
     currentLine.showIllust.forEach(c => {
-      const base = c.split('_')[0];
+      const rawBase = c.split('_')[0];
+      const base = SPEAKER_TO_ROMAJI[rawBase] || rawBase;
       if (SPEAKER_CONFIGS[base]) {
         resolvedDisplayMap[base] = c;
       }
     });
   }
 
-  // 4. 現在の発言者をデフォルト表情で自動追加（まだ画面にいない場合のみ）
   if (!isTransmission && currentSpeaker) {
-    const speakerBase = currentSpeaker.split('_')[0];
+    const rawSpeakerBase = currentSpeaker.split('_')[0];
+    const speakerBase = SPEAKER_TO_ROMAJI[rawSpeakerBase] || rawSpeakerBase;
     if (SPEAKER_CONFIGS[speakerBase] && !resolvedDisplayMap[speakerBase]) {
-      resolvedDisplayMap[speakerBase] = currentSpeaker;
+      resolvedDisplayMap[speakerBase] = `${speakerBase}_${SPEAKER_CONFIGS[speakerBase].defaultExpression}`;
     }
   }
 
   return (
     <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden">
-      {/* Automatic Speaker Sprite Slot */}
       <AnimatePresence>
         {Object.entries(resolvedDisplayMap).map(([baseCharName, charName]) => {
           let config = SPEAKER_CONFIGS[baseCharName];
           if (!config) return null;
 
-          // 表情名をパース（例: "睦典_angry" → expression = "angry"）
           const underscoreIndex = charName.indexOf('_');
           const expression = underscoreIndex !== -1 ? charName.substring(underscoreIndex + 1) : config.defaultExpression;
 
-          // 画像パスを動的に構築
           const imagePath = assetPath(`${config.folder}/${config.baseFileName}_${expression}.png`);
 
-          // ミカルートでの立ち位置変更
-          if (baseCharName === "ミカ") {
+          if (baseCharName === "Mika") {
             let isMikaRoute = false;
             if (Array.isArray(scenarioData) && typeof currentStep === 'number') {
               for (let i = currentStep; i >= 0; i--) {
@@ -128,8 +124,7 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
             }
           }
 
-          // アカネルートでの立ち位置変更
-          if (baseCharName === "アカネ" || baseCharName === "大男") {
+          if (baseCharName === "Akane") {
             let isAkaneRoute = false;
             if (Array.isArray(scenarioData) && typeof currentStep === 'number') {
               for (let i = currentStep; i >= 0; i--) {
@@ -144,16 +139,16 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
             }
           }
 
-          // フォーカス判定（発言しているキャラクターを明るく表示）
           const activeTalker = currentLine?.talker || currentSpeaker;
-          let isSpeaker = activeTalker === baseCharName ||
-            activeTalker === charName ||
-            (activeTalker && activeTalker.split('_')[0] === baseCharName);
+          let isSpeaker = false;
+          if (activeTalker) {
+            const rawActiveBase = activeTalker.split('_')[0];
+            const activeRomajiBase = SPEAKER_TO_ROMAJI[rawActiveBase] || rawActiveBase;
+            isSpeaker = activeRomajiBase === baseCharName;
+          }
 
-          // 「？？？」発言者の自動フォーカス判定
           if (!isSpeaker && (currentSpeaker === "？？？" || currentSpeaker === "？？?")) {
-            const hasDialogue = currentLine?.text &&
-              (currentLine.text.includes("「") || currentLine.text.includes("『"));
+            const hasDialogue = currentLine?.text && (currentLine.text.includes("「") || currentLine.text.includes("『"));
             if (hasDialogue) {
               const currentScene = currentLine?.scene;
               let hasSpokenInThisScene = false;
@@ -161,9 +156,12 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
                 for (let i = currentStep - 1; i >= 0; i--) {
                   const line = scenarioData[i];
                   if (line?.scene !== currentScene) break;
-                  if (line?.speaker === baseCharName) {
-                    hasSpokenInThisScene = true;
-                    break;
+                  if (line?.speaker) {
+                    const lineSpeakerRomaji = SPEAKER_TO_ROMAJI[line.speaker.split('_')[0]] || line.speaker.split('_')[0];
+                    if (lineSpeakerRomaji === baseCharName) {
+                      hasSpokenInThisScene = true;
+                      break;
+                    }
                   }
                 }
               }
@@ -201,8 +199,6 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
         })}
       </AnimatePresence>
 
-
-      {/* Left Slot: Mutsunori (Purple) */}
       <AnimatePresence>
         {leftActive && (
           <motion.div
@@ -224,7 +220,6 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
         )}
       </AnimatePresence>
 
-      {/* Right Slot: Prof. Hirumi (Cyan) */}
       <AnimatePresence>
         {rightActive && (
           <motion.div
@@ -235,9 +230,7 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
             exit={{ x: 100, opacity: 0 }}
             transition={{ type: 'spring', stiffness: 100, damping: 16 }}
           >
-            {/* Silhouette box */}
             <div className="relative w-full h-[90%] overflow-hidden">
-              {/* Dynamic Image Layer */}
               <div
                 id="char-right-img"
                 className="absolute inset-0 w-full h-full bg-contain bg-bottom bg-no-repeat transition-all duration-300"

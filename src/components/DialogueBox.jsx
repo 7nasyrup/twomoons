@@ -1,5 +1,6 @@
+import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight, FastForward, BookOpen, EyeOff, LogOut, Sparkles, SkipForward, Save, FolderOpen, X } from 'lucide-react';
+import { ChevronRight, FastForward, BookOpen, LogOut, SkipForward, Save, FolderOpen, X } from 'lucide-react';
 
 const hudGlitchIn = {
   hidden: { opacity: 0 },
@@ -46,7 +47,6 @@ export default function DialogueBox({
   }
 
   const showSpeaker = !!displaySpeaker;
-  const isSakura = displaySpeaker === '朔良';
 
   return (
     <AnimatePresence>
@@ -57,15 +57,15 @@ export default function DialogueBox({
         animate="visible"
         exit="exit"
       >
-        {/* Removed inline glass-panel style since it is globally defined in index.css */}
-
         {/* EXIT Button (Top Left) */}
         <div className="absolute top-6 left-8 z-50 pointer-events-auto">
           <HudButton icon={<LogOut size={14} />} label="EXIT" onClick={onExit} />
         </div>
 
         {/* Bottom Area Wrapper */}
-        <div className="absolute bottom-0 left-0 right-0 pointer-events-none">
+        <div className="absolute bottom-0 w-full flex flex-col pointer-events-none">
+
+
 
         {/* Choices */}
         {isWaitingForChoice && choices && (
@@ -104,14 +104,6 @@ export default function DialogueBox({
         {/* Dialogue panel */}
         <div
           className="relative glass-panel rounded-xl pt-8 pb-10 px-10 md:px-16 mx-8 md:mx-24 mb-12 cursor-pointer shadow-[0_20px_40px_rgba(0,0,0,0.4)] pointer-events-auto"
-          onClick={(e) => {
-            e.stopPropagation();
-            if (skipMode) {
-              onToggleSkip();
-            } else {
-              onNext();
-            }
-          }}
         >
           {/* Speaker name Plate (Sticking out) - Always visible */}
           <div className="absolute -top-5 left-6 md:left-10 h-[40px] flex items-center z-10">
@@ -177,10 +169,10 @@ function HudButton({ icon, label, onClick, active }) {
     <button
       onClick={(e) => { e.stopPropagation(); onClick(); }}
       className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold tracking-widest font-noto
-                  transition-all duration-300 shadow-sm backdrop-blur-md
+                  transition-all duration-300 backdrop-blur-md active:scale-95
                   ${active
-          ? 'bg-slate-100 text-slate-800'
-          : 'bg-white/90 text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+          ? 'bg-cyan-600 text-white shadow-[0_4px_12px_rgba(8,145,178,0.4)]'
+          : 'bg-white/90 text-slate-600 shadow-sm hover:bg-cyan-500 hover:text-white hover:-translate-y-0.5 hover:shadow-[0_6px_15px_rgba(6,182,212,0.3)]'
         }`}
     >
       {icon}

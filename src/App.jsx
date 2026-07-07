@@ -168,6 +168,57 @@ export default function App() {
   const [alertConfig, setAlertConfig] = useState({ title: '', message: '' });
   const [isFadingBlack, setIsFadingBlack] = useState(false);
   const [shakeEffect, setShakeEffect] = useState(false);
+
+  // Global hold-to-skip logic
+  const holdTimerRef = useRef(null);
+  const fastForwardIntervalRef = useRef(null);
+  const isFastForwardingRef = useRef(false);
+  const nextStepRef = useRef(nextStep);
+
+  useEffect(() => {
+    nextStepRef.current = nextStep;
+  }, [nextStep]);
+
+  const clearHoldTimers = () => {
+    if (holdTimerRef.current) clearTimeout(holdTimerRef.current);
+    if (fastForwardIntervalRef.current) clearInterval(fastForwardIntervalRef.current);
+    holdTimerRef.current = null;
+    fastForwardIntervalRef.current = null;
+  };
+
+  useEffect(() => {
+    return clearHoldTimers;
+  }, []);
+
+  useEffect(() => {
+    const isMinigame = currentLine?.action?.startsWith('TRIGGER_');
+    const isChoice = currentLine?.type === 'choice';
+    if (isMinigame || isChoice || alertActive) {
+      clearHoldTimers();
+      isFastForwardingRef.current = false;
+    }
+  }, [currentLine, alertActive]);
+
+  const startHold = (e) => {
+    if (e.type === 'mousedown' && e.button !== 0) return;
+    
+    // Disable fast-forward in certain states
+    if (showTitle || isWaitingForChoice || alertActive || backlogOpen || isTypingGameActive || isSearchAndLearningActive || isSilentScoreActive || isTapCommunicationActive || isEyeOfProfilerActive || isFragmentCollectActive) {
+      return;
+    }
+
+    clearHoldTimers();
+    isFastForwardingRef.current = false;
+
+    holdTimerRef.current = setTimeout(() => {
+      isFastForwardingRef.current = true;
+      fastForwardIntervalRef.current = setInterval(() => {
+        if (!skipMode) {
+          nextStepRef.current();
+        }
+      }, 50);
+    }, 400);
+  };
   const [saveToast, setSaveToast] = useState(null); // 'saved' | 'loaded' | null
   // セーブスロットモーダル
   const [slotModalMode, setSlotModalMode] = useState(null); // 'save' | 'load' | null
@@ -546,6 +597,10 @@ export default function App() {
         }
       }
     } else {
+      if (isFastForwardingRef.current) {
+        isFastForwardingRef.current = false;
+        return;
+      }
       const now = Date.now();
       if (now - lastTap.current < 250) {
         toggleAuto();
@@ -674,9 +729,23 @@ export default function App() {
   return (
     <div
       className="w-full h-full select-none touch-none cursor-pointer"
-      onTouchStart={handleTouchStart}
-      onTouchEnd={handleTouchEnd}
+      onMouseDown={startHold}
+      onMouseUp={clearHoldTimers}
+      onMouseLeave={clearHoldTimers}
+      onTouchStart={(e) => {
+        handleTouchStart(e);
+        startHold(e);
+      }}
+      onTouchEnd={(e) => {
+        handleTouchEnd(e);
+        clearHoldTimers();
+      }}
       onClick={() => {
+        clearHoldTimers();
+        if (isFastForwardingRef.current) {
+          isFastForwardingRef.current = false;
+          return;
+        }
         if (skipMode) {
           setSkipMode(false);
           return;
