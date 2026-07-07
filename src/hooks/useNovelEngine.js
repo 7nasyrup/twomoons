@@ -133,7 +133,11 @@ export function useNovelEngine(scenarioData) {
 
   // Auto mode
   useEffect(() => {
-    if (autoMode && !isTyping && !isWaitingForChoice) {
+    const isMinigame = currentLine?.action?.startsWith('TRIGGER_');
+    const isActionWithoutText = currentLine?.action && !currentLine?.text && !currentLine?.action?.startsWith('TRIGGER_');
+    
+    // We pause autoMode if it's a minigame, choice.
+    if (autoMode && !isTyping && !isWaitingForChoice && !isMinigame && !isActionWithoutText) {
       autoTimer.current = setTimeout(() => {
         if (currentStep < scenarioData.length - 1) {
           advanceStep();
@@ -141,7 +145,7 @@ export function useNovelEngine(scenarioData) {
       }, 2500);
     }
     return () => clearTimeout(autoTimer.current);
-  }, [autoMode, isTyping, isWaitingForChoice, currentStep, scenarioData, advanceStep]);
+  }, [autoMode, isTyping, isWaitingForChoice, currentStep, scenarioData, advanceStep, currentLine]);
 
   // Skip mode
   useEffect(() => {
