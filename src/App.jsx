@@ -532,7 +532,7 @@ export default function App() {
   // Cinema Mode Autoplay timers
   useEffect(() => {
     if (!currentLine || showTitle) return;
-    if (currentLine.style === 'cinema') {
+    if (currentLine.style === 'cinema' || currentLine.action === 'FADE_TO_BLACK' || currentLine.action === 'WAIT_FADE') {
       let delay = 3000;
       if (currentLine.action === 'FADE_IN') delay = 2500;
       if (currentLine.action === 'FADE_OUT') delay = 2000;
@@ -540,7 +540,8 @@ export default function App() {
       if (currentLine.action === 'SLOW_FADE_IN') delay = 3500;
       if (currentLine.action === 'WAIT_SECONDS_AND_MOVE_MOON') delay = 4000;
       if (currentLine.action === 'ALL_FADE_OUT') delay = 3000;
-      if (currentLine.action === 'FADE_TO_BLACK') delay = 2500;
+      if (currentLine.action === 'FADE_TO_BLACK') delay = 2000;
+      if (currentLine.action === 'WAIT_FADE') delay = 1000;
 
       const timer = setTimeout(() => {
         nextStep();
@@ -666,6 +667,7 @@ export default function App() {
   };
 
   const isCinema = currentLine?.style === 'cinema';
+  const isTransition = currentLine?.action === 'FADE_TO_BLACK' || currentLine?.action === 'WAIT_FADE';
   const isDemoEnd = currentLine?.action === 'FADE_TO_DEMO_END';
   const isTypingGameActive = currentLine?.action === 'TRIGGER_TYPING_GAME';
   const isSearchAndLearningActive = currentLine?.action === 'TRIGGER_SEARCH_AND_LEARNING';
@@ -832,7 +834,7 @@ export default function App() {
             )}
 
             {/* Subtitles & Normal Dialogue Boxes */}
-            {!isCinema && !isDemoEnd && !alertActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isTypingGameActive && !isFragmentCollectActive && (
+            {!isCinema && !isTransition && !isDemoEnd && !alertActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isTypingGameActive && !isFragmentCollectActive && (
               <DialogueBox
                 speaker={currentLine?.speaker}
                 role={currentLine?.role}
@@ -885,7 +887,7 @@ export default function App() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  transition={{ duration: 1 }}
+                  transition={{ duration: 1, ease: "easeInOut" }}
                 />
               )}
             </AnimatePresence>

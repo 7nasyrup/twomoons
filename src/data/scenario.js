@@ -95,6 +95,7 @@ export const scenarioData = [
     },
     {
         scene: "朔良の部屋",
+        bg: "/scene/sakura_room.png",
         speaker: "朔良",
         role: "SAKURA",
         text: "「よし、忘れ物はない。……行かなきゃ、講義に遅れちゃう」"
@@ -102,6 +103,14 @@ export const scenarioData = [
     {
         scene: "朔良の部屋",
         text: "鍵を閉め、冷たい青色の街へと私は駆け出した。"
+    },
+    {
+        action: "FADE_TO_BLACK"
+    },
+    {
+        scene: "月科学大講義室",
+        bg: "/scene/classroom.png",
+        action: "WAIT_FADE"
     },
 
     // ================== #1 CLASSROOM SCENE ==================
