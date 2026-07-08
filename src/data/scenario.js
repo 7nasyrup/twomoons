@@ -125,7 +125,7 @@ export const scenarioData = [
         speaker: "ヒルミ教授",
         role: "PROFESSOR",
         text: "「――いいですか。人工月が放つ『月波（げっぱ）』の総量は、周期によって変動します。この月波こそが、我々人類の細胞遺伝子に干渉し、突然変異――いわゆる『異能力』を発現させるトリガーとなるわけですが……」",
-        action: "SHOW_SILHOUETTE_RIGHT"
+        showIllust: ["Hirumi_smile"]
     },
     {
         scene: "月科学大講義室",
@@ -153,7 +153,7 @@ export const scenarioData = [
         speaker: "ヒルミ教授",
         role: "PROFESSOR",
         text: "「はい、今日の講義はここまで。週末までに、月波が人体に与える精神的拒絶反応についてのレポートを提出するように。遅れたら、容赦なく単位は落とすからね」",
-        hideIllust: ["Hirumi"]
+        hideIllust: ["Hirumi_smile"]
     },
     {
         scene: "月科学大講義室",
@@ -170,7 +170,7 @@ export const scenarioData = [
         speaker: "？？？",
         text: "「おーーい！ 朔良ーー！！」",
         action: "PLAY_RUNNING_SE",
-        bg: "/scene/classroom.png",
+        bg: "/scene/university_classroom.png",
         showIllust: ["Mutsunori_smile"],
     },
     {
@@ -2172,7 +2172,7 @@ export const scenarioData = [
     },
     {
         scene: "時計塔前",
-        text: "幼馴染のムッちゃんですら、隠しているだけで本当は何かの適応者なんだろう。"
+        text: "仲の良いムッちゃんですら、隠しているだけで本当は何かの適応者なんだろう。"
     },
     {
         scene: "時計塔前",
@@ -12407,25 +12407,65 @@ export const scenarioData = [
         action: "FADE_TO_DEMO_END",
         label: "route_under_construction_final"
     },
-    // ================== FRAGMENT COLLECT SYSTEM F (ONLY TEST) ==================
+
+    // ================== STEALTH ADVENTURE GAME ==================
     {
-        scene: "ゲームF",
+        scene: "ステルスゲーム",
         speaker: "システム",
         role: "SYSTEM",
-        text: "【システムF：フラグメント・コレクト】の体験を開始します。研究所内を探索し、セキュリティコードの断片（データチップ×5）と睦典の機密ファイル（×4）を収集してください。",
+        text: "【システム】ステルスアドベンチャーを開始します。敵から逃げながら、マップ上の攻略対象の元へ向かってください。",
+        label: "stealth_game_trigger"
+    },
+    {
+        scene: "ステルスゲーム",
+        action: "TRIGGER_STEALTH_GAME"
+    },
+    {
+        scene: "ステルスゲーム",
+        action: "EVALUATE_STEALTH_GAME_BRANCH"
+    },
+    {
+        label: "stealth_clear_mutsunori",
+        scene: "住宅街（夜）",
+        speaker: "睦典",
+        role: "MUTSUNORI",
+        text: "「朔良！ こっちだ、早く！」",
         bg: "town_dark_1",
-        label: "fragment_collect_only_trigger"
+        showIllust: ["Mutsunori_smile"]
     },
     {
-        scene: "ゲームF",
-        action: "TRIGGER_FRAGMENT_COLLECT"
+        scene: "住宅街（夜）",
+        speaker: "朔良",
+        role: "SAKURA",
+        text: "「ハァッ……ハァッ……、助かった……」"
     },
     {
-        scene: "ゲームF",
+        scene: "住宅街（夜）",
         speaker: "システム",
         role: "SYSTEM",
-        text: "フラグメント・コレクトを終了しました。体験用選択肢に戻ります。",
+        text: "睦典ルートに分岐しました。以降のシナリオは未実装です。",
         jumpTo: "route_under_construction"
     },
-
+    {
+        label: "stealth_clear_nagisa",
+        scene: "住宅街（夜）",
+        speaker: "凪砂",
+        role: "NAGISA",
+        text: "「チッ……ドジな奴だな。こっちへ来い」",
+        bg: "town_dark_2",
+        showIllust: ["Nagisa"]
+    },
+    {
+        scene: "住宅街（夜）",
+        speaker: "朔良",
+        role: "SAKURA",
+        text: "「凪砂……！ ありがとう……」"
+    },
+    {
+        scene: "住宅街（夜）",
+        speaker: "システム",
+        role: "SYSTEM",
+        text: "凪砂ルートに分岐しました。以降のシナリオは未実装です。",
+        jumpTo: "route_under_construction"
+    }
 ];

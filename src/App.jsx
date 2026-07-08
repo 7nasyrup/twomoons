@@ -14,6 +14,7 @@ import SilentScore from './components/SilentScore';
 import TapCommunication from './components/TapCommunication';
 import EyeOfProfiler from './components/EyeOfProfiler';
 import FragmentCollect from './components/FragmentCollect';
+import StealthGame from './components/StealthGame';
 import SaveSlotModal, { SAVE_KEY_PREFIX, loadAllSlots } from './components/SaveSlotModal';
 import { useNovelEngine } from './hooks/useNovelEngine';
 import { useAudioSystem } from './hooks/useAudioSystem';
@@ -168,6 +169,7 @@ export default function App() {
   const [alertConfig, setAlertConfig] = useState({ title: '', message: '' });
   const [isFadingBlack, setIsFadingBlack] = useState(false);
   const [shakeEffect, setShakeEffect] = useState(false);
+  const [stealthGameResult, setStealthGameResult] = useState(null);
 
   // Global hold-to-skip logic
   const holdTimerRef = useRef(null);
@@ -203,7 +205,7 @@ export default function App() {
     if (e.type === 'mousedown' && e.button !== 0) return;
     
     // Disable fast-forward in certain states
-    if (showTitle || isWaitingForChoice || alertActive || backlogOpen || isTypingGameActive || isSearchAndLearningActive || isSilentScoreActive || isTapCommunicationActive || isEyeOfProfilerActive || isFragmentCollectActive) {
+    if (showTitle || isWaitingForChoice || alertActive || backlogOpen || isTypingGameActive || isSearchAndLearningActive || isSilentScoreActive || isTapCommunicationActive || isEyeOfProfilerActive || isFragmentCollectActive || isStealthGameActive) {
       return;
     }
 
@@ -571,8 +573,18 @@ export default function App() {
       // Return to title
       setShowTitle(true);
       jumpToStep(0);
+    } else if (currentLine.action === 'EVALUATE_STEALTH_GAME_BRANCH') {
+      if (stealthGameResult === 'Mutsunori') {
+        const targetIdx = scenarioData.findIndex(line => line.label === 'stealth_clear_mutsunori');
+        if (targetIdx !== -1) jumpToStep(targetIdx);
+      } else if (stealthGameResult === 'Nagisa') {
+        const targetIdx = scenarioData.findIndex(line => line.label === 'stealth_clear_nagisa');
+        if (targetIdx !== -1) jumpToStep(targetIdx);
+      } else {
+        nextStep();
+      }
     }
-  }, [currentStep, currentLine, jumpToStep, fragmentCollectResult]);
+  }, [currentStep, currentLine, jumpToStep, fragmentCollectResult, stealthGameResult]);
 
   // Handle touch events for gestures
   const handleTouchStart = (e) => {
@@ -648,7 +660,8 @@ export default function App() {
           'TRIGGER_SILENT_SCORE',
           'TRIGGER_TAP_COMMUNICATION',
           'TRIGGER_EYE_OF_PROFILER',
-          'TRIGGER_FRAGMENT_COLLECT'
+          'TRIGGER_FRAGMENT_COLLECT',
+          'TRIGGER_STEALTH_GAME'
         ].includes(currentLine?.action);
 
         if (!isWaitingForChoice && !isMinigameActive) {
@@ -675,6 +688,7 @@ export default function App() {
   const isTapCommunicationActive = currentLine?.action === 'TRIGGER_TAP_COMMUNICATION';
   const isEyeOfProfilerActive = currentLine?.action === 'TRIGGER_EYE_OF_PROFILER';
   const isFragmentCollectActive = currentLine?.action === 'TRIGGER_FRAGMENT_COLLECT';
+  const isStealthGameActive = currentLine?.action === 'TRIGGER_STEALTH_GAME';
 
   const handleEyeOfProfilerComplete = (success) => {
     setEyeOfProfilerSuccess(success);
@@ -683,6 +697,11 @@ export default function App() {
 
   const handleFragmentCollectComplete = (result) => {
     setFragmentCollectResult(result);
+    nextStep();
+  };
+
+  const handleStealthGameComplete = (result) => {
+    setStealthGameResult(result);
     nextStep();
   };
 
@@ -752,7 +771,7 @@ export default function App() {
           setSkipMode(false);
           return;
         }
-        if (!showTitle && !isWaitingForChoice && !alertActive && !backlogOpen && !isTypingGameActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isFragmentCollectActive) {
+        if (!showTitle && !isWaitingForChoice && !alertActive && !backlogOpen && !isTypingGameActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isFragmentCollectActive && !isStealthGameActive) {
           nextStep();
         }
       }}
@@ -800,10 +819,14 @@ export default function App() {
               <SilentScore onComplete={handleSilentScoreComplete} />
             )}
 
+            {isStealthGameActive && (
+              <StealthGame onComplete={handleStealthGameComplete} />
+            )}
+
             {/* Cinematic Black Letterbox Overlay */}
             <CinemaLayer
               text={currentLine?.text}
-              isActive={isCinema && !isDemoEnd && !isTypingGameActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isFragmentCollectActive}
+              isActive={isCinema && !isDemoEnd && !isTypingGameActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isFragmentCollectActive && !isStealthGameActive}
               isTyping={isTyping}
               onNext={nextStep}
             />
@@ -834,7 +857,7 @@ export default function App() {
             )}
 
             {/* Subtitles & Normal Dialogue Boxes */}
-            {!isCinema && !isTransition && !isDemoEnd && !alertActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isTypingGameActive && !isFragmentCollectActive && (
+            {!isCinema && !isTransition && !isDemoEnd && !alertActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isTypingGameActive && !isFragmentCollectActive && !isStealthGameActive && (
               <DialogueBox
                 speaker={currentLine?.speaker}
                 role={currentLine?.role}
