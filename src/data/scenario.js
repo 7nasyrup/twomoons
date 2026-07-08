@@ -3,7 +3,7 @@ export const scenarioData = [
     {
         scene: "PROLOGUE",
         text: "いつもと変わらない、日常。",
-        bg: "town_dark_1",
+        bg: "/scene/shopping_street.png",
         style: "cinema",
         action: "FADE_IN"
     },
@@ -48,7 +48,7 @@ export const scenarioData = [
         scene: "窓の外",
         speaker: "朔良",
         text: "「ん……っ……」",
-        bg: "/scene/moon.png",
+        bg: "/scene/sakura_room_moon.png",
         style: "novel",
         action: "WAKE_UP"
     },
@@ -109,7 +109,7 @@ export const scenarioData = [
     },
     {
         scene: "月科学大講義室",
-        bg: "/scene/classroom.png",
+        bg: "/scene/university_classroom.png",
         action: "WAIT_FADE"
     },
 
@@ -117,7 +117,7 @@ export const scenarioData = [
     {
         scene: "月科学大講義室",
         text: "チクタクと進む時計の音。 あの冷たい青い光が斜めに差し込む大講義室は、学生たちの眠気と、教授の退屈な声で満たされていた。",
-        bg: "/scene/classroom.png",
+        bg: "/scene/university_classroom.png",
         style: "novel",
     },
     {
@@ -272,7 +272,7 @@ export const scenarioData = [
     {
         scene: "大学の廊下",
         text: "あはは、と睦典が緊張感のない声で笑う。",
-        bg: "/scene/university_rouka.png"
+        bg: "/scene/university_hallway.png"
     },
     {
         scene: "大学の廊下",
@@ -310,8 +310,7 @@ export const scenarioData = [
         scene: "大学の廊下",
         speaker: "睦典",
         role: "MUTSUNORI",
-        text: "「あーあ。俺にもっとカッコいい能力があればなー。手から派手に炎が出るとかさ！ そうすれば女の子にもモテモテで、実家のうどん屋も大繁盛なのに」"
-        ,
+        text: "「あーあ。俺にもっとカッコいい能力があればなー。手から派手に炎が出るとかさ！ そうすれば女の子にもモテモテで、実家のうどん屋も大繁盛なのに」",
         showIllust: ["Mutsunori_pout"]
     },
     {
@@ -550,7 +549,7 @@ export const scenarioData = [
     {
         scene: "キャンパス外",
         text: "カバンを揺らしながら追いかけると、大学の重厚なエントランスを抜けた瞬間、全身が一段と濃い「青」に包まれた。",
-        bg: "school_gate_evening"
+        bg: "/scene/university_outside.png"
     },
     {
         scene: "キャンパス外",
@@ -607,7 +606,7 @@ export const scenarioData = [
     {
         scene: "商店街",
         text: "キャンパスの正門を出て、駅へと続く少し賑やかな通りに入る。",
-        bg: "shopping_street"
+        bg: "/scene/shopping_street.png"
     },
     {
         scene: "商店街",
@@ -694,8 +693,7 @@ export const scenarioData = [
         speaker: "睦典",
         role: "MUTSUNORI",
         text: "「よしっ、着いた！ 我が家であり、俺の聖域であり、未来の三ツ星割烹『むつ』へようこそ！」",
-        bg: "restaurant_exterior"
-        ,
+        bg: "/scene/mutsu.png",
         showIllust: ["Mutsunori_happy"]
     },
     {
@@ -727,8 +725,8 @@ export const scenarioData = [
         scene: "夜の帰り道",
         speaker: "睦典",
         role: "MUTSUNORI",
-        text: "「もうこんな時間じゃん！ 朔良、悪いことしちゃったな……夜道は物騒だし、俺が家まで送ってくよ！」"
-        ,
+        text: "「もうこんな時間じゃん！ 朔良、悪いことしちゃったな……夜道は物騒だし、俺が家まで送ってくよ！」",
+        bg: "/scene/mutsu_night.png",
         showIllust: ["Mutsunori_pout"]
     },
     {
