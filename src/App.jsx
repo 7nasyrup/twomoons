@@ -137,6 +137,14 @@ function BackgroundRenderer({ bgPath }) {
 }
 
 export default function App() {
+  const [manualTestMode, setManualTestMode] = useState(false);
+  const [clearedMutsunori, setClearedMutsunori] = useState(() => localStorage.getItem('cleared_mutsunori_good_end') === 'true');
+  const [clearedMika, setClearedMika] = useState(() => localStorage.getItem('cleared_mika_good_end') === 'true');
+  const [clearedNagisa, setClearedNagisa] = useState(() => localStorage.getItem('cleared_nagisa_good_end') === 'true');
+
+  const [endType, setEndType] = useState(null); // 'happy' | 'bad' | null
+  const isEndScreen = endType !== null;
+
   const {
     currentStep,
     currentLine,
@@ -158,7 +166,7 @@ export default function App() {
     setHudVisible,
     clearBacklog,
     totalSteps,
-  } = useNovelEngine(scenarioData);
+  } = useNovelEngine(scenarioData, { manualTestMode, endMode: isEndScreen });
 
   const { playBGM, playSE, toggleMute } = useAudioSystem();
 
@@ -205,7 +213,8 @@ export default function App() {
     if (e.type === 'mousedown' && e.button !== 0) return;
     
     // Disable fast-forward in certain states
-    if (showTitle || isWaitingForChoice || alertActive || backlogOpen || isTypingGameActive || isSearchAndLearningActive || isSilentScoreActive || isTapCommunicationActive || isEyeOfProfilerActive || isFragmentCollectActive || isStealthGameActive) {
+    const _isAnyEnd = isEndScreen || ['FADE_TO_HAPPY_END', 'FADE_TO_BAD_END', 'FADE_TO_DEMO_END'].includes(currentLine?.action);
+    if (showTitle || isWaitingForChoice || alertActive || backlogOpen || isTypingGameActive || isSearchAndLearningActive || isSilentScoreActive || isTapCommunicationActive || isEyeOfProfilerActive || isFragmentCollectActive || isStealthGameActive || _isAnyEnd) {
       return;
     }
 
@@ -235,6 +244,7 @@ export default function App() {
   const handleStartGame = () => {
     clearBacklog();
     setShowTitle(false);
+    setFlags({});
     jumpToStep(0);
   };
 
@@ -279,6 +289,7 @@ export default function App() {
         eyeOfProfilerSuccess,
         tapCommunicationScores,
         silentScoreResult,
+        flags,
       };
       localStorage.setItem(`${SAVE_KEY_PREFIX}${slotIndex}`, JSON.stringify(saveData));
       setHasSave(true);
@@ -293,6 +304,7 @@ export default function App() {
       if (slotData.eyeOfProfilerSuccess !== undefined) setEyeOfProfilerSuccess(slotData.eyeOfProfilerSuccess);
       if (slotData.tapCommunicationScores !== undefined) setTapCommunicationScores(slotData.tapCommunicationScores);
       if (slotData.silentScoreResult !== undefined) setSilentScoreResult(slotData.silentScoreResult);
+      if (slotData.flags !== undefined) setFlags(slotData.flags);
       jumpToStep(slotData.step);
       setShowTitle(false);
       setSlotModalMode(null);
@@ -322,6 +334,7 @@ export default function App() {
   const [tapCommunicationScores, setTapCommunicationScores] = useState(null);
   const [silentScoreResult, setSilentScoreResult] = useState(null);
   const [fragmentCollectResult, setFragmentCollectResult] = useState(null);
+  const [flags, setFlags] = useState({});
 
   // Swipe gesture variables
   const touchStartX = useRef(0);
@@ -533,7 +546,7 @@ export default function App() {
 
   // Cinema Mode Autoplay timers
   useEffect(() => {
-    if (!currentLine || showTitle) return;
+    if (!currentLine || showTitle || manualTestMode) return;
     if (currentLine.style === 'cinema' || currentLine.action === 'FADE_TO_BLACK' || currentLine.action === 'WAIT_FADE') {
       let delay = 3000;
       if (currentLine.action === 'FADE_IN') delay = 2500;
@@ -550,7 +563,30 @@ export default function App() {
       }, delay);
       return () => clearTimeout(timer);
     }
-  }, [currentStep, currentLine, nextStep, showTitle]);
+  }, [currentStep, currentLine, nextStep, showTitle, manualTestMode]);
+
+  // Persist Good Ending completion flags
+  useEffect(() => {
+    if (!currentLine || showTitle) return;
+
+    // 1. Nagisa Route Happy End
+    if (currentLine.text && currentLine.text.includes("凪砂ルート・ハッピーエンド")) {
+      localStorage.setItem('cleared_nagisa_good_end', 'true');
+      setClearedNagisa(true);
+    }
+
+    // 2. Mika Route Happy End
+    if (currentLine.text && currentLine.text.includes("私は彼の大きな手に優しく引かれながら") && currentLine.text.includes("キャンパスの雑踏の中へと歩き出した")) {
+      localStorage.setItem('cleared_mika_good_end', 'true');
+      setClearedMika(true);
+    }
+
+    // 3. Mutsunori Route Happy End
+    if (currentLine.text && currentLine.text.includes("睦典ルート・ハッピーエンド")) {
+      localStorage.setItem('cleared_mutsunori_good_end', 'true');
+      setClearedMutsunori(true);
+    }
+  }, [currentLine, showTitle]);
 
   // Handle conditional branching and special actions
   useEffect(() => {
@@ -569,6 +605,10 @@ export default function App() {
           jumpToStep(0);
         }
       }
+    } else if (currentLine.action === 'FADE_TO_HAPPY_END') {
+      setEndType('happy');
+    } else if (currentLine.action === 'FADE_TO_BAD_END') {
+      setEndType('bad');
     } else if (currentLine.action === 'GAME_OVER') {
       // Return to title
       setShowTitle(true);
@@ -585,6 +625,17 @@ export default function App() {
       }
     }
   }, [currentStep, currentLine, jumpToStep, fragmentCollectResult, stealthGameResult]);
+
+  // Backup: trigger end screen when typing finishes on an ending slide
+  // This catches any timing edge-cases where the above useEffect fires too early
+  useEffect(() => {
+    if (showTitle || isTyping) return;
+    if (currentLine?.action === 'FADE_TO_HAPPY_END') {
+      setEndType('happy');
+    } else if (currentLine?.action === 'FADE_TO_BAD_END') {
+      setEndType('bad');
+    }
+  }, [isTyping, currentLine, showTitle]);
 
   // Handle touch events for gestures
   const handleTouchStart = (e) => {
@@ -664,7 +715,7 @@ export default function App() {
           'TRIGGER_STEALTH_GAME'
         ].includes(currentLine?.action);
 
-        if (!isWaitingForChoice && !isMinigameActive) {
+        if (!isWaitingForChoice && !isMinigameActive && !isAnyEnd && !isEndScreen) {
           nextStep();
         }
       }
@@ -680,8 +731,11 @@ export default function App() {
   };
 
   const isCinema = currentLine?.style === 'cinema';
+  const isHappyEnd = currentLine?.action === 'FADE_TO_HAPPY_END';
+  const isBadEnd = currentLine?.action === 'FADE_TO_BAD_END';
   const isTransition = currentLine?.action === 'FADE_TO_BLACK' || currentLine?.action === 'WAIT_FADE';
   const isDemoEnd = currentLine?.action === 'FADE_TO_DEMO_END';
+  const isAnyEnd = isHappyEnd || isBadEnd || isDemoEnd;
   const isTypingGameActive = currentLine?.action === 'TRIGGER_TYPING_GAME';
   const isSearchAndLearningActive = currentLine?.action === 'TRIGGER_SEARCH_AND_LEARNING';
   const isSilentScoreActive = currentLine?.action === 'TRIGGER_SILENT_SCORE';
@@ -744,8 +798,30 @@ export default function App() {
     if (choice.condition === 'learning_max') {
       return learningScore === 3;
     }
+    if (choice.condition === 'akane_route_enabled') {
+      return clearedMutsunori && clearedMika && clearedNagisa;
+    }
+    if (choice.condition) {
+      return !!flags[choice.condition];
+    }
     return true;
   }) || [];
+
+  const handleSelectChoice = (choiceIndex) => {
+    const choice = filteredChoices[choiceIndex];
+    if (choice && choice.setFlag) {
+      setFlags(prev => ({
+        ...prev,
+        [choice.setFlag]: true
+      }));
+    }
+    const originalIndex = currentLine?.choices?.indexOf(choice);
+    if (originalIndex !== -1 && originalIndex !== undefined) {
+      selectChoice(originalIndex);
+    } else {
+      selectChoice(choiceIndex);
+    }
+  };
 
   return (
     <div
@@ -771,7 +847,7 @@ export default function App() {
           setSkipMode(false);
           return;
         }
-        if (!showTitle && !isWaitingForChoice && !alertActive && !backlogOpen && !isTypingGameActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isFragmentCollectActive && !isStealthGameActive) {
+        if (!showTitle && !isWaitingForChoice && !alertActive && !backlogOpen && !isTypingGameActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isFragmentCollectActive && !isStealthGameActive && !isAnyEnd && !isEndScreen) {
           nextStep();
         }
       }}
@@ -826,13 +902,13 @@ export default function App() {
             {/* Cinematic Black Letterbox Overlay */}
             <CinemaLayer
               text={currentLine?.text}
-              isActive={isCinema && !isDemoEnd && !isTypingGameActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isFragmentCollectActive && !isStealthGameActive}
+              isActive={isCinema && !isAnyEnd && !isTypingGameActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isFragmentCollectActive && !isStealthGameActive}
               isTyping={isTyping}
               onNext={nextStep}
             />
 
             {/* Character Sprite Overlay */}
-            {!isCinema && !isDemoEnd && (
+            {!isCinema && !isAnyEnd && (
               <SpriteSlot
                 leftActive={leftActive}
                 rightActive={rightActive}
@@ -846,7 +922,7 @@ export default function App() {
             )}
 
             {/* Item Sprite Overlay */}
-            {displayedItem && !isCinema && !isDemoEnd && (
+            {displayedItem && !isCinema && !isAnyEnd && (
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-[15]">
                 <img
                   src={assetPath(displayedItem)}
@@ -857,7 +933,7 @@ export default function App() {
             )}
 
             {/* Subtitles & Normal Dialogue Boxes */}
-            {!isCinema && !isTransition && !isDemoEnd && !alertActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isTypingGameActive && !isFragmentCollectActive && !isStealthGameActive && (
+            {!isCinema && !isTransition && !isAnyEnd && !alertActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isTypingGameActive && !isFragmentCollectActive && !isStealthGameActive && (
               <DialogueBox
                 speaker={currentLine?.speaker}
                 role={currentLine?.role}
@@ -874,7 +950,7 @@ export default function App() {
                 onOpenLog={() => setBacklogOpen(true)}
                 choices={filteredChoices}
                 isWaitingForChoice={isWaitingForChoice}
-                onSelectChoice={selectChoice}
+                onSelectChoice={handleSelectChoice}
                 onSave={handleSave}
                 onLoad={handleLoad}
                 onExit={() => {
@@ -884,7 +960,7 @@ export default function App() {
             )}
 
             {/* HUD hidden overlay to restore HUD on click */}
-            {!hudVisible && !isCinema && !isDemoEnd && (
+            {!hudVisible && !isCinema && !isAnyEnd && (
               <div
                 className="absolute inset-0 z-20 cursor-pointer"
                 onClick={(e) => {
@@ -915,38 +991,73 @@ export default function App() {
               )}
             </AnimatePresence>
 
+            {/* End Screen Overlay (Happy / Bad) - driven by endType state */}
+            {isEndScreen && (
+              <div className="absolute inset-0 bg-black/95 flex flex-col items-center justify-center z-[70] p-8 text-center animate-fadeIn">
+                <div
+                  className={`absolute w-[60vh] h-[60vh] rounded-full border pointer-events-none transition-all duration-1000 ${
+                    endType === 'bad'
+                      ? 'border-red-500/10 shadow-[0_0_120px_rgba(239,68,68,0.05)]'
+                      : 'border-amber-400/10 shadow-[0_0_120px_rgba(245,158,11,0.05)]'
+                  }`}
+                />
+                <h1
+                  className={`text-4xl md:text-5xl font-orbitron font-extrabold tracking-[0.2em] mb-4 ${
+                    endType === 'bad'
+                      ? 'text-red-500 drop-shadow-[0_0_20px_rgba(239,68,68,0.6)] animate-pulse'
+                      : 'text-amber-400 drop-shadow-[0_0_20px_rgba(245,158,11,0.6)] animate-pulse'
+                  }`}
+                >
+                  {endType === 'bad' ? 'BAD END' : 'HAPPY END'}
+                </h1>
+                <p className="text-gray-400 font-noto tracking-widest text-sm md:text-base mb-12">
+                  青い月の裏側で - Behind the Blue Moon
+                </p>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setEndType(null);
+                    setShowTitle(true);
+                    jumpToStep(0);
+                  }}
+                  className={`px-12 py-3.5 border font-orbitron text-sm tracking-[0.2em] rounded transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 active:scale-95 ${
+                    endType === 'bad'
+                      ? 'bg-red-950/30 border-red-500/30 text-red-300 hover:bg-red-500/20 hover:border-red-400 hover:text-white hover:shadow-[0_0_20px_rgba(239,68,68,0.3)]'
+                      : 'bg-amber-950/30 border-amber-500/30 text-amber-300 hover:bg-amber-500/20 hover:border-amber-400 hover:text-white hover:shadow-[0_0_20px_rgba(245,158,11,0.3)]'
+                  }`}
+                >
+                  RETURN TO TITLE
+                </button>
+              </div>
+            )}
+
             {/* Demo End Screen */}
             {isDemoEnd && (
-              <div className="absolute inset-0 bg-black/90 flex flex-col items-center justify-center z-50 p-8 text-center animate-fadeIn">
-                {/* Holographic background moon */}
+              <div className="absolute inset-0 bg-black/95 flex flex-col items-center justify-center z-50 p-8 text-center animate-fadeIn">
                 <div className="absolute w-[60vh] h-[60vh] rounded-full border border-cyan-500/10 shadow-[0_0_120px_rgba(0,245,255,0.05)] pointer-events-none" />
-
                 <h1 className="text-4xl md:text-5xl font-orbitron font-extrabold text-cyan-400 tracking-[0.2em] mb-4 drop-shadow-[0_0_15px_rgba(0,245,255,0.5)]">
                   TO BE CONTINUED
                 </h1>
                 <p className="text-gray-400 font-noto tracking-widest text-sm md:text-base mb-12">
                   青い月の裏側で - Behind the Blue Moon Demo
                 </p>
-
                 <div className="flex flex-col sm:flex-row gap-4">
                   <button
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.stopPropagation();
                       clearBacklog();
                       jumpToStep(0);
                     }}
-                    className="px-8 py-3 bg-cyan-950/40 border border-cyan-500/30 text-cyan-300 font-orbitron text-sm tracking-widest rounded
-                               hover:bg-cyan-500/20 hover:border-cyan-400 hover:text-white hover:shadow-[0_0_20px_rgba(0,245,255,0.3)]
-                               transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 active:scale-95"
+                    className="px-8 py-3 bg-cyan-950/40 border border-cyan-500/30 text-cyan-300 font-orbitron text-sm tracking-widest rounded hover:bg-cyan-500/20 hover:border-cyan-400 hover:text-white hover:shadow-[0_0_20px_rgba(0,245,255,0.3)] transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 active:scale-95"
                   >
                     REPLAY DEMO
                   </button>
                   <button
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.stopPropagation();
                       setShowTitle(true);
                     }}
-                    className="px-8 py-3 bg-indigo-950/40 border border-indigo-500/30 text-indigo-300 font-orbitron text-sm tracking-widest rounded
-                               hover:bg-indigo-500/20 hover:border-indigo-400 hover:text-white hover:shadow-[0_0_20px_rgba(99,102,241,0.3)]
-                               transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 active:scale-95"
+                    className="px-8 py-3 bg-indigo-950/40 border border-indigo-500/30 text-indigo-300 font-orbitron text-sm tracking-widest rounded hover:bg-indigo-500/20 hover:border-indigo-400 hover:text-white hover:shadow-[0_0_20px_rgba(99,102,241,0.3)] transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 active:scale-95"
                   >
                     RETURN TO TITLE
                   </button>
@@ -993,9 +1104,26 @@ export default function App() {
         <DevConsole
           currentStep={currentStep}
           totalSteps={totalSteps}
-          onJumpToStep={jumpToStep}
+          onJumpToStep={(step) => { setEndType(null); setShowTitle(false); jumpToStep(step); }}
           onToggleMute={toggleMute}
           scenarioData={scenarioData}
+          manualTestMode={manualTestMode}
+          onToggleManualTestMode={() => setManualTestMode(prev => !prev)}
+          clearedMutsunori={clearedMutsunori}
+          setClearedMutsunori={(val) => {
+            localStorage.setItem('cleared_mutsunori_good_end', val ? 'true' : 'false');
+            setClearedMutsunori(val);
+          }}
+          clearedMika={clearedMika}
+          setClearedMika={(val) => {
+            localStorage.setItem('cleared_mika_good_end', val ? 'true' : 'false');
+            setClearedMika(val);
+          }}
+          clearedNagisa={clearedNagisa}
+          setClearedNagisa={(val) => {
+            localStorage.setItem('cleared_nagisa_good_end', val ? 'true' : 'false');
+            setClearedNagisa(val);
+          }}
         />
 
 

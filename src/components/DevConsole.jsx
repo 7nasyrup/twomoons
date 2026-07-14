@@ -2,7 +2,21 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Terminal, X, SkipForward, Volume2, VolumeX } from 'lucide-react';
 
-export default function DevConsole({ currentStep, totalSteps, onJumpToStep, onToggleMute, scenarioData }) {
+export default function DevConsole({
+  currentStep,
+  totalSteps,
+  onJumpToStep,
+  onToggleMute,
+  scenarioData,
+  manualTestMode,
+  onToggleManualTestMode,
+  clearedMutsunori,
+  setClearedMutsunori,
+  clearedMika,
+  setClearedMika,
+  clearedNagisa,
+  setClearedNagisa
+}) {
   const [isOpen, setIsOpen] = useState(false);
   const [jumpInput, setJumpInput] = useState('');
 
@@ -90,6 +104,73 @@ export default function DevConsole({ currentStep, totalSteps, onJumpToStep, onTo
                   #{sb.scene} — Step {sb.step}
                 </button>
               ))}
+            </div>
+
+            {/* Manual Test Play Mode Toggle */}
+            <div className="border-t border-cyan-500/10 pt-3 mt-3 flex items-center justify-between">
+              <span className="text-cyan-500/60 text-xs font-orbitron">MANUAL TEST PLAY</span>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onToggleManualTestMode();
+                }}
+                className={`px-3 py-1 rounded text-[10px] font-orbitron border transition-all duration-300 ${
+                  manualTestMode
+                    ? 'bg-cyan-500/20 border-cyan-400 text-cyan-300 shadow-[0_0_10px_rgba(0,245,255,0.2)]'
+                    : 'bg-transparent border-cyan-500/20 text-cyan-500/40 hover:border-cyan-400/40 hover:text-cyan-400/80'
+                }`}
+              >
+                {manualTestMode ? 'ENABLED' : 'DISABLED'}
+              </button>
+            </div>
+
+            {/* Ending Clear Debug Flags */}
+            <div className="border-t border-cyan-500/10 pt-3 mt-3">
+              <div className="text-cyan-500/40 text-[10px] font-orbitron tracking-wider mb-2">DEBUG CLEAR FLAGS</div>
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-cyan-500/60 text-xs font-noto">睦典グッド</span>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setClearedMutsunori(!clearedMutsunori);
+                    }}
+                    className={`px-2 py-0.5 rounded text-[10px] font-orbitron border transition-colors ${
+                      clearedMutsunori ? 'bg-cyan-500/20 border-cyan-400 text-cyan-300' : 'bg-transparent border-cyan-500/20 text-cyan-500/40'
+                    }`}
+                  >
+                    {clearedMutsunori ? 'CLEARED' : 'UNREAD'}
+                  </button>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-cyan-500/60 text-xs font-noto">ミカグッド</span>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setClearedMika(!clearedMika);
+                    }}
+                    className={`px-2 py-0.5 rounded text-[10px] font-orbitron border transition-colors ${
+                      clearedMika ? 'bg-cyan-500/20 border-cyan-400 text-cyan-300' : 'bg-transparent border-cyan-500/20 text-cyan-500/40'
+                    }`}
+                  >
+                    {clearedMika ? 'CLEARED' : 'UNREAD'}
+                  </button>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-cyan-500/60 text-xs font-noto">凪砂グッド</span>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setClearedNagisa(!clearedNagisa);
+                    }}
+                    className={`px-2 py-0.5 rounded text-[10px] font-orbitron border transition-colors ${
+                      clearedNagisa ? 'bg-cyan-500/20 border-cyan-400 text-cyan-300' : 'bg-transparent border-cyan-500/20 text-cyan-500/40'
+                    }`}
+                  >
+                    {clearedNagisa ? 'CLEARED' : 'UNREAD'}
+                  </button>
+                </div>
+              </div>
             </div>
 
             {/* Audio toggle */}

@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 
-export function useNovelEngine(scenarioData) {
+export function useNovelEngine(scenarioData, options = {}) {
+  const { manualTestMode = false, endMode = false } = options;
   const prologueLines = scenarioData ? scenarioData.filter(line => line.scene === "PROLOGUE") : [];
   const [currentStep, setCurrentStep] = useState(0);
   const [displayedText, setDisplayedText] = useState('');
@@ -48,6 +49,14 @@ export function useNovelEngine(scenarioData) {
       triggerTypewriter(currentLine.text);
     }
     if (currentLine?.type === 'choice') {
+      setIsWaitingForChoice(true);
+    }
+    // Block all advancement on ending screens
+    if (
+      currentLine?.action === 'FADE_TO_HAPPY_END' ||
+      currentLine?.action === 'FADE_TO_BAD_END' ||
+      currentLine?.action === 'FADE_TO_DEMO_END'
+    ) {
       setIsWaitingForChoice(true);
     }
     if (currentLine?.speaker_sprite && currentLine.speaker_sprite === 'Mutsunori_default') {
@@ -131,13 +140,12 @@ export function useNovelEngine(scenarioData) {
     setBacklog(prologue);
   }, [scenarioData]);
 
-  // Auto mode
   useEffect(() => {
     const isMinigame = currentLine?.action?.startsWith('TRIGGER_');
     const isActionWithoutText = currentLine?.action && !currentLine?.text && !currentLine?.action?.startsWith('TRIGGER_');
     
     // We pause autoMode if it's a minigame, choice.
-    if (autoMode && !isTyping && !isWaitingForChoice && !isMinigame && !isActionWithoutText) {
+    if (autoMode && !isTyping && !isWaitingForChoice && !isMinigame && !isActionWithoutText && !manualTestMode && !endMode) {
       autoTimer.current = setTimeout(() => {
         if (currentStep < scenarioData.length - 1) {
           advanceStep();
@@ -145,11 +153,11 @@ export function useNovelEngine(scenarioData) {
       }, 2500);
     }
     return () => clearTimeout(autoTimer.current);
-  }, [autoMode, isTyping, isWaitingForChoice, currentStep, scenarioData, advanceStep, currentLine]);
+  }, [autoMode, isTyping, isWaitingForChoice, currentStep, scenarioData, advanceStep, currentLine, manualTestMode, endMode]);
 
   // Skip mode
   useEffect(() => {
-    if (skipMode) {
+    if (skipMode && !endMode) {
       if (currentLine?.type === 'choice' || currentLine?.action?.startsWith('TRIGGER_')) {
         setSkipMode(false);
         return;
@@ -166,7 +174,7 @@ export function useNovelEngine(scenarioData) {
       }
     }
     return () => clearTimeout(skipTimer.current);
-  }, [skipMode, isTyping, isWaitingForChoice, currentStep, currentLine, scenarioData, advanceStep, completeTypewriter]);
+  }, [skipMode, endMode, isTyping, isWaitingForChoice, currentStep, currentLine, scenarioData, advanceStep, completeTypewriter]);
 
   // Cleanup
   useEffect(() => {
