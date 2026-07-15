@@ -14,6 +14,7 @@ import SilentScore from './components/SilentScore';
 import TapCommunication from './components/TapCommunication';
 import EyeOfProfiler from './components/EyeOfProfiler';
 import FragmentCollect from './components/FragmentCollect';
+import FragmentCollectNagisa from './components/FragmentCollectNagisa';
 import StealthGame from './components/StealthGame';
 import SaveSlotModal, { SAVE_KEY_PREFIX, loadAllSlots } from './components/SaveSlotModal';
 import { useNovelEngine } from './hooks/useNovelEngine';
@@ -156,6 +157,8 @@ export default function App() {
     skipMode,
     hudVisible,
     currentBg,
+    isBgTransitioning,
+    isBgFadingOut,
     nextStep,
     selectChoice,
     jumpToStep,
@@ -564,6 +567,16 @@ export default function App() {
       } else {
         nextStep();
       }
+    } else if (currentLine.action === 'EVALUATE_FRAGMENT_COLLECT_NAGISA_BRANCH') {
+      if (fragmentCollectResult && fragmentCollectResult.files >= 4) {
+        const targetIdx = scenarioData.findIndex(line => line.label === 'nagisa_fragment_happy_end');
+        if (targetIdx !== -1) jumpToStep(targetIdx);
+        else nextStep();
+      } else {
+        const targetIdx = scenarioData.findIndex(line => line.label === 'nagisa_fragment_bad_end');
+        if (targetIdx !== -1) jumpToStep(targetIdx);
+        else nextStep();
+      }
     }
   }, [currentStep, currentLine, jumpToStep, fragmentCollectResult, stealthGameResult]);
 
@@ -606,7 +619,7 @@ export default function App() {
       if (now - lastTap.current < 250) {
         toggleAuto();
       } else {
-        const isTransition = currentLine?.action === 'FADE_TO_BLACK' || currentLine?.action === 'WAIT_FADE';
+        const isTransition = currentLine?.action === 'FADE_TO_BLACK' || currentLine?.action === 'WAIT_FADE' || isBgTransitioning || isBgFadingOut;
         if (!isWaitingForChoice && !alertActive && !backlogOpen && !isTransition) {
           nextStep();
         }
@@ -653,7 +666,7 @@ export default function App() {
           'TRIGGER_STEALTH_GAME'
         ].includes(currentLine?.action);
 
-        const isTransition = currentLine?.action === 'FADE_TO_BLACK' || currentLine?.action === 'WAIT_FADE';
+        const isTransition = currentLine?.action === 'FADE_TO_BLACK' || currentLine?.action === 'WAIT_FADE' || isBgTransitioning || isBgFadingOut;
         if (!isWaitingForChoice && !isMinigameActive && !isAnyEnd && !isEndScreen && !isTransition) {
           nextStep();
         }
@@ -672,7 +685,7 @@ export default function App() {
   const isCinema = currentLine?.style === 'cinema';
   const isHappyEnd = currentLine?.action === 'FADE_TO_HAPPY_END';
   const isBadEnd = currentLine?.action === 'FADE_TO_BAD_END';
-  const isTransition = currentLine?.action === 'FADE_TO_BLACK' || currentLine?.action === 'WAIT_FADE';
+  const isTransition = currentLine?.action === 'FADE_TO_BLACK' || currentLine?.action === 'WAIT_FADE' || isBgTransitioning || isBgFadingOut;
   const isDemoEnd = currentLine?.action === 'FADE_TO_DEMO_END';
   const isAnyEnd = isHappyEnd || isBadEnd || isDemoEnd;
   const isTypingGameActive = currentLine?.action === 'TRIGGER_TYPING_GAME';
@@ -681,6 +694,7 @@ export default function App() {
   const isTapCommunicationActive = currentLine?.action === 'TRIGGER_TAP_COMMUNICATION';
   const isEyeOfProfilerActive = currentLine?.action === 'TRIGGER_EYE_OF_PROFILER';
   const isFragmentCollectActive = currentLine?.action === 'TRIGGER_FRAGMENT_COLLECT';
+  const isFragmentCollectNagisaActive = currentLine?.action === 'TRIGGER_FRAGMENT_COLLECT_NAGISA';
   const isStealthGameActive = currentLine?.action === 'TRIGGER_STEALTH_GAME';
 
   const handleEyeOfProfilerComplete = (success) => {
@@ -689,6 +703,11 @@ export default function App() {
   };
 
   const handleFragmentCollectComplete = (result) => {
+    setFragmentCollectResult(result);
+    nextStep();
+  };
+
+  const handleFragmentCollectNagisaComplete = (result) => {
     setFragmentCollectResult(result);
     nextStep();
   };
@@ -772,7 +791,7 @@ export default function App() {
           setSkipMode(false);
           return;
         }
-        if (!showTitle && !isWaitingForChoice && !alertActive && !backlogOpen && !isTypingGameActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isFragmentCollectActive && !isStealthGameActive && !isAnyEnd && !isEndScreen && !isTransition) {
+        if (!showTitle && !isWaitingForChoice && !alertActive && !backlogOpen && !isTypingGameActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isFragmentCollectActive && !isFragmentCollectNagisaActive && !isStealthGameActive && !isAnyEnd && !isEndScreen && !isTransition) {
           nextStep();
         }
       }}
@@ -813,6 +832,11 @@ export default function App() {
             {/* Fragment Collect Overlay */}
             {isFragmentCollectActive && (
               <FragmentCollect onComplete={handleFragmentCollectComplete} />
+            )}
+
+            {/* Fragment Collect Nagisa Overlay */}
+            {isFragmentCollectNagisaActive && (
+              <FragmentCollectNagisa onComplete={handleFragmentCollectNagisaComplete} />
             )}
 
             {/* Silent Score Overlay */}
@@ -905,13 +929,13 @@ export default function App() {
 
             {/* Fade To Black Overlay */}
             <AnimatePresence>
-              {isFadingBlack && (
+              {(isFadingBlack || isBgTransitioning) && (
                 <motion.div
                   className="absolute inset-0 z-[60] pointer-events-none bg-black"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  transition={{ duration: 1, ease: "easeInOut" }}
+                  transition={{ duration: 0.5, ease: "easeInOut" }}
                 />
               )}
             </AnimatePresence>

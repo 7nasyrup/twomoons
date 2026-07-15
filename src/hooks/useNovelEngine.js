@@ -11,6 +11,10 @@ export function useNovelEngine(scenarioData, options = {}) {
   const [autoMode, setAutoMode] = useState(false);
   const [hudVisible, setHudVisible] = useState(true);
   const [currentBg, setCurrentBg] = useState('');
+  const [isBgTransitioning, setIsBgTransitioning] = useState(false);
+  const [isBgFadingOut, setIsBgFadingOut] = useState(false);
+  const prevBgRef = useRef('');
+  const nextBgRef = useRef('');
   const typingTimer = useRef(null);
   const autoTimer = useRef(null);
   const fullTextRef = useRef('');
@@ -72,9 +76,61 @@ export function useNovelEngine(scenarioData, options = {}) {
     }
     
     if (currentLine?.bg) {
-      setCurrentBg(currentLine.bg);
+      const newBg = currentLine.bg;
+      const isPrologue = currentLine.scene === 'PROLOGUE';
+      const isSpecialAction = [
+        'FADE_TO_BLACK', 'WAKE_UP', 'FADE_IN', 'FADE_OUT',
+        'WAIT_SECONDS', 'SLOW_FADE_IN', 'WAIT_SECONDS_AND_MOVE_MOON', 'ALL_FADE_OUT', 'WAIT_FADE'
+      ].includes(currentLine.action);
+
+      if (
+        !isPrologue &&
+        !isSpecialAction &&
+        prevBgRef.current !== '' &&
+        prevBgRef.current !== newBg
+      ) {
+        // Bg changed: trigger blackout and delay typing
+        setIsBgTransitioning(true);
+        clearInterval(typingTimer.current);
+        setDisplayedText('');
+        setIsTyping(false);
+        // 背景は暗転中に切り替えるため、今はまだ setCurrentBg しない
+        nextBgRef.current = newBg;
+        prevBgRef.current = newBg;
+      } else {
+        prevBgRef.current = newBg;
+        setCurrentBg(newBg);
+      }
     }
   }, [currentStep, currentLine, triggerTypewriter]);
+
+  // Handle the blackout duration
+  useEffect(() => {
+    if (isBgTransitioning) {
+      // 暗転開始から500msで画面が完全に黒くなる
+      const transTimer = setTimeout(() => {
+        // 画面が真っ黒の状態で背景を切り替える
+        setCurrentBg(nextBgRef.current);
+        // 暗転を解除してテキストを表示
+        setIsBgTransitioning(false);
+        setIsBgFadingOut(true);
+        if (currentLine?.text) {
+          triggerTypewriter(currentLine.text);
+        }
+      }, 500);
+      return () => clearTimeout(transTimer);
+    }
+  }, [isBgTransitioning, currentLine, triggerTypewriter]);
+
+  // Handle the fade out duration
+  useEffect(() => {
+    if (isBgFadingOut) {
+      const fadeTimer = setTimeout(() => {
+        setIsBgFadingOut(false);
+      }, 500);
+      return () => clearTimeout(fadeTimer);
+    }
+  }, [isBgFadingOut]);
 
   const [skipMode, setSkipMode] = useState(false);
   const skipTimer = useRef(null);
@@ -144,8 +200,8 @@ export function useNovelEngine(scenarioData, options = {}) {
     const isMinigame = currentLine?.action?.startsWith('TRIGGER_');
     const isActionWithoutText = currentLine?.action && !currentLine?.text && !currentLine?.action?.startsWith('TRIGGER_');
     
-    // We pause autoMode if it's a minigame, choice.
-    if (autoMode && !isTyping && !isWaitingForChoice && !isMinigame && !isActionWithoutText && !manualTestMode && !endMode) {
+    // We pause autoMode if it's a minigame, choice, or during a background transition.
+    if (autoMode && !isBgTransitioning && !isBgFadingOut && !isTyping && !isWaitingForChoice && !isMinigame && !isActionWithoutText && !manualTestMode && !endMode) {
       autoTimer.current = setTimeout(() => {
         if (currentStep < scenarioData.length - 1) {
           advanceStep();
@@ -153,7 +209,7 @@ export function useNovelEngine(scenarioData, options = {}) {
       }, 2500);
     }
     return () => clearTimeout(autoTimer.current);
-  }, [autoMode, isTyping, isWaitingForChoice, currentStep, scenarioData, advanceStep, currentLine, manualTestMode, endMode]);
+  }, [autoMode, isTyping, isWaitingForChoice, currentStep, scenarioData, advanceStep, currentLine, manualTestMode, endMode, isBgTransitioning, isBgFadingOut]);
 
   // Skip mode
   useEffect(() => {
@@ -163,18 +219,18 @@ export function useNovelEngine(scenarioData, options = {}) {
         return;
       }
       
-      if (!isTyping && !isWaitingForChoice) {
+      if (!isTyping && !isWaitingForChoice && !isBgTransitioning && !isBgFadingOut) {
         skipTimer.current = setTimeout(() => {
           if (currentStep < scenarioData.length - 1) {
             advanceStep();
           }
         }, 50);
-      } else if (isTyping) {
+      } else if (isTyping && !isBgTransitioning && !isBgFadingOut) {
         completeTypewriter();
       }
     }
     return () => clearTimeout(skipTimer.current);
-  }, [skipMode, endMode, isTyping, isWaitingForChoice, currentStep, currentLine, scenarioData, advanceStep, completeTypewriter]);
+  }, [skipMode, endMode, isTyping, isWaitingForChoice, currentStep, currentLine, scenarioData, advanceStep, completeTypewriter, isBgTransitioning, isBgFadingOut]);
 
   // Cleanup
   useEffect(() => {
@@ -196,6 +252,8 @@ export function useNovelEngine(scenarioData, options = {}) {
     skipMode,
     hudVisible,
     currentBg,
+    isBgTransitioning,
+    isBgFadingOut,
     nextStep,
     selectChoice,
     jumpToStep,
