@@ -179,57 +179,7 @@ export default function App() {
   const [shakeEffect, setShakeEffect] = useState(false);
   const [stealthGameResult, setStealthGameResult] = useState(null);
 
-  // Global hold-to-skip logic
-  const holdTimerRef = useRef(null);
-  const fastForwardIntervalRef = useRef(null);
-  const isFastForwardingRef = useRef(false);
-  const nextStepRef = useRef(nextStep);
 
-  useEffect(() => {
-    nextStepRef.current = nextStep;
-  }, [nextStep]);
-
-  const clearHoldTimers = () => {
-    if (holdTimerRef.current) clearTimeout(holdTimerRef.current);
-    if (fastForwardIntervalRef.current) clearInterval(fastForwardIntervalRef.current);
-    holdTimerRef.current = null;
-    fastForwardIntervalRef.current = null;
-  };
-
-  useEffect(() => {
-    return clearHoldTimers;
-  }, []);
-
-  useEffect(() => {
-    const isMinigame = currentLine?.action?.startsWith('TRIGGER_');
-    const isChoice = currentLine?.type === 'choice';
-    if (isMinigame || isChoice || alertActive) {
-      clearHoldTimers();
-      isFastForwardingRef.current = false;
-    }
-  }, [currentLine, alertActive]);
-
-  const startHold = (e) => {
-    if (e.type === 'mousedown' && e.button !== 0) return;
-    
-    // Disable fast-forward in certain states
-    const _isAnyEnd = isEndScreen || ['FADE_TO_HAPPY_END', 'FADE_TO_BAD_END', 'FADE_TO_DEMO_END'].includes(currentLine?.action);
-    if (showTitle || isWaitingForChoice || alertActive || backlogOpen || isTypingGameActive || isSearchAndLearningActive || isSilentScoreActive || isTapCommunicationActive || isEyeOfProfilerActive || isFragmentCollectActive || isStealthGameActive || _isAnyEnd) {
-      return;
-    }
-
-    clearHoldTimers();
-    isFastForwardingRef.current = false;
-
-    holdTimerRef.current = setTimeout(() => {
-      isFastForwardingRef.current = true;
-      fastForwardIntervalRef.current = setInterval(() => {
-        if (!skipMode) {
-          nextStepRef.current();
-        }
-      }, 50);
-    }, 400);
-  };
   const [saveToast, setSaveToast] = useState(null); // 'saved' | 'loaded' | null
   // セーブスロットモーダル
   const [slotModalMode, setSlotModalMode] = useState(null); // 'save' | 'load' | null
@@ -370,6 +320,18 @@ export default function App() {
   useEffect(() => {
     if (!currentLine || showTitle) return;
 
+    const jpToEngBase = {
+      "睦典": "Mutsunori",
+      "ヒルミ教授": "Hirumi",
+      "ミカ": "Mika",
+      "凪砂": "Nagisa",
+      "大男": "Akane",
+      "アカネ": "Akane",
+      "満": "Michiru",
+      "朔良": "Sakura",
+      "黒騎士": "BlackKnight"
+    };
+
     // 1. Force Clear all illustrations
     if (currentLine.clearIllust) {
       setPresentCharacters([]);
@@ -382,10 +344,13 @@ export default function App() {
     // 2. Force Hide specific illustrations
     if (Array.isArray(currentLine.hideIllust)) {
       currentLine.hideIllust.forEach(char => {
-        const baseName = char.split('_')[0];
+        const rawBase = char.split('_')[0];
+        const baseName = jpToEngBase[rawBase] || rawBase;
         const initialLen = nextList.length;
-        // 表情名が付いていても、ベース名が一致するキャラを全て削除
-        nextList = nextList.filter(c => c.split('_')[0] !== baseName);
+        nextList = nextList.filter(c => {
+          const cBase = c.split('_')[0];
+          return (jpToEngBase[cBase] || cBase) !== baseName;
+        });
         if (nextList.length !== initialLen) {
           listChanged = true;
         }
@@ -395,9 +360,12 @@ export default function App() {
     // 3. Force Show specific illustrations
     if (Array.isArray(currentLine.showIllust)) {
       currentLine.showIllust.forEach(char => {
-        const baseName = char.split('_')[0];
-        // 同じベース名を持つキャラクターが既にリストにいれば、それを新しい表情に置き換える
-        const existingIndex = nextList.findIndex(c => c.split('_')[0] === baseName);
+        const rawBase = char.split('_')[0];
+        const baseName = jpToEngBase[rawBase] || rawBase;
+        const existingIndex = nextList.findIndex(c => {
+          const cBase = c.split('_')[0];
+          return (jpToEngBase[cBase] || cBase) === baseName;
+        });
         if (existingIndex !== -1) {
           if (nextList[existingIndex] !== char) {
             nextList[existingIndex] = char;
@@ -415,51 +383,24 @@ export default function App() {
     const targetSpeakers = ["睦典", "ミカ", "凪砂", "大男", "アカネ", "ヒルミ教授", "満", "黒騎士", "ルキ", "朔良"];
     const isTransmission = currentLine?.text?.trim().startsWith('『');
     if (speaker && targetSpeakers.includes(speaker) && !isTransmission) {
-      const isManuallyHidden = Array.isArray(currentLine.hideIllust) && currentLine.hideIllust.some(c => c.split('_')[0] === speaker);
+      const speakerNormalized = jpToEngBase[speaker] || speaker;
+      const isManuallyHidden = Array.isArray(currentLine.hideIllust) && currentLine.hideIllust.some(c => {
+        const cBase = c.split('_')[0];
+        return (jpToEngBase[cBase] || cBase) === speakerNormalized;
+      });
       const isNightMutsunoriException = currentLine.scene === "夜の帰り道" && speaker === "睦典";
 
-      // 既にそのキャラクター（どの表情であっても）が表示リストに含まれていない場合のみ自動追加
-      const isAlreadyPresent = nextList.some(c => c.split('_')[0] === speaker);
+      const isAlreadyPresent = nextList.some(c => {
+        const cBase = c.split('_')[0];
+        return (jpToEngBase[cBase] || cBase) === speakerNormalized;
+      });
       if (!isManuallyHidden && !isNightMutsunoriException && !isAlreadyPresent) {
-        nextList.push(speaker);
+        nextList.push(speakerNormalized);
         listChanged = true;
       }
     }
 
-    // 5. Apply `currentLine.illust` to update expression and persist it
-    if (currentLine.illust) {
-      const parts = currentLine.illust.split('_');
-      if (parts.length === 2) {
-        const engBase = parts[0];
-        const exp = parts[1];
 
-        // Map English to Japanese base names
-        const engToJp = {
-          "Mutsunori": "睦典",
-          "Hirumi": "ヒルミ教授",
-          "Mika": "ミカ",
-          "Nagisa": "凪砂",
-          "Akane": "大男",
-          "Michiru": "満"
-        };
-        const jpBase = engToJp[engBase];
-
-        if (jpBase) {
-          const newCharStr = `${jpBase}_${exp}`;
-          const existingIndex = nextList.findIndex(c => c.split('_')[0] === jpBase);
-
-          if (existingIndex !== -1) {
-            if (nextList[existingIndex] !== newCharStr) {
-              nextList[existingIndex] = newCharStr;
-              listChanged = true;
-            }
-          } else {
-            nextList.push(newCharStr);
-            listChanged = true;
-          }
-        }
-      }
-    }
 
     if (listChanged) {
       setPresentCharacters(nextList);
@@ -661,15 +602,12 @@ export default function App() {
         }
       }
     } else {
-      if (isFastForwardingRef.current) {
-        isFastForwardingRef.current = false;
-        return;
-      }
       const now = Date.now();
       if (now - lastTap.current < 250) {
         toggleAuto();
       } else {
-        if (!isWaitingForChoice && !alertActive && !backlogOpen) {
+        const isTransition = currentLine?.action === 'FADE_TO_BLACK' || currentLine?.action === 'WAIT_FADE';
+        if (!isWaitingForChoice && !alertActive && !backlogOpen && !isTransition) {
           nextStep();
         }
       }
@@ -715,7 +653,8 @@ export default function App() {
           'TRIGGER_STEALTH_GAME'
         ].includes(currentLine?.action);
 
-        if (!isWaitingForChoice && !isMinigameActive && !isAnyEnd && !isEndScreen) {
+        const isTransition = currentLine?.action === 'FADE_TO_BLACK' || currentLine?.action === 'WAIT_FADE';
+        if (!isWaitingForChoice && !isMinigameActive && !isAnyEnd && !isEndScreen && !isTransition) {
           nextStep();
         }
       }
@@ -826,28 +765,14 @@ export default function App() {
   return (
     <div
       className="w-full h-full select-none touch-none cursor-pointer"
-      onMouseDown={startHold}
-      onMouseUp={clearHoldTimers}
-      onMouseLeave={clearHoldTimers}
-      onTouchStart={(e) => {
-        handleTouchStart(e);
-        startHold(e);
-      }}
-      onTouchEnd={(e) => {
-        handleTouchEnd(e);
-        clearHoldTimers();
-      }}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
       onClick={() => {
-        clearHoldTimers();
-        if (isFastForwardingRef.current) {
-          isFastForwardingRef.current = false;
-          return;
-        }
         if (skipMode) {
           setSkipMode(false);
           return;
         }
-        if (!showTitle && !isWaitingForChoice && !alertActive && !backlogOpen && !isTypingGameActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isFragmentCollectActive && !isStealthGameActive && !isAnyEnd && !isEndScreen) {
+        if (!showTitle && !isWaitingForChoice && !alertActive && !backlogOpen && !isTypingGameActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isFragmentCollectActive && !isStealthGameActive && !isAnyEnd && !isEndScreen && !isTransition) {
           nextStep();
         }
       }}

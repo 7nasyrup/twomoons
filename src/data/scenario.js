@@ -49,7 +49,7 @@ export const scenarioData = [
     scene: "窓の外",
     speaker: "朔良",
     text: "「ん……っ……」",
-    bg: "/scene/moon.png",
+    bg: "/scene/sakura_room_moon.png",
     style: "novel",
     action: "WAKE_UP"
   },
@@ -100,12 +100,20 @@ export const scenarioData = [
     scene: "朔良の部屋",
     text: "鍵を閉め、冷たい青色の街へと私は駆け出した。"
   },
+  {
+    action: "FADE_TO_BLACK"
+  },
+  {
+    scene: "月科学大講義室",
+    action: "WAIT_FADE",
+    bg: "/scene/university_classroom.png"
+  },
 
   // ================== #1 CLASSROOM SCENE ==================
   {
     scene: "月科学大講義室",
     text: "チクタクと進む時計の音。 あの冷たい青い光が斜めに差し込む大講義室は、学生たちの眠気と、教授の退屈な声で満たされていた。",
-    bg: "/scene/classroom.png",
+    bg: "/scene/university_classroom.png",
     style: "novel",
   },
   {
@@ -137,11 +145,11 @@ export const scenarioData = [
     speaker: "ヒルミ教授",
     role: "PROFESSOR",
     text: "「はい、今日の講義はここまで。週末までに、月波が人体に与える精神的拒絶反応についてのレポートを提出するように。遅れたら、容赦なく単位は落とすからね」",
-    hideIllust: ["Hirumi"]
   },
   {
     scene: "月科学大講義室",
-    text: "ヒルミ教授がパタンと教科書を閉じると、講義室のあちこちから「ええー……」「終わんねえよ」と絶望の地鳴りのような声が上がった。教授はそれをどこか楽しそうに眺めながら、片手をひらひらと振って教壇を去っていく。"
+    text: "ヒルミ教授がパタンと教科書を閉じると、講義室のあちこちから「ええー……」「終わんねえよ」と絶望の地鳴りのような声が上がった。教授はそれをどこか楽しそうに眺めながら、片手をひらひらと振って教壇を去っていく。",
+    hideIllust: ["Hirumi"]
   },
   {
     scene: "月科学大講義室",
@@ -154,7 +162,7 @@ export const scenarioData = [
     speaker: "？？？",
     text: "「おーーい！ 朔良ーー！！」",
     action: "PLAY_RUNNING_SE",
-    bg: "/scene/classroom.png",
+    bg: "/scene/university_classroom.png",
     showIllust: ["Mutsunori_smile"],
   },
   {
@@ -209,8 +217,7 @@ export const scenarioData = [
     scene: "講義室出口",
     speaker: "睦典",
     role: "MUTSUNORI",
-    text: "「…名前がかっこよかったから」"
-    ,
+    text: "「…名前がかっこよかったから」",
     showIllust: ["Mutsunori_smile"]
   },
   {
@@ -234,14 +241,13 @@ export const scenarioData = [
   {
     scene: "大学の廊下",
     text: "あはは、と睦典が緊張感のない声で笑う。",
-    bg: "/scene/university_rouka.png"
+    bg: "/scene/university_hallway.png"
   },
   {
     scene: "大学の廊下",
     speaker: "睦典",
     role: "MUTSUNORI",
-    text: "「あーあ。俺にもっとカッコいい能力があればなー。手から派手に炎が出るとかさ！ そうすれば女の子にもモテモテで、実家のうどん屋も大繁盛なのに」"
-    ,
+    text: "「あーあ。俺にももっとカッコいい能力があればなー。手から派手に炎が出るとかさ！ そうすれば女の子にもモテモテで、実家のうどん屋も大繁盛なのに」",
     showIllust: ["Mutsunori_pout"]
   },
   {
@@ -266,13 +272,11 @@ export const scenarioData = [
     speaker: "睦典",
     role: "MUTSUNORI",
     text: "「よーし、そうと決まれば早くレポート終わらせて店に行こ！」",
-    hideIllust: ["Mutsunori"]
-    ,
     showIllust: ["Mutsunori_happy"]
   },
   {
     scene: "大学の廊下",
-    text: "現金なやつ。睦典は一瞬で元の笑顔に戻ると、大きな身体を揺らしながら、キャンパスの廊下を小走りで先を行く。</br>私は苦笑しながら、その背中を追いかけようとして――。"
+    text: "現金なやつ。睦典は一瞬で元の笑顔に戻ると、大きな身体を揺らしながら、キャンパスの廊下を小走りで先を行く。私は苦笑しながら、その背中を追いかけようとして――。"
   },
 
   // ================== #3 PROFESSOR HIRUMI INTERJECTS ==================
@@ -280,11 +284,11 @@ export const scenarioData = [
     scene: "大学の廊下",
     speaker: "？？？",
     text: "「おい、睦典。朔良のレポート、丸写しするなよ」",
-    action: "PLAY_FOOTSTEP_SE"
   },
   {
     scene: "大学の廊下",
     text: "カツン、と。ローファーが床を蹴る音が耳に響いた。その響きを押し潰すように、頭上から低く、けれどよく通る声が降ってくる。",
+    showIllust: ["Hirumi_smile"]
   },
   {
     scene: "大学の廊下",
@@ -300,8 +304,7 @@ export const scenarioData = [
     scene: "大学の廊下",
     speaker: "睦典",
     role: "MUTSUNORI",
-    text: "「げぇっ、教授！？」"
-    ,
+    text: "「げぇっ、教授！？」",
     showIllust: ["Mutsunori_pout"]
   },
   {
@@ -318,9 +321,7 @@ export const scenarioData = [
     scene: "大学の廊下",
     speaker: "睦典",
     role: "MUTSUNORI",
-    text: "「うっ……！ い、いえ！ 決してそんな、滅相もないです……！」"
-    ,
-    showIllust: ["Mutsunori_pout"]
+    text: "「うっ……！ い、いえ！ 決してそんな、滅相もないです……！」",
   },
   {
     scene: "大学の廊下",
@@ -346,9 +347,8 @@ export const scenarioData = [
     scene: "大学の廊下",
     speaker: "睦典",
     role: "MUTSUNORI",
-    text: "「……なんの用すか」"
-    ,
-    showIllust: ["Mutsunori_smile"]
+    text: "「……なんの用すか」",
+    showIllust: ["Mutsunori_serious"]
   },
   {
     scene: "大学の廊下",
@@ -431,9 +431,8 @@ export const scenarioData = [
     scene: "大学の廊下",
     speaker: "睦典",
     role: "MUTSUNORI",
-    text: "「……なーんか、教授って朔良にだけ優しい気がするんだよなぁ。セクハラ……？セクハラじゃねあれ……？」"
-    ,
-    showIllust: ["Mutsunori_smile"]
+    text: "「……なーんか、教授って朔良にだけ優しい気がするんだよなぁ。セクハラ……？セクハラじゃねあれ……？」",
+    showIllust: ["Mutsunori_pout"]
   },
   {
     scene: "大学の廊下",
@@ -449,8 +448,7 @@ export const scenarioData = [
     scene: "大学の廊下",
     speaker: "睦典",
     role: "MUTSUNORI",
-    text: "「あ！ しました、忘れてた！ 急ごう、朔良！」"
-    ,
+    text: "「あ！ しました、忘れてた！ 急ごう、朔良！」",
     showIllust: ["Mutsunori_smile"]
   },
   {
@@ -462,7 +460,7 @@ export const scenarioData = [
   {
     scene: "キャンパス外",
     text: "カバンを揺らしながら追いかけると、大学の重厚なエントランスを抜けた瞬間、全身が一段と濃い「青」に包まれた。\n頭上を見上げれば、太陽の輝きを遮るようにして居座る人工の月。",
-    bg: "school_gate_evening"
+    bg: "/scene/university_outside.png"
   },
   {
     scene: "キャンパス外",
@@ -471,20 +469,18 @@ export const scenarioData = [
   {
     scene: "商店街",
     text: "キャンパスの正門を出て、駅へと続く少し賑やかな通りに入る。\n商店街の街頭スピーカーからは、お馴染みの電子音声が流れていた。",
-    bg: "shopping_street"
+    bg: "/scene/shopping_street.png"
   },
   {
     scene: "商店街",
     speaker: "街頭スピーカー",
     text: "『――現在、月波観測予報は警戒レベル３です。体調に異変を感じた方、または周囲に適応不全の兆候が見られる場合は、速やかに最寄りの防衛局へ……』",
-    action: "PLAY_ALERT_SE"
   },
   {
     scene: "商店街",
     speaker: "睦典",
     role: "MUTSUNORI",
-    text: "「……またレベル３かぁ」"
-    ,
+    text: "「……またレベル３かぁ」",
     showIllust: ["Mutsunori_smile"]
   },
   {
@@ -501,16 +497,14 @@ export const scenarioData = [
     scene: "商店街",
     speaker: "睦典",
     role: "MUTSUNORI",
-    text: "「うん。まぁ、俺らの街は防衛局の結界もしっかりしてるし、そう簡単に【キメラ】は出ないと思うけど……」"
-    ,
+    text: "「うん。まぁ、俺らの街は防衛局の結界もしっかりしてるし、そう簡単に【キメラ】は出ないと思うけど……」",
     showIllust: ["Mutsunori_smile"]
   },
   {
     scene: "商店街",
     speaker: "睦典",
     role: "MUTSUNORI",
-    text: "「あ、そうだ！ 朔良、さっき教授と話してた『本物の月』ってさ、本当に黄色かったの？」"
-    ,
+    text: "「あ、そうだ！ 朔良、さっき教授と話してた『本物の月』ってさ、本当に黄色かったの？」",
     showIllust: ["Mutsunori_smile"]
   },
   {
@@ -527,8 +521,7 @@ export const scenarioData = [
     scene: "商店街",
     speaker: "睦典",
     role: "MUTSUNORI",
-    text: "「へぇ……毎日形が変わるの？ なにそれ、めっちゃオシャレじゃん。出汁の琥珀色みたいな感じかなぁ」"
-    ,
+    text: "「へぇ……毎日形が変わるの？ なにそれ、めっちゃオシャレじゃん。出汁の琥珀色みたいな感じかなぁ」",
     showIllust: ["Mutsunori_happy"]
   },
   {
@@ -554,8 +547,7 @@ export const scenarioData = [
     speaker: "睦典",
     role: "MUTSUNORI",
     text: "「よしっ、着いた！ 我が家であり、俺の聖域であり、未来の三ツ星割烹『むつ』へようこそ！」",
-    bg: "restaurant_exterior"
-    ,
+    bg: "/scene/mutsu.png",
     showIllust: ["Mutsunori_happy"]
   },
   {
@@ -571,8 +563,7 @@ export const scenarioData = [
     scene: "夜の帰り道",
     speaker: "朔良",
     role: "SAKURA",
-    text: "「ふぅ……」",
-    bg: "night_street"
+    text: "「ふぅ……」"
   },
   {
     scene: "夜の帰り道",
@@ -586,8 +577,7 @@ export const scenarioData = [
     scene: "夜の帰り道",
     speaker: "睦典",
     role: "MUTSUNORI",
-    text: "「もうこんな時間じゃん！ 朔良、悪いことしちゃったな……夜道は物騒だし、俺が家まで送ってくよ！」"
-    ,
+    text: "「もうこんな時間じゃん！ 朔良、悪いことしちゃったな……夜道は物騒だし、俺が家まで送ってくよ！」",
     showIllust: ["Mutsunori_pout"]
   },
   {
@@ -599,7 +589,7 @@ export const scenarioData = [
     speaker: "朔良",
     role: "SAKURA",
     text: "「…………」",
-    hideIllust: ["Mutsunori_pout"]
+    hideIllust: ["Mutsunori"]
   },
   {
     scene: "夜の帰り道",
@@ -636,8 +626,7 @@ export const scenarioData = [
   {
     scene: "夜の帰り道",
     speaker: "？？？",
-    text: "「ねぇそこの君。何か探し物かい？」",
-    action: "PLAY_FOOTSTEP_SE",
+    text: "「ねぇそこの君。何か探し物かい？」"
   },
   {
     scene: "夜の帰り道",
@@ -647,7 +636,8 @@ export const scenarioData = [
   },
   {
     scene: "夜の帰り道",
-    text: "不意に背後からかけられた、鈴の鳴るような、ひどく整った男の人の声。驚いて勢いよく振り返ると、そこには見知らぬ男性が立っていた。\n整ったその顔立ちに、思わず心臓がドキッとする。"
+    text: "不意に背後からかけられた、鈴の鳴るような、ひどく整った男の人の声。驚いて勢いよく振り返ると、そこには見知らぬ男性が立っていた。整ったその顔立ちに、思わず心臓がドキッとする。",
+    showIllust: ["Nagisa_smile"]
   },
   {
     scene: "夜の帰り道",
@@ -877,7 +867,7 @@ export const scenarioData = [
     speaker: "朔良",
     role: "SAKURA",
     text: "「ただいま……」",
-    bg: "sakura_room"
+    bg: "/scene/sakura_room_night.png"
   },
   {
     scene: "朔良の部屋",
@@ -927,19 +917,18 @@ export const scenarioData = [
   },
   {
     scene: "朔良の部屋",
-    text: "液晶画面に映し出されたのは、深夜の報道番組だった。"
+    text: "液晶画面に映し出されたのは、深夜の報道番組だった。",
+    bg: "/scene/sakura_room_tv.png"
   },
   {
     scene: "朔良の部屋",
     speaker: "テレビ",
     text: "『――続いてのニュースです。本日18時頃、〇〇区において発生した限定的な月波のバーストにより、警戒レベル３が発令されました』",
-    action: "PLAY_ALERT_SE"
   },
   {
     scene: "朔良の部屋",
     speaker: "テレビ",
     text: "『しかし、今回の現場ではこれまでにない極めて異常な事態が発生しています』",
-    action: "PLAY_ALERT_SE"
   },
   {
     scene: "朔良の部屋",
@@ -978,7 +967,8 @@ export const scenarioData = [
   },
   {
     scene: "朔良の部屋",
-    text: "パチン、とテレビの電源を切る。"
+    text: "パチン、とテレビの電源を切る。",
+    bg: "/scene/sakura_room_night.png"
   },
   {
     scene: "朔良の部屋",
@@ -1064,7 +1054,8 @@ export const scenarioData = [
   },
   {
     scene: "朔良の部屋",
-    text: "重い瞼を開けると、遮光カーテンの隙間から、今日も変わらずに冷たい青みを帯びた光が部屋に差し込んでいる。"
+    text: "重い瞼を開けると、遮光カーテンの隙間から、今日も変わらずに冷たい青みを帯びた光が部屋に差し込んでいる。",
+    bg: "/scene/sakura_room.png"
   },
   {
     scene: "朔良の部屋",
@@ -1098,9 +1089,7 @@ export const scenarioData = [
     speaker: "睦典",
     role: "MUTSUNORI",
     text: "「おはよ、朔良……。お互い、よく生きて朝を迎えられたね……」",
-    bg: "school_gate_evening",
-    illust: "Mutsunori_smile" // 疲れ気味だが安堵のニュアンス
-    ,
+    bg: "/scene/university_gate.png",
     showIllust: ["Mutsunori_smile"]
   },
   {
@@ -1118,9 +1107,7 @@ export const scenarioData = [
     speaker: "睦典",
     role: "MUTSUNORI",
     text: "「だってさぁ！ 朔良と連絡取れたのは安心したけど、うちの店のすぐ近くのブロックが封鎖されたんだよ！？ 防衛局のサイレンは鳴り響くし、ネット見たら【黒騎士】が【キメラ】の軍勢率いて現れたって書いてあるし！ 怖くて一睡もできなかったよ～！」",
-    illust: "Mutsunori_pout" // 怖かった・不満・泣きごとのニュアンス
-    ,
-    showIllust: ["Mutsunori_serious"]
+    showIllust: ["Mutsunori_pout"]
   },
   {
     scene: "大学の正門前",
@@ -1133,8 +1120,6 @@ export const scenarioData = [
     speaker: "睦典",
     role: "MUTSUNORI",
     text: "「うん……。やっぱり家まで送ればよかったってすごい後悔して……連絡もらえて本当に安心したよ」",
-    illust: "Mutsunori_smile" // 反省・しゅんとした優しさ。sadがないためsmile // TODO: 要確認
-    ,
     showIllust: ["Mutsunori_smile"]
   },
   {
@@ -1152,8 +1137,6 @@ export const scenarioData = [
     speaker: "睦典",
     role: "MUTSUNORI",
     text: "「そのお詫びと言ってはなんだけど……完成したら『ルナ・エネルギーうどん』、無償で提供するわ！！あ〜朔良に食べさせるためにも、早く帰って修行しなきゃな〜！」",
-    illust: "Mutsunori_happy" // テンション上がって元気満々
-    ,
     showIllust: ["Mutsunori_happy"]
   },
   {
@@ -1167,8 +1150,6 @@ export const scenarioData = [
     speaker: "睦典",
     role: "MUTSUNORI",
     text: "「ひええ、待ってよ朔良～！」",
-    illust: "Mutsunori_pout" // 慌てて焦るニュアンス
-    ,
     showIllust: ["Mutsunori_pout"]
   },
   {
@@ -1237,8 +1218,6 @@ export const scenarioData = [
     role: "MUTSUNORI",
     text: "「おはよ、朔良……。お互い、よく生きて朝を迎えられたね……」",
     bg: "school_gate_evening",
-    illust: "Mutsunori_smile" // 疲れ気味だが安堵のニュアンス
-    ,
     showIllust: ["Mutsunori_smile"]
   },
   {
@@ -1256,8 +1235,6 @@ export const scenarioData = [
     speaker: "睦典",
     role: "MUTSUNORI",
     text: "「だってさぁ！ 朔良と別れたあと、うちの店のすぐ近くのブロックが封鎖されたんだよ！？ 防衛局のサイレンは鳴り響くし、ネット見たら【黒騎士】が【キメラ】の軍勢率いて現れたって書いてあるし！ 怖くて一睡もできなかったよ～！」",
-    illust: "Mutsunori_pout" // 怖かった・不満・泣きごとのニュアンス
-    ,
     showIllust: ["Mutsunori_serious"]
   },
   {
@@ -1271,8 +1248,6 @@ export const scenarioData = [
     speaker: "睦典",
     role: "MUTSUNORI",
     text: "「うん……。やっぱり家まで送ればよかったってすごい後悔して……」",
-    illust: "Mutsunori_smile" // 反省・しゅんとした優しさ。sadがないためsmile // TODO: 要確認
-    ,
     showIllust: ["Mutsunori_smile"]
   },
   {
@@ -1294,8 +1269,6 @@ export const scenarioData = [
     speaker: "睦典",
     role: "MUTSUNORI",
     text: "「そのお詫びと言ってはなんだけど……完成したら『ルナ・エネルギーうどん』、無償で提供するわ！！あ〜朔良に食べさせるためにも、早く帰って修行しなきゃな〜！」",
-    illust: "Mutsunori_happy" // テンション上がって元気満々
-    ,
     showIllust: ["Mutsunori_happy"]
   },
   {
@@ -1309,8 +1282,6 @@ export const scenarioData = [
     speaker: "睦典",
     role: "MUTSUNORI",
     text: "「ひええ、待ってよ朔良～！」",
-    illust: "Mutsunori_pout" // 慌てて焦るニュアンス
-    ,
     showIllust: ["Mutsunori_pout"]
   },
   // ================== 合流地点 ==================
@@ -1318,7 +1289,7 @@ export const scenarioData = [
     label: "morning_classroom_merge",
     scene: "講義室",
     text: "ドタバタと坂道を駆け上がり、私たちは1限の講義室へと滑り込んだ。",
-    bg: "/scene/classroom.png"
+    bg: "/scene/university_classroom.png"
   },
   {
     scene: "講義室",
@@ -1333,8 +1304,6 @@ export const scenarioData = [
     speaker: "睦典",
     role: "MUTSUNORI",
     text: "「終わったーー！ 朔良、早く行こ！ 今日は学食の唐揚げ定食が俺を待ってる！」",
-    illust: "Mutsunori_happy" // 解放感・テンション高め
-    ,
     showIllust: ["Mutsunori_pout"]
   },
   {
@@ -1348,14 +1317,11 @@ export const scenarioData = [
     speaker: "睦典",
     role: "MUTSUNORI",
     text: "「でしょ？ よーし、席取りは俺に任せて───」",
-    illust: "Mutsunori_happy" // 張り切っているノリ
-    ,
     showIllust: ["Mutsunori_happy"]
   },
   {
-    scene: "廊下",
+    scene: "講義室",
     text: "二人でカバンを肩にかけ、賑わうキャンパスの正門へ向かって歩いていた、その時だった。",
-    bg: "school_gate_evening"
   },
 
   // ================== #10 対峙「正門前の闖入者」 ==================
@@ -1363,7 +1329,7 @@ export const scenarioData = [
     scene: "大学の正門前",
     speaker: "？？？",
     text: "「あ、見つけた。──やぁ、昨日の可愛い子」",
-    bg: "school_gate_evening",
+    bg: "/scene/university_gate.png",
   },
   {
     scene: "大学の正門前",
@@ -1382,8 +1348,7 @@ export const scenarioData = [
   {
     scene: "大学の正門前",
     text: "ハッとして顔を上げると、正門のレンガの壁に背中を預け、退屈そうにスマートフォンを弄っていた男が、こちらを見てにこりと完璧な微笑みを浮かべていた。",
-    showIllust: ["Nagisa"],
-    illust: "Nagisa_smile" // 完璧な微笑みを浮かべている描写
+    showIllust: ["Nagisa_smile"] // 完璧な微笑みを浮かべている描写
   },
   {
     scene: "大学の正門前",
@@ -1407,8 +1372,7 @@ export const scenarioData = [
     scene: "大学の正門前",
     speaker: "睦典",
     role: "MUTSUNORI",
-    text: "「この人、朔良の知り合い？」"
-    ,
+    text: "「この人、朔良の知り合い？」",
     showIllust: ["Mutsunori_smile"]
   },
   {
@@ -1425,9 +1389,8 @@ export const scenarioData = [
     scene: "大学の正門前",
     speaker: "睦典",
     role: "MUTSUNORI",
-    text: "「誰だよ、お前。朔良に何か用か」"
-    ,
-    showIllust: ["Mutsunori_smile"]
+    text: "「誰だよ、お前。朔良に何か用か」",
+    showIllust: ["Mutsunori_serious"]
   },
   {
     scene: "大学の正門前",
@@ -1438,16 +1401,13 @@ export const scenarioData = [
     speaker: "凪砂",
     role: "NAGISA",
     text: "「お前には話しかけてない」",
-    illust: "Nagisa_serious" // 冷徹に無視・威圧的な態度
-    ,
     showIllust: ["Nagisa_neutral"]
   },
   {
     scene: "大学の正門前",
     speaker: "睦典",
     role: "MUTSUNORI",
-    text: "「は？なんだよそれ。なんの用かって聞いてるんだけど」"
-    ,
+    text: "「は？なんだよそれ。なんの用かって聞いてるんだけど」",
     showIllust: ["Mutsunori_serious"]
   },
   {
@@ -1455,8 +1415,6 @@ export const scenarioData = [
     speaker: "凪砂",
     role: "NAGISA",
     text: "「うるさいな……。声が大きくて頭に響く。育ちが悪いんじゃない？」",
-    illust: "Nagisa_serious" // 冷たく見下した態度
-    ,
     showIllust: ["Nagisa_serious"]
   },
   {
@@ -1464,16 +1422,12 @@ export const scenarioData = [
     speaker: "睦典",
     role: "MUTSUNORI",
     text: "「んだと……っ！？」"
-    ,
-    showIllust: ["Mutsunori_smile"]
   },
   {
     scene: "大学の正門前",
     speaker: "凪砂",
     role: "NAGISA",
     text: "「お前に用はない。僕が話したいのは、後ろの彼女」",
-    illust: "Nagisa_neutral" // 無関心・淡々と目的だけを口にする
-    ,
     showIllust: ["Nagisa_neutral"]
   },
   {
@@ -1492,8 +1446,6 @@ export const scenarioData = [
     speaker: "凪砂",
     role: "NAGISA",
     text: "「学生証、カバンから見えてた。頭の悪そうな名前の大学。……ねぇ、朔良ちゃん」",
-    illust: "Nagisa_smile" // 薄い唇の端が歪に持ち上がる描写に対応
-    ,
     showIllust: ["Nagisa_smile"]
   },
   {
@@ -1505,8 +1457,6 @@ export const scenarioData = [
     speaker: "睦典",
     role: "MUTSUNORI",
     text: "「近づくな、って言ってんだろ」"
-    ,
-    showIllust: ["Mutsunori_smile"]
   },
   {
     scene: "大学の正門前",
@@ -1563,7 +1513,7 @@ export const scenarioData = [
     label: "nagisa_merge_point",
     scene: "大学の正門前",
     text: "一触即発……。あまりにも冷え切った二人の空気を感じて、周囲を行き交う学生たちも足を止め、遠巻きにざわつき始めたそんな時だった。",
-    bg: "school_gate_evening"
+    bg: "/scene/university_gate.png"
   },
   {
     scene: "大学の正門前",
@@ -1580,8 +1530,6 @@ export const scenarioData = [
     speaker: "睦典",
     role: "MUTSUNORI",
     text: "「っうわ！？ 教授！？」",
-    illust: "Mutsunori_pout" // 突然の出現に飛び上がって驚く
-    ,
     showIllust: ["Mutsunori_smile"]
   },
   {
@@ -1589,8 +1537,6 @@ export const scenarioData = [
     speaker: "凪砂",
     role: "NAGISA",
     text: "「…ッ」",
-    illust: "Nagisa_serious" // 警戒・動揺を押し殺した表情
-    ,
     showIllust: ["Nagisa_serious"]
   },
   {
@@ -1608,17 +1554,13 @@ export const scenarioData = [
     speaker: "睦典",
     role: "MUTSUNORI",
     text: "「っ、いや、教授！ こいつが朔良に──」",
-    illust: "Mutsunori_serious" // まだ怒りが収まっていない
-    ,
-    showIllust: ["Mutsunori_smile"]
+    showIllust: ["Mutsunori_serious"]
   },
   {
     scene: "大学の正門前",
     speaker: "凪砂",
     role: "NAGISA",
     text: "「……チッ」",
-    illust: "Nagisa_serious" // 不機嫌な舌打ち
-    ,
     showIllust: ["Nagisa_serious"]
   },
   {
@@ -1732,8 +1674,7 @@ export const scenarioData = [
     scene: "大学の正門前",
     speaker: "睦典",
     role: "MUTSUNORI",
-    text: "「よし！ 変な奴のせいで気分悪くなったし、今日は俺が学食でなんか奢ってあげる！ 食べて元気出しなよ！」"
-    ,
+    text: "「よし！ 変な奴のせいで気分悪くなったし、今日は俺が学食でなんか奢ってあげる！ 食べて元気出しなよ！」",
     showIllust: ["Mutsunori_happy"]
   },
   {
@@ -1745,7 +1686,6 @@ export const scenarioData = [
   {
     scene: "帰り道",
     text: "食堂で昼食を食べ、午後の講義もすべて終わった頃には、空はすっかり人工月の青い夕暮れに浸食されていた。",
-    bg: "school_gate_evening"
   },
   {
     scene: "帰り道",
@@ -1754,12 +1694,10 @@ export const scenarioData = [
   {
     scene: "帰り道",
     text: "一人になって、いつもの帰路を歩き始めた時。",
-    bg: "night_street"
   },
   {
     scene: "帰り道",
     text: "カバンのポケットで、スマートフォンが短く、静かに震えた。",
-    action: "PLAY_ALERT_SE"
   },
   {
     scene: "帰り道",
@@ -1799,7 +1737,7 @@ export const scenarioData = [
   // ================== #13 出逢い「路地裏のミカ」 ==================
   {
     scene: "夜の裏路地",
-    text: "急ぎ足で薄暗い路地を進む。\n街灯の青い光が届かない、ゴミ箱が並ぶビルの隙間を通り抜けようとした、その時。",
+    text: "急ぎ足で薄暗い路地を進む。街灯の青い光が届かない、ゴミ箱が並ぶビルの隙間を通り抜けようとした、その時。",
     bg: "town_dark_2"
   },
   {
@@ -1820,7 +1758,8 @@ export const scenarioData = [
   //ミカCGIN
   {
     scene: "夜の裏路地",
-    text: "足を止め、恐る恐る暗がりのゴミ箱の横を覗き込む。\nそこには、地面に膝をつき、お腹を押さえるようにしてぐったりと倒れ込んでいる、一人の少年がいた。"
+    text: "足を止め、恐る恐る暗がりのゴミ箱の横を覗き込む。そこには、地面に膝をつき、お腹を押さえるようにしてぐったりと倒れ込んでいる、一人の少年がいた。",
+    bg: "/character/Mika/Mika_CG1.png"
   },
   {
     scene: "夜の裏路地",
@@ -1858,7 +1797,9 @@ export const scenarioData = [
     scene: "夜の裏路地",
     speaker: "朔良",
     role: "SAKURA",
-    text: "「血が……っ。とりあえず、救急車───」"
+    text: "「血が……っ。とりあえず、救急車───」",
+    showIllust: ["Mika_neutral"],
+    bg: "night"
   },
   {
     scene: "夜の裏路地",
@@ -1987,7 +1928,7 @@ export const scenarioData = [
   {
     scene: "時計塔前",
     text: "裏通りを抜け、少し開けた広場に出ると、そこには街のランドマークである古い時計塔が、人工月の青い光を浴びてひっそりと佇んでいた。",
-    bg: "night_street"
+    bg: "/scene/clock_tower.png"
   },
   {
     scene: "時計塔前",
@@ -2017,6 +1958,8 @@ export const scenarioData = [
     speaker: "満",
     role: "Michiru",
     text: "「よかった、来てくれたんだね。……朔良」"
+    ,
+    showIllust: ["Michiru_serious"]
   },
   {
     scene: "時計塔前",
@@ -2034,6 +1977,8 @@ export const scenarioData = [
     speaker: "満",
     role: "Michiru",
     text: "「ううん、僕も今来たところだから。……それにしても、少し見ない間にまた可愛くなった？」"
+    ,
+    showIllust: ["Michiru_serious"]
   },
   {
     scene: "時計塔前",
@@ -2050,6 +1995,8 @@ export const scenarioData = [
     speaker: "満",
     role: "Michiru",
     text: "「ふふ、ごめん。……でも、本当に無事でよかった。ゆうべのニュース、君の大学のすぐ近くの区画だっただろう？ 心配で、生きた心地がしなかったんだ。朔良の顔を見たら、やっと安心できたよ」"
+    ,
+    showIllust: ["Michiru_serious"]
   },
   {
     scene: "時計塔前",
@@ -2078,7 +2025,8 @@ export const scenarioData = [
     scene: "時計塔前",
     speaker: "満",
     role: "Michiru",
-    text: "「大丈夫？ 朔良？」"
+    text: "「大丈夫？ 朔良？」",
+    showIllust: ["Michiru_serious"]
   },
   {
     scene: "時計塔前",
@@ -2094,7 +2042,8 @@ export const scenarioData = [
     scene: "時計塔前",
     speaker: "満",
     role: "Michiru",
-    text: "「本当に？ やっぱり、無理をして疲れてるんじゃないかな」"
+    text: "「本当に？ やっぱり、無理をして疲れてるんじゃないかな」",
+    showIllust: ["Michiru_serious"]
   },
   {
     scene: "時計塔前",
@@ -2104,7 +2053,8 @@ export const scenarioData = [
     scene: "時計塔前",
     speaker: "満",
     role: "Michiru",
-    text: "「そっか。……ねぇ、せっかく会えたんだし、温かいものでも飲みながら、今日あったこと、いっぱい聞かせてよ」"
+    text: "「そっか。……ねぇ、せっかく会えたんだし、温かいものでも飲みながら、今日あったこと、いっぱい聞かせてよ」",
+    showIllust: ["Michiru_serious"]
   },
   {
     scene: "時計塔前",
@@ -2120,7 +2070,7 @@ export const scenarioData = [
   {
     scene: "大学の講義室",
     text: "翌朝。私はいつも通り、大学の講義室へと足を運んでいた。",
-    bg: "/scene/classroom.png"
+    bg: "/scene/university_lassroom.png"
   },
   {
     scene: "大学の講義室",
@@ -2332,6 +2282,7 @@ export const scenarioData = [
     speaker: "大男",
     role: "BIG_MAN",
     text: "「……気づいたか」",
+    showIllust: ["Akane_serious"]
   },
   {
     scene: "廃倉庫",
@@ -2357,6 +2308,8 @@ export const scenarioData = [
     speaker: "大男",
     role: "BIG_MAN",
     text: "「お前に質問がある」"
+    ,
+    showIllust: ["Akane_serious"]
   },
   {
     scene: "廃倉庫",
@@ -2389,6 +2342,8 @@ export const scenarioData = [
     speaker: "大男",
     role: "BIG_MAN",
     text: "「質問に答えろ」"
+    ,
+    showIllust: ["Akane_serious"]
   },
   {
     scene: "廃倉庫",
@@ -2399,6 +2354,8 @@ export const scenarioData = [
     speaker: "大男",
     role: "BIG_MAN",
     text: "「お前の血縁者について質問がある」"
+    ,
+    showIllust: ["Akane_serious"]
   },
   {
     scene: "廃倉庫",
@@ -2415,6 +2372,8 @@ export const scenarioData = [
     speaker: "大男",
     role: "BIG_MAN",
     text: "「お前の血縁者──”弟”について、知っていることを教えろ」"
+    ,
+    showIllust: ["Akane_serious"]
   },
   {
     scene: "廃倉庫",
@@ -2441,6 +2400,8 @@ export const scenarioData = [
     speaker: "大男",
     role: "BIG_MAN",
     text: "「……とぼけるつもりか」"
+    ,
+    showIllust: ["Akane_serious"]
   },
   {
     scene: "廃倉庫",
@@ -2472,6 +2433,8 @@ export const scenarioData = [
     speaker: "大男",
     role: "BIG_MAN",
     text: "「吐くまで殴れ」"
+    ,
+    showIllust: ["Akane_serious"]
   },
   {
     scene: "廃倉庫",
@@ -2490,7 +2453,8 @@ export const scenarioData = [
   },
   {
     scene: "廃倉庫",
-    text: "聞き覚えのある声が、廃倉庫の凍りついた空気を切り裂いた。\n目を開けると、倉庫の割れた窓枠のところに、息を切らせたミカくんが立っていた。"
+    text: "聞き覚えのある声が、廃倉庫の凍りついた空気を切り裂いた。\n目を開けると、倉庫の割れた窓枠のところに、息を切らせたミカくんが立っていた。",
+    showIllust: ["Mika_serious"]
   },
   {
     scene: "廃倉庫",
@@ -2502,7 +2466,8 @@ export const scenarioData = [
     scene: "廃倉庫",
     speaker: "大男",
     role: "BIG_MAN",
-    text: "「チッ、面倒なのが来たか」"
+    text: "「チッ、面倒なのが来たか」",
+    showIllust: ["Akane_serious"]
   },
   {
     scene: "廃倉庫",
@@ -2531,6 +2496,8 @@ export const scenarioData = [
     speaker: "大男",
     role: "BIG_MAN",
     text: "「おい、外はどうなってる」"
+    ,
+    showIllust: ["Akane_serious"]
   },
   {
     scene: "廃倉庫",
@@ -2554,7 +2521,7 @@ export const scenarioData = [
     speaker: "ミカ",
     role: "MIKA",
     text: "「立てますか？ 朔良先輩」",
-    showIllust: ["Mika_serious"]
+    showIllust: ["Mika_neutral"]
   },
   {
     scene: "廃倉庫",
@@ -2592,7 +2559,7 @@ export const scenarioData = [
   {
     scene: "崩壊した街",
     text: "ミカくんに手首を引かれ、煙の立ち込める崩壊した街へと飛び出す。けれど、一歩外へ出た瞬間、私は周囲の光景に息を呑んだ。",
-    bg: "town_dark_1"
+    bg: "/scene/town_collapse.png"
   },
   {
     scene: "崩壊した街",
@@ -3007,8 +2974,7 @@ export const scenarioData = [
     scene: "廃ビルの一室",
     speaker: "睦典",
     role: "MUTSUNORI",
-    text: "「本当は俺もすぐに飛び出して助けに行きたかったんだけど……俺が足手まといになったら意味がないからって、ミカに止められてさ」"
-    ,
+    text: "「本当は俺もすぐに飛び出して助けに行きたかったんだけど……俺が足手まといになったら意味がないからって、ミカに止められてさ」",
     showIllust: ["Mutsunori_smile"]
   },
   {
@@ -3103,6 +3069,8 @@ export const scenarioData = [
     speaker: "ヒルミ教授",
     role: "PROFESSOR",
     text: "『どうだミカ、朔良はちゃんと救出できたかな』"
+    ,
+    showIllust: ["Hirumi_neutral"]
   },
   {
     scene: "廃ビルの一室",
@@ -3116,6 +3084,8 @@ export const scenarioData = [
     speaker: "ヒルミ教授",
     role: "PROFESSOR",
     text: "『話は後だ。とりあえず、今すぐそこから離れて、大学の私の研究室へ来なさい』"
+    ,
+    showIllust: ["Hirumi_neutral"]
   },
   {
     scene: "廃ビルの一室",
@@ -3134,6 +3104,8 @@ export const scenarioData = [
     speaker: "ヒルミ教授",
     role: "PROFESSOR",
     text: "『私にもよく分かってない。とりあえず……ここら一体の市民は甚大な被害に遭っている。まともに動けるのは、君たちしかいないんだ』"
+    ,
+    showIllust: ["Hirumi_neutral"]
   },
   {
     scene: "廃ビルの一室",
@@ -3459,6 +3431,7 @@ export const scenarioData = [
     speaker: "満",
     role: "Michiru",
     text: "「朔良！」",
+    showIllust: ["Michiru_serious"]
   },
   {
     scene: "大学の敷地内",
@@ -3515,6 +3488,7 @@ export const scenarioData = [
     speaker: "満",
     role: "Michiru  ",
     text: "「ぁ……っ……さく、ら……、……？」",
+    showIllust: ["Michiru_serious"]
   },
   {
     scene: "大学の敷地内",
@@ -3561,6 +3535,7 @@ export const scenarioData = [
     speaker: "大男",
     role: "BIG_MAN",
     text: "「……」",
+    showIllust: ["Akane_serious"]
   },
   {
     scene: "大学の敷地内",
@@ -3599,6 +3574,7 @@ export const scenarioData = [
     speaker: "大男",
     role: "BIG_MAN",
     text: "「そんなこと気にしてる場合か」",
+    showIllust: ["Akane_serious"]
   },
   {
     scene: "大学の敷地内",
@@ -3627,6 +3603,7 @@ export const scenarioData = [
     speaker: "ヒルミ教授",
     role: "PROFESSOR",
     text: "『もしもし？ 朔良か！？ その……今、大学の監視カメラを見てるんだが、お前らの目の前にいる、その黒い鎧を着た【黒騎士】って奴……』",
+    showIllust: ["Hirumi_neutral"]
   },
   {
     scene: "大学の敷地内",
@@ -3637,6 +3614,7 @@ export const scenarioData = [
     speaker: "ヒルミ教授",
     role: "PROFESSOR",
     text: "『──結構ヤバい奴かもしれない』",
+    showIllust: ["Hirumi_neutral"]
   },
   {
     scene: "大学の敷地内",
@@ -3647,6 +3625,7 @@ export const scenarioData = [
     speaker: "大男",
     role: "BIG_MAN",
     text: "「チッ、全員伏せろ！！」",
+    showIllust: ["Akane_serious"]
   },
   {
     scene: "大学の敷地内",
@@ -3679,6 +3658,7 @@ export const scenarioData = [
     speaker: "大男",
     role: "BIG_MAN",
     text: "「戦うな！ 走れ！！ 死ぬぞ！！」",
+    showIllust: ["Akane_serious"]
   },
   {
     scene: "大学の敷地内",
@@ -3716,6 +3696,7 @@ export const scenarioData = [
     speaker: "凪砂",
     role: "NAGISA",
     text: "「おっと、危ない」 ",
+    showIllust: ["Nagisa_serious"],
     bg: "lab_dark_corridor",
     action: "SHOW_NAGISA_LEFT",
     label: "nagisa_route_start"
@@ -3805,7 +3786,7 @@ export const scenarioData = [
     speaker: "ヒルミ教授",
     role: "PROFESSOR",
     text: "「おや、随分と賑やかなお出ましだね」",
-    action: "SHOW_PROFESSOR_LEFT"
+    showIllust: ["Hirumi_neutral"]
   },
   {
     scene: "教授の研究室",
@@ -3816,6 +3797,8 @@ export const scenarioData = [
     speaker: "ヒルミ教授",
     role: "PROFESSOR",
     text: "「あれ、この前うちの生徒と揉めてた子かな。……まあいいや。状況はだいたい分かっているよ」"
+    ,
+    showIllust: ["Hirumi_neutral"]
   },
   {
     scene: "教授の研究室",
@@ -3831,7 +3814,7 @@ export const scenarioData = [
     speaker: "ヒルミ教授",
     role: "PROFESSOR",
     text: "「…説明はあまりしていられない、君たちにはこれからこのロケットに乗って、あの青い月まで行ってもらう」",
-    action: "SHOW_PROFESSOR_LEFT"
+    showIllust: ["Hirumi_neutral"]
   },
   {
     scene: "教授の研究室",
@@ -3857,6 +3840,8 @@ export const scenarioData = [
     speaker: "ヒルミ教授",
     role: "PROFESSOR",
     text: "「学校関係者でない君にこんなことを頼むのは心苦しいが……分かってくれないかな」"
+    ,
+    showIllust: ["Hirumi_neutral"]
   },
   {
     scene: "教授の研究室",
@@ -3871,12 +3856,16 @@ export const scenarioData = [
     speaker: "ヒルミ教授",
     role: "PROFESSOR",
     text: "「あの青い月には、この狂った世界のすべての元凶である『研究所のコア』がある。世界を元に戻したければ、そこへ行ってコアを止めてきなさい。君たちにしかできない仕事だ」"
+    ,
+    showIllust: ["Hirumi_neutral"]
   },
   {
     scene: "教授の研究室",
     speaker: "ヒルミ教授",
     role: "PROFESSOR",
     text: "「詳しいことはこの資料に全て書いた。落ち着いた時に読みなさい」"
+    ,
+    showIllust: ["Hirumi_neutral"]
   },
   {
     scene: "教授の研究室",
@@ -3897,6 +3886,8 @@ export const scenarioData = [
     speaker: "ヒルミ教授",
     role: "PROFESSOR",
     text: "「……私についても、心配は無用さ。さぁタイムリミットだ。──行きなさい、朔良」"
+    ,
+    showIllust: ["Hirumi_neutral"]
   },
   {
     scene: "教授の研究室",
@@ -4132,7 +4123,8 @@ export const scenarioData = [
   },
   {
     scene: "月面",
-    text: "外に足を踏み出した瞬間、私はその光景に息を呑んだ。\nそこは、私たちがよく知る大学のキャンパスでも、見慣れた街並みでもなかった。"
+    text: "外に足を踏み出した瞬間、私はその光景に息を呑んだ。\nそこは、私たちがよく知る大学のキャンパスでも、見慣れた街並みでもなかった。",
+    bg: "scene/moon_surface.png"
   },
   {
     scene: "月面",
@@ -4193,6 +4185,8 @@ export const scenarioData = [
     speaker: "ヒルミ教授",
     role: "PROFESSOR",
     text: "『世界を元に戻したければ、そこへ行ってコアを止めてきなさい』"
+    ,
+    showIllust: ["Hirumi_neutral"]
   },
   {
     scene: "月面",
@@ -5128,6 +5122,8 @@ export const scenarioData = [
     speaker: "黒騎士",
     role: "ENEMY",
     text: "「オオオオオォォォ……ッ！！」"
+    ,
+    showIllust: ["BlackKnight_serious"]
   },
   {
     scene: "研究所の最奥",
@@ -5604,7 +5600,7 @@ export const scenarioData = [
     speaker: "ヒルミ教授",
     role: "PROFESSOR",
     text: "「やあ、朔良。実習報告書のデータ、じつに素晴らしい出来だったよ。あの極限状態できちんとフォントサイズまで揃えてくるとは、さすが我が研究室の学生だね」",
-    bg: "lab_professor_room_dark"
+    showIllust: ["Hirumi_smile"]
   },
   {
     scene: "研究室",
@@ -5870,6 +5866,8 @@ export const scenarioData = [
     speaker: "ヒルミ教授",
     role: "PROFESSOR",
     text: "「やあ、よく来たね、二人とも。待ちくたびれたよ」"
+    ,
+    showIllust: ["Hirumi_neutral"]
   },
   {
     scene: "教授の研究室",
@@ -5890,6 +5888,8 @@ export const scenarioData = [
     speaker: "ヒルミ教授",
     role: "PROFESSOR",
     text: "「……説明はあまりしていられない、君たちにはこれからこのロケットに乗って、あの青い月まで行ってもらう」"
+    ,
+    showIllust: ["Hirumi_neutral"]
   },
   {
     scene: "教授の研究室",
@@ -5914,6 +5914,8 @@ export const scenarioData = [
     speaker: "ヒルミ教授",
     role: "PROFESSOR",
     text: "「真っ当な意見だ。簡単に説明するが、あの青い月にはこの狂った世界のすべての元凶である『コア』がある。世界をもとに戻したければ、そこに行ってコアを止めてきなさい。……これは、君たちにしかできない仕事だ」"
+    ,
+    showIllust: ["Hirumi_neutral"]
   },
   {
     scene: "教授の研究室",
@@ -5951,6 +5953,8 @@ export const scenarioData = [
     speaker: "ヒルミ教授",
     role: "PROFESSOR",
     text: "「物分かりが良くて助かるよ。安心して、この紙に詳しいことは書いておいたから」"
+    ,
+    showIllust: ["Hirumi_neutral"]
   },
   {
     scene: "教授の研究室",
@@ -5971,6 +5975,8 @@ export const scenarioData = [
     speaker: "ヒルミ教授",
     role: "PROFESSOR",
     text: "「心配してくれているのかな？ 嬉しいけど、心配は不要さ」"
+    ,
+    showIllust: ["Hirumi_neutral"]
   },
   {
     scene: "教授の研究室",
@@ -5981,6 +5987,8 @@ export const scenarioData = [
     speaker: "ヒルミ教授",
     role: "PROFESSOR",
     text: "「さぁ、タイムリミットだ。行きなさい──朔良」"
+    ,
+    showIllust: ["Hirumi_neutral"]
   },
   {
     scene: "教授の研究室",
@@ -6275,7 +6283,8 @@ export const scenarioData = [
   },
   {
     scene: "月面",
-    text: "そこは、私たちがよく知る大学のキャンパスでも、見慣れた街並みでもなかった。"
+    text: "そこは、私たちがよく知る大学のキャンパスでも、見慣れた街並みでもなかった。",
+    bg: "/scene/moon_surface.png"
   },
   {
     scene: "月面",
@@ -7211,6 +7220,8 @@ export const scenarioData = [
     speaker: "ヒルミ教授",
     role: "PROFESSOR",
     text: "「やあ、二人とも。実習報告書のデータ、じつに素晴らしい出来だったよ。あの極限状態の後できちんとフォントサイズまで揃えてくるとは、さすが我が研究室の学生だね」"
+    ,
+    showIllust: ["Hirumi_smile"]
   },
   {
     scene: "大学の研究室",
@@ -7413,6 +7424,7 @@ export const scenarioData = [
     speaker: "ヒルミ教授",
     role: "PROFESSOR",
     text: "「待っていたよ。よく無事でたどり着いてくれたね、二人とも」",
+    showIllust: ["Hirumi_neutral"]
   },
   {
     scene: "研究室",
@@ -7431,6 +7443,7 @@ export const scenarioData = [
     speaker: "ヒルミ教授",
     role: "PROFESSOR",
     text: "「…説明はあまりしていられない、君たちにはこれからこのロケットに乗って、あの青い月まで行ってもらう」",
+    showIllust: ["Hirumi_neutral"]
   },
   {
     scene: "研究室",
@@ -7462,6 +7475,7 @@ export const scenarioData = [
     speaker: "ヒルミ教授",
     role: "PROFESSOR",
     text: "「残りの彼らの心配ならいらない。全員、自力で生き残るだけの力を持った怪物たちだからね」",
+    showIllust: ["Hirumi_neutral"]
   },
   {
     scene: "研究室",
@@ -7472,18 +7486,21 @@ export const scenarioData = [
     speaker: "ヒルミ教授",
     role: "PROFESSOR",
     text: "「あの青い月には、この狂った世界のすべての元凶である『研究所のコア』がある。世界を元に戻したければ、そこへ行ってコアを止めてきなさい。君たちにしかできない仕事だ」",
+    showIllust: ["Hirumi_neutral"]
   },
   {
     scene: "研究室",
     speaker: "ヒルミ教授",
     role: "PROFESSOR",
     text: "「詳しいことはこの資料に全て書いた。落ち着いた時に読みなさい」",
+    showIllust: ["Hirumi_neutral"]
   },
   {
     scene: "研究室",
     speaker: "ヒルミ教授",
     role: "PROFESSOR",
     text: "そう言って教授は私たちに文字がびっしり書かれた薄い紙束を手渡した。",
+    showIllust: ["Hirumi_neutral"]
   },
   {
     scene: "研究室",
@@ -7496,6 +7513,7 @@ export const scenarioData = [
     speaker: "ヒルミ教授",
     role: "PROFESSOR",
     text: "「…私についても、心配は無用さ。さぁタイムリミットだ。──行きなさい、朔良」",
+    showIllust: ["Hirumi_neutral"]
   },
   {
     scene: "研究室",
@@ -7748,7 +7766,7 @@ export const scenarioData = [
   {
     scene: "ロケット内部(墜落後)",
     text: "彼の大きな手を掴んで、私はよろよろと大破したロケットの外へと這い出した。",
-    hideillust: true
+    hideIllust: true
   },
   {
     scene: "月面",
@@ -7763,6 +7781,7 @@ export const scenarioData = [
   {
     scene: "月面",
     text: "そこは、私たちがよく知る大学のキャンパスでも、見慣れた街並みでもなかった。",
+    bg: "/scene/moon_surface.png"
   },
   {
     scene: "月面",
@@ -8988,6 +9007,8 @@ export const scenarioData = [
     speaker: "黒騎士",
     role: "ENEMY",
     text: "「ギ、ギギ……ッ」"
+    ,
+    showIllust: ["BlackKnight_serious"]
   },
   {
     scene: "研究所の最奥",
@@ -9062,6 +9083,8 @@ export const scenarioData = [
     speaker: "黒騎士",
     role: "ENEMY",
     text: "「──チッ」"
+    ,
+    showIllust: ["BlackKnight_serious"]
   },
   {
     scene: "研究所の最奥",
@@ -9465,12 +9488,16 @@ export const scenarioData = [
     speaker: "ヒルミ教授",
     role: "PROFESSOR",
     text: "「やあ、二人とも。実習報告書のデータ、じつに素晴らしい出来だったよ」"
+    ,
+    showIllust: ["Hirumi_smile"]
   },
   {
     scene: "研究室",
     speaker: "ヒルミ教授",
     role: "PROFESSOR",
     text: "あの極限状態できちんとフォントサイズまで揃えてくるとは、さすが我が研究室の学生だね」"
+    ,
+    showIllust: ["Hirumi_neutral"]
   },
   {
     scene: "研究室",
@@ -9738,6 +9765,8 @@ export const scenarioData = [
     speaker: "ヒルミ教授",
     role: "PROFESSOR",
     text: "「……遅かったね」"
+    ,
+    showIllust: ["Hirumi_neutral"]
   },
   {
     scene: "教授の研究室",
@@ -9748,12 +9777,16 @@ export const scenarioData = [
     speaker: "ヒルミ教授",
     role: "PROFESSOR",
     text: "「そんなに熱視線を送られると照れるね。私に男色の趣味はないのだが」"
+    ,
+    showIllust: ["Hirumi_neutral"]
   },
   {
     scene: "教授の研究室",
     speaker: "アカネ",
     role: "AKANE",
     text: "「…チッ」"
+    ,
+    showIllust: ["Akane_serious"]
   },
   {
     scene: "教授の研究室",
@@ -9764,6 +9797,8 @@ export const scenarioData = [
     speaker: "ヒルミ教授",
     role: "PROFESSOR",
     text: "「冗談だ。それで本題だが…君たちにはこれからこのロケットに乗って、あの青い月まで行ってもらう」"
+    ,
+    showIllust: ["Hirumi_neutral"]
   },
   {
     scene: "教授の研究室",
@@ -9788,6 +9823,8 @@ export const scenarioData = [
     speaker: "ヒルミ教授",
     role: "PROFESSOR",
     text: "「戸惑う気持ちもわかる。だがあまりここに時間はかけられない。この紙にすべてのことを記しておいたから、しっかり読んで、冷静に行動しなさい」"
+    ,
+    showIllust: ["Hirumi_neutral"]
   },
   {
     scene: "教授の研究室",
@@ -9798,6 +9835,8 @@ export const scenarioData = [
     speaker: "ヒルミ教授",
     role: "PROFESSOR",
     text: "「……まぁ、隣の彼が何とかしてくれるだろう」"
+    ,
+    showIllust: ["Hirumi_neutral"]
   },
   {
     scene: "教授の研究室",
@@ -9822,6 +9861,8 @@ export const scenarioData = [
     speaker: "アカネ",
     role: "AKANE",
     text: "「……なんでもいいだろ、早く行くぞ」"
+    ,
+    showIllust: ["Akane_serious"]
   },
   {
     scene: "教授の研究室",
@@ -9836,6 +9877,8 @@ export const scenarioData = [
     speaker: "ヒルミ教授",
     role: "PROFESSOR",
     text: "「……ふふっ」"
+    ,
+    showIllust: ["Hirumi_smile"]
   },
   {
     scene: "教授の研究室",
@@ -9850,6 +9893,8 @@ export const scenarioData = [
     speaker: "ヒルミ教授",
     role: "PROFESSOR",
     text: "「さぁ、タイムリミットだ。行きなさい──朔良」"
+    ,
+    showIllust: ["Hirumi_neutral"]
   },
   {
     scene: "教授の研究室",
@@ -9941,6 +9986,8 @@ export const scenarioData = [
     speaker: "アカネ",
     role: "AKANE",
     text: "「…やはりか」"
+    ,
+    showIllust: ["Akane_serious"]
   },
   {
     scene: "ロケット内部",
@@ -9967,6 +10014,8 @@ export const scenarioData = [
     speaker: "アカネ",
     role: "AKANE",
     text: "「……ッ、……おい、起きろ」"
+    ,
+    showIllust: ["Akane_serious"]
   },
   {
     scene: "ロケット内部",
@@ -10014,6 +10063,8 @@ export const scenarioData = [
     speaker: "アカネ",
     role: "AKANE",
     text: "「このロケットは、最初から墜落するようにできていた」"
+    ,
+    showIllust: ["Akane_serious"]
   },
   {
     scene: "月面",
@@ -10142,6 +10193,8 @@ export const scenarioData = [
     speaker: "アカネ",
     role: "AKANE",
     text: "「……チッ、あの野郎」"
+    ,
+    showIllust: ["Akane_serious"]
   },
   {
     scene: "月面",
@@ -10152,6 +10205,8 @@ export const scenarioData = [
     speaker: "アカネ",
     role: "AKANE",
     text: "「グズグズすんな、行くぞ」"
+    ,
+    showIllust: ["Akane_serious"]
   },
   {
     scene: "月面",
@@ -10215,6 +10270,8 @@ export const scenarioData = [
     speaker: "アカネ",
     role: "AKANE",
     text: "「こいつらの異能を……少しずつ注ぎ込むしかない」"
+    ,
+    showIllust: ["Akane_serious"]
   },
   {
     scene: "研究所の奧",
@@ -10268,6 +10325,8 @@ export const scenarioData = [
     speaker: "アカネ",
     role: "AKANE",
     text: "「…………へえ」"
+    ,
+    showIllust: ["Akane_serious"]
   },
   {
     scene: "研究所の奧",
@@ -10282,6 +10341,8 @@ export const scenarioData = [
     speaker: "アカネ",
     role: "AKANE",
     text: "「俺のオフクロの名前をその汚ねえ口で二度と呼ぶな。……無能力者？ ゴミ？ ああ、そうかもな。\nだがな、無能力者の引き金でも、てめえの脳髄をブチ撒くくらいは簡単にできるんだよ」"
+    ,
+    showIllust: ["Akane_serious"]
   },
   {
     scene: "研究所の奧",
@@ -10302,6 +10363,8 @@ export const scenarioData = [
     speaker: "アカネ",
     role: "AKANE",
     text: "「…………そこにいたか、クソ野郎が…ッ！！ここでなら…ようやく殺り合える… \n絶対に………殺してやるッ！！！！！」"
+    ,
+    showIllust: ["Akane_serious"]
   },
   {
     scene: "研究所の奧",
@@ -10365,6 +10428,8 @@ export const scenarioData = [
     speaker: "アカネ",
     role: "AKANE",
     text: "「──チッ、ふざけんじゃねえ……！」"
+    ,
+    showIllust: ["Akane_serious"]
   },
   {
     //—異形化前の朔良を抱きとめるアカネ（血まみれ）IN
@@ -10380,6 +10445,8 @@ export const scenarioData = [
     speaker: "アカネ",
     role: "AKANE",
     text: "「おい……！！しっかりしろ！！」"
+    ,
+    showIllust: ["Akane_serious"]
   },
   {
     scene: "研究所の奧",
@@ -10425,6 +10492,8 @@ export const scenarioData = [
     speaker: "アカネ",
     role: "AKANE",
     text: "「……よく耐えた。あとは眠ってろ」"
+    ,
+    showIllust: ["Akane_serious"]
   },
   {
     scene: "研究所の奧",
@@ -10455,6 +10524,8 @@ export const scenarioData = [
     speaker: "アカネ",
     role: "AKANE",
     text: "「──目が覚めたか」"
+    ,
+    showIllust: ["Akane_serious"]
   },
   {
     scene: "アジト",
@@ -10471,6 +10542,8 @@ export const scenarioData = [
     speaker: "アカネ",
     role: "AKANE",
     text: "「あの後、研究所が崩落を始めた。コアは完全に沈黙した。……お前を抱えて、ここまで這いずり戻ってきた」"
+    ,
+    showIllust: ["Akane_serious"]
   },
   {
     scene: "アジト",
@@ -10491,6 +10564,8 @@ export const scenarioData = [
     speaker: "アカネ",
     role: "AKANE",
     text: "「生き埋めになったか、あるいは逃げ延びたか……。死体は確認できていない。だが、あいつらが何を目論んでいようが、俺たちの『実習』はこれで終わりだ。コアは止まった」"
+    ,
+    showIllust: ["Akane_serious"]
   },
   {
     scene: "アジト",
@@ -10501,6 +10576,8 @@ export const scenarioData = [
     speaker: "アカネ",
     role: "AKANE",
     text: "「……だが、朔良。一つ、お前に話さないといけないことがある」"
+    ,
+    showIllust: ["Akane_serious"]
   },
   {
     scene: "アジト",
@@ -10517,6 +10594,8 @@ export const scenarioData = [
     speaker: "アカネ",
     role: "AKANE",
     text: "「…あのクソガキのことだ」"
+    ,
+    showIllust: ["Akane_serious"]
   },
   {
     scene: "アジト",
@@ -10527,6 +10606,8 @@ export const scenarioData = [
     speaker: "アカネ",
     role: "AKANE",
     text: "「あいつは……俺のオフクロを、あの黒騎士と共に殺した」"
+    ,
+    showIllust: ["Akane_serious"]
   },
   {
     scene: "アジト",
@@ -10537,6 +10618,8 @@ export const scenarioData = [
     speaker: "アカネ",
     role: "AKANE",
     text: "「あいつの名前は『ルキ』。……表の戸籍じゃ、とっくの昔に死んだことになってる、お前の、年の離れた実の弟だ」"
+    ,
+    showIllust: ["Akane_serious"]
   },
   {
     scene: "アジト",
@@ -10557,6 +10640,8 @@ export const scenarioData = [
     speaker: "アカネ",
     role: "AKANE",
     text: "「覚えていないのも無理はない。お前の父親…月の研究員が何か裏で手を回していたのかもしれないな」"
+    ,
+    showIllust: ["Akane_serious"]
   },
   {
     scene: "アジト",
@@ -10567,6 +10652,8 @@ export const scenarioData = [
     speaker: "アカネ",
     role: "AKANE",
     text: "「黒騎士の正体も、あいつらが何のためにコアを動かしていたのかも、何も聞き出せなかった。……それに、あの時お前の身体に起きた『異常』もな。あのガキは、お前の力を知っている口ぶりだった」"
+    ,
+    showIllust: ["Akane_serious"]
   },
   {
     scene: "アジト",
@@ -10581,6 +10668,8 @@ export const scenarioData = [
     speaker: "アカネ",
     role: "AKANE",
     text: "「……まあ、今はこれ以上考えても答えは出ないがな」"
+    ,
+    showIllust: ["Akane_serious"]
   },
   {
     scene: "アジト",
@@ -10591,6 +10680,8 @@ export const scenarioData = [
     speaker: "アカネ",
     role: "AKANE",
     text: "「何があろうと、あいつらがまた這い出てくるなら、その時はまとめてブチ殺すだけだ。だから、今は余計なことは考えずに寝ていろ」"
+    ,
+    showIllust: ["Akane_serious"]
   },
   {
     scene: "アジト",
@@ -10661,6 +10752,8 @@ export const scenarioData = [
     speaker: "アカネ",
     role: "AKANE",
     text: "「……毎度毎度どうも」"
+    ,
+    showIllust: ["Akane_serious"]
   },
   {
     scene: "面会室",
@@ -10691,6 +10784,8 @@ export const scenarioData = [
     speaker: "アカネ",
     role: "AKANE",
     text: "「……2日前に聞いたぞ。なんで俺がこんな小娘ごときに飯の心配されないといけねぇんだ」"
+    ,
+    showIllust: ["Akane_serious"]
   },
   {
     scene: "面会室",
@@ -10711,6 +10806,8 @@ export const scenarioData = [
     speaker: "アカネ",
     role: "AKANE",
     text: "「そうか。……逃げられたか。黒騎士の正体も、あのクソガキの行方も分からないまま。まだ終わりそうにはないな」"
+    ,
+    showIllust: ["Akane_serious"]
   },
   {
     scene: "面会室",
@@ -10721,6 +10818,8 @@ export const scenarioData = [
     speaker: "アカネ",
     role: "AKANE",
     text: "「……娑婆に戻ったら、俺はまたあいつらを追う。それが俺の生きる目的だ。だが――――」"
+    ,
+    showIllust: ["Akane_serious"]
   },
   {
     scene: "面会室",
@@ -10731,6 +10830,8 @@ export const scenarioData = [
     speaker: "アカネ",
     role: "AKANE",
     text: "「お前はもう、これ以上首を突っ込むな。ここから先は本物の地獄だ。せっかく手に入れた普通の日常を、大事に守ってろ。……単位も出たんだろ？」"
+    ,
+    showIllust: ["Akane_serious"]
   },
   {
     scene: "面会室",
@@ -10761,6 +10862,8 @@ export const scenarioData = [
     speaker: "アカネ",
     role: "AKANE",
     text: "「ハッ……。人の忠告も無視か。まぁいい、そこまで言うなら連れていこう」"
+    ,
+    showIllust: ["Akane_serious"]
   },
   {
     scene: "面会室",
@@ -10771,6 +10874,8 @@ export const scenarioData = [
     speaker: "アカネ",
     role: "AKANE",
     text: "「ただし、自分の身は自分で守れるくらいにはなっておけ。俺がお前をいつでも守れるとは限らないからな」"
+    ,
+    showIllust: ["Akane_serious"]
   },
   {
     scene: "面会室",
@@ -10823,6 +10928,8 @@ export const scenarioData = [
     speaker: "アカネ",
     role: "AKANE",
     text: "「……こちらこそ、ありがとう」"
+    ,
+    showIllust: ["Akane_serious"]
   },
   {
     scene: "面会室",
