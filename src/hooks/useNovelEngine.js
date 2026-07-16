@@ -18,6 +18,7 @@ export function useNovelEngine(scenarioData, options = {}) {
   const typingTimer = useRef(null);
   const autoTimer = useRef(null);
   const fullTextRef = useRef('');
+  const isAdvancingRef = useRef(false);
 
   const currentLine = scenarioData?.[currentStep] || null;
 
@@ -49,6 +50,7 @@ export function useNovelEngine(scenarioData, options = {}) {
 
   // Trigger typewriter when step changes
   useEffect(() => {
+    isAdvancingRef.current = false;
     if (currentLine?.text) {
       triggerTypewriter(currentLine.text);
     }
@@ -138,6 +140,9 @@ export function useNovelEngine(scenarioData, options = {}) {
 
   const advanceStep = useCallback(() => {
     if (currentStep < scenarioData.length - 1) {
+      if (isAdvancingRef.current) return;
+      isAdvancingRef.current = true;
+
       // Add to backlog (exclude prologue since it is pre-populated)
       if (currentLine && currentLine.scene !== "PROLOGUE") {
         setBacklog(prev => [...prev, currentLine]);

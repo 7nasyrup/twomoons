@@ -45,7 +45,7 @@ import { assetPath } from '../utils/assetPath';export default function TitleScre
                 </p>
 
                 {/* Buttons / Menu */}
-                <div className="flex flex-col items-center justify-center space-y-4 max-w-xs mx-auto">
+                <div className="flex flex-col items-center justify-center space-y-5 max-w-xs mx-auto">
                     {/* Start Button */}
                     <button
                         onClick={onStart}

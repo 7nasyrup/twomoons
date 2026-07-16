@@ -15,6 +15,7 @@ import TapCommunication from './components/TapCommunication';
 import EyeOfProfiler from './components/EyeOfProfiler';
 import FragmentCollect from './components/FragmentCollect';
 import FragmentCollectNagisa from './components/FragmentCollectNagisa';
+import PortraitWarningOverlay from './components/PortraitWarningOverlay';
 import StealthGame from './components/StealthGame';
 import SaveSlotModal, { SAVE_KEY_PREFIX, loadAllSlots } from './components/SaveSlotModal';
 import { useNovelEngine } from './hooks/useNovelEngine';
@@ -23,7 +24,7 @@ import { scenarioData } from './data/scenario';
 import { assetPath } from './utils/assetPath';
 
 // Custom CSS-based visual representation of game backgrounds when WebP/PNG images are missing
-function BackgroundRenderer({ bgPath }) {
+function BackgroundRenderer({ bgPath, bgAnimationClass }) {
   const [imageError, setImageError] = useState(false);
 
   useEffect(() => {
@@ -46,7 +47,7 @@ function BackgroundRenderer({ bgPath }) {
         <img
           src={assetPath(bgPath)}
           alt="background"
-          className="w-full h-full object-cover transition-all duration-700"
+          className={`w-full h-full object-cover transition-all duration-700 ${bgAnimationClass || ''}`}
           onError={() => setImageError(true)}
         />
       ) : (
@@ -180,6 +181,7 @@ export default function App() {
   const [alertConfig, setAlertConfig] = useState({ title: '', message: '' });
   const [isFadingBlack, setIsFadingBlack] = useState(false);
   const [shakeEffect, setShakeEffect] = useState(false);
+  const [isSmokeActive, setIsSmokeActive] = useState(false);
   const [stealthGameResult, setStealthGameResult] = useState(null);
 
 
@@ -381,30 +383,6 @@ export default function App() {
       });
     }
 
-    // 4. Default Auto-show fallback when no manual action is specified for this speaker
-    const speaker = currentLine.speaker;
-    const targetSpeakers = ["睦典", "ミカ", "凪砂", "大男", "アカネ", "ヒルミ教授", "満", "黒騎士", "ルキ", "朔良"];
-    const isTransmission = currentLine?.text?.trim().startsWith('『');
-    if (speaker && targetSpeakers.includes(speaker) && !isTransmission) {
-      const speakerNormalized = jpToEngBase[speaker] || speaker;
-      const isManuallyHidden = Array.isArray(currentLine.hideIllust) && currentLine.hideIllust.some(c => {
-        const cBase = c.split('_')[0];
-        return (jpToEngBase[cBase] || cBase) === speakerNormalized;
-      });
-      const isNightMutsunoriException = currentLine.scene === "夜の帰り道" && speaker === "睦典";
-
-      const isAlreadyPresent = nextList.some(c => {
-        const cBase = c.split('_')[0];
-        return (jpToEngBase[cBase] || cBase) === speakerNormalized;
-      });
-      if (!isManuallyHidden && !isNightMutsunoriException && !isAlreadyPresent) {
-        nextList.push(speakerNormalized);
-        listChanged = true;
-      }
-    }
-
-
-
     if (listChanged) {
       setPresentCharacters(nextList);
     }
@@ -461,6 +439,12 @@ export default function App() {
       }
 
       // Screen Effects
+      if (action === 'FADE_IN_SMOKE') {
+        setIsSmokeActive(true);
+      } else if (action === 'CLEAR_SMOKE') {
+        setIsSmokeActive(false);
+      }
+
       if (action === 'FADE_TO_BLACK') {
         setIsFadingBlack(true);
         setTimeout(() => setIsFadingBlack(false), 2000);
@@ -807,7 +791,10 @@ export default function App() {
         ) : (
           <>
             {/* Visual Background Fallback & Actual Renderer */}
-            <BackgroundRenderer bgPath={currentBg} />
+            <BackgroundRenderer 
+              bgPath={currentBg} 
+              bgAnimationClass={currentLine?.bgAnimation === 'search_ground' ? 'animate-search-ground' : ''} 
+            />
 
             {/* Typing Game Overlay */}
             {isTypingGameActive && (
@@ -871,15 +858,45 @@ export default function App() {
             )}
 
             {/* Item Sprite Overlay */}
-            {displayedItem && !isCinema && !isAnyEnd && (
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-[15]">
-                <img
-                  src={assetPath(displayedItem)}
-                  alt="item"
-                  className="max-w-[40%] max-h-[60%] object-contain drop-shadow-2xl animate-fadeIn"
+            <AnimatePresence>
+              {displayedItem && !isCinema && !isAnyEnd && (
+                <motion.div
+                  key="item-overlay"
+                  className={`absolute inset-0 flex pointer-events-none z-[15] ${displayedItem.includes('phone_') ? 'items-end justify-center' : 'items-center justify-center'}`}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0, transition: { delay: 0.7 } }}
+                >
+                  <motion.img
+                    key={displayedItem}
+                    src={assetPath(displayedItem)}
+                    alt="item"
+                    initial={displayedItem.includes('phone_') ? { y: '100%', opacity: 0 } : { opacity: 0, scale: 0.95 }}
+                    animate={displayedItem.includes('phone_') ? { y: '-5%', opacity: 1 } : { opacity: 1, scale: 1 }}
+                    exit={displayedItem.includes('phone_') ? { y: '100%', opacity: 0 } : { opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                    className={`object-contain drop-shadow-2xl ${displayedItem.includes('phone_') ? 'w-[20%] max-w-[250px] min-w-[150px]' : 'max-w-[40%] max-h-[60%]'}`}
+                  />
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {/* Smoke Overlay */}
+            <AnimatePresence>
+              {isSmokeActive && !isCinema && !isAnyEnd && (
+                <motion.div
+                  className="absolute inset-0 pointer-events-none z-[18]"
+                  style={{
+                    background: 'linear-gradient(to bottom, rgba(15,15,15,0.85) 0%, rgba(40,15,5,0.9) 100%)',
+                    backdropFilter: 'blur(10px)',
+                  }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 4, ease: 'easeInOut' }}
                 />
-              </div>
-            )}
+              )}
+            </AnimatePresence>
 
             {/* Subtitles & Normal Dialogue Boxes */}
             {!isCinema && !isTransition && !isAnyEnd && !alertActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isTypingGameActive && !isFragmentCollectActive && !isStealthGameActive && (
@@ -1075,6 +1092,8 @@ export default function App() {
           }}
         />
 
+        {/* Portrait Warning for Smartphones */}
+        <PortraitWarningOverlay />
 
       </GameFrame>
     </div>

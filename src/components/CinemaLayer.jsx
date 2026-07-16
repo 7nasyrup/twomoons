@@ -26,11 +26,11 @@ export default function CinemaLayer({ text, isActive, isTyping, onNext }) {
           />
 
           {/* Center text */}
-          <div className="flex justify-center items-center h-40 z-50 max-w-[70%]">
+          <div className="flex justify-center items-center h-40 z-50 w-full bg-black/60">
             <AnimatePresence mode="wait">
               <motion.p
                 key={text}
-                className="text-center text-cyan-100/90 text-2xl md:text-3xl font-noto font-light tracking-[0.2em] leading-relaxed px-8"
+                className="text-center text-cyan-100/90 text-2xl md:text-3xl font-noto font-light tracking-[0.2em] leading-relaxed px-8 max-w-[70%]"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}

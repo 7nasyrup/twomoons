@@ -10,6 +10,7 @@
     overflow: hidden;
     font-family: "Segoe UI", "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
     user-select: none;
+    touch-action: manipulation;
   }
 }
 
@@ -209,4 +210,17 @@
 .fui-dots-bg {
   background-image: radial-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px);
   background-size: 16px 16px;
+}
+
+@keyframes searchGround {
+  0% { transform: scale(1) translate(0, 0); }
+  10% { transform: scale(1.4) translate(0, -15%); }
+  30% { transform: scale(1.4) translate(-10%, -15%); }
+  60% { transform: scale(1.4) translate(10%, -15%); }
+  90% { transform: scale(1.4) translate(-5%, -15%); }
+  100% { transform: scale(1.4) translate(-5%, -15%); }
+}
+
+.animate-search-ground {
+  animation: searchGround 10s ease-in-out forwards;
 }

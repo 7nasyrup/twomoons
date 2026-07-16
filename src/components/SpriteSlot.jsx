@@ -89,17 +89,7 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
     });
   }
 
-  if (!isTransmission && currentSpeaker) {
-    const rawSpeakerBase = currentSpeaker.split('_')[0];
-    const speakerBase = SPEAKER_TO_ROMAJI[rawSpeakerBase] || rawSpeakerBase;
-    const isManuallyHidden = Array.isArray(currentLine?.hideIllust) && currentLine.hideIllust.some(c => {
-      const rawBase = c.split('_')[0];
-      return (SPEAKER_TO_ROMAJI[rawBase] || rawBase) === speakerBase;
-    });
-    if (SPEAKER_CONFIGS[speakerBase] && !resolvedDisplayMap[speakerBase] && !isManuallyHidden) {
-      resolvedDisplayMap[speakerBase] = `${speakerBase}_${SPEAKER_CONFIGS[speakerBase].defaultExpression}`;
-    }
-  }
+
 
   return (
     <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden">

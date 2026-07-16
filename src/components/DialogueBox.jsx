@@ -68,7 +68,7 @@ export default function DialogueBox({
 
           {/* Choices */}
           {isWaitingForChoice && choices && (
-            <div className="flex flex-col items-end gap-3 mb-4 w-full px-12 md:px-24 pointer-events-auto">
+            <div className="flex flex-col items-end gap-4 mb-4 w-full px-12 md:px-24 pointer-events-auto">
               {choices.map((choice, idx) => {
                 const isInteractive = true;
                 return (
@@ -189,7 +189,7 @@ function HudButton({ icon, label, onClick, active }) {
   return (
     <button
       onClick={(e) => { e.stopPropagation(); onClick(); }}
-      className={`flex items-center gap-1.5 px-4 py-1.5 rounded-full text-[11px] font-bold tracking-widest font-noto
+      className={`flex items-center gap-1.5 px-5 py-2 md:px-4 md:py-1.5 rounded-full text-[11px] md:text-[11px] font-bold tracking-widest font-noto
                   transition-all duration-300 shadow-md border
                   ${active
           ? 'bg-[#00e5ff] text-slate-900 border-[#00e5ff] shadow-[0_4px_12px_rgba(0,229,255,0.4)]'
