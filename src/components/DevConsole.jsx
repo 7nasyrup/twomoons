@@ -21,7 +21,8 @@ export default function DevConsole({
   const [jumpInput, setJumpInput] = useState('');
 
   const sceneBreaks = scenarioData?.reduce((acc, item, idx) => {
-    if (idx === 0 || item.scene !== scenarioData[idx - 1].scene) {
+    if (!item?.scene) return acc;
+    if (idx === 0 || item.scene !== scenarioData[idx - 1]?.scene) {
       acc.push({ scene: item.scene, step: idx, id: item.id });
     }
     return acc;

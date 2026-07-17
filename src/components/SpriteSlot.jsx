@@ -44,6 +44,12 @@ const SPEAKER_CONFIGS = {
     baseFileName: "Hirumi",
     defaultExpression: "black_knight",
     positionClass: "right-[15%] w-[45%] h-[95%]"
+  },
+  "Ruki": {
+    folder: "/character/Ruki",
+    baseFileName: "Ruki",
+    defaultExpression: "neutral",
+    positionClass: "left-0 right-0 mx-auto w-[45%] h-[95%]"
   }
 };
 
@@ -55,7 +61,8 @@ const SPEAKER_TO_ROMAJI = {
   "大男": "Akane",
   "アカネ": "Akane",
   "満": "Michiru",
-  "黒騎士": "BlackKnight"
+  "黒騎士": "BlackKnight",
+  "ルキ": "Ruki"
 };
 
 export default function SpriteSlot({ leftActive, rightActive, focusSlot, currentSpeaker, presentCharacters = [], currentLine, currentStep, scenarioData = [] }) {
@@ -103,32 +110,27 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
 
           const imagePath = assetPath(`${config.folder}/${config.baseFileName}_${expression}.png`);
 
-          if (baseCharName === "Mika") {
-            let isMikaRoute = false;
-            if (Array.isArray(scenarioData) && typeof currentStep === 'number') {
-              for (let i = currentStep; i >= 0; i--) {
-                if (scenarioData[i]?.label === "mika_route_start") {
-                  isMikaRoute = true;
-                  break;
-                }
+          let currentRoute = null;
+          if (Array.isArray(scenarioData) && typeof currentStep === 'number') {
+            for (let i = currentStep; i >= 0; i--) {
+              const label = scenarioData[i]?.label;
+              if (label && label.endsWith('_route_start')) {
+                currentRoute = label;
+                break;
               }
             }
-            if (isMikaRoute) {
+          }
+
+          if (baseCharName === "Mika") {
+            if (currentRoute === "mika_route_start") {
               config = { ...config, positionClass: "left-[5%] w-[45%] h-[95%]" };
+            } else if (resolvedDisplayMap["Hirumi"]) {
+              config = { ...config, positionClass: "right-[25%] w-[45%] h-[95%]" };
             }
           }
 
           if (baseCharName === "Akane") {
-            let isAkaneRoute = false;
-            if (Array.isArray(scenarioData) && typeof currentStep === 'number') {
-              for (let i = currentStep; i >= 0; i--) {
-                if (scenarioData[i]?.label === "akane_route_start") {
-                  isAkaneRoute = true;
-                  break;
-                }
-              }
-            }
-            if (isAkaneRoute) {
+            if (currentRoute === "akane_route_start") {
               config = { ...config, positionClass: "left-[5%] w-[45%] h-[95%]" };
             }
           }
