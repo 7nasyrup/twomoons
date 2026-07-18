@@ -183,6 +183,7 @@ export default function App() {
   const [alertActive, setAlertActive] = useState(false);
   const [alertConfig, setAlertConfig] = useState({ title: '', message: '' });
   const [isFadingBlack, setIsFadingBlack] = useState(false);
+  const [isWhiteOut, setIsWhiteOut] = useState(false);
   const [shakeEffect, setShakeEffect] = useState(false);
   const [isSmokeActive, setIsSmokeActive] = useState(false);
   const [stealthGameResult, setStealthGameResult] = useState(null);
@@ -451,6 +452,12 @@ export default function App() {
       if (action === 'FADE_TO_BLACK') {
         setIsFadingBlack(true);
         setTimeout(() => setIsFadingBlack(false), 2000);
+      }
+
+      if (action === 'WHITE_OUT_START') {
+        setIsWhiteOut(true);
+      } else if (action === 'WHITE_OUT_END') {
+        setIsWhiteOut(false);
       }
 
       // Red Alert
@@ -960,6 +967,19 @@ export default function App() {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 4, ease: 'easeInOut' }}
+                />
+              )}
+            </AnimatePresence>
+
+            {/* White Out Overlay */}
+            <AnimatePresence>
+              {isWhiteOut && !isCinema && !isAnyEnd && (
+                <motion.div
+                  className="absolute inset-0 pointer-events-none z-[19] bg-white"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.8, ease: 'easeInOut' }}
                 />
               )}
             </AnimatePresence>

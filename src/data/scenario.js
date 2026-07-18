@@ -2820,7 +2820,6 @@ export const scenarioData = [
     scene: "廃ビルの一室",
     text: "薄暗い室内へと足を踏み入れた、その瞬間──。",
     bg: "/scene/ajito.png",
-    action: "FADE_IN"
   },
   {
     scene: "廃ビルの一室",
@@ -3220,6 +3219,7 @@ export const scenarioData = [
     scene: "廃ビルの一室",
     text: "私たちは覚悟を決め、ヒルミ教授が待つ大学の研究室へと向かうため、再び廃ビルの階段を駆け下り始めた。",
   },
+
   {
     scene: "崩壊した街",
     text: "廃ビルを飛び出した私たちを待っていたのは、夜の闇に紛れて街を蹂躙する、異形の怪物──【キメラ】たちの群れだった。",
@@ -4656,9 +4656,8 @@ export const scenarioData = [
     scene: "研究所の最奥",
     speaker: "凪砂",
     role: "NAGISA",
-    text: "「…そんなに熱っぽく見つめないでよ。わかってる、僕が止めればいいんだろ」"
-    ,
-    showIllust: ["Nagisa_neutral"]
+    text: "「…そんなに熱っぽく見つめないでよ。わかってる、僕が止めればいいんだろ」",
+    showIllust: ["Nagisa_smile"]
   },
   {
     scene: "研究所の最奥",
@@ -4692,8 +4691,7 @@ export const scenarioData = [
     scene: "研究所の最奥",
     speaker: "凪砂",
     role: "NAGISA",
-    text: "「…なに？」"
-    ,
+    text: "「…なに？」",
     showIllust: ["Nagisa_neutral"]
   },
   {
@@ -4718,8 +4716,7 @@ export const scenarioData = [
     scene: "研究所の最奥",
     speaker: "凪砂",
     role: "NAGISA",
-    text: "「……これが終わったら、僕とデートして」"
-    ,
+    text: "「……これが終わったら、僕とデートして」",
     showIllust: ["Nagisa_happy"]
   },
   {
@@ -4742,8 +4739,7 @@ export const scenarioData = [
     scene: "研究所の最奥",
     speaker: "凪砂",
     role: "NAGISA",
-    text: "「ぐ…っ………うぅ……！！」"
-    ,
+    text: "「ぐ…っ………うぅ……！！」",
     showIllust: ["Nagisa_serious"]
   },
   {
@@ -4769,8 +4765,6 @@ export const scenarioData = [
     speaker: "凪砂",
     role: "NAGISA",
     text: "「はぁ…っ、く……はぁ……」"
-    ,
-    showIllust: ["Nagisa_neutral"]
   },
   {
     scene: "研究所の最奥",
@@ -4790,7 +4784,8 @@ export const scenarioData = [
   },
   {
     scene: "研究所の最奥",
-    text: "漆黒の甲冑に身を包み、身の丈ほどもある大剣を携えた――――"
+    text: "漆黒の甲冑に身を包み、身の丈ほどもある大剣を携えた――――",
+    showIllust: ["BlackKnight"]
   },
   {
     scene: "研究所の最奥",
@@ -4819,8 +4814,6 @@ export const scenarioData = [
     speaker: "凪砂",
     role: "NAGISA",
     text: "「────下がれッ！！」"
-    ,
-    showIllust: ["Nagisa_serious"]
   },
   {
     scene: "研究所の最奥",
@@ -4842,7 +4835,8 @@ export const scenarioData = [
   },
   {
     scene: "研究所の最奥",
-    text: "ここで足を止めたら二人とも死ぬ。私は彼の腕を自分の肩に回し、再び全力で走り出す。"
+    text: "ここで足を止めたら二人とも死ぬ。私は彼の腕を自分の肩に回し、再び全力で走り出す。",
+    hideIllust: ["BlackKnight"]
   },
   {
     scene: "瓦礫裏",
@@ -4857,8 +4851,6 @@ export const scenarioData = [
     speaker: "凪砂",
     role: "NAGISA",
     text: "「はぁ…………はぁ……………」"
-    ,
-    showIllust: ["Nagisa_neutral"]
   },
   {
     scene: "瓦礫裏",
@@ -4878,8 +4870,7 @@ export const scenarioData = [
     scene: "瓦礫裏",
     speaker: "凪砂",
     role: "NAGISA",
-    text: "「はは……さっきの指示、的確だっただろ。ぼくのおかげ、だね……」"
-    ,
+    text: "「はは……さっきの指示、的確だっただろ。ぼくのおかげ、だね……」",
     showIllust: ["Nagisa_smile"]
   },
   {
@@ -4900,8 +4891,7 @@ export const scenarioData = [
     scene: "瓦礫裏",
     speaker: "凪砂",
     role: "NAGISA",
-    text: "「前、黒騎士に会った時には感じなかったけど……今回は、あいつの声が……『聴こえた』よ……」"
-    ,
+    text: "「前、黒騎士に会った時には感じなかったけど……今回は、あいつの声が……『聴こえた』よ……」",
     showIllust: ["Nagisa_neutral"]
   },
   {
@@ -4919,8 +4909,6 @@ export const scenarioData = [
     speaker: "凪砂",
     role: "NAGISA",
     text: "「……僕には、相手の考えてることがわかる。どんなに恐ろしい化け物相手でもね。あいつが次にどう動くか、全部僕の頭の中に流れ込んでくるんだ」"
-    ,
-    showIllust: ["Nagisa_smile"]
   },
   {
     scene: "瓦礫裏",
@@ -4931,16 +4919,12 @@ export const scenarioData = [
     speaker: "凪砂",
     role: "NAGISA",
     text: "「便利だって思うだろ？…この力は制御できない。つまり…勝手に流れてくるんだよ。他の思考が。望んでもいないのに、有象無象のどす黒い本音も、化け物の殺意も、ぜんぶ強制的に脳みそへ注ぎ込まれる」"
-    ,
-    showIllust: ["Nagisa_neutral"]
   },
   {
     scene: "瓦礫裏",
     speaker: "凪砂",
     role: "NAGISA",
     text: "「……僕の頭はね、ずっとうるさくて、壊れそうなんだ」"
-    ,
-    showIllust: ["Nagisa_smile"]
   },
   {
     scene: "瓦礫裏",
@@ -4965,8 +4949,6 @@ export const scenarioData = [
     speaker: "凪砂",
     role: "NAGISA",
     text: "「………………わからない」"
-    ,
-    showIllust: ["Nagisa_neutral"]
   },
   {
     scene: "瓦礫裏",
@@ -4982,8 +4964,7 @@ export const scenarioData = [
     scene: "瓦礫裏",
     speaker: "凪砂",
     role: "NAGISA",
-    text: "「不思議だよね。君の情報だけ……なにも、流れてこない」"
-    ,
+    text: "「不思議だよね。君の情報だけ……なにも、流れてこない」",
     showIllust: ["Nagisa_smile"]
   },
   {
@@ -4995,8 +4976,6 @@ export const scenarioData = [
     speaker: "凪砂",
     role: "NAGISA",
     text: "「それどころか、君が近くにいる時だけ……何も聞こえなくなる。いつも思うんだ。世界ってこんなに静かだったんだって」"
-    ,
-    showIllust: ["Nagisa_smile"]
   },
   {
     scene: "瓦礫裏",
@@ -5014,8 +4993,7 @@ export const scenarioData = [
     scene: "瓦礫裏",
     speaker: "凪砂",
     role: "NAGISA",
-    text: "「……アイツがそこまで迫ってきてる。君は僕を置いて逃げろ。その間にコアはなんとかしとくから」"
-    ,
+    text: "「……アイツがそこまで迫ってきてる。君は僕を置いて逃げろ。その間にコアはなんとかしとくから」",
     showIllust: ["Nagisa_serious"]
   },
   {
@@ -5053,8 +5031,6 @@ export const scenarioData = [
     speaker: "凪砂",
     role: "NAGISA",
     text: "「…………やっぱり、静かだ。君のそばにいると、安心する」"
-    ,
-    showIllust: ["Nagisa_smile"]
   },
   {
     scene: "瓦礫裏",
@@ -5065,8 +5041,6 @@ export const scenarioData = [
     speaker: "凪砂",
     role: "NAGISA",
     text: "「君って…ほんとバカみたいなお人好しだね」"
-    ,
-    showIllust: ["Nagisa_smile"]
   },
   {
     scene: "瓦礫裏",
@@ -5093,10 +5067,8 @@ export const scenarioData = [
   {
     scene: "研究所の最奥",
     speaker: "黒騎士",
-    role: "ENEMY",
-    text: "「オオオオオォォォ……ッ！！」"
-    ,
-    showIllust: ["BlackKnight_serious"]
+    text: "「オオオオオォォォ……ッ！！」",
+    showIllust: ["Blackknight"]
   },
   {
     scene: "研究所の最奥",
@@ -5110,17 +5082,15 @@ export const scenarioData = [
     scene: "研究所の最奥",
     speaker: "凪砂",
     role: "NAGISA",
-    text: "「朔良、怯まないで。──あいつの動きなら、今度は全部僕の頭の中に視えている。なんでか知らないけど……余計な情報は、今は流れてこないんだ」"
-    ,
+    text: "「朔良、怯まないで。──あいつの動きなら、今度は全部僕の頭の中に視えている。なんでか知らないけど……余計な情報は、今は流れてこないんだ」",
     showIllust: ["Nagisa_neutral"]
   },
   {
     scene: "研究所の最奥",
     speaker: "凪砂",
     role: "NAGISA",
-    text: "「右からくるよ。──三歩下がって！」"
-    ,
-    showIllust: ["Nagisa_neutral"]
+    text: "「右からくるよ。──三歩下がって！」",
+    showIllust: ["Nagisa_serious"]
   },
   {
     scene: "研究所の最奥",
@@ -5140,8 +5110,7 @@ export const scenarioData = [
     scene: "研究所の最奥",
     speaker: "凪砂",
     role: "NAGISA",
-    text: "「へえ、僕の指示を無視して避けるなんて、いい度胸だね」"
-    ,
+    text: "「へえ、僕の指示を無視して避けるなんて、いい度胸だね」",
     showIllust: ["Nagisa_smile"]
   },
   {
@@ -5155,8 +5124,6 @@ export const scenarioData = [
     speaker: "凪砂",
     role: "NAGISA",
     text: "「いや、今のは君の判断が正しかったよ。あいつ、途中で軌道を変えやがった。……僕の予知を超えて動くなんてね」"
-    ,
-    showIllust: ["Nagisa_smile"]
   },
   {
     scene: "研究所の最奥",
@@ -5174,8 +5141,7 @@ export const scenarioData = [
     scene: "研究所の最奥",
     speaker: "凪砂",
     role: "NAGISA",
-    text: "「──今だ」"
-    ,
+    text: "「──今だ」",
     showIllust: ["Nagisa_neutral"]
   },
   {
@@ -5186,9 +5152,8 @@ export const scenarioData = [
     scene: "研究所の最奥",
     speaker: "凪砂",
     role: "NAGISA",
-    text: "「左の盾はフェイントだ、右の装甲の隙間を狙って！」"
-    ,
-    showIllust: ["Nagisa_neutral"]
+    text: "「左の盾はフェイントだ、右の装甲の隙間を狙って！」",
+    showIllust: ["Nagisa_serious"]
   },
   {
     scene: "研究所の最奥",
@@ -5213,8 +5178,6 @@ export const scenarioData = [
     speaker: "凪砂",
     role: "NAGISA",
     text: "「っ、朔良、下がって！ 相打ちを狙う気だ……！」"
-    ,
-    showIllust: ["Nagisa_neutral"]
   },
   {
     scene: "研究所の最奥",
@@ -5244,7 +5207,9 @@ export const scenarioData = [
   },
   {
     scene: "研究所の最奥",
-    text: "やがて、もうもうと立ち込める煙が外気へと流され、視界が晴れていくと──そこには、不自然にぽっかりと開いた巨大な穴と、その向こうに広がる荒涼とした外の世界が見えるだけだった。"
+    text: "やがて、もうもうと立ち込める煙が外気へと流され、視界が晴れていくと──そこには、不自然にぽっかりと開いた巨大な穴と、その向こうに広がる荒涼とした外の世界が見えるだけだった。",
+    bg: "/scene/core_kurokishi_toubou.png",
+    hideIllust: ["Blackknight"]
   },
   {
     scene: "研究所の最奥",
@@ -5258,8 +5223,7 @@ export const scenarioData = [
     scene: "研究所の最奥",
     speaker: "凪砂",
     role: "NAGISA",
-    text: "「……逃げられた、か」"
-    ,
+    text: "「……逃げられた、か」",
     showIllust: ["Nagisa_neutral"]
   },
   {
@@ -5271,8 +5235,6 @@ export const scenarioData = [
     speaker: "凪砂",
     role: "NAGISA",
     text: "「……さて。邪魔者はいなくなったし、本来の仕事を片付けようか」"
-    ,
-    showIllust: ["Nagisa_neutral"]
   },
   {
     scene: "研究所の最奥",
@@ -5292,8 +5254,7 @@ export const scenarioData = [
     scene: "研究所の最奥",
     speaker: "凪砂",
     role: "NAGISA",
-    text: "「……うん。君がいてくれるなら、僕は世界で一番強いよ」"
-    ,
+    text: "「……うん。君がいてくれるなら、僕は世界で一番強いよ」",
     showIllust: ["Nagisa_smile"]
   },
   {
@@ -5308,8 +5269,7 @@ export const scenarioData = [
     scene: "研究所の最奥",
     speaker: "凪砂",
     role: "NAGISA",
-    text: "「ぐ、っ……あああああぁぁぁ……ッ！！」"
-    ,
+    text: "「ぐ、っ……あああああぁぁぁ……ッ！！」",
     showIllust: ["Nagisa_serious"]
   },
   {
@@ -5345,13 +5305,12 @@ export const scenarioData = [
     speaker: "凪砂",
     role: "NAGISA",
     text: "「は、あぐ……っ、これ、で……終わりだ……ッ！！」"
-    ,
-    showIllust: ["Nagisa_serious"]
   },
   //白く光る
   {
     scene: "研究所の最奥",
-    text: "凪砂さんが血を吐き出すように叫び、最後の力を振り絞って両手に力を込めた。その瞬間、コアの輝きが限界を迎えた電球のように、一際眩しく爆発的に膨れ上がった。視界が純白の光で埋め尽くされ、何も見えなくなる。"
+    text: "凪砂さんが血を吐き出すように叫び、最後の力を振り絞って両手に力を込めた。その瞬間、コアの輝きが限界を迎えた電球のように、一際眩しく爆発的に膨れ上がった。視界が純白の光で埋め尽くされ、何も見えなくなる。",
+    action: "WHITE_OUT_START"
   },
   {
     scene: "研究所の最奥",
@@ -5364,7 +5323,9 @@ export const scenarioData = [
   //ゆっくり暗転
   {
     scene: "研究所の最奥",
-    text: "ゆっくりと光が収束していく。"
+    text: "ゆっくりと光が収束していく。",
+    bg: "/scene/core_hakai.png",
+    action: "WHITE_OUT_END"
   },
   {
     scene: "研究所の最奥",
@@ -5398,8 +5359,7 @@ export const scenarioData = [
     scene: "研究所の最奥",
     speaker: "凪砂",
     role: "NAGISA",
-    text: "「……鼓動って、こんなに落ち着く音だったんだね…………」"
-    ,
+    text: "「……鼓動って、こんなに落ち着く音だったんだね…………」",
     showIllust: ["Nagisa_smile"]
   },
   {
@@ -5415,8 +5375,6 @@ export const scenarioData = [
     speaker: "凪砂",
     role: "NAGISA",
     text: "「……これで、ようやく帰れるんだね」"
-    ,
-    showIllust: ["Nagisa_smile"]
   },
   {
     scene: "研究所の最奥",
@@ -5450,8 +5408,6 @@ export const scenarioData = [
     speaker: "凪砂",
     role: "NAGISA",
     text: "「……君が支えてくれるなら、どこまででも」"
-    ,
-    showIllust: ["Nagisa_neutral"]
   },
   {
     scene: "研究所の最奥",
@@ -5506,8 +5462,7 @@ export const scenarioData = [
     scene: "宇宙空間",
     speaker: "凪砂",
     role: "NAGISA",
-    text: "「本当に、何にも聴こえないや。他人のドス黒い感情も、化け物の殺意も……全部、あの場所に置いてこられたみたいだ」"
-    ,
+    text: "「本当に、何にも聴こえないや。他人のドス黒い感情も、化け物の殺意も……全部、あの場所に置いてこられたみたいだ」",
     showIllust: ["Nagisa_neutral"]
   },
   {
@@ -5519,8 +5474,6 @@ export const scenarioData = [
     speaker: "凪砂",
     role: "NAGISA",
     text: "「ねえ、朔良。地球に着いたら、ちゃんと約束、守ってくれるよね？」"
-    ,
-    showIllust: ["Nagisa_smile"]
   },
   {
     scene: "宇宙空間",
@@ -5532,8 +5485,7 @@ export const scenarioData = [
     scene: "宇宙空間",
     speaker: "凪砂",
     role: "NAGISA",
-    text: "「忘れたの？ デートの約束だよ。この静かで最高な世界を、君と一緒に歩き回りたいんだ」"
-    ,
+    text: "「忘れたの？ デートの約束だよ。この静かで最高な世界を、君と一緒に歩き回りたいんだ」",
     showIllust: ["Nagisa_happy"]
   },
   {
@@ -5553,7 +5505,8 @@ export const scenarioData = [
   //ゆっくりFO
   {
     scene: "地球",
-    text: "私たちの日常は、驚くほどあっけなく戻ってきた。"
+    text: "私たちの日常は、驚くほどあっけなく戻ってきた。",
+    bg: "/scene/university_gate.png"
   },
   {
     scene: "地球",
@@ -5572,7 +5525,8 @@ export const scenarioData = [
     speaker: "ヒルミ教授",
     role: "PROFESSOR",
     text: "「やあ、朔良。実習報告書のデータ、じつに素晴らしい出来だったよ。あの極限状態できちんとフォントサイズまで揃えてくるとは、さすが我が研究室の学生だね」",
-    showIllust: ["Hirumi_smile"]
+    showIllust: ["Hirumi_smile"],
+    bg: "/scene/lab.png"
   },
   {
     scene: "研究室",
@@ -5595,7 +5549,7 @@ export const scenarioData = [
     speaker: "朔良",
     role: "SAKURA",
     text: "「……うわ、もうこんな時間！ 遅くなっちゃったかな……っ」",
-    bg: "night_street"
+    bg: "/scene/shopping_street_night.png"
   },
   {
     scene: "待ち合わせ場所",
@@ -5603,7 +5557,8 @@ export const scenarioData = [
   },
   {
     scene: "待ち合わせ場所",
-    text: "息を切らしながら約束の場所へと近づくと、駅前にある古い時計台のふもとに、お目当ての人物の姿が見えた。"
+    text: "息を切らしながら約束の場所へと近づくと、駅前にある古い時計台のふもとに、お目当ての人物の姿が見えた。",
+    bg: "/scene/clock_tower.png"
   },
   {
     scene: "待ち合わせ場所",
@@ -5623,8 +5578,7 @@ export const scenarioData = [
     scene: "待ち合わせ場所",
     speaker: "凪砂",
     role: "NAGISA",
-    text: "「遅い」"
-    ,
+    text: "「遅い」",
     showIllust: ["Nagisa_neutral"]
   },
   {
@@ -5641,8 +5595,7 @@ export const scenarioData = [
     scene: "待ち合わせ場所",
     speaker: "凪砂",
     role: "NAGISA",
-    text: "「まったく……君は言い訳が好きだね」"
-    ,
+    text: "「まったく……君は言い訳が好きだね」",
     showIllust: ["Nagisa_smile"]
   },
   {
@@ -5661,8 +5614,7 @@ export const scenarioData = [
     scene: "待ち合わせ場所",
     speaker: "凪砂",
     role: "NAGISA",
-    text: "「というわけで、遅れてきた罰として、今日は僕が満足するまで帰さないから」"
-    ,
+    text: "「というわけで、遅れてきた罰として、今日は僕が満足するまで帰さないから」",
     showIllust: ["Nagisa_neutral"]
   },
   {
@@ -5693,8 +5645,7 @@ export const scenarioData = [
     scene: "待ち合わせ場所",
     speaker: "凪砂",
     role: "NAGISA",
-    text: "「くっ……あははははっ！！ 何その顔！ 茹でダコみたい……っ」"
-    ,
+    text: "「くっ……あははははっ！！ 何その顔！ 茹でダコみたい……っ」",
     showIllust: ["Nagisa_happy"]
   },
   {
@@ -5715,9 +5666,8 @@ export const scenarioData = [
     scene: "待ち合わせ場所",
     speaker: "凪砂",
     role: "NAGISA",
-    text: "「僕を待たせた罰第1弾ってこと。外への見せつけ」"
-    ,
-    showIllust: ["Nagisa_neutral"]
+    text: "「僕を待たせた罰第1弾ってこと。外への見せつけ」",
+    showIllust: ["Nagisa_smile"]
   },
   {
     scene: "待ち合わせ場所",
@@ -5737,8 +5687,7 @@ export const scenarioData = [
     scene: "待ち合わせ場所",
     speaker: "凪砂",
     role: "NAGISA",
-    text: "「ほら、なにボケっとしてるの。早く行くよ」"
-    ,
+    text: "「ほら、なにボケっとしてるの。早く行くよ」",
     showIllust: ["Nagisa_neutral"]
   },
   {
@@ -5761,11 +5710,7 @@ export const scenarioData = [
   },
   {
     scene: "待ち合わせ場所",
-    speaker: "システム",
-    role: "SYSTEM",
-    text: "（凪砂ルート・ハッピーエンド ── 読了ありがとうございました！）",
-    action: "FADE_TO_DEMO_END",
-    label: "route_under_construction"
+    action: "FADE_TO_HAPPY_END"
   },
 
   //ここで分岐発生(ミカルート)****************************************************************************************
@@ -8122,8 +8067,7 @@ export const scenarioData = [
     scene: "制御室",
     speaker: "睦典",
     role: "MUTSUNORI",
-    text: "「やったね、朔良。……これで、あのでっかい扉が開くはずだ」"
-    ,
+    text: "「やったね、朔良。……これで、あのでっかい扉が開くはずだ」",
     showIllust: ["Mutsunori_happy"]
   },
   {
@@ -8165,8 +8109,6 @@ export const scenarioData = [
     speaker: "睦典",
     role: "MUTSUNORI",
     text: "「……ちょっと、目がチカチカするだけ。ほら、急ごうぜ。教授の言う通り、単位がかかってんだからさ」"
-    ,
-    showIllust: ["Mutsunori_smile"]
   },
   {
     scene: "制御室",
@@ -8182,7 +8124,8 @@ export const scenarioData = [
   },
   {
     scene: "最深部",
-    text: "重厚な鋼鉄の巨大なゲートの中央には、はめ込み式のスロットがあり、これまで集めてきたデータチップを差し込むようになっている。"
+    text: "重厚な鋼鉄の巨大なゲートの中央には、はめ込み式のスロットがあり、これまで集めてきたデータチップを差し込むようになっている。",
+    bg: "/scene/gate.png"
   },
   {
     scene: "最深部",
@@ -8199,8 +8142,6 @@ export const scenarioData = [
     speaker: "睦典",
     role: "MUTSUNORI",
     text: "「なぁ、朔良」"
-    ,
-    showIllust: ["Mutsunori_smile"]
   },
   {
     scene: "最深部",
@@ -8223,8 +8164,6 @@ export const scenarioData = [
     speaker: "睦典",
     role: "MUTSUNORI",
     text: "「……終わったらさ、地球に帰って……。あれ、俺、いっつも何作ってたっけ……」"
-    ,
-    showIllust: ["Mutsunori_happy"]
   },
   {
     scene: "最深部",
@@ -8258,7 +8197,8 @@ export const scenarioData = [
   },
   {
     scene: "研究所の最奥",
-    text: "天井の一部がガラス張りになっており、そこから差し込む「本当の月の光」を浴びて、それは宙に浮かんでいた。"
+    text: "天井の一部がガラス張りになっており、そこから差し込む「本当の月の光」を浴びて、それは宙に浮かんでいた。",
+    bg: "/scene/core.png"
   },
   {
     scene: "研究所の最奥",
@@ -8410,7 +8350,8 @@ export const scenarioData = [
   },
   {
     scene: "研究所の最奥",
-    text: "爆煙の向こうから、凄まじい威圧感を放ちながら、ゆっくりと姿を現す影。\n漆黒の甲冑に身を包み、大剣を携えた、あの異形の化け物。"
+    text: "爆煙の向こうから、凄まじい威圧感を放ちながら、ゆっくりと姿を現す影。\n漆黒の甲冑に身を包み、大剣を携えた、あの異形の化け物。",
+    showIllust: ["Blacknight"]
   },
   {
     scene: "研究所の最奥",
@@ -8460,9 +8401,8 @@ export const scenarioData = [
     scene: "研究所の最奥",
     speaker: "睦典",
     role: "MUTSUNORI",
-    text: "「が、あ……っ！」"
-    ,
-    showIllust: ["Mutsunori_smile"]
+    text: "「が、あ……っ！」",
+    showIllust: ["Mutsunori_serious_injured"]
   },
   {
     scene: "研究所の最奥",
@@ -8495,8 +8435,6 @@ export const scenarioData = [
     speaker: "睦典",
     role: "MUTSUNORI",
     text: "「……っ、走れ、朔良……こっちだ！」"
-    ,
-    showIllust: ["Mutsunori_smile"]
   },
   {
     scene: "瓦礫裏",
@@ -8510,9 +8448,8 @@ export const scenarioData = [
     scene: "瓦礫裏",
     speaker: "睦典",
     role: "MUTSUNORI",
-    text: "「驚いた、だろ……」"
-    ,
-    showIllust: ["Mutsunori_smile"]
+    text: "「驚いた、だろ……」",
+    showIllust: ["Mutsunori_smile_injured"]
   },
   {
     scene: "瓦礫裏",
@@ -8523,8 +8460,6 @@ export const scenarioData = [
     speaker: "睦典",
     role: "MUTSUNORI",
     text: "「…ちょっとした怪我ならすぐ治るの、見ただろ？ 俺の異能さ、これなんだよ。どんな傷を負っても、一瞬で元通りになる。……文字通りの『不死身』」"
-    ,
-    showIllust: ["Mutsunori_serious"]
   },
   {
     scene: "瓦礫裏",
@@ -8534,9 +8469,8 @@ export const scenarioData = [
     scene: "瓦礫裏",
     speaker: "睦典",
     role: "MUTSUNORI",
-    text: "「でもさ……タダでこんな都合のいい身体になれるわけ、ないんだよね」"
-    ,
-    showIllust: ["Mutsunori_smile"]
+    text: "「でもさ……タダでこんな都合のいい身体になれるわけ、ないんだよね」",
+    showIllust: ["Mutsunori_serious_injured"]
   },
   {
     scene: "瓦礫裏",
@@ -8547,8 +8481,6 @@ export const scenarioData = [
     speaker: "睦典",
     role: "MUTSUNORI",
     text: "「傷が治るたびに……身体が修復されるたびに、俺の『中身』が削れていくんだ。……さっき、コアに力を注ごうとして跳ね返された時、一気に持ってかれちゃったみたいでさ」"
-    ,
-    showIllust: ["Mutsunori_smile"]
   },
   {
     scene: "瓦礫裏",
@@ -8561,8 +8493,6 @@ export const scenarioData = [
     speaker: "睦典",
     role: "MUTSUNORI",
     text: "「記憶、だよ」"
-    ,
-    showIllust: ["Mutsunori_smile"]
   },
   {
     scene: "瓦礫裏",
@@ -8573,8 +8503,6 @@ export const scenarioData = [
     speaker: "睦典",
     role: "MUTSUNORI",
     text: "「俺さ、……もう、自分の家のうどんの味が思い出せないんだ。……脳みそが、俺の『自我』が、傷を治すためのエネルギーとして、消しゴムで消されるみたいに摩耗していってるんだよ」"
-    ,
-    showIllust: ["Mutsunori_pout"]
   },
   {
     scene: "瓦礫裏",
@@ -8587,12 +8515,10 @@ export const scenarioData = [
     speaker: "睦典",
     role: "MUTSUNORI",
     text: "「全部忘れちゃっても、朔良のことだけ覚えていられればいいって思ってた。……だけど、今……それすらも、指の隙間からサラサラ零れ落ちていくみたいで、……すごく、怖いんだ」"
-    ,
-    showIllust: ["Mutsunori_pout"]
   },
   {
     scene: "瓦礫裏",
-    text: "命が削れていくような、切実すぎる彼の言葉。\n外では、私たちの死神である黒騎士の足音が、静かに、確実に近づいてきていた。"
+    text: "命が削れていくような、切実すぎる彼の言葉。外では、私たちの死神である黒騎士の足音が、静かに、確実に近づいてきていた。"
   },
   {
     action: "EVALUATE_FRAGMENT_COLLECT_BRANCH"
@@ -8843,9 +8769,8 @@ export const scenarioData = [
     scene: "瓦礫裏",
     speaker: "睦典",
     role: "MUTSUNORI",
-    text: "「逃げて、朔良……っ！ 俺が……君を殺しちゃう前に……早く、早く行けぇっ！！」"
-    ,
-    showIllust: ["Mutsunori_smile"]
+    text: "「逃げて、朔良……っ！ 俺が……君を殺しちゃう前に……早く、早く行けぇっ！！」",
+    showIllust: ["Mutsunori_serious_injured"]
   },
   {
     scene: "瓦礫裏",
@@ -8868,8 +8793,6 @@ export const scenarioData = [
     speaker: "睦典",
     role: "MUTSUNORI",
     text: "「ガ、アアアアアアアア……ッ！」"
-    ,
-    showIllust: ["Mutsunori_serious"]
   },
   {
     scene: "瓦礫裏",
@@ -8898,8 +8821,6 @@ export const scenarioData = [
     speaker: "睦典",
     role: "MUTSUNORI",
     text: "「な、……に、して……っ！ 離れろ、朔良……！」"
-    ,
-    showIllust: ["Mutsunori_smile"]
   },
   {
     scene: "研究所の最奥",
@@ -8947,8 +8868,7 @@ export const scenarioData = [
     scene: "研究所の最奥",
     speaker: "睦典",
     role: "MUTSUNORI",
-    text: "「あ……、さく、ら……？」"
-    ,
+    text: "「あ……、さく、ら……？」",
     showIllust: ["Mutsunori_smile"]
   },
   {
@@ -8964,7 +8884,6 @@ export const scenarioData = [
     speaker: "睦典",
     role: "MUTSUNORI",
     text: "「お待たせ、朔良。……心配かけたな」",
-    showIllust: ["Mutsunori_pout"]
   },
   {
     scene: "研究所の最奥",
@@ -8981,9 +8900,8 @@ export const scenarioData = [
   {
     scene: "研究所の最奥",
     speaker: "黒騎士",
-    role: "ENEMY",
     text: "「ギ、ギギ……ッ」",
-    showIllust: ["BlackKnight_serious"]
+    showIllust: ["Blackknight"]
   },
   {
     scene: "研究所の最奥",
@@ -8993,9 +8911,8 @@ export const scenarioData = [
     scene: "研究所の最奥",
     speaker: "睦典",
     role: "MUTSUNORI",
-    text: "「朔良、後ろに下がってろ。──いや、違うな」"
-    ,
-    showIllust: ["Mutsunori_smile"]
+    text: "「朔良、後ろに下がってろ。──いや、違うな」",
+    showIllust: ["Mutsunori_serious"]
   },
   {
     scene: "研究所の最奥",
@@ -9005,8 +8922,7 @@ export const scenarioData = [
     scene: "研究所の最奥",
     speaker: "睦典",
     role: "MUTSUNORI",
-    text: "「俺の目になってくれ、朔良。二人で、あいつをぶっ飛ばそう」"
-    ,
+    text: "「俺の目になってくれ、朔良。二人で、あいつをぶっ飛ばそう」",
     showIllust: ["Mutsunori_smile"]
   },
   {
@@ -9030,8 +8946,6 @@ export const scenarioData = [
     speaker: "睦典",
     role: "MUTSUNORI",
     text: "「おうっ！」"
-    ,
-    showIllust: ["Mutsunori_pout"]
   },
   {
     scene: "研究所の最奥",
@@ -9056,10 +8970,8 @@ export const scenarioData = [
   {
     scene: "研究所の最奥",
     speaker: "黒騎士",
-    role: "ENEMY",
-    text: "「──チッ」"
-    ,
-    showIllust: ["BlackKnight_serious"]
+    text: "「──チッ」",
+    showIllust: ["Blackknight"]
   },
   {
     scene: "研究所の最奥",
@@ -9085,8 +8997,7 @@ export const scenarioData = [
     scene: "研究所の最奥",
     speaker: "睦典",
     role: "MUTSUNORI",
-    text: "「ゲホッ、ゴホッ！ 朔良、大丈夫か！？」"
-    ,
+    text: "「ゲホッ、ゴホッ！ 朔良、大丈夫か！？」",
     showIllust: ["Mutsunori_serious"]
   },
   {
@@ -9101,15 +9012,14 @@ export const scenarioData = [
   },
   {
     scene: "研究所の最奥",
-    text: "数秒後、激しく舞い散る白い塵の向こうを見据えたが──そこにはもう、漆黒の化け物の姿はなかった。\nただ、破壊された壁の向こうへ続く、不気味な足跡だけが残されている。"
+    text: "数秒後、激しく舞い散る白い塵の向こうを見据えたが──そこにはもう、漆黒の化け物の姿はなかった。\nただ、破壊された壁の向こうへ続く、不気味な足跡だけが残されている。",
+    bg: "scene/core_kurokishi_toubou.png"
   },
   {
     scene: "研究所の最奥",
     speaker: "睦典",
     role: "MUTSUNORI",
     text: "「チッ、逃げ足の速い野郎だ……。でも、追ってる時間はなさそうだな」"
-    ,
-    showIllust: ["Mutsunori_serious"]
   },
   {
     scene: "研究所の最奥",
@@ -9120,8 +9030,6 @@ export const scenarioData = [
     speaker: "睦典",
     role: "MUTSUNORI",
     text: "「……っ、いよいよ、本番だな」"
-    ,
-    showIllust: ["Mutsunori_smile"]
   },
   {
     scene: "研究所の最奥",
@@ -9139,8 +9047,7 @@ export const scenarioData = [
     scene: "研究所の最奥",
     speaker: "睦典",
     role: "MUTSUNORI",
-    text: "「……朔良」"
-    ,
+    text: "「……朔良」",
     showIllust: ["Mutsunori_smile"]
   },
   {
@@ -9152,8 +9059,6 @@ export const scenarioData = [
     speaker: "睦典",
     role: "MUTSUNORI",
     text: "「さっきは一人でやろうとして失敗した。でも、今は朔良がいてくれる。……俺の力を全部注ぎ込む。暴走しそうになったら、お前が全部中和してくれ。──二人なら、いけるだろ？」"
-    ,
-    showIllust: ["Mutsunori_smile"]
   },
   {
     scene: "研究所の最奥",
@@ -9173,9 +9078,8 @@ export const scenarioData = [
     scene: "研究所の最奥",
     speaker: "睦典",
     role: "MUTSUNORI",
-    text: "「いくぞ、朔良……せーのっ！」"
-    ,
-    showIllust: ["Mutsunori_smile"]
+    text: "「いくぞ、朔良……せーのっ！」",
+    showIllust: ["Mutsunori_serious"]
   },
   {
     scene: "研究所の最奥",
@@ -9202,8 +9106,6 @@ export const scenarioData = [
     speaker: "睦典",
     role: "MUTSUNORI",
     text: "「くっ、あ、あああぁぁぁっ……！！」"
-    ,
-    showIllust: ["Mutsunori_smile"]
   },
   {
     scene: "研究所の最奥",
@@ -9224,8 +9126,6 @@ export const scenarioData = [
     speaker: "睦典",
     role: "MUTSUNORI",
     text: "「あああああぁぁぁッ！！！」"
-    ,
-    showIllust: ["Mutsunori_serious"]
   },
   {
     scene: "研究所の最奥",
@@ -9244,8 +9144,6 @@ export const scenarioData = [
     speaker: "睦典",
     role: "MUTSUNORI",
     text: "「──これで、終わりだぁぁぁッ！！！！」"
-    ,
-    showIllust: ["Mutsunori_serious"]
   },
   {
     scene: "研究所の最奥",
@@ -9253,7 +9151,8 @@ export const scenarioData = [
   },
   {
     scene: "研究所の最奥",
-    text: "パリィィィィィィンッ！！！！"
+    text: "パリィィィィィィンッ！！！！",
+    action: "WHITE_OUT_START"
   },
   {
     scene: "研究所の最奥",
@@ -9261,14 +9160,15 @@ export const scenarioData = [
   },
   {
     scene: "研究所の最奥",
-    text: "視界を覆っていた眩い光がゆっくりと収まっていき、私たちの周りには、柔らかな静寂だけが残されていた。"
+    text: "視界を覆っていた眩い光がゆっくりと収まっていき、私たちの周りには、柔らかな静寂だけが残されていた。",
+    bg: "scene/core_hakai.png",
+    action: "WHITE_OUT_END"
   },
   {
     scene: "研究所の最奥",
     speaker: "睦典",
     role: "MUTSUNORI",
-    text: "「……終わった、んだな」"
-    ,
+    text: "「……終わった、んだな」",
     showIllust: ["Mutsunori_smile"]
   },
   {
@@ -9297,9 +9197,8 @@ export const scenarioData = [
     scene: "研究所の最奥",
     speaker: "睦典",
     role: "MUTSUNORI",
-    text: "「あったり前だろ。お前を忘れるわけないじゃん。……っていうか、なんか急に、めちゃくちゃお腹空いてきちゃったな」"
-    ,
-    showIllust: ["Mutsunori_smile"]
+    text: "「あったり前だろ。お前を忘れるわけないじゃん。……っていうか、なんか急に、めちゃくちゃお腹空いてきちゃったな」",
+    showIllust: ["Mutsunori_happy"]
   },
   {
     scene: "研究所の最奥",
@@ -9315,8 +9214,7 @@ export const scenarioData = [
     scene: "研究所の最奥",
     speaker: "睦典",
     role: "MUTSUNORI",
-    text: "「泣くなって、朔良。ほら、上見てみろよ」"
-    ,
+    text: "「泣くなって、朔良。ほら、上見てみろよ」",
     showIllust: ["Mutsunori_smile"]
   },
   {
@@ -9325,7 +9223,9 @@ export const scenarioData = [
   },
   {
     scene: "研究所の最奥",
-    text: "そこには、隔離領域を覆っていた不気味なエネルギーの霧が晴れ、本来の姿を取り戻した、息を呑むほど美しい星空が広がっていた。"
+    text: "そこには、隔離領域を覆っていた不気味なエネルギーの霧が晴れ、本来の姿を取り戻した、息を呑むほど美しい星空が広がっていた。",
+    hideIllust: ["Mutsunori_smile"],
+    bg: "scene/sky.png"
   },
   {
     scene: "研究所の最奥",
@@ -9342,8 +9242,6 @@ export const scenarioData = [
     speaker: "睦典",
     role: "MUTSUNORI",
     text: "「あぁ。……これで、やっと帰れるな、地球に」"
-    ,
-    showIllust: ["Mutsunori_smile"]
   },
   {
     scene: "研究所の最奥",
@@ -9378,8 +9276,6 @@ export const scenarioData = [
     speaker: "睦典",
     role: "MUTSUNORI",
     text: "「おう、俺に捕まってろ！」"
-    ,
-    showIllust: ["Mutsunori_smile"]
   },
   {
     scene: "最下層",
@@ -9391,7 +9287,8 @@ export const scenarioData = [
   },
   {
     scene: "脱出用ロケット内",
-    text: "滑り込むようにハッチを閉め、二人分の狭いシートになだれ込んで安全ベルトを締める。"
+    text: "滑り込むようにハッチを閉め、二人分の狭いシートになだれ込んで安全ベルトを締める。",
+    bg: "scene/rocket_back.png"
   },
   {
     scene: "脱出用ロケット内",
@@ -9413,8 +9310,7 @@ export const scenarioData = [
     scene: "宇宙空間",
     speaker: "睦典",
     role: "MUTSUNORI",
-    text: "「地球に帰ったらさ、俺の特製の『ルナ・エネルギーうどん』、真っ先に食わせてやるよ。お前、それ楽しみにここまで頑張ったんだろ？」"
-    ,
+    text: "「地球に帰ったらさ、俺の特製の『ルナ・エネルギーうどん』、真っ先に食わせてやるよ。お前、それ楽しみにここまで頑張ったんだろ？」",
     showIllust: ["Mutsunori_happy"]
   },
   {
@@ -9440,7 +9336,8 @@ export const scenarioData = [
 
   {
     scene: "いつもの大学",
-    text: "私たちの日常は、驚くほどあっけなく戻ってきた。"
+    text: "私たちの日常は、驚くほどあっけなく戻ってきた。",
+    bg: "scene/university_gate.png"
   },
   {
     scene: "いつもの大学",
@@ -9462,21 +9359,20 @@ export const scenarioData = [
     scene: "研究室",
     speaker: "ヒルミ教授",
     role: "PROFESSOR",
-    text: "「やあ、二人とも。実習報告書のデータ、じつに素晴らしい出来だったよ」"
-    ,
-    showIllust: ["Hirumi_smile"]
+    text: "「やあ、二人とも。実習報告書のデータ、じつに素晴らしい出来だったよ」",
+    showIllust: ["Hirumi_smile"],
+    bg: "scene/lab.png"
   },
   {
     scene: "研究室",
     speaker: "ヒルミ教授",
     role: "PROFESSOR",
     text: "あの極限状態できちんとフォントサイズまで揃えてくるとは、さすが我が研究室の学生だね」"
-    ,
-    showIllust: ["Hirumi_neutral"]
   },
   {
     scene: "研究室",
-    text: "なんて、大学のいつもの研究室で、お気に入りのコーヒーカップを片手にのほほんと言ってのけた。"
+    text: "なんて、大学のいつもの研究室で、お気に入りのコーヒーカップを片手にのほほんと言ってのけた。",
+    hideIllust: ["Hirumi_smile"]
   },
   {
     scene: "研究室",
@@ -9494,9 +9390,9 @@ export const scenarioData = [
     scene: "割烹『むつ』",
     speaker: "睦典",
     role: "MUTSUNORI",
-    text: "「はい、お待ちどうさま！当店特製、『ルナ・エネルギーうどん』改め、激ウマ月見うどんです」"
-    ,
-    showIllust: ["Mutsunori_happy"]
+    text: "「はい、お待ちどうさま！当店特製、『ルナ・エネルギーうどん』改め、激ウマ月見うどんです」",
+    showIllust: ["Mutsunori_happy"],
+    bg: "scene/mutsu.png"
   },
   {
     scene: "割烹『むつ』",
@@ -9512,8 +9408,7 @@ export const scenarioData = [
     scene: "割烹『むつ』",
     speaker: "睦典",
     role: "MUTSUNORI",
-    text: "「だろ？ 記憶を取り戻すために親父の店で何度も試作したんだから」"
-    ,
+    text: "「だろ？ 記憶を取り戻すために親父の店で何度も試作したんだから」",
     showIllust: ["Mutsunori_smile"]
   },
   {
@@ -9548,29 +9443,25 @@ export const scenarioData = [
     scene: "割烹『むつ』",
     speaker: "睦典",
     role: "MUTSUNORI",
-    text: "「よかったぁ。あ、そうだ。あの時、うどんの味は忘れかけてたんだけどさ……」"
-    ,
+    text: "「よかったぁ。あ、そうだ。あの時、うどんの味は忘れかけてたんだけどさ……」",
     showIllust: ["Mutsunori_happy"]
   },
   {
     scene: "割烹『むつ』",
-    text: "睦典はふっと真面目な顔になると、テーブル越しに私の手をそっと包み込んだ。"
-  },
-  {
-    scene: "割烹『むつ』",
-    speaker: "睦典",
-    role: "MUTSUNORI",
-    text: "「俺さ、大事な記憶を失いかけてた時、頭の中でずっと『朔良だけは絶対に忘れちゃダメだ』って、それだけをぐるぐる考えてたんだ」"
-    ,
+    text: "睦典はふっと真面目な顔になると、テーブル越しに私の手をそっと包み込んだ。",
     showIllust: ["Mutsunori_serious"]
   },
   {
     scene: "割烹『むつ』",
     speaker: "睦典",
     role: "MUTSUNORI",
+    text: "「俺さ、大事な記憶を失いかけてた時、頭の中でずっと『朔良だけは絶対に忘れちゃダメだ』って、それだけをぐるぐる考えてたんだ」",
+  },
+  {
+    scene: "割烹『むつ』",
+    speaker: "睦典",
+    role: "MUTSUNORI",
     text: "「……あれ、なんでだったか、今ならはっきり分かるよ」"
-    ,
-    showIllust: ["Mutsunori_pout"]
   },
   {
     scene: "割烹『むつ』",
@@ -9580,17 +9471,13 @@ export const scenarioData = [
     scene: "割烹『むつ』",
     speaker: "睦典",
     role: "MUTSUNORI",
-    text: "「大切な友達だから、じゃなかった。俺、ずっと前から朔良のことが好きだったんだ」"
-    ,
-    showIllust: ["Mutsunori_smile"]
+    text: "「大切な友達だから、じゃなかった。俺、ずっと前から朔良のことが好きだったんだ」",
   },
   {
     scene: "割烹『むつ』",
     speaker: "睦典",
     role: "MUTSUNORI",
     text: "「あの世界で、お前が俺を抱きしめて現実に繋ぎ止めてくれた時、世界中の何よりも、お前を失うのが一番怖いって思った」"
-    ,
-    showIllust: ["Mutsunori_smile"]
   },
   {
     scene: "割烹『むつ』",
@@ -9601,8 +9488,6 @@ export const scenarioData = [
     speaker: "睦典",
     role: "MUTSUNORI",
     text: "「普通の日常に戻っても、俺の隣にはずっとお前にいてほしい。……これからは友達じゃなくて、俺の彼女として。……ダメ、かな？」"
-    ,
-    showIllust: ["Mutsunori_smile"]
   },
   {
     scene: "割烹『むつ』",
@@ -9622,8 +9507,7 @@ export const scenarioData = [
     scene: "割烹『むつ』",
     speaker: "睦典",
     role: "MUTSUNORI",
-    text: "「よっしゃ……！ あ、じゃあさ、彼女の特権として、これからは毎日俺のうどん、食べに来てくれる？」"
-    ,
+    text: "「よっしゃ……！ あ、じゃあさ、彼女の特権として、これからは毎日俺のうどん、食べに来てくれる？」",
     showIllust: ["Mutsunori_happy"]
   },
   {
@@ -9637,8 +9521,6 @@ export const scenarioData = [
     speaker: "睦典",
     role: "MUTSUNORI",
     text: "「よし、言ったな？ 毎食でも作ってやるから覚悟しろよ！」"
-    ,
-    showIllust: ["Mutsunori_happy"]
   },
   {
     scene: "割烹『むつ』",
@@ -9648,7 +9530,10 @@ export const scenarioData = [
     scene: "割烹『むつ』",
     text: "私たちは繋いだ手の温もりを確かめ合いながら、新しく始まる、最高に甘くて騒がしい日常へ向かって、二人で幸せそうに笑い合った。"
   },
-  //睦則ルート終了　「HAPPYEND」の表示とタイトル画面に戻る画面に遷移
+  {
+    scene: "割烹『むつ』",
+    action: "FADE_TO_HAPPY_END"
+  },
 
   //ここで分岐発生(アカネルート)****************************************************************************************
   {
@@ -9739,9 +9624,8 @@ export const scenarioData = [
     scene: "教授の研究室",
     speaker: "ヒルミ教授",
     role: "PROFESSOR",
-    text: "「……遅かったね」"
-    ,
-    showIllust: ["Hirumi_neutral"]
+    text: "「……遅かったね」",
+    showIllust: ["Hirumi_serious"]
   },
   {
     scene: "教授の研究室",
@@ -9752,15 +9636,12 @@ export const scenarioData = [
     speaker: "ヒルミ教授",
     role: "PROFESSOR",
     text: "「そんなに熱視線を送られると照れるね。私に男色の趣味はないのだが」"
-    ,
-    showIllust: ["Hirumi_neutral"]
   },
   {
     scene: "教授の研究室",
     speaker: "アカネ",
     role: "AKANE",
-    text: "「…チッ」"
-    ,
+    text: "「…チッ」",
     showIllust: ["Akane_serious"]
   },
   {
@@ -9771,9 +9652,8 @@ export const scenarioData = [
     scene: "教授の研究室",
     speaker: "ヒルミ教授",
     role: "PROFESSOR",
-    text: "「冗談だ。それで本題だが…君たちにはこれからこのロケットに乗って、あの青い月まで行ってもらう」"
-    ,
-    showIllust: ["Hirumi_neutral"]
+    text: "「冗談だ。それで本題だが…君たちにはこれからこのロケットに乗って、あの青い月まで行ってもらう」",
+    showIllust: ["Hirumi_smile"]
   },
   {
     scene: "教授の研究室",

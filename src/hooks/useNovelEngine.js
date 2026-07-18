@@ -82,7 +82,8 @@ export function useNovelEngine(scenarioData, options = {}) {
       const isPrologue = currentLine.scene === 'PROLOGUE';
       const isSpecialAction = [
         'FADE_TO_BLACK', 'WAKE_UP', 'FADE_IN', 'FADE_OUT',
-        'WAIT_SECONDS', 'SLOW_FADE_IN', 'WAIT_SECONDS_AND_MOVE_MOON', 'ALL_FADE_OUT', 'WAIT_FADE'
+        'WAIT_SECONDS', 'SLOW_FADE_IN', 'WAIT_SECONDS_AND_MOVE_MOON', 'ALL_FADE_OUT', 'WAIT_FADE',
+        'WHITE_OUT_END'
       ].includes(currentLine.action);
 
       if (
