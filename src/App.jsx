@@ -15,6 +15,9 @@ import TapCommunication from './components/TapCommunication';
 import EyeOfProfiler from './components/EyeOfProfiler';
 import FragmentCollect from './components/FragmentCollect';
 import FragmentCollectNagisa from './components/FragmentCollectNagisa';
+import FragmentCollectMika from './components/FragmentCollectMika';
+import FragmentCollectAkane from './components/FragmentCollectAkane';
+import FragmentCollectSolo from './components/FragmentCollectSolo';
 import PortraitWarningOverlay from './components/PortraitWarningOverlay';
 import StealthGame from './components/StealthGame';
 import SaveSlotModal, { SAVE_KEY_PREFIX, loadAllSlots } from './components/SaveSlotModal';
@@ -561,6 +564,36 @@ export default function App() {
         if (targetIdx !== -1) jumpToStep(targetIdx);
         else nextStep();
       }
+    } else if (currentLine.action === 'EVALUATE_FRAGMENT_COLLECT_MIKA_BRANCH') {
+      if (fragmentCollectResult && fragmentCollectResult.files >= 4) {
+        const targetIdx = scenarioData.findIndex(line => line.label === 'mika_fragment_happy_end');
+        if (targetIdx !== -1) jumpToStep(targetIdx);
+        else nextStep();
+      } else {
+        const targetIdx = scenarioData.findIndex(line => line.label === 'mika_fragment_bad_end');
+        if (targetIdx !== -1) jumpToStep(targetIdx);
+        else nextStep();
+      }
+    } else if (currentLine.action === 'EVALUATE_FRAGMENT_COLLECT_AKANE_BRANCH') {
+      if (fragmentCollectResult && fragmentCollectResult.files >= 4) {
+        const targetIdx = scenarioData.findIndex(line => line.label === 'akane_fragment_happy_end');
+        if (targetIdx !== -1) jumpToStep(targetIdx);
+        else nextStep();
+      } else {
+        const targetIdx = scenarioData.findIndex(line => line.label === 'akane_fragment_bad_end');
+        if (targetIdx !== -1) jumpToStep(targetIdx);
+        else nextStep();
+      }
+    } else if (currentLine.action === 'EVALUATE_FRAGMENT_COLLECT_SOLO_BRANCH') {
+      if (fragmentCollectResult && fragmentCollectResult.files >= 4) {
+        const targetIdx = scenarioData.findIndex(line => line.label === 'solo_fragment_happy_end');
+        if (targetIdx !== -1) jumpToStep(targetIdx);
+        else nextStep();
+      } else {
+        const targetIdx = scenarioData.findIndex(line => line.label === 'solo_fragment_bad_end');
+        if (targetIdx !== -1) jumpToStep(targetIdx);
+        else nextStep();
+      }
     }
   }, [currentStep, currentLine, jumpToStep, fragmentCollectResult, stealthGameResult]);
 
@@ -679,6 +712,9 @@ export default function App() {
   const isEyeOfProfilerActive = currentLine?.action === 'TRIGGER_EYE_OF_PROFILER';
   const isFragmentCollectActive = currentLine?.action === 'TRIGGER_FRAGMENT_COLLECT';
   const isFragmentCollectNagisaActive = currentLine?.action === 'TRIGGER_FRAGMENT_COLLECT_NAGISA';
+  const isFragmentCollectMikaActive = currentLine?.action === 'TRIGGER_FRAGMENT_COLLECT_MIKA';
+  const isFragmentCollectAkaneActive = currentLine?.action === 'TRIGGER_FRAGMENT_COLLECT_AKANE';
+  const isFragmentCollectSoloActive = currentLine?.action === 'TRIGGER_FRAGMENT_COLLECT_SOLO';
   const isStealthGameActive = currentLine?.action === 'TRIGGER_STEALTH_GAME';
 
   const handleEyeOfProfilerComplete = (success) => {
@@ -692,6 +728,21 @@ export default function App() {
   };
 
   const handleFragmentCollectNagisaComplete = (result) => {
+    setFragmentCollectResult(result);
+    nextStep();
+  };
+
+  const handleFragmentCollectMikaComplete = (result) => {
+    setFragmentCollectResult(result);
+    nextStep();
+  };
+
+  const handleFragmentCollectAkaneComplete = (result) => {
+    setFragmentCollectResult(result);
+    nextStep();
+  };
+
+  const handleFragmentCollectSoloComplete = (result) => {
     setFragmentCollectResult(result);
     nextStep();
   };
@@ -775,7 +826,7 @@ export default function App() {
           setSkipMode(false);
           return;
         }
-        if (!showTitle && !isWaitingForChoice && !alertActive && !backlogOpen && !isTypingGameActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isFragmentCollectActive && !isFragmentCollectNagisaActive && !isStealthGameActive && !isAnyEnd && !isEndScreen && !isTransition) {
+        if (!showTitle && !isWaitingForChoice && !alertActive && !backlogOpen && !isTypingGameActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isFragmentCollectActive && !isFragmentCollectNagisaActive && !isFragmentCollectMikaActive && !isFragmentCollectAkaneActive && !isFragmentCollectSoloActive && !isStealthGameActive && !isAnyEnd && !isEndScreen && !isTransition) {
           nextStep();
         }
       }}
@@ -826,6 +877,21 @@ export default function App() {
               <FragmentCollectNagisa onComplete={handleFragmentCollectNagisaComplete} />
             )}
 
+            {/* Fragment Collect Mika Overlay */}
+            {isFragmentCollectMikaActive && (
+              <FragmentCollectMika onComplete={handleFragmentCollectMikaComplete} />
+            )}
+
+            {/* Fragment Collect Akane Overlay */}
+            {isFragmentCollectAkaneActive && (
+              <FragmentCollectAkane onComplete={handleFragmentCollectAkaneComplete} />
+            )}
+
+            {/* Fragment Collect Solo Overlay */}
+            {isFragmentCollectSoloActive && (
+              <FragmentCollectSolo onComplete={handleFragmentCollectSoloComplete} />
+            )}
+
             {/* Silent Score Overlay */}
             {isSilentScoreActive && (
               <SilentScore onComplete={handleSilentScoreComplete} />
@@ -838,7 +904,7 @@ export default function App() {
             {/* Cinematic Black Letterbox Overlay */}
             <CinemaLayer
               text={currentLine?.text}
-              isActive={isCinema && !isAnyEnd && !isTypingGameActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isFragmentCollectActive && !isStealthGameActive}
+              isActive={isCinema && !isAnyEnd && !isTypingGameActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isFragmentCollectActive && !isFragmentCollectMikaActive && !isFragmentCollectAkaneActive && !isFragmentCollectSoloActive && !isStealthGameActive}
               isTyping={isTyping}
               onNext={nextStep}
             />
@@ -899,7 +965,7 @@ export default function App() {
             </AnimatePresence>
 
             {/* Subtitles & Normal Dialogue Boxes */}
-            {!isCinema && !isTransition && !isAnyEnd && !alertActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isTypingGameActive && !isFragmentCollectActive && !isStealthGameActive && (
+            {!isCinema && !isTransition && !isAnyEnd && !alertActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isTypingGameActive && !isFragmentCollectActive && !isFragmentCollectMikaActive && !isFragmentCollectAkaneActive && !isFragmentCollectSoloActive && !isStealthGameActive && (
               <DialogueBox
                 speaker={currentLine?.speaker}
                 role={currentLine?.role}

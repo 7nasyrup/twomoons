@@ -2301,7 +2301,6 @@ export const scenarioData = [
   {
     scene: "廃倉庫",
     speaker: "大男",
-    role: "BIG_MAN",
     text: "「……気づいたか」",
     bg: "/character/Akane/Akane_CG1.png"
   },
@@ -2327,7 +2326,6 @@ export const scenarioData = [
   {
     scene: "廃倉庫",
     speaker: "大男",
-    role: "BIG_MAN",
     text: "「お前に質問がある」",
     bg: "/scene/warehouse.png",
     showIllust: ["Akane_serious"]
@@ -2361,7 +2359,6 @@ export const scenarioData = [
   {
     scene: "廃倉庫",
     speaker: "大男",
-    role: "BIG_MAN",
     text: "「質問に答えろ」"
     ,
     showIllust: ["Akane_serious"]
@@ -2373,7 +2370,6 @@ export const scenarioData = [
   {
     scene: "廃倉庫",
     speaker: "大男",
-    role: "BIG_MAN",
     text: "「お前の血縁者について質問がある」"
     ,
     showIllust: ["Akane_serious"]
@@ -2391,7 +2387,7 @@ export const scenarioData = [
   {
     scene: "廃倉庫",
     speaker: "大男",
-    role: "BIG_MAN",
+
     text: "「お前の血縁者──”弟”について、知っていることを教えろ」"
     ,
     showIllust: ["Akane_serious"]
@@ -2419,7 +2415,6 @@ export const scenarioData = [
   {
     scene: "廃倉庫",
     speaker: "大男",
-    role: "BIG_MAN",
     text: "「……とぼけるつもりか」"
     ,
     showIllust: ["Akane_serious"]
@@ -2452,7 +2447,6 @@ export const scenarioData = [
   {
     scene: "廃倉庫",
     speaker: "大男",
-    role: "BIG_MAN",
     text: "「吐くまで殴れ」"
     ,
     showIllust: ["Akane_serious"]
@@ -2486,7 +2480,6 @@ export const scenarioData = [
   {
     scene: "廃倉庫",
     speaker: "大男",
-    role: "BIG_MAN",
     text: "「チッ、面倒なのが来たか」",
     showIllust: ["Akane_serious"]
   },
@@ -2515,7 +2508,6 @@ export const scenarioData = [
   {
     scene: "廃倉庫",
     speaker: "大男",
-    role: "BIG_MAN",
     text: "「おい、外はどうなってる」"
     ,
     showIllust: ["Akane_serious"]
@@ -3440,7 +3432,7 @@ export const scenarioData = [
     speaker: "満",
     role: "Michiru",
     text: "「朔良！」",
-    showIllust: ["Michiru_serious"]
+    showIllust: ["Michiru_surprise"]
   },
   {
     scene: "大学の敷地内",
@@ -3477,6 +3469,7 @@ export const scenarioData = [
   {
     scene: "大学の敷地内",
     text: "目の前の光景が、一瞬、理解できなかった。スローモーションのように世界が止まる。",
+    hideIllust: ["Michiru_surprise"]
   },
   //満　刺されるCGIN
   {
@@ -3485,8 +3478,7 @@ export const scenarioData = [
   },
   {
     scene: "大学の敷地内",
-    text: "彼の背後の闇からいつの間にか現れていたのは、頭からつま先まで、禍々しい漆黒の鎧に身を包んだ──",
-    showIllust: ["BlackKnight"],
+    text: "彼の背後の闇からいつの間にか現れていたのは、頭からつま先まで、禍々しい漆黒の鎧に身を包んだ──"
   },
   {
     scene: "大学の敷地内",
@@ -3497,12 +3489,10 @@ export const scenarioData = [
     speaker: "満",
     role: "Michiru  ",
     text: "「ぁ……っ……さく、ら……、……？」",
-    showIllust: ["Michiru_surprise"]
   },
   {
     scene: "大学の敷地内",
     text: "満の綺麗な瞳から、急速に光が失われていく。彼は血を吐きながら、最期まで私に向けて手を伸ばそうとして──。",
-    hideIllust: ["満", "黒騎士"]
   },
   {
     scene: "大学の敷地内",
@@ -3542,7 +3532,6 @@ export const scenarioData = [
   {
     scene: "大学の敷地内",
     speaker: "大男",
-    role: "BIG_MAN",
     text: "「……」",
     showIllust: ["Akane_serious"]
   },
@@ -3581,7 +3570,6 @@ export const scenarioData = [
   {
     scene: "大学の敷地内",
     speaker: "大男",
-    role: "BIG_MAN",
     text: "「そんなこと気にしてる場合か」",
     showIllust: ["Akane_serious"]
   },
@@ -3627,11 +3615,11 @@ export const scenarioData = [
   {
     scene: "大学の敷地内",
     text: "ドォッッ！！！と、空気が爆発するような凄まじい速度。\n一瞬で距離を詰めてきた【黒騎士】が、私たちの首を一網打尽にする軌道で、大剣を真横に一閃させる。",
+    hideIllust: ["Hirumi_serious"]
   },
   {
     scene: "大学の敷地内",
     speaker: "大男",
-    role: "BIG_MAN",
     text: "「チッ、全員伏せろ！！」",
     showIllust: ["Akane_serious"]
   },
@@ -3664,7 +3652,6 @@ export const scenarioData = [
   {
     scene: "大学の敷地内",
     speaker: "大男",
-    role: "BIG_MAN",
     text: "「戦うな！ 走れ！！ 死ぬぞ！！」",
     showIllust: ["Akane_serious"]
   },
@@ -4461,7 +4448,7 @@ export const scenarioData = [
     scene: "月面",
     text: "紙面を握り締め、高くそびえたつ白い建物へと、一歩を踏み出した。"
   },
-  //ここでミニゲームを挟む
+  //ここフラグメントコレクト
   {
     scene: "月面 研究所",
     action: "TRIGGER_FRAGMENT_COLLECT_NAGISA",
@@ -6558,7 +6545,16 @@ export const scenarioData = [
   },
   //ここでゲームを挟む
   {
+    scene: "月面 研究所",
+    action: "TRIGGER_FRAGMENT_COLLECT_MIKA",
+  },
+  {
+    scene: "月面 研究所",
+    action: "EVALUATE_FRAGMENT_COLLECT_MIKA_BRANCH",
+  },
+  {
     scene: "研究所の最奥",
+    label: "mika_fragment_happy_end",
     text: "カチリ──。最後のチップが収まり、重厚なゲートがゆっくりと左右に開き始める。"
   },
   {
@@ -7367,11 +7363,11 @@ export const scenarioData = [
     speaker: "睦典",
     role: "MUTSUNORI",
     text: "「いいから走るよ！ アイツがすぐそこまで来てる！」",
-    showIllust: ["Mutsunori_smile"]
   },
   {
     scene: "大学の敷地内",
     text: "背後から迫る、すべてを薙ぎ払うような圧倒的な質量と、漆黒のプレッシャー。",
+    bg: "/scene/university_hallway_collapse.png"
   },
   {
     scene: "大学の敷地内",
@@ -7388,6 +7384,7 @@ export const scenarioData = [
   {
     scene: "研究室",
     text: "たどり着いた教授の研究室。",
+    bg: "/scene/lab.png"
   },
   {
     scene: "研究室",
@@ -7398,7 +7395,7 @@ export const scenarioData = [
     speaker: "睦典",
     role: "MUTSUNORI",
     text: "「はぁ、はぁ……っ、ここまで来れば、流石に、あの化け物も──」",
-    showIllust: ["Mutsunori_smile"]
+    showIllust: ["Mutsunori_serious"]
   },
   {
     scene: "研究室",
@@ -7409,7 +7406,7 @@ export const scenarioData = [
     speaker: "ヒルミ教授",
     role: "PROFESSOR",
     text: "「待っていたよ。よく無事でたどり着いてくれたね、二人とも」",
-    showIllust: ["Hirumi_neutral"]
+    showIllust: ["Hirumi_serious"]
   },
   {
     scene: "研究室",
@@ -7428,7 +7425,6 @@ export const scenarioData = [
     speaker: "ヒルミ教授",
     role: "PROFESSOR",
     text: "「…説明はあまりしていられない、君たちにはこれからこのロケットに乗って、あの青い月まで行ってもらう」",
-    showIllust: ["Hirumi_neutral"]
   },
   {
     scene: "研究室",
@@ -7439,7 +7435,6 @@ export const scenarioData = [
     speaker: "睦典",
     role: "MUTSUNORI",
     text: "「な、何言ってるんだよ教授！？ この状況で月に行けって、意味がわかんないよ！」",
-    showIllust: ["Mutsunori_smile"]
   },
   {
     scene: "研究室",
@@ -7471,21 +7466,18 @@ export const scenarioData = [
     speaker: "ヒルミ教授",
     role: "PROFESSOR",
     text: "「あの青い月には、この狂った世界のすべての元凶である『研究所のコア』がある。世界を元に戻したければ、そこへ行ってコアを止めてきなさい。君たちにしかできない仕事だ」",
-    showIllust: ["Hirumi_neutral"]
   },
   {
     scene: "研究室",
     speaker: "ヒルミ教授",
     role: "PROFESSOR",
     text: "「詳しいことはこの資料に全て書いた。落ち着いた時に読みなさい」",
-    showIllust: ["Hirumi_neutral"]
   },
   {
     scene: "研究室",
     speaker: "ヒルミ教授",
     role: "PROFESSOR",
     text: "そう言って教授は私たちに文字がびっしり書かれた薄い紙束を手渡した。",
-    showIllust: ["Hirumi_neutral"]
   },
   {
     scene: "研究室",
@@ -7498,7 +7490,6 @@ export const scenarioData = [
     speaker: "ヒルミ教授",
     role: "PROFESSOR",
     text: "「…私についても、心配は無用さ。さぁタイムリミットだ。──行きなさい、朔良」",
-    showIllust: ["Hirumi_neutral"]
   },
   {
     scene: "研究室",
@@ -7513,7 +7504,6 @@ export const scenarioData = [
     speaker: "睦典",
     role: "MUTSUNORI",
     text: "「クソッ、迷ってる暇はなさそうだ……！ 行こう、朔良！」",
-    showIllust: ["Mutsunori_serious"]
   },
   {
     scene: "ロケット内部",
@@ -7522,6 +7512,7 @@ export const scenarioData = [
   {
     scene: "ロケット内部",
     text: "ロケットの内部は、無機質な計器類と二人分のシートがあるだけの、おそろしく狭い空間だった。",
+    bg: "/scene/rocket.png"
   },
   {
     scene: "ロケット内部",
@@ -7608,7 +7599,7 @@ export const scenarioData = [
     speaker: "睦典",
     role: "MUTSUNORI",
     text: "「ま、とにかくさ！ こんなよくわかんない実習、さっさと用事済ませて地球に帰ろう。そしたらさ、俺、朔良に特製のうどん作ってあげるから。とびきり美味しいやつ。だから、ね？」",
-    showIllust: ["Mutsunori_happy"]
+    showIllust: ["Mutsunori_smile"]
   },
   {
     scene: "ロケット内部",
@@ -7653,7 +7644,6 @@ export const scenarioData = [
     speaker: "睦典",
     role: "MUTSUNORI",
     text: "「嘘、だろ……っ、これ、落ちて──」",
-    showIllust: ["Mutsunori_smile"]
   },
   {
     scene: "ロケット内部",
@@ -7670,7 +7660,8 @@ export const scenarioData = [
     speaker: "睦典",
     role: "MUTSUNORI",
     text: "「───、───ら！」",
-    showIllust: ["Mutsunori_smile"]
+    showIllust: ["Mutsunori_smile"],
+    bg: "/scene/rocket_collapse.png"
   },
   {
     scene: "ロケット内部(墜落後)",
@@ -7758,6 +7749,7 @@ export const scenarioData = [
     speaker: "朔良",
     role: "SAKURA",
     text: "「───っ、何、ここ……」",
+    bg: "/scene/moon_surface.png"
   },
   {
     scene: "月面",
@@ -7792,16 +7784,17 @@ export const scenarioData = [
     speaker: "睦典",
     role: "MUTSUNORI",
     text: "「……あ、見て、朔良」",
-    showIllust: ["Mutsunori_smile"]
   },
   {
     scene: "月面",
     text: "睦典が、地球のすぐ傍ら、天の特等席を指差した。",
+    hideIllust: ["Mutsunori_smile"]
   },
   {
     //ここで、黄色い月のイラスト
     scene: "月面",
     text: "そこには、あの禍々しい青い人工月とは明らかに違う、優しく、けれど圧倒的な存在感を放つ『黄金色の天体』が静かに浮かんでいた。",
+    bg: "/scene/yellow_moon.png"
   },
   {
     scene: "月面",
@@ -7899,7 +7892,8 @@ export const scenarioData = [
     speaker: "睦典",
     role: "MUTSUNORI",
     text: "「ああ！ そうだね！ いつまでもここにいても始まんないし、さっさとそのコアってやつをぶっ壊しに行きますか！」",
-    showIllust: ["Mutsunori_smile"]
+    showIllust: ["Mutsunori_smile"],
+    bg: "/scene/moon_surface.png"
   },
   {
     scene: "月面",
@@ -7925,8 +7919,7 @@ export const scenarioData = [
     scene: "月面",
     speaker: "陸典",
     role: "MUTSUNORI",
-    text: "「つっても、コアって何なんだよな！説明不足すぎるだろ…」"
-    ,
+    text: "「つっても、コアって何なんだよな！説明不足すぎるだろ…」",
     showIllust: ["Mutsunori_serious"]
   },
   {
@@ -7951,8 +7944,7 @@ export const scenarioData = [
     scene: "月面",
     speaker: "睦典",
     role: "MUTSUNORI",
-    text: "「ん？あーそういえばなんか朔良に渡してたよな？これに書いてあるのか……？」"
-    ,
+    text: "「ん？あーそういえばなんか朔良に渡してたよな？これに書いてあるのか……？」",
     showIllust: ["Mutsunori_smile"]
   },
   {
@@ -8077,8 +8069,7 @@ export const scenarioData = [
     scene: "月面",
     speaker: "睦典",
     role: "MUTSUNORI",
-    text: "「はぁ！？ 単位がかかってるって、どこまで教授なんだよあの人……！」"
-    ,
+    text: "「はぁ！？ 単位がかかってるって、どこまで教授なんだよあの人……！」",
     showIllust: ["Mutsunori_serious"]
   },
   {
@@ -10188,8 +10179,7 @@ export const scenarioData = [
     scene: "月面",
     speaker: "アカネ",
     role: "AKANE",
-    text: "「グズグズすんな、行くぞ」"
-    ,
+    text: "「グズグズすんな、行くぞ」",
     showIllust: ["Akane_serious"]
   },
   {
@@ -10202,7 +10192,16 @@ export const scenarioData = [
   },
   //ここでゲームを挟む。弟の存在を示唆するような内容、アカネの母親が殺害された事件の新聞のスクラップ、アカネが無能力であるという情報などが含まれたものがいい
   {
+    scene: "月面 研究所",
+    action: "TRIGGER_FRAGMENT_COLLECT_AKANE",
+  },
+  {
+    scene: "月面 研究所",
+    action: "EVALUATE_FRAGMENT_COLLECT_AKANE_BRANCH",
+  },
+  {
     scene: "研究所の奧",
+    label: "akane_fragment_happy_end",
     text: "カチリ──。最後のチップが収まり、重厚なゲートがゆっくりと左右に開き始める。"
   },
   {
@@ -11668,11 +11667,7 @@ export const scenarioData = [
   },
   {
     scene: "月",
-    text: `健闘を祈るよ。君の輝かしい単位は、この実習の成否にかかっているからね。`
-  },
-  {
-    scene: "月",
-    text: `――`
+    text: `健闘を祈るよ。君の輝かしい単位は、この実習の成否にかかっているからね――`
   },
   {
     scene: "月",
@@ -11714,11 +11709,18 @@ export const scenarioData = [
     scene: "月",
     text: `私は手記をポケットにしまい直すと、重い足取りで、よろよろと遠くに見える白い建物を目指して歩き始めた。`
   },
-  // （タイピング）←スマホでもできるなら　in研究所前
-  // （探索ゲーム）in研究所
-  // ゲーム後
+  //ここでゲームを挟む
+  {
+    scene: "月面 研究所",
+    action: "TRIGGER_FRAGMENT_COLLECT_SOLO",
+  },
+  {
+    scene: "月面 研究所",
+    action: "EVALUATE_FRAGMENT_COLLECT_SOLO_BRANCH",
+  },
   {
     scene: "研究所の奧前",
+    label: "solo_fragment_happy_end",
     speaker: "朔良",
     role: "SAKURA",
     text: `「──よしっ、これで最後のデータチップ、回収完了」`
@@ -11776,10 +11778,6 @@ export const scenarioData = [
   {
     scene: "研究所の奧",
     text: `そして、私は、教授の手記に書かれていたことを思い返す。`
-  },
-  {
-    scene: "研究所の奧",
-    text: `――`
   },
   {
     scene: "研究所の奧",
@@ -14157,6 +14155,59 @@ export const scenarioData = [
   {
     scene: "通学路（夜）",
     text: `見上げれば、漆黒の空には黄色い、温かな光を宿した月が、私たちを優しく見守るように静かに輝いていた。`
-  }
+  },
+
+  // ─── ソロルート：機密ファイル未回収バッドエンド ────────────────────────────────
+  {
+    scene: "研究所の奧前",
+    label: "solo_fragment_bad_end",
+    text: "時間が足りなかった。ゲートは開いたのに、私には何も分かっていなかった。"
+  },
+  {
+    scene: "研究所の奧前",
+    text: "コアを止めるには、適応者の力がいる。異能を持たない私一人では、到底不可能なことだった。"
+  },
+  {
+    scene: "研究所の奧前",
+    action: "FADE_TO_BAD_END"
+  },
+
+  // ─── アカネルート：機密ファイル未回収バッドエンド ────────────────────────────────
+  {
+    scene: "研究所の奧",
+    label: "akane_fragment_bad_end",
+    text: "時間が足りなかった。ゲートは開いたのに、私には何も分かっていなかった。"
+  },
+  {
+    scene: "研究所の奧",
+    text: "アカネさんのことを何も知らないまま、ただ彼の背中を追いかけてきただけ。弟のこと、お母さんのこと、彼が「無能力者」だという事実も──何一つ。"
+  },
+  {
+    scene: "研究所の奧",
+    text: "知らないということは、守れないということだった。"
+  },
+  {
+    scene: "研究所の奧",
+    action: "FADE_TO_BAD_END"
+  },
+
+  // ─── ミカルート：機密ファイル未回収バッドエンド ─────────────────────────────────
+  {
+    scene: "研究所の最奥",
+    label: "mika_fragment_bad_end",
+    text: "時間が足りなかった。チップは揃ったのに、私は大切なものを──拾い損ねた。"
+  },
+  {
+    scene: "研究所の最奥",
+    text: "ゲートが開いた先で、ミカくんは躊躇なく前へ進んでいく。しかし私には、彼のアザの意味も、彼の父のことも、そして彼を守る術も──何一つ、分かっていなかった。"
+  },
+  {
+    scene: "研究所の最奥",
+    text: "知識のない手は、守りたいものを守れない。"
+  },
+  {
+    scene: "研究所の最奥",
+    action: "FADE_TO_BAD_END"
+  },
 
 ];
