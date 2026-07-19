@@ -186,6 +186,7 @@ export default function App() {
   const [alertActive, setAlertActive] = useState(false);
   const [alertConfig, setAlertConfig] = useState({ title: '', message: '' });
   const [isFadingBlack, setIsFadingBlack] = useState(false);
+  const [isWhiteOut, setIsWhiteOut] = useState(false);
   const [shakeEffect, setShakeEffect] = useState(false);
   const [isSmokeActive, setIsSmokeActive] = useState(false);
   const [isBlackDistortActive, setIsBlackDistortActive] = useState(false);
@@ -532,6 +533,12 @@ export default function App() {
           clearTimeout(timer);
           if (shakeTimer) clearTimeout(shakeTimer);
         };
+      }
+
+      if (action === 'WHITE_OUT_START') {
+        setIsWhiteOut(true);
+      } else if (action === 'WHITE_OUT_END') {
+        setIsWhiteOut(false);
       }
 
       // Red Alert
@@ -1121,6 +1128,19 @@ export default function App() {
                   animate={{ opacity: [0.3, 0.9, 0.3] }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                />
+              )}
+            </AnimatePresence>
+
+            {/* White Out Overlay */}
+            <AnimatePresence>
+              {isWhiteOut && !isCinema && !isAnyEnd && (
+                <motion.div
+                  className="absolute inset-0 pointer-events-none z-[19] bg-white"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.8, ease: 'easeInOut' }}
                 />
               )}
             </AnimatePresence>

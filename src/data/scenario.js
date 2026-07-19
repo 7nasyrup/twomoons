@@ -1305,7 +1305,7 @@ export const scenarioData = [
   {
     "scene": "通学路",
     "text": "急ぎ足で大学へ向かう道中、街はいつも通りの朝を迎えているように見えた。",
-    "bg": "/scene/shopping_street.png"
+    "bg": "/scene/shopping_street"
   },
   {
     "scene": "通学路",
@@ -1447,7 +1447,6 @@ export const scenarioData = [
     "role": "MUTSUNORI",
     "text": "「でしょ？ よーし、席取りは俺に任せて！」",
     "illust": "Mutsunori_happy",
-
     "showIllust": [
       "Mutsunori_happy"
     ]
@@ -1470,12 +1469,13 @@ export const scenarioData = [
     "text": "二人でカバンを肩にかけ、賑わうキャンパスの正門へ向かって歩いていた、その時だった。",
     "bgm": "stop",
     "bgmFade": 0,
-    "bg": "/scene/university_gate.png",
+    "bg": "/scene/university_gate.png"
   },
   {
     "scene": "大学の正門前",
     "speaker": "？？？",
-    "text": "「あ、見つけた。──やぁ、昨日の可愛い子」"
+    "text": "「あ、見つけた。──やぁ、昨日の可愛い子」",
+    "bg": "/scene/university_gate.png"
   },
   {
     "scene": "大学の正門前",
@@ -1670,7 +1670,7 @@ export const scenarioData = [
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「や、やめて！ 喧嘩なんて……」",
-    "action": "UNLOCK_NAGISA_ROUTE",
+    "action": "UNLOCK_NAGISA_ROUTE"
   },
   {
     "scene": "大学の正門前",
@@ -2020,7 +2020,10 @@ export const scenarioData = [
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「血が……っ。とりあえず、救急車───」",
-    "bg": "/scene/rojiura.png"
+    "bg": "/scene/rojiura.png",
+    "showIllust": [
+      "Mika_neutral"
+    ]
   },
   {
     "scene": "夜の裏路地",
@@ -2138,7 +2141,10 @@ export const scenarioData = [
     "scene": "夜の裏路地",
     "speaker": "ミカ",
     "role": "MIKA",
-    "text": "「俺は……ミカ」"
+    "text": "「俺は……ミカ」",
+    "showIllust": [
+      "Mika_neutral"
+    ]
   },
   {
     "scene": "夜の裏路地",
@@ -2307,7 +2313,7 @@ export const scenarioData = [
   {
     "scene": "大学の講義室",
     "text": "翌朝。私はいつも通り、大学の講義室へと足を運んでいた。",
-    "bg": "/scene/university_classroom.png",
+    "bg": "/scene/university_lassroom.png",
     "bgm": "Normal_Morning.mp3"
   },
   {
@@ -3102,7 +3108,8 @@ export const scenarioData = [
   {
     "scene": "廃ビルの一室",
     "text": "薄暗い室内へと足を踏み入れた、その瞬間──。",
-    "bg": "/scene/ajito.png"
+    "bg": "/scene/ajito.png",
+    "action": "FADE_IN"
   },
   {
     "scene": "廃ビルの一室",
@@ -3406,7 +3413,10 @@ export const scenarioData = [
     "role": "PROFESSOR",
     "text": "『どうだミカ、朔良はちゃんと救出できたかな』",
     "bgm": "serious_1.mp3",
-    "bgmVolume": 0.15
+    "bgmVolume": 0.15,
+    "showIllust": [
+      "Hirumi_smile"
+    ]
   },
   {
     "scene": "廃ビルの一室",
@@ -3440,7 +3450,10 @@ export const scenarioData = [
     "scene": "廃ビルの一室",
     "speaker": "ヒルミ教授",
     "role": "PROFESSOR",
-    "text": "『私にもよく分かってない。とりあえず……ここら一体の市民は甚大な被害に遭っている。まともに動けるのは、君たちしかいないんだ』"
+    "text": "『私にもよく分かってない。とりあえず……ここら一体の市民は甚大な被害に遭っている。まともに動けるのは、君たちしかいないんだ』",
+    "showIllust": [
+      "Hirumi_serious"
+    ]
   },
   {
     "scene": "廃ビルの一室",
@@ -4062,7 +4075,7 @@ export const scenarioData = [
   {
     "scene": "大学の敷地内",
     "text": "地面が、背後の大木が、触れてもいないのに衝撃波だけで真っ二つに裂ける。",
-    "action": "SHAKE_SCREEN",
+    "action": "SHAKE_SCREEN"
   },
   {
     "scene": "大学の敷地内",
@@ -4340,9 +4353,7 @@ export const scenarioData = [
   {
     "scene": "教授の研究室",
     "text": "ドォォォォォンッ！！！",
-    "action": "PLAY_EXPLOSION_SE",
-    "action": "SHAKE_SCREEN"
-
+    "action": "PLAY_EXPLOSION_SE"
   },
   {
     "scene": "教授の研究室",
@@ -4423,7 +4434,7 @@ export const scenarioData = [
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「な、何言ってるんですか……！？」",
-    "action": "SHAKE_SCREEN",
+    "action": "SHAKE_SCREEN"
   },
   {
     "scene": "ロケット内部",
@@ -4520,7 +4531,7 @@ export const scenarioData = [
     "action": "SLOW_FADE_TO_BLACK",
     "duration": 3000,
     "bgm": "stop",
-    "bgmFade": 3.0,
+    "bgmFade": 3,
     "stopSe": "Rocket_Shock.mp3"
   },
   {
