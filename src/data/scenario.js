@@ -4075,7 +4075,7 @@ export const scenarioData = [
   {
     "scene": "大学の敷地内",
     "text": "地面が、背後の大木が、触れてもいないのに衝撃波だけで真っ二つに裂ける。",
-    "action": "SHAKE_SCREEN"
+    "action": "SHAKE_SCREEN",
   },
   {
     "scene": "大学の敷地内",
@@ -4353,7 +4353,8 @@ export const scenarioData = [
   {
     "scene": "教授の研究室",
     "text": "ドォォォォォンッ！！！",
-    "action": "PLAY_EXPLOSION_SE"
+    "action": "PLAY_EXPLOSION_SE",
+    "action": "SHAKE_SCREEN"
   },
   {
     "scene": "教授の研究室",
@@ -4544,7 +4545,8 @@ export const scenarioData = [
   },
   {
     "scene": "ロケット内部(墜落後)",
-    "text": "重い瞼をこじ開けると、視界に飛び込んできたのは、無機質な計器類がひしゃげ、激しく火花を散らしているロケットの無惨な内部だった。"
+    "text": "重い瞼をこじ開けると、視界に飛び込んできたのは、無機質な計器類がひしゃげ、激しく火花を散らしているロケットの無惨な内部だった。",
+    "action": "RED_ALERT_FLASH"
   },
   {
     "scene": "ロケット内部(墜落後)",
@@ -4593,7 +4595,8 @@ export const scenarioData = [
   {
     "scene": "月面",
     "text": "私はよろよろと立ち上がり、大破したロケットの外へと這い出した。",
-    "action": "CLEAR_RED_ALERT"
+    "action": "CLEAR_RED_ALERT",
+    "bgm": "Moon.mp3"
   },
   {
     "scene": "月面",
@@ -4613,28 +4616,19 @@ export const scenarioData = [
   },
   {
     "scene": "月面",
-    "text": "そして見上げれば──空には、私たちがさっきまでいたはずの地球が、世界のすべてを支配するかのように異常な大きさで君臨していた。"
+    "text": "空気はある。呼吸もできる。けれど、世界から一切の生命の気配が消え去ったような、背筋が凍るほどの寒気と静けさが、この不気味な廃墟を支配していた。",
+
   },
   {
     "scene": "月面",
-    "text": "青と白の、息を呑むほど美しい、私たちの故郷。"
-  },
-  {
-    "scene": "月面",
-    "text": "空気はある。呼吸もできる。けれど、世界から一切の生命の気配が消え去ったような、背筋が凍るほどの寒気と静けさが、この不気味な廃墟を支配していた。"
-  },
-  {
-    "scene": "月面",
-    "text": "そこには、あの禍々しい青い人工月とは明らかに違う、優しく、けれど圧倒的な存在感を放つ『黄金色の天体』が静かに浮かんでいた。"
+    "text": "そして見上げれば──そこには、あの禍々しい青い人工月とは明らかに違う、優しく、けれど圧倒的な存在感を放つ『黄金色の天体』が静かに浮かんでいた。",
+    "bg": "/scene/yellow_moon.png"
   },
   {
     "scene": "月面",
     "speaker": "凪砂",
     "role": "NAGISA",
     "text": "「…こんな星があったんだね。噂程度でしか聞いたことがなかったけど」",
-    "showIllust": [
-      "Nagisa_smile"
-    ]
   },
   {
     "scene": "月面",
@@ -4681,13 +4675,11 @@ export const scenarioData = [
     "speaker": "凪砂",
     "role": "NAGISA",
     "text": "「いつまで見惚れてるの？」",
-    "showIllust": [
-      "Nagisa_neutral"
-    ]
   },
   {
     "scene": "月面",
-    "text": "冷たい声に意識を引き戻される。"
+    "text": "冷たい声に意識を引き戻される。",
+    "bg": "/scene/moon_surface.png"
   },
   {
     "scene": "月面",
@@ -4730,7 +4722,9 @@ export const scenarioData = [
     "scene": "月面",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「ち……近いっ！」"
+    "text": "「ち……近いっ！」",
+    "action": "SHAKE_SCREEN"
+
   },
   {
     "scene": "月面",
@@ -4754,10 +4748,27 @@ export const scenarioData = [
     "text": "不意に跳ね上がってしまった心拍数を必死に無視しながら、私は凪砂から逃げるように、強張った指先で紙面の字を読み進めることにした。"
   },
   {
+    "scene": "月面",
+    "type": "choice",
+    "text": "手記の内容を読みますか？",
+    "choices": [
+      {
+        "text": "読む",
+        "targetLabel": "read_professors_note"
+      },
+      {
+        "text": "スキップする",
+        "targetLabel": "skip_professors_note"
+      }
+    ]
+  },
+  {
+    "label": "read_professors_note",
     "scene": "手記",
     "speaker": "ヒルミ教授の手記",
     "role": "PROFESSOR",
-    "text": "突然変なことに巻き込んで済まないね、朔良。"
+    "text": "突然変なことに巻き込んで済まないね、朔良。",
+    "showItem": "/item/Message.png"
   },
   {
     "scene": "手記",
@@ -4880,10 +4891,13 @@ export const scenarioData = [
     "text": "──ヒルミ"
   },
   {
+    "label": "skip_professors_note",
     "scene": "月面",
     "speaker": "凪砂",
     "role": "NAGISA",
     "text": "「…なにが単位だよ。くだらない」",
+    "bg": "/scene/moon_surface.png",
+    "hideItem": true,
     "showIllust": [
       "Nagisa_neutral"
     ]
@@ -4932,8 +4946,6 @@ export const scenarioData = [
   },
   {
     "scene": "月面",
-    "speaker": "凪砂",
-    "role": "NAGISA",
     "text": "思わず強い口調で問い返すと、凪砂さんは歩みを止め、冷え切った瞳で私を真っ直ぐに見下ろした。いつもの万人受けする甘い笑顔の欠片もない、突き放すような視線。",
     "showIllust": [
       "Nagisa_neutral"
@@ -4979,6 +4991,8 @@ export const scenarioData = [
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「──よしっ、これで最後のデータチップ、回収完了！」",
+    "bg": "/scene/Lab_corridor.png",
+    "bgm": "Lab.mp3",
     "label": "nagisa_fragment_happy_end"
   },
   {
@@ -5057,7 +5071,11 @@ export const scenarioData = [
     "scene": "最深部",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「凪砂さん！？ 大丈夫！？\n————うわあ……っ！？」"
+    "text": "「凪砂さん！？ 大丈夫！？\n————うわあ……っ！？」",
+    "action": "SHAKE_SCREEN",
+    "hideIllust": [
+      "Nagisa_serious"
+    ]
   },
   {
     "scene": "最深部",
@@ -5104,7 +5122,8 @@ export const scenarioData = [
   {
     "scene": "研究所の最奥",
     "text": "そこは、研究所の最奥。",
-    "bg": "/scene/core.png"
+    "bg": "/scene/core.png",
+    "bgm": "CoreBGM.mp3"
   },
   {
     "scene": "研究所の最奥",
@@ -5219,9 +5238,6 @@ export const scenarioData = [
     "speaker": "凪砂",
     "role": "NAGISA",
     "text": "「…なに？」",
-    "showIllust": [
-      "Nagisa_neutral"
-    ]
   },
   {
     "scene": "研究所の最奥",
@@ -5271,6 +5287,7 @@ export const scenarioData = [
     "speaker": "凪砂",
     "role": "NAGISA",
     "text": "「ぐ…っ………うぅ……！！」",
+    "bgm": "stop",
     "showIllust": [
       "Nagisa_serious"
     ]
@@ -5281,7 +5298,8 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "コアに注ぎ込んだはずのエネルギーが、まるで拒絶反応を起こしたかのように暴走し、逆に凪砂さんの体内へとなだれ込んでいく。"
+    "text": "コアに注ぎ込んだはずのエネルギーが、まるで拒絶反応を起こしたかのように暴走し、逆に凪砂さんの体内へとなだれ込んでいく。",
+    "action": "MONOCHROME_FLASH"
   },
   {
     "scene": "研究所の最奥",
@@ -5308,7 +5326,9 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "ドオオォン──！！！"
+    "text": "ドオオォン──！！！",
+    "action": "CLEAR_MONOCHROME_FLASH",
+    "action": "SHAKE_SCREEN"
   },
   {
     "scene": "研究所の最奥",
@@ -5326,7 +5346,8 @@ export const scenarioData = [
     "scene": "研究所の最奥",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「『黒騎士』……っ！？」"
+    "text": "「『黒騎士』……っ！？」",
+    "bgm": "Battle1.mp3"
   },
   {
     "scene": "研究所の最奥",
@@ -5359,7 +5380,8 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "直前まで私たちがいた床に、黒騎士の大剣がもの凄い速度で振りかざされ、激しい火花を散らした。"
+    "text": "直前まで私たちがいた床に、黒騎士の大剣がもの凄い速度で振りかざされ、激しい火花を散らした。",
+    "action": "SHAKE_SCREEN"
   },
   {
     "scene": "研究所の最奥",
@@ -5377,7 +5399,8 @@ export const scenarioData = [
   },
   {
     "scene": "瓦礫裏",
-    "text": "黒騎士の追撃を間一髪でかわし、私たちは部屋の隅にある、辛うじて崩落を免れた強固なサーバーラックの隙間へと滑り込む。"
+    "text": "黒騎士の追撃を間一髪でかわし、私たちは部屋の隅にある、辛うじて崩落を免れた強固なサーバーラックの隙間へと滑り込む。",
+    "bg": "/scene/Rubble.png"
   },
   {
     "scene": "瓦礫裏",
@@ -5394,7 +5417,8 @@ export const scenarioData = [
   },
   {
     "scene": "瓦礫裏",
-    "text": "ひとまず彼を横たえ、私はその体を支える。先ほどよりも呼吸は明らかに荒くなっており、触れた額の熱もさらに上がっているのが分かった。"
+    "text": "ひとまず彼を横たえ、私はその体を支える。先ほどよりも呼吸は明らかに荒くなっており、触れた額の熱もさらに上がっているのが分かった。",
+    "bgm": "stop"
   },
   {
     "scene": "瓦礫裏",
@@ -5411,6 +5435,7 @@ export const scenarioData = [
     "speaker": "凪砂",
     "role": "NAGISA",
     "text": "「はは……さっきの指示、的確だっただろ。ぼくのおかげ、だね……」",
+    "bgm": "serious_3.mp3",
     "showIllust": [
       "Nagisa_smile"
     ]
@@ -5555,6 +5580,7 @@ export const scenarioData = [
     "speaker": "凪砂",
     "role": "NAGISA",
     "text": "「……アイツがそこまで迫ってきてる。君は僕を置いて逃げろ。その間にコアはなんとかしとくから」",
+    "bgm": "stop",
     "showIllust": [
       "Nagisa_serious"
     ]
@@ -5575,11 +5601,14 @@ export const scenarioData = [
     "scene": "瓦礫裏",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「嫌です。ここまで来て、置いていくなんて絶対にしません……！凪砂さん、私の声をよく聞いて」"
+    "text": "「嫌です。ここまで来て、置いていくなんて絶対にしません……！凪砂さん、私の声をよく聞いて」",
+    "bgm": "Battle2.mp3",
+    "bgmFade": 3,
+    "bgmVolume": 0.4
   },
   {
     "scene": "瓦礫裏",
-    "text": "真っ直ぐに彼の瞳を見つめ、必死に言葉を紡ぐ。もう二度と、この人をあの孤独な濁流の中に帰したくはなかった。"
+    "text": "真っ直ぐに彼の瞳を見つめ、必死に言葉を紡ぐ。もう二度と、この人をあの孤独な濁流の中に帰したくはなかった。",
   },
   {
     "scene": "瓦礫裏",
@@ -5631,13 +5660,15 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "サーバーラックの狭い隙間から這い出た私たちを、待ち構えていたかのような轟音が出迎えた。"
+    "text": "サーバーラックの狭い隙間から這い出た私たちを、待ち構えていたかのような轟音が出迎えた。",
+    "bg": "/scene/core_hakai1.png"
   },
   {
     "scene": "研究所の最奥",
     "speaker": "黒騎士",
     "role": "ENEMY",
     "text": "「オオオオオォォォ……ッ！！」",
+    "action": "SHAKE_SCREEN",
     "showIllust": [
       "BlackKnight_serious"
     ]
@@ -5676,11 +5707,14 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "脳が恐怖で制動をかけるより早く、私の身体が勝手に動いていた。凪砂さんの指示をただなぞるのではなく、私自身の目に見えた「大剣の軌道のブレ」に合わせて、反射的に彼の身体を巻き込むようにして左側へと鋭く身を躱す。"
+    "text": "脳が恐怖で制動をかけるより早く、私の身体が勝手に動いていた。凪砂さんの指示をただなぞるのではなく、私自身の目に見えた「大剣の軌道のブレ」に合わせて、反射的に彼の身体を巻き込むようにして左側へと鋭く身を躱す。",
+    "bgAnimation": "dash",
+    "action": "PLAY_RUNNING_SE"
   },
   {
     "scene": "研究所の最奥",
-    "text": "直後、鼓膜をぶち破るような衝撃音が炸裂した。\n私たちが一瞬前までいた空間を、大剣の重い刃が通り過ぎ、巻き起こった凄まじい烈風が私たちの髪を激しく乱す。"
+    "text": "直後、鼓膜をぶち破るような衝撃音が炸裂した。\n私たちが一瞬前までいた空間を、大剣の重い刃が通り過ぎ、巻き起こった凄まじい烈風が私たちの髪を激しく乱す。",
+    "action": "SHAKE_SCREEN",
   },
   {
     "scene": "研究所の最奥",
@@ -5729,12 +5763,15 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "私たちは一斉に地を蹴った。\n回復した凪砂さんの異能が、黒騎士が次に繰り出しようとする防御行動をことごとく先読みし、私に伝える。"
+    "text": "私たちは一斉に地を蹴った。\n回復した凪砂さんの異能が、黒騎士が次に繰り出しようとする防御行動をことごとく先読みし、私に伝える。",
+    "bgAnimation": "dash",
+    "action": "PLAY_RUNNING_SE"
   },
   {
     "scene": "研究所の最奥",
     "speaker": "凪砂",
     "role": "NAGISA",
+    "bgAnimation": "dash",
     "text": "「左の盾はフェイントだ、右の装甲の隙間を狙って！」",
     "showIllust": [
       "Nagisa_neutral"
@@ -5744,19 +5781,24 @@ export const scenarioData = [
     "scene": "研究所の最奥",
     "speaker": "朔良",
     "role": "SAKURA",
+    "bgAnimation": "dash",
     "text": "「了解……！」"
   },
   {
     "scene": "研究所の最奥",
-    "text": "私は手にした武器を握り締め、凪砂さんの指示通りに、黒騎士の防具の継ぎ目──赤く脈打つエネルギーの露出部へと文字通り肉薄する。"
+    "text": "私は手にした武器を握り締め、凪砂さんの指示通りに、黒騎士の防具の継ぎ目──赤く脈打つエネルギーの露出部へと文字通り肉薄する。",
+    "bgAnimation": "dash"
   },
   {
     "scene": "研究所の最奥",
-    "text": "ガキィィンッ！ と激しい火花が散り、ついに黒騎士の体勢が大きく崩れる。\nこのまま押し切れる──そう確信した、次の瞬間だった。"
+    "text": "ガキィィンッ！ と激しい火花が散り、ついに黒騎士の体勢が大きく崩れる。\nこのまま押し切れる──そう確信した、次の瞬間だった。",
+    "action": "WHITE_FLASH_AND_SHAKE",
+
   },
   {
     "scene": "研究所の最奥",
-    "text": "黒騎士は残された僅かな力を振り絞るように、大剣を両手で逆手に持ち替えた。突如、その全身から禍々しい黒いオーラが爆発的に膨れ上がる。"
+    "text": "黒騎士は残された僅かな力を振り絞るように、大剣を両手で逆手に持ち替えた。突如、その全身から禍々しい黒いオーラが爆発的に膨れ上がる。",
+    "action": "BLACK_DISTORTION"
   },
   {
     "scene": "研究所の最奥",
@@ -5773,7 +5815,8 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "ズガァァァァァンッ！！！！"
+    "text": "ズガァァァァァンッ！！！！",
+    "action": "EXPLOSION_WHITEOUT"
   },
   {
     "scene": "研究所の最奥",
@@ -5795,7 +5838,9 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "やがて、もうもうと立ち込める煙が外気へと流され、視界が晴れていくと──そこには、不自然にぽっかりと開いた巨大な穴と、その向こうに広がる荒涼とした外の世界が見えるだけだった。"
+    "text": "やがて、もうもうと立ち込める煙が外気へと流され、視界が晴れていくと──そこには、不自然にぽっかりと開いた巨大な穴と、その向こうに広がる荒涼とした外の世界が見えるだけだった。",
+    "action": "WHITE_OUT_END_SLOW",
+    "bg": "/scene/core_kurokishi_toubou.png"
   },
   {
     "scene": "研究所の最奥",
@@ -5852,11 +5897,13 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "凪砂さんは少しだけ悪戯っぽく微笑むと、意を決してコアの制御パネルへと両手を伸ばした。"
+    "text": "凪砂さんは少しだけ悪戯っぽく微笑むと、意を決してコアの制御パネルへと両手を伸ばした。",
+    "bg": "/scene/core_close.png"
   },
   {
     "scene": "研究所の最奥",
-    "text": "バチバチッ、と激しい火花が散り、光の帯が彼の指先からコアへと流れ込み始める。"
+    "text": "バチバチッ、と激しい火花が散り、光の帯が彼の指先からコアへと流れ込み始める。",
+    "action": "WHITE_PULSE_START"
   },
   {
     "scene": "研究所の最奥",
@@ -5869,7 +5916,8 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "次の瞬間、凪砂さんの口から壮れた悲鳴が上がった。"
+    "text": "次の瞬間、凪砂さんの口から壮れた悲鳴が上がった。",
+    "action": "WHITE_PULSE_MID"
   },
   {
     "scene": "研究所の最奥",
@@ -5883,7 +5931,8 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "冷たい汗で濡れた彼の背中から、尋常ではない熱と、張り裂けそうな鼓動がダイレクトに伝わってくる。情報の濁流が、再び彼の脳を、五感を焼き尽くそうと暴れ狂っているのだ。"
+    "text": "冷たい汗で濡れた彼の背中から、尋常ではない熱と、張り裂けそうな鼓動がダイレクトに伝わってくる。情報の濁流が、再び彼の脳を、五感を焼き尽くそうと暴れ狂っているのだ。",
+    "action": "WHITE_PULSE_HIGH"
   },
   {
     "scene": "研究所の最奥",
@@ -5910,7 +5959,8 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "──キィィィィン……"
+    "text": "──キィィィィン……",
+    "action": "WHITE_OUT_START"
   },
   {
     "scene": "研究所の最奥",
@@ -5918,7 +5968,8 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "ゆっくりと光が収束していく。"
+    "text": "ゆっくりと光が収束していく。",
+    "action": "WHITE_OUT_END_VERY_SLOW"
   },
   {
     "scene": "研究所の最奥",
@@ -5938,6 +5989,7 @@ export const scenarioData = [
     "scene": "研究所の最奥",
     "speaker": "朔良",
     "role": "SAKURA",
+    "action": "SHAKE_SCREEN",
     "text": "「凪砂さんっ！？」"
   },
   {
@@ -5989,11 +6041,13 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "ドゴゴゴゴ……ッ！！"
+    "text": "ドゴゴゴゴ……ッ！！",
+    "action": "SHAKE_SCREEN_EXTREME"
   },
   {
     "scene": "研究所の最奥",
-    "text": "手記の言葉を裏付けるように、足元から不穏な地鳴りが響き渡った。天井からパラパラとコンクリートの粉が舞い落ち、制御パネルのあちこちから、赤色の警告灯が激しく明滅し始める。"
+    "text": "手記の言葉を裏付けるように、足元から不穏な地鳴りが響き渡った。天井からパラパラとコンクリートの粉が舞い落ち、制御パネルのあちこちから、赤色の警告灯が激しく明滅し始める。",
+    "action": "RED_ALERT_AND_SMALL_SHAKE"
   },
   {
     "scene": "研究所の最奥",
@@ -6020,14 +6074,16 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "背後で壁が崩れ、天井が落ちてくる轟音が響く中、たどり着いた最下層のハッチを開けると──そこには、白くそびえ立つ一基の脱出用ロケットが格納されていた。"
+    "text": "背後で壁が崩れ、天井が落ちてくる轟音が響く中、たどり着いた最下層のハッチを開けると──そこには、白くそびえ立つ一基の脱出用ロケットが格納されていた。",
+    "action": "CLEAR_ALL_ALERTS_AND_SHAKES",
+    "bg": "black",
+    "showIllust": []
   },
   {
     "scene": "最下層",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「これだ……！」",
-    "bg": "warehouse_dark"
+    "text": "「これだ……！」"
   },
   {
     "scene": "脱出用ロケット内",
@@ -6042,7 +6098,8 @@ export const scenarioData = [
   },
   {
     "scene": "脱出用ロケット内",
-    "text": "機械的なアナウンスの直後、凄まじい重力とGが私たちの身体を襲った。\n轟音と共にロケットが射出され、私たちは崩壊していく研究所を、そしてこの長く暗い悪夢の舞台となった場所を後にした。"
+    "text": "機械的なアナウンスの直後、凄まじい重力とGが私たちの身体を襲った。\n轟音と共にロケットが射出され、私たちは崩壊していく研究所を後にした。",
+    "action": "SHAKE_SCREEN",
   },
   {
     "scene": "宇宙空間",
@@ -6113,8 +6170,14 @@ export const scenarioData = [
     "text": "絡めた指先にぎゅっと力を込めると、凪砂さんは満足そうに目を細めた。窓の外で、青い地球がどんどん近づいてくる。私たちの帰る場所、そして、二人で新しく始める未来の光が、すぐ目の前で輝いていた。"
   },
   {
+    "scene": "宇宙空間",
+    "action": "SLOW_FADE_TO_BLACK",
+    "duration": 4000
+  },
+  {
     "scene": "地球",
-    "text": "私たちの日常は、驚くほどあっけなく戻ってきた。"
+    "text": "私たちの日常は、驚くほどあっけなく戻ってきた。",
+    "bg": "/scene/sky.png"
   },
   {
     "scene": "地球",
@@ -6133,7 +6196,7 @@ export const scenarioData = [
     "speaker": "ヒルミ教授",
     "role": "PROFESSOR",
     "text": "「やあ、朔良。実習報告書のデータ、じつに素晴らしい出来だったよ。あの極限状態できちんとフォントサイズまで揃えてくるとは、さすが我が研究室の学生だね」",
-    "bg": "lab_professor_room_dark",
+    "bg": "/scene/lab.png",
     "showIllust": [
       "Hirumi_smile"
     ]
@@ -6152,14 +6215,16 @@ export const scenarioData = [
   },
   {
     "scene": "研究室",
-    "text": "そして、そんな中変わったことと言えば──。"
+    "text": "そして、そんな中変わったことと言えば──。",
+    "bg": "black",
+    "showIllust": []
   },
   {
     "scene": "待ち合わせ場所",
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「……うわ、もうこんな時間！ 遅くなっちゃったかな……っ」",
-    "bg": "night_street"
+    "bg": "/scene/Dataspot.png"
   },
   {
     "scene": "待ち合わせ場所",

@@ -16,7 +16,12 @@ export default function GameFrame({ children, shakeEffect }) {
     shakeExtreme: {
       x: [0, -35, 35, -30, 30, -25, 25, -20, 20, -15, 15, 0],
       y: [0, 22, -22, 19, -19, 16, -16, 12, -12, 6, -6, 0],
-      transition: { duration: 0.4, ease: 'linear', repeat: Infinity }
+      transition: { duration: 1.0, ease: 'easeInOut', repeat: Infinity, repeatType: 'reverse' }
+    },
+    shakeContinuousSmall: {
+      x: [0, -3, 3, -2, 2, -1, 1, 0],
+      y: [0, 2, -2, 1, -1, 1, -1, 0],
+      transition: { duration: 0.2, ease: 'linear', repeat: Infinity }
     },
     shakeFadeOut: {
       x: [0, -20, 20, -12, 12, -6, 6, 0],
@@ -32,6 +37,8 @@ export default function GameFrame({ children, shakeEffect }) {
     animState = 'shake';
   } else if (shakeEffect === 'extreme' || shakeEffect === 'shakeExtreme') {
     animState = 'shakeExtreme';
+  } else if (shakeEffect === 'small_continuous' || shakeEffect === 'shakeContinuousSmall') {
+    animState = 'shakeContinuousSmall';
   } else if (shakeEffect === 'fadeOut' || shakeEffect === 'shakeFadeOut') {
     animState = 'shakeFadeOut';
   }

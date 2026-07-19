@@ -35,6 +35,9 @@ function BackgroundRenderer({ bgPath, bgAnimationClass }) {
   }, [bgPath]);
 
   if (!bgPath) return null;
+  if (bgPath === 'black') {
+    return <div className={`w-full h-full bg-black ${bgAnimationClass || ''}`} />;
+  }
 
   // Fallback styling based on bg name
   const isClassroom = bgPath.includes('cyber_classroom');
@@ -187,11 +190,15 @@ export default function App() {
   const [alertConfig, setAlertConfig] = useState({ title: '', message: '' });
   const [isFadingBlack, setIsFadingBlack] = useState(false);
   const [isWhiteOut, setIsWhiteOut] = useState(false);
+  const [whiteOutDuration, setWhiteOutDuration] = useState(0.8);
+  const [whitePulseLevel, setWhitePulseLevel] = useState(0);
+  const [isWhiteFlashActive, setIsWhiteFlashActive] = useState(false);
   const [shakeEffect, setShakeEffect] = useState(false);
   const [isSmokeActive, setIsSmokeActive] = useState(false);
   const [isBlackDistortActive, setIsBlackDistortActive] = useState(false);
   const [isBloodActive, setIsBloodActive] = useState(false);
   const [isRedAlertActive, setIsRedAlertActive] = useState(false);
+  const [isMonochromeFlashActive, setIsMonochromeFlashActive] = useState(false);
   const [stealthGameResult, setStealthGameResult] = useState(null);
 
 
@@ -317,6 +324,7 @@ export default function App() {
       setDisplayedItem(null);
       setIsBloodActive(false);
       setIsRedAlertActive(false);
+      setIsMonochromeFlashActive(false);
     }
   }, [currentLine?.scene, prevScene]);
 
@@ -456,6 +464,16 @@ export default function App() {
         setIsRedAlertActive(true);
       } else if (action === 'CLEAR_RED_ALERT') {
         setIsRedAlertActive(false);
+      } else if (action === 'RED_ALERT_AND_SMALL_SHAKE') {
+        setIsRedAlertActive(true);
+        setShakeEffect('small_continuous');
+      } else if (action === 'CLEAR_ALL_ALERTS_AND_SHAKES') {
+        setIsRedAlertActive(false);
+        setShakeEffect(false);
+      } else if (action === 'MONOCHROME_FLASH') {
+        setIsMonochromeFlashActive(true);
+      } else if (action === 'CLEAR_MONOCHROME_FLASH') {
+        setIsMonochromeFlashActive(false);
       }
 
       // Sprite Slot actions
@@ -500,6 +518,10 @@ export default function App() {
       } else if (action === 'SHAKE_SCREEN_EXTREME') {
         setShakeEffect('extreme');
         // continuous shake, no auto-clear
+      } else if (action === 'SHAKE_SCREEN_CONTINUOUS_SMALL') {
+        setShakeEffect('small_continuous');
+      } else if (action === 'CLEAR_SHAKE') {
+        setShakeEffect(false);
       }
 
       // Screen Effects
@@ -518,6 +540,7 @@ export default function App() {
       if (action === 'FADE_TO_BLACK' || action === 'SLOW_FADE_TO_BLACK') {
         setIsFadingBlack(true);
         setIsRedAlertActive(false); // Stop red alert flash when transitioning to black
+        setIsMonochromeFlashActive(false);
         const fadeDuration = currentLine.duration || (action === 'SLOW_FADE_TO_BLACK' ? 3000 : 2000);
         const timer = setTimeout(() => setIsFadingBlack(false), fadeDuration);
         
@@ -536,9 +559,43 @@ export default function App() {
       }
 
       if (action === 'WHITE_OUT_START') {
+        setWhiteOutDuration(0.8);
         setIsWhiteOut(true);
+        setWhitePulseLevel(0);
       } else if (action === 'WHITE_OUT_END') {
+        setWhiteOutDuration(0.8);
         setIsWhiteOut(false);
+      } else if (action === 'WHITE_OUT_END_SLOW') {
+        setWhiteOutDuration(3);
+        setIsWhiteOut(false);
+      } else if (action === 'WHITE_OUT_END_VERY_SLOW') {
+        setWhiteOutDuration(6);
+        setIsWhiteOut(false);
+      } else if (action === 'WHITE_PULSE_START') {
+        setWhitePulseLevel(0.2);
+      } else if (action === 'WHITE_PULSE_MID') {
+        setWhitePulseLevel(0.5);
+      } else if (action === 'WHITE_PULSE_HIGH') {
+        setWhitePulseLevel(0.8);
+      } else if (action === 'WHITE_PULSE_STOP') {
+        setWhitePulseLevel(0);
+      } else if (action === 'EXPLOSION_WHITEOUT') {
+        setWhiteOutDuration(0.8);
+        setIsWhiteOut(true);
+        setShakeEffect('extreme');
+        setTimeout(() => {
+          setShakeEffect(false);
+        }, 800);
+      } else if (action === 'WHITE_FLASH') {
+        setIsWhiteFlashActive(true);
+        setTimeout(() => setIsWhiteFlashActive(false), 500);
+      } else if (action === 'WHITE_FLASH_AND_SHAKE') {
+        setIsWhiteFlashActive(true);
+        setShakeEffect('extreme');
+        setTimeout(() => {
+          setIsWhiteFlashActive(false);
+          setShakeEffect(false);
+        }, 500);
       }
 
       // Red Alert
@@ -1032,26 +1089,31 @@ export default function App() {
 
             {/* Item Sprite Overlay */}
             <AnimatePresence>
-              {displayedItem && !isCinema && !isAnyEnd && (
-                <motion.div
-                  key="item-overlay"
-                  className={`absolute inset-0 flex pointer-events-none z-[15] ${displayedItem.includes('phone_') ? 'items-end justify-center' : 'items-center justify-center'}`}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0, transition: { delay: 0.7 } }}
-                >
-                  <motion.img
-                    key={displayedItem}
-                    src={assetPath(displayedItem)}
-                    alt="item"
-                    initial={displayedItem.includes('phone_') ? { y: '100%', opacity: 0 } : { opacity: 0, scale: 0.95 }}
-                    animate={displayedItem.includes('phone_') ? { y: '-5%', opacity: 1 } : { opacity: 1, scale: 1 }}
-                    exit={displayedItem.includes('phone_') ? { y: '100%', opacity: 0 } : { opacity: 0, scale: 0.95 }}
-                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                    className={`object-contain drop-shadow-2xl ${displayedItem.includes('phone_') ? 'w-[20%] max-w-[250px] min-w-[150px]' : 'max-w-[40%] max-h-[60%]'}`}
-                  />
-                </motion.div>
-              )}
+              {displayedItem && !isCinema && !isAnyEnd && (() => {
+                const isPhone = displayedItem.includes('phone_');
+                const isMessage = displayedItem.includes('Message.png');
+                const isBottomAligned = isPhone || isMessage;
+                return (
+                  <motion.div
+                    key="item-overlay"
+                    className={`absolute inset-0 flex pointer-events-none z-[15] ${isBottomAligned ? 'items-end justify-center' : 'items-center justify-center'}`}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0, transition: { delay: 0.7 } }}
+                  >
+                    <motion.img
+                      key={displayedItem}
+                      src={assetPath(displayedItem)}
+                      alt="item"
+                      initial={isBottomAligned ? { y: '100%', opacity: 0 } : { opacity: 0, scale: 0.95 }}
+                      animate={isBottomAligned ? { y: '-5%', opacity: 1 } : { opacity: 1, scale: 1 }}
+                      exit={isBottomAligned ? { y: '100%', opacity: 0 } : { opacity: 0, scale: 0.95 }}
+                      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                      className={`object-contain drop-shadow-2xl ${isPhone ? 'w-[20%] max-w-[250px] min-w-[150px]' : isMessage ? 'w-[50%] max-w-[600px] min-w-[300px]' : 'max-w-[40%] max-h-[60%]'}`}
+                    />
+                  </motion.div>
+                );
+              })()}
             </AnimatePresence>
 
             {/* Smoke Overlay */}
@@ -1125,9 +1187,57 @@ export default function App() {
                 <motion.div
                   className="absolute inset-0 pointer-events-none z-[19] overflow-hidden bg-red-600/35"
                   initial={{ opacity: 0 }}
-                  animate={{ opacity: [0.3, 0.9, 0.3] }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                  animate={{ opacity: [0.3, 0.9, 0.3], transition: { duration: 2, repeat: Infinity, ease: "easeInOut" } }}
+                  exit={{ opacity: 0, transition: { duration: 0.5 } }}
+                />
+              )}
+            </AnimatePresence>
+
+            {/* Monochrome Flash Overlay */}
+            <AnimatePresence>
+              {isMonochromeFlashActive && !isCinema && !isAnyEnd && (
+                <motion.div
+                  className="absolute inset-0 pointer-events-none z-[19]"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0, transition: { duration: 1 } }}
+                >
+                  <motion.div
+                    className="absolute inset-0"
+                    style={{ boxShadow: "inset 0 0 200px 100px rgba(255,255,255,1)" }}
+                    animate={{ opacity: [0, 0.7, 0] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  />
+                  <motion.div
+                    className="absolute inset-0"
+                    style={{ boxShadow: "inset 0 0 200px 100px rgba(0,0,0,1)" }}
+                    animate={{ opacity: [0.7, 0, 0.7] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  />
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {/* White Flash Overlay */}
+            <AnimatePresence>
+              {isWhiteFlashActive && !isCinema && !isAnyEnd && (
+                <motion.div
+                  className="absolute inset-0 pointer-events-none z-[20] bg-white"
+                  initial={{ opacity: 1 }}
+                  animate={{ opacity: 0 }}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
+                />
+              )}
+            </AnimatePresence>
+
+            {/* White Pulse Overlay */}
+            <AnimatePresence>
+              {whitePulseLevel > 0 && !isCinema && !isAnyEnd && (
+                <motion.div
+                  className="absolute inset-0 pointer-events-none z-[18] bg-white mix-blend-overlay"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: [0, whitePulseLevel, 0] }}
+                  transition={{ duration: 1.2 - whitePulseLevel, repeat: Infinity, ease: 'easeInOut' }}
                 />
               )}
             </AnimatePresence>
@@ -1140,7 +1250,7 @@ export default function App() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  transition={{ duration: 0.8, ease: 'easeInOut' }}
+                  transition={{ duration: whiteOutDuration, ease: 'easeInOut' }}
                 />
               )}
             </AnimatePresence>

@@ -1,0 +1,1196 @@
+﻿diff --git a/src/data/scenario.js b/src/data/scenario.js
+index 45ad895..d4447cb 100644
+--- a/src/data/scenario.js
++++ b/src/data/scenario.js
+@@ -2820,7 +2820,6 @@ export const scenarioData = [
+     scene: "蟒・ン繝ｫ縺ｮ荳螳､",
+     text: "阮・囓縺・ｮ､蜀・∈縺ｨ雜ｳ繧定ｸ上∩蜈･繧後◆縲√◎縺ｮ迸ｬ髢凪楳笏縲・,
+     bg: "/scene/ajito.png",
+-    action: "FADE_IN"
+   },
+   {
+     scene: "蟒・ン繝ｫ縺ｮ荳螳､",
+@@ -3220,6 +3219,7 @@ export const scenarioData = [
+     scene: "蟒・ン繝ｫ縺ｮ荳螳､",
+     text: "遘√◆縺｡縺ｯ隕壽ぁ繧呈ｱｺ繧√√ヲ繝ｫ繝滓蕗謗医′蠕・▽螟ｧ蟄ｦ縺ｮ遐皮ｩｶ螳､縺ｸ縺ｨ蜷代°縺・◆繧√∝・縺ｳ蟒・ン繝ｫ縺ｮ髫取ｮｵ繧帝ｧ・￠荳九ｊ蟋九ａ縺溘・,
+   },
++
+   {
+     scene: "蟠ｩ螢翫＠縺溯｡・,
+     text: "蟒・ン繝ｫ繧帝｣帙・蜃ｺ縺励◆遘√◆縺｡繧貞ｾ・▲縺ｦ縺・◆縺ｮ縺ｯ縲∝､懊・髣・↓邏帙ｌ縺ｦ陦励ｒ雹りｺ吶☆繧九∫焚蠖｢縺ｮ諤ｪ迚ｩ笏笏縲舌く繝｡繝ｩ縲代◆縺｡縺ｮ鄒､繧後□縺｣縺溘・,
+@@ -4656,9 +4656,8 @@ export const scenarioData = [
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+     speaker: "蜃ｪ遐・,
+     role: "NAGISA",
+-    text: "縲娯ｦ縺昴ｓ縺ｪ縺ｫ辭ｱ縺｣縺ｽ縺剰ｦ九▽繧√↑縺・〒繧医ゅｏ縺九▲縺ｦ繧九∝ヵ縺梧ｭ｢繧√ｌ縺ｰ縺・＞繧薙□繧阪・
+-    ,
+-    showIllust: ["Nagisa_neutral"]
++    text: "縲娯ｦ縺昴ｓ縺ｪ縺ｫ辭ｱ縺｣縺ｽ縺剰ｦ九▽繧√↑縺・〒繧医ゅｏ縺九▲縺ｦ繧九∝ヵ縺梧ｭ｢繧√ｌ縺ｰ縺・＞繧薙□繧阪・,
++    showIllust: ["Nagisa_smile"]
+   },
+   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+@@ -4692,8 +4691,7 @@ export const scenarioData = [
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+     speaker: "蜃ｪ遐・,
+     role: "NAGISA",
+-    text: "縲娯ｦ縺ｪ縺ｫ・溘・
+-    ,
++    text: "縲娯ｦ縺ｪ縺ｫ・溘・,
+     showIllust: ["Nagisa_neutral"]
+   },
+   {
+@@ -4718,8 +4716,7 @@ export const scenarioData = [
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+     speaker: "蜃ｪ遐・,
+     role: "NAGISA",
+-    text: "縲娯ｦ窶ｦ縺薙ｌ縺檎ｵゅｏ縺｣縺溘ｉ縲∝ヵ縺ｨ繝・・繝医＠縺ｦ縲・
+-    ,
++    text: "縲娯ｦ窶ｦ縺薙ｌ縺檎ｵゅｏ縺｣縺溘ｉ縲∝ヵ縺ｨ繝・・繝医＠縺ｦ縲・,
+     showIllust: ["Nagisa_happy"]
+   },
+   {
+@@ -4742,8 +4739,7 @@ export const scenarioData = [
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+     speaker: "蜃ｪ遐・,
+     role: "NAGISA",
+-    text: "縲後＄窶ｦ縺｣窶ｦ窶ｦ窶ｦ縺・≦窶ｦ窶ｦ・・ｼ√・
+-    ,
++    text: "縲後＄窶ｦ縺｣窶ｦ窶ｦ窶ｦ縺・≦窶ｦ窶ｦ・・ｼ√・,
+     showIllust: ["Nagisa_serious"]
+   },
+   {
+@@ -4769,8 +4765,6 @@ export const scenarioData = [
+     speaker: "蜃ｪ遐・,
+     role: "NAGISA",
+     text: "縲後・縺≫ｦ縺｣縲√￥窶ｦ窶ｦ縺ｯ縺≫ｦ窶ｦ縲・
+-    ,
+-    showIllust: ["Nagisa_neutral"]
+   },
+   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+@@ -4790,7 +4784,8 @@ export const scenarioData = [
+   },
+   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+-    text: "貍・ｻ偵・逕ｲ蜀代↓霄ｫ繧貞桁縺ｿ縲∬ｺｫ縺ｮ荳医⊇縺ｩ繧ゅ≠繧句､ｧ蜑｣繧呈声縺医◆窶補補補・
++    text: "貍・ｻ偵・逕ｲ蜀代↓霄ｫ繧貞桁縺ｿ縲∬ｺｫ縺ｮ荳医⊇縺ｩ繧ゅ≠繧句､ｧ蜑｣繧呈声縺医◆窶補補補・,
++    showIllust: ["BlackKnight"]
+   },
+   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+@@ -4819,8 +4814,6 @@ export const scenarioData = [
+     speaker: "蜃ｪ遐・,
+     role: "NAGISA",
+     text: "縲娯楳笏笏笏荳九′繧後ャ・・ｼ√・
+-    ,
+-    showIllust: ["Nagisa_serious"]
+   },
+   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+@@ -4842,7 +4835,8 @@ export const scenarioData = [
+   },
+   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+-    text: "縺薙％縺ｧ雜ｳ繧呈ｭ｢繧√◆繧我ｺ御ｺｺ縺ｨ繧よｭｻ縺ｬ縲らｧ√・蠖ｼ縺ｮ閻輔ｒ閾ｪ蛻・・閧ｩ縺ｫ蝗槭＠縲∝・縺ｳ蜈ｨ蜉帙〒襍ｰ繧雁・縺吶・
++    text: "縺薙％縺ｧ雜ｳ繧呈ｭ｢繧√◆繧我ｺ御ｺｺ縺ｨ繧よｭｻ縺ｬ縲らｧ√・蠖ｼ縺ｮ閻輔ｒ閾ｪ蛻・・閧ｩ縺ｫ蝗槭＠縲∝・縺ｳ蜈ｨ蜉帙〒襍ｰ繧雁・縺吶・,
++    hideIllust: ["BlackKnight"]
+   },
+   {
+     scene: "逑ｦ遉ｫ陬・,
+@@ -4857,8 +4851,6 @@ export const scenarioData = [
+     speaker: "蜃ｪ遐・,
+     role: "NAGISA",
+     text: "縲後・縺≫ｦ窶ｦ窶ｦ窶ｦ縺ｯ縺≫ｦ窶ｦ窶ｦ窶ｦ窶ｦ縲・
+-    ,
+-    showIllust: ["Nagisa_neutral"]
+   },
+   {
+     scene: "逑ｦ遉ｫ陬・,
+@@ -4878,8 +4870,7 @@ export const scenarioData = [
+     scene: "逑ｦ遉ｫ陬・,
+     speaker: "蜃ｪ遐・,
+     role: "NAGISA",
+-    text: "縲後・縺ｯ窶ｦ窶ｦ縺輔▲縺阪・謖・､ｺ縲∫噪遒ｺ縺縺｣縺溘□繧阪ゅ⊂縺上・縺翫°縺偵√□縺ｭ窶ｦ窶ｦ縲・
+-    ,
++    text: "縲後・縺ｯ窶ｦ窶ｦ縺輔▲縺阪・謖・､ｺ縲∫噪遒ｺ縺縺｣縺溘□繧阪ゅ⊂縺上・縺翫°縺偵√□縺ｭ窶ｦ窶ｦ縲・,
+     showIllust: ["Nagisa_smile"]
+   },
+   {
+@@ -4900,8 +4891,7 @@ export const scenarioData = [
+     scene: "逑ｦ遉ｫ陬・,
+     speaker: "蜃ｪ遐・,
+     role: "NAGISA",
+-    text: "縲悟燕縲・ｻ帝ｨ主｣ｫ縺ｫ莨壹▲縺滓凾縺ｫ縺ｯ諢溘§縺ｪ縺九▲縺溘￠縺ｩ窶ｦ窶ｦ莉雁屓縺ｯ縲√≠縺・▽縺ｮ螢ｰ縺娯ｦ窶ｦ縲手・縺薙∴縺溘上ｈ窶ｦ窶ｦ縲・
+-    ,
++    text: "縲悟燕縲・ｻ帝ｨ主｣ｫ縺ｫ莨壹▲縺滓凾縺ｫ縺ｯ諢溘§縺ｪ縺九▲縺溘￠縺ｩ窶ｦ窶ｦ莉雁屓縺ｯ縲√≠縺・▽縺ｮ螢ｰ縺娯ｦ窶ｦ縲手・縺薙∴縺溘上ｈ窶ｦ窶ｦ縲・,
+     showIllust: ["Nagisa_neutral"]
+   },
+   {
+@@ -4919,8 +4909,6 @@ export const scenarioData = [
+     speaker: "蜃ｪ遐・,
+     role: "NAGISA",
+     text: "縲娯ｦ窶ｦ蜒輔↓縺ｯ縲∫嶌謇九・閠・∴縺ｦ繧九％縺ｨ縺後ｏ縺九ｋ縲ゅ←繧薙↑縺ｫ諱舌ｍ縺励＞蛹悶￠迚ｩ逶ｸ謇九〒繧ゅ・縲ゅ≠縺・▽縺梧ｬ｡縺ｫ縺ｩ縺・虚縺上°縲∝・驛ｨ蜒輔・鬆ｭ縺ｮ荳ｭ縺ｫ豬√ｌ霎ｼ繧薙〒縺上ｋ繧薙□縲・
+-    ,
+-    showIllust: ["Nagisa_smile"]
+   },
+   {
+     scene: "逑ｦ遉ｫ陬・,
+@@ -4931,16 +4919,12 @@ export const scenarioData = [
+     speaker: "蜃ｪ遐・,
+     role: "NAGISA",
+     text: "縲御ｾｿ蛻ｩ縺縺｣縺ｦ諤昴≧縺繧搾ｼ溪ｦ縺薙・蜉帙・蛻ｶ蠕｡縺ｧ縺阪↑縺・ゅ▽縺ｾ繧岩ｦ蜍晄焔縺ｫ豬√ｌ縺ｦ縺上ｋ繧薙□繧医ゆｻ悶・諤晁・′縲よ悍繧薙〒繧ゅ＞縺ｪ縺・・縺ｫ縲∵怏雎｡辟｡雎｡縺ｮ縺ｩ縺咎ｻ偵＞譛ｬ髻ｳ繧ゅ∝喧縺醍黄縺ｮ谿ｺ諢上ｂ縲√●繧薙・蠑ｷ蛻ｶ逧・↓閼ｳ縺ｿ縺昴∈豕ｨ縺手ｾｼ縺ｾ繧後ｋ縲・
+-    ,
+-    showIllust: ["Nagisa_neutral"]
+   },
+   {
+     scene: "逑ｦ遉ｫ陬・,
+     speaker: "蜃ｪ遐・,
+     role: "NAGISA",
+     text: "縲娯ｦ窶ｦ蜒輔・鬆ｭ縺ｯ縺ｭ縲√★縺｣縺ｨ縺・ｋ縺輔￥縺ｦ縲∝｣翫ｌ縺昴≧縺ｪ繧薙□縲・
+-    ,
+-    showIllust: ["Nagisa_smile"]
+   },
+   {
+     scene: "逑ｦ遉ｫ陬・,
+@@ -4965,8 +4949,6 @@ export const scenarioData = [
+     speaker: "蜃ｪ遐・,
+     role: "NAGISA",
+     text: "縲娯ｦ窶ｦ窶ｦ窶ｦ窶ｦ窶ｦ繧上°繧峨↑縺・・
+-    ,
+-    showIllust: ["Nagisa_neutral"]
+   },
+   {
+     scene: "逑ｦ遉ｫ陬・,
+@@ -4982,8 +4964,7 @@ export const scenarioData = [
+     scene: "逑ｦ遉ｫ陬・,
+     speaker: "蜃ｪ遐・,
+     role: "NAGISA",
+-    text: "縲御ｸ肴晁ｭｰ縺繧医・縲ょ菅縺ｮ諠・ｱ縺縺鯛ｦ窶ｦ縺ｪ縺ｫ繧ゅ∵ｵ√ｌ縺ｦ縺薙↑縺・・
+-    ,
++    text: "縲御ｸ肴晁ｭｰ縺繧医・縲ょ菅縺ｮ諠・ｱ縺縺鯛ｦ窶ｦ縺ｪ縺ｫ繧ゅ∵ｵ√ｌ縺ｦ縺薙↑縺・・,
+     showIllust: ["Nagisa_smile"]
+   },
+   {
+@@ -4995,8 +4976,6 @@ export const scenarioData = [
+     speaker: "蜃ｪ遐・,
+     role: "NAGISA",
+     text: "縲後◎繧後←縺薙ｍ縺九∝菅縺瑚ｿ代￥縺ｫ縺・ｋ譎ゅ□縺鯛ｦ窶ｦ菴輔ｂ閨槭％縺医↑縺上↑繧九ゅ＞縺､繧よ昴≧繧薙□縲ゆｸ也阜縺｣縺ｦ縺薙ｓ縺ｪ縺ｫ髱吶°縺縺｣縺溘ｓ縺縺｣縺ｦ縲・
+-    ,
+-    showIllust: ["Nagisa_smile"]
+   },
+   {
+     scene: "逑ｦ遉ｫ陬・,
+@@ -5014,8 +4993,7 @@ export const scenarioData = [
+     scene: "逑ｦ遉ｫ陬・,
+     speaker: "蜃ｪ遐・,
+     role: "NAGISA",
+-    text: "縲娯ｦ窶ｦ繧｢繧､繝・′縺昴％縺ｾ縺ｧ霑ｫ縺｣縺ｦ縺阪※繧九ょ菅縺ｯ蜒輔ｒ鄂ｮ縺・※騾・￡繧阪ゅ◎縺ｮ髢薙↓繧ｳ繧｢縺ｯ縺ｪ繧薙→縺九＠縺ｨ縺上°繧峨・
+-    ,
++    text: "縲娯ｦ窶ｦ繧｢繧､繝・′縺昴％縺ｾ縺ｧ霑ｫ縺｣縺ｦ縺阪※繧九ょ菅縺ｯ蜒輔ｒ鄂ｮ縺・※騾・￡繧阪ゅ◎縺ｮ髢薙↓繧ｳ繧｢縺ｯ縺ｪ繧薙→縺九＠縺ｨ縺上°繧峨・,
+     showIllust: ["Nagisa_serious"]
+   },
+   {
+@@ -5053,8 +5031,6 @@ export const scenarioData = [
+     speaker: "蜃ｪ遐・,
+     role: "NAGISA",
+     text: "縲娯ｦ窶ｦ窶ｦ窶ｦ繧・▲縺ｱ繧翫・撕縺九□縲ょ菅縺ｮ縺昴・縺ｫ縺・ｋ縺ｨ縲∝ｮ牙ｿ・☆繧九・
+-    ,
+-    showIllust: ["Nagisa_smile"]
+   },
+   {
+     scene: "逑ｦ遉ｫ陬・,
+@@ -5065,8 +5041,6 @@ export const scenarioData = [
+     speaker: "蜃ｪ遐・,
+     role: "NAGISA",
+     text: "縲悟菅縺｣縺ｦ窶ｦ縺ｻ繧薙→繝舌き縺ｿ縺溘＞縺ｪ縺贋ｺｺ螂ｽ縺励□縺ｭ縲・
+-    ,
+-    showIllust: ["Nagisa_smile"]
+   },
+   {
+     scene: "逑ｦ遉ｫ陬・,
+@@ -5093,10 +5067,8 @@ export const scenarioData = [
+   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+     speaker: "鮟帝ｨ主｣ｫ",
+-    role: "ENEMY",
+-    text: "縲後が繧ｪ繧ｪ繧ｪ繧ｪ繧ｩ繧ｩ繧ｩ窶ｦ窶ｦ繝・ｼ・ｼ√・
+-    ,
+-    showIllust: ["BlackKnight_serious"]
++    text: "縲後が繧ｪ繧ｪ繧ｪ繧ｪ繧ｩ繧ｩ繧ｩ窶ｦ窶ｦ繝・ｼ・ｼ√・,
++    showIllust: ["Blackknight"]
+   },
+   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+@@ -5110,17 +5082,15 @@ export const scenarioData = [
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+     speaker: "蜃ｪ遐・,
+     role: "NAGISA",
+-    text: "縲梧恃濶ｯ縲∵ｯ縺ｾ縺ｪ縺・〒縲や楳笏縺ゅ＞縺､縺ｮ蜍輔″縺ｪ繧峨∽ｻ雁ｺｦ縺ｯ蜈ｨ驛ｨ蜒輔・鬆ｭ縺ｮ荳ｭ縺ｫ隕悶∴縺ｦ縺・ｋ縲ゅ↑繧薙〒縺狗衍繧峨↑縺・￠縺ｩ窶ｦ窶ｦ菴呵ｨ医↑諠・ｱ縺ｯ縲∽ｻ翫・豬√ｌ縺ｦ縺薙↑縺・ｓ縺縲・
+-    ,
++    text: "縲梧恃濶ｯ縲∵ｯ縺ｾ縺ｪ縺・〒縲や楳笏縺ゅ＞縺､縺ｮ蜍輔″縺ｪ繧峨∽ｻ雁ｺｦ縺ｯ蜈ｨ驛ｨ蜒輔・鬆ｭ縺ｮ荳ｭ縺ｫ隕悶∴縺ｦ縺・ｋ縲ゅ↑繧薙〒縺狗衍繧峨↑縺・￠縺ｩ窶ｦ窶ｦ菴呵ｨ医↑諠・ｱ縺ｯ縲∽ｻ翫・豬√ｌ縺ｦ縺薙↑縺・ｓ縺縲・,
+     showIllust: ["Nagisa_neutral"]
+   },
+   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+     speaker: "蜃ｪ遐・,
+     role: "NAGISA",
+-    text: "縲悟承縺九ｉ縺上ｋ繧医や楳笏荳画ｭｩ荳九′縺｣縺ｦ・√・
+-    ,
+-    showIllust: ["Nagisa_neutral"]
++    text: "縲悟承縺九ｉ縺上ｋ繧医や楳笏荳画ｭｩ荳九′縺｣縺ｦ・√・,
++    showIllust: ["Nagisa_serious"]
+   },
+   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+@@ -5140,8 +5110,7 @@ export const scenarioData = [
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+     speaker: "蜃ｪ遐・,
+     role: "NAGISA",
+-    text: "縲後∈縺医∝ヵ縺ｮ謖・､ｺ繧堤┌隕悶＠縺ｦ驕ｿ縺代ｋ縺ｪ繧薙※縲√＞縺・ｺｦ閭ｸ縺縺ｭ縲・
+-    ,
++    text: "縲後∈縺医∝ヵ縺ｮ謖・､ｺ繧堤┌隕悶＠縺ｦ驕ｿ縺代ｋ縺ｪ繧薙※縲√＞縺・ｺｦ閭ｸ縺縺ｭ縲・,
+     showIllust: ["Nagisa_smile"]
+   },
+   {
+@@ -5155,8 +5124,6 @@ export const scenarioData = [
+     speaker: "蜃ｪ遐・,
+     role: "NAGISA",
+     text: "縲後＞繧・∽ｻ翫・縺ｯ蜷帙・蛻､譁ｭ縺梧ｭ｣縺励°縺｣縺溘ｈ縲ゅ≠縺・▽縲・比ｸｭ縺ｧ霆碁％繧貞､峨∴繧・′縺｣縺溘やｦ窶ｦ蜒輔・莠育衍繧定ｶ・∴縺ｦ蜍輔￥縺ｪ繧薙※縺ｭ縲・
+-    ,
+-    showIllust: ["Nagisa_smile"]
+   },
+   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+@@ -5174,8 +5141,7 @@ export const scenarioData = [
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+     speaker: "蜃ｪ遐・,
+     role: "NAGISA",
+-    text: "縲娯楳笏莉翫□縲・
+-    ,
++    text: "縲娯楳笏莉翫□縲・,
+     showIllust: ["Nagisa_neutral"]
+   },
+   {
+@@ -5186,9 +5152,8 @@ export const scenarioData = [
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+     speaker: "蜃ｪ遐・,
+     role: "NAGISA",
+-    text: "縲悟ｷｦ縺ｮ逶ｾ縺ｯ繝輔ぉ繧､繝ｳ繝医□縲∝承縺ｮ陬・抜縺ｮ髫咎俣繧堤漁縺｣縺ｦ・√・
+-    ,
+-    showIllust: ["Nagisa_neutral"]
++    text: "縲悟ｷｦ縺ｮ逶ｾ縺ｯ繝輔ぉ繧､繝ｳ繝医□縲∝承縺ｮ陬・抜縺ｮ髫咎俣繧堤漁縺｣縺ｦ・√・,
++    showIllust: ["Nagisa_serious"]
+   },
+   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+@@ -5213,8 +5178,6 @@ export const scenarioData = [
+     speaker: "蜃ｪ遐・,
+     role: "NAGISA",
+     text: "縲後▲縲∵恃濶ｯ縲∽ｸ九′縺｣縺ｦ・・逶ｸ謇薙■繧堤漁縺・ｰ励□窶ｦ窶ｦ・√・
+-    ,
+-    showIllust: ["Nagisa_neutral"]
+   },
+   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+@@ -5244,7 +5207,9 @@ export const scenarioData = [
+   },
+   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+-    text: "繧・′縺ｦ縲√ｂ縺・ｂ縺・→遶九■霎ｼ繧√ｋ辣吶′螟匁ｰ励∈縺ｨ豬√＆繧後∬ｦ也阜縺梧匐繧後※縺・￥縺ｨ笏笏縺昴％縺ｫ縺ｯ縲∽ｸ崎・辟ｶ縺ｫ縺ｽ縺｣縺九ｊ縺ｨ髢九＞縺溷ｷｨ螟ｧ縺ｪ遨ｴ縺ｨ縲√◎縺ｮ蜷代％縺・↓蠎・′繧玖穀豸ｼ縺ｨ縺励◆螟悶・荳也阜縺瑚ｦ九∴繧九□縺代□縺｣縺溘・
++    text: "繧・′縺ｦ縲√ｂ縺・ｂ縺・→遶九■霎ｼ繧√ｋ辣吶′螟匁ｰ励∈縺ｨ豬√＆繧後∬ｦ也阜縺梧匐繧後※縺・￥縺ｨ笏笏縺昴％縺ｫ縺ｯ縲∽ｸ崎・辟ｶ縺ｫ縺ｽ縺｣縺九ｊ縺ｨ髢九＞縺溷ｷｨ螟ｧ縺ｪ遨ｴ縺ｨ縲√◎縺ｮ蜷代％縺・↓蠎・′繧玖穀豸ｼ縺ｨ縺励◆螟悶・荳也阜縺瑚ｦ九∴繧九□縺代□縺｣縺溘・,
++    bg: "/scene/core_kurokishi_toubou.png",
++    hideIllust: ["Blackknight"]
+   },
+   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+@@ -5258,8 +5223,7 @@ export const scenarioData = [
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+     speaker: "蜃ｪ遐・,
+     role: "NAGISA",
+-    text: "縲娯ｦ窶ｦ騾・￡繧峨ｌ縺溘√°縲・
+-    ,
++    text: "縲娯ｦ窶ｦ騾・￡繧峨ｌ縺溘√°縲・,
+     showIllust: ["Nagisa_neutral"]
+   },
+   {
+@@ -5271,8 +5235,6 @@ export const scenarioData = [
+     speaker: "蜃ｪ遐・,
+     role: "NAGISA",
+     text: "縲娯ｦ窶ｦ縺輔※縲るが鬲碑・・縺・↑縺上↑縺｣縺溘＠縲∵悽譚･縺ｮ莉穂ｺ九ｒ迚・ｻ倥￠繧医≧縺九・
+-    ,
+-    showIllust: ["Nagisa_neutral"]
+   },
+   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+@@ -5292,8 +5254,7 @@ export const scenarioData = [
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+     speaker: "蜃ｪ遐・,
+     role: "NAGISA",
+-    text: "縲娯ｦ窶ｦ縺・ｓ縲ょ菅縺後＞縺ｦ縺上ｌ繧九↑繧峨∝ヵ縺ｯ荳也阜縺ｧ荳逡ｪ蠑ｷ縺・ｈ縲・
+-    ,
++    text: "縲娯ｦ窶ｦ縺・ｓ縲ょ菅縺後＞縺ｦ縺上ｌ繧九↑繧峨∝ヵ縺ｯ荳也阜縺ｧ荳逡ｪ蠑ｷ縺・ｈ縲・,
+     showIllust: ["Nagisa_smile"]
+   },
+   {
+@@ -5308,8 +5269,7 @@ export const scenarioData = [
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+     speaker: "蜃ｪ遐・,
+     role: "NAGISA",
+-    text: "縲後＄縲√▲窶ｦ窶ｦ縺ゅ≠縺ゅ≠縺ゅ＝縺√＝窶ｦ窶ｦ繝・ｼ・ｼ√・
+-    ,
++    text: "縲後＄縲√▲窶ｦ窶ｦ縺ゅ≠縺ゅ≠縺ゅ＝縺√＝窶ｦ窶ｦ繝・ｼ・ｼ√・,
+     showIllust: ["Nagisa_serious"]
+   },
+   {
+@@ -5345,13 +5305,12 @@ export const scenarioData = [
+     speaker: "蜃ｪ遐・,
+     role: "NAGISA",
+     text: "縲後・縲√≠縺絶ｦ窶ｦ縺｣縲√％繧後√〒窶ｦ窶ｦ邨ゅｏ繧翫□窶ｦ窶ｦ繝・ｼ・ｼ√・
+-    ,
+-    showIllust: ["Nagisa_serious"]
+   },
+   //逋ｽ縺丞・繧・   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+-    text: "蜃ｪ遐ゅ＆繧薙′陦繧貞瑞縺榊・縺吶ｈ縺・↓蜿ｫ縺ｳ縲∵怙蠕後・蜉帙ｒ謖ｯ繧顔ｵ槭▲縺ｦ荳｡謇九↓蜉帙ｒ霎ｼ繧√◆縲ゅ◎縺ｮ迸ｬ髢薙√さ繧｢縺ｮ霈昴″縺碁剞逡後ｒ霑弱∴縺滄崕逅・・繧医≧縺ｫ縲∽ｸ髫帷惓縺励￥辷・匱逧・↓閹ｨ繧御ｸ翫′縺｣縺溘りｦ也阜縺檎ｴ皮區縺ｮ蜈峨〒蝓九ａ蟆ｽ縺上＆繧後∽ｽ輔ｂ隕九∴縺ｪ縺上↑繧九・
++    text: "蜃ｪ遐ゅ＆繧薙′陦繧貞瑞縺榊・縺吶ｈ縺・↓蜿ｫ縺ｳ縲∵怙蠕後・蜉帙ｒ謖ｯ繧顔ｵ槭▲縺ｦ荳｡謇九↓蜉帙ｒ霎ｼ繧√◆縲ゅ◎縺ｮ迸ｬ髢薙√さ繧｢縺ｮ霈昴″縺碁剞逡後ｒ霑弱∴縺滄崕逅・・繧医≧縺ｫ縲∽ｸ髫帷惓縺励￥辷・匱逧・↓閹ｨ繧御ｸ翫′縺｣縺溘りｦ也阜縺檎ｴ皮區縺ｮ蜈峨〒蝓九ａ蟆ｽ縺上＆繧後∽ｽ輔ｂ隕九∴縺ｪ縺上↑繧九・,
++    action: "WHITE_OUT_START"
+   },
+   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+@@ -5364,7 +5323,9 @@ export const scenarioData = [
+   //繧・▲縺上ｊ證苓ｻ｢
+   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+-    text: "繧・▲縺上ｊ縺ｨ蜈峨′蜿取據縺励※縺・￥縲・
++    text: "繧・▲縺上ｊ縺ｨ蜈峨′蜿取據縺励※縺・￥縲・,
++    bg: "/scene/core_hakai.png",
++    action: "WHITE_OUT_END"
+   },
+   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+@@ -5398,8 +5359,7 @@ export const scenarioData = [
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+     speaker: "蜃ｪ遐・,
+     role: "NAGISA",
+-    text: "縲娯ｦ窶ｦ鮠灘虚縺｣縺ｦ縲√％繧薙↑縺ｫ關ｽ縺｡逹縺城浹縺縺｣縺溘ｓ縺縺ｭ窶ｦ窶ｦ窶ｦ窶ｦ縲・
+-    ,
++    text: "縲娯ｦ窶ｦ鮠灘虚縺｣縺ｦ縲√％繧薙↑縺ｫ關ｽ縺｡逹縺城浹縺縺｣縺溘ｓ縺縺ｭ窶ｦ窶ｦ窶ｦ窶ｦ縲・,
+     showIllust: ["Nagisa_smile"]
+   },
+   {
+@@ -5415,8 +5375,6 @@ export const scenarioData = [
+     speaker: "蜃ｪ遐・,
+     role: "NAGISA",
+     text: "縲娯ｦ窶ｦ縺薙ｌ縺ｧ縲√ｈ縺・ｄ縺丞ｸｰ繧後ｋ繧薙□縺ｭ縲・
+-    ,
+-    showIllust: ["Nagisa_smile"]
+   },
+   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+@@ -5450,8 +5408,6 @@ export const scenarioData = [
+     speaker: "蜃ｪ遐・,
+     role: "NAGISA",
+     text: "縲娯ｦ窶ｦ蜷帙′謾ｯ縺医※縺上ｌ繧九↑繧峨√←縺薙∪縺ｧ縺ｧ繧ゅ・
+-    ,
+-    showIllust: ["Nagisa_neutral"]
+   },
+   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+@@ -5506,8 +5462,7 @@ export const scenarioData = [
+     scene: "螳・ｮ咏ｩｺ髢・,
+     speaker: "蜃ｪ遐・,
+     role: "NAGISA",
+-    text: "縲梧悽蠖薙↓縲∽ｽ輔↓繧り・縺薙∴縺ｪ縺・ｄ縲ゆｻ紋ｺｺ縺ｮ繝峨せ鮟偵＞諢滓ュ繧ゅ∝喧縺醍黄縺ｮ谿ｺ諢上ｂ窶ｦ窶ｦ蜈ｨ驛ｨ縲√≠縺ｮ蝣ｴ謇縺ｫ鄂ｮ縺・※縺薙ｉ繧後◆縺ｿ縺溘＞縺縲・
+-    ,
++    text: "縲梧悽蠖薙↓縲∽ｽ輔↓繧り・縺薙∴縺ｪ縺・ｄ縲ゆｻ紋ｺｺ縺ｮ繝峨せ鮟偵＞諢滓ュ繧ゅ∝喧縺醍黄縺ｮ谿ｺ諢上ｂ窶ｦ窶ｦ蜈ｨ驛ｨ縲√≠縺ｮ蝣ｴ謇縺ｫ鄂ｮ縺・※縺薙ｉ繧後◆縺ｿ縺溘＞縺縲・,
+     showIllust: ["Nagisa_neutral"]
+   },
+   {
+@@ -5519,8 +5474,6 @@ export const scenarioData = [
+     speaker: "蜃ｪ遐・,
+     role: "NAGISA",
+     text: "縲後・縺医∵恃濶ｯ縲ょ慍逅・↓逹縺・◆繧峨√■繧・ｓ縺ｨ邏・據縲∝ｮ医▲縺ｦ縺上ｌ繧九ｈ縺ｭ・溘・
+-    ,
+-    showIllust: ["Nagisa_smile"]
+   },
+   {
+     scene: "螳・ｮ咏ｩｺ髢・,
+@@ -5532,8 +5485,7 @@ export const scenarioData = [
+     scene: "螳・ｮ咏ｩｺ髢・,
+     speaker: "蜃ｪ遐・,
+     role: "NAGISA",
+-    text: "縲悟ｿ倥ｌ縺溘・・・繝・・繝医・邏・據縺繧医ゅ％縺ｮ髱吶°縺ｧ譛鬮倥↑荳也阜繧偵∝菅縺ｨ荳邱偵↓豁ｩ縺榊屓繧翫◆縺・ｓ縺縲・
+-    ,
++    text: "縲悟ｿ倥ｌ縺溘・・・繝・・繝医・邏・據縺繧医ゅ％縺ｮ髱吶°縺ｧ譛鬮倥↑荳也阜繧偵∝菅縺ｨ荳邱偵↓豁ｩ縺榊屓繧翫◆縺・ｓ縺縲・,
+     showIllust: ["Nagisa_happy"]
+   },
+   {
+@@ -5553,7 +5505,8 @@ export const scenarioData = [
+   //繧・▲縺上ｊFO
+   {
+     scene: "蝨ｰ逅・,
+-    text: "遘√◆縺｡縺ｮ譌･蟶ｸ縺ｯ縲・ｩ壹￥縺ｻ縺ｩ縺ゅ▲縺代↑縺乗綾縺｣縺ｦ縺阪◆縲・
++    text: "遘√◆縺｡縺ｮ譌･蟶ｸ縺ｯ縲・ｩ壹￥縺ｻ縺ｩ縺ゅ▲縺代↑縺乗綾縺｣縺ｦ縺阪◆縲・,
++    bg: "/scene/university_gate.png"
+   },
+   {
+     scene: "蝨ｰ逅・,
+@@ -5572,7 +5525,8 @@ export const scenarioData = [
+     speaker: "繝偵Ν繝滓蕗謗・,
+     role: "PROFESSOR",
+     text: "縲後ｄ縺ゅ∵恃濶ｯ縲ょｮ溽ｿ貞ｱ蜻頑嶌縺ｮ繝・・繧ｿ縲√§縺､縺ｫ邏譎ｴ繧峨＠縺・・譚･縺縺｣縺溘ｈ縲ゅ≠縺ｮ讌ｵ髯千憾諷九〒縺阪■繧薙→繝輔か繝ｳ繝医し繧､繧ｺ縺ｾ縺ｧ謠・∴縺ｦ縺上ｋ縺ｨ縺ｯ縲√＆縺吶′謌代′遐皮ｩｶ螳､縺ｮ蟄ｦ逕溘□縺ｭ縲・,
+-    showIllust: ["Hirumi_smile"]
++    showIllust: ["Hirumi_smile"],
++    bg: "/scene/lab.png"
+   },
+   {
+     scene: "遐皮ｩｶ螳､",
+@@ -5595,7 +5549,7 @@ export const scenarioData = [
+     speaker: "譛碑憶",
+     role: "SAKURA",
+     text: "縲娯ｦ窶ｦ縺・ｏ縲√ｂ縺・％繧薙↑譎る俣・・驕・￥縺ｪ縺｣縺｡繧・▲縺溘°縺ｪ窶ｦ窶ｦ縺｣縲・,
+-    bg: "night_street"
++    bg: "/scene/shopping_street_night.png"
+   },
+   {
+     scene: "蠕・■蜷医ｏ縺帛ｴ謇",
+@@ -5603,7 +5557,8 @@ export const scenarioData = [
+   },
+   {
+     scene: "蠕・■蜷医ｏ縺帛ｴ謇",
+-    text: "諱ｯ繧貞・繧峨＠縺ｪ縺後ｉ邏・據縺ｮ蝣ｴ謇縺ｸ縺ｨ霑代▼縺上→縲・ｧ・燕縺ｫ縺ゅｋ蜿､縺・凾險亥床縺ｮ縺ｵ繧ゅ→縺ｫ縲√♀逶ｮ蠖薙※縺ｮ莠ｺ迚ｩ縺ｮ蟋ｿ縺瑚ｦ九∴縺溘・
++    text: "諱ｯ繧貞・繧峨＠縺ｪ縺後ｉ邏・據縺ｮ蝣ｴ謇縺ｸ縺ｨ霑代▼縺上→縲・ｧ・燕縺ｫ縺ゅｋ蜿､縺・凾險亥床縺ｮ縺ｵ繧ゅ→縺ｫ縲√♀逶ｮ蠖薙※縺ｮ莠ｺ迚ｩ縺ｮ蟋ｿ縺瑚ｦ九∴縺溘・,
++    bg: "/scene/clock_tower.png"
+   },
+   {
+     scene: "蠕・■蜷医ｏ縺帛ｴ謇",
+@@ -5623,8 +5578,7 @@ export const scenarioData = [
+     scene: "蠕・■蜷医ｏ縺帛ｴ謇",
+     speaker: "蜃ｪ遐・,
+     role: "NAGISA",
+-    text: "縲碁≦縺・・
+-    ,
++    text: "縲碁≦縺・・,
+     showIllust: ["Nagisa_neutral"]
+   },
+   {
+@@ -5641,8 +5595,7 @@ export const scenarioData = [
+     scene: "蠕・■蜷医ｏ縺帛ｴ謇",
+     speaker: "蜃ｪ遐・,
+     role: "NAGISA",
+-    text: "縲後∪縺｣縺溘￥窶ｦ窶ｦ蜷帙・險縺・ｨｳ縺悟･ｽ縺阪□縺ｭ縲・
+-    ,
++    text: "縲後∪縺｣縺溘￥窶ｦ窶ｦ蜷帙・險縺・ｨｳ縺悟･ｽ縺阪□縺ｭ縲・,
+     showIllust: ["Nagisa_smile"]
+   },
+   {
+@@ -5661,8 +5614,7 @@ export const scenarioData = [
+     scene: "蠕・■蜷医ｏ縺帛ｴ謇",
+     speaker: "蜃ｪ遐・,
+     role: "NAGISA",
+-    text: "縲後→縺・≧繧上￠縺ｧ縲・≦繧後※縺阪◆鄂ｰ縺ｨ縺励※縲∽ｻ頑律縺ｯ蜒輔′貅雜ｳ縺吶ｋ縺ｾ縺ｧ蟶ｰ縺輔↑縺・°繧峨・
+-    ,
++    text: "縲後→縺・≧繧上￠縺ｧ縲・≦繧後※縺阪◆鄂ｰ縺ｨ縺励※縲∽ｻ頑律縺ｯ蜒輔′貅雜ｳ縺吶ｋ縺ｾ縺ｧ蟶ｰ縺輔↑縺・°繧峨・,
+     showIllust: ["Nagisa_neutral"]
+   },
+   {
+@@ -5693,8 +5645,7 @@ export const scenarioData = [
+     scene: "蠕・■蜷医ｏ縺帛ｴ謇",
+     speaker: "蜃ｪ遐・,
+     role: "NAGISA",
+-    text: "縲後￥縺｣窶ｦ窶ｦ縺ゅ・縺ｯ縺ｯ縺ｯ縺｣・・ｼ・菴輔◎縺ｮ鬘費ｼ・闌ｹ縺ｧ繝繧ｳ縺ｿ縺溘＞窶ｦ窶ｦ縺｣縲・
+-    ,
++    text: "縲後￥縺｣窶ｦ窶ｦ縺ゅ・縺ｯ縺ｯ縺ｯ縺｣・・ｼ・菴輔◎縺ｮ鬘費ｼ・闌ｹ縺ｧ繝繧ｳ縺ｿ縺溘＞窶ｦ窶ｦ縺｣縲・,
+     showIllust: ["Nagisa_happy"]
+   },
+   {
+@@ -5715,9 +5666,8 @@ export const scenarioData = [
+     scene: "蠕・■蜷医ｏ縺帛ｴ謇",
+     speaker: "蜃ｪ遐・,
+     role: "NAGISA",
+-    text: "縲悟ヵ繧貞ｾ・◆縺帙◆鄂ｰ隨ｬ1蠑ｾ縺｣縺ｦ縺薙→縲ょ､悶∈縺ｮ隕九○縺､縺代・
+-    ,
+-    showIllust: ["Nagisa_neutral"]
++    text: "縲悟ヵ繧貞ｾ・◆縺帙◆鄂ｰ隨ｬ1蠑ｾ縺｣縺ｦ縺薙→縲ょ､悶∈縺ｮ隕九○縺､縺代・,
++    showIllust: ["Nagisa_smile"]
+   },
+   {
+     scene: "蠕・■蜷医ｏ縺帛ｴ謇",
+@@ -5737,8 +5687,7 @@ export const scenarioData = [
+     scene: "蠕・■蜷医ｏ縺帛ｴ謇",
+     speaker: "蜃ｪ遐・,
+     role: "NAGISA",
+-    text: "縲後⊇繧峨√↑縺ｫ繝懊こ縺｣縺ｨ縺励※繧九・縲よ掠縺剰｡後￥繧医・
+-    ,
++    text: "縲後⊇繧峨√↑縺ｫ繝懊こ縺｣縺ｨ縺励※繧九・縲よ掠縺剰｡後￥繧医・,
+     showIllust: ["Nagisa_neutral"]
+   },
+   {
+@@ -5761,11 +5710,7 @@ export const scenarioData = [
+   },
+   {
+     scene: "蠕・■蜷医ｏ縺帛ｴ謇",
+-    speaker: "繧ｷ繧ｹ繝・Β",
+-    role: "SYSTEM",
+-    text: "・亥・遐ゅΝ繝ｼ繝医・繝上ャ繝斐・繧ｨ繝ｳ繝・笏笏 隱ｭ莠・≠繧翫′縺ｨ縺・＃縺悶＞縺ｾ縺励◆・・ｼ・,
+-    action: "FADE_TO_DEMO_END",
+-    label: "route_under_construction"
++    action: "FADE_TO_HAPPY_END"
+   },
+ 
+   //縺薙％縺ｧ蛻・ｲ千匱逕・繝溘き繝ｫ繝ｼ繝・****************************************************************************************
+@@ -8122,8 +8067,7 @@ export const scenarioData = [
+     scene: "蛻ｶ蠕｡螳､",
+     speaker: "逹ｦ蜈ｸ",
+     role: "MUTSUNORI",
+-    text: "縲後ｄ縺｣縺溘・縲∵恃濶ｯ縲やｦ窶ｦ縺薙ｌ縺ｧ縲√≠縺ｮ縺ｧ縺｣縺九＞謇峨′髢九￥縺ｯ縺壹□縲・
+-    ,
++    text: "縲後ｄ縺｣縺溘・縲∵恃濶ｯ縲やｦ窶ｦ縺薙ｌ縺ｧ縲√≠縺ｮ縺ｧ縺｣縺九＞謇峨′髢九￥縺ｯ縺壹□縲・,
+     showIllust: ["Mutsunori_happy"]
+   },
+   {
+@@ -8165,8 +8109,6 @@ export const scenarioData = [
+     speaker: "逹ｦ蜈ｸ",
+     role: "MUTSUNORI",
+     text: "縲娯ｦ窶ｦ縺｡繧・▲縺ｨ縲∫岼縺後メ繧ｫ繝√き縺吶ｋ縺縺代ゅ⊇繧峨∵･縺斐≧縺懊よ蕗謗医・險縺・壹ｊ縲∝腰菴阪′縺九°縺｣縺ｦ繧薙□縺九ｉ縺輔・
+-    ,
+-    showIllust: ["Mutsunori_smile"]
+   },
+   {
+     scene: "蛻ｶ蠕｡螳､",
+@@ -8182,7 +8124,8 @@ export const scenarioData = [
+   },
+   {
+     scene: "譛豺ｱ驛ｨ",
+-    text: "驥榊字縺ｪ驪ｼ驩・・蟾ｨ螟ｧ縺ｪ繧ｲ繝ｼ繝医・荳ｭ螟ｮ縺ｫ縺ｯ縲√・繧∬ｾｼ縺ｿ蠑上・繧ｹ繝ｭ繝・ヨ縺後≠繧翫√％繧後∪縺ｧ髮・ａ縺ｦ縺阪◆繝・・繧ｿ繝√ャ繝励ｒ蟾ｮ縺苓ｾｼ繧繧医≧縺ｫ縺ｪ縺｣縺ｦ縺・ｋ縲・
++    text: "驥榊字縺ｪ驪ｼ驩・・蟾ｨ螟ｧ縺ｪ繧ｲ繝ｼ繝医・荳ｭ螟ｮ縺ｫ縺ｯ縲√・繧∬ｾｼ縺ｿ蠑上・繧ｹ繝ｭ繝・ヨ縺後≠繧翫√％繧後∪縺ｧ髮・ａ縺ｦ縺阪◆繝・・繧ｿ繝√ャ繝励ｒ蟾ｮ縺苓ｾｼ繧繧医≧縺ｫ縺ｪ縺｣縺ｦ縺・ｋ縲・,
++    bg: "/scene/gate.png"
+   },
+   {
+     scene: "譛豺ｱ驛ｨ",
+@@ -8199,8 +8142,6 @@ export const scenarioData = [
+     speaker: "逹ｦ蜈ｸ",
+     role: "MUTSUNORI",
+     text: "縲後↑縺√∵恃濶ｯ縲・
+-    ,
+-    showIllust: ["Mutsunori_smile"]
+   },
+   {
+     scene: "譛豺ｱ驛ｨ",
+@@ -8223,8 +8164,6 @@ export const scenarioData = [
+     speaker: "逹ｦ蜈ｸ",
+     role: "MUTSUNORI",
+     text: "縲娯ｦ窶ｦ邨ゅｏ縺｣縺溘ｉ縺輔∝慍逅・↓蟶ｰ縺｣縺ｦ窶ｦ窶ｦ縲ゅ≠繧後∽ｿｺ縲√＞縺｣縺､繧ゆｽ穂ｽ懊▲縺ｦ縺溘▲縺鯛ｦ窶ｦ縲・
+-    ,
+-    showIllust: ["Mutsunori_happy"]
+   },
+   {
+     scene: "譛豺ｱ驛ｨ",
+@@ -8258,7 +8197,8 @@ export const scenarioData = [
+   },
+   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+-    text: "螟ｩ莠輔・荳驛ｨ縺後ぎ繝ｩ繧ｹ蠑ｵ繧翫↓縺ｪ縺｣縺ｦ縺翫ｊ縲√◎縺薙°繧牙ｷｮ縺苓ｾｼ繧縲梧悽蠖薙・譛医・蜈峨阪ｒ豬ｴ縺ｳ縺ｦ縲√◎繧後・螳吶↓豬ｮ縺九ｓ縺ｧ縺・◆縲・
++    text: "螟ｩ莠輔・荳驛ｨ縺後ぎ繝ｩ繧ｹ蠑ｵ繧翫↓縺ｪ縺｣縺ｦ縺翫ｊ縲√◎縺薙°繧牙ｷｮ縺苓ｾｼ繧縲梧悽蠖薙・譛医・蜈峨阪ｒ豬ｴ縺ｳ縺ｦ縲√◎繧後・螳吶↓豬ｮ縺九ｓ縺ｧ縺・◆縲・,
++    bg: "/scene/core.png"
+   },
+   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+@@ -8410,7 +8350,8 @@ export const scenarioData = [
+   },
+   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+-    text: "辷・・縺ｮ蜷代％縺・°繧峨∝℡縺ｾ縺倥＞螽∝悸諢溘ｒ謾ｾ縺｡縺ｪ縺後ｉ縲√ｆ縺｣縺上ｊ縺ｨ蟋ｿ繧堤樟縺吝ｽｱ縲・n貍・ｻ偵・逕ｲ蜀代↓霄ｫ繧貞桁縺ｿ縲∝､ｧ蜑｣繧呈声縺医◆縲√≠縺ｮ逡ｰ蠖｢縺ｮ蛹悶￠迚ｩ縲・
++    text: "辷・・縺ｮ蜷代％縺・°繧峨∝℡縺ｾ縺倥＞螽∝悸諢溘ｒ謾ｾ縺｡縺ｪ縺後ｉ縲√ｆ縺｣縺上ｊ縺ｨ蟋ｿ繧堤樟縺吝ｽｱ縲・n貍・ｻ偵・逕ｲ蜀代↓霄ｫ繧貞桁縺ｿ縲∝､ｧ蜑｣繧呈声縺医◆縲√≠縺ｮ逡ｰ蠖｢縺ｮ蛹悶￠迚ｩ縲・,
++    showIllust: ["Blacknight"]
+   },
+   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+@@ -8460,9 +8401,8 @@ export const scenarioData = [
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+     speaker: "逹ｦ蜈ｸ",
+     role: "MUTSUNORI",
+-    text: "縲後′縲√≠窶ｦ窶ｦ縺｣・√・
+-    ,
+-    showIllust: ["Mutsunori_smile"]
++    text: "縲後′縲√≠窶ｦ窶ｦ縺｣・√・,
++    showIllust: ["Mutsunori_serious_injured"]
+   },
+   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+@@ -8495,8 +8435,6 @@ export const scenarioData = [
+     speaker: "逹ｦ蜈ｸ",
+     role: "MUTSUNORI",
+     text: "縲娯ｦ窶ｦ縺｣縲∬ｵｰ繧後∵恃濶ｯ窶ｦ窶ｦ縺薙▲縺｡縺・√・
+-    ,
+-    showIllust: ["Mutsunori_smile"]
+   },
+   {
+     scene: "逑ｦ遉ｫ陬・,
+@@ -8510,9 +8448,8 @@ export const scenarioData = [
+     scene: "逑ｦ遉ｫ陬・,
+     speaker: "逹ｦ蜈ｸ",
+     role: "MUTSUNORI",
+-    text: "縲碁ｩ壹＞縺溘√□繧坂ｦ窶ｦ縲・
+-    ,
+-    showIllust: ["Mutsunori_smile"]
++    text: "縲碁ｩ壹＞縺溘√□繧坂ｦ窶ｦ縲・,
++    showIllust: ["Mutsunori_smile_injured"]
+   },
+   {
+     scene: "逑ｦ遉ｫ陬・,
+@@ -8523,8 +8460,6 @@ export const scenarioData = [
+     speaker: "逹ｦ蜈ｸ",
+     role: "MUTSUNORI",
+     text: "縲娯ｦ縺｡繧・▲縺ｨ縺励◆諤ｪ謌代↑繧峨☆縺先ｲｻ繧九・縲∬ｦ九◆縺繧搾ｼ・菫ｺ縺ｮ逡ｰ閭ｽ縺輔√％繧後↑繧薙□繧医ゅ←繧薙↑蛯ｷ繧定ｲ縺｣縺ｦ繧ゅ∽ｸ迸ｬ縺ｧ蜈・壹ｊ縺ｫ縺ｪ繧九やｦ窶ｦ譁・ｭ鈴壹ｊ縺ｮ縲惹ｸ肴ｭｻ霄ｫ縲上・
+-    ,
+-    showIllust: ["Mutsunori_serious"]
+   },
+   {
+     scene: "逑ｦ遉ｫ陬・,
+@@ -8534,9 +8469,8 @@ export const scenarioData = [
+     scene: "逑ｦ遉ｫ陬・,
+     speaker: "逹ｦ蜈ｸ",
+     role: "MUTSUNORI",
+-    text: "縲後〒繧ゅ＆窶ｦ窶ｦ繧ｿ繝縺ｧ縺薙ｓ縺ｪ驛ｽ蜷医・縺・＞霄ｫ菴薙↓縺ｪ繧後ｋ繧上￠縲√↑縺・ｓ縺繧医・縲・
+-    ,
+-    showIllust: ["Mutsunori_smile"]
++    text: "縲後〒繧ゅ＆窶ｦ窶ｦ繧ｿ繝縺ｧ縺薙ｓ縺ｪ驛ｽ蜷医・縺・＞霄ｫ菴薙↓縺ｪ繧後ｋ繧上￠縲√↑縺・ｓ縺繧医・縲・,
++    showIllust: ["Mutsunori_serious_injured"]
+   },
+   {
+     scene: "逑ｦ遉ｫ陬・,
+@@ -8547,8 +8481,6 @@ export const scenarioData = [
+     speaker: "逹ｦ蜈ｸ",
+     role: "MUTSUNORI",
+     text: "縲悟す縺梧ｲｻ繧九◆縺ｳ縺ｫ窶ｦ窶ｦ霄ｫ菴薙′菫ｮ蠕ｩ縺輔ｌ繧九◆縺ｳ縺ｫ縲∽ｿｺ縺ｮ縲惹ｸｭ霄ｫ縲上′蜑翫ｌ縺ｦ縺・￥繧薙□縲やｦ窶ｦ縺輔▲縺阪√さ繧｢縺ｫ蜉帙ｒ豕ｨ縺斐≧縺ｨ縺励※霍ｳ縺ｭ霑斐＆繧後◆譎ゅ∽ｸ豌励↓謖√▲縺ｦ縺九ｌ縺｡繧・▲縺溘∩縺溘＞縺ｧ縺輔・
+-    ,
+-    showIllust: ["Mutsunori_smile"]
+   },
+   {
+     scene: "逑ｦ遉ｫ陬・,
+@@ -8561,8 +8493,6 @@ export const scenarioData = [
+     speaker: "逹ｦ蜈ｸ",
+     role: "MUTSUNORI",
+     text: "縲瑚ｨ俶・縲√□繧医・
+-    ,
+-    showIllust: ["Mutsunori_smile"]
+   },
+   {
+     scene: "逑ｦ遉ｫ陬・,
+@@ -8573,8 +8503,6 @@ export const scenarioData = [
+     speaker: "逹ｦ蜈ｸ",
+     role: "MUTSUNORI",
+     text: "縲御ｿｺ縺輔≫ｦ窶ｦ繧ゅ≧縲∬・蛻・・螳ｶ縺ｮ縺・←繧薙・蜻ｳ縺梧昴＞蜃ｺ縺帙↑縺・ｓ縺縲やｦ窶ｦ閼ｳ縺ｿ縺昴′縲∽ｿｺ縺ｮ縲手・謌代上′縲∝す繧呈ｲｻ縺吶◆繧√・繧ｨ繝阪Ν繧ｮ繝ｼ縺ｨ縺励※縲∵ｶ医＠繧ｴ繝縺ｧ豸医＆繧後ｋ縺ｿ縺溘＞縺ｫ鞫ｩ閠励＠縺ｦ縺・▲縺ｦ繧九ｓ縺繧医・
+-    ,
+-    showIllust: ["Mutsunori_pout"]
+   },
+   {
+     scene: "逑ｦ遉ｫ陬・,
+@@ -8587,12 +8515,10 @@ export const scenarioData = [
+     speaker: "逹ｦ蜈ｸ",
+     role: "MUTSUNORI",
+     text: "縲悟・驛ｨ蠢倥ｌ縺｡繧・▲縺ｦ繧ゅ∵恃濶ｯ縺ｮ縺薙→縺縺題ｦ壹∴縺ｦ縺・ｉ繧後ｌ縺ｰ縺・＞縺｣縺ｦ諤昴▲縺ｦ縺溘やｦ窶ｦ縺縺代←縲∽ｻ岩ｦ窶ｦ縺昴ｌ縺吶ｉ繧ゅ∵欠縺ｮ髫咎俣縺九ｉ繧ｵ繝ｩ繧ｵ繝ｩ髮ｶ繧瑚誠縺｡縺ｦ縺・￥縺ｿ縺溘＞縺ｧ縲≫ｦ窶ｦ縺吶＃縺上∵悶＞繧薙□縲・
+-    ,
+-    showIllust: ["Mutsunori_pout"]
+   },
+   {
+     scene: "逑ｦ遉ｫ陬・,
+-    text: "蜻ｽ縺悟炎繧後※縺・￥繧医≧縺ｪ縲∝・螳溘☆縺弱ｋ蠖ｼ縺ｮ險闡峨・n螟悶〒縺ｯ縲∫ｧ√◆縺｡縺ｮ豁ｻ逾槭〒縺ゅｋ鮟帝ｨ主｣ｫ縺ｮ雜ｳ髻ｳ縺後・撕縺九↓縲∫｢ｺ螳溘↓霑代▼縺・※縺阪※縺・◆縲・
++    text: "蜻ｽ縺悟炎繧後※縺・￥繧医≧縺ｪ縲∝・螳溘☆縺弱ｋ蠖ｼ縺ｮ險闡峨ょ､悶〒縺ｯ縲∫ｧ√◆縺｡縺ｮ豁ｻ逾槭〒縺ゅｋ鮟帝ｨ主｣ｫ縺ｮ雜ｳ髻ｳ縺後・撕縺九↓縲∫｢ｺ螳溘↓霑代▼縺・※縺阪※縺・◆縲・
+   },
+   {
+     action: "EVALUATE_FRAGMENT_COLLECT_BRANCH"
+@@ -8843,9 +8769,8 @@ export const scenarioData = [
+     scene: "逑ｦ遉ｫ陬・,
+     speaker: "逹ｦ蜈ｸ",
+     role: "MUTSUNORI",
+-    text: "縲碁・￡縺ｦ縲∵恃濶ｯ窶ｦ窶ｦ縺｣・・菫ｺ縺娯ｦ窶ｦ蜷帙ｒ谿ｺ縺励■繧・≧蜑阪↓窶ｦ窶ｦ譌ｩ縺上∵掠縺剰｡後￠縺・▲・・ｼ√・
+-    ,
+-    showIllust: ["Mutsunori_smile"]
++    text: "縲碁・￡縺ｦ縲∵恃濶ｯ窶ｦ窶ｦ縺｣・・菫ｺ縺娯ｦ窶ｦ蜷帙ｒ谿ｺ縺励■繧・≧蜑阪↓窶ｦ窶ｦ譌ｩ縺上∵掠縺剰｡後￠縺・▲・・ｼ√・,
++    showIllust: ["Mutsunori_serious_injured"]
+   },
+   {
+     scene: "逑ｦ遉ｫ陬・,
+@@ -8868,8 +8793,6 @@ export const scenarioData = [
+     speaker: "逹ｦ蜈ｸ",
+     role: "MUTSUNORI",
+     text: "縲後ぎ縲√い繧｢繧｢繧｢繧｢繧｢繧｢繧｢窶ｦ窶ｦ繝・ｼ√・
+-    ,
+-    showIllust: ["Mutsunori_serious"]
+   },
+   {
+     scene: "逑ｦ遉ｫ陬・,
+@@ -8898,8 +8821,6 @@ export const scenarioData = [
+     speaker: "逹ｦ蜈ｸ",
+     role: "MUTSUNORI",
+     text: "縲後↑縲≫ｦ窶ｦ縺ｫ縲√＠縺ｦ窶ｦ窶ｦ縺｣・・髮｢繧後ｍ縲∵恃濶ｯ窶ｦ窶ｦ・√・
+-    ,
+-    showIllust: ["Mutsunori_smile"]
+   },
+   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+@@ -8947,8 +8868,7 @@ export const scenarioData = [
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+     speaker: "逹ｦ蜈ｸ",
+     role: "MUTSUNORI",
+-    text: "縲後≠窶ｦ窶ｦ縲√＆縺上√ｉ窶ｦ窶ｦ・溘・
+-    ,
++    text: "縲後≠窶ｦ窶ｦ縲√＆縺上√ｉ窶ｦ窶ｦ・溘・,
+     showIllust: ["Mutsunori_smile"]
+   },
+   {
+@@ -8964,7 +8884,6 @@ export const scenarioData = [
+     speaker: "逹ｦ蜈ｸ",
+     role: "MUTSUNORI",
+     text: "縲後♀蠕・◆縺帙∵恃濶ｯ縲やｦ窶ｦ蠢・・縺九￠縺溘↑縲・,
+-    showIllust: ["Mutsunori_pout"]
+   },
+   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+@@ -8981,9 +8900,8 @@ export const scenarioData = [
+   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+     speaker: "鮟帝ｨ主｣ｫ",
+-    role: "ENEMY",
+     text: "縲後ぐ縲√ぐ繧ｮ窶ｦ窶ｦ繝・・,
+-    showIllust: ["BlackKnight_serious"]
++    showIllust: ["Blackknight"]
+   },
+   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+@@ -8993,9 +8911,8 @@ export const scenarioData = [
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+     speaker: "逹ｦ蜈ｸ",
+     role: "MUTSUNORI",
+-    text: "縲梧恃濶ｯ縲∝ｾ後ｍ縺ｫ荳九′縺｣縺ｦ繧阪や楳笏縺・ｄ縲・＆縺・↑縲・
+-    ,
+-    showIllust: ["Mutsunori_smile"]
++    text: "縲梧恃濶ｯ縲∝ｾ後ｍ縺ｫ荳九′縺｣縺ｦ繧阪や楳笏縺・ｄ縲・＆縺・↑縲・,
++    showIllust: ["Mutsunori_serious"]
+   },
+   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+@@ -9005,8 +8922,7 @@ export const scenarioData = [
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+     speaker: "逹ｦ蜈ｸ",
+     role: "MUTSUNORI",
+-    text: "縲御ｿｺ縺ｮ逶ｮ縺ｫ縺ｪ縺｣縺ｦ縺上ｌ縲∵恃濶ｯ縲ゆｺ御ｺｺ縺ｧ縲√≠縺・▽繧偵・縺｣鬟帙・縺昴≧縲・
+-    ,
++    text: "縲御ｿｺ縺ｮ逶ｮ縺ｫ縺ｪ縺｣縺ｦ縺上ｌ縲∵恃濶ｯ縲ゆｺ御ｺｺ縺ｧ縲√≠縺・▽繧偵・縺｣鬟帙・縺昴≧縲・,
+     showIllust: ["Mutsunori_smile"]
+   },
+   {
+@@ -9030,8 +8946,6 @@ export const scenarioData = [
+     speaker: "逹ｦ蜈ｸ",
+     role: "MUTSUNORI",
+     text: "縲後♀縺・▲・√・
+-    ,
+-    showIllust: ["Mutsunori_pout"]
+   },
+   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+@@ -9056,10 +8970,8 @@ export const scenarioData = [
+   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+     speaker: "鮟帝ｨ主｣ｫ",
+-    role: "ENEMY",
+-    text: "縲娯楳笏繝√ャ縲・
+-    ,
+-    showIllust: ["BlackKnight_serious"]
++    text: "縲娯楳笏繝√ャ縲・,
++    showIllust: ["Blackknight"]
+   },
+   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+@@ -9085,8 +8997,7 @@ export const scenarioData = [
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+     speaker: "逹ｦ蜈ｸ",
+     role: "MUTSUNORI",
+-    text: "縲後ご繝帙ャ縲√ざ繝帙ャ・・譛碑憶縲∝､ｧ荳亥､ｫ縺具ｼ・ｼ溘・
+-    ,
++    text: "縲後ご繝帙ャ縲√ざ繝帙ャ・・譛碑憶縲∝､ｧ荳亥､ｫ縺具ｼ・ｼ溘・,
+     showIllust: ["Mutsunori_serious"]
+   },
+   {
+@@ -9101,15 +9012,14 @@ export const scenarioData = [
+   },
+   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+-    text: "謨ｰ遘貞ｾ後∵ｿ縺励￥闊槭＞謨｣繧狗區縺・｡ｵ縺ｮ蜷代％縺・ｒ隕区紺縺医◆縺娯楳笏縺昴％縺ｫ縺ｯ繧ゅ≧縲∵ｼ・ｻ偵・蛹悶￠迚ｩ縺ｮ蟋ｿ縺ｯ縺ｪ縺九▲縺溘・n縺溘□縲∫ｴ螢翫＆繧後◆螢√・蜷代％縺・∈邯壹￥縲∽ｸ肴ｰ怜袖縺ｪ雜ｳ霍｡縺縺代′谿九＆繧後※縺・ｋ縲・
++    text: "謨ｰ遘貞ｾ後∵ｿ縺励￥闊槭＞謨｣繧狗區縺・｡ｵ縺ｮ蜷代％縺・ｒ隕区紺縺医◆縺娯楳笏縺昴％縺ｫ縺ｯ繧ゅ≧縲∵ｼ・ｻ偵・蛹悶￠迚ｩ縺ｮ蟋ｿ縺ｯ縺ｪ縺九▲縺溘・n縺溘□縲∫ｴ螢翫＆繧後◆螢√・蜷代％縺・∈邯壹￥縲∽ｸ肴ｰ怜袖縺ｪ雜ｳ霍｡縺縺代′谿九＆繧後※縺・ｋ縲・,
++    bg: "scene/core_kurokishi_toubou.png"
+   },
+   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+     speaker: "逹ｦ蜈ｸ",
+     role: "MUTSUNORI",
+     text: "縲後メ繝・・・￡雜ｳ縺ｮ騾溘＞驥朱ヮ縺窶ｦ窶ｦ縲ゅ〒繧ゅ∬ｿｽ縺｣縺ｦ繧区凾髢薙・縺ｪ縺輔◎縺・□縺ｪ縲・
+-    ,
+-    showIllust: ["Mutsunori_serious"]
+   },
+   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+@@ -9120,8 +9030,6 @@ export const scenarioData = [
+     speaker: "逹ｦ蜈ｸ",
+     role: "MUTSUNORI",
+     text: "縲娯ｦ窶ｦ縺｣縲√＞繧医＞繧医∵悽逡ｪ縺縺ｪ縲・
+-    ,
+-    showIllust: ["Mutsunori_smile"]
+   },
+   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+@@ -9139,8 +9047,7 @@ export const scenarioData = [
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+     speaker: "逹ｦ蜈ｸ",
+     role: "MUTSUNORI",
+-    text: "縲娯ｦ窶ｦ譛碑憶縲・
+-    ,
++    text: "縲娯ｦ窶ｦ譛碑憶縲・,
+     showIllust: ["Mutsunori_smile"]
+   },
+   {
+@@ -9152,8 +9059,6 @@ export const scenarioData = [
+     speaker: "逹ｦ蜈ｸ",
+     role: "MUTSUNORI",
+     text: "縲後＆縺｣縺阪・荳莠ｺ縺ｧ繧・ｍ縺・→縺励※螟ｱ謨励＠縺溘ゅ〒繧ゅ∽ｻ翫・譛碑憶縺後＞縺ｦ縺上ｌ繧九やｦ窶ｦ菫ｺ縺ｮ蜉帙ｒ蜈ｨ驛ｨ豕ｨ縺手ｾｼ繧縲よ垓襍ｰ縺励◎縺・↓縺ｪ縺｣縺溘ｉ縲√♀蜑阪′蜈ｨ驛ｨ荳ｭ蜥後＠縺ｦ縺上ｌ縲や楳笏莠御ｺｺ縺ｪ繧峨√＞縺代ｋ縺繧搾ｼ溘・
+-    ,
+-    showIllust: ["Mutsunori_smile"]
+   },
+   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+@@ -9173,9 +9078,8 @@ export const scenarioData = [
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+     speaker: "逹ｦ蜈ｸ",
+     role: "MUTSUNORI",
+-    text: "縲後＞縺上◇縲∵恃濶ｯ窶ｦ窶ｦ縺帙・縺ｮ縺｣・√・
+-    ,
+-    showIllust: ["Mutsunori_smile"]
++    text: "縲後＞縺上◇縲∵恃濶ｯ窶ｦ窶ｦ縺帙・縺ｮ縺｣・√・,
++    showIllust: ["Mutsunori_serious"]
+   },
+   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+@@ -9202,8 +9106,6 @@ export const scenarioData = [
+     speaker: "逹ｦ蜈ｸ",
+     role: "MUTSUNORI",
+     text: "縲後￥縺｣縲√≠縲√≠縺ゅ≠縺√＝縺√▲窶ｦ窶ｦ・・ｼ√・
+-    ,
+-    showIllust: ["Mutsunori_smile"]
+   },
+   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+@@ -9224,8 +9126,6 @@ export const scenarioData = [
+     speaker: "逹ｦ蜈ｸ",
+     role: "MUTSUNORI",
+     text: "縲後≠縺ゅ≠縺ゅ≠縺√＝縺√ャ・・ｼ・ｼ√・
+-    ,
+-    showIllust: ["Mutsunori_serious"]
+   },
+   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+@@ -9244,8 +9144,6 @@ export const scenarioData = [
+     speaker: "逹ｦ蜈ｸ",
+     role: "MUTSUNORI",
+     text: "縲娯楳笏縺薙ｌ縺ｧ縲∫ｵゅｏ繧翫□縺√＝縺√ャ・・ｼ・ｼ・ｼ√・
+-    ,
+-    showIllust: ["Mutsunori_serious"]
+   },
+   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+@@ -9253,7 +9151,8 @@ export const scenarioData = [
+   },
+   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+-    text: "繝代Μ繧｣繧｣繧｣繧｣繧｣繧｣繝ｳ繝・ｼ・ｼ・ｼ・ｼ・
++    text: "繝代Μ繧｣繧｣繧｣繧｣繧｣繧｣繝ｳ繝・ｼ・ｼ・ｼ・ｼ・,
++    action: "WHITE_OUT_START"
+   },
+   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+@@ -9261,14 +9160,15 @@ export const scenarioData = [
+   },
+   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+-    text: "隕也阜繧定ｦ・▲縺ｦ縺・◆逵ｩ縺・・縺後ｆ縺｣縺上ｊ縺ｨ蜿弱∪縺｣縺ｦ縺・″縲∫ｧ√◆縺｡縺ｮ蜻ｨ繧翫↓縺ｯ縲∵沐繧峨°縺ｪ髱吝ｯゅ□縺代′谿九＆繧後※縺・◆縲・
++    text: "隕也阜繧定ｦ・▲縺ｦ縺・◆逵ｩ縺・・縺後ｆ縺｣縺上ｊ縺ｨ蜿弱∪縺｣縺ｦ縺・″縲∫ｧ√◆縺｡縺ｮ蜻ｨ繧翫↓縺ｯ縲∵沐繧峨°縺ｪ髱吝ｯゅ□縺代′谿九＆繧後※縺・◆縲・,
++    bg: "scene/core_hakai.png",
++    action: "WHITE_OUT_END"
+   },
+   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+     speaker: "逹ｦ蜈ｸ",
+     role: "MUTSUNORI",
+-    text: "縲娯ｦ窶ｦ邨ゅｏ縺｣縺溘√ｓ縺縺ｪ縲・
+-    ,
++    text: "縲娯ｦ窶ｦ邨ゅｏ縺｣縺溘√ｓ縺縺ｪ縲・,
+     showIllust: ["Mutsunori_smile"]
+   },
+   {
+@@ -9297,9 +9197,8 @@ export const scenarioData = [
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+     speaker: "逹ｦ蜈ｸ",
+     role: "MUTSUNORI",
+-    text: "縲後≠縺｣縺溘ｊ蜑阪□繧阪ゅ♀蜑阪ｒ蠢倥ｌ繧九ｏ縺代↑縺・§繧・ｓ縲やｦ窶ｦ縺｣縺ｦ縺・≧縺九√↑繧薙°諤･縺ｫ縲√ａ縺｡繧・￥縺｡繧・♀閻ｹ遨ｺ縺・※縺阪■繧・▲縺溘↑縲・
+-    ,
+-    showIllust: ["Mutsunori_smile"]
++    text: "縲後≠縺｣縺溘ｊ蜑阪□繧阪ゅ♀蜑阪ｒ蠢倥ｌ繧九ｏ縺代↑縺・§繧・ｓ縲やｦ窶ｦ縺｣縺ｦ縺・≧縺九√↑繧薙°諤･縺ｫ縲√ａ縺｡繧・￥縺｡繧・♀閻ｹ遨ｺ縺・※縺阪■繧・▲縺溘↑縲・,
++    showIllust: ["Mutsunori_happy"]
+   },
+   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+@@ -9315,8 +9214,7 @@ export const scenarioData = [
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+     speaker: "逹ｦ蜈ｸ",
+     role: "MUTSUNORI",
+-    text: "縲梧ｳ｣縺上↑縺｣縺ｦ縲∵恃濶ｯ縲ゅ⊇繧峨∽ｸ願ｦ九※縺ｿ繧阪ｈ縲・
+-    ,
++    text: "縲梧ｳ｣縺上↑縺｣縺ｦ縲∵恃濶ｯ縲ゅ⊇繧峨∽ｸ願ｦ九※縺ｿ繧阪ｈ縲・,
+     showIllust: ["Mutsunori_smile"]
+   },
+   {
+@@ -9325,7 +9223,9 @@ export const scenarioData = [
+   },
+   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+-    text: "縺昴％縺ｫ縺ｯ縲・囈髮｢鬆伜沺繧定ｦ・▲縺ｦ縺・◆荳肴ｰ怜袖縺ｪ繧ｨ繝阪Ν繧ｮ繝ｼ縺ｮ髴ｧ縺梧匐繧後∵悽譚･縺ｮ蟋ｿ繧貞叙繧頑綾縺励◆縲∵・繧貞荘繧縺ｻ縺ｩ鄒弱＠縺・弌遨ｺ縺悟ｺ・′縺｣縺ｦ縺・◆縲・
++    text: "縺昴％縺ｫ縺ｯ縲・囈髮｢鬆伜沺繧定ｦ・▲縺ｦ縺・◆荳肴ｰ怜袖縺ｪ繧ｨ繝阪Ν繧ｮ繝ｼ縺ｮ髴ｧ縺梧匐繧後∵悽譚･縺ｮ蟋ｿ繧貞叙繧頑綾縺励◆縲∵・繧貞荘繧縺ｻ縺ｩ鄒弱＠縺・弌遨ｺ縺悟ｺ・′縺｣縺ｦ縺・◆縲・,
++    hideIllust: ["Mutsunori_smile"],
++    bg: "scene/sky.png"
+   },
+   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+@@ -9342,8 +9242,6 @@ export const scenarioData = [
+     speaker: "逹ｦ蜈ｸ",
+     role: "MUTSUNORI",
+     text: "縲後≠縺√やｦ窶ｦ縺薙ｌ縺ｧ縲√ｄ縺｣縺ｨ蟶ｰ繧後ｋ縺ｪ縲∝慍逅・↓縲・
+-    ,
+-    showIllust: ["Mutsunori_smile"]
+   },
+   {
+     scene: "遐皮ｩｶ謇縺ｮ譛螂･",
+@@ -9378,8 +9276,6 @@ export const scenarioData = [
+     speaker: "逹ｦ蜈ｸ",
+     role: "MUTSUNORI",
+     text: "縲後♀縺・∽ｿｺ縺ｫ謐輔∪縺｣縺ｦ繧搾ｼ√・
+-    ,
+-    showIllust: ["Mutsunori_smile"]
+   },
+   {
+     scene: "譛荳句ｱ､",
+@@ -9391,7 +9287,8 @@ export const scenarioData = [
+   },
+   {
+     scene: "閼ｱ蜃ｺ逕ｨ繝ｭ繧ｱ繝・ヨ蜀・,
+-    text: "貊代ｊ霎ｼ繧繧医≧縺ｫ繝上ャ繝√ｒ髢峨ａ縲∽ｺ御ｺｺ蛻・・迢ｭ縺・す繝ｼ繝医↓縺ｪ縺繧瑚ｾｼ繧薙〒螳牙・繝吶Ν繝医ｒ邱繧√ｋ縲・
++    text: "貊代ｊ霎ｼ繧繧医≧縺ｫ繝上ャ繝√ｒ髢峨ａ縲∽ｺ御ｺｺ蛻・・迢ｭ縺・す繝ｼ繝医↓縺ｪ縺繧瑚ｾｼ繧薙〒螳牙・繝吶Ν繝医ｒ邱繧√ｋ縲・,
++    bg: "scene/rocket_back.png"
+   },
+   {
+     scene: "閼ｱ蜃ｺ逕ｨ繝ｭ繧ｱ繝・ヨ蜀・,
+@@ -9413,8 +9310,7 @@ export const scenarioData = [
+     scene: "螳・ｮ咏ｩｺ髢・,
+     speaker: "逹ｦ蜈ｸ",
+     role: "MUTSUNORI",
+-    text: "縲悟慍逅・↓蟶ｰ縺｣縺溘ｉ縺輔∽ｿｺ縺ｮ迚ｹ陬ｽ縺ｮ縲弱Ν繝翫・繧ｨ繝阪Ν繧ｮ繝ｼ縺・←繧薙上∫悄縺｣蜈医↓鬟溘ｏ縺帙※繧・ｋ繧医ゅ♀蜑阪√◎繧梧･ｽ縺励∩縺ｫ縺薙％縺ｾ縺ｧ鬆大ｼｵ縺｣縺溘ｓ縺繧搾ｼ溘・
+-    ,
++    text: "縲悟慍逅・↓蟶ｰ縺｣縺溘ｉ縺輔∽ｿｺ縺ｮ迚ｹ陬ｽ縺ｮ縲弱Ν繝翫・繧ｨ繝阪Ν繧ｮ繝ｼ縺・←繧薙上∫悄縺｣蜈医↓鬟溘ｏ縺帙※繧・ｋ繧医ゅ♀蜑阪√◎繧梧･ｽ縺励∩縺ｫ縺薙％縺ｾ縺ｧ鬆大ｼｵ縺｣縺溘ｓ縺繧搾ｼ溘・,
+     showIllust: ["Mutsunori_happy"]
+   },
+   {
+@@ -9440,7 +9336,8 @@ export const scenarioData = [
+ 
+   {
+     scene: "縺・▽繧ゅ・螟ｧ蟄ｦ",
+-    text: "遘√◆縺｡縺ｮ譌･蟶ｸ縺ｯ縲・ｩ壹￥縺ｻ縺ｩ縺ゅ▲縺代↑縺乗綾縺｣縺ｦ縺阪◆縲・
++    text: "遘√◆縺｡縺ｮ譌･蟶ｸ縺ｯ縲・ｩ壹￥縺ｻ縺ｩ縺ゅ▲縺代↑縺乗綾縺｣縺ｦ縺阪◆縲・,
++    bg: "scene/university_gate.png"
+   },
+   {
+     scene: "縺・▽繧ゅ・螟ｧ蟄ｦ",
+@@ -9462,21 +9359,20 @@ export const scenarioData = [
+     scene: "遐皮ｩｶ螳､",
+     speaker: "繝偵Ν繝滓蕗謗・,
+     role: "PROFESSOR",
+-    text: "縲後ｄ縺ゅ∽ｺ御ｺｺ縺ｨ繧ゅょｮ溽ｿ貞ｱ蜻頑嶌縺ｮ繝・・繧ｿ縲√§縺､縺ｫ邏譎ｴ繧峨＠縺・・譚･縺縺｣縺溘ｈ縲・
+-    ,
+-    showIllust: ["Hirumi_smile"]
++    text: "縲後ｄ縺ゅ∽ｺ御ｺｺ縺ｨ繧ゅょｮ溽ｿ貞ｱ蜻頑嶌縺ｮ繝・・繧ｿ縲√§縺､縺ｫ邏譎ｴ繧峨＠縺・・譚･縺縺｣縺溘ｈ縲・,
++    showIllust: ["Hirumi_smile"],
++    bg: "scene/lab.png"
+   },
+   {
+     scene: "遐皮ｩｶ螳､",
+     speaker: "繝偵Ν繝滓蕗謗・,
+     role: "PROFESSOR",
+     text: "縺ゅ・讌ｵ髯千憾諷九〒縺阪■繧薙→繝輔か繝ｳ繝医し繧､繧ｺ縺ｾ縺ｧ謠・∴縺ｦ縺上ｋ縺ｨ縺ｯ縲√＆縺吶′謌代′遐皮ｩｶ螳､縺ｮ蟄ｦ逕溘□縺ｭ縲・
+-    ,
+-    showIllust: ["Hirumi_neutral"]
+   },
+   {
+     scene: "遐皮ｩｶ螳､",
+-    text: "縺ｪ繧薙※縲∝､ｧ蟄ｦ縺ｮ縺・▽繧ゅ・遐皮ｩｶ螳､縺ｧ縲√♀豌励↓蜈･繧翫・繧ｳ繝ｼ繝偵・繧ｫ繝・・繧堤援謇九↓縺ｮ縺ｻ縺ｻ繧薙→險縺｣縺ｦ縺ｮ縺代◆縲・
++    text: "縺ｪ繧薙※縲∝､ｧ蟄ｦ縺ｮ縺・▽繧ゅ・遐皮ｩｶ螳､縺ｧ縲√♀豌励↓蜈･繧翫・繧ｳ繝ｼ繝偵・繧ｫ繝・・繧堤援謇九↓縺ｮ縺ｻ縺ｻ繧薙→險縺｣縺ｦ縺ｮ縺代◆縲・,
++    hideIllust: ["Hirumi_smile"]
+   },
+   {
+     scene: "遐皮ｩｶ螳､",
+@@ -9494,9 +9390,9 @@ export const scenarioData = [
+     scene: "蜑ｲ辜ｹ縲弱・縺､縲・,
+     speaker: "逹ｦ蜈ｸ",
+     role: "MUTSUNORI",
+-    text: "縲後・縺・√♀蠕・■縺ｩ縺・＆縺ｾ・∝ｽ灘ｺ礼音陬ｽ縲√弱Ν繝翫・繧ｨ繝阪Ν繧ｮ繝ｼ縺・←繧薙乗隼繧√∵ｿ繧ｦ繝樊怦隕九≧縺ｩ繧薙〒縺吶・
+-    ,
+-    showIllust: ["Mutsunori_happy"]
++    text: "縲後・縺・√♀蠕・■縺ｩ縺・＆縺ｾ・∝ｽ灘ｺ礼音陬ｽ縲√弱Ν繝翫・繧ｨ繝阪Ν繧ｮ繝ｼ縺・←繧薙乗隼繧√∵ｿ繧ｦ繝樊怦隕九≧縺ｩ繧薙〒縺吶・,
++    showIllust: ["Mutsunori_happy"],
++    bg: "scene/mutsu.png"
+   },
+   {
+     scene: "蜑ｲ辜ｹ縲弱・縺､縲・,
+@@ -9512,8 +9408,7 @@ export const scenarioData = [
+     scene: "蜑ｲ辜ｹ縲弱・縺､縲・,
+     speaker: "逹ｦ蜈ｸ",
+     role: "MUTSUNORI",
+-    text: "縲後□繧搾ｼ・險俶・繧貞叙繧頑綾縺吶◆繧√↓隕ｪ辷ｶ縺ｮ蠎励〒菴募ｺｦ繧りｩｦ菴懊＠縺溘ｓ縺縺九ｉ縲・
+-    ,
++    text: "縲後□繧搾ｼ・險俶・繧貞叙繧頑綾縺吶◆繧√↓隕ｪ辷ｶ縺ｮ蠎励〒菴募ｺｦ繧りｩｦ菴懊＠縺溘ｓ縺縺九ｉ縲・,
+     showIllust: ["Mutsunori_smile"]
+   },
+   {
+@@ -9548,29 +9443,25 @@ export const scenarioData = [
+     scene: "蜑ｲ辜ｹ縲弱・縺､縲・,
+     speaker: "逹ｦ蜈ｸ",
+     role: "MUTSUNORI",
+-    text: "縲後ｈ縺九▲縺溘＝縲ゅ≠縲√◎縺・□縲ゅ≠縺ｮ譎ゅ√≧縺ｩ繧薙・蜻ｳ縺ｯ蠢倥ｌ縺九￠縺ｦ縺溘ｓ縺縺代←縺補ｦ窶ｦ縲・
+-    ,
++    text: "縲後ｈ縺九▲縺溘＝縲ゅ≠縲√◎縺・□縲ゅ≠縺ｮ譎ゅ√≧縺ｩ繧薙・蜻ｳ縺ｯ蠢倥ｌ縺九￠縺ｦ縺溘ｓ縺縺代←縺補ｦ窶ｦ縲・,
+     showIllust: ["Mutsunori_happy"]
+   },
+   {
+     scene: "蜑ｲ辜ｹ縲弱・縺､縲・,
+-    text: "逹ｦ蜈ｸ縺ｯ縺ｵ縺｣縺ｨ逵滄擇逶ｮ縺ｪ鬘斐↓縺ｪ繧九→縲√ユ繝ｼ繝悶Ν雜翫＠縺ｫ遘√・謇九ｒ縺昴▲縺ｨ蛹・∩霎ｼ繧薙□縲・
++    text: "逹ｦ蜈ｸ縺ｯ縺ｵ縺｣縺ｨ逵滄擇逶ｮ縺ｪ鬘斐↓縺ｪ繧九→縲√ユ繝ｼ繝悶Ν雜翫＠縺ｫ遘√・謇九ｒ縺昴▲縺ｨ蛹・∩霎ｼ繧薙□縲・,
++    showIllust: ["Mutsunori_serious"]
+   },
+   {
+     scene: "蜑ｲ辜ｹ縲弱・縺､縲・,
+     speaker: "逹ｦ蜈ｸ",
+     role: "MUTSUNORI",
+-    text: "縲御ｿｺ縺輔∝､ｧ莠九↑險俶・繧貞､ｱ縺・°縺代※縺滓凾縲・ｭ縺ｮ荳ｭ縺ｧ縺壹▲縺ｨ縲取恃濶ｯ縺縺代・邨ｶ蟇ｾ縺ｫ蠢倥ｌ縺｡繧・ム繝｡縺縲上▲縺ｦ縲√◎繧後□縺代ｒ縺舌ｋ縺舌ｋ閠・∴縺ｦ縺溘ｓ縺縲・
+-    ,
+-    showIllust: ["Mutsunori_serious"]
++    text: "縲御ｿｺ縺輔∝､ｧ莠九↑險俶・繧貞､ｱ縺・°縺代※縺滓凾縲・ｭ縺ｮ荳ｭ縺ｧ縺壹▲縺ｨ縲取恃濶ｯ縺縺代・邨ｶ蟇ｾ縺ｫ蠢倥ｌ縺｡繧・ム繝｡縺縲上▲縺ｦ縲√◎繧後□縺代ｒ縺舌ｋ縺舌ｋ閠・∴縺ｦ縺溘ｓ縺縲・,
+   },
+   {
+     scene: "蜑ｲ辜ｹ縲弱・縺､縲・,
+     speaker: "逹ｦ蜈ｸ",
+     role: "MUTSUNORI",
+     text: "縲娯ｦ窶ｦ縺ゅｌ縲√↑繧薙〒縺縺｣縺溘°縲∽ｻ翫↑繧峨・縺｣縺阪ｊ蛻・°繧九ｈ縲・
+-    ,
+-    showIllust: ["Mutsunori_pout"]
+   },
+   {
+     scene: "蜑ｲ辜ｹ縲弱・縺､縲・,
+@@ -9580,17 +9471,13 @@ export const scenarioData = [
+     scene: "蜑ｲ辜ｹ縲弱・縺､縲・,
+     speaker: "逹ｦ蜈ｸ",
+     role: "MUTSUNORI",
+-    text: "縲悟､ｧ蛻・↑蜿矩＃縺縺九ｉ縲√§繧・↑縺九▲縺溘ゆｿｺ縲√★縺｣縺ｨ蜑阪°繧画恃濶ｯ縺ｮ縺薙→縺悟･ｽ縺阪□縺｣縺溘ｓ縺縲・
+-    ,
+-    showIllust: ["Mutsunori_smile"]
++    text: "縲悟､ｧ蛻・↑蜿矩＃縺縺九ｉ縲√§繧・↑縺九▲縺溘ゆｿｺ縲√★縺｣縺ｨ蜑阪°繧画恃濶ｯ縺ｮ縺薙→縺悟･ｽ縺阪□縺｣縺溘ｓ縺縲・,
+   },
+   {
+     scene: "蜑ｲ辜ｹ縲弱・縺､縲・,
+     speaker: "逹ｦ蜈ｸ",
+     role: "MUTSUNORI",
+     text: "縲後≠縺ｮ荳也阜縺ｧ縲√♀蜑阪′菫ｺ繧呈干縺阪＠繧√※迴ｾ螳溘↓郢九℃豁｢繧√※縺上ｌ縺滓凾縲∽ｸ也阜荳ｭ縺ｮ菴輔ｈ繧翫ｂ縲√♀蜑阪ｒ螟ｱ縺・・縺御ｸ逡ｪ諤悶＞縺｣縺ｦ諤昴▲縺溘・
+-    ,
+-    showIllust: ["Mutsunori_smile"]
+   },
+   {
+     scene: "蜑ｲ辜ｹ縲弱・縺､縲・,
+@@ -9601,8 +9488,6 @@ export const scenarioData = [
+     speaker: "逹ｦ蜈ｸ",
+     role: "MUTSUNORI",
+     text: "縲梧勸騾壹・譌･蟶ｸ縺ｫ謌ｻ縺｣縺ｦ繧ゅ∽ｿｺ縺ｮ髫｣縺ｫ縺ｯ縺壹▲縺ｨ縺雁燕縺ｫ縺・※縺ｻ縺励＞縲やｦ窶ｦ縺薙ｌ縺九ｉ縺ｯ蜿矩＃縺倥ｃ縺ｪ縺上※縲∽ｿｺ縺ｮ蠖ｼ螂ｳ縺ｨ縺励※縲やｦ窶ｦ繝繝｡縲√°縺ｪ・溘・
+-    ,
+-    showIllust: ["Mutsunori_smile"]
+   },
+   {
+     scene: "蜑ｲ辜ｹ縲弱・縺､縲・,
+@@ -9622,8 +9507,7 @@ export const scenarioData = [
+     scene: "蜑ｲ辜ｹ縲弱・縺､縲・,
+     speaker: "逹ｦ蜈ｸ",
+     role: "MUTSUNORI",
+-    text: "縲後ｈ縺｣縺励ｃ窶ｦ窶ｦ・・縺ゅ√§繧・≠縺輔∝ｽｼ螂ｳ縺ｮ迚ｹ讓ｩ縺ｨ縺励※縲√％繧後°繧峨・豈取律菫ｺ縺ｮ縺・←繧薙・｣溘∋縺ｫ譚･縺ｦ縺上ｌ繧具ｼ溘・
+-    ,
++    text: "縲後ｈ縺｣縺励ｃ窶ｦ窶ｦ・・縺ゅ√§繧・≠縺輔∝ｽｼ螂ｳ縺ｮ迚ｹ讓ｩ縺ｨ縺励※縲√％繧後°繧峨・豈取律菫ｺ縺ｮ縺・←繧薙・｣溘∋縺ｫ譚･縺ｦ縺上ｌ繧具ｼ溘・,
+     showIllust: ["Mutsunori_happy"]
+   },
+   {
+@@ -9637,8 +9521,6 @@ export const scenarioData = [
+     speaker: "逹ｦ蜈ｸ",
+     role: "MUTSUNORI",
+     text: "縲後ｈ縺励∬ｨ縺｣縺溘↑・・豈朱｣溘〒繧ゆｽ懊▲縺ｦ繧・ｋ縺九ｉ隕壽ぁ縺励ｍ繧茨ｼ√・
+-    ,
+-    showIllust: ["Mutsunori_happy"]
+   },
+   {
+     scene: "蜑ｲ辜ｹ縲弱・縺､縲・,
+@@ -9648,7 +9530,10 @@ export const scenarioData = [
+     scene: "蜑ｲ辜ｹ縲弱・縺､縲・,
+     text: "遘√◆縺｡縺ｯ郢九＞縺謇九・貂ｩ繧ゅｊ繧堤｢ｺ縺九ａ蜷医＞縺ｪ縺後ｉ縲∵眠縺励￥蟋九∪繧九∵怙鬮倥↓逕倥￥縺ｦ鬨偵′縺励＞譌･蟶ｸ縺ｸ蜷代°縺｣縺ｦ縲∽ｺ御ｺｺ縺ｧ蟷ｸ縺帙◎縺・↓隨代＞蜷医▲縺溘・
+   },
+-  //逹ｦ蜑・Ν繝ｼ繝育ｵゆｺ・縲粂APPYEND縲阪・陦ｨ遉ｺ縺ｨ繧ｿ繧､繝医Ν逕ｻ髱｢縺ｫ謌ｻ繧狗判髱｢縺ｫ驕ｷ遘ｻ
++  {
++    scene: "蜑ｲ辜ｹ縲弱・縺､縲・,
++    action: "FADE_TO_HAPPY_END"
++  },
+ 
+   //縺薙％縺ｧ蛻・ｲ千匱逕・繧｢繧ｫ繝阪Ν繝ｼ繝・****************************************************************************************
+   {
+@@ -9739,9 +9624,8 @@ export const scenarioData = [
+     scene: "謨呎肢縺ｮ遐皮ｩｶ螳､",
+     speaker: "繝偵Ν繝滓蕗謗・,
+     role: "PROFESSOR",
+-    text: "縲娯ｦ窶ｦ驕・°縺｣縺溘・縲・
+-    ,
+-    showIllust: ["Hirumi_neutral"]
++    text: "縲娯ｦ窶ｦ驕・°縺｣縺溘・縲・,
++    showIllust: ["Hirumi_serious"]
+   },
+   {
+     scene: "謨呎肢縺ｮ遐皮ｩｶ螳､",
+@@ -9752,15 +9636,12 @@ export const scenarioData = [
+     speaker: "繝偵Ν繝滓蕗謗・,
+     role: "PROFESSOR",
+     text: "縲後◎繧薙↑縺ｫ辭ｱ隕也ｷ壹ｒ騾√ｉ繧後ｋ縺ｨ辣ｧ繧後ｋ縺ｭ縲らｧ√↓逕ｷ濶ｲ縺ｮ雜｣蜻ｳ縺ｯ縺ｪ縺・・縺縺後・
+-    ,
+-    showIllust: ["Hirumi_neutral"]
+   },
+   {
+     scene: "謨呎肢縺ｮ遐皮ｩｶ螳､",
+     speaker: "繧｢繧ｫ繝・,
+     role: "AKANE",
+-    text: "縲娯ｦ繝√ャ縲・
+-    ,
++    text: "縲娯ｦ繝√ャ縲・,
+     showIllust: ["Akane_serious"]
+   },
+   {
+@@ -9771,9 +9652,8 @@ export const scenarioData = [
+     scene: "謨呎肢縺ｮ遐皮ｩｶ螳､",
+     speaker: "繝偵Ν繝滓蕗謗・,
+     role: "PROFESSOR",
+-    text: "縲悟・隲・□縲ゅ◎繧後〒譛ｬ鬘後□縺娯ｦ蜷帙◆縺｡縺ｫ縺ｯ縺薙ｌ縺九ｉ縺薙・繝ｭ繧ｱ繝・ヨ縺ｫ荵励▲縺ｦ縲√≠縺ｮ髱偵＞譛医∪縺ｧ陦後▲縺ｦ繧ゅｉ縺・・
+-    ,
+-    showIllust: ["Hirumi_neutral"]
++    text: "縲悟・隲・□縲ゅ◎繧後〒譛ｬ鬘後□縺娯ｦ蜷帙◆縺｡縺ｫ縺ｯ縺薙ｌ縺九ｉ縺薙・繝ｭ繧ｱ繝・ヨ縺ｫ荵励▲縺ｦ縲√≠縺ｮ髱偵＞譛医∪縺ｧ陦後▲縺ｦ繧ゅｉ縺・・,
++    showIllust: ["Hirumi_smile"]
+   },
+   {
+     scene: "謨呎肢縺ｮ遐皮ｩｶ螳､",
