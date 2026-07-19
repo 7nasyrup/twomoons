@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight, FastForward, BookOpen, LogOut, SkipForward, Save, FolderOpen, X } from 'lucide-react';
+import { renderTextWithLinks } from '../utils/textUtils';
 
 const hudGlitchIn = {
   hidden: { opacity: 0, y: 20 },
@@ -146,7 +147,7 @@ export default function DialogueBox({
               {/* Text Area */}
               <div className="bg-white w-full h-[140px] min-h-[140px] max-h-[140px] flex-none overflow-hidden p-8 pb-12 relative">
                 <p className="m-0 text-slate-800 text-lg md:text-xl leading-[2.2] font-noto tracking-wide whitespace-pre-line font-medium">
-                  {text}
+                  {renderTextWithLinks(text)}
                   {isTyping && (
                     <motion.span
                       className="inline-block w-2.5 h-4 bg-[#00e5ff] ml-2 align-middle opacity-80"

@@ -24,5 +24,9 @@ export default defineConfig({
         orientation: "landscape"
       }
     })
-  ]
+  ],
+  server: {
+    port: 5173,
+    open: true
+  }
 });

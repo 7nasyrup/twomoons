@@ -81,7 +81,7 @@ export function useNovelEngine(scenarioData, options = {}) {
       const newBg = currentLine.bg;
       const isPrologue = currentLine.scene === 'PROLOGUE';
       const isSpecialAction = [
-        'FADE_TO_BLACK', 'WAKE_UP', 'FADE_IN', 'FADE_OUT',
+        'FADE_TO_BLACK', 'SLOW_FADE_TO_BLACK', 'WAKE_UP', 'FADE_IN', 'FADE_OUT',
         'WAIT_SECONDS', 'SLOW_FADE_IN', 'WAIT_SECONDS_AND_MOVE_MOON', 'ALL_FADE_OUT', 'WAIT_FADE'
       ].includes(currentLine.action);
 
@@ -109,7 +109,8 @@ export function useNovelEngine(scenarioData, options = {}) {
   // Handle the blackout duration
   useEffect(() => {
     if (isBgTransitioning) {
-      // 暗転開始から500msで画面が完全に黒くなる
+      // 暗転開始から500msで画面が完全に黒くなる (またはカスタム時間)
+      const duration = currentLine?.bgTransitionDuration || 500;
       const transTimer = setTimeout(() => {
         // 画面が真っ黒の状態で背景を切り替える
         setCurrentBg(nextBgRef.current);
@@ -119,7 +120,7 @@ export function useNovelEngine(scenarioData, options = {}) {
         if (currentLine?.text) {
           triggerTypewriter(currentLine.text);
         }
-      }, 500);
+      }, duration);
       return () => clearTimeout(transTimer);
     }
   }, [isBgTransitioning, currentLine, triggerTypewriter]);
@@ -194,6 +195,16 @@ export function useNovelEngine(scenarioData, options = {}) {
     }
   }, [scenarioData.length]);
 
+  const prevStep = useCallback(() => {
+    if (currentStep > 0) {
+      setAutoMode(false);
+      setSkipMode(false);
+      setCurrentStep(prev => prev - 1);
+      setIsWaitingForChoice(false);
+      setBacklog(prev => prev.slice(0, -1));
+    }
+  }, [currentStep]);
+
   const toggleAuto = useCallback(() => setAutoMode(prev => !prev), []);
   const toggleHud = useCallback(() => setHudVisible(prev => !prev), []);
   const clearBacklog = useCallback(() => {
@@ -260,6 +271,7 @@ export function useNovelEngine(scenarioData, options = {}) {
     isBgTransitioning,
     isBgFadingOut,
     nextStep,
+    prevStep,
     selectChoice,
     jumpToStep,
     toggleAuto,

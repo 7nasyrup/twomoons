@@ -15,7 +15,8 @@ export default function DevConsole({
   clearedMika,
   setClearedMika,
   clearedNagisa,
-  setClearedNagisa
+  setClearedNagisa,
+  onPrevStep
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [jumpInput, setJumpInput] = useState('');
@@ -70,22 +71,32 @@ export default function DevConsole({
               </div>
             </div>
 
-            {/* Jump to step */}
+            {/* Jump and Step Back */}
             <div className="flex gap-2 mb-3">
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onPrevStep();
+                }}
+                className="bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 px-3 py-1.5 rounded text-xs
+                           font-orbitron hover:bg-cyan-500/20 transition-colors flex-1"
+              >
+                ◀ PREV
+              </button>
               <input
                 type="number"
                 value={jumpInput}
                 onChange={(e) => setJumpInput(e.target.value)}
                 placeholder="Step #"
-                className="flex-1 bg-[#030712] border border-cyan-500/20 text-cyan-100 text-xs px-2 py-1.5 rounded
-                           font-orbitron placeholder:text-cyan-500/30 focus:border-cyan-400/50 outline-none"
+                className="w-20 bg-[#030712] border border-cyan-500/20 text-cyan-100 text-xs px-2 py-1.5 rounded
+                           font-orbitron placeholder:text-cyan-500/30 focus:border-cyan-400/50 outline-none text-center"
               />
               <button
                 onClick={() => {
                   const step = parseInt(jumpInput);
                   if (!isNaN(step)) onJumpToStep(step);
                 }}
-                className="bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 px-3 py-1.5 rounded text-xs
+                className="bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 px-2 py-1.5 rounded text-xs
                            font-orbitron hover:bg-cyan-500/20 transition-colors"
               >
                 <SkipForward size={12} />

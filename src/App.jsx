@@ -54,7 +54,7 @@ function BackgroundRenderer({ bgPath, bgAnimationClass }) {
           onError={() => setImageError(true)}
         />
       ) : (
-        <div className="w-full h-full relative overflow-hidden transition-all duration-700">
+        <div className={`w-full h-full relative overflow-hidden transition-all duration-700 ${bgAnimationClass || ''}`}>
           {/* Cyberpunk Grid Background */}
           <div className="absolute inset-0 bg-[#030712]" />
 
@@ -164,6 +164,7 @@ export default function App() {
     isBgTransitioning,
     isBgFadingOut,
     nextStep,
+    prevStep,
     selectChoice,
     jumpToStep,
     toggleAuto,
@@ -175,7 +176,9 @@ export default function App() {
     totalSteps,
   } = useNovelEngine(scenarioData, { manualTestMode, endMode: isEndScreen });
 
-  const { playBGM, playSE, toggleMute } = useAudioSystem();
+  const { playBGM, stopBGM, playSE, stopSE, toggleMute } = useAudioSystem();
+  const lastSceneRef = useRef(null);
+  const bgmOverrideRef = useRef(false);
 
   const [showTitle, setShowTitle] = useState(true);
   const [hasSave, setHasSave] = useState(false);
@@ -185,6 +188,9 @@ export default function App() {
   const [isFadingBlack, setIsFadingBlack] = useState(false);
   const [shakeEffect, setShakeEffect] = useState(false);
   const [isSmokeActive, setIsSmokeActive] = useState(false);
+  const [isBlackDistortActive, setIsBlackDistortActive] = useState(false);
+  const [isBloodActive, setIsBloodActive] = useState(false);
+  const [isRedAlertActive, setIsRedAlertActive] = useState(false);
   const [stealthGameResult, setStealthGameResult] = useState(null);
 
 
@@ -308,6 +314,8 @@ export default function App() {
       setFocusSlot(null);
       setPresentCharacters([]); // シーン切り替え時に画面内の登場キャラをリセット
       setDisplayedItem(null);
+      setIsBloodActive(false);
+      setIsRedAlertActive(false);
     }
   }, [currentLine?.scene, prevScene]);
 
@@ -395,17 +403,60 @@ export default function App() {
   useEffect(() => {
     if (!currentLine || showTitle) return;
 
-    // Background music changes based on scenes
-    if (currentLine.scene === 'PROLOGUE') {
-      playBGM(assetPath('/assets/audio/bgm/deep_blue_moon.mp3'));
-    } else if (currentLine.scene === '講義室出口' || currentLine.scene === '大学の廊下') {
-      playBGM(assetPath('/assets/audio/bgm/mutsu_theme.mp3'));
-    } else if (currentLine.scene === '月科学大講義室') {
-      playBGM(assetPath('/assets/audio/bgm/classroom_ambient.mp3'));
+    // Track scene changes to reset BGM override
+    if (currentLine.scene !== lastSceneRef.current) {
+      bgmOverrideRef.current = false;
+      lastSceneRef.current = currentLine.scene;
+    }
+
+    // Allow explicit bgm override from scenario data
+    if (currentLine.bgm !== undefined) {
+      bgmOverrideRef.current = true;
+      let fadeDuration = 1500; // デフォルト 1.5秒
+      if (currentLine.bgmFade !== undefined) {
+        fadeDuration = currentLine.bgmFade < 100 ? currentLine.bgmFade * 1000 : currentLine.bgmFade;
+      }
+
+      if (currentLine.bgm === "stop" || currentLine.bgm === "none" || currentLine.bgm === "") {
+        stopBGM(fadeDuration);
+      } else {
+        playBGM(assetPath(`/assets/audio/bgm/${currentLine.bgm}`), {
+          fadeDuration,
+          volume: currentLine.bgmVolume
+        });
+      }
+    } else if (!bgmOverrideRef.current) {
+      // Fallback: Background music changes based on scenes
+      if (currentLine.scene === 'PROLOGUE') {
+        playBGM(assetPath('/assets/audio/bgm/deep_blue_moon.mp3'));
+      } else if (currentLine.scene === '講義室出口' || currentLine.scene === '大学の廊下') {
+        playBGM(assetPath('/assets/audio/bgm/mutsu_theme.mp3'));
+      } else if (currentLine.scene === '月科学大講義室') {
+        playBGM(assetPath('/assets/audio/bgm/classroom_ambient.mp3'));
+      }
+    }
+
+    // Allow explicit SE play / stop from scenario data
+    if (currentLine.se) {
+      playSE(assetPath(`/assets/audio/bgm/${currentLine.se}`));
+    }
+    if (currentLine.stopSe) {
+      stopSE(assetPath(`/assets/audio/bgm/${currentLine.stopSe}`));
     }
 
     const action = currentLine.action;
     if (action) {
+      // Blood overlay actions
+      if (action === 'SHOW_BLOOD' || action === 'BLOOD_SCREEN' || action === 'BLOOD_SPLATTING') {
+        setIsBloodActive(true);
+      } else if (action === 'CLEAR_BLOOD') {
+        setIsBloodActive(false);
+      } else if (action === 'RED_ALERT_FLASH') {
+        setIsRedAlertActive(true);
+      } else if (action === 'CLEAR_RED_ALERT') {
+        setIsRedAlertActive(false);
+      }
+
       // Sprite Slot actions
       if (action === 'SHOW_SILHOUETTE_LEFT') {
         setLeftActive(true);
@@ -434,11 +485,20 @@ export default function App() {
       if (action === 'SHAKE_SCREEN') {
         setShakeEffect(true);
         const timer = setTimeout(() => setShakeEffect(false), 600);
-        return () => clearTimeout(timer);
+        return () => {
+          clearTimeout(timer);
+          setShakeEffect(false);
+        };
       } else if (action === 'SHAKE_SCREEN_VERY_LARGE') {
         setShakeEffect('large');
         const timer = setTimeout(() => setShakeEffect(false), 800);
-        return () => clearTimeout(timer);
+        return () => {
+          clearTimeout(timer);
+          setShakeEffect(false);
+        };
+      } else if (action === 'SHAKE_SCREEN_EXTREME') {
+        setShakeEffect('extreme');
+        // continuous shake, no auto-clear
       }
 
       // Screen Effects
@@ -448,9 +508,30 @@ export default function App() {
         setIsSmokeActive(false);
       }
 
-      if (action === 'FADE_TO_BLACK') {
+      if (action === 'BLACK_DISTORTION' || action === 'BLACK_DISTORT') {
+        setIsBlackDistortActive(true);
+        const timer = setTimeout(() => setIsBlackDistortActive(false), 2000);
+        return () => clearTimeout(timer);
+      }
+
+      if (action === 'FADE_TO_BLACK' || action === 'SLOW_FADE_TO_BLACK') {
         setIsFadingBlack(true);
-        setTimeout(() => setIsFadingBlack(false), 2000);
+        setIsRedAlertActive(false); // Stop red alert flash when transitioning to black
+        const fadeDuration = currentLine.duration || (action === 'SLOW_FADE_TO_BLACK' ? 3000 : 2000);
+        const timer = setTimeout(() => setIsFadingBlack(false), fadeDuration);
+        
+        let shakeTimer;
+        if (action === 'SLOW_FADE_TO_BLACK') {
+          setShakeEffect('fadeOut');
+          shakeTimer = setTimeout(() => {
+            setShakeEffect(false);
+          }, fadeDuration);
+        }
+
+        return () => {
+          clearTimeout(timer);
+          if (shakeTimer) clearTimeout(shakeTimer);
+        };
       }
 
       // Red Alert
@@ -468,17 +549,20 @@ export default function App() {
         if ('vibrate' in navigator) {
           navigator.vibrate([200, 100, 200]);
         }
-        return () => clearTimeout(timer);
+        return () => {
+          clearTimeout(timer);
+          setShakeEffect(false);
+        };
       }
     } else {
       setFocusSlot(null);
     }
-  }, [currentStep, currentLine, playBGM, playSE]);
+  }, [currentStep, currentLine, playBGM, stopBGM, playSE, stopSE]);
 
   // Cinema Mode Autoplay timers
   useEffect(() => {
     if (!currentLine || showTitle || manualTestMode) return;
-    if (currentLine.style === 'cinema' || currentLine.action === 'FADE_TO_BLACK' || currentLine.action === 'WAIT_FADE') {
+    if (currentLine.style === 'cinema' || currentLine.action === 'FADE_TO_BLACK' || currentLine.action === 'SLOW_FADE_TO_BLACK' || currentLine.action === 'WAIT_FADE') {
       let delay = 3000;
       if (currentLine.action === 'FADE_IN') delay = 2500;
       if (currentLine.action === 'FADE_OUT') delay = 2000;
@@ -486,7 +570,7 @@ export default function App() {
       if (currentLine.action === 'SLOW_FADE_IN') delay = 3500;
       if (currentLine.action === 'WAIT_SECONDS_AND_MOVE_MOON') delay = 4000;
       if (currentLine.action === 'ALL_FADE_OUT') delay = 3000;
-      if (currentLine.action === 'FADE_TO_BLACK') delay = 2000;
+      if (currentLine.action === 'FADE_TO_BLACK' || currentLine.action === 'SLOW_FADE_TO_BLACK') delay = currentLine.duration || (currentLine.action === 'SLOW_FADE_TO_BLACK' ? 3000 : 2000);
       if (currentLine.action === 'WAIT_FADE') delay = 1000;
 
       const timer = setTimeout(() => {
@@ -522,7 +606,7 @@ export default function App() {
   // Handle conditional branching and special actions
   useEffect(() => {
     if (!currentLine) return;
-    
+
     if (currentLine.action === 'EVALUATE_FRAGMENT_COLLECT_BRANCH') {
       if (fragmentCollectResult && fragmentCollectResult.files >= 4) {
         const targetIdx = scenarioData.findIndex(line => line.label === 'happy_end_start');
@@ -636,7 +720,7 @@ export default function App() {
       if (now - lastTap.current < 250) {
         toggleAuto();
       } else {
-        const isTransition = currentLine?.action === 'FADE_TO_BLACK' || currentLine?.action === 'WAIT_FADE' || isBgTransitioning || isBgFadingOut;
+        const isTransition = currentLine?.action === 'FADE_TO_BLACK' || currentLine?.action === 'SLOW_FADE_TO_BLACK' || currentLine?.action === 'WAIT_FADE' || isBgTransitioning || isBgFadingOut;
         if (!isWaitingForChoice && !alertActive && !backlogOpen && !isTransition) {
           nextStep();
         }
@@ -666,6 +750,12 @@ export default function App() {
         return;
       }
 
+      if (e.key === 'ArrowLeft' || e.key === 'Backspace') {
+        prevStep();
+        e.preventDefault();
+        return;
+      }
+
       if (e.key === ' ' || e.key === 'Enter') {
         if (skipMode) {
           setSkipMode(false);
@@ -683,7 +773,7 @@ export default function App() {
           'TRIGGER_STEALTH_GAME'
         ].includes(currentLine?.action);
 
-        const isTransition = currentLine?.action === 'FADE_TO_BLACK' || currentLine?.action === 'WAIT_FADE' || isBgTransitioning || isBgFadingOut;
+        const isTransition = currentLine?.action === 'FADE_TO_BLACK' || currentLine?.action === 'SLOW_FADE_TO_BLACK' || currentLine?.action === 'WAIT_FADE' || isBgTransitioning || isBgFadingOut;
         if (!isWaitingForChoice && !isMinigameActive && !isAnyEnd && !isEndScreen && !isTransition) {
           nextStep();
         }
@@ -692,7 +782,7 @@ export default function App() {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [nextStep, toggleHud, toggleAuto, isWaitingForChoice, backlogOpen, alertActive, hudVisible, setHudVisible, currentLine, skipMode, setSkipMode, showTitle]);
+  }, [nextStep, prevStep, toggleHud, toggleAuto, isWaitingForChoice, backlogOpen, alertActive, hudVisible, setHudVisible, currentLine, skipMode, setSkipMode, showTitle]);
 
   const handleDismissAlert = () => {
     setAlertActive(false);
@@ -702,7 +792,7 @@ export default function App() {
   const isCinema = currentLine?.style === 'cinema';
   const isHappyEnd = currentLine?.action === 'FADE_TO_HAPPY_END';
   const isBadEnd = currentLine?.action === 'FADE_TO_BAD_END';
-  const isTransition = currentLine?.action === 'FADE_TO_BLACK' || currentLine?.action === 'WAIT_FADE' || isBgTransitioning || isBgFadingOut;
+  const isTransition = currentLine?.action === 'FADE_TO_BLACK' || currentLine?.action === 'SLOW_FADE_TO_BLACK' || currentLine?.action === 'WAIT_FADE' || isBgTransitioning || isBgFadingOut;
   const isDemoEnd = currentLine?.action === 'FADE_TO_DEMO_END';
   const isAnyEnd = isHappyEnd || isBadEnd || isDemoEnd;
   const isTypingGameActive = currentLine?.action === 'TRIGGER_TYPING_GAME';
@@ -842,9 +932,19 @@ export default function App() {
         ) : (
           <>
             {/* Visual Background Fallback & Actual Renderer */}
-            <BackgroundRenderer 
-              bgPath={currentBg} 
-              bgAnimationClass={currentLine?.bgAnimation === 'search_ground' ? 'animate-search-ground' : ''} 
+            <BackgroundRenderer
+              bgPath={currentBg}
+              bgAnimationClass={
+                currentLine?.action === 'WAKE_UP'
+                  ? 'animate-bg-wake-up'
+                  : currentLine?.bgAnimation === 'search_ground'
+                  ? 'animate-search-ground'
+                  : currentLine?.bgAnimation === 'dash' || currentLine?.bgAnimation === 'run_dash'
+                  ? 'animate-run-dash'
+                  : currentLine?.bgAnimation === 'stumble_zoom' || currentLine?.bgAnimation === 'tilt_zoom'
+                  ? 'animate-stumble-zoom'
+                  : ''
+              }
             />
 
             {/* Typing Game Overlay */}
@@ -964,6 +1064,67 @@ export default function App() {
               )}
             </AnimatePresence>
 
+            {/* Black Distortion Overlay */}
+            <AnimatePresence>
+              {isBlackDistortActive && !isCinema && !isAnyEnd && (
+                <motion.div
+                  className="absolute inset-0 pointer-events-none z-[19] overflow-hidden"
+                  initial={{ opacity: 0, scale: 1 }}
+                  animate={{
+                    opacity: [0, 0.95, 0.5, 0.9, 0],
+                    scale: [1, 1.04, 0.98, 1.03, 1],
+                    filter: [
+                      'blur(0px) contrast(100%)',
+                      'blur(6px) contrast(170%) brightness(35%)',
+                      'blur(2px) contrast(130%) brightness(60%)',
+                      'blur(5px) contrast(160%) brightness(40%)',
+                      'blur(0px) contrast(100%)'
+                    ]
+                  }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 2, ease: 'easeInOut' }}
+                >
+                  <div className="w-full h-full bg-black/60" />
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_10%,rgba(0,0,0,0.95)_85%)]" />
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {/* Blood Screen Vignette Overlay */}
+            <AnimatePresence>
+              {isBloodActive && !isCinema && !isAnyEnd && (
+                <motion.div
+                  className="absolute inset-0 pointer-events-none z-[19] overflow-hidden"
+                  initial={{ opacity: 0, scale: 1.05 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, transition: { duration: 1 } }}
+                  transition={{ duration: 0.25, ease: 'easeOut' }}
+                >
+                  <div
+                    className="w-full h-full"
+                    style={{
+                      background: 'radial-gradient(ellipse at center, transparent 35%, rgba(139, 0, 0, 0.55) 70%, rgba(90, 0, 0, 0.95) 100%)',
+                      boxShadow: 'inset 0 0 80px 40px rgba(180, 0, 0, 0.85)',
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(160,0,0,0.8),transparent_40%),radial-gradient(circle_at_bottom_right,rgba(160,0,0,0.85),transparent_45%)] mix-blend-multiply" />
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {/* Red Alert Flash Overlay */}
+            <AnimatePresence>
+              {isRedAlertActive && !isCinema && !isAnyEnd && (
+                <motion.div
+                  className="absolute inset-0 pointer-events-none z-[19] overflow-hidden bg-red-600/35"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: [0.3, 0.9, 0.3] }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                />
+              )}
+            </AnimatePresence>
+
             {/* Subtitles & Normal Dialogue Boxes */}
             {!isCinema && !isTransition && !isAnyEnd && !alertActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isTypingGameActive && !isFragmentCollectActive && !isFragmentCollectMikaActive && !isFragmentCollectAkaneActive && !isFragmentCollectSoloActive && !isStealthGameActive && (
               <DialogueBox
@@ -1018,27 +1179,35 @@ export default function App() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  transition={{ duration: 0.5, ease: "easeInOut" }}
+                  transition={{ duration: currentLine?.action === 'SLOW_FADE_TO_BLACK' ? 1.5 : 0.5, ease: "easeInOut" }}
                 />
               )}
             </AnimatePresence>
+
+            {/* Wake Up Blinking Eyelid Overlay */}
+            {currentLine?.action === 'WAKE_UP' && (
+              <div className="absolute inset-0 pointer-events-none z-[55] overflow-hidden">
+                {/* Top Eyelid */}
+                <div className="absolute top-0 left-0 right-0 bg-black animate-eyelid-top" />
+                {/* Bottom Eyelid */}
+                <div className="absolute bottom-0 left-0 right-0 bg-black animate-eyelid-bottom" />
+              </div>
+            )}
 
             {/* End Screen Overlay (Happy / Bad) - driven by endType state */}
             {isEndScreen && (
               <div className="absolute inset-0 bg-black/95 flex flex-col items-center justify-center z-[70] p-8 text-center animate-fadeIn">
                 <div
-                  className={`absolute w-[60vh] h-[60vh] rounded-full border pointer-events-none transition-all duration-1000 ${
-                    endType === 'bad'
+                  className={`absolute w-[60vh] h-[60vh] rounded-full border pointer-events-none transition-all duration-1000 ${endType === 'bad'
                       ? 'border-red-500/10 shadow-[0_0_120px_rgba(239,68,68,0.05)]'
                       : 'border-amber-400/10 shadow-[0_0_120px_rgba(245,158,11,0.05)]'
-                  }`}
+                    }`}
                 />
                 <h1
-                  className={`text-4xl md:text-5xl font-orbitron font-extrabold tracking-[0.2em] mb-4 ${
-                    endType === 'bad'
+                  className={`text-4xl md:text-5xl font-orbitron font-extrabold tracking-[0.2em] mb-4 ${endType === 'bad'
                       ? 'text-red-500 drop-shadow-[0_0_20px_rgba(239,68,68,0.6)] animate-pulse'
                       : 'text-amber-400 drop-shadow-[0_0_20px_rgba(245,158,11,0.6)] animate-pulse'
-                  }`}
+                    }`}
                 >
                   {endType === 'bad' ? 'BAD END' : 'HAPPY END'}
                 </h1>
@@ -1052,11 +1221,10 @@ export default function App() {
                     setShowTitle(true);
                     jumpToStep(0);
                   }}
-                  className={`px-12 py-3.5 border font-orbitron text-sm tracking-[0.2em] rounded transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 active:scale-95 ${
-                    endType === 'bad'
+                  className={`px-12 py-3.5 border font-orbitron text-sm tracking-[0.2em] rounded transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 active:scale-95 ${endType === 'bad'
                       ? 'bg-red-950/30 border-red-500/30 text-red-300 hover:bg-red-500/20 hover:border-red-400 hover:text-white hover:shadow-[0_0_20px_rgba(239,68,68,0.3)]'
                       : 'bg-amber-950/30 border-amber-500/30 text-amber-300 hover:bg-amber-500/20 hover:border-amber-400 hover:text-white hover:shadow-[0_0_20px_rgba(245,158,11,0.3)]'
-                  }`}
+                    }`}
                 >
                   RETURN TO TITLE
                 </button>
@@ -1106,9 +1274,8 @@ export default function App() {
             style={{
               animation: 'fadeIn 0.2s ease',
               color: saveToast === 'saved' ? '#0ea5e9' : '#4f46e5', // 視認性の良いシアン・インディゴ
-              border: `1px solid ${
-                saveToast === 'saved' ? 'rgba(14,165,233,0.3)' : 'rgba(79,70,229,0.3)'
-              }`
+              border: `1px solid ${saveToast === 'saved' ? 'rgba(14,165,233,0.3)' : 'rgba(79,70,229,0.3)'
+                }`
             }}
           >
             {saveToast === 'saved' ? '💾 セーブしました' : '📂 ロードしました'}
@@ -1156,6 +1323,7 @@ export default function App() {
             localStorage.setItem('cleared_nagisa_good_end', val ? 'true' : 'false');
             setClearedNagisa(val);
           }}
+          onPrevStep={prevStep}
         />
 
         {/* Portrait Warning for Smartphones */}

@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ScrollText } from 'lucide-react';
 import { useRef, useEffect } from 'react';
+import { renderTextWithLinks } from '../utils/textUtils';
 
 export default function BacklogOverlay({ isOpen, onClose, backlog }) {
   const scrollRef = useRef(null);
@@ -65,7 +66,7 @@ export default function BacklogOverlay({ isOpen, onClose, backlog }) {
                           {displaySpeaker}
                         </span>
                       )}
-                      <p className="text-gray-300/80 text-base md:text-lg font-noto leading-relaxed mt-1">{entry.text}</p>
+                      <p className="text-gray-300/80 text-base md:text-lg font-noto leading-relaxed mt-1">{renderTextWithLinks(entry.text)}</p>
                     </div>
                   );
                 })

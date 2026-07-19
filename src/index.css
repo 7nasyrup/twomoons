@@ -223,4 +223,67 @@
 
 .animate-search-ground {
   animation: searchGround 10s ease-in-out forwards;
+}
+
+@keyframes runDash {
+  0% { transform: scale(1.05) translate(0, 0); }
+  25% { transform: scale(1.08) translate(-1%, -2%); }
+  50% { transform: scale(1.05) translate(1%, 1%); }
+  75% { transform: scale(1.08) translate(-1%, -1%); }
+  100% { transform: scale(1.05) translate(0, 0); }
+}
+
+.animate-run-dash {
+  animation: runDash 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes stumbleTiltZoom {
+  0% { transform: scale(1) rotate(0deg) translate(0, 0); }
+  35% { transform: scale(1.32) rotate(-8deg) translate(-3%, 4%); }
+  70% { transform: scale(1.28) rotate(-6deg) translate(-2%, 3%); }
+  100% { transform: scale(1.25) rotate(-5deg) translate(-2%, 2%); }
+}
+
+.animate-stumble-zoom {
+  animation: stumbleTiltZoom 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Eyelid Blink Animations for WAKE_UP action */
+@keyframes eyelid-blink-top {
+  0% { height: 50%; }
+  15% { height: 50%; }
+  35% { height: 35%; }
+  45% { height: 50%; }
+  60% { height: 50%; }
+  100% { height: 0%; }
+}
+
+@keyframes eyelid-blink-bottom {
+  0% { height: 50%; }
+  15% { height: 50%; }
+  35% { height: 35%; }
+  45% { height: 50%; }
+  60% { height: 50%; }
+  100% { height: 0%; }
+}
+
+.animate-eyelid-top {
+  animation: eyelid-blink-top 3.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.animate-eyelid-bottom {
+  animation: eyelid-blink-bottom 3.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes bg-wake-up {
+  0% { filter: blur(12px) brightness(0.2); }
+  15% { filter: blur(12px) brightness(0.2); }
+  35% { filter: blur(6px) brightness(0.6); }
+  45% { filter: blur(10px) brightness(0.3); }
+  60% { filter: blur(10px) brightness(0.3); }
+  100% { filter: blur(0px) brightness(1); }
+}
+
+.animate-bg-wake-up {
+  animation: bg-wake-up 3.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }

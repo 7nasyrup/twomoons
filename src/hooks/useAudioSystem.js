@@ -13,8 +13,23 @@ export function useAudioSystem() {
   const seVolume = useRef(0.8);
   const isMuted = useRef(false);
 
-  const playBGM = useCallback((src, { fadeDuration = 1500 } = {}) => {
-    if (!src || src === currentBgmSrc.current) return;
+  const playBGM = useCallback((src, { fadeDuration = 1500, volume } = {}) => {
+    if (!src) return;
+
+    if (src === currentBgmSrc.current) {
+      if (volume !== undefined && bgmRef.current) {
+        bgmVolume.current = volume;
+        const targetVol = volume * masterVolume.current;
+        bgmRef.current.fade(bgmRef.current.volume(), targetVol, fadeDuration);
+      }
+      return;
+    }
+
+    if (volume !== undefined) {
+      bgmVolume.current = volume;
+    } else {
+      bgmVolume.current = 0.5; // デフォルト音量
+    }
 
     // Fade out current BGM
     if (bgmRef.current) {
@@ -38,14 +53,19 @@ export function useAudioSystem() {
 
   const playSE = useCallback((src, duration = null) => {
     if (!src) return;
-    // Simple pooling: create or reuse Howl for this src
-    if (!sePool.current[src]) {
-      sePool.current[src] = new Howl({
-        src: [src],
-        volume: seVolume.current * masterVolume.current,
-      });
+
+    if (sePool.current[src]) {
+      sePool.current[src].stop();
+      sePool.current[src].unload();
     }
-    const soundId = sePool.current[src].play();
+
+    const sound = new Howl({
+      src: [src],
+      html5: true,
+      volume: seVolume.current * masterVolume.current,
+    });
+    sePool.current[src] = sound;
+    const soundId = sound.play();
 
     if (duration) {
       setTimeout(() => {
@@ -55,7 +75,6 @@ export function useAudioSystem() {
           setTimeout(() => {
             if (sePool.current[src]) {
               sePool.current[src].stop(soundId);
-              sePool.current[src].volume(currentVol, soundId); // reset volume for next play
             }
           }, 300);
         }
@@ -63,13 +82,36 @@ export function useAudioSystem() {
     }
   }, []);
 
+  const stopSE = useCallback((src, fadeDuration = 300) => {
+    if (src) {
+      const sound = sePool.current[src];
+      if (sound) {
+        sound.fade(sound.volume(), 0, fadeDuration);
+        setTimeout(() => {
+          sound.stop();
+          sound.unload();
+          delete sePool.current[src];
+        }, fadeDuration + 50);
+      }
+    } else {
+      Object.values(sePool.current).forEach(h => {
+        h.stop();
+        h.unload();
+      });
+      sePool.current = {};
+    }
+  }, []);
+
   const stopBGM = useCallback((fadeDuration = 1000) => {
     if (bgmRef.current) {
-      bgmRef.current.fade(bgmRef.current.volume(), 0, fadeDuration);
+      const oldBgm = bgmRef.current;
+      oldBgm.fade(oldBgm.volume(), 0, fadeDuration);
       setTimeout(() => {
-        bgmRef.current?.unload();
-        bgmRef.current = null;
-        currentBgmSrc.current = null;
+        oldBgm.unload();
+        if (bgmRef.current === oldBgm) {
+          bgmRef.current = null;
+          currentBgmSrc.current = null;
+        }
       }, fadeDuration + 100);
     }
   }, []);
@@ -100,6 +142,7 @@ export function useAudioSystem() {
   return {
     playBGM,
     playSE,
+    stopSE,
     stopBGM,
     toggleMute,
     setMasterVol,
