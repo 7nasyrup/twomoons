@@ -520,6 +520,13 @@ export default function App() {
         // continuous shake, no auto-clear
       } else if (action === 'SHAKE_SCREEN_CONTINUOUS_SMALL') {
         setShakeEffect('small_continuous');
+      } else if (action === 'SHAKE_SCREEN_LONG_SMALL') {
+        setShakeEffect('small_continuous');
+        const timer = setTimeout(() => setShakeEffect(false), 2500);
+        return () => {
+          clearTimeout(timer);
+          setShakeEffect(false);
+        };
       } else if (action === 'CLEAR_SHAKE') {
         setShakeEffect(false);
       }
