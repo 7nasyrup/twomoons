@@ -108,7 +108,10 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
           const underscoreIndex = charName.indexOf('_');
           const expression = underscoreIndex !== -1 ? charName.substring(underscoreIndex + 1) : config.defaultExpression;
 
-          const imagePath = assetPath(`${config.folder}/${config.baseFileName}_${expression}.png`);
+          let imagePath = assetPath(`${config.folder}/${config.baseFileName}_${expression}.png`);
+          if (baseCharName === "BlackKnight") {
+            imagePath = assetPath(`${config.folder}/BlackKnight.png`);
+          }
 
           let currentRoute = null;
           if (Array.isArray(scenarioData) && typeof currentStep === 'number') {

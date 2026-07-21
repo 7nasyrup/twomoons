@@ -853,7 +853,7 @@ export default function App() {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [nextStep, prevStep, toggleHud, toggleAuto, isWaitingForChoice, backlogOpen, alertActive, hudVisible, setHudVisible, currentLine, skipMode, setSkipMode, showTitle]);
+  }, [nextStep, prevStep, toggleHud, toggleAuto, isWaitingForChoice, backlogOpen, alertActive, hudVisible, setHudVisible, currentLine, skipMode, setSkipMode, showTitle, isBgTransitioning, isBgFadingOut, isEndScreen]);
 
   const handleDismissAlert = () => {
     setAlertActive(false);
@@ -1127,16 +1127,44 @@ export default function App() {
             <AnimatePresence>
               {isSmokeActive && !isCinema && !isAnyEnd && (
                 <motion.div
-                  className="absolute inset-0 pointer-events-none z-[18]"
-                  style={{
-                    background: 'linear-gradient(to bottom, rgba(15,15,15,0.85) 0%, rgba(40,15,5,0.9) 100%)',
-                    backdropFilter: 'blur(10px)',
-                  }}
+                  className="absolute inset-0 pointer-events-none z-[18] overflow-hidden flex items-center justify-center"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  transition={{ duration: 4, ease: 'easeInOut' }}
-                />
+                  transition={{ duration: 3, ease: 'easeOut' }}
+                >
+                  {/* Base gray background (Removed expensive backdrop-blur) */}
+                  <div className="absolute inset-0 bg-gray-700/80" />
+                  
+                  {/* Lighter billowing effect using CSS radial gradients instead of blur/mix-blend */}
+                  {[
+                    { left: '-10%', size: '120vw', dur: 6, delay: 0 },
+                    { left: '10%', size: '140vw', dur: 8, delay: 0.5 },
+                    { left: '50%', size: '130vw', dur: 7, delay: 1 },
+                  ].map((cloud, i) => (
+                    <motion.div
+                      key={i}
+                      className="absolute rounded-full"
+                      style={{
+                        width: cloud.size,
+                        height: cloud.size,
+                        left: cloud.left,
+                        top: '100%',
+                        background: 'radial-gradient(circle, rgba(156,163,175,0.6) 0%, rgba(156,163,175,0) 70%)',
+                      }}
+                      animate={{
+                        y: ['0vh', '-130vh'],
+                        scale: [0.8, 1.3],
+                      }}
+                      transition={{
+                        duration: cloud.dur,
+                        repeat: Infinity,
+                        ease: 'linear',
+                        delay: cloud.delay,
+                      }}
+                    />
+                  ))}
+                </motion.div>
               )}
             </AnimatePresence>
 

@@ -4608,7 +4608,7 @@ export const scenarioData = [
   {
     "scene": "月面",
     "text": "外に足を踏み出した瞬間、私はその光景に息を呑んだ。\nそこは、私たちがよく知る大学のキャンパスでも、見慣れた街並みでもなかった。",
-    "bg": "scene/moon_surface.png"
+    "bg": "/scene/moon_surface.png"
   },
   {
     "scene": "月面",
@@ -5670,7 +5670,7 @@ export const scenarioData = [
     "text": "「オオオオオォォォ……ッ！！」",
     "action": "SHAKE_SCREEN",
     "showIllust": [
-      "BlackKnight_serious"
+      "BlackKnight"
     ]
   },
   {
@@ -8879,7 +8879,8 @@ export const scenarioData = [
     "scene": "制御室",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「──よしっ、これで最後のデータチップ、回収完了！」"
+    "text": "「──よしっ、これで最後のデータチップ、回収完了！」",
+    "bg": "/scene/Lab_corridor.png"
   },
   {
     "scene": "制御室",
@@ -8944,11 +8945,12 @@ export const scenarioData = [
   },
   {
     "scene": "廊下",
-    "text": "カツン、カツンと、無機質な廊下に二人の足音が響く。けれど、前を行く彼の背中は、どこかひどく小さく見えた。"
+    "text": "カツン、カツンと、無機質な廊下に二人の足音が響く。けれど、前を行く彼の背中は、どこかひどく小さく見えた。",
   },
   {
     "scene": "最深部",
-    "text": "曲がり角を過ぎ、私たちはついに、研究所の最深部へとたどり着いた。"
+    "text": "曲がり角を過ぎ、私たちはついに、研究所の最深部へとたどり着いた。",
+    "bg": "/scene/gate.png"
   },
   {
     "scene": "最深部",
@@ -9028,11 +9030,12 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "カチリ──。最後のチップが収まり、重厚なゲートがゆっくりと左右に開き始める\n空気の抜けるような低い音が響き、扉の向こうから、息を呑むほど美しく、そして冷徹な光が溢れ出した。"
+    "text": "カチリ──。最後のチップが収まり、重厚なゲートがゆっくりと左右に開き始める\n空気の抜けるような低い音が響き、扉の向こうから、息を呑むほど美しく、そして冷徹な光が溢れ出した。",
   },
   {
     "scene": "研究所の最奥",
-    "text": "天井の一部がガラス張りになっており、そこから差し込む「本当の月の光」を浴びて、それは宙に浮かんでいた。"
+    "text": "天井の一部がガラス張りになっており、そこから差し込む「本当の月の光」を浴びて、それは宙に浮かんでいた。",
+    "bg": "/scene/core.png"
   },
   {
     "scene": "研究所の最奥",
@@ -9189,7 +9192,10 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "爆煙の向こうから、凄まじい威圧感を放ちながら、ゆっくりと姿を現す影。\n漆黒の甲冑に身を包み、大剣を携えた、あの異形の化け物。"
+    "text": "爆煙の向こうから、凄まじい威圧感を放ちながら、ゆっくりと姿を現す影。\n漆黒の甲冑に身を包み、大剣を携えた、あの異形の化け物。",
+    "showIllust": [
+      "BlackKnight"
+    ]
   },
   {
     "scene": "研究所の最奥",
@@ -9282,7 +9288,8 @@ export const scenarioData = [
   },
   {
     "scene": "瓦礫裏",
-    "text": "睦典は信じられないほどの力で私の手を掴むと、傷など最初からなかったかのように猛然と走り出した。黒騎士の追撃を間一髪でかわし、私たちは部屋の隅にある、辛うじて瓦礫の隙間へと滑り込む。"
+    "text": "睦典は信じられないほどの力で私の手を掴むと、傷など最初からなかったかのように猛然と走り出した。黒騎士の追撃を間一髪でかわし、私たちは部屋の隅にある、辛うじて瓦礫の隙間へと滑り込む。",
+    "bg": "/scene/Rubble.png"
   },
   {
     "scene": "瓦礫裏",
@@ -9497,7 +9504,8 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "完全に理性を失い、ただの「不死身の戦闘兵器」と化した睦典は、サーバーラックの影から弾かれたように飛び出す。"
+    "text": "完全に理性を失い、ただの「不死身の戦闘兵器」と化した睦典は、サーバーラックの影から弾かれたように飛び出す。",
+    "bg": "/scene/core_hakai1.png"
   },
   {
     "scene": "研究所の最奥",
@@ -9790,9 +9798,6 @@ export const scenarioData = [
     "speaker": "黒騎士",
     "role": "ENEMY",
     "text": "「ギ、ギギ……ッ」",
-    "showIllust": [
-      "BlackKnight_serious"
-    ]
   },
   {
     "scene": "研究所の最奥",
@@ -9870,9 +9875,6 @@ export const scenarioData = [
     "speaker": "黒騎士",
     "role": "ENEMY",
     "text": "「──チッ」",
-    "showIllust": [
-      "BlackKnight_serious"
-    ]
   },
   {
     "scene": "研究所の最奥",
@@ -9884,7 +9886,8 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "ズガガガガガッ！！！"
+    "text": "ズガガガガガッ！！！",
+    "action": "SHAKE_SCREEN_VERY_LARGE"
   },
   {
     "scene": "研究所の最奥",
@@ -9892,7 +9895,8 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "それと同時にコンクリートの細かい粉塵が、視界を完全に遮る濃密な煙幕となって部屋中に爆発的に広がった。"
+    "text": "それと同時にコンクリートの細かい粉塵が、視界を完全に遮る濃密な煙幕となって部屋中に爆発的に広がった。",
+    "action": "FADE_IN_SMOKE"
   },
   {
     "scene": "研究所の最奥",
@@ -9915,7 +9919,9 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "数秒後、激しく舞い散る白い塵の向こうを見据えたが──そこにはもう、漆黒の化け物の姿はなかった。\nただ、破壊された壁の向こうへ続く、不気味な足跡だけが残されている。"
+    "text": "数秒後、激しく舞い散る白い塵の向こうを見据えたが──そこにはもう、漆黒の化け物の姿はなかった。\nただ、破壊された壁の向こうへ続く、不気味な足跡だけが残されている。",
+    "bg": "/scene/core_escape.png",
+    "action": "CLEAR_SMOKE"
   },
   {
     "scene": "研究所の最奥",
@@ -10006,7 +10012,8 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "触れた瞬間、鼓膜が引き裂かれそうなほどの高周波の音が響き、視界が真っ白な光で埋め尽くされた。"
+    "text": "触れた瞬間、鼓膜が引き裂かれそうなほどの高周波の音が響き、視界が真っ白な光で埋め尽くされた。",
+    "action": "WHITE_OUT_START"
   },
   {
     "scene": "研究所の最奥",
@@ -10083,7 +10090,8 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "視界を覆っていた眩い光がゆっくりと収まっていき、私たちの周りには、柔らかな静寂だけが残されていた。"
+    "text": "視界を覆っていた眩い光がゆっくりと収まっていき、私たちの周りには、柔らかな静寂だけが残されていた。",
+    "action": "WHITE_OUT_END_SLOW"
   },
   {
     "scene": "研究所の最奥",
@@ -10215,10 +10223,12 @@ export const scenarioData = [
   {
     "scene": "最下層",
     "text": "たどり着いた最下層の重厚なハッチを開けると──そこには、薄暗い格納庫の真ん中で、白くそびえ立つ一基の脱出用ロケットが静かに格納されていた。"
+
   },
   {
     "scene": "脱出用ロケット内",
-    "text": "滑り込むようにハッチを閉め、二人分の狭いシートになだれ込んで安全ベルトを締める。"
+    "text": "滑り込むようにハッチを閉め、二人分の狭いシートになだれ込んで安全ベルトを締める。",
+    "bg": "/scene/rocket_back.png"
   },
   {
     "scene": "脱出用ロケット内",
@@ -10265,7 +10275,8 @@ export const scenarioData = [
   },
   {
     "scene": "いつもの大学",
-    "text": "私たちの日常は、驚くほどあっけなく戻ってきた。"
+    "text": "私たちの日常は、驚くほどあっけなく戻ってきた。",
+    "bg": "/scene/university_gate.png"
   },
   {
     "scene": "いつもの大学",
@@ -10288,6 +10299,7 @@ export const scenarioData = [
     "speaker": "ヒルミ教授",
     "role": "PROFESSOR",
     "text": "「やあ、二人とも。実習報告書のデータ、じつに素晴らしい出来だったよ」",
+    "bg": "/scene/lab.png",
     "showIllust": [
       "Hirumi_smile"
     ]
@@ -10296,10 +10308,7 @@ export const scenarioData = [
     "scene": "研究室",
     "speaker": "ヒルミ教授",
     "role": "PROFESSOR",
-    "text": "あの極限状態できちんとフォントサイズまで揃えてくるとは、さすが我が研究室の学生だね」",
-    "showIllust": [
-      "Hirumi_neutral"
-    ]
+    "text": "あの極限状態できちんとフォントサイズまで揃えてくるとは、さすが我が研究室の学生だね」"
   },
   {
     "scene": "研究室",
@@ -10322,6 +10331,7 @@ export const scenarioData = [
     "speaker": "睦典",
     "role": "MUTSUNORI",
     "text": "「はい、お待ちどうさま！当店特製、『ルナ・エネルギーうどん』改め、激ウマ月見うどんです」",
+    "bg": "/scene/mutsu_inside.png",
     "showIllust": [
       "Mutsunori_happy"
     ]
@@ -10484,6 +10494,12 @@ export const scenarioData = [
   {
     "scene": "割烹『むつ』",
     "text": "私たちは繋いだ手の温もりを確かめ合いながら、新しく始まる、最高に甘くて騒がしい日常へ向かって、二人で幸せそうに笑い合った。"
+  },
+  {
+    "scene": "割烹『むつ』",
+    "text": "睦典ルート・ハッピーエンド",
+    "action": "FADE_TO_HAPPY_END",
+    "style": "cinema"
   },
   {
     "scene": "大学の敷地内",

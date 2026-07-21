@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ScrollText } from 'lucide-react';
+import { X } from 'lucide-react';
 import { useRef, useEffect } from 'react';
 import { renderTextWithLinks } from '../utils/textUtils';
 
@@ -16,63 +16,91 @@ export default function BacklogOverlay({ isOpen, onClose, backlog }) {
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="absolute inset-0 z-[55] bg-[#030712]/95 backdrop-blur-xl flex flex-col"
+          className="absolute inset-0 z-[55] flex items-center justify-center p-4 md:p-12 pointer-events-auto"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          onClick={(e) => e.stopPropagation()}
+          onClick={(e) => {
+            e.stopPropagation();
+            onClose();
+          }}
           onTouchStart={(e) => e.stopPropagation()}
           onTouchMove={(e) => e.stopPropagation()}
           onTouchEnd={(e) => e.stopPropagation()}
         >
-          {/* Header */}
-          <div className="flex items-center gap-4 px-6 py-4 border-b border-cyan-500/10">
-            <motion.button
-              onClick={(e) => {
-                e.stopPropagation();
-                onClose();
-              }}
-              className="flex items-center justify-center w-8 h-8 rounded-full border border-cyan-500/30 bg-cyan-950/20 text-cyan-400 hover:bg-cyan-500/20 hover:border-cyan-400 hover:text-white transition-all duration-300"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <X size={16} />
-            </motion.button>
-            <div className="flex items-center gap-2">
-              <ScrollText size={16} className="text-cyan-500/60" />
-              <span className="text-cyan-400 text-xs font-orbitron tracking-[0.3em]">BACKLOG</span>
-            </div>
-          </div>
+          {/* Backdrop */}
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm pointer-events-none" />
 
-          {/* Log entries */}
-          <div ref={scrollRef} className="flex-1 overflow-y-auto px-6 py-4 scrollbar-thin">
-            <div className="max-w-2xl mx-auto w-full space-y-4">
-              {backlog.length === 0 ? (
-                <p className="text-cyan-500/30 text-sm font-noto text-center mt-12">バックログは空です</p>
-              ) : (
-                backlog.map((entry, idx) => {
-                  let displaySpeaker = entry.speaker;
-                  if (!displaySpeaker && entry.text && entry.text.trim().startsWith("（")) {
-                    const isSystemMessage = entry.text.includes("ありがとうございました") || entry.text.includes("アップデート");
-                    if (!isSystemMessage) {
-                      displaySpeaker = "朔良";
+          {/* Main Panel matching DialogueBox style */}
+          <motion.div
+            className="w-full max-w-[1200px] h-[85vh] relative shadow-[0_10px_40px_rgba(0,0,0,0.4)] rounded-xl overflow-hidden border-b-8 border-[#4dd0e1] flex flex-col z-10"
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1, transition: { type: "spring", damping: 25, stiffness: 200 } }}
+            exit={{ y: 10, opacity: 0 }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Header Bar */}
+            <div className="w-full h-14 bg-[#0a192f] flex justify-between items-center relative overflow-hidden shrink-0">
+              {/* Geometric Pattern Background for Header */}
+              <div
+                className="absolute inset-0 opacity-80 pointer-events-none"
+                style={{
+                  backgroundImage: `repeating-linear-gradient(45deg, #09202a 25%, transparent 25%, transparent 75%, #09202a 75%, #09202a), repeating-linear-gradient(45deg, #09202a 25%, #0e2a38 25%, #0e2a38 75%, #09202a 75%, #09202a)`,
+                  backgroundPosition: `0 0, 10px 10px`,
+                  backgroundSize: `20px 20px`
+                }}
+              />
+
+              {/* Left side: Nameplate */}
+              <div className="flex items-center px-6 relative z-10 bg-[#0a192f] h-full pr-12 shadow-[10px_0_20px_rgba(10,25,47,0.8)]" style={{ clipPath: 'polygon(0 0, 100% 0, 92% 100%, 0 100%)' }}>
+                <div className="w-0 h-0 border-t-[6px] border-t-transparent border-l-[10px] border-l-[#00e5ff] border-b-[6px] border-b-transparent mr-3" />
+                <span className="text-white font-bold tracking-widest text-lg shadow-md font-orbitron">BACKLOG</span>
+              </div>
+
+              {/* Right side: X */}
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onClose();
+                }}
+                className="px-6 text-[#00e5ff]/50 hover:text-[#00e5ff] hover:bg-[#00e5ff]/10 relative z-10 h-full flex items-center transition-colors"
+              >
+                <X size={20} strokeWidth={2.5} />
+              </button>
+            </div>
+
+            {/* Log Entries Area */}
+            <div ref={scrollRef} className="bg-white w-full flex-1 overflow-y-auto p-6 md:p-10 relative scrollbar-thin scrollbar-thumb-[#4dd0e1]/40 scrollbar-track-transparent">
+              <div className="max-w-4xl mx-auto w-full space-y-6">
+                {backlog.length === 0 ? (
+                  <p className="text-slate-400 text-sm font-noto text-center mt-12 font-bold tracking-widest">バックログは空です</p>
+                ) : (
+                  backlog.map((entry, idx) => {
+                    let displaySpeaker = entry.speaker;
+                    if (!displaySpeaker && entry.text && entry.text.trim().startsWith("（")) {
+                      const isSystemMessage = entry.text.includes("ありがとうございました") || entry.text.includes("アップデート");
+                      if (!isSystemMessage) {
+                        displaySpeaker = "朔良";
+                      }
                     }
-                  }
 
-                  return (
-                    <div key={idx} className="border-b border-cyan-500/5 pb-3">
-                      {displaySpeaker && (
-                        <span className="text-cyan-400/70 text-sm font-orbitron tracking-wider">
-                          {displaySpeaker}
-                        </span>
-                      )}
-                      <p className="text-gray-300/80 text-base md:text-lg font-noto leading-relaxed mt-1">{renderTextWithLinks(entry.text)}</p>
-                    </div>
-                  );
-                })
-              )}
+                    return (
+                      <div key={idx} className="border-b border-slate-100 pb-5">
+                        {displaySpeaker && (
+                          <span className="text-[#00acc1] text-sm font-bold font-noto tracking-widest mb-1 block">
+                            {displaySpeaker}
+                          </span>
+                        )}
+                        <p className="text-slate-800 text-lg md:text-xl leading-[2.2] font-noto tracking-wide whitespace-pre-line font-medium">
+                          {renderTextWithLinks(entry.text)}
+                        </p>
+                      </div>
+                    );
+                  })
+                )}
+              </div>
             </div>
-          </div>
+          </motion.div>
         </motion.div>
       )}
     </AnimatePresence>
