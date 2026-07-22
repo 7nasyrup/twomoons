@@ -42,7 +42,12 @@ export function useAudioSystem() {
       src: [src],
       loop: true,
       volume: 0,
-      html5: true,
+      html5: false,
+      onend: function() {
+        if (this.loop()) {
+          this.play();
+        }
+      }
     });
 
     newBgm.play();
@@ -61,7 +66,7 @@ export function useAudioSystem() {
 
     const sound = new Howl({
       src: [src],
-      html5: true,
+      html5: false,
       volume: seVolume.current * masterVolume.current,
     });
     sePool.current[src] = sound;

@@ -193,6 +193,7 @@ export default function App() {
   const [whiteOutDuration, setWhiteOutDuration] = useState(0.8);
   const [whitePulseLevel, setWhitePulseLevel] = useState(0);
   const [isWhiteFlashActive, setIsWhiteFlashActive] = useState(false);
+  const [isWhiteFlash70Active, setIsWhiteFlash70Active] = useState(false);
   const [shakeEffect, setShakeEffect] = useState(false);
   const [isSmokeActive, setIsSmokeActive] = useState(false);
   const [isBlackDistortActive, setIsBlackDistortActive] = useState(false);
@@ -429,7 +430,8 @@ export default function App() {
       if (currentLine.bgm === "stop" || currentLine.bgm === "none" || currentLine.bgm === "") {
         stopBGM(fadeDuration);
       } else {
-        playBGM(assetPath(`/assets/audio/bgm/${currentLine.bgm}`), {
+        const bgmFile = currentLine.bgm.includes('.') ? currentLine.bgm : `${currentLine.bgm}.mp3`;
+        playBGM(assetPath(`/assets/audio/bgm/${bgmFile}`), {
           fadeDuration,
           volume: currentLine.bgmVolume
         });
@@ -596,6 +598,9 @@ export default function App() {
       } else if (action === 'WHITE_FLASH') {
         setIsWhiteFlashActive(true);
         setTimeout(() => setIsWhiteFlashActive(false), 500);
+      } else if (action === 'WHITE_FLASH_70') {
+        setIsWhiteFlash70Active(true);
+        setTimeout(() => setIsWhiteFlash70Active(false), 500);
       } else if (action === 'WHITE_FLASH_AND_SHAKE') {
         setIsWhiteFlashActive(true);
         setShakeEffect('extreme');
@@ -1250,6 +1255,18 @@ export default function App() {
                     transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                   />
                 </motion.div>
+              )}
+            </AnimatePresence>
+
+            {/* White Flash 70 Overlay */}
+            <AnimatePresence>
+              {isWhiteFlash70Active && !isCinema && !isAnyEnd && (
+                <motion.div
+                  className="absolute inset-0 pointer-events-none z-[20] bg-white"
+                  initial={{ opacity: 0.7 }}
+                  animate={{ opacity: 0 }}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
+                />
               )}
             </AnimatePresence>
 
