@@ -286,4 +286,40 @@
 
 .animate-bg-wake-up {
   animation: bg-wake-up 3.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes centerZoom {
+  0% { transform: scale(1) translate(0, 0); }
+  100% { transform: scale(1.35) translate(0, 0); }
+}
+
+.animate-center-zoom {
+  animation: centerZoom 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes dodgeLeft {
+  0% { transform: scale(1.35) translate(0, 0); }
+  100% { transform: scale(1.35) translate(12%, 3%); }
+}
+
+.animate-dodge-left {
+  animation: dodgeLeft 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes dodgeRight {
+  0% { transform: scale(1.35) translate(0, 0); }
+  100% { transform: scale(1.35) translate(-12%, 3%); }
+}
+
+.animate-dodge-right {
+  animation: dodgeRight 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes impactZoom {
+  0% { transform: scale(1.25) translate(0, 0); }
+  100% { transform: scale(1.55) translate(0, -4%); }
+}
+
+.animate-impact-zoom {
+  animation: impactZoom 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }

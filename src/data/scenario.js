@@ -4598,12 +4598,12 @@ export const scenarioData = [
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「───っ、何、ここ……」",
-    "action": "CLEAR_RED_ALERT"
+    "action": "CLEAR_RED_ALERT",
+    "bg": "/scene/moon_surface.png"
   },
   {
     "scene": "月面",
-    "text": "外に足を踏み出した瞬間、私はその光景に息を呑んだ。\nそこは、私たちがよく知る大学のキャンパスでも、見慣れた街並みでもなかった。",
-    "bg": "/scene/moon_surface.png"
+    "text": "外に足を踏み出した瞬間、私はその光景に息を呑んだ。\nそこは、私たちがよく知る大学のキャンパスでも、見慣れた街並みでもなかった。"
   },
   {
     "scene": "月面",
@@ -5271,7 +5271,8 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "凪砂さんがコアへと手を伸ばすと、眩い光の帯がコアへと流れ込む"
+    "text": "凪砂さんがコアへと手を伸ばすと、眩い光の帯がコアへと流れ込む。"
+
   },
   {
     "scene": "研究所の最奥",
@@ -5808,7 +5809,7 @@ export const scenarioData = [
   {
     "scene": "研究所の最奥",
     "text": "ズガァァァァァンッ！！！！",
-    "action": "EXPLOSION_WHITEOUT"
+    "action": "SHAKE_AND_SMOKE"
   },
   {
     "scene": "研究所の最奥",
@@ -5831,8 +5832,8 @@ export const scenarioData = [
   {
     "scene": "研究所の最奥",
     "text": "やがて、もうもうと立ち込める煙が外気へと流され、視界が晴れていくと──そこには、不自然にぽっかりと開いた巨大な穴と、その向こうに広がる荒涼とした外の世界が見えるだけだった。",
-    "action": "WHITE_OUT_END_SLOW",
-    "bg": "/scene/core_kurokishi_toubou.png"
+    "action": "CLEAR_SMOKE",
+    "bg": "/scene/core_escape.png"
   },
   {
     "scene": "研究所の最奥",
@@ -5966,7 +5967,8 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "恐る恐る目を開けると、そこには、あれほど圧倒的な存在感を放っていた巨大なコアの姿はなかった。ただの巨大な、光を失った煤けた機械の塊が、機能を完全に停止して沈黙している。"
+    "text": "恐る恐る目を開けると、そこには、あれほど圧倒的な存在感を放っていた巨大なコアの姿はなかった。ただの巨大な、光を失った煤けた機械の塊が、機能を完全に停止して沈黙している。",
+    "bgm": "stop"
   },
   {
     "scene": "研究所の最奥",
@@ -6040,7 +6042,8 @@ export const scenarioData = [
   {
     "scene": "研究所の最奥",
     "text": "手記の言葉を裏付けるように、足元から不穏な地鳴りが響き渡った。天井からパラパラとコンクリートの粉が舞い落ち、制御パネルのあちこちから、赤色の警告灯が激しく明滅し始める。",
-    "action": "RED_ALERT_AND_SMALL_SHAKE"
+    "action": "RED_ALERT_AND_SMALL_SHAKE",
+    "bgm": "alert.mp3",
   },
   {
     "scene": "研究所の最奥",
@@ -6081,7 +6084,9 @@ export const scenarioData = [
   {
     "scene": "脱出用ロケット内",
     "text": "二人で滑り込むようにして狭いコックピットに乗り込み、ハッチを完全に閉鎖する。凪砂さんが慣れた手つきでメインコンソールを叩くと、シートベルトが自動で私たちの身体を固定した。",
-    "bg": "/scene/rocket_back.png"
+    "bg": "/scene/rocket_back.png",
+    "bgm": "stop"
+
   },
   {
     "scene": "脱出用ロケット内",
@@ -6096,7 +6101,9 @@ export const scenarioData = [
   },
   {
     "scene": "宇宙空間",
-    "text": "窓の外に目をやると、激しい振動の向こう側に、どこまでも深く、青く輝く美しい球体が見えてくる。"
+    "text": "窓の外に目をやると、激しい振動の向こう側に、どこまでも深く、青く輝く美しい球体が見えてくる。",
+    "bgm": "Room_Night.mp3",
+    "bgmVolume": 0.2
   },
   {
     "scene": "宇宙空間",
@@ -6165,12 +6172,15 @@ export const scenarioData = [
   {
     "scene": "宇宙空間",
     "action": "SLOW_FADE_TO_BLACK",
+    "bgm": "stop",
     "duration": 4000
   },
   {
     "scene": "地球",
     "text": "私たちの日常は、驚くほどあっけなく戻ってきた。",
-    "bg": "/scene/sky.png"
+    "bg": "/scene/sky.png",
+    "bgm": "Normal_Morning2.mp3",
+    "bgmVolume": 0.2
   },
   {
     "scene": "地球",
@@ -6210,6 +6220,7 @@ export const scenarioData = [
     "scene": "研究室",
     "text": "そして、そんな中変わったことと言えば──。",
     "bg": "black",
+    "bgm": "stop",
     "showIllust": []
   },
   {
@@ -6217,7 +6228,9 @@ export const scenarioData = [
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「……うわ、もうこんな時間！ 遅くなっちゃったかな……っ」",
-    "bg": "/scene/Dataspot.png"
+    "bg": "/scene/Dataspot.png",
+    "bgm": "HappyEnd.mp3",
+    "bgmVolume": 0.3
   },
   {
     "scene": "待ち合わせ場所",
@@ -7668,7 +7681,7 @@ export const scenarioData = [
   {
     "scene": "研究所の最奥",
     "text": "私は、自分の内に満ちた光の塊を、惜しみなくコアへと放出した。",
-    "bg": "/scene/core_close.png"
+    "bg": "/scene/core_close2.png"
   },
   {
     "scene": "研究所の最奥",
@@ -7756,7 +7769,7 @@ export const scenarioData = [
   {
     "scene": "研究所の最奥",
     "text": "私たちの絶叫とともに、限界を超えたエネルギーがコアの最深部へと突き刺さった。",
-    "action": "WHITE_PULSE_HIGH"
+    "action": "WHITE_PULSE_STOP"
   },
   {
     "scene": "研究所の最奥",
@@ -7770,7 +7783,7 @@ export const scenarioData = [
     "scene": "研究所の最奥",
     "text": "世界を包んでいた、あの不気味な電子の駆動音が、嘘のようにぷつりと途切れる。",
     "action": "WHITE_OUT_END_VERY_SLOW",
-    "bg": "/scene/core_close_Nothing.png"
+    "bg": "/scene/core_close_Nothing2.png"
   },
   {
     "scene": "研究所の最奥",
@@ -7836,13 +7849,16 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "ズガガガガガッ……！"
+    "text": "ドゴゴゴゴ……ッ！！",
+    "action": "SHAKE_SCREEN_EXTREME"
   },
   {
     "scene": "研究所の最奥",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「……っ！」"
+    "text": "「……っ！」",
+    "action": "RED_ALERT_AND_SMALL_SHAKE",
+    "bgm": "alert.mp3",
   },
   {
     "scene": "研究所の最奥",
@@ -7850,7 +7866,8 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "天井の鉄骨が軋み、パラパラと乾いたコンクリートの破片が落ちてくる。手記の通りだ。コアを失った研究所が、悲鳴を上げるようにして崩壊を始めている。"
+    "text": "天井の鉄骨が軋み、パラパラと乾いたコンクリートの破片が落ちてくる。手記の通りだ。コアを失った研究所が、悲鳴を上げるようにして崩壊を始めている。",
+
   },
   {
     "scene": "研究所の最奥",
@@ -7869,7 +7886,10 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "背後で壁が崩れ、天井が落ちてくる轟音が響く中、私たちはガレキの嵐を駆け抜けた。"
+    "text": "背後で壁が崩れ、天井が落ちてくる轟音が響く中、私たちはガレキの嵐を駆け抜けた。",
+    "action": "CLEAR_ALL_ALERTS_AND_SHAKES",
+    "bgm": "stop",
+    "bg": "black",
   },
   {
     "scene": "研究所の最奥",
@@ -7877,7 +7897,8 @@ export const scenarioData = [
   },
   {
     "scene": "ロケット内部",
-    "text": "滑り込むようにハッチを閉め、二人分の狭いシートになだれ込んで安全ベルトを締める。"
+    "text": "滑り込むようにハッチを閉め、二人分の狭いシートになだれ込んで安全ベルトを締める。",
+    "bg": "/scene/rocket_back.png"
   },
   {
     "scene": "ロケット内部",
@@ -7890,11 +7911,14 @@ export const scenarioData = [
   },
   {
     "scene": "ロケット内部",
-    "text": "機械のアナウンスと同時に、足元から凄まじい衝撃波が突き上げる。ロケットは自壊する研究所を突き破り、重力の檻を振り払って、漆黒の宇宙空間へと静かに滑り出した。"
+    "text": "機械のアナウンスと同時に、足元から凄まじい衝撃波が突き上げる。ロケットは自壊する研究所を突き破り、重力の檻を振り払って、漆黒の宇宙空間へと静かに滑り出した。",
+    "action": "SHAKE_SCREEN",
   },
   {
     "scene": "ロケット内部",
-    "text": "窓の外では、私たちがいた研究所が静かに崩壊し、あの不気味だった青い月の光が遠ざかっていく。代わりにコックピットの正面を穏やかに照らしたのは、私たちが目指す青い地球の姿だった。"
+    "text": "窓の外では、私たちがいた研究所が静かに崩壊し、あの不気味だった青い月の光が遠ざかっていく。代わりにコックピットの正面を穏やかに照らしたのは、私たちが目指す青い地球の姿だった。",
+    "bgm": "Room_Night.mp3",
+    "bgmVolume": 0.2
   },
   {
     "scene": "ロケット内部",
@@ -7946,7 +7970,7 @@ export const scenarioData = [
     "scene": "ロケット内部",
     "speaker": "ミカ",
     "role": "MIKA",
-    "text": "「あの時、先輩がくれた水とハンカチが、本当に嬉しかった。だから今度は、俺が先輩を助けなきゃって……そのためだけに、俺はまたあの地獄みたいな場所に、先輩と一緒に戻る覚悟を決めたんです」",
+    "text": "「あの時、先輩がくれた水とハンカチが、本当に嬉しかった。だから今度は、俺が先輩を助けなきゃって……そのために、俺はまたあの地獄みたいな場所に、先輩と一緒に戻る覚悟を決めたんです」",
     "showIllust": [
       "Mika_smile"
     ]
@@ -7975,8 +7999,16 @@ export const scenarioData = [
     "text": "大気圏突入の激しい振動を乗り越え、私たちは今度こそ、あの青い故郷へと帰ってきた。"
   },
   {
+    "scene": "宇宙空間",
+    "action": "SLOW_FADE_TO_BLACK",
+    "duration": 4000
+  },
+  {
     "scene": "大学の敷地内",
-    "text": "私たちの日常は、驚くほどあっけなく戻ってきた。"
+    "text": "私たちの日常は、驚くほどあっけなく戻ってきた。",
+    "bgm": "Normal_Morning2.mp3",
+    "bgmVolume": 0.2,
+    "bg": "/scene/sky.png"
   },
   {
     "scene": "大学の敷地内",
@@ -7995,6 +8027,7 @@ export const scenarioData = [
     "speaker": "ヒルミ教授",
     "role": "PROFESSOR",
     "text": "「やあ、二人とも。実習報告書のデータ、じつに素晴らしい出来だったよ。あの極限状態の後できちんとフォントサイズまで揃えてくるとは、さすが我が研究室の学生だね」",
+    "bg": "/scene/lab.png",
     "showIllust": [
       "Hirumi_smile"
     ]
@@ -8014,6 +8047,8 @@ export const scenarioData = [
   {
     "scene": "大学の研究室",
     "text": "そして、そんな中変わったことと言えば──。",
+    "bg": "black",
+    "bgm": "stop",
     "hideIllust": [
       "Hirumi"
     ]
@@ -8023,6 +8058,8 @@ export const scenarioData = [
     "speaker": "ミカ",
     "role": "MIKA",
     "text": "「先輩、その資料、俺が持ちます。……あ、手、貸してください」",
+    "bgm": "HappyEnd.mp3",
+    "bg": "/scene/university_hallway.png",
     "showIllust": [
       "Mika_smile"
     ]
@@ -8138,7 +8175,8 @@ export const scenarioData = [
   {
     "scene": "大学の敷地内",
     "text": "見知った服の袖を掴んだ。",
-    "label": "mutsunori_route_start"
+    "label": "mutsunori_route_start",
+    "bg": "/scene/university_collapse.png"
   },
   {
     "scene": "大学の敷地内",
@@ -8161,11 +8199,11 @@ export const scenarioData = [
   },
   {
     "scene": "大学の敷地内",
-    "text": "狂ったように鳴り響くサイレン、空を覆う異様な警戒色。凪砂も、ミカくんも、あの恐ろしい大男も、混沌としたキャンパスの人混みの中でいつの間にかはぐれてしまっていた。"
+    "text": "瓦礫を吹き飛ばす音、空を覆う異様な警戒色。凪砂も、ミカくんも、あの恐ろしい大男も、混沌としたキャンパスの中でいつの間にかはぐれてしまっていた。"
   },
   {
     "scene": "大学の敷地内",
-    "text": "けれど、睦典だけは私の手を離さなかった。いや、離せなかったのだ。"
+    "text": "けれど、睦典だけは私の手を離さなかった。"
   },
   {
     "scene": "大学の敷地内",
@@ -8179,19 +8217,27 @@ export const scenarioData = [
   {
     "scene": "大学の敷地内",
     "text": "背後から迫る、すべてを薙ぎ払うような圧倒的な質量と、漆黒のプレッシャー。",
-    "bg": "/scene/university_hallway_collapse.png"
+    "bg": "/scene/university_hallway_collapse.png",
+    "action": "PLAY_RUNNING_SE",
+    "bgAnimation": "dash"
   },
   {
     "scene": "大学の敷地内",
-    "text": "私は満の幻影を必死に脳裏から振り払い、睦典に引っ張られるがままに、私を呼び出した差出人のいる場所──月科学エネルギー学部の特級研究棟へ向かって、一心不乱に足を突き動かした。"
+    "text": "私は満の幻影を必死に脳裏から振り払い、睦典に引っ張られるがままに、私を呼び出した差出人のいる場所──月科学エネルギー学部の特級研究棟へ向かって、一心不乱に足を突き動かした。",
+    "action": "PLAY_RUNNING_SE"
   },
   {
     "scene": "大学の敷地内",
-    "text": "息が苦しい。肺が焼けるようだ。"
+    "text": "息が苦しい。肺が焼けるようだ。",
+    "action": "PLAY_RUNNING_SE"
   },
   {
     "scene": "研究室",
-    "text": "睦典が重い防火扉を背中で押し開け、私を室内に滑り込ませてから鍵を荒々しく閉める。"
+    "text": "睦典が重い防火扉を背中で押し開け、私を室内に滑り込ませてから鍵を荒々しく閉める。",
+    "bg": "/scene/lab.png",
+    "bgm": "stop",
+    "bgmFade": 1,
+    "action": "HIDE_NAGISA_LEFT"
   },
   {
     "scene": "研究室",
@@ -8226,7 +8272,10 @@ export const scenarioData = [
   },
   {
     "scene": "研究室",
-    "text": "部屋の奥から、いつもと変わらない白衣を羽織り、眼鏡の奥の瞳を細めたヒルミ教授が歩み寄ってきた。"
+    "text": "部屋の奥から、いつもと変わらない白衣を羽織り、眼鏡の奥の瞳を細めたヒルミ教授が歩み寄ってきた。",
+    "bgm": "serious_1.mp3",
+    "bgmFade": 1.5,
+
   },
   {
     "scene": "研究室",
@@ -8244,7 +8293,7 @@ export const scenarioData = [
   },
   {
     "scene": "研究室",
-    "text": "ヒルミ教授は、私たちに、あそこの月へ行けって…？"
+    "text": "一瞬、教授の言ったことに耳を疑った。私たちが…あの青い月に…？"
   },
   {
     "scene": "研究室",
@@ -8296,8 +8345,6 @@ export const scenarioData = [
   },
   {
     "scene": "研究室",
-    "speaker": "ヒルミ教授",
-    "role": "PROFESSOR",
     "text": "そう言って教授は私たちに文字がびっしり書かれた薄い紙束を手渡した。"
   },
   {
@@ -8318,7 +8365,9 @@ export const scenarioData = [
   },
   {
     "scene": "研究室",
-    "text": "遠くから防壁を叩き割るような凄まじい爆音が響き、研究室全体が大きく揺れた。アイツが、すぐそこまで来ている。"
+    "text": "遠くから防壁を叩き割るような凄まじい爆音が響き、研究室全体が大きく揺れた。アイツが、すぐそこまで来ている。",
+    "action": "PLAY_EXPLOSION_SE",
+    "action": "SHAKE_SCREEN"
   },
   {
     "scene": "研究室",
@@ -8336,6 +8385,7 @@ export const scenarioData = [
   {
     "scene": "ロケット内部",
     "text": "ロケットの内部は、無機質な計器類と二人分のシートがあるだけの、おそろしく狭い空間だった。",
+    "bgm": "stop",
     "bg": "/scene/rocket.png"
   },
   {
@@ -8366,7 +8416,8 @@ export const scenarioData = [
   },
   {
     "scene": "ロケット内部",
-    "text": "機械的なアナウンスが室内に鳴り響き、足元から、世界がひっくり返るような凄まじい振動が這い上がってきた。"
+    "text": "機械的なアナウンスが室内に鳴り響き、足元から、世界がひっくり返るような凄まじい振動が這い上がってきた。",
+    "action": "SHAKE_SCREEN"
   },
   {
     "scene": "ロケット内部",
@@ -8449,7 +8500,10 @@ export const scenarioData = [
   },
   {
     "scene": "ロケット内部",
-    "text": "──ピピッ、ピピッ、ピピピピピピピッ！！！"
+    "text": "──ピピッ、ピピッ、ピピピピピピピッ！！！",
+    "bgm": "alert_Rocket.mp3",
+    "bgmFade": 0,
+    "action": "RED_ALERT_FLASH"
   },
   {
     "scene": "ロケット内部",
@@ -8481,21 +8535,31 @@ export const scenarioData = [
   },
   {
     "scene": "ロケット内部",
-    "text": "世界がひっくり返るような全方位からのGと、摩擦による激しい熱、そして引き裂かれそうな金属音が機体を包み込む。"
+    "text": "世界がひっくり返るような全方位からのGと、摩擦による激しい熱、そして引き裂かれそうな金属音が機体を包み込む。",
+    "action": "SHAKE_SCREEN_EXTREME"
   },
   {
     "scene": "ロケット内部",
-    "text": "ガガガガガガガッ！！！ と激しく揺れる視界の中、私は、ただ迫り来る死の恐怖に、声を上げることもできず目を見開いた。"
+    "text": "ガガガガガガガッ！！！ と激しく揺れる視界の中、私は、ただ迫り来る死の恐怖に、声を上げることもできず目を見開いた。",
+    "se": "Rocket_Shock.mp3"
+  },
+  {
+    "scene": "ロケット内部(墜落後)",
+    "action": "SLOW_FADE_TO_BLACK",
+    "duration": 3000,
+    "bgm": "stop",
+    "bgmFade": 3,
+    "stopSe": "Rocket_Shock.mp3",
+    "bg": "black",
+    "hideIllust": [
+      "Mutsunori"
+    ]
   },
   {
     "scene": "ロケット内部(墜落後)",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「───、───ら！」",
-    "showIllust": [
-      "Mutsunori_smile"
-    ],
-    "bg": "/scene/rocket_collapse.png"
+    "text": "「───、───ら！」"
   },
   {
     "scene": "ロケット内部(墜落後)",
@@ -8505,10 +8569,7 @@ export const scenarioData = [
     "scene": "ロケット内部(墜落後)",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「朔良……っ！ 目を覚まして、朔良……！！」",
-    "showIllust": [
-      "Mutsunori_smile"
-    ]
+    "text": "「朔良……っ！ 目を覚まして、朔良……！！」"
   },
   {
     "scene": "ロケット内部(墜落後)",
@@ -8519,6 +8580,8 @@ export const scenarioData = [
     "speaker": "睦典",
     "role": "MUTSUNORI",
     "text": "重い瞼をこじ開けると、視界に飛び込んできたのは、無機質な計器類がひしゃげ、火花を散らしているロケットの無惨な内部だった。コックピットを包むのは、不気味なほどの静寂と、どこか鉄の匂いが混ざった冷たい空気。",
+    "bg": "/scene/rocket_collapse.png",
+    "action": "WAKE_UP",
     "showIllust": [
       "Mutsunori_serious"
     ]
@@ -8593,7 +8656,8 @@ export const scenarioData = [
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「───っ、何、ここ……」",
-    "bg": "/scene/moon_surface.png"
+    "bg": "/scene/moon_surface.png",
+    "bgm": "Moon.mp3"
   },
   {
     "scene": "月面",
@@ -8602,15 +8666,10 @@ export const scenarioData = [
   {
     "scene": "月面",
     "text": "そこは、私たちがよく知る大学のキャンパスでも、見慣れた街並みでもなかった。",
-    "bg": "/scene/moon_surface.png"
   },
   {
     "scene": "月面",
     "text": "地面は白く乾いた砂のような岩肌に覆われ、周囲にはいつの時代のものかもわからない、不気味に風化した巨大な建造物の「廃墟」が、墓標のようにどこまでも連なっている。"
-  },
-  {
-    "scene": "月面",
-    "text": "そして見上げれば──空には、私たちがさっきまでいたはずの地球が、世界のすべてを支配するかのように異常な大きさで君臨していた。"
   },
   {
     "scene": "月面",
@@ -8686,7 +8745,8 @@ export const scenarioData = [
   },
   {
     "scene": "月面",
-    "text": "決意を固めるために、私は隣に立つ彼に声をかけた。"
+    "text": "決意を固めるために、私は隣に立つ彼に声をかけた。",
+    "bg": "/scene/moon_surface.png"
   },
   {
     "scene": "月面",
@@ -8747,7 +8807,6 @@ export const scenarioData = [
     "showIllust": [
       "Mutsunori_smile"
     ],
-    "bg": "/scene/moon_surface.png"
   },
   {
     "scene": "月面",
@@ -8825,10 +8884,12 @@ export const scenarioData = [
     ]
   },
   {
+    "label": "read_professors_note_3",
     "scene": "月面",
     "speaker": "ヒルミ教授の手記",
     "role": "PROFESSOR",
-    "text": "――突然変なことに巻き込んで済まないね、朔良。"
+    "text": "――突然変なことに巻き込んで済まないね、朔良。",
+    "showItem": "/item/Message.png"
   },
   {
     "scene": "月面",
@@ -8843,98 +8904,97 @@ export const scenarioData = [
     "text": "私が手短に話した『コア』についてだが……君たちが降り立った研究所で、開発が進められていたものだ。"
   },
   {
-    "label": "read_professors_note_3",
-    "scene": "手記",
+    "scene": "月面",
     "speaker": "ヒルミ教授の手記",
     "role": "PROFESSOR",
     "text": "形状として、白く輝く、手のひらサイズの球体だ。おそらく研究所の最奥―本当の月の光が当たるところに厳重に保管されているはずだ。"
   },
   {
-    "scene": "手記",
+    "scene": "月面",
     "speaker": "ヒルミ教授の手記",
     "role": "PROFESSOR",
     "text": "この『コア』によって生み出されるのは、我々の生活を支えるエネルギーだけではない。同時に【キメラ】をも生み出している。"
   },
   {
-    "scene": "手記",
+    "scene": "月面",
     "speaker": "ヒルミ教授の手記",
     "role": "PROFESSOR",
     "text": "当然ながら、そんなこと世間は知らない。【キメラ】騒動に関しても、この月との関係は伏せられるだろう。"
   },
   {
-    "scene": "手記",
+    "scene": "月面",
     "speaker": "ヒルミ教授の手記",
     "role": "PROFESSOR",
     "text": "…本題に入ろう。ではどのように『コア』を止めるか。"
   },
   {
-    "scene": "手記",
+    "scene": "月面",
     "speaker": "ヒルミ教授の手記",
     "role": "PROFESSOR",
     "text": "先ほども書いたように『コア』は研究所の最奥に保管されている。"
   },
   {
-    "scene": "手記",
+    "scene": "月面",
     "speaker": "ヒルミ教授の手記",
     "role": "PROFESSOR",
     "text": "当然ながら、そこへ至る道中には最高ランクの防衛セキュリティが敷かれているはずだ。"
   },
   {
-    "scene": "手記",
+    "scene": "月面",
     "speaker": "ヒルミ教授の手記",
     "role": "PROFESSOR",
     "text": "私が事前にハッキングして抜き出しておいた、【研究所のセキュリティ解除コードの断片（フラグメント）】のデータ配置図が記載されている。"
   },
   {
-    "scene": "手記",
+    "scene": "月面",
     "speaker": "ヒルミ教授の手記",
     "role": "PROFESSOR",
     "text": "最奥の扉を開くには、君たちが力を合わせて、研究所の各エリアに散らばるデータチップ（フラグメント）をすべて『収集』しなければならない。"
   },
   {
-    "scene": "手記",
+    "scene": "月面",
     "speaker": "ヒルミ教授の手記",
     "role": "PROFESSOR",
     "text": "最後に、コアの止め方について書き添えておこう。"
   },
   {
-    "scene": "手記",
+    "scene": "月面",
     "speaker": "ヒルミ教授の手記",
     "role": "PROFESSOR",
     "text": "あのコアは物理的な破壊は通用しない。外衝撃を与えれば、そのエネルギーが暴走し、この隔離領域ごと君たちは塵に還るだろう。"
   },
   {
-    "scene": "手記",
+    "scene": "月面",
     "speaker": "ヒルミ教授の手記",
     "role": "PROFESSOR",
     "text": "コアを止める方法は唯一つ。"
   },
   {
-    "scene": "手記",
+    "scene": "月面",
     "speaker": "ヒルミ教授の手記",
     "role": "PROFESSOR",
     "text": "エネルギーの「過負荷（オーバーロード）」による強制シャットダウンだ。"
   },
   {
-    "scene": "手記",
+    "scene": "月面",
     "speaker": "ヒルミ教授の手記",
     "role": "PROFESSOR",
     "text": "適応者の持つ強力な【異能の力】を、コアの許容量を超えるまで力尽くで「注ぎ込む」しかない。"
   },
   {
-    "scene": "手記",
+    "scene": "月面",
     "speaker": "ヒルミ教授の手記",
     "role": "PROFESSOR",
     "text": "当然、それには大きなリスクが伴う。くれぐれも、選択を誤らないことだ。"
   },
   {
-    "scene": "手記",
+    "scene": "月面",
     "speaker": "ヒルミ教授の手記",
     "role": "PROFESSOR",
     "text": "健闘を祈るよ。君たちの単位は、この実習の成否にかかっているからね。"
   },
   {
-    "scene": "手記",
+    "scene": "月面",
     "speaker": "ヒルミ教授の手記",
     "role": "PROFESSOR",
     "text": "──ヒルミ"
@@ -8986,14 +9046,15 @@ export const scenarioData = [
   },
   {
     "scene": "フラグメントコレクト",
-    "action": "TRIGGER_FRAGMENT_COLLECT"
+    "action": "TRIGGER_FRAGMENT_COLLECT",
+    "bgm": "Lab.mp3"
   },
   {
     "scene": "制御室",
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「──よしっ、これで最後のデータチップ、回収完了！」",
-    "bg": "/scene/Lab_corridor.png"
+    "bg": "/scene/Lab_corridor.png",
   },
   {
     "scene": "制御室",
@@ -9097,6 +9158,8 @@ export const scenarioData = [
     "speaker": "睦典",
     "role": "MUTSUNORI",
     "text": "「俺さ……さっきから、ちょっと変なんだよね」",
+    "bgm": "stop",
+    "bgmFade": 0.5,
     "showIllust": [
       "Mutsunori_serious"
     ]
@@ -9125,6 +9188,9 @@ export const scenarioData = [
     "speaker": "睦典",
     "role": "MUTSUNORI",
     "text": "「あはは、ごめんごめん、ちょっと緊張しちゃってさ。ほら、さっさと開けようぜ！」",
+    "bgm": "Lab.mp3",
+    "bgmVolume": 0.5,
+    "bgmFade": 0.5,
     "showIllust": [
       "Mutsunori_happy"
     ]
@@ -9143,11 +9209,13 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "カチリ──。最後のチップが収まり、重厚なゲートがゆっくりと左右に開き始める\n空気の抜けるような低い音が響き、扉の向こうから、息を呑むほど美しく、そして冷徹な光が溢れ出した。",
+    "text": "カチリ──。最後のチップが収まり、重厚なゲートがゆっくりと左右に開き始める。\n空気の抜けるような低い音が響き、扉の向こうから、息を呑むほど美しく、そして冷徹な光が溢れ出した。",
   },
   {
     "scene": "研究所の最奥",
     "text": "天井の一部がガラス張りになっており、そこから差し込む「本当の月の光」を浴びて、それは宙に浮かんでいた。",
+    "bg": "/scene/core.png",
+    "bgm": "CoreBGM.mp3",
     "bg": "/scene/core.png"
   },
   {
@@ -9197,7 +9265,7 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "対して、睦典には──具体的なことは明かされなかったものの、強大で、そして使うたびに彼を削っていく『異能』がある。"
+    "text": "対して、睦典には─強大で、そして使うたびに彼を削っていく『異能』がある。"
   },
   {
     "scene": "研究所の最奥",
@@ -9207,7 +9275,7 @@ export const scenarioData = [
     "scene": "研究所の最奥",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「ムッちゃん、ダメ……！きっと、他に求める方法があるはずだよ……！ ムッちゃんが無理することないから……！」"
+    "text": "「ムッちゃん、ダメ……！きっと、他にも止める方法があるはずだよ……！ ムッちゃんが無理することないから……！」"
   },
   {
     "scene": "研究所の最奥",
@@ -9247,7 +9315,8 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "彼の肌から、不気味なまでの高密度なエネルギーが、激しい光の帯となってコアへと流れ込んでいく。"
+    "text": "彼の肌から、不気味なまでの高密度なエネルギーが、激しい光の帯となってコアへと流れ込んでいく。",
+    "action": "ENERGY_AURA_START"
   },
   {
     "scene": "研究所の最奥",
@@ -9264,7 +9333,8 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "コアに注ぎ込んだはずのエネルギーが、まるで拒絶反応を起こしたかのように暴走し、逆に睦典の体内へとなだれ込んでいく。"
+    "text": "コアに注ぎ込んだはずのエネルギーが、まるで拒絶反応を起こしたかのように暴走し、逆に睦典の体内へとなだれ込んでいく。",
+    "action": "BLACK_AURA_START"
   },
   {
     "scene": "研究所の最奥",
@@ -9281,9 +9351,7 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "speaker": "朔良",
-    "role": "SAKURA",
-    "text": "「力を注ごうとした弊害──その莫大な負荷によって、彼の自我の摩耗が一気に限界を超えようとしていた。"
+    "text": "力を注ごうとした弊害──その莫大な負荷によって、彼の自我の摩耗が一気に限界を超えようとしていた。"
   },
   {
     "scene": "研究所の最奥",
@@ -9297,7 +9365,8 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "ドォォォォンッ！！！"
+    "text": "ドォォォォンッ！！！",
+    "action": "STOP_ALL_AURAS_AND_SHAKE"
   },
   {
     "scene": "研究所の最奥",
@@ -9314,7 +9383,8 @@ export const scenarioData = [
     "scene": "研究所の最奥",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「──『黒騎士』……っ！？」"
+    "text": "「──『黒騎士』……っ！？」",
+    "bgm": "Battle1.mp3"
   },
   {
     "scene": "研究所の最奥",
@@ -9322,25 +9392,30 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "黒騎士が容赦なく大剣を振り上げ、私たちに襲いかかる──！"
+    "text": "黒騎士が容赦なく大剣を振り上げ、私たちに襲いかかる──！",
+    "bgAnimation": "center_zoom"
   },
   {
     "scene": "研究所の最奥",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「嫌、っ──！」"
+    "text": "「嫌、っ──！」",
+    "bgAnimation": "center_zoom"
   },
   {
     "scene": "研究所の最奥",
-    "text": "まともな武器も持たない私は、のたうち回る睦典の手を必死に引きながら、崩落するガレキの陰へと逃げ惑うことしかできなかった。"
+    "text": "まともな武器も持たない私は、のたうち回る睦典の手を必死に引きながら、崩落するガレキの陰へと逃げ惑うことしかできなかった。",
+    "bgAnimation": "dodge_left"
   },
   {
     "scene": "研究所の最奥",
-    "text": "しかし、黒騎士の動きは容赦がない。無機質な足音が迫ったかと思うと、頭上から空気を切り裂くような凄まじい一撃が振り下ろされる。"
+    "text": "しかし、黒騎士の動きは容赦がない。無機質な足音が迫ったかと思うと、頭上から空気を切り裂くような凄まじい一撃が振り下ろされる。",
+    "bgAnimation": "dodge_left"
   },
   {
     "scene": "研究所の最奥",
-    "text": "直撃する──そう目をつぶった瞬間。"
+    "text": "直撃する──そう目をつぶった瞬間。",
+    "bgAnimation": "dodge_left"
   },
   {
     "scene": "研究所の最奥",
@@ -9349,11 +9424,14 @@ export const scenarioData = [
     "text": "「朔良っ……！！」",
     "showIllust": [
       "Mutsunori_smile"
-    ]
+    ],
+    "bgAnimation": "dodge_left"
   },
   {
     "scene": "研究所の最奥",
-    "text": "鋭い叫び声と共に、強い力で身体を突き飛ばされた。\nガレキの床に激しく転がり、痛みに耐えながら目を開けた私の視界に、最悪の光景が飛び込んでくる。"
+    "text": "鋭い叫び声と共に、強い力で身体を突き飛ばされた。\nガレキの床に激しく転がり、痛みに耐えながら目を開けた私の視界に、最悪の光景が飛び込んでくる。",
+    "action": "SHAKE_SCREEN_VERY_LARGE",
+    "bgAnimation": "stumble_zoom"
   },
   {
     "scene": "研究所の最奥",
@@ -9362,21 +9440,27 @@ export const scenarioData = [
     "text": "「が、あ……っ！」",
     "showIllust": [
       "Mutsunori_smile"
-    ]
+    ],
+    "bgAnimation": "impact_zoom"
   },
   {
     "scene": "研究所の最奥",
-    "text": "睦典が、私の身代わりになって黒騎士の刃を受け止めていた。大剣が彼の身体を深く切り裂き、鮮血が飛び散る。"
+    "text": "睦典が、私の身代わりになって黒騎士の刃を受け止めていた。大剣が彼の身体を深く切り裂き、鮮血が飛び散る。",
+    "action": "BLOOD_SCREEN",
+    "bgAnimation": "impact_zoom"
   },
   {
     "scene": "研究所の最奥",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「ムッちゃん！！」"
+    "text": "「ムッちゃん！！」",
+    "action": "SHAKE_SCREEN",
+    "bgAnimation": "impact_zoom"
   },
   {
     "scene": "研究所の最奥",
-    "text": "叫び声をあげて駆け寄ろうとしたけれど、次の瞬間、私は自分の目を疑った。"
+    "text": "叫び声をあげて駆け寄ろうとしたけれど、次の瞬間、私は自分の目を疑った。",
+    "bgAnimation": "impact_zoom"
   },
   {
     "scene": "研究所の最奥",
@@ -9406,7 +9490,8 @@ export const scenarioData = [
   },
   {
     "scene": "瓦礫裏",
-    "text": "黒騎士はまだ私たちの行方を探して、ガレキを蹴散らしながら遠くを徘徊している。"
+    "text": "黒騎士はまだ私たちの行方を探して、ガレキを蹴散らしながら遠くを徘徊している。",
+    "bgm": "stop"
   },
   {
     "scene": "瓦礫裏",
@@ -9426,6 +9511,7 @@ export const scenarioData = [
     "speaker": "睦典",
     "role": "MUTSUNORI",
     "text": "「…ちょっとした怪我ならすぐ治るの、見ただろ？ 俺の異能さ、これなんだよ。どんな傷を負っても、一瞬で元通りになる。……文字通りの『不死身』」",
+    "bgm": "serious_3.mp3",
     "showIllust": [
       "Mutsunori_serious"
     ]
@@ -9766,6 +9852,7 @@ export const scenarioData = [
     "speaker": "睦典",
     "role": "MUTSUNORI",
     "text": "「逃げて、朔良……っ！ 俺が……君を殺しちゃう前に……早く、早く行けぇっ！！」",
+    "bgm": "stop",
     "showIllust": [
       "Mutsunori_smile"
     ]
@@ -9791,6 +9878,7 @@ export const scenarioData = [
     "speaker": "睦典",
     "role": "MUTSUNORI",
     "text": "「ガ、アアアアアアアア……ッ！」",
+    "action": "SHAKE_SCREEN",
     "showIllust": [
       "Mutsunori_serious"
     ]
@@ -9811,11 +9899,9 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "私は大きく一歩を踏み出し、サーバーラックの影から飛び出した。"
-  },
-  {
-    "scene": "研究所の最奥",
-    "text": "驚愕に目を見開く睦典の前に立ちはだかり、そのまま、禍々しい霧が渦巻く彼の胸へと迷わず飛び込んだ。"
+    "text": "驚愕に目を見開く睦典の前に立ちはだかり、そのまま、禍々しい霧が渦巻く彼の胸へと迷わず飛び込んだ。",
+    "action": "SHAKE_SCREEN",
+
   },
   {
     "scene": "研究所の最奥",
@@ -9834,7 +9920,10 @@ export const scenarioData = [
     "scene": "研究所の最奥",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「忘れるなんて、絶対に許さない……！！」"
+    "text": "「忘れるなんて、絶対に許さない……！！」",
+    "bgm": "Battle2.mp3",
+    "bgmFade": 3,
+    "bgmVolume": 0.4
   },
   {
     "scene": "研究所の最奥",
@@ -9854,7 +9943,7 @@ export const scenarioData = [
     "scene": "研究所の最奥",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「自分のことも、私のことも、勝手に諦めて消さないでよ……！ ムッちゃんっ！！」"
+    "text": "「自分のことも、私のことも、勝手に諦めないでよ……！ ムッちゃんっ！！」"
   },
   {
     "scene": "研究所の最奥",
@@ -9862,11 +9951,12 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "──ゴォォッ……！ と、部屋の空気が鳴動する。\n私の身体の奥底から、温かく眩しい光の波紋が、溢れんばかりに広がった。"
+    "text": "──ゴォォッ……！ と、部屋の空気が鳴動する。\n私の身体の奥底から、温かく眩しい光の波紋が、溢れんばかりに広がった。",
+    "action": "LIGHT_WAVE_BURST"
   },
   {
     "scene": "研究所の最奥",
-    "text": "その光は、睦典の身体を蝕んでいた紫黒色の霧をみるみるうちに浄化し、私の身体を通して優しく吸い上げていく。"
+    "text": "その光は、睦典の身体を蝕んでいた紫黒色の霧をみるみるうちに浄化し、私の身体を通して優しく吸い上げていく。",
   },
   {
     "scene": "研究所の最奥",
@@ -9875,7 +9965,8 @@ export const scenarioData = [
     "text": "「あ……、さく、ら……？」",
     "showIllust": [
       "Mutsunori_smile"
-    ]
+    ],
+    "action": "CLEAR_LIGHT_WAVE"
   },
   {
     "scene": "研究所の最奥",
@@ -9908,9 +9999,15 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
+    "text": "覚悟を決めた私はたち大きく一歩を踏み出し、サーバーラックの影から飛び出した。",
+  },
+  {
+    "scene": "研究所の最奥",
     "speaker": "黒騎士",
     "role": "ENEMY",
     "text": "「ギ、ギギ……ッ」",
+    "bg": "/scene/core_hakai1.png"
+
   },
   {
     "scene": "研究所の最奥",
@@ -9946,34 +10043,41 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "ガレキを蹴り崩し、黒騎士が恐ろしい速度で突進してくる。\n私は黒騎士の構えの癖や、崩落した天井の死角を瞬時に見抜き、睦典に鋭く指示を飛ばした。"
+    "text": "ガレキを蹴り崩し、黒騎士が恐ろしい速度で突進してくる。\n私は黒騎士の構えの癖や、崩落した天井の死角を瞬時に見抜き、睦典に鋭く指示を飛ばした。",
+    "action": "SHAKE_SCREEN",
+    "bgAnimation": "center_zoom"
   },
   {
     "scene": "研究所の最奥",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「そこ、ガレキが落ちてくる！ 右にステップして！」"
+    "text": "「そこ、ガレキが落ちてくる！ 右にステップして！」",
+    "bgAnimation": "center_zoom"
   },
   {
     "scene": "研究所の最奥",
     "speaker": "睦典",
     "role": "MUTSUNORI",
     "text": "「おうっ！」",
+    "bgAnimation": "center_zoom",
     "showIllust": [
       "Mutsunori_pout"
     ]
   },
   {
     "scene": "研究所の最奥",
-    "text": "睦典は私の声と完全に呼吸を合わせ、大剣の重い一撃を紙一重で回避する。"
+    "text": "睦典は私の声と完全に呼吸を合わせ、大剣の重い一撃を紙一重で回避する。",
+    "bgAnimation": "dodge_right"
   },
   {
     "scene": "研究所の最奥",
-    "text": "避けると同時に、睦典は爆発的な踏み込みで黒騎士の懐へ潜り込み、拳を黒騎士の硬強な鎧へと叩き込む。"
+    "text": "避けると同時に、睦典は爆発的な踏み込みで黒騎士の懐へ潜り込み、拳を黒騎士の硬強な鎧へと叩き込む。",
+    "bgAnimation": "dodge_right"
   },
   {
     "scene": "研究所の最奥",
-    "text": "ドガァァァァンッ！！！すさまじい衝撃波が部屋中に吹き荒れ、黒騎士の頑強な甲冑にメキメキと大きな亀裂が入る。"
+    "text": "ドガァァァァンッ！！！すさまじい衝撃波が部屋中に吹き荒れ、黒騎士の頑強な甲冑にメキメキと大きな亀裂が入る。",
+    "action": "WHITE_FLASH_AND_SHAKE",
   },
   {
     "scene": "研究所の最奥",
@@ -10000,7 +10104,7 @@ export const scenarioData = [
   {
     "scene": "研究所の最奥",
     "text": "ズガガガガガッ！！！",
-    "action": "SHAKE_SCREEN_VERY_LARGE"
+    "action": "SHAKE_AND_SMOKE"
   },
   {
     "scene": "研究所の最奥",
@@ -10104,7 +10208,8 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "二人は一歩、また一歩と、眩い光を放つコアへと近づいていく。"
+    "text": "二人は一歩、また一歩と、眩い光を放つコアへと近づいていく。",
+    "bg": "/scene/core_close.png"
   },
   {
     "scene": "研究所の最奥",
@@ -10121,12 +10226,12 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "ブゥゥゥゥゥンッ──！！！！"
+    "text": "ブゥゥゥゥゥンッ──！！！！",
+    "action": "WHITE_PULSE_START"
   },
   {
     "scene": "研究所の最奥",
     "text": "触れた瞬間、鼓膜が引き裂かれそうなほどの高周波の音が響き、視界が真っ白な光で埋め尽くされた。",
-    "action": "WHITE_OUT_START"
   },
   {
     "scene": "研究所の最奥",
@@ -10141,6 +10246,7 @@ export const scenarioData = [
     "speaker": "睦典",
     "role": "MUTSUNORI",
     "text": "「くっ、あ、あああぁぁぁっ……！！」",
+    "action": "WHITE_PULSE_MID",
     "showIllust": [
       "Mutsunori_smile"
     ]
@@ -10170,7 +10276,8 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "私の身体を通して、睦典の脳を焼き切ろうとしていた過剰な負荷と、コアの暴走エネルギーが、恐ろしい勢いでなだれ込んでくる。"
+    "text": "私の身体を通して、睦典の脳を焼き切ろうとしていた過剰な負荷と、コアの暴走エネルギーが、恐ろしい勢いでなだれ込んでくる。",
+    "action": "WHITE_PULSE_HIGH"
   },
   {
     "scene": "研究所の最奥",
@@ -10195,7 +10302,8 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "パリィィィィィィンッ！！！！"
+    "text": "パリィィィィィィンッ！！！！",
+    "action": "WHITE_OUT_START"
   },
   {
     "scene": "研究所の最奥",
@@ -10204,7 +10312,9 @@ export const scenarioData = [
   {
     "scene": "研究所の最奥",
     "text": "視界を覆っていた眩い光がゆっくりと収まっていき、私たちの周りには、柔らかな静寂だけが残されていた。",
-    "action": "WHITE_OUT_END_SLOW"
+    "action": "WHITE_OUT_END_VERY_SLOW",
+    "bg": "/scene/core_close_Nothing.png",
+    "bgm": "stop"
   },
   {
     "scene": "研究所の最奥",
@@ -10242,6 +10352,8 @@ export const scenarioData = [
     "speaker": "睦典",
     "role": "MUTSUNORI",
     "text": "「あったり前だろ。お前を忘れるわけないじゃん。……っていうか、なんか急に、めちゃくちゃお腹空いてきちゃったな」",
+    "bgm": "Room_Night.mp3",
+    "bgmVolume": 0.2,
     "showIllust": [
       "Mutsunori_smile"
     ]
@@ -10271,7 +10383,8 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "そこには、隔離領域を覆っていた不気味なエネルギーの霧が晴れ、本来の姿を取り戻した、息を呑むほど美しい星空が広がっていた。"
+    "text": "そこには、隔離領域を覆っていた不気味なエネルギーの霧が晴れ、本来の姿を取り戻した、息を呑むほど美しい星空が広がっていた。",
+    "bg": "/scene/Moon_Lab.png"
   },
   {
     "scene": "研究所の最奥",
@@ -10303,7 +10416,9 @@ export const scenarioData = [
   {
     "scene": "研究所の最奥",
     "speaker": "教授の手記",
-    "text": "『もし全てが終わったら、研究所の最下層にある緊急離脱システムを使用しなさい。コアが停止した瞬間、この施設は自壊を始める』"
+    "text": "『もし全てが終わったら、研究所の最下層にある緊急離脱システムを使用しなさい。コアが停止した瞬間、この施設は自壊を始める』",
+    "bg": "/scene/core_close_Nothing.png",
+
   },
   {
     "scene": "研究所の最奥",
@@ -10312,13 +10427,16 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "ズガガガガガッ……！ と、地鳴りのような振動が私たちの足元を揺らした。"
+    "text": "ズガガガガガッ……！ と、地鳴りのような振動が私たちの足元を揺らした。",
+    "action": "SHAKE_SCREEN_EXTREME"
   },
   {
     "scene": "研究所の最奥",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「ムッちゃん、急ごう！ 最下層にロケットがあるって！」"
+    "text": "「ムッちゃん、急ごう！ 最下層にロケットがあるって！」",
+    "action": "RED_ALERT_AND_SMALL_SHAKE",
+    "bgm": "alert.mp3"
   },
   {
     "scene": "研究所の最奥",
@@ -10331,21 +10449,27 @@ export const scenarioData = [
   },
   {
     "scene": "最下層",
-    "text": "背後で壁が崩れ、天井が落ちてくる轟音が響く中、私たちはガレキの嵐を駆け抜けた。"
+    "text": "背後で壁が崩れ、天井が落ちてくる轟音が響く中、私たちはガレキの嵐を駆け抜けた。",
+    "bg": "black",
   },
   {
     "scene": "最下層",
-    "text": "たどり着いた最下層の重厚なハッチを開けると──そこには、薄暗い格納庫の真ん中で、白くそびえ立つ一基の脱出用ロケットが静かに格納されていた。"
+    "text": "たどり着いた最下層の重厚なハッチを開けると──そこには、薄暗い格納庫の真ん中で、白くそびえ立つ一基の脱出用ロケットが静かに格納されていた。",
+    "action": "CLEAR_ALL_ALERTS_AND_SHAKES",
+    "bg": "black",
+    "showIllust": []
 
   },
   {
     "scene": "脱出用ロケット内",
     "text": "滑り込むようにハッチを閉め、二人分の狭いシートになだれ込んで安全ベルトを締める。",
-    "bg": "/scene/rocket_back.png"
+    "bg": "/scene/rocket_back.png",
+    "bgm": "stop"
   },
   {
     "scene": "脱出用ロケット内",
-    "text": "睦典が慣れない手つきでコンソールの起動スイッチを押すと、激しい駆動音と共に、ロケットが月面を蹴って漆黒の宇宙へと打ち上がった。"
+    "text": "睦典が慣れない手つきでコンソールの起動スイッチを押すと、激しい駆動音と共に、ロケットが月面を蹴って漆黒の宇宙へと打ち上がった。",
+    "action": "SHAKE_SCREEN",
   },
   {
     "scene": "宇宙空間",
@@ -10353,7 +10477,7 @@ export const scenarioData = [
   },
   {
     "scene": "宇宙空間",
-    "text": "代わりにコックピットの正面を穏やかに照らしたのは、私たちが目指す、本当の、優しくて美しい青い地球の姿だった。"
+    "text": "代わりにコックピットの正面を穏やかに照らしたのは、優しくて美しい青い地球の姿だった。"
   },
   {
     "scene": "宇宙空間",
@@ -10364,6 +10488,8 @@ export const scenarioData = [
     "speaker": "睦典",
     "role": "MUTSUNORI",
     "text": "「地球に帰ったらさ、俺の特製の『ルナ・エネルギーうどん』、真っ先に食わせてやるよ。お前、それ楽しみにここまで頑張ったんだろ？」",
+    "bgm": "Room_Night.mp3",
+    "bgmVolume": 0.2,
     "showIllust": [
       "Mutsunori_happy"
     ]
@@ -10387,9 +10513,16 @@ export const scenarioData = [
     "text": "機体を包むのは、あの気まずかった往路とは違う、温かくて穏やかな静寂だった。"
   },
   {
+    "scene": "宇宙空間",
+    "action": "SLOW_FADE_TO_BLACK",
+    "duration": 4000
+  },
+  {
     "scene": "いつもの大学",
     "text": "私たちの日常は、驚くほどあっけなく戻ってきた。",
-    "bg": "/scene/university_gate.png"
+    "bg": "/scene/sky.png",
+    "bgm": "Normal_Morning2.mp3",
+    "bgmVolume": 0.2
   },
   {
     "scene": "いつもの大学",
@@ -10437,7 +10570,10 @@ export const scenarioData = [
   },
   {
     "scene": "研究室",
-    "text": "そして、そんな中変わったことと言えば──。"
+    "text": "そして、そんな中変わったことと言えば──。",
+    "bg": "black",
+    "bgm": "stop",
+    "showIllust": []
   },
   {
     "scene": "割烹『むつ』",
@@ -10445,6 +10581,7 @@ export const scenarioData = [
     "role": "MUTSUNORI",
     "text": "「はい、お待ちどうさま！当店特製、『ルナ・エネルギーうどん』改め、激ウマ月見うどんです」",
     "bg": "/scene/mutsu_inside.png",
+    "bgm": "HappyEnd.mp3",
     "showIllust": [
       "Mutsunori_happy"
     ]
@@ -10618,9 +10755,7 @@ export const scenarioData = [
     "scene": "大学の敷地内",
     "text": "視界が激しく揺れ、冷たいコンクリートが目の前に迫る。 衝撃を覚悟して強く目を瞑った瞬間、私の身体は硬く、圧倒的に巨大な「肉壁」に衝突するような形で受け止められていた。",
     "label": "akane_route_start",
-    "showIllust": [
-      "Akane"
-    ]
+    "action": "SHAKE_SCREEN"
   },
   {
     "scene": "大学の敷地内",
@@ -10694,11 +10829,16 @@ export const scenarioData = [
   },
   {
     "scene": "教授の研究室",
-    "text": "スラムの無法地帯のような冷たい沈黙を保ったまま、彼が私を連れて押し入ったのは、見慣れた大学の、けれど誰も近寄らない最奥──ヒルミ教授の研究室だった。"
+    "text": "スラムの無法地帯のような冷たい沈黙を保ったまま、彼が私を連れて押し入ったのは、見慣れた大学の、けれど誰も近寄らない最奥──ヒルミ教授の研究室だった。",
+    "bg": "/scene/university_hallway_collapse.png",
+    "bgAnimation": "dash"
   },
   {
     "scene": "教授の研究室",
-    "text": "乱暴に扉が開き、私たちが中に転がり込む。"
+    "text": "乱暴に扉が開き、私たちが中に転がり込む。",
+    "bg": "/scene/lab.png",
+    "bgm": "stop",
+    "bgmFade": 1,
   },
   {
     "scene": "教授の研究室",
@@ -10718,6 +10858,8 @@ export const scenarioData = [
     "speaker": "ヒルミ教授",
     "role": "PROFESSOR",
     "text": "「そんなに熱視線を送られると照れるね。私に男色の趣味はないのだが」",
+    "bgm": "serious_1.mp3",
+    "bgmFade": 1.5,
     "showIllust": [
       "Hirumi_neutral"
     ]
@@ -10851,11 +10993,13 @@ export const scenarioData = [
   },
   {
     "scene": "教授の研究室",
-    "text": "その瞬間、ゴオオオ……と地響きのような重低音が研究室の足元から響き渡り、火花が散るような電子音と共に、ロケットの頑丈なハッチがゆっくりと閉まり始めた。"
+    "text": "その瞬間、ゴオオオ……と地響きのような重低音が研究室の足元から響き渡り、火花が散るような電子音と共に、ロケットの頑丈なハッチがゆっくりと閉まり始めた。",
+    "action": "SHAKE_SCREEN"
   },
   {
     "scene": "ロケット内部",
-    "text": "ロケットの内部は、無機質な計器機と二人分のシートがあるだけの、おそろしく狭い空間だった。"
+    "text": "ロケットの内部は、無機質な計器機と二人分のシートがあるだけの、おそろしく狭い空間だった。",
+    "bg": "/scene/rocket.png"
   },
   {
     "scene": "ロケット内部",
@@ -10895,7 +11039,10 @@ export const scenarioData = [
   },
   {
     "scene": "ロケット内部",
-    "text": "──ピピッ、ピピッ、ピピピピピピピッ！！！"
+    "text": "──ピピッ、ピピッ、ピピピピピピピッ！！！",
+    "bgm": "alert_Rocket.mp3",
+    "bgmFade": 0,
+    "action": "RED_ALERT_FLASH"
   },
   {
     "scene": "ロケット内部",
@@ -10923,7 +11070,8 @@ export const scenarioData = [
   },
   {
     "scene": "ロケット内部",
-    "text": "窓の外に映っていた青い月が、ぐるりと視界を反転して遠ざかっていく。次の瞬間、機体が凄まじい大気圏の摩擦に捉えられ、悲鳴のような金属音を上げ始めた。"
+    "text": "窓の外に映っていた青い月が、ぐるりと視界を反転して遠ざかっていく。次の瞬間、機体が凄まじい大気圏の摩擦に捉えられ、悲鳴のような金属音を上げ始めた。",
+
   },
   {
     "scene": "ロケット内部",
@@ -10950,11 +11098,18 @@ export const scenarioData = [
   },
   {
     "scene": "ロケット内部",
-    "text": "ガガガガガと機体全体が引き裂かれそうな振動を始め、制御を失ったロケットは、ただ重力のなすがままに、暗黒の地上へと猛スピードで墜落を始めた。"
+    "text": "ガガガガガと機体全体が引き裂かれそうな振動を始め、制御を失ったロケットは、ただ重力のなすがままに、暗黒の地上へと猛スピードで墜落を始めた。",
+    "se": "Rocket_Shock.mp3",
+    "action": "SHAKE_SCREEN_EXTREME"
   },
   {
-    "scene": "ロケット内部",
-    "text": "激しい墜落の衝撃、そして耳をつんざくような金属の断裂音が爆発した瞬間から、私の意識は暗闇の中に沈んでいた。 どれほどの時間が経ったのだろう。冷たい虚無の底から、何かを削り取るような高い金属音が、頭の奥に響く。"
+    "scene": "ロケット内部(墜落後)",
+    "action": "SLOW_FADE_TO_BLACK",
+    "duration": 3000,
+    "bgm": "stop",
+    "bgmFade": 3,
+    "bg": "black",
+    "stopSe": "Rocket_Shock.mp3"
   },
   {
     "scene": "ロケット内部",
@@ -10977,7 +11132,9 @@ export const scenarioData = [
   },
   {
     "scene": "月面",
-    "text": "ゆっくりとまぶたを持ち上げると、ガラスの破片と歪んだ鉄板に囲まれた、壊滅的なロケットの残骸が目に飛び込んできた。"
+    "text": "ゆっくりとまぶたを持ち上げると、ガラスの破片と歪んだ鉄板に囲まれた、壊滅的なロケットの残骸が目に飛び込んできた。",
+    "bg": "/scene/moon_surface.png",
+    "action": "WAKE_UP"
   },
   {
     "scene": "月面",
@@ -10997,7 +11154,7 @@ export const scenarioData = [
   },
   {
     "scene": "月面",
-    "text": "冷たい夜気と、それ以上に重苦しい静寂が肌を刺す。 私たちが叩きつけられたのは、深い霧に包まれた、誰もいないはずの寂れたスクラップ工場の跡地のような場所だった。遠くに見える街の明かりが、まるで別世界の出来事のように頼りなく霞んでいる。"
+    "text": "アカネさんの冷静すぎる言動に息をのむ。この人はいったい何者なんだろう…？"
   },
   {
     "scene": "月面",
@@ -11048,81 +11205,149 @@ export const scenarioData = [
   },
   {
     "scene": "月面",
-    "text": "――（紙面）\n突然変なことに巻き込んで済まないね、朔良。"
+    "type": "choice",
+    "text": "手記の内容を読みますか？",
+    "choices": [
+      {
+        "text": "読む",
+        "targetLabel": "read_professors_note_4"
+      },
+      {
+        "text": "スキップする",
+        "targetLabel": "skip_professors_note_4"
+      }
+    ]
   },
   {
-    "scene": "月面",
+    "label": "read_professors_note_4",
+    "scene": "手記",
+    "speaker": "ヒルミ教授の手記",
+    "role": "PROFESSOR",
+    "text": "突然変なことに巻き込んで済まないね、朔良。",
+    "showItem": "/item/Message.png"
+  },
+  {
+    "scene": "手記",
+    "speaker": "ヒルミ教授の手記",
+    "role": "PROFESSOR",
     "text": "口で説明している暇はなかっただろうから、今回の“実習”の概要をここで説明しよう。"
   },
   {
-    "scene": "月面",
+    "scene": "手記",
+    "speaker": "ヒルミ教授の手記",
+    "role": "PROFESSOR",
     "text": "私が手短に話した『コア』についてだが……君たちが降り立った研究所で、開発が進められていたものだ。"
   },
   {
-    "scene": "月面",
+    "scene": "手記",
+    "speaker": "ヒルミ教授の手記",
+    "role": "PROFESSOR",
     "text": "形状として、白く輝く、手のひらサイズの球体だ。おそらく研究所の最奥―本当の月の光が当たるところに厳重に保管されているはずだ。"
   },
   {
-    "scene": "月面",
+    "scene": "手記",
+    "speaker": "ヒルミ教授の手記",
+    "role": "PROFESSOR",
     "text": "この『コア』によって生み出されるのは、我々の生活を支えるエネルギーだけではない。同時に【キメラ】をも生み出している。"
   },
   {
-    "scene": "月面",
+    "scene": "手記",
+    "speaker": "ヒルミ教授の手記",
+    "role": "PROFESSOR",
     "text": "当然ながら、そんなこと世間は知らない。【キメラ】騒動に関しても、この月との関係は伏せられるだろう。"
   },
   {
-    "scene": "月面",
+    "scene": "手記",
+    "speaker": "ヒルミ教授の手記",
+    "role": "PROFESSOR",
     "text": "…本題に入ろう。ではどのように『コア』を止めるか。"
   },
   {
-    "scene": "月面",
+    "scene": "手記",
+    "speaker": "ヒルミ教授の手記",
+    "role": "PROFESSOR",
     "text": "先ほども書いたように『コア』は研究所の最奥に保管されている。"
   },
   {
-    "scene": "月面",
+    "scene": "手記",
+    "speaker": "ヒルミ教授の手記",
+    "role": "PROFESSOR",
     "text": "当然ながら、そこへ至る道中には最高ランクの防衛セキュリティが敷かれているはずだ。"
   },
   {
-    "scene": "月面",
-    "text": "そこで私が事前にハッキングして抜き出しておいた、【研究所のセキュリティ解除コードの断片（フラグメント）】のデータ配置図が記載されている。"
+    "scene": "手記",
+    "speaker": "ヒルミ教授の手記",
+    "role": "PROFESSOR",
+    "text": "普通に行けば、君たちは最奥にたどり着く前にシステムに消去されるだろう。"
   },
   {
-    "scene": "月面",
-    "text": "最奥の扉を開くには、君たちが力を合わせて、研究所の各エリアに散らばるデータチップ（フラグメント）をすべて『収集』しなければならない。"
+    "scene": "手記",
+    "speaker": "ヒルミ教授の手記",
+    "role": "PROFESSOR",
+    "text": "そこで、この手記の裏面を見てほしい。"
   },
   {
-    "scene": "月面",
+    "scene": "手記",
+    "speaker": "ヒルミ教授の手記",
+    "role": "PROFESSOR",
+    "text": "私が事前にハッキングして抜き出しておいた、【研究所のセキュリティ解除コードの断片（フラグメント）】のデータ配置図が記載されているはずだ。"
+  },
+  {
+    "scene": "手記",
+    "speaker": "ヒルミ教授の手記",
+    "role": "PROFESSOR",
+    "text": "最奥の扉を開くするには、君たちが力を合わせて、研究所の各エリアに散らばるデータチップ（フラグメント）をすべて『収集』しなければならない。"
+  },
+  {
+    "scene": "手記",
+    "speaker": "ヒルミ教授の手記",
+    "role": "PROFESSOR",
+    "text": "一人が端末をハッキングしてデータを回収している間、もう一人が背後から迫る防衛プログラムを食い止めるか、あるいは二人で物陰をくまなく探索してチップを探し出すか──。"
+  },
+  {
+    "scene": "手記",
+    "speaker": "ヒルミ教授の手記",
+    "role": "PROFESSOR",
+    "text": "いずれにせよ、君たちの『呼吸』が合わなければ、システムに見つかり、そこで即座に肉体を細切れにされる。"
+  },
+  {
+    "scene": "手記",
+    "speaker": "ヒルミ教授の手記",
+    "role": "PROFESSOR",
     "text": "最後に、コアの止め方について書き添えておこう。"
   },
   {
-    "scene": "月面",
+    "scene": "手記",
+    "speaker": "ヒルミ教授の手記",
+    "role": "PROFESSOR",
     "text": "あのコアは物理的な破壊は通用しない。外衝撃を与えれば、そのエネルギーが暴走し、この隔離領域ごと君たちは塵に還るだろう。"
   },
   {
-    "scene": "月面",
-    "text": "コアを止める方法は唯一つ。"
+    "scene": "手記",
+    "speaker": "ヒルミ教授の手記",
+    "role": "PROFESSOR",
+    "text": "コアを止める方法は唯一つ。エネルギーの「過負荷（オーバーロード）」による強制シャットダウンだ。"
   },
   {
-    "scene": "月面",
-    "text": "エネルギーの「過負荷（オーバーロード）」による強制シャットダウンだ。"
-  },
-  {
-    "scene": "月面",
+    "scene": "手記",
+    "speaker": "ヒルミ教授の手記",
+    "role": "PROFESSOR",
     "text": "適応者の持つ強力な【異能の力】を、コアの許容量を超えるまで力尽くで「注ぎ込む」しかない。"
   },
   {
-    "scene": "月面",
-    "text": "当然、それには大きなリスクが伴う。くれぐれも、選択を誤らないことだ。"
+    "scene": "手記",
+    "speaker": "ヒルミ教授の手記",
+    "role": "PROFESSOR",
+    "text": "当然、それには大きなリスクが伴う。くれぐれも、選択を誤らないことだ。健闘を祈るよ。君たちの単位は、この実習の成否にかかっているからね。"
   },
   {
-    "scene": "月面",
-    "text": "健闘を祈るよ。君たちの単位は、この実習の成否にかかっているからね。"
+    "scene": "手記",
+    "speaker": "ヒルミ教授の手記",
+    "role": "PROFESSOR",
+    "text": "──ヒルミ"
   },
   {
-    "scene": "月面",
-    "text": "──ヒルミ。"
-  },
-  {
+    "label": "skip_professors_note_4",
     "scene": "月面",
     "text": "最後の一文に、いつもの教授らしい、不謹慎で飄々とした温度が残っていた。\nけれど、紙面に並ぶ言葉はおぞましい世界の裏側そのものだった。"
   },
@@ -11130,7 +11355,8 @@ export const scenarioData = [
     "scene": "月面",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「……ッ、きゃっ！？」"
+    "text": "「……ッ、きゃっ！？」",
+    "action": "SHAKE_SCREEN"
   },
   {
     "scene": "月面",
@@ -11167,13 +11393,85 @@ export const scenarioData = [
     "text": "彼から放たれる圧倒的な威圧感と、この場に取り残される恐怖に抗うことなどできず、私は突き放すように歩き出したアカネさんの背中を必死に追いかけた。"
   },
   {
-    "scene": "研究所の奧",
-    "text": "カチリ──。最後のチップが収まり、重厚なゲートがゆっくりと左右に開き始める。",
-    "label": "akane_fragment_happy_end"
+    "scene": "制御室",
+    "speaker": "朔良",
+    "role": "SAKURA",
+    "text": "「──よしっ、これで最後のデータチップ、回収完了！」",
+    "bg": "/scene/Lab_corridor.png",
+    "bgm": "Lab.mp3",
+  },
+  {
+    "scene": "制御室",
+    "text": "薄暗い制御室の端末からプラスチックの小さなチップを抜き取り、私は大きく息を吐き出した。手元には、最奥のゲートを開くためのすべてのフラグメントが揃っている。"
+  },
+  {
+    "scene": "制御室",
+    "text": "息をつく暇もなく、アカネさんはどんどん廊下の奥へと進んでしまう。"
+  },
+  {
+    "scene": "制御室",
+    "speaker": "朔良",
+    "role": "SAKURA",
+    "text": "「…ちょ、ちょっと待って……！」"
+  },
+  {
+    "scene": "制御室",
+    "text": "思わず声を上げると、一層眉間にしわを寄せて殺気立っているアカネさんが振り返る。その殺気に鳥肌が立つ。"
+  },
+  {
+    "scene": "制御室",
+    "speaker": "アカネ",
+    "role": "AKANE",
+    "text": "「早くしろ」",
+    "showIllust": [
+      "Akane_serious"
+    ]
+  },
+  {
+    "scene": "制御室",
+    "text": "それだけ言うと、私を待ってくれるわけでもなく先へ進んでしまった。何なの…！？あの人…！！"
+  },
+  {
+    "scene": "制御室",
+    "text": "ただ、あの殺気…いつもとは違う何かを感じる。黒騎士のことも、私のことも…この人は何かを知ってる。今のアカネさんから聞き出す勇気はないけれど…"
+  },
+  {
+    "scene": "制御室",
+    "text": "ギスギスとした沈黙を引きずったまま、私たちは歩を進める。曲がり角を過ぎ、私たちはついに、研究所の最深部へとたどり着いた。"
+  },
+  {
+    "scene": "最深部",
+    "text": "目の前にそびえ立つのは、重厚な鋼鉄の巨大なゲート。その中央には、はめ込み式のスロットがあり、これまで集めてきたデータチップを差し込むようになっている。",
+    "bg": "/scene/gate.png"
+  },
+  {
+    "scene": "最深部",
+    "speaker": "朔良",
+    "role": "SAKURA",
+    "text": "「ここ、だね……」"
+  },
+  {
+    "scene": "最深部",
+    "text": "ゲート前にたどり着いて、私は震える手で、データチップをスロットへと差し込んでいく。"
+  },
+  {
+    "scene": "最深部",
+    "text": "──この扉の向こうに『コア』がある。"
+  },
+  {
+    "scene": "最深部",
+    "text": "カチリ、カチリと、ロックが解除される音が静まり返った空間に響く。最後のチップが収まり、重厚なゲートがゆっくりと左右に開き始める。",
+    "label": "mika_fragment_happy_end"
   },
   {
     "scene": "研究所の奧",
     "text": "空気の抜けるような低い音が響き、扉の向こうから、息を呑むほど美しく、そして冷徹な光が溢れ出した。"
+  },
+  {
+    "scene": "研究所の最奥",
+    "text": "そこは、研究所の最奥。",
+    "bg": "/scene/core.png",
+    "bgm": "CoreBGM.mp3"
   },
   {
     "scene": "研究所の奧",
@@ -11213,7 +11511,12 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の奧",
-    "text": "思わず悲鳴のような声を上げると、アカネさんは死骸の胸元をナイフで抉り、かすかに青白く明滅する異能のエネルギーの結晶を強引に毟り取った。それをコアの供給口らしき隙間へと力尽くで押し込む。バチバチと激しい火花が散り、ほんのわずかだけコアの脈動が歪んだ。"
+    "text": "思わず悲鳴のような声を上げると、アカネさんは死骸の胸元をナイフで抉り、かすかに青白く明滅する異能のエネルギーの結晶を強引に毟り取った。"
+  },
+  {
+    "scene": "研究所の奧",
+    "text": "それをコアの供給口らしき隙間へと力尽くで押し込む。バチバチと激しい火花が散り、ほんのわずかだけコアの脈動が歪んだ。",
+    "action": "ENERGY_AURA_START"
   },
   {
     "scene": "研究所の奧",
@@ -11230,11 +11533,14 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の奧",
-    "text": "「──そんなことしてたら日が暮れちゃうよ」"
+    "speaker": "？？？",
+    "text": "「──そんなことしてたら日が暮れちゃうよ」",
+    "action": "ENERGY_AURA_STOP"
   },
   {
     "scene": "研究所の奧",
-    "text": "背後から響いたく冷え切った少年の声。 心臓がドクンと跳ね上がり、私は恐怖に縛られたまま振り返る。"
+    "text": "背後から響いたく冷え切った少年の声。 心臓がドクンと跳ね上がり、私は恐怖に縛られたまま振り返る。",
+    "bgm": "serious_4.mp3"
   },
   {
     "scene": "研究所の奧",
@@ -11298,11 +11604,20 @@ export const scenarioData = [
     "scene": "研究所の奧",
     "speaker": "少年",
     "role": "RUKI",
-    "text": "「あはは！銃とか、そんなオモチャ効くわけねーじゃん。\nさあ、おいで──俺のボディーガード」"
+    "text": "「あはは！銃とか、そんなオモチャ効くわけねーじゃん。\nさあ、おいで──俺のボディーガード」",
+    "bgm": "stop"
   },
   {
     "scene": "研究所の奧",
-    "text": "少年が面白そうに指を鳴らした瞬間、天井のガラスを盛大に突き破って、漆黒の重武装に身を包んだ化け物──黒騎士が、二人の間に割って入るように激しく着地した。"
+    "text": "少年が面白そうに指を鳴らした瞬間、天井のガラスを盛大に突き破って、漆黒の重武装に身を包んだ化け物──黒騎士が、二人の間に割って入るように激しく着地した。",
+    "bgm": "Rocket_Shock.mp3",
+    "action": "GRAY_OUT_START"
+  },
+  {
+    "scene": "研究所の奧",
+    "bg": "/scene/core_hakai1.png",
+    "text": "凄まじい衝撃と共に土煙とガラスの破片が舞い散る。 灰色の粉塵がゆっくりと晴れていく中、そこには──",
+    "action": "GRAY_OUT_END_SLOW"
   },
   {
     "scene": "研究所の奧",
@@ -11313,13 +11628,16 @@ export const scenarioData = [
     "speaker": "アカネ",
     "role": "AKANE",
     "text": "「…………そこにいたか、クソ野郎が…ッ！！ここでなら…ようやく殺り合える… \n絶対に………殺してやるッ！！！！！」",
+    "bgm": "Battle1.mp3",
     "showIllust": [
       "Akane_serious"
     ]
   },
   {
     "scene": "研究所の奧",
-    "text": "アカネさんは完全に理性を失い、我を忘れて、憎悪のままに拳銃を連射しながら黒騎士へと弾丸のように飛び込んでいった。"
+    "text": "アカネさんは完全に理性を失い、我を忘れて、憎悪のままに拳銃を連射しながら黒騎士へと弾丸のように飛び込んでいった。",
+    "bgAnimation": "run_dash",
+    "action": "RED_ALERT_AND_SMALL_SHAKE"
   },
   {
     "scene": "研究所の奧",
@@ -11329,7 +11647,9 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の奧",
-    "text": "生身の人間が、あんな怪物に敵うはずがない。 激しい銃声と肉肉しい打撃音が響き渡り、悪鬼のような形相で牙を剥き、再び黒騎士へと肉薄していく。"
+    "text": "生身の人間が、あんな怪物に敵うはずがない。 激しい銃声と肉肉しい打撃音が響き渡り、悪鬼のような形相で牙を剥き、再び黒騎士へと肉薄していく。",
+    "bgAnimation": "impact_zoom",
+    "action": "SHAKE_SCREEN_VERY_LARGE"
   },
   {
     "scene": "研究所の奧",
@@ -11343,21 +11663,25 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の奧",
-    "text": "頭が、割れるように痛い。 あまりの恐怖と過度なストレスが私のキャパシティを完全に超え、脳内で何かが音を立ててブチ切れた。自分の身体が、人間の形を保てなくなっていくような、得体の知れないおぞましい感覚が襲ってきた。"
+    "text": "頭が、割れるように痛い。 あまりの恐怖と過度なストレスが私のキャパシティを完全に超え、脳内で何かが音を立ててブチ切れた。自分の身体が、人間の形を保てなくなっていくような、得体の知れないおぞましい感覚が襲ってきた。",
+    "action": "CLEAR_ALL_ALERTS_AND_SHAKES"
   },
   {
     "scene": "研究所の奧",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「あ……、あ、ああああああッ！！！」"
+    "text": "「あ……、あ、ああああああッ！！！」",
+    "action": "SHAKE_SCREEN_EXTREME"
   },
   {
     "scene": "研究所の奧",
-    "text": "私の口から漏れたのは、人間のものとは思えない、地を這うような悲鳴だった。"
+    "text": "私の口から漏れたのは、人間のものとは思えない、地を這うような悲鳴だった。",
+    "action": "CLEAR_ALL_ALERTS_AND_SHAKES"
   },
   {
     "scene": "研究所の奧",
-    "text": "ドクドクと脈打つ皮膚の裏側から、どす黒い異能の霧のようなものが噴き出す。私の意思とは無関係に、身体が「兵器」へと作り替えられていくおぞましい感覚。"
+    "text": "ドクドクと脈打つ皮膚の裏側から、どす黒い異能の霧のようなものが噴き出す。私の意思とは無関係に、身体が「兵器」へと作り替えられていくおぞましい感覚。",
+    "action": "BLACK_AURA_START"
   },
   {
     "scene": "研究所の奧",
@@ -11367,7 +11691,8 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の奧",
-    "text": "少年の歓喜する高笑いが響く。黒騎士の猛攻に晒され、血塗れになっていたアカネさんが、その異様な気配にハッとこちらを振り返った。"
+    "text": "少年の歓喜する高笑いが響く。黒騎士の猛攻に晒され、血塗れになっていたアカネさんが、その異様な気配にハッとこちらを振り返った。",
+    "bgm": "stop"
   },
   {
     "scene": "研究所の奧",
@@ -11384,11 +11709,13 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の奧",
-    "text": "アカネさんは迫り来る黒騎士の刃を肉体で受け止め、肉が裂ける音をも厭わずにその巨体を無理やり弾き飛ばした。そして、血飛沫を上げながら、真っ直ぐに私の元へと駆けてくる。"
+    "text": "アカネさんは迫り来る黒騎士の刃を肉体で受け止め、肉が裂ける音をも厭わずにその巨体を無理やり弾き飛ばした。そして、血飛沫を上げながら、真っ直ぐに私の元へと駆けてくる。",
+
   },
   {
     "scene": "研究所の奧",
-    "text": "暴走する私のエネルギーが、近づく彼の衣服を焼き、肌を焦がす。普通の人間なら怯んで逃げ出すような狂気の渦の中、アカネさんは怯むことなく、ガシィッ！！ と私の細い両肩を、壊れ物を引き留めるような強さで掴み込んできた。"
+    "text": "暴走する私のエネルギーが、近づく彼の衣服を焼き、肌を焦がす。普通の人間なら怯んで逃げ出すような狂気の渦の中、アカネさんは怯むことなく、ガシィッ！！ と私の細い両肩を、壊れ物を引き留めるような強さで掴み込んできた。",
+    "bgm": "Battle2.mp3"
   },
   {
     "scene": "研究所の奧",
@@ -11405,7 +11732,7 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の奧",
-    "text": "（あぁ、この人は……私を見捨てない。化け物になりかけた私を、まだ『人間』として呼んでくれている──）"
+    "text": "（あぁ、この人は……私を見捨てない。化け物になりかけた私を、まだ『人間』として呼んでくれている──）",
   },
   {
     "scene": "研究所の奧",
@@ -11413,9 +11740,13 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の奧",
-    "text": "私の身体が、周囲に満ちていた黒騎士の異能の残滓、そして驚愕に目を見開いた少年の力を、爆発的な勢いで一滴残らず「吸収」し始めたのだ。"
+    "text": "私の身体が、周囲に満ちていた黒騎士の異能の残滓、そして驚愕に目を見開いた少年の力を、爆発的な勢いで一滴残らず「吸収」し始めたのだ。",
+    "action": "ENERGY_AURA_START",
+
   },
   {
+    "speaker": "少年",
+    "role": "RUKI",
     "scene": "研究所の奧",
     "text": "「……はぁ、めんどくさいことになったな」"
   },
@@ -11425,15 +11756,18 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の奧",
-    "text": "許容量を遥かに超えたコアが、眩い閃光を放ち──。"
+    "text": "許容量を遥かに超えたコアが、眩い閃光を放ち──。",
+    "action": "LIGHT_WAVE_BURST"
   },
   {
     "scene": "研究所の奧",
-    "text": "『警告。過負荷による強制シャットダウンを実行します』"
+    "text": "『警告。過負荷による強制シャットダウンを実行します』",
+    "action": "STOP_ALL_AURAS_AND_SHAKE"
   },
   {
     "scene": "研究所の奧",
-    "text": "大爆発の光が視界を白く染め上げ、部屋全体が激しく崩落を始める。コアの光が完全に消え去り、漆黒の闇に包まれる寸前、私の身体は、大きな腕によって強く、優しく抱きすくめられた。"
+    "text": "大爆発の光が視界を白く染め上げ、部屋全体が激しく崩落を始める。コアの光が完全に消え去り、漆黒の闇に包まれる寸前、私の身体は、大きな腕によって強く、優しく抱きすくめられた。",
+    "action": "WHITE_OUT_START"
   },
   {
     "scene": "研究所の奧",
@@ -11453,18 +11787,29 @@ export const scenarioData = [
     "text": "————崩落する研究所から、アカネは朔良をしっかりと抱き抱え、夜霧の向こうへと脱出していく。"
   },
   {
-    "scene": "アジト",
-    "text": "遠くで、規則的な電子音の響きが聞こえる。 鼻腔をくすぐるのは、消毒液と、どこか懐かしいタバコの煙が微かに混ざった匂い。"
+    "action": "SLOW_FADE_TO_BLACK",
+    "duration": 3000,
+    "bgm": "stop",
+    "bgmFade": 3,
   },
   {
-    "scene": "アジト",
+    "scene": "暗転",
+    "bg": "black",
+    "text": "遠くで、規則的な電子音の響きが聞こえる。 鼻腔をくすぐるのは、消毒液と、どこか懐かしいタバコの煙が微かに混ざった匂い。",
+    "action": "WHITE_OUT_END"
+
+  },
+  {
+    "scene": "暗転",
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「……んっ……」"
   },
   {
     "scene": "アジト",
-    "text": "ゆっくりとまぶたを持ち上げると、そこは年季の入った、けれど手入れの行き届いたアジトの一室。窓の外からは、夜明け前の静かな街の気配が漂っている。"
+    "text": "ゆっくりとまぶたを持ち上げると、そこは年季の入った、けれど手入れの行き届いたアジトの一室。窓の外からは、夜明け前の静かな街の気配が漂っている。",
+    "action": "WAKE_UP",
+    "bg": "/scene/Ajito_Room.png"
   },
   {
     "scene": "アジト",
@@ -11477,7 +11822,9 @@ export const scenarioData = [
   },
   {
     "scene": "アジト",
-    "text": "低く掠れた声に、弾かれたように顔を向ける。 部屋の隅の椅子に腰掛け、包帯を全身に巻いたアカネさんが、静かにこちらを見つめていた。声にはどこか安堵したような色が滲んでいる。"
+    "text": "低く掠れた声に、弾かれたように顔を向ける。 部屋の隅の椅子に腰掛け、包帯を全身に巻いたアカネさんが、静かにこちらを見つめていた。声にはどこか安堵したような色が滲んでいる。",
+    "bgm": "Room_Night.mp3",
+    "bgmVolume": 0.3
   },
   {
     "scene": "アジト",
@@ -11571,6 +11918,7 @@ export const scenarioData = [
     "speaker": "アカネ",
     "role": "AKANE",
     "text": "「あいつの名前は『ルキ』。……表の戸籍じゃ、とっくの昔に死んだことになってる、お前の、年の離れた実の弟だ」",
+    "bgmVolume": 0.01,
     "showIllust": [
       "Akane_serious"
     ]
@@ -11594,6 +11942,7 @@ export const scenarioData = [
     "speaker": "アカネ",
     "role": "AKANE",
     "text": "「覚えていないのも無理はない。お前の父親…月の研究員が何か裏で手を回していたのかもしれないな」",
+    "bgmVolume": 0.3,
     "showIllust": [
       "Akane_serious"
     ]
@@ -11656,8 +12005,16 @@ export const scenarioData = [
     "text": "夜霧の向こうから、かすかな朝光が、静かに部屋の床を照らし始めていた。"
   },
   {
+    "scene": "宇宙空間",
+    "action": "FADE_TO_BLACK",
+    "duration": 4000
+  },
+  {
     "scene": "青い月無い青空",
-    "text": "私たちの日常は、驚くほどあっけなく戻ってきた。教授の手記とデータチップを持ち帰ったおかげで、実習の単位は無事に出たし──それどころか、世界を救った大功績として学部内でちょっとした騒ぎになったけれど──世界も何事もなかったかのように平穏な時を刻んでいる。"
+    "text": "私たちの日常は、驚くほどあっけなく戻ってきた。教授の手記とデータチップを持ち帰ったおかげで、実習の単位は無事に出たし──それどころか、世界を救った大功績として学部内でちょっとした騒ぎになったけれど──世界も何事もなかったかのように平穏な時を刻んでいる。",
+    "bg": "/scene/sky.png",
+    "bgm": "Normal_Morning2.mp3",
+    "bgmVolume": 0.2
   },
   {
     "scene": "青い月無い青空",
@@ -11673,13 +12030,16 @@ export const scenarioData = [
   },
   {
     "scene": "青い月無い青空",
-    "text": "だけど、その機会すら、世界は私からあっさりと奪い去っていった。"
+    "text": "だけど、その機会すら、世界は私からあっさりと奪い去っていった。",
+    "bg": "black",
+    "bgm": "stop"
   },
   {
     "scene": "大学の事務室",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「え……？行方不明、ですか？」"
+    "text": "「え……？行方不明、ですか？」",
+    "bg": "/scene/university_office.png"
   },
   {
     "scene": "大学の事務室",
@@ -11691,13 +12051,21 @@ export const scenarioData = [
     "scene": "大学の事務室",
     "text": "大学の事務員の困り果てた声が、他人事のように鼓膜を滑り落ちていく。"
   },
+
   {
     "scene": "大学の事務室",
-    "text": "教授は消えた。あのおぞましい世界の裏側へと、すべての謎を置き去りにしたまま。"
+    "text": "教授は消えた。あのおぞましい世界の裏側へと、すべての謎を置き去りにしたまま。",
+    "bg": "black"
+  },
+  {
+    "scene": "宇宙空間",
+    "action": "FADE_TO_BLACK",
+    "duration": 6000
   },
   {
     "scene": "面会室",
-    "text": "厚いアクリル板の向こう側から、ガチャリと重々しい錠の音が響く。"
+    "text": "厚いアクリル板の向こう側から、ガチャリと重々しい錠の音が響く。",
+    "bg": "/scene/DetentionCenter.png"
   },
   {
     "scene": "面会室",
@@ -11708,6 +12076,8 @@ export const scenarioData = [
     "speaker": "アカネ",
     "role": "AKANE",
     "text": "「……毎度毎度どうも」",
+    "bgm": "serious_3.mp3",
+    "bgmVolume": 0.3,
     "showIllust": [
       "Akane_serious"
     ]
@@ -11904,12 +12274,20 @@ export const scenarioData = [
     "text": "胸の奥に、じわりと切ないほど温かな気持ちが広がっていく。私は視界が少しだけ潤むのを感じながら、重い鉄格子の向こうへと消えていく彼の背中を、最後の最後まで真っ直ぐに見送った。"
   },
   {
-    "scene": "青い月ない青空",
-    "text": "拘置所を後にして、私は深く息を吐き出す。"
+    "scene": "宇宙空間",
+    "action": "FADE_TO_BLACK",
+    "duration": 3000
   },
   {
     "scene": "青い月ない青空",
-    "text": "私の過去、弟のルキ、消えた教授、そして私自身の正体──。\nこれから待ち受ける運命は、きっとあの研究所よりも暗く、危険な地獄に違いない。"
+    "text": "拘置所を後にして、私は深く息を吐き出す。",
+    "bg": "/scene/sky.png"
+  },
+  {
+    "scene": "青い月ない青空",
+    "text": "私の過去、弟のルキ、消えた教授、そして私自身の正体──。\nこれから待ち受ける運命は、きっとあの研究所よりも暗く、危険な地獄に違いない。",
+    "bgm": "Normal_Morning2.mp3",
+    "bgmVolume": 0.3
   },
   {
     "scene": "青い月ない青空",
@@ -12067,7 +12445,8 @@ export const scenarioData = [
   },
   {
     "scene": "ゲームF",
-    "action": "TRIGGER_FRAGMENT_COLLECT"
+    "action": "TRIGGER_FRAGMENT_COLLECT",
+    "bgm": "Lab.mp3"
   },
   {
     "scene": "ゲームF",

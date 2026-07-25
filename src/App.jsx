@@ -144,6 +144,194 @@ function BackgroundRenderer({ bgPath, bgAnimationClass }) {
   );
 }
 
+// Special Cut-in Overlay for Mutsunori's wound healing scene
+function MutsunoriHealingCutIn() {
+  return (
+    <motion.div
+      className="absolute top-[8%] left-[5%] right-[5%] h-[48%] z-[22] flex overflow-hidden border-2 border-white/20 shadow-[0_20px_50px_rgba(0,0,0,0.6)] bg-slate-950 rounded-lg"
+      initial={{ opacity: 0, x: -150, skewX: -10 }}
+      animate={{ opacity: 1, x: 0, skewX: 0 }}
+      exit={{ opacity: 0, x: 150, skewX: 10 }}
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+    >
+      {/* Left side: Mutsunori's body zoomed in */}
+      <div className="relative w-[50%] h-full overflow-hidden bg-[#070b19] flex justify-center items-center">
+        {/* Sci-fi backdrop grids */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,245,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,245,255,0.03)_1px,transparent_1px)] [background-size:24px_24px]" />
+        <div className="absolute top-[30%] left-[25%] w-40 h-40 rounded-full bg-cyan-500/10 blur-3xl animate-pulse" />
+        
+        {/* Torso zoom of Mutsunori */}
+        <img
+          src={assetPath('/character/Mutsunori/Mutsunori_smile.png')}
+          alt="Mutsunori Torso Zoom"
+          className="absolute max-w-none w-[260%] h-[260%] object-contain object-top"
+          style={{
+            transform: 'translate(4%, -15%)', // Position to zoom on Mutsunori's chest/torso
+          }}
+        />
+
+        {/* Healing wound scar overlay: starts red and fades into cyan and heals */}
+        <motion.div
+          className="absolute w-[6px] h-[30%] bg-gradient-to-b from-red-500 via-cyan-400 to-transparent blur-[1.5px] rotate-[28deg] rounded-full"
+          style={{ top: '40%', left: '48%' }}
+          animate={{
+            opacity: [0, 1, 0.8, 0],
+            scaleY: [0, 1, 0.4, 0],
+            filter: ['drop-shadow(0 0 12px #ff0055)', 'drop-shadow(0 0 8px #ff0055)', 'drop-shadow(0 0 4px #00f5ff)', 'drop-shadow(0 0 0px transparent)']
+          }}
+          transition={{ duration: 2.8, ease: "easeInOut", repeat: Infinity }}
+        />
+        
+        {/* Biotech scan overlay lines */}
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-500/5 to-transparent pointer-events-none" />
+      </div>
+
+      {/* Right side: White diagonal cropped panel */}
+      <div
+        className="w-[60%] h-full bg-white relative flex flex-col justify-center pl-16 pr-8 text-slate-900 select-none"
+        style={{
+          marginLeft: '-10%',
+          clipPath: 'polygon(15% 0, 100% 0, 100% 100%, 0 100%)'
+        }}
+      >
+        {/* Diagonal tech scanner line */}
+        <motion.div
+          className="absolute top-0 bottom-0 left-0 w-[4px] bg-cyan-500/60 blur-[2px] pointer-events-none"
+          animate={{ x: ['12vw', '35vw'] }}
+          transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
+        />
+        
+        <div className="relative z-10">
+          <div className="font-orbitron font-extrabold text-[13px] tracking-[0.25em] text-cyan-600 mb-1 flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-cyan-500 animate-ping" />
+            MUTSUNORI STATUS: RECOVERY
+          </div>
+          <h2 className="font-noto font-bold text-lg text-slate-800 tracking-wider mb-2">
+            細胞超高速自己修復プロセス
+          </h2>
+          
+          <div className="font-noto text-[11px] leading-relaxed text-slate-500 font-light space-y-1">
+            <div>対象生体データ: <span className="font-semibold text-slate-700">MUTSUNORI (自我限界値到達)</span></div>
+            <div>ダメージ箇所: <span className="font-semibold text-red-600">胸部・大剣による致命的裂傷</span></div>
+            <div>修復状態: <span className="font-semibold text-emerald-600 font-orbitron animate-pulse">RECONSTRUCTING... 99.8%</span></div>
+            <div className="pt-1 border-t border-slate-200 mt-2 text-[10px] font-mono text-cyan-700">
+              {"[SYSTEM_LOG]: REVERSE ENERGY FLOODING -> HEALING COMPLETE"}
+            </div>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+// Special Light Wave Burst Overlay for Sakura's healing/purifying light scene
+function LightWaveBurstOverlay() {
+  return (
+    <motion.div
+      className="absolute inset-0 pointer-events-none z-[18] overflow-hidden mix-blend-screen"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0, transition: { duration: 1.5 } }}
+    >
+      {/* Warm Golden ambient glow */}
+      <motion.div
+        className="absolute inset-0"
+        animate={{
+          opacity: [0.4, 0.8, 0.5],
+          background: [
+            'radial-gradient(circle at 50% 60%, rgba(253, 224, 71, 0.3) 0%, rgba(251, 146, 60, 0.1) 60%, transparent 100%)',
+            'radial-gradient(circle at 50% 60%, rgba(253, 224, 71, 0.5) 0%, rgba(251, 146, 60, 0.2) 65%, transparent 100%)',
+            'radial-gradient(circle at 50% 60%, rgba(253, 224, 71, 0.3) 0%, rgba(251, 146, 60, 0.1) 60%, transparent 100%)',
+          ]
+        }}
+        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+      />
+
+      {/* Expanding Ripple Rings */}
+      {[0, 1, 2].map((i) => (
+        <motion.div
+          key={`ripple-${i}`}
+          className="absolute rounded-full border-4 border-amber-300/60 shadow-[0_0_40px_rgba(253,224,71,0.5),inset_0_0_20px_rgba(253,224,71,0.3)]"
+          style={{
+            left: '50%',
+            top: '60%',
+            width: '100px',
+            height: '100px',
+            marginLeft: '-50px',
+            marginTop: '-50px',
+          }}
+          animate={{
+            scale: [0.5, 12],
+            opacity: [0.8, 0.4, 0],
+            borderWidth: ['8px', '1px'],
+          }}
+          transition={{
+            duration: 3,
+            repeat: Infinity,
+            ease: "easeOut",
+            delay: i * 1.0,
+          }}
+        />
+      ))}
+
+      {/* Dazzling light rays/shards */}
+      {[...Array(6)].map((_, i) => (
+        <motion.div
+          key={`ray-${i}`}
+          className="absolute w-[4px] h-[30%] bg-gradient-to-b from-yellow-100 via-amber-300/40 to-transparent blur-[1px] origin-bottom"
+          style={{
+            left: '50%',
+            top: '30%',
+            transform: `rotate(${i * 60}deg) translateY(-50%)`,
+          }}
+          animate={{
+            opacity: [0.3, 0.7, 0.3],
+            scaleY: [0.9, 1.2, 0.9],
+          }}
+          transition={{
+            duration: 2 + i * 0.3,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+      ))}
+
+      {/* Floating golden/white particles */}
+      {[...Array(25)].map((_, i) => {
+        const size = Math.random() * 8 + 4;
+        const delay = Math.random() * 3;
+        const duration = Math.random() * 2 + 2;
+        return (
+          <motion.div
+            key={`gold-part-${i}`}
+            className="absolute rounded-full"
+            style={{
+              width: `${size}px`,
+              height: `${size}px`,
+              background: 'radial-gradient(circle, #ffffff 0%, #fde047 80%)',
+              boxShadow: '0 0 10px #f59e0b, 0 0 20px #f59e0b',
+              left: `${15 + Math.random() * 70}%`,
+              top: '90%',
+            }}
+            animate={{
+              y: ['0vh', '-110vh'],
+              x: [0, (Math.random() - 0.5) * 80],
+              opacity: [0, 1, 1, 0],
+              scale: [0.5, 1.3, 0.5],
+            }}
+            transition={{
+              duration,
+              repeat: Infinity,
+              ease: "easeOut",
+              delay,
+            }}
+          />
+        );
+      })}
+    </motion.div>
+  );
+}
+
 export default function App() {
   const [manualTestMode, setManualTestMode] = useState(false);
   const [clearedMutsunori, setClearedMutsunori] = useState(() => localStorage.getItem('cleared_mutsunori_good_end') === 'true');
@@ -191,6 +379,8 @@ export default function App() {
   const [isFadingBlack, setIsFadingBlack] = useState(false);
   const [isWhiteOut, setIsWhiteOut] = useState(false);
   const [whiteOutDuration, setWhiteOutDuration] = useState(0.8);
+  const [isGrayOut, setIsGrayOut] = useState(false);
+  const [grayOutDuration, setGrayOutDuration] = useState(0.8);
   const [whitePulseLevel, setWhitePulseLevel] = useState(0);
   const [isWhiteFlashActive, setIsWhiteFlashActive] = useState(false);
   const [isWhiteFlash70Active, setIsWhiteFlash70Active] = useState(false);
@@ -200,6 +390,9 @@ export default function App() {
   const [isBloodActive, setIsBloodActive] = useState(false);
   const [isRedAlertActive, setIsRedAlertActive] = useState(false);
   const [isMonochromeFlashActive, setIsMonochromeFlashActive] = useState(false);
+  const [isEnergyAuraActive, setIsEnergyAuraActive] = useState(false);
+  const [isBlackAuraActive, setIsBlackAuraActive] = useState(false);
+  const [isLightWaveActive, setIsLightWaveActive] = useState(false);
   const [stealthGameResult, setStealthGameResult] = useState(null);
 
 
@@ -326,6 +519,7 @@ export default function App() {
       setIsBloodActive(false);
       setIsRedAlertActive(false);
       setIsMonochromeFlashActive(false);
+      setIsLightWaveActive(false);
     }
   }, [currentLine?.scene, prevScene]);
 
@@ -460,7 +654,7 @@ export default function App() {
       // Blood overlay actions
       if (action === 'SHOW_BLOOD' || action === 'BLOOD_SCREEN' || action === 'BLOOD_SPLATTING') {
         setIsBloodActive(true);
-      } else if (action === 'CLEAR_BLOOD') {
+      } else if (action === 'CLEAR_BLOOD' || action === 'MUTSUNORI_HEALING_CUTIN') {
         setIsBloodActive(false);
       } else if (action === 'RED_ALERT_FLASH') {
         setIsRedAlertActive(true);
@@ -503,14 +697,21 @@ export default function App() {
       }
 
       // Shake Screen
-      if (action === 'SHAKE_SCREEN') {
-        setShakeEffect(true);
+      if (action === 'SHAKE_SCREEN' || action === 'STOP_ALL_AURAS_AND_SHAKE') {
+        if (action === 'STOP_ALL_AURAS_AND_SHAKE') {
+          setIsEnergyAuraActive(false);
+          setIsBlackAuraActive(false);
+          setShakeEffect('large');
+        } else {
+          setShakeEffect(true);
+        }
         const timer = setTimeout(() => setShakeEffect(false), 600);
         return () => {
           clearTimeout(timer);
           setShakeEffect(false);
         };
-      } else if (action === 'SHAKE_SCREEN_VERY_LARGE') {
+      } else if (action === 'SHAKE_SCREEN_VERY_LARGE' || action === 'SHAKE_AND_SMOKE') {
+        if (action === 'SHAKE_AND_SMOKE') setIsSmokeActive(true);
         setShakeEffect('large');
         const timer = setTimeout(() => setShakeEffect(false), 800);
         return () => {
@@ -538,6 +739,29 @@ export default function App() {
         setIsSmokeActive(true);
       } else if (action === 'CLEAR_SMOKE') {
         setIsSmokeActive(false);
+      } else if (action === 'ENERGY_AURA_START') {
+        setIsEnergyAuraActive(true);
+      } else if (action === 'ENERGY_AURA_STOP') {
+        setIsEnergyAuraActive(false);
+      } else if (action === 'BLACK_AURA_START') {
+        setIsBlackAuraActive(true);
+      } else if (action === 'BLACK_AURA_STOP') {
+        setIsBlackAuraActive(false);
+      }
+
+      if (action === 'LIGHT_WAVE_BURST') {
+        setIsLightWaveActive(true);
+        setShakeEffect('large');
+        setIsWhiteFlash70Active(true);
+        const flashTimer = setTimeout(() => setIsWhiteFlash70Active(false), 500);
+        const shakeTimer = setTimeout(() => setShakeEffect(false), 1200);
+        return () => {
+          clearTimeout(flashTimer);
+          clearTimeout(shakeTimer);
+          setShakeEffect(false);
+        };
+      } else if (action === 'CLEAR_LIGHT_WAVE') {
+        setIsLightWaveActive(false);
       }
 
       if (action === 'BLACK_DISTORTION' || action === 'BLACK_DISTORT') {
@@ -580,6 +804,12 @@ export default function App() {
       } else if (action === 'WHITE_OUT_END_VERY_SLOW') {
         setWhiteOutDuration(6);
         setIsWhiteOut(false);
+      } else if (action === 'GRAY_OUT_START') {
+        setGrayOutDuration(0.1);
+        setIsGrayOut(true);
+      } else if (action === 'GRAY_OUT_END_SLOW') {
+        setGrayOutDuration(3);
+        setIsGrayOut(false);
       } else if (action === 'WHITE_PULSE_START') {
         setWhitePulseLevel(0.2);
       } else if (action === 'WHITE_PULSE_MID') {
@@ -1019,6 +1249,14 @@ export default function App() {
                   ? 'animate-run-dash'
                   : currentLine?.bgAnimation === 'stumble_zoom' || currentLine?.bgAnimation === 'tilt_zoom'
                   ? 'animate-stumble-zoom'
+                  : currentLine?.bgAnimation === 'center_zoom'
+                  ? 'animate-center-zoom'
+                  : currentLine?.bgAnimation === 'dodge_left'
+                  ? 'animate-dodge-left'
+                  : currentLine?.bgAnimation === 'dodge_right'
+                  ? 'animate-dodge-right'
+                  : currentLine?.bgAnimation === 'impact_zoom'
+                  ? 'animate-impact-zoom'
                   : ''
               }
             />
@@ -1099,6 +1337,13 @@ export default function App() {
               />
             )}
 
+            {/* Mutsunori Healing Cut-in Overlay */}
+            <AnimatePresence>
+              {currentLine?.action === 'MUTSUNORI_HEALING_CUTIN' && (
+                <MutsunoriHealingCutIn />
+              )}
+            </AnimatePresence>
+
             {/* Item Sprite Overlay */}
             <AnimatePresence>
               {displayedItem && !isCinema && !isAnyEnd && (() => {
@@ -1134,12 +1379,11 @@ export default function App() {
                 <motion.div
                   className="absolute inset-0 pointer-events-none z-[18] overflow-hidden flex items-center justify-center"
                   initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 3, ease: 'easeOut' }}
+                  animate={{ opacity: 1, transition: { duration: 0.5, ease: 'easeOut' } }}
+                  exit={{ opacity: 0, transition: { duration: 4.0, ease: 'easeIn' } }}
                 >
                   {/* Base gray background (Removed expensive backdrop-blur) */}
-                  <div className="absolute inset-0 bg-gray-700/80" />
+                  <div className="absolute inset-0 bg-gray-300" />
                   
                   {/* Lighter billowing effect using CSS radial gradients instead of blur/mix-blend */}
                   {[
@@ -1169,6 +1413,122 @@ export default function App() {
                       }}
                     />
                   ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {/* Energy Aura Overlay */}
+            <AnimatePresence>
+              {isEnergyAuraActive && !isCinema && !isAnyEnd && (
+                <motion.div
+                  className="absolute inset-0 pointer-events-none z-[18] overflow-hidden mix-blend-screen"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 1, ease: 'easeOut' }}
+                >
+                  <motion.div
+                    className="absolute inset-0"
+                    animate={{
+                      opacity: [0.6, 1, 0.6],
+                      boxShadow: [
+                        'inset 0 0 100px 30px rgba(0, 245, 255, 0.5), inset 0 0 150px 60px rgba(138, 43, 226, 0.4)',
+                        'inset 0 0 120px 40px rgba(0, 245, 255, 0.7), inset 0 0 200px 80px rgba(138, 43, 226, 0.6)',
+                        'inset 0 0 100px 30px rgba(0, 245, 255, 0.5), inset 0 0 150px 60px rgba(138, 43, 226, 0.4)'
+                      ]
+                    }}
+                    transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                  />
+                  {/* Energy Flow Particles */}
+                  {[...Array(15)].map((_, i) => {
+                    const isLeft = i % 2 === 0;
+                    return (
+                      <motion.div
+                        key={`energy-${i}`}
+                        className="absolute rounded-full blur-[2px]"
+                        style={{
+                          width: (Math.random() * 8 + 4) + 'px',
+                          height: (Math.random() * 40 + 20) + 'px',
+                          left: isLeft ? `${Math.random() * 10 - 2}%` : `${92 + Math.random() * 10}%`,
+                          top: '110%',
+                          background: Math.random() > 0.5 ? '#00f5ff' : '#8a2be2',
+                        }}
+                        animate={{
+                          y: ['0vh', '-120vh'],
+                          x: isLeft ? [0, Math.random() * 100] : [0, -Math.random() * 100],
+                          opacity: [0, 0.9, 0],
+                          scale: [0.5, 1.5, 0.5]
+                        }}
+                        transition={{
+                          duration: Math.random() * 1.5 + 1.5,
+                          repeat: Infinity,
+                          ease: 'easeIn',
+                          delay: Math.random() * 2
+                        }}
+                      />
+                    );
+                  })}
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {/* Light Wave Burst Overlay */}
+            <AnimatePresence>
+              {isLightWaveActive && !isCinema && !isAnyEnd && (
+                <LightWaveBurstOverlay />
+              )}
+            </AnimatePresence>
+
+            {/* Black Aura Overlay */}
+            <AnimatePresence>
+              {isBlackAuraActive && !isCinema && !isAnyEnd && (
+                <motion.div
+                  className="absolute inset-0 pointer-events-none z-[18] overflow-hidden mix-blend-multiply"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 1.5, ease: 'easeOut' }}
+                >
+                  <motion.div
+                    className="absolute inset-0"
+                    animate={{
+                      opacity: [0.5, 0.9, 0.5],
+                      boxShadow: [
+                        'inset 0 0 150px 50px rgba(0, 0, 0, 0.8), inset 0 0 200px 80px rgba(20, 0, 30, 0.6)',
+                        'inset 0 0 180px 60px rgba(0, 0, 0, 0.9), inset 0 0 250px 100px rgba(30, 0, 40, 0.8)',
+                        'inset 0 0 150px 50px rgba(0, 0, 0, 0.8), inset 0 0 200px 80px rgba(20, 0, 30, 0.6)'
+                      ]
+                    }}
+                    transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                  />
+                  {/* Subtle dark particles */}
+                  {[...Array(12)].map((_, i) => {
+                    const isLeft = i % 2 === 0;
+                    return (
+                      <motion.div
+                        key={`dark-${i}`}
+                        className="absolute rounded-full blur-[4px]"
+                        style={{
+                          width: `${Math.random() * 30 + 20}px`,
+                          height: `${Math.random() * 30 + 20}px`,
+                          background: 'rgba(0,0,0,0.85)',
+                          left: isLeft ? `${Math.random() * 15 - 5}%` : `${Math.random() * 15 + 90}%`,
+                          top: '110%'
+                        }}
+                        animate={{
+                          y: ['0vh', '-120vh'],
+                          x: [(Math.random() - 0.5) * 50, (Math.random() - 0.5) * 150],
+                          opacity: [0, 0.7, 0]
+                        }}
+                        transition={{
+                          duration: Math.random() * 3 + 3,
+                          repeat: Infinity,
+                          ease: 'linear',
+                          delay: Math.random() * 3
+                        }}
+                      />
+                    );
+                  })}
                 </motion.div>
               )}
             </AnimatePresence>
@@ -1303,6 +1663,15 @@ export default function App() {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: whiteOutDuration, ease: 'easeInOut' }}
+                />
+              )}
+              {isGrayOut && !isCinema && !isAnyEnd && (
+                <motion.div
+                  className="absolute inset-0 pointer-events-none z-[19] bg-[#777777]"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: grayOutDuration, ease: 'easeInOut' }}
                 />
               )}
             </AnimatePresence>
