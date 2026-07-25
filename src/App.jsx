@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import GameFrame from './components/GameFrame';
+import ShakeLayer from './components/ShakeLayer';
 import SpriteSlot from './components/SpriteSlot';
 import DialogueBox from './components/DialogueBox';
 import CinemaLayer from './components/CinemaLayer';
@@ -135,11 +136,11 @@ function BackgroundRenderer({ bgPath, bgAnimationClass }) {
               <div className="absolute top-[8%] right-[25%] w-24 h-24 rounded-full bg-[#ffe49e]/5 border border-[#ffe49e]/20 shadow-[0_0_40px_rgba(255,228,158,0.15)] animate-pulse" />
             </div>
           )}
-
-          {/* Vignette effect */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/40 pointer-events-none" />
         </div>
       )}
+
+      {/* Vignette effect */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/40 pointer-events-none" />
     </div>
   );
 }
@@ -391,10 +392,13 @@ export default function App() {
   const [isRedAlertActive, setIsRedAlertActive] = useState(false);
   const [isMonochromeFlashActive, setIsMonochromeFlashActive] = useState(false);
   const [isEnergyAuraActive, setIsEnergyAuraActive] = useState(false);
+  const [isDarkEnergyActive, setIsDarkEnergyActive] = useState(false);
+  const [isEyesClosed, setIsEyesClosed] = useState(false);
   const [isBlackAuraActive, setIsBlackAuraActive] = useState(false);
   const [isLightWaveActive, setIsLightWaveActive] = useState(false);
+  const [isTearBlurActive, setIsTearBlurActive] = useState(false);
+  const [isSpeedEffectActive, setIsSpeedEffectActive] = useState(false);
   const [stealthGameResult, setStealthGameResult] = useState(null);
-
 
   const [saveToast, setSaveToast] = useState(null); // 'saved' | 'loaded' | null
   // セーブスロットモーダル
@@ -520,6 +524,8 @@ export default function App() {
       setIsRedAlertActive(false);
       setIsMonochromeFlashActive(false);
       setIsLightWaveActive(false);
+      setIsDarkEnergyActive(false);
+      setIsEyesClosed(false);
     }
   }, [currentLine?.scene, prevScene]);
 
@@ -627,7 +633,8 @@ export default function App() {
         const bgmFile = currentLine.bgm.includes('.') ? currentLine.bgm : `${currentLine.bgm}.mp3`;
         playBGM(assetPath(`/assets/audio/bgm/${bgmFile}`), {
           fadeDuration,
-          volume: currentLine.bgmVolume
+          volume: currentLine.bgmVolume,
+          seek: currentLine.bgmSeek
         });
       }
     } else if (!bgmOverrideRef.current) {
@@ -747,6 +754,18 @@ export default function App() {
         setIsBlackAuraActive(true);
       } else if (action === 'BLACK_AURA_STOP') {
         setIsBlackAuraActive(false);
+      } else if (action === 'DARK_ENERGY_GATHER') {
+        setIsDarkEnergyActive(true);
+      } else if (action === 'CLEAR_DARK_ENERGY') {
+        setIsDarkEnergyActive(false);
+      } else if (action === 'CLOSE_EYES') {
+        setIsEyesClosed(true);
+      } else if (action === 'OPEN_EYES' || action === 'WAKE_UP') {
+        setIsEyesClosed(false);
+      } else if (action === 'TEAR_BLUR_START') {
+        setIsTearBlurActive(true);
+      } else if (action === 'TEAR_BLUR_STOP') {
+        setIsTearBlurActive(false);
       }
 
       if (action === 'LIGHT_WAVE_BURST') {
@@ -762,6 +781,10 @@ export default function App() {
         };
       } else if (action === 'CLEAR_LIGHT_WAVE') {
         setIsLightWaveActive(false);
+      } else if (action === 'SPEED_EFFECT' || action === 'SPEED_EFFECT_START') {
+        setIsSpeedEffectActive(true);
+      } else if (action === 'CLEAR_SPEED_EFFECT' || action === 'SPEED_EFFECT_STOP') {
+        setIsSpeedEffectActive(false);
       }
 
       if (action === 'BLACK_DISTORTION' || action === 'BLACK_DISTORT') {
@@ -795,6 +818,7 @@ export default function App() {
         setWhiteOutDuration(0.8);
         setIsWhiteOut(true);
         setWhitePulseLevel(0);
+        setShakeEffect(false);
       } else if (action === 'WHITE_OUT_END') {
         setWhiteOutDuration(0.8);
         setIsWhiteOut(false);
@@ -1227,7 +1251,8 @@ export default function App() {
         }
       }}
     >
-      <GameFrame shakeEffect={shakeEffect}>
+      <GameFrame>
+        <ShakeLayer shakeEffect={shakeEffect}>
         {showTitle ? (
           <TitleScreen
             onStart={handleStartGame}
@@ -1373,6 +1398,18 @@ export default function App() {
               })()}
             </AnimatePresence>
 
+            {/* Tear Blur Overlay */}
+            <AnimatePresence>
+              {isTearBlurActive && !isCinema && !isAnyEnd && (
+                <motion.div
+                  className="absolute inset-0 pointer-events-none z-[17] backdrop-blur-[6px] bg-white/5"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1, transition: { duration: 1.5, ease: 'easeOut' } }}
+                  exit={{ opacity: 0, transition: { duration: 1.5, ease: 'easeIn' } }}
+                />
+              )}
+            </AnimatePresence>
+
             {/* Smoke Overlay */}
             <AnimatePresence>
               {isSmokeActive && !isCinema && !isAnyEnd && (
@@ -1468,6 +1505,116 @@ export default function App() {
                       />
                     );
                   })}
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {/* Speed Effect Overlay */}
+            <AnimatePresence>
+              {isSpeedEffectActive && !isCinema && !isAnyEnd && (
+                <motion.div
+                  className="absolute inset-0 pointer-events-none z-[16] overflow-hidden mix-blend-overlay"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {[...Array(40)].map((_, i) => (
+                    <motion.div
+                      key={`speed-${i}`}
+                      className="absolute bg-white rounded-full shadow-[0_0_8px_2px_rgba(255,255,255,0.8)]"
+                      style={{
+                        height: Math.random() * 4 + 1 + 'px',
+                        width: Math.random() * 400 + 100 + 'px',
+                        top: Math.random() * 100 + '%',
+                        left: '100%',
+                        opacity: Math.random() * 0.6 + 0.2
+                      }}
+                      animate={{
+                        x: ['0vw', '-150vw']
+                      }}
+                      transition={{
+                        duration: Math.random() * 0.3 + 0.1,
+                        repeat: Infinity,
+                        ease: 'linear',
+                        delay: Math.random() * 0.4
+                      }}
+                    />
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {/* Dark Energy Overlay */}
+            <AnimatePresence>
+              {isDarkEnergyActive && !isCinema && !isAnyEnd && (
+                <motion.div
+                  className="absolute inset-0 pointer-events-none z-[5] overflow-hidden flex justify-center items-center"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 1.5, ease: 'easeOut' }}
+                >
+                  <motion.div
+                    className="relative w-[600px] h-[600px] rounded-full"
+                    style={{
+                      background: 'radial-gradient(circle, rgba(0,0,0,0.95) 0%, rgba(30,0,50,0.8) 30%, rgba(0,0,0,0) 70%)',
+                    }}
+                    animate={{
+                      rotate: [0, 90, 180, 360]
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: 'linear'
+                    }}
+                  >
+                    {/* Inner core */}
+                    <motion.div
+                      className="absolute inset-0 rounded-full mix-blend-multiply"
+                      style={{
+                        background: 'radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(50,0,80,0.6) 40%, transparent 60%)',
+                        filter: 'blur(8px)'
+                      }}
+                      animate={{
+                        rotate: [360, 180, 90, 0]
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: 'linear'
+                      }}
+                    />
+                    
+                    {/* Absorbing particles */}
+                    {[...Array(12)].map((_, i) => (
+                      <motion.div
+                        key={i}
+                        className="absolute bg-black rounded-full"
+                        style={{
+                          width: `${10 + Math.random() * 20}px`,
+                          height: `${10 + Math.random() * 20}px`,
+                          boxShadow: '0 0 15px rgba(100,0,150,0.8)',
+                          left: '50%',
+                          top: '50%',
+                          marginTop: '-15px',
+                          marginLeft: '-15px',
+                        }}
+                        animate={{
+                          x: [ (Math.random() - 0.5) * 600, 0 ],
+                          y: [ (Math.random() - 0.5) * 600, 0 ],
+                          scale: [0, 1.5, 0],
+                          opacity: [0, 1, 0]
+                        }}
+                        transition={{
+                          duration: 1 + Math.random() * 1.5,
+                          repeat: Infinity,
+                          ease: 'easeIn',
+                          delay: Math.random() * 2
+                        }}
+                      />
+                    ))}
+                  </motion.div>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -1675,7 +1822,12 @@ export default function App() {
                 />
               )}
             </AnimatePresence>
+          </>
+        )}
+        </ShakeLayer>
 
+        {!showTitle && (
+          <>
             {/* Subtitles & Normal Dialogue Boxes */}
             {!isCinema && !isTransition && !isAnyEnd && !alertActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isTypingGameActive && !isFragmentCollectActive && !isFragmentCollectMikaActive && !isFragmentCollectAkaneActive && !isFragmentCollectSoloActive && !isStealthGameActive && (
               <DialogueBox
@@ -1737,11 +1889,19 @@ export default function App() {
 
             {/* Wake Up Blinking Eyelid Overlay */}
             {currentLine?.action === 'WAKE_UP' && (
-              <div className="absolute inset-0 pointer-events-none z-[55] overflow-hidden">
+              <div className="absolute inset-0 pointer-events-none z-[25] overflow-hidden">
                 {/* Top Eyelid */}
                 <div className="absolute top-0 left-0 right-0 bg-black animate-eyelid-top" />
                 {/* Bottom Eyelid */}
                 <div className="absolute bottom-0 left-0 right-0 bg-black animate-eyelid-bottom" />
+              </div>
+            )}
+
+            {/* Eyes Closed Overlay */}
+            {isEyesClosed && (
+              <div className="absolute inset-0 pointer-events-none z-[25] overflow-hidden">
+                <div className="absolute top-0 left-0 right-0 bg-black animate-eyelid-close-top" />
+                <div className="absolute bottom-0 left-0 right-0 bg-black animate-eyelid-close-bottom" />
               </div>
             )}
 

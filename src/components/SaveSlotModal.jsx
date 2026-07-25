@@ -116,7 +116,7 @@ export default function SaveSlotModal({ mode, onClose, onSelectSlot, slots }) {
     <AnimatePresence>
       {/* バックドロップ */}
       <motion.div
-        className="fixed inset-0 z-[300] flex items-center justify-center"
+        className="fixed inset-0 z-[300] flex items-center justify-center pointer-events-auto"
         style={{ background: 'rgba(0,0,0,0.45)', backdropFilter: 'blur(6px)' }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

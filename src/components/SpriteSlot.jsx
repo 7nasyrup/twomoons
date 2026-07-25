@@ -49,7 +49,7 @@ const SPEAKER_CONFIGS = {
     folder: "/character/Ruki",
     baseFileName: "Ruki",
     defaultExpression: "neutral",
-    positionClass: "left-0 right-0 mx-auto w-[45%] h-[95%]"
+    positionClass: "left-[35%] w-[45%] h-[95%]"
   }
 };
 

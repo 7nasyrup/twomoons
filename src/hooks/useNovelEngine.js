@@ -83,7 +83,7 @@ export function useNovelEngine(scenarioData, options = {}) {
       const isSpecialAction = [
         'FADE_TO_BLACK', 'SLOW_FADE_TO_BLACK', 'WAKE_UP', 'FADE_IN', 'FADE_OUT',
         'WAIT_SECONDS', 'SLOW_FADE_IN', 'WAIT_SECONDS_AND_MOVE_MOON', 'ALL_FADE_OUT', 'WAIT_FADE',
-        'WHITE_OUT_END'
+        'WHITE_OUT_END', 'WHITE_OUT_START', 'WHITE_OUT_END_SLOW', 'WHITE_OUT_END_VERY_SLOW'
       ].includes(currentLine.action);
 
       if (

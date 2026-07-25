@@ -13,7 +13,7 @@ export function useAudioSystem() {
   const seVolume = useRef(0.8);
   const isMuted = useRef(false);
 
-  const playBGM = useCallback((src, { fadeDuration = 1500, volume } = {}) => {
+  const playBGM = useCallback((src, { fadeDuration = 1500, volume, seek = 0 } = {}) => {
     if (!src) return;
 
     if (src === currentBgmSrc.current) {
@@ -51,6 +51,9 @@ export function useAudioSystem() {
     });
 
     newBgm.play();
+    if (seek > 0) {
+      newBgm.seek(seek);
+    }
     newBgm.fade(0, bgmVolume.current * masterVolume.current, fadeDuration);
     bgmRef.current = newBgm;
     currentBgmSrc.current = src;

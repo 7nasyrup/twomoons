@@ -6,7 +6,7 @@ export default function AlertModal({ isActive, title, message, onDismiss }) {
     <AnimatePresence>
       {isActive && (
         <motion.div
-          className="absolute inset-0 z-50 flex items-center justify-center"
+          className="absolute inset-0 z-50 flex items-center justify-center pointer-events-auto"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}

@@ -275,6 +275,19 @@
   animation: eyelid-blink-bottom 3.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 
+@keyframes eyelid-close {
+  0% { height: 0%; }
+  100% { height: 50%; }
+}
+
+.animate-eyelid-close-top {
+  animation: eyelid-close 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-eyelid-close-bottom {
+  animation: eyelid-close 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
 @keyframes bg-wake-up {
   0% { filter: blur(12px) brightness(0.2); }
   15% { filter: blur(12px) brightness(0.2); }
