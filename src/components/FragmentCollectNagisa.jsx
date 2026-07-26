@@ -361,8 +361,8 @@ export default function FragmentCollectNagisa({ onComplete, onSave, onLoad, onTo
 
       {!currentMessage && !isGameOver && (
         <>
-          {roomIndex > 0 && (<button onClick={() => moveRoom(-1)} disabled={isTransitioning} className="absolute left-2 lg:left-6 top-1/2 -translate-y-1/2 z-30 w-8 h-12 lg:w-14 lg:h-24 flex items-center justify-center glass-panel rounded-xl lg:rounded-2xl hover:bg-white/10 hover:border-white/30 transition-all duration-200 disabled:opacity-30"><ChevronLeft className="w-5 h-5 lg:w-8 lg:h-8 text-white/80" /></button>)}
-          {roomIndex < ROOMS.length - 1 && (<button onClick={() => moveRoom(1)} disabled={isTransitioning} className="absolute right-2 lg:right-6 top-1/2 -translate-y-1/2 z-30 w-8 h-12 lg:w-14 lg:h-24 flex items-center justify-center glass-panel rounded-xl lg:rounded-2xl hover:bg-white/10 hover:border-white/30 transition-all duration-200 disabled:opacity-30"><ChevronRight className="w-5 h-5 lg:w-8 lg:h-8 text-white/80" /></button>)}
+          {roomIndex > 0 && (<button onClick={() => moveRoom(-1)} disabled={isTransitioning} className="absolute left-6 top-1/2 -translate-y-1/2 z-30 w-14 h-24 flex items-center justify-center glass-panel rounded-2xl hover:bg-white/10 hover:border-white/30 transition-all duration-200 disabled:opacity-30"><ChevronLeft className="w-8 h-8 text-white/80" /></button>)}
+          {roomIndex < ROOMS.length - 1 && (<button onClick={() => moveRoom(1)} disabled={isTransitioning} className="absolute right-6 top-1/2 -translate-y-1/2 z-30 w-14 h-24 flex items-center justify-center glass-panel rounded-2xl hover:bg-white/10 hover:border-white/30 transition-all duration-200 disabled:opacity-30"><ChevronRight className="w-8 h-8 text-white/80" /></button>)}
         </>
       )}
 
