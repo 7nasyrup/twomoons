@@ -413,7 +413,7 @@ export default function App() {
 
   // Request fullscreen on mobile to hide browser address bar
   const requestMobileFullscreen = () => {
-    const isTouchDevice = window.matchMedia('(pointer: coarse)').matches || navigator.maxTouchPoints > 0;
+    const isTouchDevice = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
     const isMobileSize = window.innerWidth < 1024;
     if (!isTouchDevice || !isMobileSize) return;
 
