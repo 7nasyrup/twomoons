@@ -1046,6 +1046,7 @@ export default function App() {
   };
 
   const handleTouchEnd = (e) => {
+    requestMobileFullscreen();
     if (showTitle) return;
     const diffX = e.changedTouches[0].clientX - touchStartX.current;
     const diffY = e.changedTouches[0].clientY - touchStartY.current;
@@ -1271,6 +1272,7 @@ export default function App() {
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
       onClick={() => {
+        requestMobileFullscreen();
         // On mobile, onTouchEnd already handled the tap — skip onClick to prevent double-fire
         if (touchHandledRef.current) return;
         if (skipMode) {
