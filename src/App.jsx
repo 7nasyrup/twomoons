@@ -1354,7 +1354,15 @@ export default function App() {
 
             {/* Search & Learning Overlay */}
             {isSearchAndLearningActive && (
-              <SearchAndLearning onComplete={handleSearchAndLearningComplete} />
+              <SearchAndLearning 
+                onComplete={handleSearchAndLearningComplete} 
+                onSave={handleSave}
+                onLoad={handleLoad}
+                onOpenLog={() => setBacklogOpen(true)}
+                onToggleAuto={toggleAuto}
+                onToggleSkip={toggleSkip}
+                onExit={() => setShowTitle(true)}
+              />
             )}
 
             {/* Tap Communication Overlay */}

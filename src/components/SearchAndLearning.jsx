@@ -81,7 +81,15 @@ const InfoParticle = ({ startX, startY, targetX, targetY, onComplete }) => {
   );
 };
 
-export default function SearchAndLearning({ onComplete }) {
+export default function SearchAndLearning({ 
+  onComplete,
+  onSave,
+  onLoad,
+  onOpenLog,
+  onToggleAuto,
+  onToggleSkip,
+  onExit
+}) {
   const [visited, setVisited] = useState({ bag: false, newspaper: false, photo: false, artificial_moon: false, calendar: false });
   const [visuallyVisited, setVisuallyVisited] = useState({ bag: false, newspaper: false, photo: false, artificial_moon: false, calendar: false });
   const [animations, setAnimations] = useState([]);
@@ -482,17 +490,17 @@ export default function SearchAndLearning({ onComplete }) {
         autoMode={false}
         skipMode={false}
         onNext={handleNextMessage}
-        onToggleAuto={() => console.log('Auto toggle not supported here')}
-        onToggleSkip={() => console.log('Skip toggle not supported here')}
+        onToggleAuto={onToggleAuto}
+        onToggleSkip={onToggleSkip}
         onToggleHud={() => console.log('Hide HUD not supported here')}
-        onOpenLog={() => console.log('Log not supported here')}
+        onOpenLog={onOpenLog}
         choices={null}
         isWaitingForChoice={false}
         onSelectChoice={() => { }}
         fullText={currentMessage?.text}
-        onSave={() => console.log('Save placeholder')}
-        onLoad={() => console.log('Load placeholder')}
-        onExit={() => console.log('Exit placeholder')}
+        onSave={onSave}
+        onLoad={onLoad}
+        onExit={onExit}
       />
     </div>
   );
