@@ -157,18 +157,12 @@ export const scenarioData = [
     "text": "「おーーい！ 朔良ーー！！」",
     "action": "PLAY_RUNNING_SE",
     "bg": "/scene/university_classroom.png",
-    "showIllust": [
-      "Mutsunori_smile"
-    ]
   },
   {
     "scene": "講義室出口",
     "speaker": "？？？",
     "text": "「朔良、今日の講義これだけでしょ？頼む、俺のレポート手伝って！」",
-    "bg": "/character/Mutsunori/Mutsunori_CG1.png",
-    "hideIllust": [
-      "Mutsunori"
-    ]
+    "bg": "/character/Mutsunori/Mutsunori_CG1.png"
   },
   {
     "scene": "講義室出口",
@@ -292,7 +286,7 @@ export const scenarioData = [
   },
   {
     "scene": "大学の廊下",
-    "text": "現金なやつ。睦典は一瞬で元の笑顔に戻ると、大きな身体を揺らしながら、キャンパスの廊下を小走りで先を行く。</br>私は苦笑しながら、その背中を追いかけようとして――。"
+    "text": "現金なやつ。睦典は一瞬で元の笑顔に戻ると、大きな身体を揺らしながら、キャンパスの廊下を小走りで先を行く。私は苦笑しながら、その背中を追いかけようとして――。"
   },
   {
     "scene": "大学の廊下",
