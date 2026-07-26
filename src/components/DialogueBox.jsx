@@ -60,8 +60,8 @@ export default function DialogueBox({
         exit="exit"
       >
         {/* EXIT Button (Top Left) */}
-        <div className="absolute top-6 left-8 z-50 pointer-events-auto">
-          <HudButton icon={<LogOut size={14} />} label="EXIT" onClick={onExit} />
+        <div className="absolute top-2 left-2 md:top-6 md:left-8 z-50 pointer-events-auto">
+          <HudButton icon={<LogOut className="w-3 h-3 md:w-3.5 md:h-3.5" />} label="EXIT" onClick={onExit} />
         </div>
 
         {/* Bottom Area Wrapper */}
@@ -99,13 +99,13 @@ export default function DialogueBox({
 
           {/* FUI Dialogue Box based on user image */}
           <div 
-            className="w-full max-w-[1200px] px-4 md:px-16 mb-8 md:mb-12 cursor-pointer pointer-events-auto relative mt-8 flex flex-col items-center"
+            className="w-full max-w-[1200px] px-2 md:px-16 mb-2 md:mb-12 cursor-pointer pointer-events-auto relative mt-2 md:mt-8 flex flex-col items-center"
           >
 
-            <div className="w-full relative shadow-[0_10px_40px_rgba(0,0,0,0.3)] rounded-xl overflow-hidden border-b-8 border-[#4dd0e1] flex flex-col">
+            <div className="w-full relative shadow-[0_10px_40px_rgba(0,0,0,0.3)] rounded-xl overflow-hidden border-b-[4px] md:border-b-8 border-[#4dd0e1] flex flex-col">
 
               {/* Header Bar */}
-              <div className="w-full h-11 bg-[#0a192f] flex justify-between items-center relative overflow-hidden">
+              <div className="w-full h-7 md:h-11 bg-[#0a192f] flex justify-between items-center relative overflow-hidden">
                 {/* Geometric Pattern Background for Header */}
                 <div
                   className="absolute inset-0 opacity-80"
@@ -117,13 +117,13 @@ export default function DialogueBox({
                 />
 
                 {/* Left side: Nameplate */}
-                <div className="flex items-center px-6 relative z-10 bg-[#0a192f] h-full pr-12 shadow-[10px_0_20px_rgba(10,25,47,0.8)]" style={{ clipPath: 'polygon(0 0, 100% 0, 92% 100%, 0 100%)' }}>
+                <div className="flex items-center px-3 md:px-6 relative z-10 bg-[#0a192f] h-full pr-8 md:pr-12 shadow-[10px_0_20px_rgba(10,25,47,0.8)]" style={{ clipPath: 'polygon(0 0, 100% 0, 92% 100%, 0 100%)' }}>
                   {showSpeaker && (
                     <>
-                      <div className="w-0 h-0 border-t-[6px] border-t-transparent border-l-[10px] border-l-[#00e5ff] border-b-[6px] border-b-transparent mr-3" />
-                      <span className="text-white font-bold tracking-widest text-lg mr-3 shadow-md">{displaySpeaker}</span>
+                      <div className="w-0 h-0 border-t-[4px] md:border-t-[6px] border-t-transparent border-l-[6px] md:border-l-[10px] border-l-[#00e5ff] border-b-[4px] md:border-b-[6px] border-b-transparent mr-2 md:mr-3" />
+                      <span className="text-white font-bold tracking-widest text-[11px] md:text-lg mr-2 md:mr-3 shadow-md">{displaySpeaker}</span>
                       {displayRole && (
-                        <span className="text-[#00e5ff] font-bold text-[10px] tracking-widest uppercase mt-1">
+                        <span className="text-[#00e5ff] font-bold text-[8px] md:text-[10px] tracking-widest uppercase mt-0.5 md:mt-1">
                           {displayRole}
                         </span>
                       )}
@@ -137,19 +137,19 @@ export default function DialogueBox({
                     e.stopPropagation();
                     onToggleHud();
                   }}
-                  className="px-5 text-[#00e5ff]/50 hover:text-[#00e5ff] hover:bg-[#00e5ff]/10 relative z-10 h-full flex items-center transition-colors"
+                  className="px-3 md:px-5 text-[#00e5ff]/50 hover:text-[#00e5ff] hover:bg-[#00e5ff]/10 relative z-10 h-full flex items-center transition-colors"
                 >
-                  <X size={18} strokeWidth={2.5} />
+                  <X className="w-3 h-3 md:w-4 md:h-4" strokeWidth={2.5} />
                 </button>
               </div>
 
               {/* Text Area */}
-              <div className="bg-white w-full h-[140px] min-h-[140px] max-h-[140px] flex-none overflow-hidden p-8 pb-12 relative">
-                <p className="m-0 text-slate-800 text-lg md:text-xl leading-[2.2] font-noto tracking-wide whitespace-pre-line font-medium">
+              <div className="bg-white w-full h-[70px] md:h-[140px] min-h-[70px] md:min-h-[140px] max-h-[70px] md:max-h-[140px] flex-none overflow-hidden p-3 md:p-8 pb-6 md:pb-12 relative">
+                <p className="m-0 text-slate-800 text-[11px] md:text-xl leading-[1.6] md:leading-[2.2] font-noto tracking-wide whitespace-pre-line font-medium">
                   {renderTextWithLinks(text)}
                   {isTyping && (
                     <motion.span
-                      className="inline-block w-2.5 h-4 bg-[#00e5ff] ml-2 align-middle opacity-80"
+                      className="inline-block w-1.5 h-2.5 md:w-2.5 md:h-4 bg-[#00e5ff] ml-1 md:ml-2 align-middle opacity-80"
                       animate={{ opacity: [1, 0.2] }}
                       transition={{ duration: 0.6, repeat: Infinity, ease: "linear" }}
                     />
@@ -159,23 +159,23 @@ export default function DialogueBox({
                 {/* Next indicator */}
                 {!isTyping && !isWaitingForChoice && (
                   <motion.div
-                    className="absolute bottom-6 right-8 flex items-center text-[#4dd0e1]"
+                    className="absolute bottom-2 right-3 md:bottom-6 md:right-8 flex items-center text-[#4dd0e1]"
                     animate={{ x: [0, 8, 0] }}
                     transition={{ duration: 0.8, repeat: Infinity, ease: "easeInOut" }}
                   >
-                    <ChevronRight size={24} strokeWidth={2.5} />
+                    <ChevronRight className="w-3 h-3 md:w-6 md:h-6" strokeWidth={2.5} />
                   </motion.div>
                 )}
               </div>
             </div>
 
             {/* HUD Buttons Grouped Together (Overlapping the bottom cyan border) */}
-            <div className="absolute -bottom-3 right-12 md:right-24 flex gap-2 z-20">
-              <HudButton icon={<Save size={14} />} label="SAVE" onClick={onSave} />
-              <HudButton icon={<FolderOpen size={14} />} label="LOAD" onClick={onLoad} />
-              <HudButton icon={<SkipForward size={14} />} label="SKIP" onClick={onToggleSkip} active={skipMode} />
-              <HudButton icon={<BookOpen size={14} />} label="LOG" onClick={onOpenLog} />
-              <HudButton icon={<FastForward size={14} />} label="AUTO" onClick={onToggleAuto} active={autoMode} />
+            <div className="absolute -bottom-2 md:-bottom-3 right-4 md:right-24 flex gap-1 md:gap-2 z-20">
+              <HudButton icon={<Save className="w-2.5 h-2.5 md:w-3.5 md:h-3.5" />} label="SAVE" onClick={onSave} />
+              <HudButton icon={<FolderOpen className="w-2.5 h-2.5 md:w-3.5 md:h-3.5" />} label="LOAD" onClick={onLoad} />
+              <HudButton icon={<SkipForward className="w-2.5 h-2.5 md:w-3.5 md:h-3.5" />} label="SKIP" onClick={onToggleSkip} active={skipMode} />
+              <HudButton icon={<BookOpen className="w-2.5 h-2.5 md:w-3.5 md:h-3.5" />} label="LOG" onClick={onOpenLog} />
+              <HudButton icon={<FastForward className="w-2.5 h-2.5 md:w-3.5 md:h-3.5" />} label="AUTO" onClick={onToggleAuto} active={autoMode} />
             </div>
 
           </div>
@@ -189,7 +189,7 @@ function HudButton({ icon, label, onClick, active }) {
   return (
     <button
       onClick={(e) => { e.stopPropagation(); onClick(); }}
-      className={`flex items-center gap-1.5 px-5 py-2 md:px-4 md:py-1.5 rounded-full text-[11px] md:text-[11px] font-bold tracking-widest font-noto
+      className={`flex items-center gap-1 md:gap-1.5 px-2.5 py-0.5 md:px-4 md:py-1.5 rounded-full text-[8px] md:text-[11px] font-bold tracking-widest font-noto
                   transition-all duration-300 shadow-md border
                   ${active
           ? 'bg-[#00e5ff] text-slate-900 border-[#00e5ff] shadow-[0_4px_12px_rgba(0,229,255,0.4)]'
