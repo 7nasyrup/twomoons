@@ -236,11 +236,6 @@ export default function SearchAndLearning({ onComplete }) {
       return;
     }
 
-    const onGlobalTap = () => {
-      handleNextMessage();
-    };
-    window.addEventListener('minigame-tap', onGlobalTap);
-
     clearInterval(typingTimer.current);
     setDisplayedText('');
     setIsTyping(true);
@@ -257,8 +252,18 @@ export default function SearchAndLearning({ onComplete }) {
       }
     }, currentMessage.role === 'sakura' ? 40 : 25);
 
+    return () => clearInterval(typingTimer.current);
+  }, [currentMessage]);
+
+  useEffect(() => {
+    if (!currentMessage) return;
+
+    const onGlobalTap = () => {
+      handleNextMessage();
+    };
+    window.addEventListener('minigame-tap', onGlobalTap);
+
     return () => {
-      clearInterval(typingTimer.current);
       window.removeEventListener('minigame-tap', onGlobalTap);
     };
   }, [currentMessage, handleNextMessage]);
