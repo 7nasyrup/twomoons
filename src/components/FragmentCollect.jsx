@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import FCDialogueBox from './FCDialogueBox';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Check, Shield, FileText, ArrowLeftRight, Clock, Sparkles, Circle, CheckCircle2 } from 'lucide-react';
 import { assetPath } from '../utils/assetPath';
@@ -235,84 +236,7 @@ const InfoParticle = ({ startX, startY, targetX, targetY, color, onComplete }) =
   );
 };
 
-// ─── メッセージウィンドウ（本編DialogueBox準拠） ─────────────────────────────────
-function FCDialogueBox({ currentMessage, displayedText, isTyping, onNext }) {
-  if (!currentMessage) return null;
-  const isSystem = currentMessage.role === 'SYSTEM';
-  let displaySpeaker = currentMessage.speaker;
-  let displayRole = currentMessage.role;
 
-  return (
-    <AnimatePresence>
-      <motion.div
-        key="fc-dlg"
-        className="absolute bottom-0 w-full flex flex-col pointer-events-none items-center z-50 font-orbitron"
-        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }}
-        transition={{ duration: 0.2 }}
-      >
-        <div className="fixed inset-0 z-[-1] pointer-events-auto" onClick={onNext} />
-        
-        <div 
-          className="w-full max-w-[1200px] px-4 md:px-16 mb-8 md:mb-12 cursor-pointer pointer-events-auto relative mt-8 flex flex-col items-center"
-          onClick={onNext}
-        >
-          <div className="w-full relative shadow-[0_10px_40px_rgba(0,0,0,0.3)] rounded-xl overflow-hidden border-b-8 border-[#4dd0e1] flex flex-col">
-            <div className="w-full h-11 bg-[#0a192f] flex justify-between items-center relative overflow-hidden">
-              <div
-                className="absolute inset-0 opacity-80 pointer-events-none"
-                style={{
-                  backgroundImage: `repeating-linear-gradient(45deg, #09202a 25%, transparent 25%, transparent 75%, #09202a 75%, #09202a), repeating-linear-gradient(45deg, #09202a 25%, #0e2a38 25%, #0e2a38 75%, #09202a 75%, #09202a)`,
-                  backgroundPosition: `0 0, 10px 10px`,
-                  backgroundSize: `20px 20px`
-                }}
-              />
-              <div className="flex items-center px-6 relative z-10 bg-[#0a192f] h-full pr-12 shadow-[10px_0_20px_rgba(10,25,47,0.8)]" style={{ clipPath: 'polygon(0 0, 100% 0, 92% 100%, 0 100%)' }}>
-                {displaySpeaker && (
-                  <>
-                    <div className="w-0 h-0 border-t-[6px] border-t-transparent border-l-[10px] border-l-[#00e5ff] border-b-[6px] border-b-transparent mr-3" />
-                    <span className="text-white font-bold tracking-widest text-lg mr-3 shadow-md flex items-center gap-2">
-                      {isSystem && <Sparkles className="w-4 h-4 text-[#00e5ff]" />}
-                      {displaySpeaker}
-                    </span>
-                    {displayRole && !isSystem && (
-                      <span className="text-[#00e5ff] font-bold text-[10px] tracking-widest uppercase mt-1">
-                        {displayRole}
-                      </span>
-                    )}
-                  </>
-                )}
-              </div>
-              <div className="px-5 relative z-10 h-full flex items-center"></div>
-            </div>
-
-            <div className="bg-white w-full h-[140px] min-h-[140px] max-h-[140px] flex-none overflow-hidden p-8 pb-12 relative">
-              <p className="m-0 text-slate-800 text-lg md:text-xl leading-[2.2] font-noto tracking-wide whitespace-pre-line font-medium">
-                {displayedText}
-                {isTyping && (
-                  <motion.span
-                    className="inline-block w-2.5 h-4 bg-[#00e5ff] ml-2 align-middle opacity-80"
-                    animate={{ opacity: [1, 0.2] }}
-                    transition={{ duration: 0.6, repeat: Infinity, ease: "linear" }}
-                  />
-                )}
-              </p>
-
-              {!isTyping && (
-                <motion.div
-                  className="absolute bottom-6 right-8 flex items-center text-[#4dd0e1]"
-                  animate={{ x: [0, 8, 0] }}
-                  transition={{ duration: 0.8, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  <ChevronRight size={24} strokeWidth={2.5} />
-                </motion.div>
-              )}
-            </div>
-          </div>
-        </div>
-      </motion.div>
-    </AnimatePresence>
-  );
-}
 
 // ─── キャラクタースプライト（本編SpriteSlot準拠） ───────────────────────────────
 function FCSprite({ currentMessage }) {
