@@ -583,7 +583,7 @@ export default function FragmentCollectAkane({ onComplete, onSave, onLoad, onTog
               disabled={isTransitioning}
               className="absolute left-6 top-1/2 -translate-y-1/2 z-30 w-14 h-24 flex items-center justify-center glass-panel rounded-2xl hover:bg-white/10 hover:border-white/30 transition-all duration-200 disabled:opacity-30"
             >
-              <ChevronLeft className="w-8 h-8 text-white/80" />
+              <ChevronLeft className="w-8 h-8 text-slate-800" />
             </button>
           )}
           {roomIndex < ROOMS.length - 1 && (
@@ -592,7 +592,7 @@ export default function FragmentCollectAkane({ onComplete, onSave, onLoad, onTog
               disabled={isTransitioning}
               className="absolute right-12 lg:right-6 top-1/2 -translate-y-1/2 z-30 w-14 h-24 flex items-center justify-center glass-panel rounded-2xl hover:bg-white/10 hover:border-white/30 transition-all duration-200 disabled:opacity-30"
             >
-              <ChevronRight className="w-8 h-8 text-white/80" />
+              <ChevronRight className="w-8 h-8 text-slate-800" />
             </button>
           )}
         </>
