@@ -1883,6 +1883,7 @@ export default function App() {
                 onExit={() => {
                   setShowTitle(true);
                 }}
+                touchHandledRef={touchHandledRef}
               />
             )}
 
