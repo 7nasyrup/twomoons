@@ -76,8 +76,8 @@ export default function FCDialogueBox({ currentMessage, displayedText, isTyping,
                 <div className="px-[3vh] relative z-10 h-full flex items-center"></div>
               </div>
 
-              <div className="w-full bg-slate-900/95 backdrop-blur-md p-[3vh] md:p-[4vh] min-h-[15vh] flex flex-col justify-center relative">
-                <p className="dlg-text m-0 text-slate-200 text-[2.5vh] leading-[1.8] font-noto tracking-wide whitespace-pre-wrap font-medium">
+              <div className="w-full bg-white p-[3vh] md:p-[4vh] min-h-[15vh] flex flex-col justify-center relative">
+                <p className="dlg-text m-0 text-slate-800 text-[2.5vh] leading-[1.8] font-noto tracking-wide whitespace-pre-line font-medium">
                   {renderTextWithLinks(displayedText)}
                   {isTyping && (
                     <motion.span
@@ -90,11 +90,11 @@ export default function FCDialogueBox({ currentMessage, displayedText, isTyping,
 
                 {!isTyping && (
                   <motion.div
-                    className="absolute right-[3vh] bottom-[2vh] text-[#00e5ff]"
-                    animate={{ y: [0, 5, 0] }}
-                    transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute right-[3vh] bottom-[2vh] flex items-center text-[#4dd0e1]"
+                    animate={{ x: [0, 8, 0] }}
+                    transition={{ duration: 0.8, repeat: Infinity, ease: "easeInOut" }}
                   >
-                    <ChevronDown className="w-[3vh] h-[3vh]" />
+                    <ChevronDown className="w-[3vh] h-[3vh] -rotate-90" />
                   </motion.div>
                 )}
               </div>
