@@ -1058,6 +1058,16 @@ export default function App() {
 
   const handleTouchEnd = (e) => {
     if (showTitle) return;
+
+    // If the touch target is a button or inside a button/link, don't advance the scenario.
+    // Let the button's own click handler handle it instead.
+    const target = e.target;
+    if (target && (target.closest('button') || target.closest('a') || target.closest('[role="button"]'))) {
+      touchHandledRef.current = true;
+      setTimeout(() => { touchHandledRef.current = false; }, 300);
+      return;
+    }
+
     const diffX = e.changedTouches[0].clientX - touchStartX.current;
     const diffY = e.changedTouches[0].clientY - touchStartY.current;
 
