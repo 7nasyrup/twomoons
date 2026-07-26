@@ -871,26 +871,26 @@ export default function FragmentCollect({ onComplete, onSave, onLoad, onToggleSk
 
       {/* ─── HUD上部（メッセージ中は非表示） ─── */}
       {!currentMessage && !isGameOver && (
-        <div className="absolute top-6 left-0 right-0 z-30 flex items-start justify-between px-8 pointer-events-none">
+        <div className="absolute top-4 lg:top-6 left-0 right-0 z-30 flex items-start justify-between px-2 pr-12 lg:px-8 pointer-events-none">
           {/* 左側：エリア名＋記憶ゲージ */}
           <div className="flex flex-col gap-2">
             {/* エリア名 */}
-            <div className="glass-panel px-6 py-3 rounded-full flex items-center gap-3">
+            <div className="glass-panel px-3 py-1.5 lg:px-6 lg:py-3 rounded-full flex items-center gap-2 lg:gap-3">
               <span className="inline-block w-1.5 h-1.5 rounded-full bg-sky-500 animate-pulse" />
-              <h2 className="text-sm font-bold text-slate-800 tracking-[0.2em]">
+              <h2 className="text-[10px] lg:text-sm font-bold text-slate-800 tracking-[0.2em]">
                 {currentRoom.name}
               </h2>
             </div>
             {/* 睦典の記憶（ライフ）ゲージ */}
             {ENABLE_STEALTH_MODE && (
-            <div className="glass-panel px-6 py-3 rounded-full flex items-center gap-3 border border-red-700/30">
-              <Shield className="w-4 h-4 text-red-400" />
-              <span className="text-[10px] font-orbitron text-red-500 tracking-widest font-bold">HP</span>
-              <div className="flex gap-1.5">
+            <div className="glass-panel px-3 py-1.5 lg:px-6 lg:py-3 rounded-full flex items-center gap-2 lg:gap-3 border border-red-700/30">
+              <Shield className="w-3 h-3 lg:w-4 lg:h-4 text-red-400" />
+              <span className="text-[8px] lg:text-[10px] font-orbitron text-red-500 tracking-widest font-bold">HP</span>
+              <div className="flex gap-1 lg:gap-1.5">
                 {[0, 1, 2].map(i => (
                   <div
                     key={i}
-                    className={`w-3.5 h-4 rounded-sm transition-all duration-500 ${i < mutsunoriHealth
+                    className={`w-2 h-3 lg:w-3.5 lg:h-4 rounded-sm transition-all duration-500 ${i < mutsunoriHealth
                       ? 'bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.4)]'
                       : 'bg-slate-200 border border-slate-300'
                       }`}
@@ -902,22 +902,22 @@ export default function FragmentCollect({ onComplete, onSave, onLoad, onToggleSk
           </div>
 
           {/* コレクション状況＆タイマー */}
-          <div className="flex flex-col gap-2 items-end">
+          <div className="flex flex-col gap-1 lg:gap-2 items-end">
             {/* タイマー */}
-            <div className={`glass-panel px-6 py-3 rounded-full flex items-center gap-3 transition-colors ${timeLeft <= 30 ? 'border-red-500/50 animate-pulse text-red-500' : 'text-slate-700'}`}>
-              <Clock className="w-4 h-4" />
-              <span className="text-xs font-orbitron tracking-widest font-bold">
+            <div className={`glass-panel px-3 py-1.5 lg:px-6 lg:py-3 rounded-full flex items-center gap-2 lg:gap-3 transition-colors ${timeLeft <= 30 ? 'border-red-500/50 animate-pulse text-red-500' : 'text-slate-700'}`}>
+              <Clock className="w-3 h-3 lg:w-4 lg:h-4" />
+              <span className="text-[9px] lg:text-xs font-orbitron tracking-widest font-bold">
                 {Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')}
               </span>
             </div>
 
             <div id="fc-chip-counter"
-              className="glass-panel px-6 py-3 rounded-full flex items-center gap-3">
-              <Shield className="w-4 h-4 text-sky-500" />
-              <span className="text-xs font-orbitron text-slate-600 tracking-widest font-bold">CHIP</span>
-              <div className="flex items-center gap-2">
+              className="glass-panel px-3 py-1.5 lg:px-6 lg:py-3 rounded-full flex items-center gap-2 lg:gap-3">
+              <Shield className="w-3 h-3 lg:w-4 lg:h-4 text-sky-500" />
+              <span className="text-[9px] lg:text-xs font-orbitron text-slate-600 tracking-widest font-bold">CHIP</span>
+              <div className="flex items-center gap-1.5 lg:gap-2">
                 {Array.from({ length: totalChips }, (_, i) => (
-                  <div key={i} className={`w-3 h-3 rounded-full border transition-all duration-500 ${i < chipCount
+                  <div key={i} className={`w-2 h-2 lg:w-3 lg:h-3 rounded-full border transition-all duration-500 ${i < chipCount
                     ? 'bg-cyan-400 border-cyan-300 shadow-[0_0_8px_rgba(103,232,249,0.8)]'
                     : 'bg-transparent border-white/30'}`}
                   />
@@ -925,12 +925,12 @@ export default function FragmentCollect({ onComplete, onSave, onLoad, onToggleSk
               </div>
             </div>
             <div id="fc-file-counter"
-              className="glass-panel px-6 py-3 rounded-full flex items-center gap-3">
-              <FileText className="w-4 h-4 text-green-500" />
-              <span className="text-xs font-orbitron text-slate-600 tracking-widest font-bold">FILE</span>
-              <div className="flex items-center gap-2">
+              className="glass-panel px-3 py-1.5 lg:px-6 lg:py-3 rounded-full flex items-center gap-2 lg:gap-3">
+              <FileText className="w-3 h-3 lg:w-4 lg:h-4 text-green-500" />
+              <span className="text-[9px] lg:text-xs font-orbitron text-slate-600 tracking-widest font-bold">FILE</span>
+              <div className="flex items-center gap-1.5 lg:gap-2">
                 {Array.from({ length: 4 }, (_, i) => (
-                  <div key={i} className={`w-3 h-3 rounded-full border transition-all duration-500 ${i < fileCount
+                  <div key={i} className={`w-2 h-2 lg:w-3 lg:h-3 rounded-full border transition-all duration-500 ${i < fileCount
                     ? 'bg-green-400 border-green-300 shadow-[0_0_8px_rgba(74,222,128,0.8)]'
                     : 'bg-transparent border-white/30'}`}
                   />
@@ -949,24 +949,24 @@ export default function FragmentCollect({ onComplete, onSave, onLoad, onToggleSk
             <button
               onClick={() => moveRoom(-1)}
               disabled={isTransitioning}
-              className="absolute left-6 top-1/2 -translate-y-1/2 z-30 w-14 h-24 flex items-center justify-center
-                         glass-panel rounded-2xl
+              className="absolute left-2 lg:left-6 top-1/2 -translate-y-1/2 z-30 w-8 h-12 lg:w-14 lg:h-24 flex items-center justify-center
+                         glass-panel rounded-xl lg:rounded-2xl
                          hover:bg-white/10 hover:border-white/30 transition-all duration-200
                          disabled:opacity-30"
             >
-              <ChevronLeft className="w-8 h-8 text-white/80" />
+              <ChevronLeft className="w-5 h-5 lg:w-8 lg:h-8 text-white/80" />
             </button>
           )}
           {roomIndex < ROOMS.length - 1 && (
             <button
               onClick={() => moveRoom(1)}
               disabled={isTransitioning}
-              className="absolute right-6 top-1/2 -translate-y-1/2 z-30 w-14 h-24 flex items-center justify-center
-                         glass-panel rounded-2xl
+              className="absolute right-2 lg:right-6 top-1/2 -translate-y-1/2 z-30 w-8 h-12 lg:w-14 lg:h-24 flex items-center justify-center
+                         glass-panel rounded-xl lg:rounded-2xl
                          hover:bg-white/10 hover:border-white/30 transition-all duration-200
                          disabled:opacity-30"
             >
-              <ChevronRight className="w-8 h-8 text-white/80" />
+              <ChevronRight className="w-5 h-5 lg:w-8 lg:h-8 text-white/80" />
             </button>
           )}
         </>
