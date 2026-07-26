@@ -1065,7 +1065,7 @@ export default function App() {
       }
       // Mark as handled so onClick doesn't double-fire
       touchHandledRef.current = true;
-      setTimeout(() => { touchHandledRef.current = false; }, 300);
+      setTimeout(() => { touchHandledRef.current = false; }, 1000);
     } else {
       // Tap detected (not a swipe)
       const now = Date.now();
@@ -1084,7 +1084,7 @@ export default function App() {
       lastTap.current = now;
       // Mark as handled so onClick doesn't double-fire
       touchHandledRef.current = true;
-      setTimeout(() => { touchHandledRef.current = false; }, 300);
+      setTimeout(() => { touchHandledRef.current = false; }, 1000);
     }
   };
 

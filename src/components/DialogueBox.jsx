@@ -33,7 +33,6 @@ export default function DialogueBox({
   onSave,
   onLoad,
   onExit,
-  touchHandledRef,
 }) {
   if (!isVisible) return null;
 
@@ -61,7 +60,7 @@ export default function DialogueBox({
         exit="exit"
       >
         {/* EXIT Button (Top Left) */}
-        <div className="absolute top-3 left-4 md:top-6 md:left-8 z-50 pointer-events-auto">
+        <div className="absolute top-6 left-8 z-50 pointer-events-auto">
           <HudButton icon={<LogOut size={14} />} label="EXIT" onClick={onExit} />
         </div>
 
@@ -100,18 +99,13 @@ export default function DialogueBox({
 
           {/* FUI Dialogue Box based on user image */}
           <div 
-            className="w-full max-w-[1200px] px-2 md:px-16 mb-3 md:mb-12 cursor-pointer pointer-events-auto relative mt-2 md:mt-8 flex flex-col items-center"
-            onClick={() => {
-              // On mobile, onTouchEnd in App.jsx already handled the tap
-              if (touchHandledRef && touchHandledRef.current) return;
-              onNext();
-            }}
+            className="w-full max-w-[1200px] px-4 md:px-16 mb-8 md:mb-12 cursor-pointer pointer-events-auto relative mt-8 flex flex-col items-center"
           >
 
             <div className="w-full relative shadow-[0_10px_40px_rgba(0,0,0,0.3)] rounded-xl overflow-hidden border-b-8 border-[#4dd0e1] flex flex-col">
 
               {/* Header Bar */}
-              <div className="w-full h-8 md:h-11 bg-[#0a192f] flex justify-between items-center relative overflow-hidden">
+              <div className="w-full h-11 bg-[#0a192f] flex justify-between items-center relative overflow-hidden">
                 {/* Geometric Pattern Background for Header */}
                 <div
                   className="absolute inset-0 opacity-80"
@@ -150,12 +144,12 @@ export default function DialogueBox({
               </div>
 
               {/* Text Area */}
-              <div className="bg-white w-full h-[70px] md:h-[140px] min-h-[70px] md:min-h-[140px] max-h-[70px] md:max-h-[140px] flex-none overflow-hidden p-3 pb-6 md:p-8 md:pb-12 relative">
-                <p className="m-0 text-slate-800 text-xs md:text-xl leading-[1.8] md:leading-[2.2] font-noto tracking-wide whitespace-pre-line font-medium">
+              <div className="bg-white w-full h-[140px] min-h-[140px] max-h-[140px] flex-none overflow-hidden p-8 pb-12 relative">
+                <p className="m-0 text-slate-800 text-lg md:text-xl leading-[2.2] font-noto tracking-wide whitespace-pre-line font-medium">
                   {renderTextWithLinks(text)}
                   {isTyping && (
                     <motion.span
-                      className="inline-block w-2 h-3 md:w-2.5 md:h-4 bg-[#00e5ff] ml-1 md:ml-2 align-middle opacity-80"
+                      className="inline-block w-2.5 h-4 bg-[#00e5ff] ml-2 align-middle opacity-80"
                       animate={{ opacity: [1, 0.2] }}
                       transition={{ duration: 0.6, repeat: Infinity, ease: "linear" }}
                     />
@@ -165,24 +159,23 @@ export default function DialogueBox({
                 {/* Next indicator */}
                 {!isTyping && !isWaitingForChoice && (
                   <motion.div
-                    className="absolute bottom-2 right-4 md:bottom-6 md:right-8 flex items-center text-[#4dd0e1]"
+                    className="absolute bottom-6 right-8 flex items-center text-[#4dd0e1]"
                     animate={{ x: [0, 8, 0] }}
                     transition={{ duration: 0.8, repeat: Infinity, ease: "easeInOut" }}
                   >
-                    <ChevronRight size={18} className="md:hidden" strokeWidth={2.5} />
-                    <ChevronRight size={24} className="hidden md:block" strokeWidth={2.5} />
+                    <ChevronRight size={24} strokeWidth={2.5} />
                   </motion.div>
                 )}
               </div>
             </div>
 
             {/* HUD Buttons Grouped Together (Overlapping the bottom cyan border) */}
-            <div className="absolute -bottom-3 right-4 md:right-24 flex gap-1 md:gap-2 z-20">
-              <HudButton icon={<Save size={12} />} label="SAVE" onClick={onSave} />
-              <HudButton icon={<FolderOpen size={12} />} label="LOAD" onClick={onLoad} />
-              <HudButton icon={<SkipForward size={12} />} label="SKIP" onClick={onToggleSkip} active={skipMode} />
-              <HudButton icon={<BookOpen size={12} />} label="LOG" onClick={onOpenLog} />
-              <HudButton icon={<FastForward size={12} />} label="AUTO" onClick={onToggleAuto} active={autoMode} />
+            <div className="absolute -bottom-3 right-12 md:right-24 flex gap-2 z-20">
+              <HudButton icon={<Save size={14} />} label="SAVE" onClick={onSave} />
+              <HudButton icon={<FolderOpen size={14} />} label="LOAD" onClick={onLoad} />
+              <HudButton icon={<SkipForward size={14} />} label="SKIP" onClick={onToggleSkip} active={skipMode} />
+              <HudButton icon={<BookOpen size={14} />} label="LOG" onClick={onOpenLog} />
+              <HudButton icon={<FastForward size={14} />} label="AUTO" onClick={onToggleAuto} active={autoMode} />
             </div>
 
           </div>
@@ -196,7 +189,7 @@ function HudButton({ icon, label, onClick, active }) {
   return (
     <button
       onClick={(e) => { e.stopPropagation(); onClick(); }}
-      className={`flex items-center gap-1 md:gap-1.5 px-2.5 py-1 md:px-4 md:py-1.5 rounded-full text-[9px] md:text-[11px] font-bold tracking-widest font-noto
+      className={`flex items-center gap-1.5 px-5 py-2 md:px-4 md:py-1.5 rounded-full text-[11px] md:text-[11px] font-bold tracking-widest font-noto
                   transition-all duration-300 shadow-md border
                   ${active
           ? 'bg-[#00e5ff] text-slate-900 border-[#00e5ff] shadow-[0_4px_12px_rgba(0,229,255,0.4)]'
