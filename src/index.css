@@ -371,7 +371,7 @@
   #game-canvas-wrapper {
     max-width: none !important;
     aspect-ratio: auto !important;
-    width: 100vw !important;
-    height: 100dvh !important;
+    width: 100% !important;
+    height: 100% !important;
   }
 }
