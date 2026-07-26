@@ -818,7 +818,10 @@ export default function App() {
       if (action === 'BLACK_DISTORTION' || action === 'BLACK_DISTORT') {
         setIsBlackDistortActive(true);
         const timer = setTimeout(() => setIsBlackDistortActive(false), 2000);
-        return () => clearTimeout(timer);
+        return () => {
+          clearTimeout(timer);
+          setIsBlackDistortActive(false);
+        };
       }
 
       if (action === 'FADE_TO_BLACK' || action === 'SLOW_FADE_TO_BLACK') {
@@ -839,6 +842,8 @@ export default function App() {
         return () => {
           clearTimeout(timer);
           if (shakeTimer) clearTimeout(shakeTimer);
+          setIsFadingBlack(false);
+          if (action === 'SLOW_FADE_TO_BLACK') setShakeEffect(false);
         };
       }
 
