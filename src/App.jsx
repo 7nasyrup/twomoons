@@ -411,7 +411,21 @@ export default function App() {
     setHasSave(slots.some(s => s !== null));
   }, []);
 
+  // Request fullscreen on mobile to hide browser address bar
+  const requestMobileFullscreen = () => {
+    const isTouchDevice = window.matchMedia('(pointer: coarse)').matches || navigator.maxTouchPoints > 0;
+    const isMobileSize = window.innerWidth < 1024;
+    if (!isTouchDevice || !isMobileSize) return;
+
+    const el = document.documentElement;
+    const requestFS = el.requestFullscreen || el.webkitRequestFullscreen || el.msRequestFullscreen;
+    if (requestFS && !document.fullscreenElement && !document.webkitFullscreenElement) {
+      requestFS.call(el).catch(() => {/* silently fail if denied */});
+    }
+  };
+
   const handleStartGame = () => {
+    requestMobileFullscreen();
     clearBacklog();
     setShowTitle(false);
     setFlags({});
@@ -469,6 +483,7 @@ export default function App() {
     } else if (slotModalMode === 'load') {
       // ロード実行
       if (!slotData) return;
+      requestMobileFullscreen();
       if (slotData.fragmentCollectResult !== undefined) setFragmentCollectResult(slotData.fragmentCollectResult);
       if (slotData.learningScore !== undefined) setLearningScore(slotData.learningScore);
       if (slotData.eyeOfProfilerSuccess !== undefined) setEyeOfProfilerSuccess(slotData.eyeOfProfilerSuccess);
@@ -510,6 +525,8 @@ export default function App() {
   const touchStartX = useRef(0);
   const touchStartY = useRef(0);
   const lastTap = useRef(0);
+  // Prevents onClick from firing after onTouchEnd already handled the tap (mobile double-fire fix)
+  const touchHandledRef = useRef(false);
 
   // Clear sprites on scene change
   useEffect(() => {
@@ -1034,6 +1051,7 @@ export default function App() {
     const diffY = e.changedTouches[0].clientY - touchStartY.current;
 
     if (Math.abs(diffX) > 50 || Math.abs(diffY) > 50) {
+      // Swipe gesture detected
       if (Math.abs(diffX) > Math.abs(diffY)) {
         if (diffX > 50) {
           toggleAuto();
@@ -1045,17 +1063,28 @@ export default function App() {
           toggleHud();
         }
       }
+      // Mark as handled so onClick doesn't double-fire
+      touchHandledRef.current = true;
+      setTimeout(() => { touchHandledRef.current = false; }, 300);
     } else {
+      // Tap detected (not a swipe)
       const now = Date.now();
       if (now - lastTap.current < 250) {
         toggleAuto();
       } else {
-        const isTransition = currentLine?.action === 'FADE_TO_BLACK' || currentLine?.action === 'SLOW_FADE_TO_BLACK' || currentLine?.action === 'WAIT_FADE' || isBgTransitioning || isBgFadingOut;
-        if (!isWaitingForChoice && !alertActive && !backlogOpen && !isTransition) {
-          nextStep();
+        if (skipMode) {
+          setSkipMode(false);
+        } else {
+          const isTransition = currentLine?.action === 'FADE_TO_BLACK' || currentLine?.action === 'SLOW_FADE_TO_BLACK' || currentLine?.action === 'WAIT_FADE' || isBgTransitioning || isBgFadingOut;
+          if (!isWaitingForChoice && !alertActive && !backlogOpen && !isTransition) {
+            nextStep();
+          }
         }
       }
       lastTap.current = now;
+      // Mark as handled so onClick doesn't double-fire
+      touchHandledRef.current = true;
+      setTimeout(() => { touchHandledRef.current = false; }, 300);
     }
   };
 
@@ -1242,6 +1271,8 @@ export default function App() {
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
       onClick={() => {
+        // On mobile, onTouchEnd already handled the tap — skip onClick to prevent double-fire
+        if (touchHandledRef.current) return;
         if (skipMode) {
           setSkipMode(false);
           return;

@@ -7,17 +7,36 @@ export default function PortraitWarningOverlay() {
 
   useEffect(() => {
     const checkOrientation = () => {
-      // Check if it's a mobile device size and portrait orientation
+      // Only show on actual mobile devices (touch + small screen)
+      const isTouchDevice = window.matchMedia('(pointer: coarse)').matches || navigator.maxTouchPoints > 0;
       const isMobileSize = window.innerWidth < 1024;
-      setIsPortrait(isMobileSize && window.innerHeight > window.innerWidth);
+      const isPortraitOrientation = window.innerHeight > window.innerWidth;
+      
+      // Must be a touch device AND small screen AND portrait to show warning
+      setIsPortrait(isTouchDevice && isMobileSize && isPortraitOrientation);
     };
 
     // Initial check
     checkOrientation();
 
-    // Listen to resize
+    // Listen to resize and orientation change
     window.addEventListener('resize', checkOrientation);
-    return () => window.removeEventListener('resize', checkOrientation);
+    
+    // Use screen.orientation API if available for more reliable detection
+    if (screen.orientation) {
+      screen.orientation.addEventListener('change', checkOrientation);
+    } else {
+      window.addEventListener('orientationchange', checkOrientation);
+    }
+
+    return () => {
+      window.removeEventListener('resize', checkOrientation);
+      if (screen.orientation) {
+        screen.orientation.removeEventListener('change', checkOrientation);
+      } else {
+        window.removeEventListener('orientationchange', checkOrientation);
+      }
+    };
   }, []);
 
   return (
