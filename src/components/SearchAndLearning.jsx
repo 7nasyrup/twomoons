@@ -111,6 +111,14 @@ export default function SearchAndLearning({
   const [isTyping, setIsTyping] = useState(false);
   const typingTimer = useRef(null);
 
+  // Disable skipMode automatically when entering the minigame
+  useEffect(() => {
+    if (skipMode && setSkipMode) {
+      setSkipMode(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const triggerARScan = () => {
     setArScanFlash(true);
     setTimeout(() => setArScanFlash(false), 300); // 柔らかいスキャンエフェクト
