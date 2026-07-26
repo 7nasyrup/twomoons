@@ -99,7 +99,7 @@ export default function DialogueBox({
 
           {/* FUI Dialogue Box based on user image */}
           <div 
-            className="w-full max-w-[1200px] px-[2vw] mb-[4vh] cursor-pointer pointer-events-auto relative mt-[4vh] flex flex-col items-center"
+            className="w-[92vw] max-w-[1100px] mb-[4vh] cursor-pointer pointer-events-auto relative mt-[4vh] flex flex-col items-center"
           >
 
             <div className="w-full relative shadow-[0_10px_40px_rgba(0,0,0,0.3)] rounded-xl overflow-hidden border-b-[0.8vh] border-[#4dd0e1] flex flex-col">
@@ -144,7 +144,7 @@ export default function DialogueBox({
               </div>
 
               {/* Text Area */}
-              <div className="bg-white w-full h-[22vh] min-h-[22vh] max-h-[22vh] flex-none overflow-hidden p-[4vh] pb-[6vh] relative">
+              <div className="bg-white w-full h-[25vh] min-h-[25vh] max-h-[25vh] flex-none overflow-hidden p-[4vh] pb-[6vh] relative">
                 <p className="m-0 text-slate-800 text-[2.8vh] leading-[1.8] font-noto tracking-wide whitespace-pre-line font-medium">
                   {renderTextWithLinks(text)}
                   {isTyping && (
