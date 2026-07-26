@@ -231,18 +231,20 @@ export function useNovelEngine(scenarioData, options = {}) {
   // Skip mode
   useEffect(() => {
     if (skipMode && !endMode) {
-      if (currentLine?.type === 'choice' || currentLine?.action?.startsWith('TRIGGER_')) {
+      if (currentLine?.type === 'choice') {
         setSkipMode(false);
         return;
       }
       
-      if (!isTyping && !isWaitingForChoice && !isBgTransitioning && !isBgFadingOut) {
+      const isMinigame = currentLine?.action?.startsWith('TRIGGER_');
+      
+      if (!isTyping && !isWaitingForChoice && !isBgTransitioning && !isBgFadingOut && !isMinigame) {
         skipTimer.current = setTimeout(() => {
           if (currentStep < scenarioData.length - 1) {
             advanceStep();
           }
         }, 50);
-      } else if (isTyping && !isBgTransitioning && !isBgFadingOut) {
+      } else if (isTyping && !isBgTransitioning && !isBgFadingOut && !isMinigame) {
         completeTypewriter();
       }
     }

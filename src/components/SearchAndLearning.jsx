@@ -246,6 +246,12 @@ export default function SearchAndLearning({
       return;
     }
 
+    if (skipMode) {
+      setDisplayedText(currentMessage.text);
+      setIsTyping(false);
+      return;
+    }
+
     clearInterval(typingTimer.current);
     setDisplayedText('');
     setIsTyping(true);
