@@ -75,7 +75,7 @@ export default function DialogueBox({
                 return (
                   <motion.div
                     key={idx}
-                    className="relative p-[1px] bg-slate-700 hover:bg-[#00e5ff] transition-colors cursor-pointer group w-[80vw] max-w-[600px] rounded-md"
+                    className="relative p-[1px] bg-slate-700 hover:bg-[#00e5ff] transition-colors cursor-pointer group w-[80%] max-w-[600px] rounded-md"
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0, transition: { delay: idx * 0.1 } }}
                     whileHover={isInteractive ? { scale: 1.02 } : {}}
@@ -99,7 +99,7 @@ export default function DialogueBox({
 
           {/* FUI Dialogue Box based on user image */}
           <div 
-            className="w-[88vw] max-w-[1000px] mb-[4vh] cursor-pointer pointer-events-auto relative mt-[4vh] flex flex-col items-center"
+            className="w-[88%] max-w-[1000px] mb-[4vh] cursor-pointer pointer-events-auto relative mt-[4vh] flex flex-col items-center"
           >
 
             <div className="w-full relative shadow-[0_10px_40px_rgba(0,0,0,0.3)] rounded-xl overflow-hidden border-b-[0.8vh] border-[#4dd0e1] flex flex-col">
@@ -145,7 +145,7 @@ export default function DialogueBox({
 
               {/* Text Area */}
               <div className="bg-white w-full h-[28vh] min-h-[28vh] max-h-[28vh] flex-none overflow-hidden p-[4vh] pb-[6vh] relative">
-                <p className="m-0 text-slate-800 text-[2.8vh] leading-[1.8] font-noto tracking-wide whitespace-pre-line font-medium">
+                <p className="m-0 text-slate-800 text-[3.3vh] leading-[1.8] font-noto tracking-wide whitespace-pre-line font-medium">
                   {renderTextWithLinks(text)}
                   {isTyping && (
                     <motion.span
@@ -170,7 +170,7 @@ export default function DialogueBox({
             </div>
 
             {/* HUD Buttons Grouped Together (Overlapping the bottom cyan border) */}
-            <div className="absolute -bottom-[1.5vh] right-[6vw] flex gap-[1vh] z-20">
+            <div className="absolute -bottom-[1.5vh] right-[6%] flex gap-[1vh] z-20">
               <HudButton icon={<Save className="w-[2vh] h-[2vh]" />} label="SAVE" onClick={onSave} />
               <HudButton icon={<FolderOpen className="w-[2vh] h-[2vh]" />} label="LOAD" onClick={onLoad} />
               <HudButton icon={<SkipForward className="w-[2vh] h-[2vh]" />} label="SKIP" onClick={onToggleSkip} active={skipMode} />
