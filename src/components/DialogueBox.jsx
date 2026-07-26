@@ -69,13 +69,13 @@ export default function DialogueBox({
 
           {/* Choices */}
           {isWaitingForChoice && choices && (
-            <div className="flex flex-col items-end gap-4 mb-4 w-full px-12 md:px-24 pointer-events-auto">
+            <div className="flex flex-col items-end gap-2 lg:gap-4 mb-2 lg:mb-4 w-full px-6 md:px-12 lg:px-24 pointer-events-auto">
               {choices.map((choice, idx) => {
                 const isInteractive = true;
                 return (
                   <motion.div
                     key={idx}
-                    className="relative p-[1px] bg-slate-700 hover:bg-[#00e5ff] transition-colors cursor-pointer group w-[80%] max-w-[600px] rounded-md"
+                    className="relative p-[1px] bg-slate-700 hover:bg-[#00e5ff] transition-colors cursor-pointer group w-[85%] lg:w-[80%] max-w-[600px] rounded-md"
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0, transition: { delay: idx * 0.1 } }}
                     whileHover={isInteractive ? { scale: 1.02 } : {}}
@@ -87,9 +87,9 @@ export default function DialogueBox({
                       }
                     }}
                   >
-                    <div className={`w-full bg-slate-900/95 backdrop-blur-md py-[2vh] px-[4vh] flex items-center border border-slate-700/50 rounded-md ${isInteractive ? '' : 'opacity-60 cursor-default'}`}>
-                      <span className="text-[#00e5ff] font-bold text-[2vh] mr-4 tracking-widest">{String(idx + 1).padStart(2, '0')}</span>
-                      <span className="text-slate-200 font-noto text-[2.5vh] tracking-wide font-bold flex-1">{choice.text}</span>
+                    <div className={`w-full bg-slate-900/95 backdrop-blur-md py-3 px-4 lg:py-[2vh] lg:px-[4vh] flex items-center border border-slate-700/50 rounded-md ${isInteractive ? '' : 'opacity-60 cursor-default'}`}>
+                      <span className="text-[#00e5ff] font-bold text-sm lg:text-[2vh] mr-3 lg:mr-4 tracking-widest">{String(idx + 1).padStart(2, '0')}</span>
+                      <span className="text-slate-200 font-noto text-sm md:text-base lg:text-[2.5vh] tracking-wide font-bold flex-1">{choice.text}</span>
                     </div>
                   </motion.div>
                 );
