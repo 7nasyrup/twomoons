@@ -470,12 +470,8 @@ export default function SearchAndLearning({ onComplete }) {
         />
       ))}
 
-      {/* Message overlay capture */}
-      {currentMessage && (
-        <div
-          className="absolute inset-0 z-20 cursor-pointer"
-        />
-      )}
+
+
 
       <DialogueBox
         speaker={currentMessage?.speaker || ''}
