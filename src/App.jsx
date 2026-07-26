@@ -1084,20 +1084,15 @@ export default function App() {
       setTimeout(() => { touchHandledRef.current = false; }, 1000);
     } else {
       // Tap detected (not a swipe)
-      const now = Date.now();
-      if (now - lastTap.current < 250) {
-        toggleAuto();
+      if (skipMode) {
+        setSkipMode(false);
       } else {
-        if (skipMode) {
-          setSkipMode(false);
-        } else {
-          const isTransition = currentLine?.action === 'FADE_TO_BLACK' || currentLine?.action === 'SLOW_FADE_TO_BLACK' || currentLine?.action === 'WAIT_FADE' || isBgTransitioning || isBgFadingOut;
-          if (!isWaitingForChoice && !alertActive && !backlogOpen && !isTransition) {
-            nextStep();
-          }
+        const isTransition = currentLine?.action === 'FADE_TO_BLACK' || currentLine?.action === 'SLOW_FADE_TO_BLACK' || currentLine?.action === 'WAIT_FADE' || isBgTransitioning || isBgFadingOut;
+        if (!showTitle && !isWaitingForChoice && !alertActive && !backlogOpen && !isTypingGameActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isFragmentCollectActive && !isFragmentCollectNagisaActive && !isFragmentCollectMikaActive && !isFragmentCollectAkaneActive && !isFragmentCollectSoloActive && !isStealthGameActive && !isAnyEnd && !isEndScreen && !isTransition) {
+          nextStep();
         }
       }
-      lastTap.current = now;
+      
       // Mark as handled so onClick doesn't double-fire
       touchHandledRef.current = true;
       setTimeout(() => { touchHandledRef.current = false; }, 1000);
