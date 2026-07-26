@@ -374,4 +374,57 @@
     width: 100% !important;
     height: 100% !important;
   }
+
+  /* DialogueBox mobile overrides */
+  .dlg-box {
+    width: 82% !important;
+    max-width: 1000px !important;
+    margin-bottom: 4vh !important;
+    margin-left: 2% !important;
+    margin-right: auto !important;
+  }
+
+  .dlg-text-area {
+    height: 28vh !important;
+    min-height: 28vh !important;
+    max-height: 28vh !important;
+    padding-bottom: 6vh !important;
+  }
+
+  .dlg-body-text {
+    font-size: 4.2vh !important;
+  }
+
+  .dlg-speaker {
+    font-size: 3vh !important;
+  }
+
+  .dlg-role {
+    font-size: 1.5vh !important;
+  }
+
+  .dlg-x-icon {
+    width: 2.5vh !important;
+    height: 2.5vh !important;
+  }
+
+  .dlg-hud-row {
+    bottom: -2.5vh !important;
+    right: 6% !important;
+    gap: 1.5vh !important;
+  }
+
+  .dlg-hud-icon {
+    width: 3.2vh !important;
+    height: 3.2vh !important;
+  }
+
+  .hud-btn {
+    gap: 1.2vh !important;
+    padding-left: 3vh !important;
+    padding-right: 3vh !important;
+    padding-top: 1.4vh !important;
+    padding-bottom: 1.4vh !important;
+    font-size: 2.2vh !important;
+  }
 }

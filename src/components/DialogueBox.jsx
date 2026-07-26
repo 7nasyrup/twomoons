@@ -61,7 +61,7 @@ export default function DialogueBox({
       >
         {/* EXIT Button (Top Left) */}
         <div className="absolute top-[4vh] left-[4vh] z-50 pointer-events-auto">
-          <HudButton icon={<LogOut className="w-[2vh] h-[2vh] max-md:w-[3vh] max-md:h-[3vh]" />} label="EXIT" onClick={onExit} />
+          <HudButton icon={<LogOut className="dlg-hud-icon w-[2vh] h-[2vh]" />} label="EXIT" onClick={onExit} />
         </div>
 
         {/* Bottom Area Wrapper */}
@@ -99,7 +99,7 @@ export default function DialogueBox({
 
           {/* FUI Dialogue Box based on user image */}
           <div 
-            className="w-[90vw] max-md:w-[82%] max-w-[1100px] max-md:max-w-[1000px] mb-[8vh] max-md:mb-[4vh] max-md:ml-[2%] max-md:mr-auto cursor-pointer pointer-events-auto relative mt-[4vh] flex flex-col items-center"
+            className="dlg-box w-[90vw] max-w-[1100px] mb-[8vh] cursor-pointer pointer-events-auto relative mt-[4vh] flex flex-col items-center"
           >
 
             <div className="w-full relative shadow-[0_10px_40px_rgba(0,0,0,0.3)] rounded-xl overflow-hidden border-b-[0.8vh] border-[#4dd0e1] flex flex-col">
@@ -121,9 +121,9 @@ export default function DialogueBox({
                   {showSpeaker && (
                     <>
                       <div className="w-0 h-0 border-t-[0.8vh] border-t-transparent border-l-[1.2vh] border-l-[#00e5ff] border-b-[0.8vh] border-b-transparent mr-[1.5vh]" />
-                      <span className="text-white font-bold tracking-widest text-[2.5vh] max-md:text-[3vh] mr-[1.5vh] shadow-md">{displaySpeaker}</span>
+                      <span className="dlg-speaker text-white font-bold tracking-widest text-[2.5vh] mr-[1.5vh] shadow-md">{displaySpeaker}</span>
                       {displayRole && (
-                        <span className="text-[#00e5ff] font-bold text-[1.2vh] max-md:text-[1.5vh] tracking-widest uppercase mt-[0.2vh]">
+                        <span className="dlg-role text-[#00e5ff] font-bold text-[1.2vh] tracking-widest uppercase mt-[0.2vh]">
                           {displayRole}
                         </span>
                       )}
@@ -139,13 +139,13 @@ export default function DialogueBox({
                   }}
                   className="px-[3vh] text-[#00e5ff]/50 hover:text-[#00e5ff] hover:bg-[#00e5ff]/10 relative z-10 h-full flex items-center transition-colors"
                 >
-                  <X className="w-[3.5vh] h-[3.5vh] max-md:w-[2.5vh] max-md:h-[2.5vh]" strokeWidth={2.5} />
+                  <X className="dlg-x-icon w-[3.5vh] h-[3.5vh]" strokeWidth={2.5} />
                 </button>
               </div>
 
               {/* Text Area */}
-              <div className="bg-white w-full h-[22vh] min-h-[22vh] max-h-[22vh] max-md:h-[28vh] max-md:min-h-[28vh] max-md:max-h-[28vh] flex-none overflow-hidden p-[4vh] max-md:pb-[6vh] pb-[4vh] relative">
-                <p className="m-0 text-slate-800 text-[2.8vh] max-md:text-[4.2vh] leading-[1.8] font-noto tracking-wide whitespace-pre-line font-medium">
+              <div className="dlg-text-area bg-white w-full h-[22vh] min-h-[22vh] max-h-[22vh] flex-none overflow-hidden p-[4vh] pb-[4vh] relative">
+                <p className="dlg-body-text m-0 text-slate-800 text-[2.8vh] leading-[1.8] font-noto tracking-wide whitespace-pre-line font-medium">
                   {renderTextWithLinks(text)}
                   {isTyping && (
                     <motion.span
@@ -170,12 +170,12 @@ export default function DialogueBox({
             </div>
 
             {/* HUD Buttons Grouped Together (Overlapping the bottom cyan border) */}
-            <div className="absolute -bottom-[1.5vh] max-md:-bottom-[2.5vh] right-[6vw] max-md:right-[6%] flex gap-[0.8vh] max-md:gap-[1.5vh] z-20">
-              <HudButton icon={<Save className="w-[2.2vh] h-[2.2vh] max-md:w-[3.2vh] max-md:h-[3.2vh]" />} label="SAVE" onClick={onSave} />
-              <HudButton icon={<FolderOpen className="w-[2.2vh] h-[2.2vh] max-md:w-[3.2vh] max-md:h-[3.2vh]" />} label="LOAD" onClick={onLoad} />
-              <HudButton icon={<SkipForward className="w-[2.2vh] h-[2.2vh] max-md:w-[3.2vh] max-md:h-[3.2vh]" />} label="SKIP" onClick={onToggleSkip} active={skipMode} />
-              <HudButton icon={<BookOpen className="w-[2.2vh] h-[2.2vh] max-md:w-[3.2vh] max-md:h-[3.2vh]" />} label="LOG" onClick={onOpenLog} />
-              <HudButton icon={<FastForward className="w-[2.2vh] h-[2.2vh] max-md:w-[3.2vh] max-md:h-[3.2vh]" />} label="AUTO" onClick={onToggleAuto} active={autoMode} />
+            <div className="dlg-hud-row absolute -bottom-[1.5vh] right-[6vw] flex gap-[0.8vh] z-20">
+              <HudButton icon={<Save className="dlg-hud-icon w-[2.2vh] h-[2.2vh]" />} label="SAVE" onClick={onSave} />
+              <HudButton icon={<FolderOpen className="dlg-hud-icon w-[2.2vh] h-[2.2vh]" />} label="LOAD" onClick={onLoad} />
+              <HudButton icon={<SkipForward className="dlg-hud-icon w-[2.2vh] h-[2.2vh]" />} label="SKIP" onClick={onToggleSkip} active={skipMode} />
+              <HudButton icon={<BookOpen className="dlg-hud-icon w-[2.2vh] h-[2.2vh]" />} label="LOG" onClick={onOpenLog} />
+              <HudButton icon={<FastForward className="dlg-hud-icon w-[2.2vh] h-[2.2vh]" />} label="AUTO" onClick={onToggleAuto} active={autoMode} />
             </div>
 
           </div>
@@ -189,7 +189,7 @@ function HudButton({ icon, label, onClick, active }) {
   return (
     <button
       onClick={(e) => { e.stopPropagation(); onClick(); }}
-      className={`flex items-center gap-[0.8vh] max-md:gap-[1.2vh] px-[2vh] max-md:px-[3vh] py-[0.8vh] max-md:py-[1.4vh] rounded-full text-[1.6vh] max-md:text-[2.2vh] font-bold tracking-widest font-noto
+      className={`hud-btn flex items-center gap-[0.8vh] px-[2vh] py-[0.8vh] rounded-full text-[1.6vh] font-bold tracking-widest font-noto
                   transition-all duration-300 shadow-md border
                   ${active
           ? 'bg-[#00e5ff] text-slate-900 border-[#00e5ff] shadow-[0_4px_12px_rgba(0,229,255,0.4)]'
