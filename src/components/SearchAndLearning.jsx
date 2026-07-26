@@ -469,7 +469,6 @@ export default function SearchAndLearning({ onComplete }) {
       {currentMessage && (
         <div
           className="absolute inset-0 z-20 cursor-pointer"
-          onClick={handleNextMessage}
         />
       )}
 
