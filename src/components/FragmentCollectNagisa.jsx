@@ -160,7 +160,7 @@ function FCFileModal({ file, onClose }) {
   );
 }
 
-export default function FragmentCollectNagisa({ onComplete }) {
+export default function FragmentCollectNagisa({ onComplete, onSave, onLoad, onToggleSkip, onOpenLog, onToggleAuto, skipMode, autoMode }) {
   const [roomIndex, setRoomIndex] = useState(0);
   const [collectedChips, setCollectedChips] = useState(new Set());
   const [collectedFiles, setCollectedFiles] = useState(new Set());
@@ -373,7 +373,19 @@ export default function FragmentCollectNagisa({ onComplete }) {
       )}
 
       {currentMessage && !activeFile && <FCSprite currentMessage={currentMessage} />}
-      {!activeFile && <FCDialogueBox currentMessage={currentMessage} displayedText={displayedText} isTyping={isTyping} onNext={handleNextMessage} />}
+      {!activeFile && <FCDialogueBox 
+        currentMessage={currentMessage} 
+        displayedText={displayedText} 
+        isTyping={isTyping} 
+        onNext={handleNextMessage}
+        onSave={onSave}
+        onLoad={onLoad}
+        onToggleSkip={onToggleSkip}
+        onOpenLog={onOpenLog}
+        onToggleAuto={onToggleAuto}
+        skipMode={skipMode}
+        autoMode={autoMode}
+      />}
 
       <AnimatePresence>{activeFile && <FCFileModal file={activeFile} onClose={closeActiveFile} />}</AnimatePresence>
 

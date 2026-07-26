@@ -281,7 +281,7 @@ function FCFileModal({ file, onClose }) {
 }
 
 // ─── メインコンポーネント ─────────────────────────────────────────────────────────
-export default function FragmentCollectAkane({ onComplete }) {
+export default function FragmentCollectAkane({ onComplete, onSave, onLoad, onToggleSkip, onOpenLog, onToggleAuto, skipMode, autoMode }) {
   const [roomIndex, setRoomIndex] = useState(0);
   const [collectedChips, setCollectedChips] = useState(new Set());
   const [collectedFiles, setCollectedFiles] = useState(new Set());
@@ -622,6 +622,13 @@ export default function FragmentCollectAkane({ onComplete }) {
           displayedText={displayedText}
           isTyping={isTyping}
           onNext={handleNextMessage}
+          onSave={onSave}
+          onLoad={onLoad}
+          onToggleSkip={onToggleSkip}
+          onOpenLog={onOpenLog}
+          onToggleAuto={onToggleAuto}
+          skipMode={skipMode}
+          autoMode={autoMode}
         />
       )}
 

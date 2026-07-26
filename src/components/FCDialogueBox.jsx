@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, ChevronDown } from 'lucide-react';
+import { Sparkles, ChevronDown, Save, FolderOpen, SkipForward, BookOpen, FastForward, LogOut } from 'lucide-react';
 
 const renderTextWithLinks = (text) => {
   if (!text) return null;
@@ -25,7 +25,21 @@ const renderTextWithLinks = (text) => {
   });
 };
 
-export default function FCDialogueBox({ currentMessage, displayedText, isTyping, onNext, animKey = "fc-dlg" }) {
+export default function FCDialogueBox({ 
+  currentMessage, 
+  displayedText, 
+  isTyping, 
+  onNext, 
+  animKey = "fc-dlg",
+  onSave,
+  onLoad,
+  onToggleSkip,
+  onOpenLog,
+  onToggleAuto,
+  skipMode,
+  autoMode,
+  onExit
+}) {
   if (!currentMessage) return null;
   const isSystem = currentMessage.role === 'SYSTEM';
   let displaySpeaker = currentMessage.speaker;
@@ -76,8 +90,8 @@ export default function FCDialogueBox({ currentMessage, displayedText, isTyping,
                 <div className="px-[3vh] relative z-10 h-full flex items-center"></div>
               </div>
 
-              <div className="w-full bg-white p-[3vh] md:p-[4vh] min-h-[15vh] flex flex-col justify-center relative">
-                <p className="dlg-text m-0 text-slate-800 text-[2.5vh] leading-[1.8] font-noto tracking-wide whitespace-pre-line font-medium">
+              <div className="dlg-text-area bg-white w-full h-[22vh] min-h-[22vh] max-h-[22vh] flex-none overflow-hidden p-[4vh] pb-[4vh] relative">
+                <p className="dlg-body-text m-0 text-slate-800 text-[2.8vh] leading-[1.8] font-noto tracking-wide whitespace-pre-line font-medium">
                   {renderTextWithLinks(displayedText)}
                   {isTyping && (
                     <motion.span
@@ -90,18 +104,45 @@ export default function FCDialogueBox({ currentMessage, displayedText, isTyping,
 
                 {!isTyping && (
                   <motion.div
-                    className="absolute right-[3vh] bottom-[2vh] flex items-center text-[#4dd0e1]"
+                    className="absolute right-[4vh] bottom-[3vh] flex items-center text-[#4dd0e1]"
                     animate={{ x: [0, 8, 0] }}
                     transition={{ duration: 0.8, repeat: Infinity, ease: "easeInOut" }}
                   >
-                    <ChevronDown className="w-[3vh] h-[3vh] -rotate-90" />
+                    <ChevronDown className="w-[4vh] h-[4vh] -rotate-90" strokeWidth={2.5} />
                   </motion.div>
                 )}
               </div>
             </div>
+
+            {/* HUD Buttons Grouped Together */}
+            <div className="dlg-hud-row absolute -bottom-[1.5vh] right-[6vw] flex gap-[0.8vh] z-20">
+              {onSave && <HudButton icon={<Save className="dlg-hud-icon w-[2.2vh] h-[2.2vh]" />} label="SAVE" onClick={onSave} />}
+              {onLoad && <HudButton icon={<FolderOpen className="dlg-hud-icon w-[2.2vh] h-[2.2vh]" />} label="LOAD" onClick={onLoad} />}
+              {onToggleSkip && <HudButton icon={<SkipForward className="dlg-hud-icon w-[2.2vh] h-[2.2vh]" />} label="SKIP" onClick={onToggleSkip} active={skipMode} />}
+              {onOpenLog && <HudButton icon={<BookOpen className="dlg-hud-icon w-[2.2vh] h-[2.2vh]" />} label="LOG" onClick={onOpenLog} />}
+              {onToggleAuto && <HudButton icon={<FastForward className="dlg-hud-icon w-[2.2vh] h-[2.2vh]" />} label="AUTO" onClick={onToggleAuto} active={autoMode} />}
+            </div>
+
           </div>
         </div>
       </motion.div>
     </AnimatePresence>
+  );
+}
+
+function HudButton({ icon, label, onClick, active }) {
+  return (
+    <button
+      onClick={(e) => { e.stopPropagation(); onClick && onClick(); }}
+      className={`hud-btn flex items-center gap-[0.8vh] px-[2vh] py-[0.8vh] rounded-full text-[1.6vh] font-bold tracking-widest font-noto
+                  transition-all duration-300 shadow-md border
+                  ${active
+          ? 'bg-[#00e5ff] text-slate-900 border-[#00e5ff] shadow-[0_4px_12px_rgba(0,229,255,0.4)]'
+          : 'bg-white text-slate-600 border-[#4dd0e1] hover:border-[#00e5ff] hover:text-[#00e5ff] hover:-translate-y-0.5'}
+        `}
+    >
+      {icon}
+      <span>{label}</span>
+    </button>
   );
 }

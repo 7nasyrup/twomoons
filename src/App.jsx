@@ -1382,27 +1382,72 @@ export default function App() {
 
             {/* Fragment Collect Overlay */}
             {isFragmentCollectActive && (
-              <FragmentCollect onComplete={handleFragmentCollectComplete} />
+              <FragmentCollect 
+                onComplete={handleFragmentCollectComplete}
+                onSave={handleSave}
+                onLoad={handleLoad}
+                onOpenLog={() => setBacklogOpen(true)}
+                onToggleAuto={toggleAuto}
+                onToggleSkip={toggleSkip}
+                autoMode={autoMode}
+                skipMode={skipMode}
+              />
             )}
 
             {/* Fragment Collect Nagisa Overlay */}
             {isFragmentCollectNagisaActive && (
-              <FragmentCollectNagisa onComplete={handleFragmentCollectNagisaComplete} />
+              <FragmentCollectNagisa 
+                onComplete={handleFragmentCollectNagisaComplete}
+                onSave={handleSave}
+                onLoad={handleLoad}
+                onOpenLog={() => setBacklogOpen(true)}
+                onToggleAuto={toggleAuto}
+                onToggleSkip={toggleSkip}
+                autoMode={autoMode}
+                skipMode={skipMode}
+              />
             )}
 
             {/* Fragment Collect Mika Overlay */}
             {isFragmentCollectMikaActive && (
-              <FragmentCollectMika onComplete={handleFragmentCollectMikaComplete} />
+              <FragmentCollectMika 
+                onComplete={handleFragmentCollectMikaComplete}
+                onSave={handleSave}
+                onLoad={handleLoad}
+                onOpenLog={() => setBacklogOpen(true)}
+                onToggleAuto={toggleAuto}
+                onToggleSkip={toggleSkip}
+                autoMode={autoMode}
+                skipMode={skipMode}
+              />
             )}
 
             {/* Fragment Collect Akane Overlay */}
             {isFragmentCollectAkaneActive && (
-              <FragmentCollectAkane onComplete={handleFragmentCollectAkaneComplete} />
+              <FragmentCollectAkane 
+                onComplete={handleFragmentCollectAkaneComplete}
+                onSave={handleSave}
+                onLoad={handleLoad}
+                onOpenLog={() => setBacklogOpen(true)}
+                onToggleAuto={toggleAuto}
+                onToggleSkip={toggleSkip}
+                autoMode={autoMode}
+                skipMode={skipMode}
+              />
             )}
 
             {/* Fragment Collect Solo Overlay */}
             {isFragmentCollectSoloActive && (
-              <FragmentCollectSolo onComplete={handleFragmentCollectSoloComplete} />
+              <FragmentCollectSolo 
+                onComplete={handleFragmentCollectSoloComplete}
+                onSave={handleSave}
+                onLoad={handleLoad}
+                onOpenLog={() => setBacklogOpen(true)}
+                onToggleAuto={toggleAuto}
+                onToggleSkip={toggleSkip}
+                autoMode={autoMode}
+                skipMode={skipMode}
+              />
             )}
 
             {/* Silent Score Overlay */}
