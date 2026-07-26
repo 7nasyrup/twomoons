@@ -170,12 +170,12 @@ export default function DialogueBox({
             </div>
 
             {/* HUD Buttons Grouped Together (Overlapping the bottom cyan border) */}
-            <div className="absolute -bottom-[1.5vh] right-[6%] flex gap-[1vh] z-20">
-              <HudButton icon={<Save className="w-[2vh] h-[2vh]" />} label="SAVE" onClick={onSave} />
-              <HudButton icon={<FolderOpen className="w-[2vh] h-[2vh]" />} label="LOAD" onClick={onLoad} />
-              <HudButton icon={<SkipForward className="w-[2vh] h-[2vh]" />} label="SKIP" onClick={onToggleSkip} active={skipMode} />
-              <HudButton icon={<BookOpen className="w-[2vh] h-[2vh]" />} label="LOG" onClick={onOpenLog} />
-              <HudButton icon={<FastForward className="w-[2vh] h-[2vh]" />} label="AUTO" onClick={onToggleAuto} active={autoMode} />
+            <div className="absolute -bottom-[2vh] right-[6%] flex gap-[1.5vh] z-20">
+              <HudButton icon={<Save className="w-[2.5vh] h-[2.5vh]" />} label="SAVE" onClick={onSave} />
+              <HudButton icon={<FolderOpen className="w-[2.5vh] h-[2.5vh]" />} label="LOAD" onClick={onLoad} />
+              <HudButton icon={<SkipForward className="w-[2.5vh] h-[2.5vh]" />} label="SKIP" onClick={onToggleSkip} active={skipMode} />
+              <HudButton icon={<BookOpen className="w-[2.5vh] h-[2.5vh]" />} label="LOG" onClick={onOpenLog} />
+              <HudButton icon={<FastForward className="w-[2.5vh] h-[2.5vh]" />} label="AUTO" onClick={onToggleAuto} active={autoMode} />
             </div>
 
           </div>
@@ -189,7 +189,7 @@ function HudButton({ icon, label, onClick, active }) {
   return (
     <button
       onClick={(e) => { e.stopPropagation(); onClick(); }}
-      className={`flex items-center gap-[0.8vh] px-[2vh] py-[0.8vh] rounded-full text-[1.5vh] font-bold tracking-widest font-noto
+      className={`flex items-center gap-[1vh] px-[2.5vh] py-[1vh] rounded-full text-[1.8vh] font-bold tracking-widest font-noto
                   transition-all duration-300 shadow-md border
                   ${active
           ? 'bg-[#00e5ff] text-slate-900 border-[#00e5ff] shadow-[0_4px_12px_rgba(0,229,255,0.4)]'

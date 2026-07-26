@@ -1062,7 +1062,10 @@ export default function App() {
     const diffY = e.changedTouches[0].clientY - touchStartY.current;
 
     if (Math.abs(diffX) > 50 || Math.abs(diffY) > 50) {
-      // Swipe gesture detected
+      // Swipe gesture detected - Disabled to prevent accidental triggers 
+      // when players are just tapping the screen to advance text.
+      // (The user explicitly requested that Auto, etc., only trigger via HUD buttons)
+      /*
       if (Math.abs(diffX) > Math.abs(diffY)) {
         if (diffX > 50) {
           toggleAuto();
@@ -1074,7 +1077,9 @@ export default function App() {
           toggleHud();
         }
       }
-      // Mark as handled so onClick doesn't double-fire
+      */
+      
+      // We still mark it as handled so the swipe doesn't accidentally trigger a tap (onClick)
       touchHandledRef.current = true;
       setTimeout(() => { touchHandledRef.current = false; }, 1000);
     } else {
