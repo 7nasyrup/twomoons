@@ -380,7 +380,7 @@
     width: 82% !important;
     max-width: 1000px !important;
     margin-bottom: 4vh !important;
-    margin-left: 2% !important;
+    margin-left: auto !important;
     margin-right: auto !important;
   }
 
@@ -392,7 +392,7 @@
   }
 
   .dlg-body-text {
-    font-size: 4.2vh !important;
+    font-size: 3.5vh !important;
   }
 
   .dlg-speaker {
