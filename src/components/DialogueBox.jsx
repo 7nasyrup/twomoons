@@ -3,15 +3,15 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight, FastForward, BookOpen, LogOut, SkipForward, Save, FolderOpen, X } from 'lucide-react';
 import { renderTextWithLinks } from '../utils/textUtils';
 
-const hudGlitchIn = {
+const hudGlitchIn = (skipMode) => ({
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] }
+    transition: { duration: skipMode ? 0 : 0.3, ease: [0.16, 1, 0.3, 1] }
   },
-  exit: { opacity: 0, y: 10, transition: { duration: 0.15 } }
-};
+  exit: { opacity: 0, y: 10, transition: { duration: skipMode ? 0 : 0.15 } }
+});
 
 export default function DialogueBox({
   speaker,
@@ -54,7 +54,7 @@ export default function DialogueBox({
     <AnimatePresence>
       <motion.div
         className="absolute inset-0 z-30 font-orbitron pointer-events-none"
-        variants={hudGlitchIn}
+        variants={hudGlitchIn(skipMode)}
         initial="hidden"
         animate="visible"
         exit="exit"

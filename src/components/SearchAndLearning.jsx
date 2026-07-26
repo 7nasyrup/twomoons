@@ -24,7 +24,7 @@ const OBJECT_DETAILS = {
   },
 };
 
-const InfoParticle = ({ startX, startY, targetX, targetY, onComplete }) => {
+const InfoParticle = ({ startX, startY, targetX, targetY, onComplete, skipMode }) => {
   const [style, setStyle] = useState({
     left: startX,
     top: startY,
@@ -40,10 +40,10 @@ const InfoParticle = ({ startX, startY, targetX, targetY, onComplete }) => {
       // 柔らかく浮かび上がる光の粒
       setStyle({
         left: startX,
-        top: startY - 40,
+        top: startY - (skipMode ? 0 : 40),
         opacity: 1,
-        transform: 'translate(-50%, -50%) scale(1.2)',
-        transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+        transform: `translate(-50%, -50%) scale(${skipMode ? 0.2 : 1.2})`,
+        transition: skipMode ? 'none' : 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
       });
 
       flyTimer = setTimeout(() => {
@@ -53,13 +53,13 @@ const InfoParticle = ({ startX, startY, targetX, targetY, onComplete }) => {
           top: targetY,
           opacity: 0,
           transform: 'translate(-50%, -50%) scale(0.2)',
-          transition: 'all 0.6s cubic-bezier(0.5, 0, 0.2, 1)'
+          transition: skipMode ? 'none' : 'all 0.6s cubic-bezier(0.5, 0, 0.2, 1)'
         });
-      }, 500);
+      }, skipMode ? 0 : 500);
 
       completeTimer = setTimeout(() => {
         onComplete();
-      }, 1100);
+      }, skipMode ? 50 : 1100);
     });
 
     return () => {
@@ -67,7 +67,7 @@ const InfoParticle = ({ startX, startY, targetX, targetY, onComplete }) => {
       clearTimeout(flyTimer);
       clearTimeout(completeTimer);
     };
-  }, [startX, startY, targetX, targetY, onComplete]);
+  }, [startX, startY, targetX, targetY, onComplete, skipMode]);
 
   return (
     <div
@@ -174,7 +174,6 @@ export default function SearchAndLearning({
         setIsTyping(true);
       } else {
         setCurrentMessage(null);
-        setDisplayedText('');
         setIsTyping(false);
         if (bgImage === '/scene/moon.png') {
           setHasSeenMoonIntro(true);
@@ -501,6 +500,7 @@ export default function SearchAndLearning({
           targetX={anim.targetX}
           targetY={anim.targetY}
           onComplete={() => handleParticleComplete(anim.id, anim.key)}
+          skipMode={skipMode}
         />
       ))}
 
