@@ -347,7 +347,7 @@ export default function SearchAndLearning({
 
       {/* Header Info Overlay - Clean AR Glass Style */}
       {!isMoonIntroPlaying && (
-        <div className="absolute top-8 right-8 max-lg:top-4 max-lg:right-16 z-20 pointer-events-none flex flex-col gap-4 max-lg:gap-2 items-end max-lg:scale-[0.35] max-lg:origin-top-right">
+        <div className="absolute top-8 right-8 max-lg:top-4 max-lg:right-16 z-20 pointer-events-none flex flex-col gap-4 max-lg:gap-2 items-end max-lg:scale-[0.6] max-lg:origin-top-right">
           <div className="bg-white/90 backdrop-blur-xl shadow-sm border border-white/60 px-6 py-3 rounded-full flex items-center gap-3">
             <h2 className="text-sm font-bold text-slate-800 tracking-[0.2em]">
               朔良の部屋
@@ -405,7 +405,7 @@ export default function SearchAndLearning({
 
       {/* Title / Current Area (Top Left) */}
       {!isMoonIntroPlaying && isMoonView && (
-        <div className="absolute top-8 left-8 max-lg:top-4 max-lg:left-2 z-20 max-lg:scale-[0.35] max-lg:origin-top-left">
+        <div className="absolute top-8 left-8 max-lg:top-4 max-lg:left-2 z-20 max-lg:scale-[0.6] max-lg:origin-top-left">
           <div className="glass-panel px-6 py-3 rounded-lg flex items-center gap-4">
             <div className="w-12 h-12 rounded-full bg-cyan-500/20 flex items-center justify-center">
               <Compass className="w-6 h-6 text-cyan-400 animate-spin-slow" />
