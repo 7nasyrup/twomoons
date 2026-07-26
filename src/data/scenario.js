@@ -1702,7 +1702,7 @@ export const scenarioData = [
     "role": "PROFESSOR",
     "text": "「──はいはーい、何事かな？」",
     "showIllust": [
-      "Hirumi"
+      "Hirumi_smile"
     ]
   },
   {
@@ -9748,7 +9748,7 @@ export const scenarioData = [
     "role": "PROFESSOR",
     "text": "「やあ、よく来たね、二人とも。待ちくたびれたよ」",
     "showIllust": [
-      "Hirumi_neutral"
+      "Hirumi_smile"
     ]
   },
   {
@@ -9771,7 +9771,7 @@ export const scenarioData = [
     "role": "PROFESSOR",
     "text": "「……説明はあまりしていられない、君たちにはこれからこのロケットに乗って、あの青い月まで行ってもらう」",
     "showIllust": [
-      "Hirumi_neutral"
+      "Hirumi_smile"
     ]
   },
   {
@@ -9798,7 +9798,7 @@ export const scenarioData = [
     "role": "PROFESSOR",
     "text": "「真っ当な意見だ。簡単に説明するが、あの青い月にはこの狂った世界のすべての元凶である『コア』がある。世界をもとに戻したければ、そこに行ってコアを止めてきなさい。……これは、君たちにしかできない仕事だ」",
     "showIllust": [
-      "Hirumi_neutral"
+      "Hirumi_smile"
     ]
   },
   {
@@ -9840,7 +9840,7 @@ export const scenarioData = [
     "role": "PROFESSOR",
     "text": "「物分かりが良くて助かるよ。安心して、この紙に詳しいことは書いておいたから」",
     "showIllust": [
-      "Hirumi_neutral"
+      "Hirumi_smile"
     ]
   },
   {
@@ -9863,7 +9863,7 @@ export const scenarioData = [
     "role": "PROFESSOR",
     "text": "「心配してくれているのかな？ 嬉しいけど、心配は不要さ」",
     "showIllust": [
-      "Hirumi_neutral"
+      "Hirumi_smile"
     ]
   },
   {
@@ -9876,7 +9876,7 @@ export const scenarioData = [
     "role": "PROFESSOR",
     "text": "「さぁ、タイムリミットだ。行きなさい──朔良」",
     "showIllust": [
-      "Hirumi_neutral"
+      "Hirumi_smile"
     ]
   },
   {
@@ -11587,7 +11587,7 @@ export const scenarioData = [
     "role": "PROFESSOR",
     "text": "「残りの彼らの心配ならいらない。全員、自力で生き残るだけの力を持った怪物たちだからね」",
     "showIllust": [
-      "Hirumi_neutral"
+      "Hirumi_smile"
     ]
   },
   {
@@ -14109,7 +14109,7 @@ export const scenarioData = [
     "role": "PROFESSOR",
     "text": "「……遅かったね」",
     "showIllust": [
-      "Hirumi_neutral"
+      "Hirumi_serious"
     ]
   },
   {
@@ -14124,7 +14124,7 @@ export const scenarioData = [
     "bgm": "serious_1.mp3",
     "bgmFade": 1.5,
     "showIllust": [
-      "Hirumi_neutral"
+      "Hirumi_smile"
     ]
   },
   {
@@ -14146,7 +14146,7 @@ export const scenarioData = [
     "role": "PROFESSOR",
     "text": "「冗談だ。それで本題だが…君たちにはこれからこのロケットに乗って、あの青い月まで行ってもらう」",
     "showIllust": [
-      "Hirumi_neutral"
+      "Hirumi_smile"
     ]
   },
   {
@@ -14173,7 +14173,7 @@ export const scenarioData = [
     "role": "PROFESSOR",
     "text": "「戸惑う気持ちもわかる。だがあまりここに時間はかけられない。この紙にすべてのことを記しておいたから、しっかり読んで、冷静に行動しなさい」",
     "showIllust": [
-      "Hirumi_neutral"
+      "Hirumi_smile"
     ]
   },
   {
@@ -14186,7 +14186,7 @@ export const scenarioData = [
     "role": "PROFESSOR",
     "text": "「……まぁ、隣の彼が何とかしてくれるだろう」",
     "showIllust": [
-      "Hirumi_neutral"
+      "Hirumi_smile"
     ]
   },
   {
@@ -14247,7 +14247,7 @@ export const scenarioData = [
     "role": "PROFESSOR",
     "text": "「さぁ、タイムリミットだ。行きなさい──朔良」",
     "showIllust": [
-      "Hirumi_neutral"
+      "Hirumi_smile"
     ]
   },
   {
