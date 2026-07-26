@@ -1094,11 +1094,12 @@ export default function App() {
       setTimeout(() => { touchHandledRef.current = false; }, 1000);
     } else {
       // Tap detected (not a swipe)
-      if (skipMode) {
+      const isMinigameActive = isTypingGameActive || isSearchAndLearningActive || isSilentScoreActive || isTapCommunicationActive || isEyeOfProfilerActive || isFragmentCollectActive || isFragmentCollectNagisaActive || isFragmentCollectMikaActive || isFragmentCollectAkaneActive || isFragmentCollectSoloActive || isStealthGameActive;
+
+      if (skipMode && !isMinigameActive) {
         setSkipMode(false);
       } else {
         const isTransition = currentLine?.action === 'FADE_TO_BLACK' || currentLine?.action === 'SLOW_FADE_TO_BLACK' || currentLine?.action === 'WAIT_FADE' || isBgTransitioning || isBgFadingOut;
-        const isMinigameActive = isTypingGameActive || isSearchAndLearningActive || isSilentScoreActive || isTapCommunicationActive || isEyeOfProfilerActive || isFragmentCollectActive || isFragmentCollectNagisaActive || isFragmentCollectMikaActive || isFragmentCollectAkaneActive || isFragmentCollectSoloActive || isStealthGameActive;
         
         if (!showTitle && !isWaitingForChoice && !alertActive && !backlogOpen && !isMinigameActive && !isAnyEnd && !isEndScreen && !isTransition) {
           nextStep();
@@ -1298,7 +1299,9 @@ export default function App() {
       onClick={() => {
         // On mobile, onTouchEnd already handled the tap — skip onClick to prevent double-fire
         if (touchHandledRef.current) return;
-        if (skipMode) {
+        const isMinigameActive = isTypingGameActive || isSearchAndLearningActive || isSilentScoreActive || isTapCommunicationActive || isEyeOfProfilerActive || isFragmentCollectActive || isFragmentCollectNagisaActive || isFragmentCollectMikaActive || isFragmentCollectAkaneActive || isFragmentCollectSoloActive || isStealthGameActive;
+
+        if (skipMode && !isMinigameActive) {
           setSkipMode(false);
           return;
         }

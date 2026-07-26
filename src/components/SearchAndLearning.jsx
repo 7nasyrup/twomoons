@@ -247,10 +247,15 @@ export default function SearchAndLearning({
     }
 
     if (skipMode) {
+      clearInterval(typingTimer.current);
       setDisplayedText(currentMessage.text);
       setIsTyping(false);
       return;
     }
+
+    // Only restart typing if we aren't already typing this message.
+    // (This prevents restarting the typing animation if skipMode is toggled off)
+    if (isTyping && displayedText !== '') return;
 
     clearInterval(typingTimer.current);
     setDisplayedText('');
@@ -269,7 +274,7 @@ export default function SearchAndLearning({
     }, currentMessage.role === 'sakura' ? 40 : 25);
 
     return () => clearInterval(typingTimer.current);
-  }, [currentMessage]);
+  }, [currentMessage, skipMode]);
 
   useEffect(() => {
     if (!currentMessage) return;
