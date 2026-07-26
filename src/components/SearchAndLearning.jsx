@@ -88,7 +88,9 @@ export default function SearchAndLearning({
   onOpenLog,
   onToggleAuto,
   onToggleSkip,
-  onExit
+  onExit,
+  autoMode,
+  skipMode
 }) {
   const [visited, setVisited] = useState({ bag: false, newspaper: false, photo: false, artificial_moon: false, calendar: false });
   const [visuallyVisited, setVisuallyVisited] = useState({ bag: false, newspaper: false, photo: false, artificial_moon: false, calendar: false });
@@ -275,6 +277,19 @@ export default function SearchAndLearning({
       window.removeEventListener('minigame-tap', onGlobalTap);
     };
   }, [currentMessage, handleNextMessage]);
+
+  // Auto / Skip mode automatic progression for minigame dialogue
+  useEffect(() => {
+    if (!currentMessage) return;
+
+    if ((autoMode || skipMode) && !isTyping) {
+      let delay = skipMode ? 100 : 1500;
+      const timer = setTimeout(() => {
+        handleNextMessage();
+      }, delay);
+      return () => clearTimeout(timer);
+    }
+  }, [currentMessage, isTyping, autoMode, skipMode, handleNextMessage]);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -487,8 +502,8 @@ export default function SearchAndLearning({
         text={displayedText}
         isTyping={isTyping}
         isVisible={!!currentMessage}
-        autoMode={false}
-        skipMode={false}
+        autoMode={autoMode}
+        skipMode={skipMode}
         onNext={handleNextMessage}
         onToggleAuto={onToggleAuto}
         onToggleSkip={onToggleSkip}

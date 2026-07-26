@@ -1362,6 +1362,8 @@ export default function App() {
                 onToggleAuto={toggleAuto}
                 onToggleSkip={toggleSkip}
                 onExit={() => setShowTitle(true)}
+                autoMode={autoMode}
+                skipMode={skipMode}
               />
             )}
 
