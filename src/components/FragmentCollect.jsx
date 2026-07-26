@@ -902,22 +902,22 @@ export default function FragmentCollect({ onComplete, onSave, onLoad, onToggleSk
           </div>
 
           {/* コレクション状況＆タイマー */}
-          <div className="flex flex-col gap-1 lg:gap-2 items-end">
+          <div className="flex flex-col gap-1.5 lg:gap-2 items-end">
             {/* タイマー */}
-            <div className={`glass-panel px-3 py-1.5 lg:px-6 lg:py-3 rounded-full flex items-center gap-2 lg:gap-3 transition-colors ${timeLeft <= 30 ? 'border-red-500/50 animate-pulse text-red-500' : 'text-slate-700'}`}>
-              <Clock className="w-3 h-3 lg:w-4 lg:h-4" />
-              <span className="text-[9px] lg:text-xs font-orbitron tracking-widest font-bold">
+            <div className={`glass-panel px-4 py-2 lg:px-6 lg:py-3 rounded-full flex items-center gap-2 lg:gap-3 transition-colors ${timeLeft <= 30 ? 'border-red-500/50 animate-pulse text-red-500' : 'text-slate-700'}`}>
+              <Clock className="w-3.5 h-3.5 lg:w-4 lg:h-4" />
+              <span className="text-[11px] lg:text-xs font-orbitron tracking-widest font-bold">
                 {Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')}
               </span>
             </div>
 
             <div id="fc-chip-counter"
-              className="glass-panel px-3 py-1.5 lg:px-6 lg:py-3 rounded-full flex items-center gap-2 lg:gap-3">
-              <Shield className="w-3 h-3 lg:w-4 lg:h-4 text-sky-500" />
-              <span className="text-[9px] lg:text-xs font-orbitron text-slate-600 tracking-widest font-bold">CHIP</span>
+              className="glass-panel px-4 py-2 lg:px-6 lg:py-3 rounded-full flex items-center gap-2 lg:gap-3">
+              <Shield className="w-3.5 h-3.5 lg:w-4 lg:h-4 text-sky-500" />
+              <span className="text-[11px] lg:text-xs font-orbitron text-slate-600 tracking-widest font-bold">CHIP</span>
               <div className="flex items-center gap-1.5 lg:gap-2">
                 {Array.from({ length: totalChips }, (_, i) => (
-                  <div key={i} className={`w-2 h-2 lg:w-3 lg:h-3 rounded-full border transition-all duration-500 ${i < chipCount
+                  <div key={i} className={`w-2.5 h-2.5 lg:w-3 lg:h-3 rounded-full border transition-all duration-500 ${i < chipCount
                     ? 'bg-cyan-400 border-cyan-300 shadow-[0_0_8px_rgba(103,232,249,0.8)]'
                     : 'bg-transparent border-white/30'}`}
                   />
@@ -925,12 +925,12 @@ export default function FragmentCollect({ onComplete, onSave, onLoad, onToggleSk
               </div>
             </div>
             <div id="fc-file-counter"
-              className="glass-panel px-3 py-1.5 lg:px-6 lg:py-3 rounded-full flex items-center gap-2 lg:gap-3">
-              <FileText className="w-3 h-3 lg:w-4 lg:h-4 text-green-500" />
-              <span className="text-[9px] lg:text-xs font-orbitron text-slate-600 tracking-widest font-bold">FILE</span>
+              className="glass-panel px-4 py-2 lg:px-6 lg:py-3 rounded-full flex items-center gap-2 lg:gap-3">
+              <FileText className="w-3.5 h-3.5 lg:w-4 lg:h-4 text-green-500" />
+              <span className="text-[11px] lg:text-xs font-orbitron text-slate-600 tracking-widest font-bold">FILE</span>
               <div className="flex items-center gap-1.5 lg:gap-2">
                 {Array.from({ length: 4 }, (_, i) => (
-                  <div key={i} className={`w-2 h-2 lg:w-3 lg:h-3 rounded-full border transition-all duration-500 ${i < fileCount
+                  <div key={i} className={`w-2.5 h-2.5 lg:w-3 lg:h-3 rounded-full border transition-all duration-500 ${i < fileCount
                     ? 'bg-green-400 border-green-300 shadow-[0_0_8px_rgba(74,222,128,0.8)]'
                     : 'bg-transparent border-white/30'}`}
                   />
