@@ -411,21 +411,33 @@ export default function App() {
     setHasSave(slots.some(s => s !== null));
   }, []);
 
-  // Request fullscreen on mobile to hide browser address bar
-  const requestMobileFullscreen = () => {
-    const isTouchDevice = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
-    const isMobileSize = window.innerWidth < 1024;
-    if (!isTouchDevice || !isMobileSize) return;
+  // Request fullscreen on mobile to hide browser address bar using native events (bypasses React synthetic event limitations)
+  useEffect(() => {
+    const handleNativeTouchOrClick = () => {
+      const isTouchDevice = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
+      const isMobileSize = window.innerWidth < 1024;
+      if (!isTouchDevice || !isMobileSize) return;
 
-    const el = document.documentElement;
-    const requestFS = el.requestFullscreen || el.webkitRequestFullscreen || el.msRequestFullscreen;
-    if (requestFS && !document.fullscreenElement && !document.webkitFullscreenElement) {
-      requestFS.call(el).catch(() => {/* silently fail if denied */});
-    }
-  };
+      const el = document.documentElement;
+      const requestFS = el.requestFullscreen || el.webkitRequestFullscreen || el.msRequestFullscreen;
+      if (requestFS && !document.fullscreenElement && !document.webkitFullscreenElement) {
+        requestFS.call(el).catch((err) => {
+          console.warn("Fullscreen API failed:", err);
+        });
+      }
+    };
+
+    // Attach native event listeners to document
+    document.addEventListener('touchstart', handleNativeTouchOrClick, { passive: true });
+    document.addEventListener('click', handleNativeTouchOrClick, { passive: true });
+
+    return () => {
+      document.removeEventListener('touchstart', handleNativeTouchOrClick);
+      document.removeEventListener('click', handleNativeTouchOrClick);
+    };
+  }, []);
 
   const handleStartGame = () => {
-    requestMobileFullscreen();
     clearBacklog();
     setShowTitle(false);
     setFlags({});
@@ -483,7 +495,6 @@ export default function App() {
     } else if (slotModalMode === 'load') {
       // ロード実行
       if (!slotData) return;
-      requestMobileFullscreen();
       if (slotData.fragmentCollectResult !== undefined) setFragmentCollectResult(slotData.fragmentCollectResult);
       if (slotData.learningScore !== undefined) setLearningScore(slotData.learningScore);
       if (slotData.eyeOfProfilerSuccess !== undefined) setEyeOfProfilerSuccess(slotData.eyeOfProfilerSuccess);
@@ -1046,7 +1057,6 @@ export default function App() {
   };
 
   const handleTouchEnd = (e) => {
-    requestMobileFullscreen();
     if (showTitle) return;
     const diffX = e.changedTouches[0].clientX - touchStartX.current;
     const diffY = e.changedTouches[0].clientY - touchStartY.current;
@@ -1272,7 +1282,6 @@ export default function App() {
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
       onClick={() => {
-        requestMobileFullscreen();
         // On mobile, onTouchEnd already handled the tap — skip onClick to prevent double-fire
         if (touchHandledRef.current) return;
         if (skipMode) {
