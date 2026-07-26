@@ -90,7 +90,8 @@ export default function SearchAndLearning({
   onToggleSkip,
   onExit,
   autoMode,
-  skipMode
+  skipMode,
+  setSkipMode
 }) {
   const [visited, setVisited] = useState({ bag: false, newspaper: false, photo: false, artificial_moon: false, calendar: false });
   const [visuallyVisited, setVisuallyVisited] = useState({ bag: false, newspaper: false, photo: false, artificial_moon: false, calendar: false });
@@ -175,10 +176,12 @@ export default function SearchAndLearning({
       } else {
         setCurrentMessage(null);
         setIsTyping(false);
+        if (skipMode && setSkipMode) {
+          setSkipMode(false);
+        }
         if (bgImage === '/scene/moon.png') {
           setHasSeenMoonIntro(true);
         }
-
 
 
         if (pendingParticle) {

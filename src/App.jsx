@@ -1363,6 +1363,7 @@ export default function App() {
                 onOpenLog={() => setBacklogOpen(true)}
                 onToggleAuto={toggleAuto}
                 onToggleSkip={toggleSkip}
+                setSkipMode={setSkipMode}
                 onExit={() => setShowTitle(true)}
                 autoMode={autoMode}
                 skipMode={skipMode}
