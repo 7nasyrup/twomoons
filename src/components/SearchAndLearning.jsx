@@ -236,6 +236,11 @@ export default function SearchAndLearning({ onComplete }) {
       return;
     }
 
+    const onGlobalTap = () => {
+      handleNextMessage();
+    };
+    window.addEventListener('minigame-tap', onGlobalTap);
+
     clearInterval(typingTimer.current);
     setDisplayedText('');
     setIsTyping(true);
@@ -252,8 +257,11 @@ export default function SearchAndLearning({ onComplete }) {
       }
     }, currentMessage.role === 'sakura' ? 40 : 25);
 
-    return () => clearInterval(typingTimer.current);
-  }, [currentMessage]);
+    return () => {
+      clearInterval(typingTimer.current);
+      window.removeEventListener('minigame-tap', onGlobalTap);
+    };
+  }, [currentMessage, handleNextMessage]);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -294,7 +302,7 @@ export default function SearchAndLearning({ onComplete }) {
 
       {/* Header Info Overlay - Clean AR Glass Style */}
       {!isMoonIntroPlaying && (
-        <div className="absolute top-8 right-8 z-20 pointer-events-none flex flex-col gap-4 items-end">
+        <div className="absolute top-4 right-4 md:top-8 md:right-8 z-20 pointer-events-none flex flex-col gap-2 md:gap-4 items-end scale-[0.6] md:scale-100 origin-top-right">
           <div className="bg-white/90 backdrop-blur-xl shadow-sm border border-white/60 px-6 py-3 rounded-full flex items-center gap-3">
             <h2 className="text-sm font-bold text-slate-800 tracking-[0.2em]">
               朔良の部屋
@@ -346,6 +354,21 @@ export default function SearchAndLearning({ onComplete }) {
                 </div>
               </motion.div>
             )}
+          </div>
+        </div>
+      )}
+
+      {/* Title / Current Area (Top Left) */}
+      {!isMoonIntroPlaying && isMoonView && (
+        <div className="absolute top-4 left-4 md:top-8 md:left-8 z-20 scale-[0.6] md:scale-100 origin-top-left">
+          <div className="glass-panel px-6 py-3 rounded-lg flex items-center gap-4">
+            <div className="w-12 h-12 rounded-full bg-cyan-500/20 flex items-center justify-center">
+              <Compass className="w-6 h-6 text-cyan-400 animate-spin-slow" />
+            </div>
+            <div>
+              <div className="font-orbitron text-[10px] text-cyan-500 tracking-[0.4em] mb-1">LOCATION</div>
+              <div className="font-noto font-bold text-lg text-white tracking-widest">朔良の部屋</div>
+            </div>
           </div>
         </div>
       )}
