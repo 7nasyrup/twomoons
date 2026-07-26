@@ -245,13 +245,6 @@ export default function SearchAndLearning({
       return;
     }
 
-    if (skipMode) {
-      clearInterval(typingTimer.current);
-      setDisplayedText(currentMessage.text);
-      setIsTyping(false);
-      return;
-    }
-
     // Only restart typing if we aren't already typing this message.
     // (This prevents restarting the typing animation if skipMode is toggled off)
     if (isTyping && displayedText !== '') return;
@@ -261,16 +254,19 @@ export default function SearchAndLearning({
     setIsTyping(true);
     let currentString = '';
 
+    const delay = skipMode ? 10 : (currentMessage.role === 'sakura' ? 40 : 25);
+    const charsPerTick = skipMode ? 3 : 1;
+
     typingTimer.current = setInterval(() => {
       if (currentString.length < currentMessage.text.length) {
-        currentString += currentMessage.text.charAt(currentString.length);
+        currentString += currentMessage.text.substr(currentString.length, charsPerTick);
         setDisplayedText(currentString);
       } else {
         clearInterval(typingTimer.current);
         setDisplayedText(currentMessage.text);
         setIsTyping(false);
       }
-    }, currentMessage.role === 'sakura' ? 40 : 25);
+    }, delay);
 
     return () => clearInterval(typingTimer.current);
   }, [currentMessage, skipMode]);
