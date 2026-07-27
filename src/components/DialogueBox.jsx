@@ -71,11 +71,11 @@ export default function DialogueBox({
           {isWaitingForChoice && choices && (
             <div className="flex flex-col items-end gap-2 lg:gap-4 mb-2 lg:mb-4 w-full px-6 md:px-12 lg:px-24 pointer-events-auto">
               {choices.map((choice, idx) => {
-                const isInteractive = true;
+                const isInteractive = !choice.isLocked;
                 return (
                   <motion.div
                     key={idx}
-                    className="relative p-[1px] bg-slate-700 hover:bg-[#00e5ff] transition-colors cursor-pointer group w-1/3 rounded-md"
+                    className="relative p-[1px] bg-slate-700 hover:bg-[#00e5ff] transition-colors cursor-pointer group w-[37%] rounded-md"
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0, transition: { delay: idx * 0.1 } }}
                     whileHover={isInteractive ? { scale: 1.02 } : {}}

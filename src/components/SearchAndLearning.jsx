@@ -491,7 +491,7 @@ export default function SearchAndLearning({
       {!isMoonIntroPlaying && totalVisited === 3 && (
         <button
           onClick={handleFinishSearch}
-          className="absolute bottom-12 right-12 max-lg:bottom-6 max-lg:right-6 max-lg:scale-[0.8] max-lg:origin-bottom-right bg-white text-black px-10 py-4 rounded-full shadow-[0_10px_30px_rgba(255,255,255,0.2)] hover:scale-105 hover:bg-cyan-50 transition-all text-sm font-bold tracking-[0.2em] z-20 flex items-center gap-3 group"
+          className="absolute bottom-12 right-12 max-lg:bottom-6 max-lg:right-20 max-lg:scale-[0.8] max-lg:origin-bottom-right bg-white text-black px-10 py-4 rounded-full shadow-[0_10px_30px_rgba(255,255,255,0.2)] hover:scale-105 hover:bg-cyan-50 transition-all text-sm font-bold tracking-[0.2em] z-20 flex items-center gap-3 group"
         >
           出発する
           <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

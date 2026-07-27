@@ -432,7 +432,7 @@ export default function FragmentCollectMika({ onComplete, onSave, onLoad, onTogg
     const sysLine = { speaker: 'システム', role: 'SYSTEM', text: `セキュリティコードの断片を入手：${chip.label}` };
     if (nextCount >= totalChips) {
       showMessages([sysLine, ...MIKA_CHIP[lv], ...MIKA_GATE]);
-      setTimeout(() => setGateUnlocked(true), 5000);
+      setTimeout(() => setGateUnlocked(true), 2000);
     } else {
       showMessages([sysLine, ...MIKA_CHIP[lv]]);
     }

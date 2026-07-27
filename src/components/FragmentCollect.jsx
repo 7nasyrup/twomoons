@@ -674,7 +674,7 @@ export default function FragmentCollect({ onComplete, onSave, onLoad, onToggleSk
     };
     if (nextCount >= totalChips) {
       showMessages([sysLine, ...MUTSUNORI_CHIP[lv], ...MUTSUNORI_GATE]);
-      setTimeout(() => setGateUnlocked(true), 5000);
+      setTimeout(() => setGateUnlocked(true), 2000);
     } else {
       showMessages([sysLine, ...MUTSUNORI_CHIP[lv]]);
     }

@@ -3352,10 +3352,15 @@ export const scenarioData = [
   {
     "scene": "廃ビルの一室",
     "speaker": "アナウンサー",
-    "text": "『──速報です！現在、〇〇区を中心に、正体不明の巨大な怪物たちが多数出現しています！適応者防衛班の制止を振り切り、街は現在──危険です！避難してください！\n\nうわ、うわあああ──！！』",
+    "text": "『──速報です！現在、〇〇区を中心に、正体不明の巨大な怪物たちが多数出現しています！適応者防衛班の制止を振り切り、街は現在──危険です！避難してください！』",
     "bgm": "alert.mp3",
     "bgmVolume": 0.3,
     "bgmFade": 1.5,
+    "showItem": "/item/phone_news.png"
+  },
+  {
+    "scene": "廃ビルの一室",
+    "text": "『─うわ、うわあああ──！！』",
     "showItem": "/item/phone_news.png"
   },
   {
@@ -4126,11 +4131,13 @@ export const scenarioData = [
       },
       {
         "text": "ひたすら大きな腕に掴まった",
-        "targetLabel": "akane_route_start"
+        "targetLabel": "akane_route_start",
+        "condition": "akane_route_enabled"
       },
       {
         "text": "誰かに腕を引っ張られる",
-        "targetLabel": "mitsuru_route_start"
+        "targetLabel": "mitsuru_route_start",
+        "condition": "mitsuru_route_enabled"
       }
     ]
   },
@@ -5928,7 +5935,7 @@ export const scenarioData = [
     "scene": "回想：公園",
     "text": "──それは、今思えば、全ての始まりの日だった。",
     "bg": "black",
-    "action": "FADE_IN_BLACK",
+    "action": "FLASHBACK_START",
     "clearIllust": true,
     "bgm": "nostalgia"
   },
@@ -5938,7 +5945,8 @@ export const scenarioData = [
   },
   {
     "scene": "回想：公園",
-    "text": "私がいつも通り、お気に入りの公園で遊ぼうと広場へ走っていくと、賑やかな街の音に混じって、不快な罵声が聞こえてきた。"
+    "text": "私がいつも通り、お気に入りの公園で遊ぼうと広場へ走っていくと、賑やかな街の音に混じって、不快な罵声が聞こえてきた。",
+    "bg": "/scene/park.png",
   },
   {
     "scene": "回想：公園",
@@ -6132,7 +6140,8 @@ export const scenarioData = [
   {
     "scene": "回想：中学校",
     "speaker": "クラスメイト",
-    "text": "「——ら、さくら！」"
+    "text": "「——ら、さくら！」",
+    "bg": "/scene/classroom.png"
   },
   {
     "scene": "回想：中学校",
@@ -6191,7 +6200,7 @@ export const scenarioData = [
   {
     "scene": "回想：夕暮れの通学路",
     "text": "夕暮れ時の校門。重い足取りで歩いていると、聞き馴染んだ懐かしい声が、私の張り詰めた心をほどくように呼びかけてきた。",
-    "bg": "/scene/street_sunset.png",
+    "bg": "/scene/school.png",
     "action": "SLOW_FADE_IN",
     "bgm": "mutsu_theme"
   },
@@ -6301,7 +6310,7 @@ export const scenarioData = [
   {
     "scene": "回想：朔良の部屋",
     "text": "息を切らし、自宅のドアをこじ開けて自分の部屋へと飛び込む。 バタン、と激しい音を立てて扉を閉め、鍵をかけた。",
-    "bg": "/scene/room_sakura.png",
+    "bg": "/scene/sakura_rooom_evening.png",
     "action": "SLOW_FADE_IN",
     "bgm": "stop"
   },
@@ -6344,7 +6353,8 @@ export const scenarioData = [
     "scene": "回想：朔良の部屋前",
     "text": "ピンポーン、と夕方の静かな住宅街に、家のチャイムの音が鳴り響く。",
     "bg": "/scene/house_front.png",
-    "action": "SLOW_FADE_IN"
+    "action": "SLOW_FADE_IN",
+    "bgm": "semi_yugure.mp3"
   },
   {
     "scene": "回想：朔良の部屋前",
@@ -6364,7 +6374,7 @@ export const scenarioData = [
   },
   {
     "scene": "回想：朔良の部屋前",
-    "text": "昨日、僕の手を狂気じみた形相で振り払い、泣きそうな顔で走り去ってしまった朔良。そして今日、彼女は学校を無断欠席した。 心配で、授業中も何度も携帯で連絡を取ろうとしたけれど、一向に繋がらない。胸を騒がせる嫌な予感に耐えかねて、放課後、こうして彼女の家まで走ってきたのだった。"
+    "text": "昨日、僕の手を狂気じみた形相で振り払い、泣きそうな顔で走り去ってしまった朔良。そして今日、彼女は学校を無断欠席した。"
   },
   {
     "scene": "回想：朔良の部屋前",
@@ -6384,7 +6394,9 @@ export const scenarioData = [
     "scene": "回想：朔良の家の中",
     "text": "カチャリ、と静かにラッチが外れる音がして、玄関の扉がまるで手招きでもするように、ひとりでにゆっくりと開いた。",
     "bg": "/scene/house_entrance.png",
-    "action": "SLOW_FADE_IN"
+    "action": "SLOW_FADE_IN",
+    "bgm": "stop",
+    "se": "door.mp3"
   },
   {
     "scene": "回想：朔良の家の中",
@@ -6583,7 +6595,7 @@ export const scenarioData = [
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「あ……ああぁぁぁ……っ！！！」",
-    "action": "CLEAR_WHITE_OUT",
+    "action": "CLEAR_WHITE_OUT_AND_FLASHBACK_END",
     "bg": "/scene/control.png"
   },
   {
@@ -15571,7 +15583,16 @@ export const scenarioData = [
   },
   {
     "scene": "青い月ない青空",
-    "text": "彼がこの檻を出て、再び私の前に現れるその時まで。私は私の日常を生きながら、彼と共に地獄の底まで進むための覚悟を、静かに研ぎ澄ませていく。",
+    "text": "彼がこの檻を出て、再び私の前に現れるその時まで。私は私の日常を生きながら、彼と共に地獄の底まで進むための覚悟を、静かに研ぎ澄ませていく。"
+  },
+  {
+    "scene": "青い月ない青空",
+    "text": "アカネルート・ハッピーエンド",
+    "action": "FADE_TO_HAPPY_END",
+    "style": "cinema"
+  },
+  {
+    "scene": "青い月ない青空",
     "jumpTo": "route_under_construction"
   },
   {

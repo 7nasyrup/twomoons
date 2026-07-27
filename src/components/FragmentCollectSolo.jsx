@@ -395,7 +395,7 @@ export default function FragmentCollectSolo({ onComplete, onSave, onLoad, onTogg
     const msgs = SOLO_CHIP[lv];
     if (nextCount >= totalChips) {
       showMessages([...msgs, ...SOLO_GATE]);
-      setTimeout(() => setGateUnlocked(true), 4000);
+      setTimeout(() => setGateUnlocked(true), 2000);
     } else {
       showMessages(msgs);
     }

@@ -40,7 +40,7 @@ const AKANE_FILE = [
   [{ speaker: 'アカネ', role: 'アカネ', illust: 'Akane_serious', text: '「機密ファイル……。あとで確認しろ。今は先を急ぐ」' }],
   [{ speaker: 'アカネ', role: 'アカネ', illust: 'Akane_serious', text: '「……そのファイル。中身は……あとでいい。今は関係ない」' }],
   [{ speaker: 'アカネ', role: 'アカネ', illust: 'Akane_serious', text: '「……っ。それは……捨てておけ。余計な情報だ」' }],
-  [{ speaker: 'アカネ', role: 'アカネ', illust: 'Akane_serious', text: '「……」\n「……見たのか。……まあ、いい。全部、知っておいた方がいいこともある」' }],
+  [{ speaker: 'アカネ', role: 'アカネ', illust: 'Akane_serious', text: '「……見たのか。……まあ、いい。全部、知っておいた方がいいこともある」' }],
 ];
 
 // ─── ゲート解錠時 ─────────────────────────────────────────────────────────────
@@ -250,33 +250,33 @@ function FCFileModal({ file, onClose }) {
           className="relative w-full max-h-full bg-[#080c14]/95 border border-green-500/30 rounded shadow-[0_0_30px_rgba(74,222,128,0.1)] overflow-hidden flex flex-col pointer-events-auto"
           initial={{ scale: 0.95, y: 20 }} animate={{ scale: isMobile ? 0.85 : 1, y: 0 }} exit={{ scale: 0.95, y: 20 }}
         >
-        <div className="bg-green-950/40 border-b border-green-500/20 px-6 py-4 flex items-center gap-3 shrink-0">
-          <FileText className="w-5 h-5 text-green-400" />
-          <span className="text-green-100 font-orbitron tracking-widest text-sm">CONFIDENTIAL DATA</span>
-        </div>
-        <div className="p-8 overflow-y-auto grow custom-scrollbar">
-          {file.messages.map((m, idx) => (
-            <div key={idx} className="mb-6 last:mb-0">
-              {m.speaker === 'システム' ? (
-                <h3 className="text-green-300 font-bold tracking-widest mb-4 border-b border-green-500/30 pb-2 text-base md:text-lg">
-                  {m.text.replace('【', '').replace('】', '')}
-                </h3>
-              ) : (
-                <p className="text-gray-300 leading-loose font-noto tracking-wide whitespace-pre-line text-sm md:text-base">
-                  {m.text}
-                </p>
-              )}
-            </div>
-          ))}
-        </div>
-        <div className="bg-black/40 border-t border-green-500/20 p-4 flex justify-end shrink-0">
-          <button
-            onClick={onClose}
-            className="px-8 py-2.5 bg-green-900/50 hover:bg-green-800/60 border border-green-400/30 hover:border-green-400 text-green-200 text-sm font-orbitron tracking-widest transition-all rounded shadow-[0_0_10px_rgba(74,222,128,0.2)]"
-          >
-            CLOSE
-          </button>
-        </div>
+          <div className="bg-green-950/40 border-b border-green-500/20 px-6 py-4 flex items-center gap-3 shrink-0">
+            <FileText className="w-5 h-5 text-green-400" />
+            <span className="text-green-100 font-orbitron tracking-widest text-sm">CONFIDENTIAL DATA</span>
+          </div>
+          <div className="p-8 overflow-y-auto grow custom-scrollbar">
+            {file.messages.map((m, idx) => (
+              <div key={idx} className="mb-6 last:mb-0">
+                {m.speaker === 'システム' ? (
+                  <h3 className="text-green-300 font-bold tracking-widest mb-4 border-b border-green-500/30 pb-2 text-base md:text-lg">
+                    {m.text.replace('【', '').replace('】', '')}
+                  </h3>
+                ) : (
+                  <p className="text-gray-300 leading-loose font-noto tracking-wide whitespace-pre-line text-sm md:text-base">
+                    {m.text}
+                  </p>
+                )}
+              </div>
+            ))}
+          </div>
+          <div className="bg-black/40 border-t border-green-500/20 p-4 flex justify-end shrink-0">
+            <button
+              onClick={onClose}
+              className="px-8 py-2.5 bg-green-900/50 hover:bg-green-800/60 border border-green-400/30 hover:border-green-400 text-green-200 text-sm font-orbitron tracking-widest transition-all rounded shadow-[0_0_10px_rgba(74,222,128,0.2)]"
+            >
+              CLOSE
+            </button>
+          </div>
         </motion.div>
       </div>
     </motion.div>
@@ -435,7 +435,7 @@ export default function FragmentCollectAkane({ onComplete, onSave, onLoad, onTog
     const sysLine = { speaker: 'システム', role: 'SYSTEM', text: `セキュリティコードの断片を入手：${chip.label}` };
     if (nextCount >= totalChips) {
       showMessages([sysLine, ...AKANE_CHIP[lv], ...AKANE_GATE]);
-      setTimeout(() => setGateUnlocked(true), 5000);
+      setTimeout(() => setGateUnlocked(true), 2000);
     } else {
       showMessages([sysLine, ...AKANE_CHIP[lv]]);
     }

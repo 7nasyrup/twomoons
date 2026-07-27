@@ -6,6 +6,7 @@ import SpriteSlot from './components/SpriteSlot';
 import DialogueBox from './components/DialogueBox';
 import CinemaLayer from './components/CinemaLayer';
 import AlertModal from './components/AlertModal';
+import ConfirmModal from './components/ConfirmModal';
 import DevConsole from './components/DevConsole';
 import BacklogOverlay from './components/BacklogOverlay';
 import TitleScreen from './components/TitleScreen';
@@ -22,6 +23,7 @@ import FragmentCollectSolo from './components/FragmentCollectSolo';
 import PortraitWarningOverlay from './components/PortraitWarningOverlay';
 import StealthGame from './components/StealthGame';
 import SaveSlotModal, { SAVE_KEY_PREFIX, loadAllSlots } from './components/SaveSlotModal';
+import InstallPrompt from './components/InstallPrompt';
 import { useNovelEngine } from './hooks/useNovelEngine';
 import { useAudioSystem } from './hooks/useAudioSystem';
 import { scenarioData } from './data/scenario';
@@ -338,6 +340,7 @@ export default function App() {
   const [clearedMutsunori, setClearedMutsunori] = useState(() => localStorage.getItem('cleared_mutsunori_good_end') === 'true');
   const [clearedMika, setClearedMika] = useState(() => localStorage.getItem('cleared_mika_good_end') === 'true');
   const [clearedNagisa, setClearedNagisa] = useState(() => localStorage.getItem('cleared_nagisa_good_end') === 'true');
+  const [clearedAkane, setClearedAkane] = useState(() => localStorage.getItem('cleared_akane_good_end') === 'true');
 
   const [endType, setEndType] = useState(null); // 'happy' | 'bad' | null
   const isEndScreen = endType !== null;
@@ -404,6 +407,7 @@ export default function App() {
   // セーブスロットモーダル
   const [slotModalMode, setSlotModalMode] = useState(null); // 'save' | 'load' | null
   const [slotModalSlots, setSlotModalSlots] = useState([]);
+  const [confirmModal, setConfirmModal] = useState({ isActive: false, title: '', message: '', onConfirm: null, onCancel: null });
 
   // セーブデータが1件以上あるかチェック
   useEffect(() => {
@@ -442,6 +446,21 @@ export default function App() {
     setShowTitle(false);
     setFlags({});
     jumpToStep(0);
+  };
+
+  const handleExitToTitle = () => {
+    setConfirmModal({
+      isActive: true,
+      title: 'EXIT TO TITLE',
+      message: 'タイトル画面に戻りますか？\n（セーブされていない進行状況は失われます）',
+      onConfirm: () => {
+        setConfirmModal(prev => ({ ...prev, isActive: false }));
+        setShowTitle(true);
+      },
+      onCancel: () => {
+        setConfirmModal(prev => ({ ...prev, isActive: false }));
+      }
+    });
   };
 
   // タイトルの CONTINUE → ロードモーダルを開く
@@ -495,17 +514,28 @@ export default function App() {
     } else if (slotModalMode === 'load') {
       // ロード実行
       if (!slotData) return;
-      if (slotData.fragmentCollectResult !== undefined) setFragmentCollectResult(slotData.fragmentCollectResult);
-      if (slotData.learningScore !== undefined) setLearningScore(slotData.learningScore);
-      if (slotData.eyeOfProfilerSuccess !== undefined) setEyeOfProfilerSuccess(slotData.eyeOfProfilerSuccess);
-      if (slotData.tapCommunicationScores !== undefined) setTapCommunicationScores(slotData.tapCommunicationScores);
-      if (slotData.silentScoreResult !== undefined) setSilentScoreResult(slotData.silentScoreResult);
-      if (slotData.flags !== undefined) setFlags(slotData.flags);
-      jumpToStep(slotData.step);
-      setShowTitle(false);
-      setSlotModalMode(null);
-      setSaveToast('loaded');
-      setTimeout(() => setSaveToast(null), 2000);
+      setConfirmModal({
+        isActive: true,
+        title: 'LOAD SAVE DATA',
+        message: showTitle ? 'このデータをロードしますか？' : 'このデータをロードしますか？\n（セーブされていない進行状況は失われます）',
+        onConfirm: () => {
+          setConfirmModal(prev => ({ ...prev, isActive: false }));
+          if (slotData.fragmentCollectResult !== undefined) setFragmentCollectResult(slotData.fragmentCollectResult);
+          if (slotData.learningScore !== undefined) setLearningScore(slotData.learningScore);
+          if (slotData.eyeOfProfilerSuccess !== undefined) setEyeOfProfilerSuccess(slotData.eyeOfProfilerSuccess);
+          if (slotData.tapCommunicationScores !== undefined) setTapCommunicationScores(slotData.tapCommunicationScores);
+          if (slotData.silentScoreResult !== undefined) setSilentScoreResult(slotData.silentScoreResult);
+          if (slotData.flags !== undefined) setFlags(slotData.flags);
+          jumpToStep(slotData.step);
+          setShowTitle(false);
+          setSlotModalMode(null);
+          setSaveToast('loaded');
+          setTimeout(() => setSaveToast(null), 2000);
+        },
+        onCancel: () => {
+          setConfirmModal(prev => ({ ...prev, isActive: false }));
+        }
+      });
     }
   };
 
@@ -705,6 +735,8 @@ export default function App() {
         setIsMonochromeFlashActive(true);
       } else if (action === 'CLEAR_MONOCHROME_FLASH') {
         setIsMonochromeFlashActive(false);
+      } else if (action === 'CLEAR_WHITE_OUT_AND_FLASHBACK_END') {
+        setIsWhiteOut(false);
       }
 
       // Sprite Slot actions
@@ -964,6 +996,12 @@ export default function App() {
       localStorage.setItem('cleared_mutsunori_good_end', 'true');
       setClearedMutsunori(true);
     }
+
+    // 4. Akane Route Happy End
+    if (currentLine.text && currentLine.text.includes("アカネルート・ハッピーエンド")) {
+      localStorage.setItem('cleared_akane_good_end', 'true');
+      setClearedAkane(true);
+    }
   }, [currentLine, showTitle]);
 
   // Handle conditional branching and special actions
@@ -971,18 +1009,9 @@ export default function App() {
     if (!currentLine) return;
 
     if (currentLine.action === 'EVALUATE_FRAGMENT_COLLECT_BRANCH') {
-      if (fragmentCollectResult && fragmentCollectResult.files >= 4) {
-        const targetIdx = scenarioData.findIndex(line => line.label === 'happy_end_start');
-        if (targetIdx !== -1) jumpToStep(targetIdx);
-      } else {
-        const targetIdx = scenarioData.findIndex(line => line.label === 'bad_end_start');
-        if (targetIdx !== -1) {
-          jumpToStep(targetIdx);
-        } else {
-          setShowTitle(true);
-          jumpToStep(0);
-        }
-      }
+      // 常にハッピーエンドルートへ進むように変更（バッドエンドは後で使用するために保持）
+      const targetIdx = scenarioData.findIndex(line => line.label === 'happy_end_start');
+      if (targetIdx !== -1) jumpToStep(targetIdx);
     } else if (currentLine.action === 'FADE_TO_HAPPY_END') {
       setEndType('happy');
     } else if (currentLine.action === 'FADE_TO_BAD_END') {
@@ -1185,6 +1214,7 @@ export default function App() {
   const isTransition = currentLine?.action === 'FADE_TO_BLACK' || currentLine?.action === 'SLOW_FADE_TO_BLACK' || currentLine?.action === 'WAIT_FADE' || isBgTransitioning || isBgFadingOut;
   const isDemoEnd = currentLine?.action === 'FADE_TO_DEMO_END';
   const isAnyEnd = isHappyEnd || isBadEnd || isDemoEnd;
+  const isFlashbackActive = currentLine?.scene?.startsWith('回想：');
   const isTypingGameActive = currentLine?.action === 'TRIGGER_TYPING_GAME';
   const isSearchAndLearningActive = currentLine?.action === 'TRIGGER_SEARCH_AND_LEARNING';
   const isSilentScoreActive = currentLine?.action === 'TRIGGER_SILENT_SCORE';
@@ -1267,21 +1297,27 @@ export default function App() {
     }
   };
 
-  const filteredChoices = currentLine?.choices?.filter(choice => {
+  const processedChoices = currentLine?.choices?.map(choice => {
+    let isLocked = false;
     if (choice.condition === 'learning_max') {
-      return learningScore === 3;
+      isLocked = learningScore !== 3;
+    } else if (choice.condition === 'akane_route_enabled') {
+      isLocked = !(clearedMutsunori && clearedMika && clearedNagisa);
+    } else if (choice.condition === 'mitsuru_route_enabled') {
+      isLocked = !(clearedMutsunori && clearedMika && clearedNagisa && clearedAkane);
+    } else if (choice.condition) {
+      isLocked = !flags[choice.condition];
     }
-    if (choice.condition === 'akane_route_enabled') {
-      return clearedMutsunori && clearedMika && clearedNagisa;
+
+    if (isLocked) {
+      return { ...choice, text: '？？？', isLocked: true };
     }
-    if (choice.condition) {
-      return !!flags[choice.condition];
-    }
-    return true;
+    return choice;
   }) || [];
 
   const handleSelectChoice = (choiceIndex) => {
-    const choice = filteredChoices[choiceIndex];
+    const choice = processedChoices[choiceIndex];
+    if (choice && choice.isLocked) return; // Prevent selecting locked choices
     if (choice && choice.setFlag) {
       setFlags(prev => ({
         ...prev,
@@ -1329,7 +1365,7 @@ export default function App() {
             playBGM={playBGM}
           />
         ) : (
-          <>
+          <div className="relative w-full h-full transition-all duration-1000" style={{ filter: isFlashbackActive ? 'sepia(0.5) contrast(1.1) brightness(0.9) grayscale(0.2)' : 'none' }}>
             {/* Visual Background Fallback & Actual Renderer */}
             <BackgroundRenderer
               bgPath={currentBg}
@@ -1369,7 +1405,7 @@ export default function App() {
                 onToggleAuto={toggleAuto}
                 onToggleSkip={toggleSkip}
                 setSkipMode={setSkipMode}
-                onExit={() => setShowTitle(true)}
+                onExit={handleExitToTitle}
                 autoMode={autoMode}
                 skipMode={skipMode}
               />
@@ -1889,6 +1925,22 @@ export default function App() {
               )}
             </AnimatePresence>
 
+            {/* Flashback Overlay */}
+            <AnimatePresence>
+              {isFlashbackActive && !isCinema && !isAnyEnd && (
+                <motion.div
+                  className="absolute inset-0 pointer-events-none z-[19] flex flex-col justify-between"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0, transition: { duration: 1.5 } }}
+                >
+                  <div className="w-full h-16 bg-black" />
+                  <div className="w-full h-16 bg-black" />
+                  <div className="absolute inset-0 shadow-[inset_0_0_150px_rgba(0,0,0,0.8)]" />
+                </motion.div>
+              )}
+            </AnimatePresence>
+
             {/* White Flash 70 Overlay */}
             <AnimatePresence>
               {isWhiteFlash70Active && !isCinema && !isAnyEnd && (
@@ -1946,7 +1998,7 @@ export default function App() {
                 />
               )}
             </AnimatePresence>
-          </>
+          </div>
         )}
         </ShakeLayer>
 
@@ -1968,14 +2020,12 @@ export default function App() {
                 onToggleSkip={toggleSkip}
                 onToggleHud={toggleHud}
                 onOpenLog={() => setBacklogOpen(true)}
-                choices={filteredChoices}
+                choices={processedChoices}
                 isWaitingForChoice={isWaitingForChoice}
                 onSelectChoice={handleSelectChoice}
                 onSave={handleSave}
                 onLoad={handleLoad}
-                onExit={() => {
-                  setShowTitle(true);
-                }}
+                onExit={handleExitToTitle}
                 touchHandledRef={touchHandledRef}
               />
             )}
@@ -2007,7 +2057,13 @@ export default function App() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  transition={{ duration: currentLine?.action === 'SLOW_FADE_TO_BLACK' ? 1.5 : 0.5, ease: "easeInOut" }}
+                  transition={{ 
+                    duration: currentLine?.action === 'SLOW_FADE_TO_BLACK' ? 1.5 
+                            : currentLine?.action === 'SLOW_FADE_IN' ? 1.0 
+                            : currentLine?.action === 'FADE_IN' ? 0.7 
+                            : 0.5, 
+                    ease: "easeInOut" 
+                  }}
                 />
               )}
             </AnimatePresence>
@@ -2106,7 +2162,7 @@ export default function App() {
         {/* Save / Load Toast Notification */}
         {saveToast && (
           <div
-            className="fixed bottom-36 left-1/2 -translate-x-1/2 z-[200] px-6 py-2.5 rounded-full text-sm font-bold tracking-widest font-noto pointer-events-none glass-panel"
+            className="fixed bottom-[40vh] left-1/2 -translate-x-1/2 z-[200] px-6 py-2.5 rounded-full text-sm font-bold tracking-widest font-noto pointer-events-none glass-panel"
             style={{
               animation: 'fadeIn 0.2s ease',
               color: saveToast === 'saved' ? '#0ea5e9' : '#4f46e5', // 視認性の良いシアン・インディゴ
@@ -2127,6 +2183,9 @@ export default function App() {
             onSelectSlot={handleSelectSlot}
           />
         )}
+
+        {/* Confirmation Modal */}
+        <ConfirmModal {...confirmModal} />
 
         {/* Backlog overlay */}
         <BacklogOverlay
@@ -2159,8 +2218,16 @@ export default function App() {
             localStorage.setItem('cleared_nagisa_good_end', val ? 'true' : 'false');
             setClearedNagisa(val);
           }}
+          clearedAkane={clearedAkane}
+          setClearedAkane={(val) => {
+            localStorage.setItem('cleared_akane_good_end', val ? 'true' : 'false');
+            setClearedAkane(val);
+          }}
           onPrevStep={prevStep}
         />
+
+        {/* Install Prompt Overlay (iOS/Android) */}
+        <InstallPrompt />
 
         {/* Portrait Warning for Smartphones */}
         <PortraitWarningOverlay />

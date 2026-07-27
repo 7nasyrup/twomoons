@@ -81,8 +81,8 @@ export function useNovelEngine(scenarioData, options = {}) {
       const newBg = currentLine.bg;
       const isPrologue = currentLine.scene === 'PROLOGUE';
       const isSpecialAction = [
-        'FADE_TO_BLACK', 'SLOW_FADE_TO_BLACK', 'WAKE_UP', 'FADE_IN', 'FADE_OUT',
-        'WAIT_SECONDS', 'SLOW_FADE_IN', 'WAIT_SECONDS_AND_MOVE_MOON', 'ALL_FADE_OUT', 'WAIT_FADE',
+        'FADE_TO_BLACK', 'SLOW_FADE_TO_BLACK', 'WAKE_UP', 'FADE_OUT',
+        'WAIT_SECONDS', 'WAIT_SECONDS_AND_MOVE_MOON', 'ALL_FADE_OUT', 'WAIT_FADE',
         'WHITE_OUT_END', 'WHITE_OUT_START', 'WHITE_OUT_END_SLOW', 'WHITE_OUT_END_VERY_SLOW'
       ].includes(currentLine.action);
 
@@ -110,8 +110,10 @@ export function useNovelEngine(scenarioData, options = {}) {
   // Handle the blackout duration
   useEffect(() => {
     if (isBgTransitioning) {
-      // 暗転開始から500msで画面が完全に黒くなる (またはカスタム時間)
-      const duration = currentLine?.bgTransitionDuration || 500;
+      let duration = currentLine?.bgTransitionDuration || 500;
+      if (currentLine?.action === 'SLOW_FADE_IN') duration = 1000;
+      else if (currentLine?.action === 'FADE_IN') duration = 700;
+      
       const transTimer = setTimeout(() => {
         // 画面が真っ黒の状態で背景を切り替える
         setCurrentBg(nextBgRef.current);
@@ -129,12 +131,16 @@ export function useNovelEngine(scenarioData, options = {}) {
   // Handle the fade out duration
   useEffect(() => {
     if (isBgFadingOut) {
+      let fadeOutDuration = 500;
+      if (currentLine?.action === 'SLOW_FADE_IN') fadeOutDuration = 1000;
+      else if (currentLine?.action === 'FADE_IN') fadeOutDuration = 700;
+
       const fadeTimer = setTimeout(() => {
         setIsBgFadingOut(false);
-      }, 500);
+      }, fadeOutDuration);
       return () => clearTimeout(fadeTimer);
     }
-  }, [isBgFadingOut]);
+  }, [isBgFadingOut, currentLine]);
 
   const [skipMode, setSkipMode] = useState(false);
   const skipTimer = useRef(null);

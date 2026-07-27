@@ -16,6 +16,8 @@ export default function DevConsole({
   setClearedMika,
   clearedNagisa,
   setClearedNagisa,
+  clearedAkane,
+  setClearedAkane,
   onPrevStep
 }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -180,6 +182,20 @@ export default function DevConsole({
                     }`}
                   >
                     {clearedNagisa ? 'CLEARED' : 'UNREAD'}
+                  </button>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-cyan-500/60 text-xs font-noto">アカネグッド</span>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setClearedAkane(!clearedAkane);
+                    }}
+                    className={`px-2 py-0.5 rounded text-[10px] font-orbitron border transition-colors ${
+                      clearedAkane ? 'bg-cyan-500/20 border-cyan-400 text-cyan-300' : 'bg-transparent border-cyan-500/20 text-cyan-500/40'
+                    }`}
+                  >
+                    {clearedAkane ? 'CLEARED' : 'UNREAD'}
                   </button>
                 </div>
               </div>
