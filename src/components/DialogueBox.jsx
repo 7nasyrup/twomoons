@@ -75,7 +75,7 @@ export default function DialogueBox({
                 return (
                   <motion.div
                     key={idx}
-                    className="relative p-[1px] bg-slate-700 hover:bg-[#00e5ff] transition-colors cursor-pointer group w-[45%] md:w-[60%] lg:w-[80%] max-w-[600px] rounded-md"
+                    className="relative p-[1px] bg-slate-700 hover:bg-[#00e5ff] transition-colors cursor-pointer group w-1/3 rounded-md"
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0, transition: { delay: idx * 0.1 } }}
                     whileHover={isInteractive ? { scale: 1.02 } : {}}
