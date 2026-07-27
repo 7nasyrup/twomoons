@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { assetPath } from '../utils/assetPath';export default function TitleScreen({ onStart, onContinue, hasSave, playBGM }) {
     const [showCredits, setShowCredits] = useState(false);
+    const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < 1024 : false);
+
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth < 1024);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     // Play title BGM when component mounts
     useEffect(() => {
@@ -32,7 +39,7 @@ import { assetPath } from '../utils/assetPath';export default function TitleScre
             </div>
 
             {/* Main Title Block */}
-            <div className="my-auto text-center z-10 relative origin-center mobile-scale-title md:transform-none transition-transform">
+            <div className="my-auto text-center z-10 relative origin-center transition-transform" style={{ transform: isMobile ? 'scale(0.67)' : 'scale(1)' }}>
                 <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 rounded-full bg-cyan-500/5 blur-3xl pointer-events-none" />
 
                 {/* Japanese Title */}
