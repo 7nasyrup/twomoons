@@ -427,4 +427,14 @@
     padding-bottom: 1.4vh !important;
     font-size: 2.2vh !important;
   }
+}
+
+/* Specific component mobile scaling */
+@media (max-width: 767px) {
+  .mobile-scale-title {
+    transform: scale(0.67) !important;
+  }
+  .mobile-scale-popup-wrapper {
+    transform: scale(0.85) !important;
+  }
 }
