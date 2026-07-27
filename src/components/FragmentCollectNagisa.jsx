@@ -136,7 +136,15 @@ function FCSprite({ currentMessage }) {
 function FCFileModal({ file, onClose }) {
   return (
     <motion.div className="absolute inset-0 z-[60] flex items-center justify-center p-8 bg-black/80 backdrop-blur-sm" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-      <motion.div className="relative w-full max-w-2xl max-h-full bg-[#080c14]/95 border border-green-500/30 rounded shadow-[0_0_30px_rgba(74,222,128,0.1)] overflow-hidden flex flex-col" initial={{ scale: 0.95, y: 20 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.95, y: 20 }}>
+      <style>{`
+        @media (max-width: 767px) {
+          .mobile-scale-popup-wrapper {
+            transform: scale(0.85);
+          }
+        }
+      `}</style>
+      <div className="w-full h-full max-w-2xl flex justify-center items-center mobile-scale-popup-wrapper md:transform-none origin-center transition-transform pointer-events-none">
+        <motion.div className="relative w-full max-h-full bg-[#080c14]/95 border border-green-500/30 rounded shadow-[0_0_30px_rgba(74,222,128,0.1)] overflow-hidden flex flex-col pointer-events-auto" initial={{ scale: 0.95, y: 20 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.95, y: 20 }}>
         <div className="bg-green-950/40 border-b border-green-500/20 px-6 py-4 flex items-center gap-3 shrink-0">
           <FileText className="w-5 h-5 text-green-400" />
           <span className="text-green-100 font-orbitron tracking-widest text-sm">CONFIDENTIAL DATA</span>
@@ -156,6 +164,7 @@ function FCFileModal({ file, onClose }) {
           <button onClick={onClose} className="px-8 py-2.5 bg-green-900/50 hover:bg-green-800/60 border border-green-400/30 hover:border-green-400 text-green-200 text-sm font-orbitron tracking-widest transition-all rounded">CLOSE</button>
         </div>
       </motion.div>
+      </div>
     </motion.div>
   );
 }
