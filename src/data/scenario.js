@@ -3360,6 +3360,7 @@ export const scenarioData = [
   },
   {
     "scene": "廃ビルの一室",
+    "speaker": "アナウンサー",
     "text": "『─うわ、うわあああ──！！』",
     "showItem": "/item/phone_news.png"
   },
@@ -3395,7 +3396,7 @@ export const scenarioData = [
     "scene": "廃ビルの一室",
     "speaker": "ミカ",
     "role": "MIKA",
-    "text": "「……ヒルミ教授からだ。……その、さっき朔良先輩を助けるために使った電波探知機も、実は教授から借りてたもので……っと、\nはい、ミカです」",
+    "text": "「……ヒルミ教授からだ。……その、さっき朔良先輩を助けるために使った電波探知機も、実は教授から借りてたもので……っと。はい、ミカです」",
     "showIllust": [
       "Mika_neutral"
     ]
@@ -3415,7 +3416,8 @@ export const scenarioData = [
     "bgmVolume": 0.15,
     "showIllust": [
       "Hirumi_smile"
-    ]
+    ],
+    "action": "START_PHONE_CALL_RIGHT"
   },
   {
     "scene": "廃ビルの一室",
@@ -3458,7 +3460,9 @@ export const scenarioData = [
     "scene": "廃ビルの一室",
     "text": "それだけを一方的に話すと、通話はブツリと途切れてしまった。プー、プー、と無機質な音が薄暗い部屋に虚しく響く。",
     "bgm": "CallOut.mp3",
-    "bgmVolume": 0.5
+    "bgmVolume": 0.5,
+    "action": "END_PHONE_CALL",
+    "hideIllust": ["Hirumi"]
   },
   {
     "scene": "廃ビルの一室",
@@ -4005,18 +4009,19 @@ export const scenarioData = [
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「もしもし……っ、教授……っ、満が……！」",
+    "action": "START_PHONE_CALL_RIGHT",
     "stopSe": "Phone.mp3",
     "bgm": "serious_2.mp3",
-    "bgmVolume": 0.5
+    "bgmVolume": 0.5,
+    "showIllust": [
+      "Hirumi_serious"
+    ]
   },
   {
     "scene": "大学の敷地内",
     "speaker": "ヒルミ教授",
     "role": "PROFESSOR",
-    "text": "『もしもし？ 朔良か！？ その……今、大学の監視カメラを見てるんだが、お前らの目の前にいる、その黒い鎧を着た【黒騎士】って奴……』",
-    "showIllust": [
-      "Hirumi_serious"
-    ]
+    "text": "『もしもし？ 朔良か！？ その……今、大学の監視カメラを見てるんだが、お前らの目の前にいる、その黒い鎧を着た【黒騎士】って奴……』"
   },
   {
     "scene": "大学の敷地内",
@@ -4031,7 +4036,7 @@ export const scenarioData = [
   {
     "scene": "大学の敷地内",
     "text": "ドォッッ！！！と、空気が爆発するような凄まじい速度。\n一瞬で距離を詰めてきた【黒騎士】が、私たちの首を一網打尽にする軌道で、大剣を真横に一閃させる。",
-    "action": "SHAKE_SCREEN",
+    "action": "END_PHONE_CALL_AND_SHAKE",
     "hideIllust": [
       "Hirumi_serious"
     ]

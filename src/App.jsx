@@ -546,6 +546,8 @@ export default function App() {
     }
   }, [showTitle, playBGM]);
 
+  const [isPhoneCallRight, setIsPhoneCallRight] = useState(false);
+
   // Character sprite visibility states
   const [leftActive, setLeftActive] = useState(false);
   const [rightActive, setRightActive] = useState(false);
@@ -584,6 +586,7 @@ export default function App() {
       setIsLightWaveActive(false);
       setIsDarkEnergyActive(false);
       setIsEyesClosed(false);
+      setIsPhoneCallRight(false);
     }
   }, [currentLine?.scene, prevScene]);
 
@@ -764,13 +767,16 @@ export default function App() {
       }
 
       // Shake Screen
-      if (action === 'SHAKE_SCREEN' || action === 'STOP_ALL_AURAS_AND_SHAKE') {
+      if (action === 'SHAKE_SCREEN' || action === 'STOP_ALL_AURAS_AND_SHAKE' || action === 'END_PHONE_CALL_AND_SHAKE') {
         if (action === 'STOP_ALL_AURAS_AND_SHAKE') {
           setIsEnergyAuraActive(false);
           setIsBlackAuraActive(false);
           setShakeEffect('large');
         } else {
           setShakeEffect(true);
+        }
+        if (action === 'END_PHONE_CALL_AND_SHAKE') {
+          setIsPhoneCallRight(false);
         }
         const timer = setTimeout(() => setShakeEffect(false), 600);
         return () => {
@@ -822,6 +828,10 @@ export default function App() {
         setIsEyesClosed(true);
       } else if (action === 'OPEN_EYES' || action === 'WAKE_UP') {
         setIsEyesClosed(false);
+      } else if (action === 'START_PHONE_CALL_RIGHT') {
+        setIsPhoneCallRight(true);
+      } else if (action === 'END_PHONE_CALL' || action === 'END_PHONE_CALL_AND_SHAKE') {
+        setIsPhoneCallRight(false);
       } else if (action === 'TEAR_BLUR_START') {
         setIsTearBlurActive(true);
       } else if (action === 'TEAR_BLUR_STOP') {
@@ -1508,6 +1518,31 @@ export default function App() {
               onNext={nextStep}
             />
 
+            {/* Phone Call Right Split Overlay (Background) */}
+            <AnimatePresence>
+              {isPhoneCallRight && !isCinema && !isAnyEnd && (
+                <motion.div
+                  className="absolute inset-0 z-[5] pointer-events-none"
+                  initial={{ opacity: 0, x: 100 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 100 }}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
+                >
+                  <div 
+                    className="absolute inset-0 bg-black shadow-[inset_20px_0_50px_rgba(0,0,0,0.8)]"
+                    style={{ clipPath: 'polygon(70% 0, 100% 0, 100% 100%, 60% 100%)' }}
+                  >
+                    <img src={assetPath('/scene/lab.png')} alt="lab" className="w-full h-full object-cover opacity-80" />
+                    <div className="absolute inset-0 bg-cyan-950/30 mix-blend-color-burn" />
+                  </div>
+                  <svg className="absolute inset-0 w-full h-full pointer-events-none drop-shadow-[0_0_10px_rgba(0,245,255,0.8)]">
+                    <line x1="70%" y1="0" x2="60%" y2="100%" stroke="#22d3ee" strokeWidth="3" />
+                    <line x1="70%" y1="0" x2="60%" y2="100%" stroke="#fff" strokeWidth="1" />
+                  </svg>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
             {/* Character Sprite Overlay */}
             {!isCinema && !isAnyEnd && (
               <SpriteSlot
@@ -1519,8 +1554,29 @@ export default function App() {
                 currentLine={currentLine}
                 currentStep={currentStep}
                 scenarioData={scenarioData}
+                isPhoneCallRight={isPhoneCallRight}
               />
             )}
+
+            {/* Phone Call Right Scanline Overlay (Over Characters) */}
+            <AnimatePresence>
+              {isPhoneCallRight && !isCinema && !isAnyEnd && (
+                <motion.div
+                  className="absolute inset-0 z-[25] pointer-events-none"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                >
+                  <div 
+                    className="absolute inset-0"
+                    style={{ clipPath: 'polygon(70% 0, 100% 0, 100% 100%, 60% 100%)' }}
+                  >
+                    <div className="absolute inset-0 bg-[linear-gradient(rgba(0,255,255,0.05)_1px,transparent_1px)] [background-size:100%_4px]" />
+                    <div className="absolute inset-0 bg-cyan-500/5 mix-blend-screen" />
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
 
             {/* Mutsunori Healing Cut-in Overlay */}
             <AnimatePresence>

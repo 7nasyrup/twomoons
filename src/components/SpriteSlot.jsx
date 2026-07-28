@@ -65,7 +65,7 @@ const SPEAKER_TO_ROMAJI = {
   "ルキ": "Ruki"
 };
 
-export default function SpriteSlot({ leftActive, rightActive, focusSlot, currentSpeaker, presentCharacters = [], currentLine, currentStep, scenarioData = [] }) {
+export default function SpriteSlot({ leftActive, rightActive, focusSlot, currentSpeaker, presentCharacters = [], currentLine, currentStep, scenarioData = [], isPhoneCallRight }) {
   const isTransmission = currentLine?.text?.trim().startsWith('『');
 
   const resolvedDisplayMap = {};
@@ -135,6 +135,20 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
           if (baseCharName === "Akane") {
             if (currentRoute === "akane_route_start") {
               config = { ...config, positionClass: "left-[5%] w-[45%] h-[95%]" };
+            }
+          }
+
+          if (isPhoneCallRight && baseCharName === "Hirumi") {
+            config = { ...config, positionClass: "right-[-2%] w-[45%] h-[95%]" };
+          }
+
+          if (isPhoneCallRight && baseCharName !== "Hirumi") {
+            if (baseCharName === "Mutsunori") {
+              config = { ...config, positionClass: "left-[-10%] w-[45%] h-[95%]" };
+            } else if (baseCharName === "Nagisa" || baseCharName === "Michiru" || baseCharName === "Akane") {
+              config = { ...config, positionClass: "left-[8%] w-[45%] h-[95%]" };
+            } else if (baseCharName === "Mika" || baseCharName === "Ruki") {
+              config = { ...config, positionClass: "left-[26%] w-[45%] h-[95%]" };
             }
           }
 
