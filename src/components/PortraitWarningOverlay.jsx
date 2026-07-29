@@ -1,9 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Smartphone } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-export default function PortraitWarningOverlay() {
+/**
+ * PortraitWarningOverlay
+ *
+ * Props:
+ *   onLandscape (function) - 「縦向き → 横向き」に変化した瞬間に1回だけ呼ばれる
+ */
+export default function PortraitWarningOverlay({ onLandscape }) {
   const [isPortrait, setIsPortrait] = useState(false);
+  const wasPortrait = useRef(false);
 
   useEffect(() => {
     const checkOrientation = () => {
@@ -11,9 +18,17 @@ export default function PortraitWarningOverlay() {
       const isTouchDevice = window.matchMedia('(pointer: coarse)').matches || navigator.maxTouchPoints > 0;
       const isMobileSize = window.innerWidth < 1024;
       const isPortraitOrientation = window.innerHeight > window.innerWidth;
-      
+
       // Must be a touch device AND small screen AND portrait to show warning
-      setIsPortrait(isTouchDevice && isMobileSize && isPortraitOrientation);
+      const nextPortrait = isTouchDevice && isMobileSize && isPortraitOrientation;
+
+      // 縦 → 横 に変化した瞬間を検知して onLandscape を1回だけ呼ぶ
+      if (wasPortrait.current && !nextPortrait && isTouchDevice && isMobileSize) {
+        onLandscape?.();
+      }
+
+      wasPortrait.current = nextPortrait;
+      setIsPortrait(nextPortrait);
     };
 
     // Initial check
@@ -21,7 +36,7 @@ export default function PortraitWarningOverlay() {
 
     // Listen to resize and orientation change
     window.addEventListener('resize', checkOrientation);
-    
+
     // Use screen.orientation API if available for more reliable detection
     if (screen.orientation) {
       screen.orientation.addEventListener('change', checkOrientation);
@@ -37,7 +52,7 @@ export default function PortraitWarningOverlay() {
         window.removeEventListener('orientationchange', checkOrientation);
       }
     };
-  }, []);
+  }, [onLandscape]);
 
   return (
     <AnimatePresence>

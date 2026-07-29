@@ -342,6 +342,9 @@ export default function App() {
   const [clearedNagisa, setClearedNagisa] = useState(() => localStorage.getItem('cleared_nagisa_good_end') === 'true');
   const [clearedAkane, setClearedAkane] = useState(() => localStorage.getItem('cleared_akane_good_end') === 'true');
 
+  // Android: 縦→横に変化した後に InstallPrompt を表示するためのフラグ
+  const [landscapeReady, setLandscapeReady] = useState(false);
+
   const [endType, setEndType] = useState(null); // 'happy' | 'bad' | null
   const isEndScreen = endType !== null;
 
@@ -2329,10 +2332,10 @@ export default function App() {
         />
 
         {/* Install Prompt Overlay (iOS/Android) */}
-        <InstallPrompt />
+        <InstallPrompt landscapeReady={landscapeReady} />
 
         {/* Portrait Warning for Smartphones */}
-        <PortraitWarningOverlay />
+        <PortraitWarningOverlay onLandscape={() => setLandscapeReady(true)} />
 
       </GameFrame>
     </div>
