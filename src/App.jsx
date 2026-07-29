@@ -371,7 +371,7 @@ export default function App() {
     totalSteps,
   } = useNovelEngine(scenarioData, { manualTestMode, endMode: isEndScreen });
 
-  const { playBGM, stopBGM, playSE, stopSE, toggleMute } = useAudioSystem();
+  const { playBGM, stopBGM, playSE, stopSE, toggleMute, pauseBGM, resumeBGM } = useAudioSystem();
   const lastSceneRef = useRef(null);
   const bgmOverrideRef = useRef(false);
 
@@ -548,6 +548,34 @@ export default function App() {
 
   const [isPhoneCallRight, setIsPhoneCallRight] = useState(false);
 
+  const [visualLine, setVisualLine] = useState(null);
+  const [visualStep, setVisualStep] = useState(0);
+
+  useEffect(() => {
+    if (!currentLine) return;
+    if (isBgTransitioning) return;
+    
+    const isPrologue = currentLine.scene === 'PROLOGUE';
+    const isSpecialAction = [
+      'FADE_TO_BLACK', 'SLOW_FADE_TO_BLACK', 'WAKE_UP', 'FADE_OUT',
+      'WAIT_SECONDS', 'WAIT_SECONDS_AND_MOVE_MOON', 'ALL_FADE_OUT', 'WAIT_FADE',
+      'WHITE_OUT_END', 'WHITE_OUT_START', 'WHITE_OUT_END_SLOW', 'WHITE_OUT_END_VERY_SLOW',
+      'AWAKEN_MICHIRU'
+    ].includes(currentLine.action);
+
+    const isAboutToTransition = 
+      !isPrologue &&
+      !isSpecialAction &&
+      currentLine.bg &&
+      currentBg !== '' &&
+      currentLine.bg !== currentBg;
+
+    if (!isAboutToTransition) {
+      setVisualLine(currentLine);
+      setVisualStep(currentStep);
+    }
+  }, [currentLine, currentStep, isBgTransitioning, currentBg]);
+
   // Character sprite visibility states
   const [leftActive, setLeftActive] = useState(false);
   const [rightActive, setRightActive] = useState(false);
@@ -573,8 +601,8 @@ export default function App() {
 
   // Clear sprites on scene change
   useEffect(() => {
-    if (currentLine?.scene && currentLine.scene !== prevScene) {
-      setPrevScene(currentLine.scene);
+    if (visualLine?.scene && visualLine.scene !== prevScene) {
+      setPrevScene(visualLine.scene);
       setLeftActive(false);
       setRightActive(false);
       setFocusSlot(null);
@@ -588,24 +616,24 @@ export default function App() {
       setIsEyesClosed(false);
       setIsPhoneCallRight(false);
     }
-  }, [currentLine?.scene, prevScene]);
+  }, [visualLine?.scene, prevScene]);
 
   // Track present items
   useEffect(() => {
-    if (!currentLine || showTitle) return;
+    if (!visualLine || showTitle) return;
 
-    if (currentLine.hideItem || currentLine.clearItem) {
+    if (visualLine.hideItem || visualLine.clearItem) {
       setDisplayedItem(null);
     }
 
-    if (currentLine.showItem) {
-      setDisplayedItem(currentLine.showItem);
+    if (visualLine.showItem) {
+      setDisplayedItem(visualLine.showItem);
     }
-  }, [currentLine, showTitle]);
+  }, [visualLine, showTitle]);
 
   // Track present characters (including manual triggers)
   useEffect(() => {
-    if (!currentLine || showTitle) return;
+    if (!visualLine || showTitle) return;
 
     const jpToEngBase = {
       "睦典": "Mutsunori",
@@ -620,7 +648,7 @@ export default function App() {
     };
 
     // 1. Force Clear all illustrations
-    if (currentLine.clearIllust) {
+    if (visualLine.clearIllust) {
       setPresentCharacters([]);
       return;
     }
@@ -629,8 +657,8 @@ export default function App() {
     let listChanged = false;
 
     // 2. Force Hide specific illustrations
-    if (Array.isArray(currentLine.hideIllust)) {
-      currentLine.hideIllust.forEach(char => {
+    if (Array.isArray(visualLine.hideIllust)) {
+      visualLine.hideIllust.forEach(char => {
         const rawBase = char.split('_')[0];
         const baseName = jpToEngBase[rawBase] || rawBase;
         const initialLen = nextList.length;
@@ -645,8 +673,8 @@ export default function App() {
     }
 
     // 3. Force Show specific illustrations
-    if (Array.isArray(currentLine.showIllust)) {
-      currentLine.showIllust.forEach(char => {
+    if (Array.isArray(visualLine.showIllust)) {
+      visualLine.showIllust.forEach(char => {
         const rawBase = char.split('_')[0];
         const baseName = jpToEngBase[rawBase] || rawBase;
         const existingIndex = nextList.findIndex(c => {
@@ -668,7 +696,7 @@ export default function App() {
     if (listChanged) {
       setPresentCharacters(nextList);
     }
-  }, [currentLine, showTitle, presentCharacters]);
+  }, [visualLine, showTitle, presentCharacters]);
 
   // Audio system and sprite positioning logic based on active step details
   useEffect(() => {
@@ -690,6 +718,10 @@ export default function App() {
 
       if (currentLine.bgm === "stop" || currentLine.bgm === "none" || currentLine.bgm === "") {
         stopBGM(fadeDuration);
+      } else if (currentLine.bgm === "pause") {
+        pauseBGM(fadeDuration);
+      } else if (currentLine.bgm === "resume") {
+        resumeBGM(fadeDuration);
       } else {
         const bgmFile = currentLine.bgm.includes('.') ? currentLine.bgm : `${currentLine.bgm}.mp3`;
         playBGM(assetPath(`/assets/audio/bgm/${bgmFile}`), {
@@ -740,6 +772,7 @@ export default function App() {
         setIsMonochromeFlashActive(false);
       } else if (action === 'CLEAR_WHITE_OUT_AND_FLASHBACK_END') {
         setIsWhiteOut(false);
+        setIsEnergyAuraActive(false);
       }
 
       // Sprite Slot actions
@@ -803,6 +836,12 @@ export default function App() {
           clearTimeout(timer);
           setShakeEffect(false);
         };
+      } else if (action === 'DIZZY_EFFECT') {
+        setShakeEffect('dizzy');
+        // 継続的なエフェクトとするため自動クリアはしない
+      } else if (action === 'BLUR_EFFECT') {
+        setShakeEffect('blurOnly');
+        // 継続的なエフェクト
       } else if (action === 'CLEAR_SHAKE') {
         setShakeEffect(false);
       }
@@ -894,6 +933,13 @@ export default function App() {
         setIsWhiteOut(true);
         setWhitePulseLevel(0);
         setShakeEffect(false);
+      } else if (action === 'AWAKEN_MICHIRU') {
+        setIsBlackAuraActive(false);
+        setIsEnergyAuraActive(true);
+        setWhiteOutDuration(0.8);
+        setIsWhiteOut(true);
+        setWhitePulseLevel(0);
+        setShakeEffect(false);
       } else if (action === 'WHITE_OUT_END') {
         setWhiteOutDuration(0.8);
         setIsWhiteOut(false);
@@ -962,7 +1008,7 @@ export default function App() {
     } else {
       setFocusSlot(null);
     }
-  }, [currentStep, currentLine, playBGM, stopBGM, playSE, stopSE]);
+  }, [currentStep, currentLine, playBGM, stopBGM, pauseBGM, resumeBGM, playSE, stopSE]);
 
   // Cinema Mode Autoplay timers
   useEffect(() => {
@@ -1549,10 +1595,10 @@ export default function App() {
                 leftActive={leftActive}
                 rightActive={rightActive}
                 focusSlot={focusSlot}
-                currentSpeaker={currentLine?.speaker}
+                currentSpeaker={visualLine?.speaker}
                 presentCharacters={presentCharacters}
-                currentLine={currentLine}
-                currentStep={currentStep}
+                currentLine={visualLine}
+                currentStep={visualStep}
                 scenarioData={scenarioData}
                 isPhoneCallRight={isPhoneCallRight}
               />

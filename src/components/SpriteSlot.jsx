@@ -152,6 +152,50 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
             }
           }
 
+          // Determine the effective scene (skip empty scenes like jumpTo)
+          let effectiveScene = currentLine?.scene;
+          if (!effectiveScene && Array.isArray(scenarioData) && typeof currentStep === 'number') {
+            for (let j = currentStep - 1; j >= 0; j--) {
+              if (scenarioData[j]?.scene) {
+                effectiveScene = scenarioData[j].scene;
+                break;
+              }
+            }
+          }
+
+          // Look up position from current line, or find the nearest previous position
+          // in the same scene for this character
+          let pos = null;
+          if (currentLine?.illustPositions && currentLine.illustPositions[baseCharName]) {
+            pos = currentLine.illustPositions[baseCharName];
+          } else if (Array.isArray(scenarioData) && typeof currentStep === 'number') {
+            for (let i = currentStep - 1; i >= 0; i--) {
+              const prevLine = scenarioData[i];
+              // Stop if we explicitly leave the same scene
+              if (prevLine?.scene && prevLine.scene !== effectiveScene) break;
+              if (prevLine?.illustPositions && prevLine.illustPositions[baseCharName]) {
+                pos = prevLine.illustPositions[baseCharName];
+                break;
+              }
+            }
+          }
+
+          // Position map: divide screen into 5 equal slots (each ~20% wide, sprite is 45% wide)
+          // Slots are centered at: 10%, 30%, 50%, 70%, 90% of screen
+          // Since sprite is 45% wide, left edge = center - 22.5%
+          const positionStyleMap = {
+            'left':         { left: '-7.5%' },   // center 15% → left = -7.5%
+            'center-left':  { left: '10%' },     // center 32.5% → left = 10%
+            'center':       { left: '27.5%' },   // center 50% → left = 27.5%
+            'center-right': { left: '45%' },     // center 67.5% → left = 45%
+            'right':        { left: '62.5%' },   // center 85% → left = 62.5%
+          };
+          
+          let overrideStyle = null;
+          if (pos && positionStyleMap[pos]) {
+            overrideStyle = positionStyleMap[pos];
+          }
+
           const activeTalker = currentLine?.talker || currentSpeaker;
           let isSpeaker = false;
           if (activeTalker) {
@@ -163,12 +207,11 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
           if (!isSpeaker && (currentSpeaker === "？？？" || currentSpeaker === "？？?")) {
             const hasDialogue = currentLine?.text && (currentLine.text.includes("「") || currentLine.text.includes("『"));
             if (hasDialogue) {
-              const currentScene = currentLine?.scene;
               let hasSpokenInThisScene = false;
               if (Array.isArray(scenarioData) && typeof currentStep === 'number') {
                 for (let i = currentStep - 1; i >= 0; i--) {
                   const line = scenarioData[i];
-                  if (line?.scene !== currentScene) break;
+                  if (line?.scene && line.scene !== effectiveScene) break;
                   if (line?.speaker) {
                     const lineSpeakerRomaji = SPEAKER_TO_ROMAJI[line.speaker.split('_')[0]] || line.speaker.split('_')[0];
                     if (lineSpeakerRomaji === baseCharName) {
@@ -184,17 +227,40 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
             }
           }
 
+          const positionStyles = overrideStyle ? overrideStyle : (() => {
+            // Parse positionClass from config to inline style as fallback
+            const pc = config.positionClass;
+            const leftMatch = pc.match(/left-\[([^\]]+)\]/);
+            const rightMatch = pc.match(/right-\[([^\]]+)\]/);
+            
+            if (leftMatch) return { left: leftMatch[1] };
+            if (rightMatch) {
+              const rVal = rightMatch[1];
+              if (rVal.endsWith('%')) {
+                const num = parseFloat(rVal);
+                return { left: `${55 - num}%` }; // 100% - 45%(width) - right
+              }
+              return { right: rVal };
+            }
+            return {};
+          })();
+
           return (
             <motion.div
               key={baseCharName}
-              className={`absolute bottom-[-50px] flex flex-col justify-end items-center ${config.positionClass}`}
-              initial={{ opacity: 0, y: 30 }}
+              className={`absolute bottom-[-50px] flex flex-col justify-end items-center`}
+              style={{
+                width: '45%',
+                height: '95%'
+              }}
+              initial={{ opacity: 0, y: 30, ...positionStyles }}
               animate={{
                 opacity: 1,
                 y: 0,
                 scale: 1.0,
                 filter: isSpeaker ? "brightness(1) drop-shadow(0 10px 20px rgba(0,0,0,0.5))" : "brightness(0.4) drop-shadow(0 5px 10px rgba(0,0,0,0.3))",
-                zIndex: isSpeaker ? 20 : 10
+                zIndex: isSpeaker ? 20 : 10,
+                ...positionStyles
               }}
               exit={{ opacity: 0, y: 30 }}
               transition={{ duration: 0.35, ease: "easeOut" }}

@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 export default function ShakeLayer({ children, shakeEffect }) {
   const shakeVariants = {
-    idle: { x: 0, y: 0 },
+    idle: { x: 0, y: 0, scale: 1, rotate: 0, filter: 'blur(0px) hue-rotate(0deg) contrast(1)' },
     shake: {
       x: [0, -10, 10, -8, 8, -5, 5, -2, 2, 0],
       y: [0, 5, -5, 4, -4, 3, -3, 1, -1, 0],
@@ -27,6 +27,32 @@ export default function ShakeLayer({ children, shakeEffect }) {
       x: [0, -20, 20, -12, 12, -6, 6, 0],
       y: [0, 12, -12, 8, -8, 3, -3, 0],
       transition: { duration: 3.0, ease: 'easeOut' }
+    },
+    dizzy: {
+      x: [0, -10, 15, -15, 10, -5, 0],
+      y: [0, 10, -5, 15, -10, 5, 0],
+      scale: [1, 1.05, 1, 1.05, 1, 1.02, 1],
+      rotate: [0, -2, 2, -1, 1, 0],
+      filter: [
+        'blur(0px) hue-rotate(0deg) contrast(1)',
+        'blur(4px) hue-rotate(15deg) contrast(1.2)',
+        'blur(2px) hue-rotate(-10deg) contrast(1.1)',
+        'blur(6px) hue-rotate(20deg) contrast(1.3)',
+        'blur(3px) hue-rotate(-5deg) contrast(1.1)',
+        'blur(0px) hue-rotate(0deg) contrast(1)'
+      ],
+      transition: { duration: 3.5, ease: 'easeInOut', repeat: Infinity, repeatType: 'reverse' }
+    },
+    blurOnly: {
+      filter: [
+        'blur(0px) contrast(1)',
+        'blur(6px) contrast(1.1)',
+        'blur(4px) contrast(1.05)',
+        'blur(8px) contrast(1.2)',
+        'blur(5px) contrast(1.1)',
+        'blur(0px) contrast(1)'
+      ],
+      transition: { duration: 4.0, ease: 'easeInOut', repeat: Infinity, repeatType: 'reverse' }
     }
   };
 
@@ -41,6 +67,10 @@ export default function ShakeLayer({ children, shakeEffect }) {
     animState = 'shakeContinuousSmall';
   } else if (shakeEffect === 'fadeOut' || shakeEffect === 'shakeFadeOut') {
     animState = 'shakeFadeOut';
+  } else if (shakeEffect === 'dizzy') {
+    animState = 'dizzy';
+  } else if (shakeEffect === 'blurOnly') {
+    animState = 'blurOnly';
   }
 
   return (

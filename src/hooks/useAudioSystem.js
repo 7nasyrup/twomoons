@@ -124,6 +124,24 @@ export function useAudioSystem() {
     }
   }, []);
 
+  const pauseBGM = useCallback((fadeDuration = 1000) => {
+    if (bgmRef.current) {
+      const currentBgm = bgmRef.current;
+      currentBgm.fade(currentBgm.volume(), 0, fadeDuration);
+      setTimeout(() => {
+        currentBgm.pause();
+      }, fadeDuration + 100);
+    }
+  }, []);
+
+  const resumeBGM = useCallback((fadeDuration = 1000) => {
+    if (bgmRef.current) {
+      const currentBgm = bgmRef.current;
+      currentBgm.play();
+      currentBgm.fade(0, bgmVolume.current * masterVolume.current, fadeDuration);
+    }
+  }, []);
+
   const toggleMute = useCallback(() => {
     isMuted.current = !isMuted.current;
     if (bgmRef.current) {
@@ -149,6 +167,8 @@ export function useAudioSystem() {
 
   return {
     playBGM,
+    pauseBGM,
+    resumeBGM,
     playSE,
     stopSE,
     stopBGM,
