@@ -10136,7 +10136,7 @@ export const scenarioData = [
     "role": "NAGISA",
     "text": "「僕を待たせた罰第1弾ってこと。外への見せつけ」",
     "showIllust": [
-      "Nagisa_neutral"
+      "Nagisa_smile"
     ]
   },
   {
@@ -10158,9 +10158,10 @@ export const scenarioData = [
     "speaker": "凪砂",
     "role": "NAGISA",
     "text": "「ほら、なにボケっとしてるの。早く行くよ」",
-    "showIllust": [
-      "Nagisa_neutral"
-    ]
+    "hideIllust": [
+      "Nagisa_smile"
+    ],
+    "bg": "/character/Nagisa/Nagisa_CG2.png"
   },
   {
     "scene": "待ち合わせ場所",
@@ -10181,11 +10182,7 @@ export const scenarioData = [
     "text": "私たちは引き合うように歩幅を合わせ、眩しい太陽が照らす街中へと、二人で一歩を踏み出した。"
   },
   {
-    "scene": "待ち合わせ場所",
-    "speaker": "システム",
-    "role": "SYSTEM",
-    "text": "（凪砂ルート・ハッピーエンド ── 読了ありがとうございました！）",
-    "action": "FADE_TO_DEMO_END",
+    "action": "FADE_TO_HAPPY_END",
     "label": "route_under_construction"
   },
   {
@@ -15858,7 +15855,7 @@ export const scenarioData = [
     "bgm": "serious_3.mp3",
     "bgmVolume": 0.3,
     "showIllust": [
-      "Akane_serious"
+      "Akane_neutral_syujin"
     ]
   },
   {
@@ -15889,10 +15886,7 @@ export const scenarioData = [
     "scene": "面会室",
     "speaker": "アカネ",
     "role": "AKANE",
-    "text": "「……2日前に聞いたぞ。なんで俺がこんな小娘ごときに飯の心配されないといけねぇんだ」",
-    "showIllust": [
-      "Akane_serious"
-    ]
+    "text": "「……2日前に聞いたぞ。なんで俺がこんな小娘ごときに飯の心配されないといけねぇんだ」"
   },
   {
     "scene": "面会室",
@@ -15913,9 +15907,6 @@ export const scenarioData = [
     "speaker": "アカネ",
     "role": "AKANE",
     "text": "「そうか。……逃げられたか。黒騎士の正体も、あのクソガキの行方も分からないまま。まだ終わりそうにはないな」",
-    "showIllust": [
-      "Akane_serious"
-    ]
   },
   {
     "scene": "面会室",
@@ -15926,9 +15917,6 @@ export const scenarioData = [
     "speaker": "アカネ",
     "role": "AKANE",
     "text": "「……娑婆に戻ったら、俺はまたあいつらを追う。それが俺の生きる目的だ。だが――――」",
-    "showIllust": [
-      "Akane_serious"
-    ]
   },
   {
     "scene": "面会室",
@@ -15939,9 +15927,6 @@ export const scenarioData = [
     "speaker": "アカネ",
     "role": "AKANE",
     "text": "「お前はもう、これ以上首を突っ込むな。ここから先は本物の地獄だ。せっかく手に入れた普通の日常を、大事に守ってろ。……単位も出たんだろ？」",
-    "showIllust": [
-      "Akane_serious"
-    ]
   },
   {
     "scene": "面会室",
@@ -15973,7 +15958,7 @@ export const scenarioData = [
     "role": "AKANE",
     "text": "「ハッ……。人の忠告も無視か。まぁいい、そこまで言うなら連れていこう」",
     "showIllust": [
-      "Akane_serious"
+      "Akane_smile_syujin"
     ]
   },
   {
@@ -15986,7 +15971,7 @@ export const scenarioData = [
     "role": "AKANE",
     "text": "「ただし、自分の身は自分で守れるくらいにはなっておけ。俺がお前をいつでも守れるとは限らないからな」",
     "showIllust": [
-      "Akane_serious"
+      "Akane_neutral_syujin"
     ]
   },
   {
@@ -16041,7 +16026,7 @@ export const scenarioData = [
     "role": "AKANE",
     "text": "「……こちらこそ、ありがとう」",
     "showIllust": [
-      "Akane_serious"
+      "Akane_smile_syujin"
     ]
   },
   {
@@ -16064,7 +16049,7 @@ export const scenarioData = [
   },
   {
     "scene": "青い月ない青空",
-    "text": "私の過去、弟のルキ、消えた教授、そして私自身の正体──。\nこれから待ち受ける運命は、きっとあの研究所よりも暗く、危険な地獄に違いない。",
+    "text": "私の過去、弟のルキ、消えた教授、そして私自身の正体──。これから待ち受ける運命は、きっとあの研究所よりも暗く、危険な地獄に違いない。",
     "bgm": "Normal_Morning2.mp3",
     "bgmVolume": 0.3
   },
@@ -16220,8 +16205,10 @@ export const scenarioData = [
     "speaker": "システム",
     "role": "SYSTEM",
     "text": "（今後のアップデートをお楽しみに！）",
-    "action": "FADE_TO_DEMO_END",
     "label": "route_under_construction_final"
+  },
+  {
+    "action": "FADE_TO_DEMO_END"
   },
   {
     "scene": "ゲームF",
