@@ -6869,7 +6869,7 @@ export const scenarioData = [
   {
     "scene": "回想：朔良の部屋前",
     "text": "ピンポーン、と夕方の静かな住宅街に、家のチャイムの音が鳴り響く。",
-    "bg": "/scene/house_front.png",
+    "bg": "/scene/sakura_house.png",
     "action": "SLOW_FADE_IN",
     "bgm": "semi_yugure.mp3"
   },
@@ -6910,7 +6910,6 @@ export const scenarioData = [
   {
     "scene": "回想：朔良の家の中",
     "text": "カチャリ、と静かにラッチが外れる音がして、玄関の扉がまるで手招きでもするように、ひとりでにゆっくりと開いた。",
-    "bg": "/scene/house_entrance.png",
     "action": "SLOW_FADE_IN",
     "bgm": "stop",
     "se": "door.mp3"
@@ -6933,7 +6932,8 @@ export const scenarioData = [
   },
   {
     "scene": "回想：朔良の家の中",
-    "text": "一歩入った瞬間、肌を刺す異様な冷気に身震いした。 カーテンが閉め切られた部屋の中は真っ暗で、いつもなら綺麗に整頓されているはずのリビングの小物が、いくつか床に散らばって荒れている。それを見て僕は複雑な気分に駆られる。"
+    "text": "一歩入った瞬間、肌を刺す異様な冷気に身震いした。 カーテンが閉め切られた部屋の中は真っ暗で、いつもなら綺麗に整頓されているはずのリビングの小物が、いくつか床に散らばって荒れている。それを見て僕は複雑な気分に駆られる。",
+    "bg": "/scene/sakura_living.png"
   },
   {
     "scene": "回想：朔良の家の中",

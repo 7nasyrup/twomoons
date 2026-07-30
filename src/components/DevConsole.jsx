@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Terminal, X, SkipForward, Volume2, VolumeX } from 'lucide-react';
 
@@ -23,6 +23,50 @@ export default function DevConsole({
   const [isOpen, setIsOpen] = useState(false);
   const [jumpInput, setJumpInput] = useState('');
 
+  // 隠しコマンド（左上5回タップ）の管理
+  const [isUnlocked, setIsUnlocked] = useState(false); // ★最初は非表示（テスト用）
+  const clickCount = useRef(0);
+  const clickTimeout = useRef(null);
+
+  useEffect(() => {
+    if (isUnlocked) return;
+
+    const handleSecretTap = (e) => {
+      let clientX = e.clientX;
+      let clientY = e.clientY;
+      
+      // スマホ（タッチ操作）の場合の座標取得
+      if (e.type === 'touchstart' && e.touches.length > 0) {
+        clientX = e.touches[0].clientX;
+        clientY = e.touches[0].clientY;
+      }
+
+      // 画面の左上（縦横100px以内）をタップした場合のみカウント
+      if (clientX < 100 && clientY < 100) {
+        clickCount.current += 1;
+        
+        if (clickCount.current >= 5) {
+          setIsUnlocked(true); // 5回目でロック解除！
+        }
+
+        // 1秒間連続タップが途切れたらカウントをリセット
+        if (clickTimeout.current) clearTimeout(clickTimeout.current);
+        clickTimeout.current = setTimeout(() => {
+          clickCount.current = 0;
+        }, 1000);
+      }
+    };
+
+    window.addEventListener('click', handleSecretTap);
+    window.addEventListener('touchstart', handleSecretTap, { passive: true });
+
+    return () => {
+      window.removeEventListener('click', handleSecretTap);
+      window.removeEventListener('touchstart', handleSecretTap);
+      if (clickTimeout.current) clearTimeout(clickTimeout.current);
+    };
+  }, [isUnlocked]);
+
   const sceneBreaks = scenarioData?.reduce((acc, item, idx) => {
     if (!item?.scene) return acc;
     if (idx === 0 || item.scene !== scenarioData[idx - 1]?.scene) {
@@ -30,6 +74,8 @@ export default function DevConsole({
     }
     return acc;
   }, []) || [];
+
+  if (!isUnlocked) return null;
 
   return (
     <>
