@@ -138,7 +138,7 @@ export const scenarioData = [
     "scene": "月科学大講義室",
     "speaker": "ヒルミ教授",
     "role": "PROFESSOR",
-    "text": "「はい、今日の講義はここまで。週末までに、月波が人体に与える精神的拒絶反応についてのレポートを提出するように。遅れたら、容赦なく単位は落とすからね」",
+    "text": "「はい、今日の講義はここまで。週末までに、月波が人体に与える精神的拒絶反応についてのレポートを提出するように。遅れたら、容赦なく単位は落とすからね」"
   },
   {
     "scene": "月科学大講義室",
@@ -320,7 +320,7 @@ export const scenarioData = [
   },
   {
     "scene": "大学の廊下",
-    "text": "カツン、と。ローファーが床を蹴る音が耳に響いた。その響きを押し潰すように、頭上から低く、けれどよく通る声が降ってくる。",
+    "text": "カツン、と。ローファーが床を蹴る音が耳に響いた。その響きを押し潰すように、頭上から低く、けれどよく通る声が降ってくる。"
   },
   {
     "scene": "大学の廊下",
@@ -1717,7 +1717,7 @@ export const scenarioData = [
     "scene": "大学の正門前",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「んだと……っ！？」",
+    "text": "「んだと……っ！？」"
   },
   {
     "scene": "大学の正門前",
@@ -1763,7 +1763,7 @@ export const scenarioData = [
     "scene": "大学の正門前",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「近づくな、って言ってんだろ」",
+    "text": "「近づくな、って言ってんだろ」"
   },
   {
     "scene": "大学の正門前",
@@ -2389,7 +2389,7 @@ export const scenarioData = [
   {
     "scene": "時計塔前",
     "text": "息を切らせて広場を見渡すと、時計塔の真下、深い影が落ちる街灯のそばに、一人の青年が立っているのが見えた。",
-    "bg": "/character/Michiru/Michiru_CG1.png",
+    "bg": "/character/Michiru/Michiru_CG1.png"
   },
   {
     "scene": "時計塔前",
@@ -2404,7 +2404,7 @@ export const scenarioData = [
   {
     "scene": "時計塔前",
     "text": "私が声をかけると、彼はゆっくりとこちらを振り返った。その瞬間、彼のいつもの穏やかで、すべてを包み込むような優しい瞳が私を捉え、その薄い唇がふわりと綻ぶ。",
-    "bg": "/character/Michiru/Michiru_CG2.png",
+    "bg": "/character/Michiru/Michiru_CG2.png"
   },
   {
     "scene": "時計塔前",
@@ -2753,7 +2753,7 @@ export const scenarioData = [
     "text": "「……………」",
     "showIllust": [
       "Akane_neutral"
-    ],
+    ]
   },
   {
     "scene": "裏路地",
@@ -3228,7 +3228,7 @@ export const scenarioData = [
     "scene": "崩壊した街",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「な、凪砂さん……？」",
+    "text": "「な、凪砂さん……？」"
   },
   {
     "scene": "崩壊した街",
@@ -7010,7 +7010,7 @@ export const scenarioData = [
     "scene": "回想：朔良の部屋",
     "speaker": "満",
     "role": "MICHIRU",
-    "text": "（どうして……？ 待てよ、僕、は……）",
+    "text": "（どうして……？ 待てよ、僕、は……）"
   },
   {
     "scene": "回想：朔良の部屋",
@@ -7043,7 +7043,7 @@ export const scenarioData = [
     "scene": "回想：朔良の部屋",
     "speaker": "満",
     "role": "MICHIRU",
-    "text": "（そうか……。僕にも、あったんだ。朔良の暴走を止められる、僕だけの異能が）",
+    "text": "（そうか……。僕にも、あったんだ。朔良の暴走を止められる、僕だけの異能が）"
   },
   {
     "scene": "回想：朔良の部屋",
@@ -7106,7 +7106,7 @@ export const scenarioData = [
     "scene": "回想：朔良の部屋",
     "text": "視界が真っ白に染まり、僕は深い、深い、彼女の闇の中へと完全に取り込まれていった。",
     "action": "WHITE_OUT",
-    "clearIllust": true,
+    "clearIllust": true
   },
   {
     "scene": "最奥部屋（コア無い感じの別室）",
@@ -7930,7 +7930,10 @@ export const scenarioData = [
     "label": "nagisa_route_start",
     "showIllust": [
       "Nagisa_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "大学の敷地内",
@@ -7957,7 +7960,10 @@ export const scenarioData = [
     "text": "「さて、と。どうしようか」",
     "showIllust": [
       "Nagisa_neutral"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "大学の敷地内",
@@ -7976,7 +7982,10 @@ export const scenarioData = [
     "text": "「──了解。とりあえずあの鎧野郎から逃げようか」",
     "showIllust": [
       "Nagisa_neutral"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "大学の敷地内",
@@ -8067,7 +8076,10 @@ export const scenarioData = [
     "text": "「お言葉ですが、言ってる意味がよく分かりません。もう少し説明して頂かないと、ね」",
     "showIllust": [
       "Nagisa_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "教授の研究室",
@@ -8143,7 +8155,10 @@ export const scenarioData = [
     "text": "「はぁ……面倒臭いなぁ。それなら早く済ませて帰ろうか」",
     "showIllust": [
       "Nagisa_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "教授の研究室",
@@ -8201,7 +8216,10 @@ export const scenarioData = [
     "text": "「思ったんだけどさ、今この状況。君とふたりきりってことは……実質デート、かな」",
     "showIllust": [
       "Nagisa_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "ロケット内部",
@@ -8221,7 +8239,10 @@ export const scenarioData = [
     "text": "「……………」",
     "showIllust": [
       "Nagisa_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "ロケット内部",
@@ -8248,7 +8269,10 @@ export const scenarioData = [
     "text": "「……ふふ、楽しみだなぁ」",
     "showIllust": [
       "Nagisa_happy"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "ロケット内部",
@@ -8288,7 +8312,10 @@ export const scenarioData = [
     "text": "「……………」",
     "showIllust": [
       "Nagisa_neutral"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "ロケット内部",
@@ -8336,7 +8363,10 @@ export const scenarioData = [
     "text": "「起きた？寝坊助さん」",
     "showIllust": [
       "Nagisa_neutral"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "ロケット内部(墜落後)",
@@ -8355,7 +8385,10 @@ export const scenarioData = [
     "text": "「不幸中の幸いだよね。まったく。オンボロロケットなんて聞いてないよ」",
     "showIllust": [
       "Nagisa_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "ロケット内部(墜落後)",
@@ -8468,7 +8501,10 @@ export const scenarioData = [
     "text": "「なんか紙渡されてたよね？それ見せて」",
     "showIllust": [
       "Nagisa_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "月面",
@@ -8508,7 +8544,10 @@ export const scenarioData = [
     "text": "「こうしないと読めないんだから仕方ないでしょ？」",
     "showIllust": [
       "Nagisa_neutral"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "月面",
@@ -8671,7 +8710,10 @@ export const scenarioData = [
     "hideItem": true,
     "showIllust": [
       "Nagisa_neutral"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "月面",
@@ -8688,7 +8730,10 @@ export const scenarioData = [
     "text": "「世界がこんなことになってるっていうのに、あの男は相変わらず不気味な冗談を言う」",
     "showIllust": [
       "Nagisa_neutral"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "月面",
@@ -8707,7 +8752,10 @@ export const scenarioData = [
     "text": "「他人をあてにするから、そうやってすぐ被害者ぶるんだよ。君、本当に呑気だね。ここがどこだか、ちゃんと分かってる？」",
     "showIllust": [
       "Nagisa_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "月面",
@@ -8720,7 +8768,10 @@ export const scenarioData = [
     "text": "思わず強い口調で問い返すと、凪砂さんは歩みを止め、冷え切った瞳で私を真っ直ぐに見下ろした。いつもの万人受けする甘い笑顔の欠片もない、突き放すような視線。",
     "showIllust": [
       "Nagisa_neutral"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "月面",
@@ -8729,7 +8780,10 @@ export const scenarioData = [
     "text": "「怖い？ 僕が？ まさか。……君と違って、僕は自分の身は自分で守れるからね」",
     "showIllust": [
       "Nagisa_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "月面",
@@ -8782,7 +8836,10 @@ export const scenarioData = [
     "text": "「……終わったなら、さっさと歩いて。時間の無駄だし」",
     "showIllust": [
       "Nagisa_neutral"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "制御室",
@@ -8801,7 +8858,10 @@ export const scenarioData = [
     "text": "「別に。何でもないから」",
     "showIllust": [
       "Nagisa_neutral"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "制御室",
@@ -8837,7 +8897,10 @@ export const scenarioData = [
     "text": "「ッ……ぐ、あ……っ」",
     "showIllust": [
       "Nagisa_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "最深部",
@@ -8938,7 +9001,10 @@ export const scenarioData = [
     "text": "「これを止めればいいんでしょ？」",
     "showIllust": [
       "Nagisa_neutral"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -8979,7 +9045,10 @@ export const scenarioData = [
     "text": "「…そんなに熱っぽく見つめないでよ。わかってる、僕が止めればいいんだろ」",
     "showIllust": [
       "Nagisa_neutral"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -9040,7 +9109,10 @@ export const scenarioData = [
     "text": "「……これが終わったら、僕とデートして」",
     "showIllust": [
       "Nagisa_happy"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -9066,7 +9138,10 @@ export const scenarioData = [
     "bgm": "stop",
     "showIllust": [
       "Nagisa_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -9094,7 +9169,10 @@ export const scenarioData = [
     "text": "「はぁ…っ、く……はぁ……」",
     "showIllust": [
       "Nagisa_neutral"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -9147,7 +9225,10 @@ export const scenarioData = [
     "text": "「────下がれッ！！」",
     "showIllust": [
       "Nagisa_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -9188,7 +9269,10 @@ export const scenarioData = [
     "text": "「はぁ…………はぁ……………」",
     "showIllust": [
       "Nagisa_neutral"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "瓦礫裏",
@@ -9213,7 +9297,10 @@ export const scenarioData = [
     "bgm": "serious_3.mp3",
     "showIllust": [
       "Nagisa_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "瓦礫裏",
@@ -9236,7 +9323,10 @@ export const scenarioData = [
     "text": "「前、黒騎士に会った時には感じなかったけど……今回は、あいつの声が……『聴こえた』よ……」",
     "showIllust": [
       "Nagisa_neutral"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "瓦礫裏",
@@ -9255,7 +9345,10 @@ export const scenarioData = [
     "text": "「……僕には、相手の考えてることがわかる。どんなに恐ろしい化け物相手でもね。あいつが次にどう動くか、全部僕の頭の中に流れ込んでくるんだ」",
     "showIllust": [
       "Nagisa_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "瓦礫裏",
@@ -9268,7 +9361,10 @@ export const scenarioData = [
     "text": "「便利だって思うだろ？…この力は制御できない。つまり…勝手に流れてくるんだよ。他の思考が。望んでもいないのに、有象無象のどす黒い本音も、化け物の殺意も、ぜんぶ強制的に脳みそへ注ぎ込まれる」",
     "showIllust": [
       "Nagisa_neutral"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "瓦礫裏",
@@ -9277,7 +9373,10 @@ export const scenarioData = [
     "text": "「……僕の頭はね、ずっとうるさくて、壊れそうなんだ」",
     "showIllust": [
       "Nagisa_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "瓦礫裏",
@@ -9304,7 +9403,10 @@ export const scenarioData = [
     "text": "「………………わからない」",
     "showIllust": [
       "Nagisa_neutral"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "瓦礫裏",
@@ -9323,7 +9425,10 @@ export const scenarioData = [
     "text": "「不思議だよね。君の情報だけ……なにも、流れてこない」",
     "showIllust": [
       "Nagisa_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "瓦礫裏",
@@ -9336,7 +9441,10 @@ export const scenarioData = [
     "text": "「それどころか、君が近くにいる時だけ……何も聞こえなくなる。いつも思うんだ。世界ってこんなに静かだったんだって」",
     "showIllust": [
       "Nagisa_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "瓦礫裏",
@@ -9358,7 +9466,10 @@ export const scenarioData = [
     "bgm": "stop",
     "showIllust": [
       "Nagisa_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "瓦礫裏",
@@ -9400,7 +9511,10 @@ export const scenarioData = [
     "text": "「…………やっぱり、静かだ。君のそばにいると、安心する」",
     "showIllust": [
       "Nagisa_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "瓦礫裏",
@@ -9413,7 +9527,10 @@ export const scenarioData = [
     "text": "「君って…ほんとバカみたいなお人好しだね」",
     "showIllust": [
       "Nagisa_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "瓦礫裏",
@@ -9463,7 +9580,10 @@ export const scenarioData = [
     "text": "「朔良、怯まないで。──あいつの動きなら、今度は全部僕の頭の中に視えている。なんでか知らないけど……余計な情報は、今は流れてこないんだ」",
     "showIllust": [
       "Nagisa_neutral"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -9472,7 +9592,10 @@ export const scenarioData = [
     "text": "「右からくるよ。──三歩下がって！」",
     "showIllust": [
       "Nagisa_neutral"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -9498,7 +9621,10 @@ export const scenarioData = [
     "text": "「へえ、僕の指示を無視して避けるなんて、いい度胸だね」",
     "showIllust": [
       "Nagisa_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -9513,7 +9639,10 @@ export const scenarioData = [
     "text": "「いや、今のは君の判断が正しかったよ。あいつ、途中で軌道を変えやがった。……僕の予知を超えて動くなんてね」",
     "showIllust": [
       "Nagisa_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -9534,7 +9663,10 @@ export const scenarioData = [
     "text": "「──今だ」",
     "showIllust": [
       "Nagisa_neutral"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -9549,7 +9681,10 @@ export const scenarioData = [
     "text": "「左の盾はフェイントだ、右の装甲の隙間を狙って！」",
     "showIllust": [
       "Nagisa_neutral"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -9578,7 +9713,10 @@ export const scenarioData = [
     "text": "「っ、朔良、下がって！ 相打ちを狙う気だ……！」",
     "showIllust": [
       "Nagisa_neutral"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -9631,7 +9769,10 @@ export const scenarioData = [
     "text": "「……逃げられた、か」",
     "showIllust": [
       "Nagisa_neutral"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -9644,7 +9785,10 @@ export const scenarioData = [
     "text": "「……さて。邪魔者はいなくなったし、本来の仕事を片付けようか」",
     "showIllust": [
       "Nagisa_neutral"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -9667,7 +9811,10 @@ export const scenarioData = [
     "text": "「……うん。君がいてくれるなら、僕は世界で一番強いよ」",
     "showIllust": [
       "Nagisa_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -9686,7 +9833,10 @@ export const scenarioData = [
     "text": "「ぐ、っ……あああああぁぁぁ……ッ！！」",
     "showIllust": [
       "Nagisa_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -9725,7 +9875,10 @@ export const scenarioData = [
     "text": "「は、あぐ……っ、これ、で……終わりだ……ッ！！」",
     "showIllust": [
       "Nagisa_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -9783,7 +9936,10 @@ export const scenarioData = [
     "text": "「……鼓動って、こんなに落ち着く音だったんだね…………」",
     "showIllust": [
       "Nagisa_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -9800,7 +9956,10 @@ export const scenarioData = [
     "text": "「……これで、ようやく帰れるんだね」",
     "showIllust": [
       "Nagisa_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -9840,10 +9999,13 @@ export const scenarioData = [
     "showIllust": [
       "Nagisa_neutral"
     ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
-    "text": "凪砂さんは少しだけ気恥ずかしそうに微笑むと、私の肩を借りてゆっくりと立ち上がった。",
+    "text": "凪砂さんは少しだけ気恥ずかしそうに微笑むと、私の肩を借りてゆっくりと立ち上がった。"
   },
   {
     "scene": "研究所の最奥",
@@ -9891,7 +10053,10 @@ export const scenarioData = [
     "text": "「……綺麗だね」",
     "showIllust": [
       "Nagisa_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "宇宙空間",
@@ -9904,7 +10069,10 @@ export const scenarioData = [
     "text": "「本当に、何にも聴こえないや。他人のドス黒い感情も、化け物の殺意も……全部、あの場所に置いてこられたみたいだ」",
     "showIllust": [
       "Nagisa_neutral"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "宇宙空間",
@@ -9917,7 +10085,10 @@ export const scenarioData = [
     "text": "「ねえ、朔良。地球に着いたら、ちゃんと約束、守ってくれるよね？」",
     "showIllust": [
       "Nagisa_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "宇宙空間",
@@ -9932,7 +10103,10 @@ export const scenarioData = [
     "text": "「忘れたの？ デートの約束だよ。この静かで最高な世界を、君と一緒に歩き回りたいんだ」",
     "showIllust": [
       "Nagisa_happy"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "宇宙空間",
@@ -10002,7 +10176,7 @@ export const scenarioData = [
     "bgm": "stop",
     "hideIllust": [
       "Hirumi_smile"
-    ],
+    ]
   },
   {
     "scene": "待ち合わせ場所",
@@ -10042,7 +10216,10 @@ export const scenarioData = [
     "text": "「遅い」",
     "showIllust": [
       "Nagisa_neutral"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "待ち合わせ場所",
@@ -10061,7 +10238,10 @@ export const scenarioData = [
     "text": "「まったく……君は言い訳が好きだね」",
     "showIllust": [
       "Nagisa_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "待ち合わせ場所",
@@ -10082,7 +10262,10 @@ export const scenarioData = [
     "text": "「というわけで、遅れてきた罰として、今日は僕が満足するまで帰さないから」",
     "showIllust": [
       "Nagisa_neutral"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "待ち合わせ場所",
@@ -10115,7 +10298,10 @@ export const scenarioData = [
     "text": "「くっ……あははははっ！！ 何その顔！ 茹でダコみたい……っ」",
     "showIllust": [
       "Nagisa_happy"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "待ち合わせ場所",
@@ -10138,7 +10324,10 @@ export const scenarioData = [
     "text": "「僕を待たせた罰第1弾ってこと。外への見せつけ」",
     "showIllust": [
       "Nagisa_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "待ち合わせ場所",
@@ -10198,7 +10387,10 @@ export const scenarioData = [
     "text": "「朔良先輩っ！！」",
     "showIllust": [
       "Mika_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Mika": "center"
+    }
   },
   {
     "scene": "大学の敷地内",
@@ -10226,7 +10418,10 @@ export const scenarioData = [
     "text": "「すみません、激戦のどさくさでみんなとはぐれちゃって……！ でも、感傷に浸っている暇はありません。教授の指示通り、とりあえず研究室に向かいましょう！」",
     "showIllust": [
       "Mika_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Mika": "center"
+    }
   },
   {
     "scene": "大学の敷地内",
@@ -10336,7 +10531,10 @@ export const scenarioData = [
     "text": "「……行きましょう、先輩」",
     "showIllust": [
       "Mika_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Mika": "center"
+    }
   },
   {
     "scene": "教授の研究室",
@@ -10431,7 +10629,10 @@ export const scenarioData = [
     "text": "「……大丈夫ですか、先輩」",
     "showIllust": [
       "Mika_neutral"
-    ]
+    ],
+    "illustPositions": {
+      "Mika": "center"
+    }
   },
   {
     "scene": "ロケット内部",
@@ -10454,7 +10655,10 @@ export const scenarioData = [
     "text": "「この間は、ありがとうございました。助けていただいて」",
     "showIllust": [
       "Mika_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mika": "center"
+    }
   },
   {
     "scene": "ロケット内部",
@@ -10495,7 +10699,10 @@ export const scenarioData = [
     "text": "「……だから、絶対に──」",
     "showIllust": [
       "Mika_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Mika": "center"
+    }
   },
   {
     "scene": "ロケット内部",
@@ -10542,7 +10749,10 @@ export const scenarioData = [
     "text": "「…ッ、朔良先輩……！！」",
     "showIllust": [
       "Mika_surprise"
-    ]
+    ],
+    "illustPositions": {
+      "Mika": "center"
+    }
   },
   {
     "scene": "ロケット内部",
@@ -10614,7 +10824,10 @@ export const scenarioData = [
     "text": "「先輩……っ！ 先輩、分かりますか……っ！？」",
     "showIllust": [
       "Mika_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Mika": "center"
+    }
   },
   {
     "scene": "ロケット内部(墜落後)",
@@ -10627,7 +10840,10 @@ export const scenarioData = [
     "text": "「先輩……！ よかった……本当によかった……！」",
     "showIllust": [
       "Mika_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mika": "center"
+    }
   },
   {
     "scene": "ロケット内部(墜落後)",
@@ -10668,7 +10884,10 @@ export const scenarioData = [
     "text": "「俺は大丈夫です。これくらい、なんてことありません……。先輩が、無事でいてくれたら……」",
     "showIllust": [
       "Mika_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mika": "center"
+    }
   },
   {
     "scene": "ロケット内部(墜落後)",
@@ -10685,7 +10904,10 @@ export const scenarioData = [
     "text": "「とりあえず、ここから離れましょう。いつ爆発するかも分かりませんから」",
     "showIllust": [
       "Mika_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Mika": "center"
+    }
   },
   {
     "scene": "ロケット内部(墜落後)",
@@ -10722,7 +10944,10 @@ export const scenarioData = [
     "text": "「……墜落はしましたけど、一応『月』にはたどり着けたみたいですね」",
     "showIllust": [
       "Mika_neutral"
-    ]
+    ],
+    "illustPositions": {
+      "Mika": "center"
+    }
   },
   {
     "scene": "月面",
@@ -10788,7 +11013,10 @@ export const scenarioData = [
     "bg": "/scene/moon_surface.png",
     "showIllust": [
       "Mika_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Mika": "center"
+    }
   },
   {
     "scene": "月面",
@@ -10821,7 +11049,10 @@ export const scenarioData = [
     "text": "「す、みません……ちょっと、ここの空気に当てられちゃったみたいで……。でも、先輩が触れてくれたら、すごく楽に……」",
     "showIllust": [
       "Mika_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mika": "center"
+    }
   },
   {
     "scene": "月面",
@@ -10984,7 +11215,10 @@ export const scenarioData = [
     "hideItem": true,
     "showIllust": [
       "Mika_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Mika": "center"
+    }
   },
   {
     "scene": "月面",
@@ -11050,7 +11284,10 @@ export const scenarioData = [
     "text": "「大丈夫です。……休んでいる暇なんて、ありませんから",
     "showIllust": [
       "Mika_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Mika": "center"
+    }
   },
   {
     "scene": "制御室",
@@ -11119,7 +11356,10 @@ export const scenarioData = [
     "text": "「……」",
     "showIllust": [
       "Mika_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Mika": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -11168,7 +11408,10 @@ export const scenarioData = [
     "text": "「大丈夫です、先輩。俺たち、二人でここまでやってこれたんですから」",
     "showIllust": [
       "Mika_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mika": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -11191,7 +11434,10 @@ export const scenarioData = [
     "text": "「……俺は最初から、このために来たんです」",
     "showIllust": [
       "Mika_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Mika": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -11252,7 +11498,10 @@ export const scenarioData = [
     "text": "「騙されるな……先輩……っ。こいつの、言うことなんて……！」",
     "showIllust": [
       "Mika_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Mika": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -11298,7 +11547,10 @@ export const scenarioData = [
     "text": "「先輩……？」",
     "showIllust": [
       "Mika_surprise"
-    ]
+    ],
+    "illustPositions": {
+      "Mika": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -11335,7 +11587,10 @@ export const scenarioData = [
     "text": "「く……っ……」",
     "showIllust": [
       "Mika_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Mika": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -11366,7 +11621,10 @@ export const scenarioData = [
     "text": "「先輩……っ、だめ、です……逃げて……」",
     "showIllust": [
       "Mika_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Mika": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -11403,7 +11661,10 @@ export const scenarioData = [
     "text": "「な……っ、先輩……！？ 何を……アザが、消えて……っ！？」",
     "showIllust": [
       "Mika_surprise"
-    ]
+    ],
+    "illustPositions": {
+      "Mika": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -11443,7 +11704,10 @@ export const scenarioData = [
     "text": "「先輩……！ 待ってください、そんなことをしたら、今度は先輩が……！」",
     "showIllust": [
       "Mika_surprise"
-    ]
+    ],
+    "illustPositions": {
+      "Mika": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -11508,7 +11772,10 @@ export const scenarioData = [
     "text": "「先輩……！！ 一人に、させない……っ！！」",
     "showIllust": [
       "Mika_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Mika": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -11527,7 +11794,10 @@ export const scenarioData = [
     "text": "「俺たちの『呼吸』を合わせるんです。……一人で背負わせるなんて、絶対に嫌だ！」",
     "showIllust": [
       "Mika_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Mika": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -11589,7 +11859,10 @@ export const scenarioData = [
     "text": "「……先輩」",
     "showIllust": [
       "Mika_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mika": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -11608,7 +11881,10 @@ export const scenarioData = [
     "text": "「はい……。先輩が、俺を助けてくれたから……」",
     "showIllust": [
       "Mika_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mika": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -11652,7 +11928,10 @@ export const scenarioData = [
     "text": "「先輩、急ぎましょう！ ここが崩れます！」",
     "showIllust": [
       "Mika_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Mika": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -11717,7 +11996,10 @@ export const scenarioData = [
     "text": "「なんですか？ 先輩」",
     "showIllust": [
       "Mika_neutral"
-    ]
+    ],
+    "illustPositions": {
+      "Mika": "center"
+    }
   },
   {
     "scene": "ロケット内部",
@@ -11736,7 +12018,10 @@ export const scenarioData = [
     "text": "「……あの研究所から、逃げ出してきたんです。俺はあそこで、ずっとキメラの実験体として扱われていました。あの日は、研究所の警備たちを振り切って、命からがら地上へ脱出した直後だったんです。だから、あんな怪我を……」",
     "showIllust": [
       "Mika_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Mika": "center"
+    }
   },
   {
     "scene": "ロケット内部",
@@ -11749,7 +12034,10 @@ export const scenarioData = [
     "text": "「あの時、先輩がくれた水とハンカチが、本当に嬉しかった。だから今度は、俺が先輩を助けなきゃって……そのために、俺はまたあの地獄みたいな場所に、先輩と一緒に戻る覚悟を決めたんです」",
     "showIllust": [
       "Mika_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mika": "center"
+    }
   },
   {
     "scene": "ロケット内部",
@@ -11764,7 +12052,10 @@ export const scenarioData = [
     "text": "「……いいえ。俺を人間にしてくれたのは、先輩ですから」",
     "showIllust": [
       "Mika_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mika": "center"
+    }
   },
   {
     "scene": "ロケット内部",
@@ -11838,7 +12129,10 @@ export const scenarioData = [
     "bg": "/scene/university_hallway.png",
     "showIllust": [
       "Mika_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mika": "center"
+    }
   },
   {
     "scene": "大学の敷地内",
@@ -11865,7 +12159,10 @@ export const scenarioData = [
     "text": "「不思議、ですか？ 俺は……今のほうが、ずっと夢みたいです」",
     "showIllust": [
       "Mika_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mika": "center"
+    }
   },
   {
     "scene": "大学の敷地内",
@@ -11878,7 +12175,10 @@ export const scenarioData = [
     "text": "「あの冷たい廃墟で、先輩が俺の手を握ってくれたから……『どちらも選ばない、君を助ける』って言ってくれたから、今の俺があるんです。先輩が俺を、人間にしてくれたんですよ？」",
     "showIllust": [
       "Mika_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mika": "center"
+    }
   },
   {
     "scene": "大学の敷地内",
@@ -11905,7 +12205,10 @@ export const scenarioData = [
     "text": "「先輩」",
     "showIllust": [
       "Mika_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mika": "center"
+    }
   },
   {
     "scene": "大学の敷地内",
@@ -11918,7 +12221,10 @@ export const scenarioData = [
     "text": "「これからは、俺が先輩を守ります。何があっても、ずっと隣にいますから」",
     "showIllust": [
       "Mika_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mika": "center"
+    }
   },
   {
     "scene": "大学の敷地内",
@@ -11937,7 +12243,10 @@ export const scenarioData = [
     "text": "「はい、先輩」",
     "showIllust": [
       "Mika_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mika": "center"
+    }
   },
   {
     "scene": "大学の敷地内",
@@ -11961,7 +12270,10 @@ export const scenarioData = [
     "text": "「───ッ、朔良！！」",
     "showIllust": [
       "Mutsunori_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "大学の敷地内",
@@ -11988,7 +12300,10 @@ export const scenarioData = [
     "text": "「いいから走るよ！ アイツがすぐそこまで来てる！」",
     "showIllust": [
       "Mutsunori_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "大学の敷地内",
@@ -12031,7 +12346,10 @@ export const scenarioData = [
     "text": "「はぁ、はぁ……っ、ここまで来れば、流石に、あの化け物も──」",
     "showIllust": [
       "Mutsunori_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "研究室",
@@ -12077,7 +12395,10 @@ export const scenarioData = [
     "text": "「な、何言ってるんだよ教授！？ この状況で月に行けって、意味がわかんないよ！」",
     "showIllust": [
       "Mutsunori_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "研究室",
@@ -12150,7 +12471,10 @@ export const scenarioData = [
     "text": "「クソッ、迷ってる暇はなさそうだ……！ 行こう、朔良！」",
     "showIllust": [
       "Mutsunori_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "ロケット内部",
@@ -12173,7 +12497,10 @@ export const scenarioData = [
     "text": "「──大丈夫だよ、朔良」",
     "showIllust": [
       "Mutsunori_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "ロケット内部",
@@ -12208,7 +12535,10 @@ export const scenarioData = [
     "text": "「朔良……っ！ 大丈夫！？ 気分悪くなってない！？ 痛いところとか、ない！？」",
     "showIllust": [
       "Mutsunori_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "ロケット内部",
@@ -12241,7 +12571,10 @@ export const scenarioData = [
     "text": "「あはは、店の心配？ 大丈夫だって！ シャッターはちゃんと閉めてきたしさ。……それにしても、ホントあの教授、無茶苦茶言うよね。何が『コアを止めてきなさい』だよ、レポートの課題じゃあるまいし、唐突すぎ！」",
     "showIllust": [
       "Mutsunori_happy"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "ロケット内部",
@@ -12256,7 +12589,10 @@ export const scenarioData = [
     "text": "「ま、とにかくさ！ こんなよくわかんない実習、さっさと用事済ませて地球に帰ろう。そしたらさ、俺、朔良に特製のうどん作ってあげるから。とびきり美味しいやつ。だから、ね？」",
     "showIllust": [
       "Mutsunori_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "ロケット内部",
@@ -12305,7 +12641,10 @@ export const scenarioData = [
     "text": "「嘘、だろ……っ、これ、落ちて──」",
     "showIllust": [
       "Mutsunori_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "ロケット内部",
@@ -12358,7 +12697,10 @@ export const scenarioData = [
     "action": "WAKE_UP",
     "showIllust": [
       "Mutsunori_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "ロケット内部(墜落後)",
@@ -12373,7 +12715,10 @@ export const scenarioData = [
     "text": "「よかった……！ ああ、本当によかった……っ！」",
     "showIllust": [
       "Mutsunori_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "ロケット内部(墜落後)",
@@ -12396,7 +12741,10 @@ export const scenarioData = [
     "text": "「……奇跡、だよ。あんな風に落ちたのに、二人ともかすり傷で済むなんてさ」",
     "showIllust": [
       "Mutsunori_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "ロケット内部(墜落後)",
@@ -12413,7 +12761,10 @@ export const scenarioData = [
     "text": "「さ、いつまでもここにいると爆発するかもしれないし、外に出よう。黒騎士が追ってきてるかもしれないしね」",
     "showIllust": [
       "Mutsunori_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "ロケット内部(墜落後)",
@@ -12452,7 +12803,10 @@ export const scenarioData = [
     "text": "「地上の、すぐ近くの隔離領域……？ それとも、本当に月まで来ちゃったのかな」",
     "showIllust": [
       "Mutsunori_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "月面",
@@ -12465,7 +12819,10 @@ export const scenarioData = [
     "text": "「……あ、見て、朔良」",
     "showIllust": [
       "Mutsunori_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "月面",
@@ -12561,7 +12918,10 @@ export const scenarioData = [
     "text": "「……え、あ、どうかした？ 朔良」",
     "showIllust": [
       "Mutsunori_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "月面",
@@ -12580,7 +12940,10 @@ export const scenarioData = [
     "text": "「ああ！ そうだね！ いつまでもここにいても始まんないし、さっさとそのコアってやつをぶっ壊しに行きますか！」",
     "showIllust": [
       "Mutsunori_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "月面",
@@ -12609,7 +12972,10 @@ export const scenarioData = [
     "text": "「つっても、コアって何なんだよな！説明不足すぎるだろ…」",
     "showIllust": [
       "Mutsunori_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "月面",
@@ -12636,7 +13002,10 @@ export const scenarioData = [
     "text": "「ん？あーそういえばなんか朔良に渡してたよな？これに書いてあるのか……？」",
     "showIllust": [
       "Mutsunori_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "月面",
@@ -12783,7 +13152,10 @@ export const scenarioData = [
       "Mutsunori_serious"
     ],
     "bg": "/scene/moon_surface.png",
-    "hideItem": true
+    "hideItem": true,
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "月面",
@@ -12802,7 +13174,10 @@ export const scenarioData = [
     "text": "「なるほどね。要するに、かくれんぼの鬼ごっこ版ってわけだ。任せとけって、そういうの得意だからさ」",
     "showIllust": [
       "Mutsunori_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "月面",
@@ -12841,7 +13216,10 @@ export const scenarioData = [
     "text": "「やったね、朔良。……これで、あのでっかい扉が開くはずだ」",
     "showIllust": [
       "Mutsunori_happy"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "制御室",
@@ -12868,7 +13246,10 @@ export const scenarioData = [
     "text": "「な、何言ってんだよ。言ったろ？ 俺、身体だけは丈夫だって」",
     "showIllust": [
       "Mutsunori_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "制御室",
@@ -12885,7 +13266,10 @@ export const scenarioData = [
     "text": "「……ちょっと、目がチカチカするだけ。ほら、急ごうぜ。教授の言う通り、単位がかかってんだからさ」",
     "showIllust": [
       "Mutsunori_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "制御室",
@@ -12921,7 +13305,10 @@ export const scenarioData = [
     "text": "「なぁ、朔良」",
     "showIllust": [
       "Mutsunori_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "最深部",
@@ -12936,7 +13323,10 @@ export const scenarioData = [
     "bgmFade": 0.5,
     "showIllust": [
       "Mutsunori_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "最深部",
@@ -12949,7 +13339,10 @@ export const scenarioData = [
     "text": "「……終わったらさ、地球に帰って……。あれ、俺、いっつも何作ってたっけ……」",
     "showIllust": [
       "Mutsunori_happy"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "最深部",
@@ -12967,7 +13360,10 @@ export const scenarioData = [
     "bgmFade": 0.5,
     "showIllust": [
       "Mutsunori_happy"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "最深部",
@@ -13016,7 +13412,10 @@ export const scenarioData = [
     "text": "「……あいつか。あのでっかい真珠みたいなやつを止めれば、世界は元に戻るんだな」",
     "showIllust": [
       "Mutsunori_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -13065,7 +13464,10 @@ export const scenarioData = [
     "text": "「ありがとう朔良。でも……きっと俺が”頑張った”方が、早く楽に済むんだろ？」",
     "showIllust": [
       "Mutsunori_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -13080,7 +13482,10 @@ export const scenarioData = [
     "text": "「大丈夫だって。地球に帰るためなら、これくらい……！」",
     "showIllust": [
       "Mutsunori_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -13102,7 +13507,10 @@ export const scenarioData = [
     "text": "「が、はっ……あ、れ……！？」",
     "showIllust": [
       "Mutsunori_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -13116,7 +13524,10 @@ export const scenarioData = [
     "text": "「う、あ、あああああっ……！！」",
     "showIllust": [
       "Mutsunori_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -13198,7 +13609,10 @@ export const scenarioData = [
     "showIllust": [
       "Mutsunori_smile"
     ],
-    "bgAnimation": "dodge_left"
+    "bgAnimation": "dodge_left",
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -13214,7 +13628,10 @@ export const scenarioData = [
     "showIllust": [
       "Mutsunori_smile"
     ],
-    "bgAnimation": "impact_zoom"
+    "bgAnimation": "impact_zoom",
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -13254,7 +13671,10 @@ export const scenarioData = [
     "text": "「……っ、走れ、朔良……こっちだ！」",
     "showIllust": [
       "Mutsunori_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "瓦礫裏",
@@ -13273,7 +13693,10 @@ export const scenarioData = [
     "text": "「驚いた、だろ……」",
     "showIllust": [
       "Mutsunori_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "瓦礫裏",
@@ -13287,7 +13710,10 @@ export const scenarioData = [
     "bgm": "serious_3.mp3",
     "showIllust": [
       "Mutsunori_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "瓦礫裏",
@@ -13300,7 +13726,10 @@ export const scenarioData = [
     "text": "「でもさ……タダでこんな都合のいい身体になれるわけ、ないんだよね」",
     "showIllust": [
       "Mutsunori_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "瓦礫裏",
@@ -13313,7 +13742,10 @@ export const scenarioData = [
     "text": "「傷が治るたびに……身体が修復されるたびに、俺の『中身』が削れていくんだ。……さっき、コアに力を注ごうとして跳ね返された時、一気に持ってかれちゃったみたいでさ」",
     "showIllust": [
       "Mutsunori_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "瓦礫裏",
@@ -13328,7 +13760,10 @@ export const scenarioData = [
     "text": "「記憶、だよ」",
     "showIllust": [
       "Mutsunori_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "瓦礫裏",
@@ -13341,7 +13776,10 @@ export const scenarioData = [
     "text": "「俺さ、……もう、自分の家のうどんの味が思い出せないんだ。……脳みそが、俺の『自我』が、傷を治すためのエネルギーとして、消しゴムで消されるみたいに摩耗していってるんだよ」",
     "showIllust": [
       "Mutsunori_pout"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "瓦礫裏",
@@ -13356,7 +13794,10 @@ export const scenarioData = [
     "text": "「全部忘れちゃっても、朔良のことだけ覚えていられればいいって思ってた。……だけど、今……それすらも、指の隙間からサラサラ零れ落ちていくみたいで、……すごく、怖いんだ」",
     "showIllust": [
       "Mutsunori_pout"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "瓦礫裏",
@@ -13393,7 +13834,10 @@ export const scenarioData = [
     "text": "「あ、はは……」",
     "showIllust": [
       "Mutsunori_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "瓦礫裏",
@@ -13406,7 +13850,10 @@ export const scenarioData = [
     "text": "「そっか。俺、もうダメなんだ。……何も、思い出せないや」",
     "showIllust": [
       "Mutsunori_pout"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "瓦礫裏",
@@ -13423,7 +13870,10 @@ export const scenarioData = [
     "text": "「あ、が……っ、あああああああッ！！！？？？」",
     "showIllust": [
       "Mutsunori_pout"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "瓦礫裏",
@@ -13442,7 +13892,10 @@ export const scenarioData = [
     "text": "「来るなァッ！！！」",
     "showIllust": [
       "Mutsunori_pout"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "瓦礫裏",
@@ -13455,7 +13908,10 @@ export const scenarioData = [
     "text": "「逃げて、朔良……っ！ 俺が……俺の身体が、君を殺しちゃう前に……早く、早く行けぇっ！！」",
     "showIllust": [
       "Mutsunori_pout"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "瓦礫裏",
@@ -13468,7 +13924,10 @@ export const scenarioData = [
     "text": "「ガ、アアアアアアアアアアアアアアアアアッ！！！！」",
     "showIllust": [
       "Mutsunori_pout"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "瓦礫裏",
@@ -13512,7 +13971,10 @@ export const scenarioData = [
     "text": "「オオオオオオオッ！！」",
     "showIllust": [
       "Mutsunori_pout"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -13628,7 +14090,10 @@ export const scenarioData = [
     "bgm": "stop",
     "showIllust": [
       "Mutsunori_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "瓦礫裏",
@@ -13654,7 +14119,10 @@ export const scenarioData = [
     "action": "SHAKE_SCREEN",
     "showIllust": [
       "Mutsunori_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "瓦礫裏",
@@ -13682,7 +14150,10 @@ export const scenarioData = [
     "text": "「な、……に、して……っ！ 離れろ、朔良……！」",
     "showIllust": [
       "Mutsunori_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -13738,7 +14209,10 @@ export const scenarioData = [
     "showIllust": [
       "Mutsunori_smile"
     ],
-    "action": "CLEAR_LIGHT_WAVE"
+    "action": "CLEAR_LIGHT_WAVE",
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -13755,7 +14229,10 @@ export const scenarioData = [
     "text": "「お待たせ、朔良。……心配かけたな」",
     "showIllust": [
       "Mutsunori_pout"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -13791,7 +14268,10 @@ export const scenarioData = [
     "text": "「朔良、後ろに下がってろ。──いや、違うな」",
     "showIllust": [
       "Mutsunori_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -13804,7 +14284,10 @@ export const scenarioData = [
     "text": "「俺の目になってくれ、朔良。二人で、あいつをぶっ飛ばそう」",
     "showIllust": [
       "Mutsunori_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -13833,7 +14316,10 @@ export const scenarioData = [
     "bgAnimation": "center_zoom",
     "showIllust": [
       "Mutsunori_pout"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -13893,7 +14379,10 @@ export const scenarioData = [
     "text": "「ゲホッ、ゴホッ！ 朔良、大丈夫か！？」",
     "showIllust": [
       "Mutsunori_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -13918,7 +14407,10 @@ export const scenarioData = [
     "text": "「チッ、逃げ足の速い野郎だ……。でも、追ってる時間はなさそうだな」",
     "showIllust": [
       "Mutsunori_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -13931,7 +14423,10 @@ export const scenarioData = [
     "text": "「……っ、いよいよ、本番だな」",
     "showIllust": [
       "Mutsunori_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -13952,7 +14447,10 @@ export const scenarioData = [
     "text": "「……朔良」",
     "showIllust": [
       "Mutsunori_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -13965,7 +14463,10 @@ export const scenarioData = [
     "text": "「さっきは一人でやろうとして失敗した。でも、今は朔良がいてくれる。……俺の力を全部注ぎ込む。暴走しそうになったら、お前が全部中和してくれ。──二人なら、いけるだろ？」",
     "showIllust": [
       "Mutsunori_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -13989,7 +14490,10 @@ export const scenarioData = [
     "text": "「いくぞ、朔良……せーのっ！」",
     "showIllust": [
       "Mutsunori_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -14020,7 +14524,10 @@ export const scenarioData = [
     "action": "WHITE_PULSE_MID",
     "showIllust": [
       "Mutsunori_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -14043,7 +14550,10 @@ export const scenarioData = [
     "text": "「あああああぁぁぁッ！！！」",
     "showIllust": [
       "Mutsunori_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -14065,7 +14575,10 @@ export const scenarioData = [
     "text": "「──これで、終わりだぁぁぁッ！！！！」",
     "showIllust": [
       "Mutsunori_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -14094,7 +14607,10 @@ export const scenarioData = [
     "text": "「……終わった、んだな」",
     "showIllust": [
       "Mutsunori_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -14127,7 +14643,10 @@ export const scenarioData = [
     "bgmVolume": 0.2,
     "showIllust": [
       "Mutsunori_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -14146,7 +14665,10 @@ export const scenarioData = [
     "text": "「泣くなって、朔良。ほら、上見てみろよ」",
     "showIllust": [
       "Mutsunori_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -14174,7 +14696,10 @@ export const scenarioData = [
     "text": "「あぁ。……これで、やっと帰れるな、地球に」",
     "showIllust": [
       "Mutsunori_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -14216,7 +14741,10 @@ export const scenarioData = [
     "bgm": "escape.mp3",
     "showIllust": [
       "Mutsunori_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "最下層",
@@ -14227,7 +14755,7 @@ export const scenarioData = [
     "scene": "最下層",
     "text": "たどり着いた最下層の重厚なハッチを開けると──そこには、薄暗い格納庫の真ん中で、白くそびえ立つ一基の脱出用ロケットが静かに格納されていた。",
     "action": "CLEAR_ALL_ALERTS_AND_SHAKES",
-    "bg": "black",
+    "bg": "black"
   },
   {
     "scene": "脱出用ロケット内",
@@ -14261,7 +14789,10 @@ export const scenarioData = [
     "bgmVolume": 0.2,
     "showIllust": [
       "Mutsunori_happy"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "宇宙空間",
@@ -14355,7 +14886,10 @@ export const scenarioData = [
     "bgm": "HappyEnd.mp3",
     "showIllust": [
       "Mutsunori_happy"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "割烹『むつ』",
@@ -14374,7 +14908,10 @@ export const scenarioData = [
     "text": "「だろ？ 記憶を取り戻すために親父の店で何度も試作したんだから」",
     "showIllust": [
       "Mutsunori_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "割烹『むつ』",
@@ -14411,7 +14948,10 @@ export const scenarioData = [
     "text": "「よかったぁ。あ、そうだ。あの時、うどんの味は忘れかけてたんだけどさ……」",
     "showIllust": [
       "Mutsunori_happy"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "割烹『むつ』",
@@ -14431,7 +14971,7 @@ export const scenarioData = [
     "scene": "割烹『むつ』",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「……あれ、なんでだったか、今ならはっきり分かるよ」",
+    "text": "「……あれ、なんでだったか、今ならはっきり分かるよ」"
   },
   {
     "scene": "割烹『むつ』",
@@ -14441,13 +14981,13 @@ export const scenarioData = [
     "scene": "割烹『むつ』",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「大切な友達だから、じゃなかった。俺、ずっと前から朔良のことが好きだったんだ」",
+    "text": "「大切な友達だから、じゃなかった。俺、ずっと前から朔良のことが好きだったんだ」"
   },
   {
     "scene": "割烹『むつ』",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「あの世界で、お前が俺を抱きしめて現実に繋ぎ止めてくれた時、世界中の何よりも、お前を失うのが一番怖いって思った」",
+    "text": "「あの世界で、お前が俺を抱きしめて現実に繋ぎ止めてくれた時、世界中の何よりも、お前を失うのが一番怖いって思った」"
   },
   {
     "scene": "割烹『むつ』",
@@ -14457,7 +14997,7 @@ export const scenarioData = [
     "scene": "割烹『むつ』",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「普通の日常に戻っても、俺の隣にはずっとお前にいてほしい。……これからは友達じゃなくて、俺の彼女として。……ダメ、かな？」",
+    "text": "「普通の日常に戻っても、俺の隣にはずっとお前にいてほしい。……これからは友達じゃなくて、俺の彼女として。……ダメ、かな？」"
   },
   {
     "scene": "割烹『むつ』",
@@ -14481,7 +15021,10 @@ export const scenarioData = [
     "bg": "/scene/mutsu_inside.png",
     "showIllust": [
       "Mutsunori_happy"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "割烹『むつ』",
@@ -14496,7 +15039,10 @@ export const scenarioData = [
     "text": "「よし、言ったな？ 毎食でも作ってやるから覚悟しろよ！」",
     "showIllust": [
       "Mutsunori_happy"
-    ]
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "割烹『むつ』",
@@ -14504,7 +15050,7 @@ export const scenarioData = [
     "hideIllust": [
       "Mutsunori_happy"
     ],
-    "bg": "/scene/sky.png",
+    "bg": "/scene/sky.png"
   },
   {
     "scene": "割烹『むつ』",
@@ -14636,7 +15182,10 @@ export const scenarioData = [
     "text": "「…チッ」",
     "showIllust": [
       "Akane_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Akane": "center"
+    }
   },
   {
     "scene": "教授の研究室",
@@ -14716,7 +15265,10 @@ export const scenarioData = [
     "text": "「……なんでもいいだろ、早く行くぞ」",
     "showIllust": [
       "Akane_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Akane": "center"
+    }
   },
   {
     "scene": "教授の研究室",
@@ -14848,7 +15400,10 @@ export const scenarioData = [
     "text": "「…やはりか」",
     "showIllust": [
       "Akane_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Akane": "center"
+    }
   },
   {
     "scene": "ロケット内部",
@@ -14882,7 +15437,10 @@ export const scenarioData = [
     "text": "「……ッ、……おい、起きろ」",
     "showIllust": [
       "Akane_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Akane": "center"
+    }
   },
   {
     "scene": "ロケット内部",
@@ -14933,7 +15491,10 @@ export const scenarioData = [
     "text": "「このロケットは、最初から墜落するようにできていた」",
     "showIllust": [
       "Akane_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Akane": "center"
+    }
   },
   {
     "scene": "月面",
@@ -15133,7 +15694,10 @@ export const scenarioData = [
     "text": "「……チッ、あの野郎」",
     "showIllust": [
       "Akane_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Akane": "center"
+    }
   },
   {
     "scene": "月面",
@@ -15146,7 +15710,10 @@ export const scenarioData = [
     "text": "「グズグズすんな、行くぞ」",
     "showIllust": [
       "Akane_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Akane": "center"
+    }
   },
   {
     "scene": "月面",
@@ -15194,7 +15761,10 @@ export const scenarioData = [
     "text": "「早くしろ」",
     "showIllust": [
       "Akane_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Akane": "center"
+    }
   },
   {
     "scene": "制御室",
@@ -15294,7 +15864,10 @@ export const scenarioData = [
     "text": "「こいつらの異能を……少しずつ注ぎ込むしかない」",
     "showIllust": [
       "Akane_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Akane": "center"
+    }
   },
   {
     "scene": "研究所の奧",
@@ -15350,7 +15923,10 @@ export const scenarioData = [
     "text": "「…………へえ」",
     "showIllust": [
       "Akane_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Akane": "center"
+    }
   },
   {
     "scene": "研究所の奧",
@@ -15367,7 +15943,10 @@ export const scenarioData = [
     "text": "「俺のオフクロの名前をその汚ねえ口で二度と呼ぶな。……無能力者？ ゴミ？ ああ、そうかもな。\nだがな、無能力者の引き金でも、てめえの脳髄をブチ撒くくらいは簡単にできるんだよ」",
     "showIllust": [
       "Akane_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Akane": "center"
+    }
   },
   {
     "scene": "研究所の奧",
@@ -15400,7 +15979,10 @@ export const scenarioData = [
     "bgm": "Battle1.mp3",
     "showIllust": [
       "Akane_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Akane": "center"
+    }
   },
   {
     "scene": "研究所の奧",
@@ -15474,7 +16056,10 @@ export const scenarioData = [
     "text": "「──チッ、ふざけんじゃねえ……！」",
     "showIllust": [
       "Akane_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Akane": "center"
+    }
   },
   {
     "scene": "研究所の奧",
@@ -15492,7 +16077,10 @@ export const scenarioData = [
     "text": "「おい……！！しっかりしろ！！」",
     "showIllust": [
       "Akane_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Akane": "center"
+    }
   },
   {
     "scene": "研究所の奧",
@@ -15543,7 +16131,10 @@ export const scenarioData = [
     "text": "「……よく耐えた。あとは眠ってろ」",
     "showIllust": [
       "Akane_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Akane": "center"
+    }
   },
   {
     "scene": "研究所の奧",
@@ -15584,7 +16175,10 @@ export const scenarioData = [
     "text": "「──目が覚めたか」",
     "showIllust": [
       "Akane_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Akane": "center"
+    }
   },
   {
     "scene": "アジト",
@@ -15605,7 +16199,10 @@ export const scenarioData = [
     "text": "「あの後、研究所が崩落を始めた。コアは完全に沈黙した。……お前を抱えて、ここまで這いずり戻ってきた」",
     "showIllust": [
       "Akane_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Akane": "center"
+    }
   },
   {
     "scene": "アジト",
@@ -15628,7 +16225,10 @@ export const scenarioData = [
     "text": "「生き埋めになったか、あるいは逃げ延びたか……。死体は確認できていない。だが、あいつらが何を目論んでいようが、俺たちの『実習』はこれで終わりだ。コアは止まった」",
     "showIllust": [
       "Akane_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Akane": "center"
+    }
   },
   {
     "scene": "アジト",
@@ -15641,7 +16241,10 @@ export const scenarioData = [
     "text": "「……だが、朔良。一つ、お前に話さないといけないことがある」",
     "showIllust": [
       "Akane_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Akane": "center"
+    }
   },
   {
     "scene": "アジト",
@@ -15660,7 +16263,10 @@ export const scenarioData = [
     "text": "「…あのクソガキのことだ」",
     "showIllust": [
       "Akane_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Akane": "center"
+    }
   },
   {
     "scene": "アジト",
@@ -15673,7 +16279,10 @@ export const scenarioData = [
     "text": "「あいつは……俺のオフクロを、あの黒騎士と共に殺した」",
     "showIllust": [
       "Akane_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Akane": "center"
+    }
   },
   {
     "scene": "アジト",
@@ -15687,7 +16296,10 @@ export const scenarioData = [
     "bgmVolume": 0.01,
     "showIllust": [
       "Akane_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Akane": "center"
+    }
   },
   {
     "scene": "アジト",
@@ -15711,7 +16323,10 @@ export const scenarioData = [
     "bgmVolume": 0.3,
     "showIllust": [
       "Akane_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Akane": "center"
+    }
   },
   {
     "scene": "アジト",
@@ -15724,7 +16339,10 @@ export const scenarioData = [
     "text": "「黒騎士の正体も、あいつらが何のためにコアを動かしていたのかも、何も聞き出せなかった。……それに、あの時お前の身体に起きた『異常』もな。あのガキは、お前の力を知っている口ぶりだった」",
     "showIllust": [
       "Akane_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Akane": "center"
+    }
   },
   {
     "scene": "アジト",
@@ -15741,7 +16359,10 @@ export const scenarioData = [
     "text": "「……まあ、今はこれ以上考えても答えは出ないがな」",
     "showIllust": [
       "Akane_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Akane": "center"
+    }
   },
   {
     "scene": "アジト",
@@ -15754,7 +16375,10 @@ export const scenarioData = [
     "text": "「何があろうと、あいつらがまた這い出てくるなら、その時はまとめてブチ殺すだけだ。だから、今は余計なことは考えずに寝ていろ」",
     "showIllust": [
       "Akane_serious"
-    ]
+    ],
+    "illustPositions": {
+      "Akane": "center"
+    }
   },
   {
     "scene": "アジト",
@@ -15853,7 +16477,10 @@ export const scenarioData = [
     "bgmVolume": 0.3,
     "showIllust": [
       "Akane_neutral_syujin"
-    ]
+    ],
+    "illustPositions": {
+      "Akane": "center"
+    }
   },
   {
     "scene": "面会室",
@@ -15903,7 +16530,7 @@ export const scenarioData = [
     "scene": "面会室",
     "speaker": "アカネ",
     "role": "AKANE",
-    "text": "「そうか。……逃げられたか。黒騎士の正体も、あのクソガキの行方も分からないまま。まだ終わりそうにはないな」",
+    "text": "「そうか。……逃げられたか。黒騎士の正体も、あのクソガキの行方も分からないまま。まだ終わりそうにはないな」"
   },
   {
     "scene": "面会室",
@@ -15913,7 +16540,7 @@ export const scenarioData = [
     "scene": "面会室",
     "speaker": "アカネ",
     "role": "AKANE",
-    "text": "「……娑婆に戻ったら、俺はまたあいつらを追う。それが俺の生きる目的だ。だが――――」",
+    "text": "「……娑婆に戻ったら、俺はまたあいつらを追う。それが俺の生きる目的だ。だが――――」"
   },
   {
     "scene": "面会室",
@@ -15923,7 +16550,7 @@ export const scenarioData = [
     "scene": "面会室",
     "speaker": "アカネ",
     "role": "AKANE",
-    "text": "「お前はもう、これ以上首を突っ込むな。ここから先は本物の地獄だ。せっかく手に入れた普通の日常を、大事に守ってろ。……単位も出たんだろ？」",
+    "text": "「お前はもう、これ以上首を突っ込むな。ここから先は本物の地獄だ。せっかく手に入れた普通の日常を、大事に守ってろ。……単位も出たんだろ？」"
   },
   {
     "scene": "面会室",
@@ -15956,7 +16583,10 @@ export const scenarioData = [
     "text": "「ハッ……。人の忠告も無視か。まぁいい、そこまで言うなら連れていこう」",
     "showIllust": [
       "Akane_smile_syujin"
-    ]
+    ],
+    "illustPositions": {
+      "Akane": "center"
+    }
   },
   {
     "scene": "面会室",
@@ -15969,7 +16599,10 @@ export const scenarioData = [
     "text": "「ただし、自分の身は自分で守れるくらいにはなっておけ。俺がお前をいつでも守れるとは限らないからな」",
     "showIllust": [
       "Akane_neutral_syujin"
-    ]
+    ],
+    "illustPositions": {
+      "Akane": "center"
+    }
   },
   {
     "scene": "面会室",
@@ -16024,7 +16657,10 @@ export const scenarioData = [
     "text": "「……こちらこそ、ありがとう」",
     "showIllust": [
       "Akane_smile_syujin"
-    ]
+    ],
+    "illustPositions": {
+      "Akane": "center"
+    }
   },
   {
     "scene": "面会室",
