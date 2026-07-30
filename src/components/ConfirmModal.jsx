@@ -62,18 +62,18 @@ export default function ConfirmModal({ isActive, title, message, onConfirm, onCa
             {/* Actions */}
             <div className="flex justify-center gap-6 mt-auto relative z-10">
               <motion.button
-                className="px-6 py-2.5 rounded-full text-sm font-orbitron font-bold tracking-widest text-slate-400 bg-slate-800 hover:bg-slate-700 border border-slate-600 transition-colors w-32"
+                className="px-6 py-2.5 rounded-full text-sm font-noto font-bold tracking-widest text-slate-400 bg-slate-800 hover:bg-slate-700 border border-slate-600 transition-colors w-32"
                 whileTap={{ scale: 0.95 }}
                 onClick={onCancel}
               >
-                CANCEL
+                いいえ
               </motion.button>
               <motion.button
-                className="px-6 py-2.5 rounded-full text-sm font-orbitron font-bold tracking-widest text-[#0a192f] bg-[#00e5ff] hover:bg-[#4dd0e1] transition-colors shadow-[0_0_15px_rgba(0,229,255,0.4)] w-32"
+                className="px-6 py-2.5 rounded-full text-sm font-noto font-bold tracking-widest text-[#0a192f] bg-[#00e5ff] hover:bg-[#4dd0e1] transition-colors shadow-[0_0_15px_rgba(0,229,255,0.4)] w-32"
                 whileTap={{ scale: 0.95 }}
                 onClick={onConfirm}
               >
-                OK
+                はい
               </motion.button>
             </div>
           </motion.div>

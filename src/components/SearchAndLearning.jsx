@@ -3,6 +3,7 @@ import { Tv, BookOpen, CheckCircle2, ChevronRight, Camera, Sparkles, Circle, Eye
 import { motion, AnimatePresence } from 'framer-motion';
 import { assetPath } from '../utils/assetPath';
 import DialogueBox from './DialogueBox';
+import ConfirmModal from './ConfirmModal';
 import { useAudioSystem } from '../hooks/useAudioSystem';
 
 const OBJECT_DETAILS = {
@@ -104,6 +105,8 @@ export default function SearchAndLearning({
   const [arScanFlash, setArScanFlash] = useState(false);
   const [hoveredSpot, setHoveredSpot] = useState(null);
   const [hasSeenMoonIntro, setHasSeenMoonIntro] = useState(false);
+  const [canSkip] = useState(() => localStorage.getItem('twomoons_cleared_search') === 'true');
+  const [confirmModal, setConfirmModal] = useState({ isActive: false, title: '', message: '', onConfirm: null, onCancel: null });
 
   // --- Message Queue System ---
   const { playSE } = useAudioSystem();
@@ -208,6 +211,7 @@ export default function SearchAndLearning({
   }, [messageQueue, currentMessage, isTyping, bgImage, pendingParticle, triggerParticle]);
 
   const handleFinishSearch = () => {
+    localStorage.setItem('twomoons_cleared_search', 'true');
     const score = ['bag', 'photo', 'artificial_moon'].filter(k => visited[k]).length;
     onComplete(score);
   };
@@ -414,6 +418,32 @@ export default function SearchAndLearning({
         </div>
       )}
 
+      {/* 2周目以降用スキップボタン */}
+      {canSkip && !currentMessage && !isMoonIntroPlaying && (
+        <div className="absolute top-8 left-1/2 -translate-x-1/2 max-lg:top-4 z-40 animate-fadeIn">
+          <button
+            onClick={() => {
+              setConfirmModal({
+                isActive: true,
+                title: 'SKIP EXPLORATION',
+                message: '探索をスキップして次のシナリオへ進みますか？',
+                onConfirm: () => {
+                  setConfirmModal(prev => ({ ...prev, isActive: false }));
+                  handleFinishSearch();
+                },
+                onCancel: () => {
+                  setConfirmModal(prev => ({ ...prev, isActive: false }));
+                }
+              });
+            }}
+            className="glass-panel px-4 py-2 rounded-full flex items-center gap-2 border border-cyan-500/30 text-cyan-400 transition-all duration-300 shadow-[0_0_15px_rgba(0,245,255,0.2)] hover:bg-cyan-500/20 hover:border-cyan-400 hover:text-white hover:shadow-[0_0_20px_rgba(0,245,255,0.5)] transform hover:-translate-y-0.5 active:translate-y-0 active:scale-95"
+          >
+            <FastForward size={16} />
+            <span className="text-xs font-noto font-bold tracking-widest">探索をスキップ</span>
+          </button>
+        </div>
+      )}
+
       {/* Title / Current Area (Top Left) */}
       {!isMoonIntroPlaying && isMoonView && (
         <div className="absolute top-8 left-8 max-lg:top-4 max-lg:left-2 z-20 max-lg:scale-[0.8] max-lg:origin-top-left">
@@ -509,7 +539,7 @@ export default function SearchAndLearning({
         </button>
       )}
 
-      {/* Information Particles (Light Orbs) */}
+      {/* Particle Effect Layer */}
       {animations.map(anim => (
         <InfoParticle
           key={anim.id}
@@ -517,13 +547,13 @@ export default function SearchAndLearning({
           startY={anim.startY}
           targetX={anim.targetX}
           targetY={anim.targetY}
-          onComplete={() => handleParticleComplete(anim.id, anim.key)}
           skipMode={skipMode}
+          onComplete={() => handleParticleComplete(anim.id, anim.key)}
         />
       ))}
 
-
-
+      {/* Confirmation Modal */}
+      <ConfirmModal {...confirmModal} />
 
       <DialogueBox
         speaker={currentMessage?.speaker || ''}
