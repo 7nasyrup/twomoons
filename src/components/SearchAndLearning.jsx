@@ -3,6 +3,7 @@ import { Tv, BookOpen, CheckCircle2, ChevronRight, Camera, Sparkles, Circle, Eye
 import { motion, AnimatePresence } from 'framer-motion';
 import { assetPath } from '../utils/assetPath';
 import DialogueBox from './DialogueBox';
+import { useAudioSystem } from '../hooks/useAudioSystem';
 
 const OBJECT_DETAILS = {
   bag: {
@@ -81,7 +82,7 @@ const InfoParticle = ({ startX, startY, targetX, targetY, onComplete, skipMode }
   );
 };
 
-export default function SearchAndLearning({ 
+export default function SearchAndLearning({
   onComplete,
   onSave,
   onLoad,
@@ -105,6 +106,11 @@ export default function SearchAndLearning({
   const [hasSeenMoonIntro, setHasSeenMoonIntro] = useState(false);
 
   // --- Message Queue System ---
+  const { playSE } = useAudioSystem();
+  
+  // Local state for displaying an item sprite
+  const [displayedItem, setDisplayedItem] = useState(null);
+
   const [messageQueue, setMessageQueue] = useState([]);
   const [currentMessage, setCurrentMessage] = useState(null);
   const [displayedText, setDisplayedText] = useState('');
@@ -184,6 +190,7 @@ export default function SearchAndLearning({
       } else {
         setCurrentMessage(null);
         setIsTyping(false);
+        setDisplayedItem(null); // テキスト終了時にアイテムも消去する
         if (skipMode && setSkipMode) {
           setSkipMode(false);
         }
@@ -207,6 +214,10 @@ export default function SearchAndLearning({
 
   const handleOpenWindow = (e) => {
     if (currentMessage) return;
+
+    // アイテム表示とSE再生
+    setDisplayedItem('/item/phone_alert.jpg');
+    playSE(assetPath('/assets/audio/se/phone_alert.mp3'));
 
     if (!visited.artificial_moon) {
       triggerARScan();
@@ -429,7 +440,7 @@ export default function SearchAndLearning({
               onMouseEnter={() => setHoveredSpot('bag')}
               onMouseLeave={() => setHoveredSpot(null)}
               className="absolute transform -translate-x-1/2 -translate-y-1/2 hover:scale-110 active:scale-95 transition-all duration-300 focus:outline-none z-20 flex items-center justify-center group"
-              style={{ top: '60%', left: '15%' }}
+              style={{ top: '80%', left: '15%' }}
             >
               <div className={`relative w-10 h-10 rounded-full backdrop-blur-md flex items-center justify-center transition-all ${visited.bag ? 'border border-cyan-400/50 bg-cyan-500/10' : 'border-2 border-white/60 bg-white/20 shadow-[0_0_15px_rgba(255,255,255,0.4)] hover:border-white hover:bg-white/30'}`}>
                 <Circle className={`w-6 h-6 transition-all duration-500 ${visited.bag ? 'text-cyan-400 opacity-50 scale-125' : 'text-white opacity-100 group-hover:scale-110 drop-shadow-[0_0_8px_rgba(255,255,255,0.8)] animate-pulse'}`} strokeWidth={2} />
@@ -535,6 +546,30 @@ export default function SearchAndLearning({
         onLoad={onLoad}
         onExit={onExit}
       />
+
+      {/* Item Sprite Overlay (showItem) */}
+      <AnimatePresence>
+        {displayedItem && (
+          <motion.div
+            key="item-overlay"
+            className="absolute inset-0 flex pointer-events-none z-[15] items-end justify-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0, transition: { delay: 0.7 } }}
+          >
+            <motion.img
+              key={displayedItem}
+              src={assetPath(displayedItem)}
+              alt="item"
+              initial={{ y: '100%', opacity: 0 }}
+              animate={{ y: '-5%', opacity: 1 }}
+              exit={{ y: '100%', opacity: 0 }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="object-contain drop-shadow-2xl w-[20%] max-w-[250px] min-w-[150px]"
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

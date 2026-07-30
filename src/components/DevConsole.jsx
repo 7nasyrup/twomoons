@@ -96,7 +96,7 @@ export default function DevConsole({
           <motion.div
             onClick={(e) => e.stopPropagation()}
             className="absolute top-12 right-3 z-[60] bg-[#080a10]/95 backdrop-blur-xl border border-cyan-500/20
-                       rounded-lg p-4 w-72 shadow-[0_0_40px_rgba(0,245,255,0.1)] pointer-events-auto"
+                       rounded-lg p-4 w-72 max-h-[85vh] overflow-y-auto scrollbar-thin shadow-[0_0_40px_rgba(0,245,255,0.1)] pointer-events-auto"
             initial={{ opacity: 0, y: -10, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -10, scale: 0.95 }}
@@ -254,6 +254,20 @@ export default function DevConsole({
                          text-cyan-500/60 py-2 rounded text-xs font-orbitron hover:border-cyan-400/40 transition-colors"
             >
               <Volume2 size={12} /> TOGGLE AUDIO
+            </button>
+
+            {/* Reset Save Data */}
+            <button
+              onClick={() => {
+                if (window.confirm("すべてのセーブデータを削除して初期状態に戻しますか？")) {
+                  localStorage.clear();
+                  window.location.reload();
+                }
+              }}
+              className="mt-2 w-full flex items-center justify-center gap-2 bg-[#1a0505] border border-red-500/30
+                         text-red-400/80 py-2 rounded text-xs font-noto hover:border-red-400/60 hover:bg-[#2a0808] transition-colors"
+            >
+              セーブデータを全消去
             </button>
           </motion.div>
         )}

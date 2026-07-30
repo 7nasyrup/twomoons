@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { assetPath } from '../utils/assetPath';export default function TitleScreen({ onStart, onContinue, hasSave, playBGM }) {
+import { assetPath } from '../utils/assetPath'; export default function TitleScreen({ onStart, onContinue, hasSave, playBGM }) {
     const [showCredits, setShowCredits] = useState(false);
     const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < 1024 : false);
 
@@ -95,12 +95,13 @@ import { assetPath } from '../utils/assetPath';export default function TitleScre
             {/* Credits Modal Overlay */}
             {showCredits && (
                 <div className="absolute inset-0 bg-black/95 flex items-center justify-center z-50 p-6 animate-fadeIn">
-                    <div className="w-full max-w-md bg-[#050b18] border border-cyan-500/30 rounded-lg p-6 relative shadow-[0_0_30px_rgba(0,245,255,0.1)]">
+                    <div className="w-full max-w-xl bg-[#050b18] border border-cyan-500/30 rounded-lg p-6 relative shadow-[0_0_30px_rgba(0,245,255,0.1)]">
                         <h3 className="text-xl font-orbitron text-cyan-400 tracking-[0.2em] border-b border-cyan-500/20 pb-2 mb-4 text-center">
                             CREDITS
                         </h3>
 
                         <div className="space-y-4 text-sm font-noto text-gray-300 max-h-[60vh] overflow-y-auto pr-2">
+                            {/* 一旦非表示
                             <div className="text-center">
                                 <p className="text-xs font-orbitron text-cyan-500/60 tracking-widest mb-1">PRODUCER / SCENARIO</p>
                                 <p className="font-semibold text-white">TWOMOONS DEV TEAM</p>
@@ -110,10 +111,52 @@ import { assetPath } from '../utils/assetPath';export default function TitleScre
                                 <p className="text-xs font-orbitron text-cyan-500/60 tracking-widest mb-1">GRAPHICS & DESIGN</p>
                                 <p className="text-white text-sm">Holographic Neural Generator</p>
                             </div>
+                            */}
 
-                            <div className="text-center">
-                                <p className="text-xs font-orbitron text-cyan-500/60 tracking-widest mb-1">MUSIC & SE</p>
-                                <p className="text-white text-sm">Retro Cyberphonic Labs</p>
+                            <div className="text-center w-full">
+                                <p className="text-sm font-orbitron text-cyan-500/80 tracking-widest mb-6">■BGM素材・使用楽曲</p>
+
+                                <div className="max-w-lg mx-auto text-left w-full">
+                                    <p className="text-white text-sm mb-3 pl-2 border-l-2 border-cyan-500/50">DOVA-SYNDROME　様</p>
+                                    <div className="flex flex-col gap-2 text-[11px] text-gray-300 pl-3">
+                                        {/* ユーザーが追加した楽曲 */}
+                                        <div className="flex items-start">
+                                            <span className="w-36 shrink-0">shimtone様</span>
+                                            <span className="text-gray-400 leading-relaxed">「Sakura Mellows」「雨の路地裏」「Tailshaft」「アンドロイドの涙」「Night Howling」「Citrus Days」「
+                                                Wobbly Dark Silhouette」</span>
+                                        </div>
+                                        <div className="flex items-start">
+                                            <span className="w-36 shrink-0">ネコト様</span>
+                                            <span className="text-gray-400 leading-relaxed">「ゴーストおじさん」</span>
+                                        </div>
+                                        <div className="flex items-start">
+                                            <span className="w-36 shrink-0">Heitaro Ashibe様</span>
+                                            <span className="text-gray-400 leading-relaxed">「孤独な道行き」</span>
+                                        </div>
+                                        <div className="flex items-start">
+                                            <span className="w-36 shrink-0">マニーラ様</span>
+                                            <span className="text-gray-400 leading-relaxed">「月面散歩」</span>
+                                        </div>
+                                        <div className="flex items-start">
+                                            <span className="w-36 shrink-0">しんさんわーくす様</span>
+                                            <span className="text-gray-400 leading-relaxed">「碧い回路の夜明け」</span>
+                                        </div>
+                                    </div>
+
+                                    <p className="text-white text-sm mt-8 mb-3 pl-2 border-l-2 border-cyan-500/50">BGMer　様</p>
+                                    <div className="flex flex-col gap-2 text-[11px] text-gray-300 pl-3">
+                                        <div className="flex items-start">
+                                            <span className="text-gray-400 leading-relaxed">「不安の種」</span>
+                                        </div>
+                                    </div>
+
+                                    <p className="text-white text-sm mt-8 mb-3 pl-2 border-l-2 border-cyan-500/50">PeriTune　様</p>
+                                    <div className="flex flex-col gap-2 text-[11px] text-gray-300 pl-3">
+                                        <div className="flex items-start">
+                                            <span className="text-gray-400 leading-relaxed">「Glistening Ripples」</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                             <div className="border-t border-cyan-500/10 pt-3 text-center text-xs text-gray-400">
