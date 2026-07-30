@@ -9839,11 +9839,11 @@ export const scenarioData = [
     "text": "「……君が支えてくれるなら、どこまででも」",
     "showIllust": [
       "Nagisa_neutral"
-    ]
+    ],
   },
   {
     "scene": "研究所の最奥",
-    "text": "凪砂さんは少しだけ気恥ずかしそうに微笑むと、私の肩を借りてゆっくりと立ち上がった。"
+    "text": "凪砂さんは少しだけ気恥ずかしそうに微笑むと、私の肩を借りてゆっくりと立ち上がった。",
   },
   {
     "scene": "研究所の最奥",
@@ -10000,7 +10000,9 @@ export const scenarioData = [
     "text": "そして、そんな中変わったことと言えば──。",
     "bg": "black",
     "bgm": "stop",
-    "showIllust": []
+    "hideIllust": [
+      "Hirumi_smile"
+    ],
   },
   {
     "scene": "待ち合わせ場所",
@@ -14211,6 +14213,7 @@ export const scenarioData = [
     "speaker": "睦典",
     "role": "MUTSUNORI",
     "text": "「おう、俺に捕まってろ！」",
+    "bgm": "escape.mp3",
     "showIllust": [
       "Mutsunori_smile"
     ]
@@ -14225,7 +14228,6 @@ export const scenarioData = [
     "text": "たどり着いた最下層の重厚なハッチを開けると──そこには、薄暗い格納庫の真ん中で、白くそびえ立つ一基の脱出用ロケットが静かに格納されていた。",
     "action": "CLEAR_ALL_ALERTS_AND_SHAKES",
     "bg": "black",
-    "showIllust": []
   },
   {
     "scene": "脱出用ロケット内",
@@ -14340,7 +14342,9 @@ export const scenarioData = [
     "text": "そして、そんな中変わったことと言えば──。",
     "bg": "black",
     "bgm": "stop",
-    "showIllust": []
+    "hideIllust": [
+      "Hirumi_smile"
+    ]
   },
   {
     "scene": "割烹『むつ』",
@@ -14411,25 +14415,23 @@ export const scenarioData = [
   },
   {
     "scene": "割烹『むつ』",
-    "text": "睦典はふっと真面目な顔になると、テーブル越しに私の手をそっと包み込んだ。"
+    "text": "睦典はふっと真面目な顔になると、テーブル越しに私の手をそっと包み込んだ。",
+    "hideIllust": [
+      "Mutsunori_happy"
+    ],
+    "bg": "character/Mutsunori/Mutsunori_CG2.png"
   },
   {
     "scene": "割烹『むつ』",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「俺さ、大事な記憶を失いかけてた時、頭の中でずっと『朔良だけは絶対に忘れちゃダメだ』って、それだけをぐるぐる考えてたんだ」",
-    "showIllust": [
-      "Mutsunori_serious"
-    ]
+    "text": "「俺さ、大事な記憶を失いかけてた時、頭の中でずっと『朔良だけは絶対に忘れちゃダメだ』って、それだけをぐるぐる考えてたんだ」"
   },
   {
     "scene": "割烹『むつ』",
     "speaker": "睦典",
     "role": "MUTSUNORI",
     "text": "「……あれ、なんでだったか、今ならはっきり分かるよ」",
-    "showIllust": [
-      "Mutsunori_pout"
-    ]
   },
   {
     "scene": "割烹『むつ』",
@@ -14440,18 +14442,12 @@ export const scenarioData = [
     "speaker": "睦典",
     "role": "MUTSUNORI",
     "text": "「大切な友達だから、じゃなかった。俺、ずっと前から朔良のことが好きだったんだ」",
-    "showIllust": [
-      "Mutsunori_smile"
-    ]
   },
   {
     "scene": "割烹『むつ』",
     "speaker": "睦典",
     "role": "MUTSUNORI",
     "text": "「あの世界で、お前が俺を抱きしめて現実に繋ぎ止めてくれた時、世界中の何よりも、お前を失うのが一番怖いって思った」",
-    "showIllust": [
-      "Mutsunori_smile"
-    ]
   },
   {
     "scene": "割烹『むつ』",
@@ -14462,9 +14458,6 @@ export const scenarioData = [
     "speaker": "睦典",
     "role": "MUTSUNORI",
     "text": "「普通の日常に戻っても、俺の隣にはずっとお前にいてほしい。……これからは友達じゃなくて、俺の彼女として。……ダメ、かな？」",
-    "showIllust": [
-      "Mutsunori_smile"
-    ]
   },
   {
     "scene": "割烹『むつ』",
@@ -14485,6 +14478,7 @@ export const scenarioData = [
     "speaker": "睦典",
     "role": "MUTSUNORI",
     "text": "「よっしゃ……！ あ、じゃあさ、彼女の特権として、これからは毎日俺のうどん、食べに来てくれる？」",
+    "bg": "/scene/mutsu_inside.png",
     "showIllust": [
       "Mutsunori_happy"
     ]
@@ -14506,7 +14500,11 @@ export const scenarioData = [
   },
   {
     "scene": "割烹『むつ』",
-    "text": "窓の外を見上げると、抜けるような青空が広がっている。かつて見上げた、冷たくて遠いあの青い星は、今、私たちの足元で確かに息づいている。"
+    "text": "窓の外を見上げると、抜けるような青空が広がっている。かつて見上げた、冷たくて遠いあの青い星は、今、私たちの足元で確かに息づいている。",
+    "hideIllust": [
+      "Mutsunori_happy"
+    ],
+    "bg": "/scene/sky.png",
   },
   {
     "scene": "割烹『むつ』",
