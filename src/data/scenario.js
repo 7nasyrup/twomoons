@@ -7927,13 +7927,7 @@ export const scenarioData = [
     "text": "「おっと、危ない」 ",
     "bg": "/scene/university_collapse.png",
     "action": "SHOW_NAGISA_LEFT",
-    "label": "nagisa_route_start",
-    "showIllust": [
-      "Nagisa_serious"
-    ],
-    "illustPositions": {
-      "Nagisa": "center"
-    }
+    "label": "nagisa_route_start"
   },
   {
     "scene": "大学の敷地内",
@@ -7941,7 +7935,16 @@ export const scenarioData = [
   },
   {
     "scene": "大学の敷地内",
-    "text": "端正な顔立ちに、完璧に計算されたような優しい笑みを浮かべた青年──凪砂さんだった。"
+    "text": "端正な顔立ちに、完璧に計算されたような優しい笑みを浮かべた青年──凪砂さんだった。",
+    "showIllust": [
+      "Hirumi_smile"
+    ],
+    "illustPositions": {
+      "Hirumi": "center-right"
+    },
+    "hideIllust": [
+      "Nagisa"
+    ]
   },
   {
     "scene": "大学の敷地内",
@@ -7959,11 +7962,14 @@ export const scenarioData = [
     "role": "NAGISA",
     "text": "「さて、と。どうしようか」",
     "showIllust": [
-      "Nagisa_neutral"
+      "Nagisa_serious"
     ],
     "illustPositions": {
-      "Nagisa": "center"
-    }
+      "Nagisa": "center-right"
+    },
+    "hideIllust": [
+      "Hirumi"
+    ]
   },
   {
     "scene": "大学の敷地内",
@@ -7979,13 +7985,7 @@ export const scenarioData = [
     "scene": "大学の敷地内",
     "speaker": "凪砂",
     "role": "NAGISA",
-    "text": "「──了解。とりあえずあの鎧野郎から逃げようか」",
-    "showIllust": [
-      "Nagisa_neutral"
-    ],
-    "illustPositions": {
-      "Nagisa": "center"
-    }
+    "text": "「──了解。とりあえずあの鎧野郎から逃げようか」"
   },
   {
     "scene": "大学の敷地内",
@@ -8035,11 +8035,25 @@ export const scenarioData = [
     "bgmFade": 1.5,
     "showIllust": [
       "Hirumi_smile"
+    ],
+    "illustPositions": {
+      "Hirumi": "center-right"
+    },
+    "hideIllust": [
+      "Nagisa"
     ]
   },
   {
     "scene": "教授の研究室",
-    "text": "教授は突然の侵入者である私たちを見やると、ニヤリと口元を歪め、凪砂さんを値踏みするように目を細めた。"
+    "text": "教授は突然の侵入者である私たちを見やると、ニヤリと口元を歪め、凪砂さんを値踏みするように目を細めた。",
+    "showIllust": [
+      "Nagisa_neutral",
+      "Hirumi_smile"
+    ],
+    "illustPositions": {
+      "Nagisa": "center-left",
+      "Hirumi": "center-right"
+    }
   },
   {
     "scene": "教授の研究室",
@@ -8060,10 +8074,7 @@ export const scenarioData = [
     "speaker": "ヒルミ教授",
     "role": "PROFESSOR",
     "text": "「…説明はあまりしていられない、君たちにはこれからこのロケットに乗って、あの青い月まで行ってもらう」",
-    "action": "SHOW_PROFESSOR_LEFT",
-    "showIllust": [
-      "Hirumi_serious"
-    ]
+    "action": "SHOW_PROFESSOR_LEFT"
   },
   {
     "scene": "教授の研究室",
@@ -8075,10 +8086,12 @@ export const scenarioData = [
     "role": "NAGISA",
     "text": "「お言葉ですが、言ってる意味がよく分かりません。もう少し説明して頂かないと、ね」",
     "showIllust": [
-      "Nagisa_serious"
+      "Nagisa_serious",
+      "Hirumi_smile"
     ],
     "illustPositions": {
-      "Nagisa": "center"
+      "Nagisa": "center-left",
+      "Hirumi": "center-right"
     }
   },
   {
@@ -8087,7 +8100,15 @@ export const scenarioData = [
   },
   {
     "scene": "教授の研究室",
-    "text": "しかし、デスクの向こうに佇む教授の背中は、微塵も揺るがなかった。"
+    "text": "しかし、デスクの向こうに佇む教授の背中は、微塵も揺るがなかった。",
+    "showIllust": [
+      "Nagisa_serious",
+      "Hirumi_happy"
+    ],
+    "illustPositions": {
+      "Nagisa": "center-left",
+      "Hirumi": "center-right"
+    }
   },
   {
     "scene": "教授の研究室",
@@ -8107,7 +8128,15 @@ export const scenarioData = [
     "scene": "教授の研究室",
     "speaker": "ヒルミ教授",
     "role": "PROFESSOR",
-    "text": "「あの青い月には、この狂った世界のすべての元凶である『研究所のコア』がある。世界を元に戻したければ、そこへ行ってコアを止めてきなさい。君たちにしかできない仕事だ」"
+    "text": "「あの青い月には、この狂った世界のすべての元凶である『研究所のコア』がある。世界を元に戻したければ、そこへ行ってコアを止めてきなさい。君たちにしかできない仕事だ」",
+    "showIllust": [
+      "Nagisa_neutral",
+      "Hirumi_smile"
+    ],
+    "illustPositions": {
+      "Nagisa": "center-left",
+      "Hirumi": "center-right"
+    }
   },
   {
     "scene": "教授の研究室",
@@ -8133,7 +8162,15 @@ export const scenarioData = [
     "scene": "教授の研究室",
     "speaker": "ヒルミ教授",
     "role": "PROFESSOR",
-    "text": "「……私についても、心配は無用さ。さぁタイムリミットだ。──行きなさい、朔良」"
+    "text": "「……私についても、心配は無用さ。さぁタイムリミットだ。──行きなさい、朔良」",
+    "showIllust": [
+      "Nagisa_serious",
+      "Hirumi_happy"
+    ],
+    "illustPositions": {
+      "Nagisa": "center-left",
+      "Hirumi": "center-right"
+    }
   },
   {
     "scene": "教授の研究室",
@@ -8154,11 +8191,14 @@ export const scenarioData = [
     "role": "NAGISA",
     "text": "「はぁ……面倒臭いなぁ。それなら早く済ませて帰ろうか」",
     "showIllust": [
-      "Nagisa_serious"
+      "Nagisa_serious_injured"
     ],
     "illustPositions": {
-      "Nagisa": "center"
-    }
+      "Nagisa": "center-left"
+    },
+    "hideIllust": [
+      "Hirumi"
+    ]
   },
   {
     "scene": "教授の研究室",
@@ -8215,7 +8255,7 @@ export const scenarioData = [
     "role": "NAGISA",
     "text": "「思ったんだけどさ、今この状況。君とふたりきりってことは……実質デート、かな」",
     "showIllust": [
-      "Nagisa_smile"
+      "Nagisa_serious"
     ],
     "illustPositions": {
       "Nagisa": "center"
@@ -8238,7 +8278,7 @@ export const scenarioData = [
     "role": "NAGISA",
     "text": "「……………」",
     "showIllust": [
-      "Nagisa_serious"
+      "Nagisa_neutral"
     ],
     "illustPositions": {
       "Nagisa": "center"
@@ -8268,7 +8308,7 @@ export const scenarioData = [
     "role": "NAGISA",
     "text": "「……ふふ、楽しみだなぁ」",
     "showIllust": [
-      "Nagisa_happy"
+      "Nagisa_smile"
     ],
     "illustPositions": {
       "Nagisa": "center"
@@ -8311,7 +8351,7 @@ export const scenarioData = [
     "role": "NAGISA",
     "text": "「……………」",
     "showIllust": [
-      "Nagisa_neutral"
+      "Nagisa_serious"
     ],
     "illustPositions": {
       "Nagisa": "center"
@@ -8354,7 +8394,13 @@ export const scenarioData = [
   },
   {
     "scene": "ロケット内部(墜落後)",
-    "text": "凪砂さんだ。彼は壊れた機体の周辺を淡々と探索していたようだった。\n私が身動きをさせた気配に気づき、彼は音もなくこちらへと振り返る。"
+    "text": "凪砂さんだ。彼は壊れた機体の周辺を淡々と探索していたようだった。\n私が身動きをさせた気配に気づき、彼は音もなくこちらへと振り返る。",
+    "showIllust": [
+      "Nagisa_serious"
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "ロケット内部(墜落後)",
@@ -8488,7 +8534,13 @@ export const scenarioData = [
   },
   {
     "scene": "月面",
-    "text": "振り返ると、凪砂さんは腕を組んだまま、つまらなそうに私を見下ろしていた。彼だってこの本物の月を見るのは初めてのはずなのに、感動する素振りどころか、その瞳には一切の興味がなさそうに冷えている。"
+    "text": "振り返ると、凪砂さんは腕を組んだまま、つまらなそうに私を見下ろしていた。彼だってこの本物の月を見るのは初めてのはずなのに、感動する素振りどころか、その瞳には一切の興味がなさそうに冷えている。",
+    "showIllust": [
+      "Nagisa_serious"
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "月面",
@@ -8498,13 +8550,7 @@ export const scenarioData = [
     "scene": "月面",
     "speaker": "凪砂",
     "role": "NAGISA",
-    "text": "「なんか紙渡されてたよね？それ見せて」",
-    "showIllust": [
-      "Nagisa_smile"
-    ],
-    "illustPositions": {
-      "Nagisa": "center"
-    }
+    "text": "「なんか紙渡されてたよね？それ見せて」"
   },
   {
     "scene": "月面",
@@ -8524,7 +8570,13 @@ export const scenarioData = [
   },
   {
     "scene": "月面",
-    "text": "それを凪砂さんの方へ差し出そうとした──その刹那。\nスッ、と凪砂さんが迷いなく一歩を踏み込み、私との距離を一気にゼロにした。"
+    "text": "それを凪砂さんの方へ差し出そうとした──その刹那。\nスッ、と凪砂さんが迷いなく一歩を踏み込み、私との距離を一気にゼロにした。",
+    "showIllust": [
+      "Nagisa_neutral"
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "月面",
@@ -8541,13 +8593,7 @@ export const scenarioData = [
     "scene": "月面",
     "speaker": "凪砂",
     "role": "NAGISA",
-    "text": "「こうしないと読めないんだから仕方ないでしょ？」",
-    "showIllust": [
-      "Nagisa_neutral"
-    ],
-    "illustPositions": {
-      "Nagisa": "center"
-    }
+    "text": "「こうしないと読めないんだから仕方ないでしょ？」"
   },
   {
     "scene": "月面",
@@ -8555,7 +8601,13 @@ export const scenarioData = [
   },
   {
     "scene": "月面",
-    "text": "不意に跳ね上がってしまった心拍数を必死に無視しながら、私は凪砂から逃げるように、強張った指先で紙面の字を読み進めることにした。"
+    "text": "不意に跳ね上がってしまった心拍数を必死に無視しながら、私は凪砂から逃げるように、強張った指先で紙面の字を読み進めることにした。",
+    "showIllust": [
+      "Nagisa_neutral"
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "月面",
@@ -8709,7 +8761,7 @@ export const scenarioData = [
     "bg": "/scene/moon_surface.png",
     "hideItem": true,
     "showIllust": [
-      "Nagisa_neutral"
+      "Nagisa_serious"
     ],
     "illustPositions": {
       "Nagisa": "center"
@@ -8727,13 +8779,7 @@ export const scenarioData = [
     "scene": "月面",
     "speaker": "凪砂",
     "role": "NAGISA",
-    "text": "「世界がこんなことになってるっていうのに、あの男は相変わらず不気味な冗談を言う」",
-    "showIllust": [
-      "Nagisa_neutral"
-    ],
-    "illustPositions": {
-      "Nagisa": "center"
-    }
+    "text": "「世界がこんなことになってるっていうのに、あの男は相変わらず不気味な冗談を言う」"
   },
   {
     "scene": "月面",
@@ -8743,29 +8789,7 @@ export const scenarioData = [
   },
   {
     "scene": "月面",
-    "text": "私が紙を見つめたまま小さく呟くと、凪砂さんはふっと鼻で笑った。"
-  },
-  {
-    "scene": "月面",
-    "speaker": "凪砂",
-    "role": "NAGISA",
-    "text": "「他人をあてにするから、そうやってすぐ被害者ぶるんだよ。君、本当に呑気だね。ここがどこだか、ちゃんと分かってる？」",
-    "showIllust": [
-      "Nagisa_smile"
-    ],
-    "illustPositions": {
-      "Nagisa": "center"
-    }
-  },
-  {
-    "scene": "月面",
-    "speaker": "朔良",
-    "role": "SAKURA",
-    "text": "「っ、呑気にしてるわけじゃないです。……凪砂さんこそ、どうしてそんなに落ち着いていられるんですか？ 怖くないの？」"
-  },
-  {
-    "scene": "月面",
-    "text": "思わず強い口調で問い返すと、凪砂さんは歩みを止め、冷え切った瞳で私を真っ直ぐに見下ろした。いつもの万人受けする甘い笑顔の欠片もない、突き放すような視線。",
+    "text": "私が紙を見つめたまま小さく呟くと、凪砂さんはふっと鼻で笑った。",
     "showIllust": [
       "Nagisa_neutral"
     ],
@@ -8777,9 +8801,25 @@ export const scenarioData = [
     "scene": "月面",
     "speaker": "凪砂",
     "role": "NAGISA",
+    "text": "「他人をあてにするから、そうやってすぐ被害者ぶるんだよ。君、本当に呑気だね。ここがどこだか、ちゃんと分かってる？」"
+  },
+  {
+    "scene": "月面",
+    "speaker": "朔良",
+    "role": "SAKURA",
+    "text": "「っ、呑気にしてるわけじゃないです。……凪砂さんこそ、どうしてそんなに落ち着いていられるんですか？ 怖くないの？」"
+  },
+  {
+    "scene": "月面",
+    "text": "思わず強い口調で問い返すと、凪砂さんは歩みを止め、冷え切った瞳で私を真っ直ぐに見下ろした。いつもの万人受けする甘い笑顔の欠片もない、突き放すような視線。"
+  },
+  {
+    "scene": "月面",
+    "speaker": "凪砂",
+    "role": "NAGISA",
     "text": "「怖い？ 僕が？ まさか。……君と違って、僕は自分の身は自分で守れるからね」",
     "showIllust": [
-      "Nagisa_smile"
+      "Nagisa_serious"
     ],
     "illustPositions": {
       "Nagisa": "center"
@@ -8835,7 +8875,7 @@ export const scenarioData = [
     "role": "NAGISA",
     "text": "「……終わったなら、さっさと歩いて。時間の無駄だし」",
     "showIllust": [
-      "Nagisa_neutral"
+      "Nagisa_serious"
     ],
     "illustPositions": {
       "Nagisa": "center"
@@ -8857,7 +8897,7 @@ export const scenarioData = [
     "role": "NAGISA",
     "text": "「別に。何でもないから」",
     "showIllust": [
-      "Nagisa_neutral"
+      "Nagisa_serious_injured"
     ],
     "illustPositions": {
       "Nagisa": "center"
@@ -8896,7 +8936,7 @@ export const scenarioData = [
     "role": "NAGISA",
     "text": "「ッ……ぐ、あ……っ」",
     "showIllust": [
-      "Nagisa_serious"
+      "Nagisa_serious_injured"
     ],
     "illustPositions": {
       "Nagisa": "center"
@@ -8911,10 +8951,7 @@ export const scenarioData = [
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「凪砂さん！？ 大丈夫！？\n————うわあ……っ！？」",
-    "action": "SHAKE_SCREEN",
-    "hideIllust": [
-      "Nagisa_serious"
-    ]
+    "action": "SHAKE_SCREEN"
   },
   {
     "scene": "最深部",
@@ -8926,7 +8963,13 @@ export const scenarioData = [
   },
   {
     "scene": "最深部",
-    "text": "驚きと混乱で固まる私を他所に、凪砂さんはすぐに腕の力を緩めると、何事も無かったかのようにすたすたとゲートの前へ歩き出し、背を向けた。"
+    "text": "驚きと混乱で固まる私を他所に、凪砂さんはすぐに腕の力を緩めると、何事も無かったかのようにすたすたとゲートの前へ歩き出し、背を向けた。",
+    "showIllust": [
+      "Nagisa_serious"
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "最深部",
@@ -8992,19 +9035,19 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "これだけのエネルギーを前にしているというのに、彼の瞳には恐怖も高揚も、何の感慨も見当たらない。ただ冷徹に、その構造や仕組みを頭の中で解体しているようだった。"
-  },
-  {
-    "scene": "研究所の最奥",
-    "speaker": "凪砂",
-    "role": "NAGISA",
-    "text": "「これを止めればいいんでしょ？」",
+    "text": "これだけのエネルギーを前にしているというのに、彼の瞳には恐怖も高揚も、何の感慨も見当たらない。ただ冷徹に、その構造や仕組みを頭の中で解体しているようだった。",
     "showIllust": [
       "Nagisa_neutral"
     ],
     "illustPositions": {
       "Nagisa": "center"
     }
+  },
+  {
+    "scene": "研究所の最奥",
+    "speaker": "凪砂",
+    "role": "NAGISA",
+    "text": "「これを止めればいいんでしょ？」"
   },
   {
     "scene": "研究所の最奥",
@@ -9044,7 +9087,7 @@ export const scenarioData = [
     "role": "NAGISA",
     "text": "「…そんなに熱っぽく見つめないでよ。わかってる、僕が止めればいいんだろ」",
     "showIllust": [
-      "Nagisa_neutral"
+      "Nagisa_smile"
     ],
     "illustPositions": {
       "Nagisa": "center"
@@ -9082,7 +9125,13 @@ export const scenarioData = [
     "scene": "研究所の最奥",
     "speaker": "凪砂",
     "role": "NAGISA",
-    "text": "「…なに？」"
+    "text": "「…なに？」",
+    "showIllust": [
+      "Nagisa_serious"
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -9108,7 +9157,7 @@ export const scenarioData = [
     "role": "NAGISA",
     "text": "「……これが終わったら、僕とデートして」",
     "showIllust": [
-      "Nagisa_happy"
+      "Nagisa_neutral"
     ],
     "illustPositions": {
       "Nagisa": "center"
@@ -9137,7 +9186,7 @@ export const scenarioData = [
     "text": "「ぐ…っ………うぅ……！！」",
     "bgm": "stop",
     "showIllust": [
-      "Nagisa_serious"
+      "Nagisa_serious_injured"
     ],
     "illustPositions": {
       "Nagisa": "center"
@@ -9168,7 +9217,7 @@ export const scenarioData = [
     "role": "NAGISA",
     "text": "「はぁ…っ、く……はぁ……」",
     "showIllust": [
-      "Nagisa_neutral"
+      "Nagisa_serious_injured"
     ],
     "illustPositions": {
       "Nagisa": "center"
@@ -9200,7 +9249,13 @@ export const scenarioData = [
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「『黒騎士』……っ！？」",
-    "bgm": "Battle1.mp3"
+    "bgm": "Battle1.mp3",
+    "showIllust": [
+      "BlackKnight"
+    ],
+    "illustPositions": {
+      "BlackKnight": "center-right"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -9208,7 +9263,13 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "大剣が床を容赦なく叩き割り、激しい衝撃波が私たちを襲う。黒騎士は一切の容赦なく、凄まじい猛攻を仕掛けてきた。"
+    "text": "大剣が床を容赦なく叩き割り、激しい衝撃波が私たちを襲う。黒騎士は一切の容赦なく、凄まじい猛攻を仕掛けてきた。",
+    "showIllust": [
+      "BlackKnight_attack"
+    ],
+    "illustPositions": {
+      "BlackKnight": "center-right"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -9224,10 +9285,12 @@ export const scenarioData = [
     "role": "NAGISA",
     "text": "「────下がれッ！！」",
     "showIllust": [
-      "Nagisa_serious"
+      "Nagisa_serious_injured",
+      "BlackKnight_attack"
     ],
     "illustPositions": {
-      "Nagisa": "center"
+      "Nagisa": "center-left",
+      "BlackKnight": "center-right"
     }
   },
   {
@@ -9268,11 +9331,14 @@ export const scenarioData = [
     "role": "NAGISA",
     "text": "「はぁ…………はぁ……………」",
     "showIllust": [
-      "Nagisa_neutral"
+      "Nagisa_serious_injured"
     ],
     "illustPositions": {
       "Nagisa": "center"
-    }
+    },
+    "hideIllust": [
+      "BlackKnight"
+    ]
   },
   {
     "scene": "瓦礫裏",
@@ -9296,7 +9362,7 @@ export const scenarioData = [
     "text": "「はは……さっきの指示、的確だっただろ。ぼくのおかげ、だね……」",
     "bgm": "serious_3.mp3",
     "showIllust": [
-      "Nagisa_smile"
+      "Nagisa_neutral"
     ],
     "illustPositions": {
       "Nagisa": "center"
@@ -9320,13 +9386,7 @@ export const scenarioData = [
     "scene": "瓦礫裏",
     "speaker": "凪砂",
     "role": "NAGISA",
-    "text": "「前、黒騎士に会った時には感じなかったけど……今回は、あいつの声が……『聴こえた』よ……」",
-    "showIllust": [
-      "Nagisa_neutral"
-    ],
-    "illustPositions": {
-      "Nagisa": "center"
-    }
+    "text": "「前、黒騎士に会った時には感じなかったけど……今回は、あいつの声が……『聴こえた』よ……」"
   },
   {
     "scene": "瓦礫裏",
@@ -9344,7 +9404,7 @@ export const scenarioData = [
     "role": "NAGISA",
     "text": "「……僕には、相手の考えてることがわかる。どんなに恐ろしい化け物相手でもね。あいつが次にどう動くか、全部僕の頭の中に流れ込んでくるんだ」",
     "showIllust": [
-      "Nagisa_smile"
+      "Nagisa_serious"
     ],
     "illustPositions": {
       "Nagisa": "center"
@@ -9358,13 +9418,7 @@ export const scenarioData = [
     "scene": "瓦礫裏",
     "speaker": "凪砂",
     "role": "NAGISA",
-    "text": "「便利だって思うだろ？…この力は制御できない。つまり…勝手に流れてくるんだよ。他の思考が。望んでもいないのに、有象無象のどす黒い本音も、化け物の殺意も、ぜんぶ強制的に脳みそへ注ぎ込まれる」",
-    "showIllust": [
-      "Nagisa_neutral"
-    ],
-    "illustPositions": {
-      "Nagisa": "center"
-    }
+    "text": "「便利だって思うだろ？…この力は制御できない。つまり…勝手に流れてくるんだよ。他の思考が。望んでもいないのに、有象無象のどす黒い本音も、化け物の殺意も、ぜんぶ強制的に脳みそへ注ぎ込まれる」"
   },
   {
     "scene": "瓦礫裏",
@@ -9372,7 +9426,7 @@ export const scenarioData = [
     "role": "NAGISA",
     "text": "「……僕の頭はね、ずっとうるさくて、壊れそうなんだ」",
     "showIllust": [
-      "Nagisa_smile"
+      "Nagisa_neutral"
     ],
     "illustPositions": {
       "Nagisa": "center"
@@ -9402,7 +9456,7 @@ export const scenarioData = [
     "role": "NAGISA",
     "text": "「………………わからない」",
     "showIllust": [
-      "Nagisa_neutral"
+      "Nagisa_serious"
     ],
     "illustPositions": {
       "Nagisa": "center"
@@ -9422,29 +9476,23 @@ export const scenarioData = [
     "scene": "瓦礫裏",
     "speaker": "凪砂",
     "role": "NAGISA",
-    "text": "「不思議だよね。君の情報だけ……なにも、流れてこない」",
+    "text": "「不思議だよね。君の情報だけ……なにも、流れてこない」"
+  },
+  {
+    "scene": "瓦礫裏",
+    "text": "凪砂さんは自嘲気味に、どこか寂しそうに唇を歪めた。",
     "showIllust": [
-      "Nagisa_smile"
+      "Nagisa_neutral"
     ],
     "illustPositions": {
       "Nagisa": "center"
     }
-  },
-  {
-    "scene": "瓦礫裏",
-    "text": "凪砂さんは自嘲気味に、どこか寂しそうに唇を歪めた。"
   },
   {
     "scene": "瓦礫裏",
     "speaker": "凪砂",
     "role": "NAGISA",
-    "text": "「それどころか、君が近くにいる時だけ……何も聞こえなくなる。いつも思うんだ。世界ってこんなに静かだったんだって」",
-    "showIllust": [
-      "Nagisa_smile"
-    ],
-    "illustPositions": {
-      "Nagisa": "center"
-    }
+    "text": "「それどころか、君が近くにいる時だけ……何も聞こえなくなる。いつも思うんだ。世界ってこんなに静かだったんだって」"
   },
   {
     "scene": "瓦礫裏",
@@ -9465,7 +9513,7 @@ export const scenarioData = [
     "text": "「……アイツがそこまで迫ってきてる。君は僕を置いて逃げろ。その間にコアはなんとかしとくから」",
     "bgm": "stop",
     "showIllust": [
-      "Nagisa_serious"
+      "Nagisa_serious_injured"
     ],
     "illustPositions": {
       "Nagisa": "center"
@@ -9502,7 +9550,13 @@ export const scenarioData = [
   },
   {
     "scene": "瓦礫裏",
-    "text": "凪砂さんの脳内を苛んでいた悍ましい濁流が、堰を切ったように、劇的な静寂へと変わっていくのが、手に取るように分かった。張り詰めていた彼の身体から、ふっと強張りが消えていく。"
+    "text": "凪砂さんの脳内を苛んでいた悍ましい濁流が、堰を切ったように、劇的な静寂へと変わっていくのが、手に取るように分かった。張り詰めていた彼の身体から、ふっと強張りが消えていく。",
+    "showIllust": [
+      "Nagisa_neutral"
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "瓦礫裏",
@@ -9524,13 +9578,7 @@ export const scenarioData = [
     "scene": "瓦礫裏",
     "speaker": "凪砂",
     "role": "NAGISA",
-    "text": "「君って…ほんとバカみたいなお人好しだね」",
-    "showIllust": [
-      "Nagisa_smile"
-    ],
-    "illustPositions": {
-      "Nagisa": "center"
-    }
+    "text": "「君って…ほんとバカみたいなお人好しだね」"
   },
   {
     "scene": "瓦礫裏",
@@ -9563,7 +9611,10 @@ export const scenarioData = [
     "action": "SHAKE_SCREEN",
     "showIllust": [
       "BlackKnight"
-    ]
+    ],
+    "illustPositions": {
+      "BlackKnight": "center-right"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -9579,10 +9630,12 @@ export const scenarioData = [
     "role": "NAGISA",
     "text": "「朔良、怯まないで。──あいつの動きなら、今度は全部僕の頭の中に視えている。なんでか知らないけど……余計な情報は、今は流れてこないんだ」",
     "showIllust": [
-      "Nagisa_neutral"
+      "Nagisa_serious",
+      "BlackKnight"
     ],
     "illustPositions": {
-      "Nagisa": "center"
+      "Nagisa": "center-left",
+      "BlackKnight": "center-right"
     }
   },
   {
@@ -9591,10 +9644,12 @@ export const scenarioData = [
     "role": "NAGISA",
     "text": "「右からくるよ。──三歩下がって！」",
     "showIllust": [
-      "Nagisa_neutral"
+      "Nagisa_serious_injured",
+      "BlackKnight"
     ],
     "illustPositions": {
-      "Nagisa": "center"
+      "Nagisa": "center-left",
+      "BlackKnight": "center-right"
     }
   },
   {
@@ -9620,10 +9675,12 @@ export const scenarioData = [
     "role": "NAGISA",
     "text": "「へえ、僕の指示を無視して避けるなんて、いい度胸だね」",
     "showIllust": [
-      "Nagisa_smile"
+      "Nagisa_serious",
+      "BlackKnight"
     ],
     "illustPositions": {
-      "Nagisa": "center"
+      "Nagisa": "center-left",
+      "BlackKnight": "center-right"
     }
   },
   {
@@ -9638,10 +9695,12 @@ export const scenarioData = [
     "role": "NAGISA",
     "text": "「いや、今のは君の判断が正しかったよ。あいつ、途中で軌道を変えやがった。……僕の予知を超えて動くなんてね」",
     "showIllust": [
-      "Nagisa_smile"
+      "Nagisa_neutral",
+      "BlackKnight"
     ],
     "illustPositions": {
-      "Nagisa": "center"
+      "Nagisa": "center-left",
+      "BlackKnight": "center-right"
     }
   },
   {
@@ -9654,19 +9713,21 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "黒騎士は、己の渾身の一撃が完全に空を切ったことに激昂したのか、さらに深く大剣を構え直す。しかし、大振りの攻撃の直後、その漆黒の肉体には、ほんの一瞬だけの「硬直」が生じていた。"
+    "text": "黒騎士は、己の渾身の一撃が完全に空を切ったことに激昂したのか、さらに深く大剣を構え直す。しかし、大振りの攻撃の直後、その漆黒の肉体には、ほんの一瞬だけの「硬直」が生じていた。",
+    "showIllust": [
+      "Nagisa_neutral",
+      "BlackKnight_attack"
+    ],
+    "illustPositions": {
+      "Nagisa": "center-left",
+      "BlackKnight": "center-right"
+    }
   },
   {
     "scene": "研究所の最奥",
     "speaker": "凪砂",
     "role": "NAGISA",
-    "text": "「──今だ」",
-    "showIllust": [
-      "Nagisa_neutral"
-    ],
-    "illustPositions": {
-      "Nagisa": "center"
-    }
+    "text": "「──今だ」"
   },
   {
     "scene": "研究所の最奥",
@@ -9678,13 +9739,7 @@ export const scenarioData = [
     "scene": "研究所の最奥",
     "speaker": "凪砂",
     "role": "NAGISA",
-    "text": "「左の盾はフェイントだ、右の装甲の隙間を狙って！」",
-    "showIllust": [
-      "Nagisa_neutral"
-    ],
-    "illustPositions": {
-      "Nagisa": "center"
-    }
+    "text": "「左の盾はフェイントだ、右の装甲の隙間を狙って！」"
   },
   {
     "scene": "研究所の最奥",
@@ -9704,19 +9759,21 @@ export const scenarioData = [
   {
     "scene": "研究所の最奥",
     "text": "黒騎士は残された僅かな力を振り絞るように、大剣を両手で逆手に持ち替えた。突如、その全身から禍々しい黒いオーラが爆発的に膨れ上がる。",
-    "action": "BLACK_DISTORTION"
+    "action": "BLACK_DISTORTION",
+    "showIllust": [
+      "Nagisa_neutral",
+      "BlackKnight_attack"
+    ],
+    "illustPositions": {
+      "Nagisa": "center-left",
+      "BlackKnight": "center-right"
+    }
   },
   {
     "scene": "研究所の最奥",
     "speaker": "凪砂",
     "role": "NAGISA",
-    "text": "「っ、朔良、下がって！ 相打ちを狙う気だ……！」",
-    "showIllust": [
-      "Nagisa_neutral"
-    ],
-    "illustPositions": {
-      "Nagisa": "center"
-    }
+    "text": "「っ、朔良、下がって！ 相打ちを狙う気だ……！」"
   },
   {
     "scene": "研究所の最奥",
@@ -9739,10 +9796,7 @@ export const scenarioData = [
     "scene": "研究所の最奥",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「くっ……！」",
-    "hideIllust": [
-      "BlackKnight"
-    ]
+    "text": "「くっ……！」"
   },
   {
     "scene": "研究所の最奥",
@@ -9768,11 +9822,14 @@ export const scenarioData = [
     "role": "NAGISA",
     "text": "「……逃げられた、か」",
     "showIllust": [
-      "Nagisa_neutral"
+      "Nagisa_serious_injured"
     ],
     "illustPositions": {
       "Nagisa": "center"
-    }
+    },
+    "hideIllust": [
+      "BlackKnight"
+    ]
   },
   {
     "scene": "研究所の最奥",
@@ -9784,7 +9841,7 @@ export const scenarioData = [
     "role": "NAGISA",
     "text": "「……さて。邪魔者はいなくなったし、本来の仕事を片付けようか」",
     "showIllust": [
-      "Nagisa_neutral"
+      "Nagisa_serious"
     ],
     "illustPositions": {
       "Nagisa": "center"
@@ -9832,7 +9889,7 @@ export const scenarioData = [
     "role": "NAGISA",
     "text": "「ぐ、っ……あああああぁぁぁ……ッ！！」",
     "showIllust": [
-      "Nagisa_serious"
+      "Nagisa_serious_injured"
     ],
     "illustPositions": {
       "Nagisa": "center"
@@ -9872,13 +9929,7 @@ export const scenarioData = [
     "scene": "研究所の最奥",
     "speaker": "凪砂",
     "role": "NAGISA",
-    "text": "「は、あぐ……っ、これ、で……終わりだ……ッ！！」",
-    "showIllust": [
-      "Nagisa_serious"
-    ],
-    "illustPositions": {
-      "Nagisa": "center"
-    }
+    "text": "「は、あぐ……っ、これ、で……終わりだ……ッ！！」"
   },
   {
     "scene": "研究所の最奥",
@@ -9935,7 +9986,7 @@ export const scenarioData = [
     "role": "NAGISA",
     "text": "「……鼓動って、こんなに落ち着く音だったんだね…………」",
     "showIllust": [
-      "Nagisa_smile"
+      "Nagisa_neutral"
     ],
     "illustPositions": {
       "Nagisa": "center"
@@ -9953,13 +10004,7 @@ export const scenarioData = [
     "scene": "研究所の最奥",
     "speaker": "凪砂",
     "role": "NAGISA",
-    "text": "「……これで、ようやく帰れるんだね」",
-    "showIllust": [
-      "Nagisa_smile"
-    ],
-    "illustPositions": {
-      "Nagisa": "center"
-    }
+    "text": "「……これで、ようやく帰れるんだね」"
   },
   {
     "scene": "研究所の最奥",
@@ -9997,7 +10042,7 @@ export const scenarioData = [
     "role": "NAGISA",
     "text": "「……君が支えてくれるなら、どこまででも」",
     "showIllust": [
-      "Nagisa_neutral"
+      "Nagisa_smile"
     ],
     "illustPositions": {
       "Nagisa": "center"
@@ -10052,7 +10097,7 @@ export const scenarioData = [
     "role": "NAGISA",
     "text": "「……綺麗だね」",
     "showIllust": [
-      "Nagisa_smile"
+      "Nagisa_serious"
     ],
     "illustPositions": {
       "Nagisa": "center"
@@ -10066,13 +10111,7 @@ export const scenarioData = [
     "scene": "宇宙空間",
     "speaker": "凪砂",
     "role": "NAGISA",
-    "text": "「本当に、何にも聴こえないや。他人のドス黒い感情も、化け物の殺意も……全部、あの場所に置いてこられたみたいだ」",
-    "showIllust": [
-      "Nagisa_neutral"
-    ],
-    "illustPositions": {
-      "Nagisa": "center"
-    }
+    "text": "「本当に、何にも聴こえないや。他人のドス黒い感情も、化け物の殺意も……全部、あの場所に置いてこられたみたいだ」"
   },
   {
     "scene": "宇宙空間",
@@ -10084,7 +10123,7 @@ export const scenarioData = [
     "role": "NAGISA",
     "text": "「ねえ、朔良。地球に着いたら、ちゃんと約束、守ってくれるよね？」",
     "showIllust": [
-      "Nagisa_smile"
+      "Nagisa_neutral"
     ],
     "illustPositions": {
       "Nagisa": "center"
@@ -10102,7 +10141,7 @@ export const scenarioData = [
     "role": "NAGISA",
     "text": "「忘れたの？ デートの約束だよ。この静かで最高な世界を、君と一緒に歩き回りたいんだ」",
     "showIllust": [
-      "Nagisa_happy"
+      "Nagisa_smile"
     ],
     "illustPositions": {
       "Nagisa": "center"
@@ -10154,7 +10193,13 @@ export const scenarioData = [
     "text": "「やあ、朔良。実習報告書のデータ、じつに素晴らしい出来だったよ。あの極限状態できちんとフォントサイズまで揃えてくるとは、さすが我が研究室の学生だね」",
     "bg": "/scene/lab.png",
     "showIllust": [
-      "Hirumi_smile"
+      "Hirumi_happy"
+    ],
+    "illustPositions": {
+      "Hirumi": "center-right"
+    },
+    "hideIllust": [
+      "Nagisa"
     ]
   },
   {
@@ -10173,10 +10218,7 @@ export const scenarioData = [
     "scene": "研究室",
     "text": "そして、そんな中変わったことと言えば──。",
     "bg": "black",
-    "bgm": "stop",
-    "hideIllust": [
-      "Hirumi_smile"
-    ]
+    "bgm": "stop"
   },
   {
     "scene": "待ち合わせ場所",
@@ -10215,11 +10257,14 @@ export const scenarioData = [
     "role": "NAGISA",
     "text": "「遅い」",
     "showIllust": [
-      "Nagisa_neutral"
+      "Nagisa_serious"
     ],
     "illustPositions": {
       "Nagisa": "center"
-    }
+    },
+    "hideIllust": [
+      "Hirumi"
+    ]
   },
   {
     "scene": "待ち合わせ場所",
@@ -10235,13 +10280,7 @@ export const scenarioData = [
     "scene": "待ち合わせ場所",
     "speaker": "凪砂",
     "role": "NAGISA",
-    "text": "「まったく……君は言い訳が好きだね」",
-    "showIllust": [
-      "Nagisa_smile"
-    ],
-    "illustPositions": {
-      "Nagisa": "center"
-    }
+    "text": "「まったく……君は言い訳が好きだね」"
   },
   {
     "scene": "待ち合わせ場所",
@@ -10249,7 +10288,13 @@ export const scenarioData = [
   },
   {
     "scene": "待ち合わせ場所",
-    "text": "だけど、彼の顔をよく見ると、怒っている風には全く見えなかった。むしろ、子供が新しそうなおもちゃを見つけたときのような、どこか無邪気で愉しげな光がその瞳に宿っている。"
+    "text": "だけど、彼の顔をよく見ると、怒っている風には全く見えなかった。むしろ、子供が新しそうなおもちゃを見つけたときのような、どこか無邪気で愉しげな光がその瞳に宿っている。",
+    "showIllust": [
+      "Nagisa_neutral"
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "待ち合わせ場所",
@@ -10259,13 +10304,7 @@ export const scenarioData = [
     "scene": "待ち合わせ場所",
     "speaker": "凪砂",
     "role": "NAGISA",
-    "text": "「というわけで、遅れてきた罰として、今日は僕が満足するまで帰さないから」",
-    "showIllust": [
-      "Nagisa_neutral"
-    ],
-    "illustPositions": {
-      "Nagisa": "center"
-    }
+    "text": "「というわけで、遅れてきた罰として、今日は僕が満足するまで帰さないから」"
   },
   {
     "scene": "待ち合わせ場所",
@@ -10279,7 +10318,13 @@ export const scenarioData = [
   },
   {
     "scene": "待ち合わせ場所",
-    "text": "突然の言葉に私が激しく動揺していると、そんな動揺をさらに加速させるように、彼の顔が不意にぐっと近づいてくる。整った顔立ちが目の前に迫り、息が止まりそうになった瞬間──。"
+    "text": "突然の言葉に私が激しく動揺していると、そんな動揺をさらに加速させるように、彼の顔が不意にぐっと近づいてくる。整った顔立ちが目の前に迫り、息が止まりそうになった瞬間──。",
+    "showIllust": [
+      "Nagisa_neutral"
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "待ち合わせ場所",
@@ -10297,7 +10342,7 @@ export const scenarioData = [
     "role": "NAGISA",
     "text": "「くっ……あははははっ！！ 何その顔！ 茹でダコみたい……っ」",
     "showIllust": [
-      "Nagisa_happy"
+      "Nagisa_smile"
     ],
     "illustPositions": {
       "Nagisa": "center"
@@ -10323,11 +10368,11 @@ export const scenarioData = [
     "role": "NAGISA",
     "text": "「僕を待たせた罰第1弾ってこと。外への見せつけ」",
     "showIllust": [
-      "Nagisa_smile"
+      "Nagisa_CG2"
     ],
-    "illustPositions": {
-      "Nagisa": "center"
-    }
+    "hideIllust": [
+      "Nagisa"
+    ]
   },
   {
     "scene": "待ち合わせ場所",
@@ -10348,9 +10393,6 @@ export const scenarioData = [
     "speaker": "凪砂",
     "role": "NAGISA",
     "text": "「ほら、なにボケっとしてるの。早く行くよ」",
-    "hideIllust": [
-      "Nagisa_smile"
-    ],
     "bg": "/character/Nagisa/Nagisa_CG2.png"
   },
   {
