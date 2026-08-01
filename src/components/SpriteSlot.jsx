@@ -110,7 +110,11 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
 
           let imagePath = assetPath(`${config.folder}/${config.baseFileName}_${expression}.png`);
           if (baseCharName === "BlackKnight") {
-            imagePath = assetPath(`${config.folder}/BlackKnight.png`);
+            if (expression === "attack") {
+              imagePath = assetPath(`${config.folder}/BlackKnight_attack.png`);
+            } else {
+              imagePath = assetPath(`${config.folder}/BlackKnight.png`);
+            }
           }
 
           let currentRoute = null;
@@ -187,6 +191,7 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
             'left':         { left: '-7.5%' },   // center 15% → left = -7.5%
             'center-left':  { left: '10%' },     // center 32.5% → left = 10%
             'center':       { left: '27.5%' },   // center 50% → left = 27.5%
+            'center-close': { left: '27.5%', scale: 1.35, y: '5%' }, // center 50% but zoomed in
             'center-right': { left: '45%' },     // center 67.5% → left = 45%
             'right':        { left: '62.5%' },   // center 85% → left = 62.5%
           };

@@ -7926,7 +7926,6 @@ export const scenarioData = [
     "role": "NAGISA",
     "text": "「おっと、危ない」 ",
     "bg": "/scene/university_collapse.png",
-    "action": "SHOW_NAGISA_LEFT",
     "label": "nagisa_route_start"
   },
   {
@@ -7937,14 +7936,11 @@ export const scenarioData = [
     "scene": "大学の敷地内",
     "text": "端正な顔立ちに、完璧に計算されたような優しい笑みを浮かべた青年──凪砂さんだった。",
     "showIllust": [
-      "Hirumi_smile"
+      "Nagisa_neutral"
     ],
     "illustPositions": {
-      "Hirumi": "center-right"
-    },
-    "hideIllust": [
-      "Nagisa"
-    ]
+      "Nagisa": "center-right"
+    }
   },
   {
     "scene": "大学の敷地内",
@@ -7966,10 +7962,7 @@ export const scenarioData = [
     ],
     "illustPositions": {
       "Nagisa": "center-right"
-    },
-    "hideIllust": [
-      "Hirumi"
-    ]
+    }
   },
   {
     "scene": "大学の敷地内",
@@ -7997,7 +7990,17 @@ export const scenarioData = [
     "scene": "大学の敷地内",
     "text": "凪砂さんは私の手を引いて力強く走り出した。睦典や他の人の姿が見えないことを聞こうとしようとしたけど、そんな暇を与えられないまま引っ張られてしまう。 ",
     "bg": "/scene/university_hallway_collapse.png",
-    "bgAnimation": "dash"
+    "bgAnimation": "dash",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsunori",
+      "Akane",
+      "Michiru",
+      "Ruki",
+      "Nagisa"
+    ]
   },
   {
     "scene": "大学の敷地内",
@@ -8034,25 +8037,22 @@ export const scenarioData = [
     "bgm": "serious_1.mp3",
     "bgmFade": 1.5,
     "showIllust": [
-      "Hirumi_smile"
+      "Hirumi_serious"
     ],
     "illustPositions": {
-      "Hirumi": "center-right"
-    },
-    "hideIllust": [
-      "Nagisa"
-    ]
+      "Hirumi": "right"
+    }
   },
   {
     "scene": "教授の研究室",
     "text": "教授は突然の侵入者である私たちを見やると、ニヤリと口元を歪め、凪砂さんを値踏みするように目を細めた。",
     "showIllust": [
       "Nagisa_neutral",
-      "Hirumi_smile"
+      "Hirumi_serious"
     ],
     "illustPositions": {
       "Nagisa": "center-left",
-      "Hirumi": "center-right"
+      "Hirumi": "right"
     }
   },
   {
@@ -8073,8 +8073,7 @@ export const scenarioData = [
     "scene": "教授の研究室",
     "speaker": "ヒルミ教授",
     "role": "PROFESSOR",
-    "text": "「…説明はあまりしていられない、君たちにはこれからこのロケットに乗って、あの青い月まで行ってもらう」",
-    "action": "SHOW_PROFESSOR_LEFT"
+    "text": "「…説明はあまりしていられない、君たちにはこれからこのロケットに乗って、あの青い月まで行ってもらう」"
   },
   {
     "scene": "教授の研究室",
@@ -8087,11 +8086,11 @@ export const scenarioData = [
     "text": "「お言葉ですが、言ってる意味がよく分かりません。もう少し説明して頂かないと、ね」",
     "showIllust": [
       "Nagisa_serious",
-      "Hirumi_smile"
+      "Hirumi_serious"
     ],
     "illustPositions": {
       "Nagisa": "center-left",
-      "Hirumi": "center-right"
+      "Hirumi": "right"
     }
   },
   {
@@ -8103,11 +8102,11 @@ export const scenarioData = [
     "text": "しかし、デスクの向こうに佇む教授の背中は、微塵も揺るがなかった。",
     "showIllust": [
       "Nagisa_serious",
-      "Hirumi_happy"
+      "Hirumi_smile"
     ],
     "illustPositions": {
       "Nagisa": "center-left",
-      "Hirumi": "center-right"
+      "Hirumi": "right"
     }
   },
   {
@@ -8130,12 +8129,12 @@ export const scenarioData = [
     "role": "PROFESSOR",
     "text": "「あの青い月には、この狂った世界のすべての元凶である『研究所のコア』がある。世界を元に戻したければ、そこへ行ってコアを止めてきなさい。君たちにしかできない仕事だ」",
     "showIllust": [
-      "Nagisa_neutral",
-      "Hirumi_smile"
+      "Nagisa_serious",
+      "Hirumi_serious"
     ],
     "illustPositions": {
       "Nagisa": "center-left",
-      "Hirumi": "center-right"
+      "Hirumi": "right"
     }
   },
   {
@@ -8165,11 +8164,11 @@ export const scenarioData = [
     "text": "「……私についても、心配は無用さ。さぁタイムリミットだ。──行きなさい、朔良」",
     "showIllust": [
       "Nagisa_serious",
-      "Hirumi_happy"
+      "Hirumi_smile"
     ],
     "illustPositions": {
       "Nagisa": "center-left",
-      "Hirumi": "center-right"
+      "Hirumi": "right"
     }
   },
   {
@@ -8191,14 +8190,13 @@ export const scenarioData = [
     "role": "NAGISA",
     "text": "「はぁ……面倒臭いなぁ。それなら早く済ませて帰ろうか」",
     "showIllust": [
-      "Nagisa_serious_injured"
+      "Nagisa_serious",
+      "Hirumi_smile"
     ],
     "illustPositions": {
-      "Nagisa": "center-left"
-    },
-    "hideIllust": [
-      "Hirumi"
-    ]
+      "Nagisa": "center-left",
+      "Hirumi": "right"
+    }
   },
   {
     "scene": "教授の研究室",
@@ -8222,7 +8220,17 @@ export const scenarioData = [
   },
   {
     "scene": "教授の研究室",
-    "text": "凪砂さんは私の腕を乱暴に、だけど確実に安全な機内へと引っ張り上げる。"
+    "text": "凪砂さんは私の腕を乱暴に、だけど確実に安全な機内へと引っ張り上げる。",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsunori",
+      "Akane",
+      "Michiru",
+      "Ruki",
+      "Nagisa"
+    ]
   },
   {
     "scene": "ロケット内部",
@@ -8276,13 +8284,7 @@ export const scenarioData = [
     "scene": "ロケット内部",
     "speaker": "凪砂",
     "role": "NAGISA",
-    "text": "「……………」",
-    "showIllust": [
-      "Nagisa_neutral"
-    ],
-    "illustPositions": {
-      "Nagisa": "center"
-    }
+    "text": "「……………」"
   },
   {
     "scene": "ロケット内部",
@@ -8349,13 +8351,7 @@ export const scenarioData = [
     "scene": "ロケット内部",
     "speaker": "凪砂",
     "role": "NAGISA",
-    "text": "「……………」",
-    "showIllust": [
-      "Nagisa_serious"
-    ],
-    "illustPositions": {
-      "Nagisa": "center"
-    }
+    "text": "「……………」"
   },
   {
     "scene": "ロケット内部",
@@ -8381,7 +8377,17 @@ export const scenarioData = [
     "role": "SAKURA",
     "text": "「う…………ぅう………」",
     "bg": "/scene/rocket_collapse.png",
-    "action": "WAKE_UP"
+    "action": "WAKE_UP",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsunori",
+      "Akane",
+      "Michiru",
+      "Ruki",
+      "Nagisa"
+    ]
   },
   {
     "scene": "ロケット内部(墜落後)",
@@ -8448,7 +8454,17 @@ export const scenarioData = [
     "scene": "月面",
     "text": "私はよろよろと立ち上がり、大破したロケットの外へと這い出した。",
     "action": "CLEAR_RED_ALERT",
-    "bgm": "Moon.mp3"
+    "bgm": "Moon.mp3",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsunori",
+      "Akane",
+      "Michiru",
+      "Ruki",
+      "Nagisa"
+    ]
   },
   {
     "scene": "月面",
@@ -8570,12 +8586,12 @@ export const scenarioData = [
   },
   {
     "scene": "月面",
-    "text": "それを凪砂さんの方へ差し出そうとした──その刹那。\nスッ、と凪砂さんが迷いなく一歩を踏み込み、私との距離を一気にゼロにした。",
+    "text": "それを凪砂さんの方へ差し出そうとした──その刹那。スッと凪砂さんが迷いなく一歩を踏み込み、私との距離を一気にゼロにした。",
     "showIllust": [
       "Nagisa_neutral"
     ],
     "illustPositions": {
-      "Nagisa": "center"
+      "Nagisa": "center-close"
     }
   },
   {
@@ -8587,7 +8603,7 @@ export const scenarioData = [
   },
   {
     "scene": "月面",
-    "text": "耐えかねて、私は紙を持ったまま小さく悲鳴を上げて身をよじった。\nすると、私の過剰な反応が面白かったのか、凪砂さんは顔を近づけたまま「ふっ」と意地の悪い笑みをこぼした。"
+    "text": "耐えかねて、私は紙を持ったまま小さく悲鳴を上げて身をよじった。すると、私の過剰な反応が面白かったのか、凪砂さんは顔を近づけたまま「ふっ」と意地の悪い笑みをこぼした。"
   },
   {
     "scene": "月面",
@@ -8845,7 +8861,17 @@ export const scenarioData = [
   },
   {
     "scene": "月面",
-    "text": "私は凪砂さんから目を背け、これ以上の会話を拒むようにして歩き出した。"
+    "text": "私は凪砂さんから目を背け、これ以上の会話を拒むようにして歩き出した。",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsunori",
+      "Akane",
+      "Michiru",
+      "Ruki",
+      "Nagisa"
+    ]
   },
   {
     "scene": "月面",
@@ -8897,7 +8923,7 @@ export const scenarioData = [
     "role": "NAGISA",
     "text": "「別に。何でもないから」",
     "showIllust": [
-      "Nagisa_serious_injured"
+      "Nagisa_serious"
     ],
     "illustPositions": {
       "Nagisa": "center"
@@ -8913,7 +8939,17 @@ export const scenarioData = [
   },
   {
     "scene": "制御室",
-    "text": "ギスギスとした沈黙を引きずったまま、私たちは歩を進める。曲がり角を過ぎ、私たちはついに、研究所の最深部へとたどり着いた。"
+    "text": "ギスギスとした沈黙を引きずったまま、私たちは歩を進める。曲がり角を過ぎ、私たちはついに、研究所の最深部へとたどり着いた。",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsunori",
+      "Akane",
+      "Michiru",
+      "Ruki",
+      "Nagisa"
+    ]
   },
   {
     "scene": "最深部",
@@ -8936,7 +8972,7 @@ export const scenarioData = [
     "role": "NAGISA",
     "text": "「ッ……ぐ、あ……っ」",
     "showIllust": [
-      "Nagisa_serious_injured"
+      "Nagisa_serious"
     ],
     "illustPositions": {
       "Nagisa": "center"
@@ -8951,7 +8987,17 @@ export const scenarioData = [
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「凪砂さん！？ 大丈夫！？\n————うわあ……っ！？」",
-    "action": "SHAKE_SCREEN"
+    "action": "SHAKE_SCREEN",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsunori",
+      "Akane",
+      "Michiru",
+      "Ruki",
+      "Nagisa"
+    ]
   },
   {
     "scene": "最深部",
@@ -8975,7 +9021,17 @@ export const scenarioData = [
     "scene": "最深部",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「なんなの……？」"
+    "text": "「なんなの……？」",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsunori",
+      "Akane",
+      "Michiru",
+      "Ruki",
+      "Nagisa"
+    ]
   },
   {
     "scene": "最深部",
@@ -9109,7 +9165,17 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "けれど凪砂さんは、そんな私の不安な気持ちなんて露知らず、躊躇いのない足取りでコアへと近寄っていく。その背中が、なんだかとても遠くに見えた。"
+    "text": "けれど凪砂さんは、そんな私の不安な気持ちなんて露知らず、躊躇いのない足取りでコアへと近寄っていく。その背中が、なんだかとても遠くに見えた。",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsunori",
+      "Akane",
+      "Michiru",
+      "Ruki",
+      "Nagisa"
+    ]
   },
   {
     "scene": "研究所の最奥",
@@ -9145,7 +9211,17 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "私が口籠っていると、凪砂さんは小さく溜息をつき、あきれたようにこちらへ戻ってきた。"
+    "text": "私が口籠っていると、凪砂さんは小さく溜息をつき、あきれたようにこちらへ戻ってきた。",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsunori",
+      "Akane",
+      "Michiru",
+      "Ruki",
+      "Nagisa"
+    ]
   },
   {
     "scene": "研究所の最奥",
@@ -9169,7 +9245,17 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "私の返事なんて最初から求めていないかのように。けれど、その背中はさっきよりも少しだけ、私の近くにあるように思えた。"
+    "text": "私の返事なんて最初から求めていないかのように。けれど、その背中はさっきよりも少しだけ、私の近くにあるように思えた。",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsunori",
+      "Akane",
+      "Michiru",
+      "Ruki",
+      "Nagisa"
+    ]
   },
   {
     "scene": "研究所の最奥",
@@ -9186,7 +9272,7 @@ export const scenarioData = [
     "text": "「ぐ…っ………うぅ……！！」",
     "bgm": "stop",
     "showIllust": [
-      "Nagisa_serious_injured"
+      "Nagisa_serious"
     ],
     "illustPositions": {
       "Nagisa": "center"
@@ -9205,7 +9291,13 @@ export const scenarioData = [
     "scene": "研究所の最奥",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「凪砂さん！！」"
+    "text": "「凪砂さん！！」",
+    "showIllust": [
+      "Nagisa_serious"
+    ],
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -9217,7 +9309,7 @@ export const scenarioData = [
     "role": "NAGISA",
     "text": "「はぁ…っ、く……はぁ……」",
     "showIllust": [
-      "Nagisa_serious_injured"
+      "Nagisa_serious"
     ],
     "illustPositions": {
       "Nagisa": "center"
@@ -9230,7 +9322,17 @@ export const scenarioData = [
   {
     "scene": "研究所の最奥",
     "text": "ドオオォン──！！！",
-    "action": "SHAKE_SCREEN"
+    "action": "SHAKE_SCREEN",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsunori",
+      "Akane",
+      "Michiru",
+      "Ruki",
+      "Nagisa"
+    ]
   },
   {
     "scene": "研究所の最奥",
@@ -9285,7 +9387,7 @@ export const scenarioData = [
     "role": "NAGISA",
     "text": "「────下がれッ！！」",
     "showIllust": [
-      "Nagisa_serious_injured",
+      "Nagisa_serious",
       "BlackKnight_attack"
     ],
     "illustPositions": {
@@ -9310,7 +9412,17 @@ export const scenarioData = [
     "scene": "研究所の最奥",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「凪砂さん……行きますよ……！」"
+    "text": "「凪砂さん……行きますよ……！」",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsunori",
+      "Akane",
+      "Michiru",
+      "Ruki",
+      "Nagisa"
+    ]
   },
   {
     "scene": "研究所の最奥",
@@ -9331,14 +9443,11 @@ export const scenarioData = [
     "role": "NAGISA",
     "text": "「はぁ…………はぁ……………」",
     "showIllust": [
-      "Nagisa_serious_injured"
+      "Nagisa_serious"
     ],
     "illustPositions": {
       "Nagisa": "center"
-    },
-    "hideIllust": [
-      "BlackKnight"
-    ]
+    }
   },
   {
     "scene": "瓦礫裏",
@@ -9513,7 +9622,7 @@ export const scenarioData = [
     "text": "「……アイツがそこまで迫ってきてる。君は僕を置いて逃げろ。その間にコアはなんとかしとくから」",
     "bgm": "stop",
     "showIllust": [
-      "Nagisa_serious_injured"
+      "Nagisa_serious"
     ],
     "illustPositions": {
       "Nagisa": "center"
@@ -9552,7 +9661,7 @@ export const scenarioData = [
     "scene": "瓦礫裏",
     "text": "凪砂さんの脳内を苛んでいた悍ましい濁流が、堰を切ったように、劇的な静寂へと変わっていくのが、手に取るように分かった。張り詰めていた彼の身体から、ふっと強張りが消えていく。",
     "showIllust": [
-      "Nagisa_neutral"
+      "Nagisa_serious"
     ],
     "illustPositions": {
       "Nagisa": "center"
@@ -9596,7 +9705,17 @@ export const scenarioData = [
   },
   {
     "scene": "瓦礫裏",
-    "text": "震えの止まった彼の手を引き、私はその身体を支えながら、力強く立ち上がった。もう、私たちの間に、あの冷たい壁はどこにもなかった。"
+    "text": "震えの止まった彼の手を引き、私はその身体を支えながら、力強く立ち上がった。もう、私たちの間に、あの冷たい壁はどこにもなかった。",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsunori",
+      "Akane",
+      "Michiru",
+      "Ruki",
+      "Nagisa"
+    ]
   },
   {
     "scene": "研究所の最奥",
@@ -9644,7 +9763,7 @@ export const scenarioData = [
     "role": "NAGISA",
     "text": "「右からくるよ。──三歩下がって！」",
     "showIllust": [
-      "Nagisa_serious_injured",
+      "Nagisa_serious",
       "BlackKnight"
     ],
     "illustPositions": {
@@ -9662,7 +9781,17 @@ export const scenarioData = [
     "scene": "研究所の最奥",
     "text": "脳が恐怖で制動をかけるより早く、私の身体が勝手に動いていた。凪砂さんの指示をただなぞるのではなく、私自身の目に見えた「大剣の軌道のブレ」に合わせて、反射的に彼の身体を巻き込むようにして左側へと鋭く身を躱す。",
     "bgAnimation": "dash",
-    "action": "PLAY_RUNNING_SE"
+    "action": "PLAY_RUNNING_SE",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsunori",
+      "Akane",
+      "Michiru",
+      "Ruki",
+      "Nagisa"
+    ]
   },
   {
     "scene": "研究所の最奥",
@@ -9675,12 +9804,10 @@ export const scenarioData = [
     "role": "NAGISA",
     "text": "「へえ、僕の指示を無視して避けるなんて、いい度胸だね」",
     "showIllust": [
-      "Nagisa_serious",
-      "BlackKnight"
+      "Nagisa_serious"
     ],
     "illustPositions": {
-      "Nagisa": "center-left",
-      "BlackKnight": "center-right"
+      "Nagisa": "center"
     }
   },
   {
@@ -9695,17 +9822,25 @@ export const scenarioData = [
     "role": "NAGISA",
     "text": "「いや、今のは君の判断が正しかったよ。あいつ、途中で軌道を変えやがった。……僕の予知を超えて動くなんてね」",
     "showIllust": [
-      "Nagisa_neutral",
-      "BlackKnight"
+      "Nagisa_neutral"
     ],
     "illustPositions": {
-      "Nagisa": "center-left",
-      "BlackKnight": "center-right"
+      "Nagisa": "center"
     }
   },
   {
     "scene": "研究所の最奥",
-    "text": "凪砂さんは不敵に口元を歪めると、私を庇うようにして一歩前に出た。今や私たちの間には、迷いは微塵もない。"
+    "text": "凪砂さんは不敵に口元を歪めると、私を庇うようにして一歩前に出た。今や私たちの間には、迷いは微塵もない。",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsunori",
+      "Akane",
+      "Michiru",
+      "Ruki",
+      "Nagisa"
+    ]
   },
   {
     "scene": "研究所の最奥",
@@ -9715,11 +9850,9 @@ export const scenarioData = [
     "scene": "研究所の最奥",
     "text": "黒騎士は、己の渾身の一撃が完全に空を切ったことに激昂したのか、さらに深く大剣を構え直す。しかし、大振りの攻撃の直後、その漆黒の肉体には、ほんの一瞬だけの「硬直」が生じていた。",
     "showIllust": [
-      "Nagisa_neutral",
       "BlackKnight_attack"
     ],
     "illustPositions": {
-      "Nagisa": "center-left",
       "BlackKnight": "center-right"
     }
   },
@@ -9733,7 +9866,17 @@ export const scenarioData = [
     "scene": "研究所の最奥",
     "text": "私たちは一斉に地を蹴った。\n回復した凪砂さんの異能が、黒騎士が次に繰り出しようとする防御行動をことごとく先読みし、私に伝える。",
     "bgAnimation": "dash",
-    "action": "PLAY_RUNNING_SE"
+    "action": "PLAY_RUNNING_SE",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsunori",
+      "Akane",
+      "Michiru",
+      "Ruki",
+      "Nagisa"
+    ]
   },
   {
     "scene": "研究所の最奥",
@@ -9761,12 +9904,10 @@ export const scenarioData = [
     "text": "黒騎士は残された僅かな力を振り絞るように、大剣を両手で逆手に持ち替えた。突如、その全身から禍々しい黒いオーラが爆発的に膨れ上がる。",
     "action": "BLACK_DISTORTION",
     "showIllust": [
-      "Nagisa_neutral",
       "BlackKnight_attack"
     ],
     "illustPositions": {
-      "Nagisa": "center-left",
-      "BlackKnight": "center-right"
+      "BlackKnight": "center"
     }
   },
   {
@@ -9782,7 +9923,17 @@ export const scenarioData = [
   {
     "scene": "研究所の最奥",
     "text": "ズガァァァァァンッ！！！！",
-    "action": "SHAKE_AND_SMOKE"
+    "action": "SHAKE_AND_SMOKE",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsunori",
+      "Akane",
+      "Michiru",
+      "Ruki",
+      "Nagisa"
+    ]
   },
   {
     "scene": "研究所の最奥",
@@ -9822,14 +9973,11 @@ export const scenarioData = [
     "role": "NAGISA",
     "text": "「……逃げられた、か」",
     "showIllust": [
-      "Nagisa_serious_injured"
+      "Nagisa_serious"
     ],
     "illustPositions": {
       "Nagisa": "center"
-    },
-    "hideIllust": [
-      "BlackKnight"
-    ]
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -9876,7 +10024,17 @@ export const scenarioData = [
   {
     "scene": "研究所の最奥",
     "text": "凪砂さんは少しだけ悪戯っぽく微笑むと、意を決してコアの制御パネルへと両手を伸ばした。",
-    "bg": "/scene/core_close.png"
+    "bg": "/scene/core_close.png",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsunori",
+      "Akane",
+      "Michiru",
+      "Ruki",
+      "Nagisa"
+    ]
   },
   {
     "scene": "研究所の最奥",
@@ -9889,7 +10047,7 @@ export const scenarioData = [
     "role": "NAGISA",
     "text": "「ぐ、っ……あああああぁぁぁ……ッ！！」",
     "showIllust": [
-      "Nagisa_serious_injured"
+      "Nagisa_serious"
     ],
     "illustPositions": {
       "Nagisa": "center"
@@ -9938,7 +10096,17 @@ export const scenarioData = [
   {
     "scene": "研究所の最奥",
     "text": "──キィィィィン……",
-    "action": "WHITE_OUT_START"
+    "action": "WHITE_OUT_START",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsunori",
+      "Akane",
+      "Michiru",
+      "Ruki",
+      "Nagisa"
+    ]
   },
   {
     "scene": "研究所の最奥",
@@ -10054,7 +10222,17 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "私たちは手記の指示に従い、崩落していく研究所の通路を必死に駆け抜けた。"
+    "text": "私たちは手記の指示に従い、崩落していく研究所の通路を必死に駆け抜けた。",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsunori",
+      "Akane",
+      "Michiru",
+      "Ruki",
+      "Nagisa"
+    ]
   },
   {
     "scene": "研究所の最奥",
@@ -10197,10 +10375,7 @@ export const scenarioData = [
     ],
     "illustPositions": {
       "Hirumi": "center-right"
-    },
-    "hideIllust": [
-      "Nagisa"
-    ]
+    }
   },
   {
     "scene": "研究室",
@@ -10218,7 +10393,17 @@ export const scenarioData = [
     "scene": "研究室",
     "text": "そして、そんな中変わったことと言えば──。",
     "bg": "black",
-    "bgm": "stop"
+    "bgm": "stop",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsunori",
+      "Akane",
+      "Michiru",
+      "Ruki",
+      "Nagisa"
+    ]
   },
   {
     "scene": "待ち合わせ場所",
@@ -10261,10 +10446,7 @@ export const scenarioData = [
     ],
     "illustPositions": {
       "Nagisa": "center"
-    },
-    "hideIllust": [
-      "Hirumi"
-    ]
+    }
   },
   {
     "scene": "待ち合わせ場所",
@@ -10323,7 +10505,7 @@ export const scenarioData = [
       "Nagisa_neutral"
     ],
     "illustPositions": {
-      "Nagisa": "center"
+      "Nagisa": "center-close"
     }
   },
   {
@@ -10334,7 +10516,10 @@ export const scenarioData = [
   },
   {
     "scene": "待ち合わせ場所",
-    "text": "私のおでこに、柔らかくて温かいものがそっと当たった。あまりの出来事に完全にフリーズしてしまった私を見て、凪砂くんは一歩身を引くと、お腹を抱えるようにして吹き出した。"
+    "text": "私のおでこに、柔らかくて温かいものがそっと当たった。あまりの出来事に完全にフリーズしてしまった私を見て、凪砂くんは一歩身を引くと、お腹を抱えるようにして吹き出した。",
+    "illustPositions": {
+      "Nagisa": "center"
+    }
   },
   {
     "scene": "待ち合わせ場所",
@@ -10367,10 +10552,15 @@ export const scenarioData = [
     "speaker": "凪砂",
     "role": "NAGISA",
     "text": "「僕を待たせた罰第1弾ってこと。外への見せつけ」",
-    "showIllust": [
-      "Nagisa_CG2"
-    ],
+    "bg": "/character/Nagisa/Nagisa_CG2.png",
     "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsunori",
+      "Akane",
+      "Michiru",
+      "Ruki",
       "Nagisa"
     ]
   },
@@ -10426,13 +10616,7 @@ export const scenarioData = [
     "scene": "大学の敷地内",
     "speaker": "ミカ",
     "role": "MIKA",
-    "text": "「朔良先輩っ！！」",
-    "showIllust": [
-      "Mika_serious"
-    ],
-    "illustPositions": {
-      "Mika": "center"
-    }
+    "text": "「朔良先輩っ！！」"
   },
   {
     "scene": "大学の敷地内",
@@ -10457,13 +10641,7 @@ export const scenarioData = [
     "scene": "大学の敷地内",
     "speaker": "ミカ",
     "role": "MIKA",
-    "text": "「すみません、激戦のどさくさでみんなとはぐれちゃって……！ でも、感傷に浸っている暇はありません。教授の指示通り、とりあえず研究室に向かいましょう！」",
-    "showIllust": [
-      "Mika_serious"
-    ],
-    "illustPositions": {
-      "Mika": "center"
-    }
+    "text": "「すみません、激戦のどさくさでみんなとはぐれちゃって……！ でも、感傷に浸っている暇はありません。教授の指示通り、とりあえず研究室に向かいましょう！」"
   },
   {
     "scene": "大学の敷地内",
@@ -10501,14 +10679,17 @@ export const scenarioData = [
     "scene": "教授の研究室",
     "speaker": "ヒルミ教授",
     "role": "PROFESSOR",
-    "text": "「やあ、よく来たね、二人とも。待ちくたびれたよ」",
-    "showIllust": [
-      "Hirumi_smile"
-    ]
+    "text": "「やあ、よく来たね、二人とも。待ちくたびれたよ」"
   },
   {
     "scene": "教授の研究室",
-    "text": "デスクに腰掛け、いつもと変わらない飄々とした様子で文庫本を閉じたのはヒルミ教授だった。"
+    "text": "デスクに腰掛け、いつもと変わらない飄々とした様子で文庫本を閉じたのはヒルミ教授だった。",
+    "showIllust": [
+      "Hirumi_smile"
+    ],
+    "illustPositions": {
+      "Hirumi": "center-right"
+    }
   },
   {
     "scene": "教授の研究室",
@@ -10524,10 +10705,7 @@ export const scenarioData = [
     "scene": "教授の研究室",
     "speaker": "ヒルミ教授",
     "role": "PROFESSOR",
-    "text": "「……説明はあまりしていられない、君たちにはこれからこのロケットに乗って、あの青い月まで行ってもらう」",
-    "showIllust": [
-      "Hirumi_smile"
-    ]
+    "text": "「……説明はあまりしていられない、君たちにはこれからこのロケットに乗って、あの青い月まで行ってもらう」"
   },
   {
     "scene": "教授の研究室",
@@ -10553,8 +10731,11 @@ export const scenarioData = [
     "role": "PROFESSOR",
     "text": "「真っ当な意見だ。簡単に説明するが、あの青い月にはこの狂った世界のすべての元凶である『コア』がある。世界をもとに戻したければ、そこに行ってコアを止めてきなさい。……これは、君たちにしかできない仕事だ」",
     "showIllust": [
-      "Hirumi_smile"
-    ]
+      "Hirumi_serious"
+    ],
+    "illustPositions": {
+      "Hirumi": "center-right"
+    }
   },
   {
     "scene": "教授の研究室",
@@ -10572,15 +10753,23 @@ export const scenarioData = [
     "role": "MIKA",
     "text": "「……行きましょう、先輩」",
     "showIllust": [
-      "Mika_serious"
+      "Mika_serious",
+      "Hirumi_serious"
     ],
     "illustPositions": {
-      "Mika": "center"
+      "Mika": "center-left",
+      "Hirumi": "center-right"
     }
   },
   {
     "scene": "教授の研究室",
-    "text": "彼はそれ以上何も語らず、翻ってそのままロケットの搭乗口へと足を進め、中へと乗り込んでいってしまった。"
+    "text": "彼はそれ以上何も語らず、翻ってそのままロケットの搭乗口へと足を進め、中へと乗り込んでいってしまった。",
+    "showIllust": [
+      "Hirumi_smile"
+    ],
+    "illustPositions": {
+      "Hirumi": "center-right"
+    }
   },
   {
     "scene": "教授の研究室",
@@ -10599,7 +10788,10 @@ export const scenarioData = [
     "text": "「物分かりが良くて助かるよ。安心して、この紙に詳しいことは書いておいたから」",
     "showIllust": [
       "Hirumi_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Hirumi": "center-right"
+    }
   },
   {
     "scene": "教授の研究室",
@@ -10621,8 +10813,11 @@ export const scenarioData = [
     "role": "PROFESSOR",
     "text": "「心配してくれているのかな？ 嬉しいけど、心配は不要さ」",
     "showIllust": [
-      "Hirumi_smile"
-    ]
+      "Hirumi_happy"
+    ],
+    "illustPositions": {
+      "Hirumi": "center-right"
+    }
   },
   {
     "scene": "教授の研究室",
@@ -10632,10 +10827,7 @@ export const scenarioData = [
     "scene": "教授の研究室",
     "speaker": "ヒルミ教授",
     "role": "PROFESSOR",
-    "text": "「さぁ、タイムリミットだ。行きなさい──朔良」",
-    "showIllust": [
-      "Hirumi_smile"
-    ]
+    "text": "「さぁ、タイムリミットだ。行きなさい──朔良」"
   },
   {
     "scene": "教授の研究室",
@@ -10645,7 +10837,14 @@ export const scenarioData = [
   {
     "scene": "ロケット内部",
     "text": "ロケットの内部は、無機質な計器機と二人分のシートがあるだけの、おそろしく狭い空間だった。\n私たちがシートになだれ込み、安全ベルトを締めると同時に、頭上のハッチが金属音を立てて完全に閉鎖される。",
-    "bg": "/scene/rocket.png"
+    "bg": "/scene/rocket.png",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsu",
+      "Mutunori"
+    ]
   },
   {
     "scene": "ロケット内部",
@@ -10670,7 +10869,7 @@ export const scenarioData = [
     "role": "MIKA",
     "text": "「……大丈夫ですか、先輩」",
     "showIllust": [
-      "Mika_neutral"
+      "Mika_surprise"
     ],
     "illustPositions": {
       "Mika": "center"
@@ -10739,12 +10938,13 @@ export const scenarioData = [
     "speaker": "ミカ",
     "role": "MIKA",
     "text": "「……だから、絶対に──」",
-    "showIllust": [
-      "Mika_serious"
-    ],
-    "illustPositions": {
-      "Mika": "center"
-    }
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsu",
+      "Mutunori"
+    ]
   },
   {
     "scene": "ロケット内部",
@@ -10790,7 +10990,7 @@ export const scenarioData = [
     "role": "MIKA",
     "text": "「…ッ、朔良先輩……！！」",
     "showIllust": [
-      "Mika_surprise"
+      "Mika_serious"
     ],
     "illustPositions": {
       "Mika": "center"
@@ -10818,15 +11018,21 @@ export const scenarioData = [
     "duration": 3000,
     "bgm": "stop",
     "bgmFade": 3,
-    "stopSe": "Rocket_Shock.mp3"
+    "stopSe": "Rocket_Shock.mp3",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsu",
+      "Mutunori"
+    ]
   },
   {
     "scene": "ロケット内部(墜落後)",
     "speaker": "ミカ",
     "role": "MIKA",
     "text": "「──せんぱい、──さくらせんぱい───！」",
-    "bg": "black",
-    "showIllust": []
+    "bg": "black"
   },
   {
     "scene": "ロケット内部(墜落後)",
@@ -10836,8 +11042,7 @@ export const scenarioData = [
     "scene": "ロケット内部(墜落後)",
     "speaker": "ミカ",
     "role": "MIKA",
-    "text": "「朔良先輩！！」",
-    "showIllust": []
+    "text": "「朔良先輩！！」"
   },
   {
     "scene": "ロケット内部(墜落後)",
@@ -10865,7 +11070,7 @@ export const scenarioData = [
     "role": "MIKA",
     "text": "「先輩……っ！ 先輩、分かりますか……っ！？」",
     "showIllust": [
-      "Mika_serious"
+      "Mika_surprise_injured"
     ],
     "illustPositions": {
       "Mika": "center"
@@ -10881,7 +11086,7 @@ export const scenarioData = [
     "role": "MIKA",
     "text": "「先輩……！ よかった……本当によかった……！」",
     "showIllust": [
-      "Mika_smile"
+      "Mika_smile_injured"
     ],
     "illustPositions": {
       "Mika": "center"
@@ -10923,13 +11128,7 @@ export const scenarioData = [
     "scene": "ロケット内部(墜落後)",
     "speaker": "ミカ",
     "role": "MIKA",
-    "text": "「俺は大丈夫です。これくらい、なんてことありません……。先輩が、無事でいてくれたら……」",
-    "showIllust": [
-      "Mika_smile"
-    ],
-    "illustPositions": {
-      "Mika": "center"
-    }
+    "text": "「俺は大丈夫です。これくらい、なんてことありません……。先輩が、無事でいてくれたら……」"
   },
   {
     "scene": "ロケット内部(墜落後)",
@@ -10945,7 +11144,7 @@ export const scenarioData = [
     "role": "MIKA",
     "text": "「とりあえず、ここから離れましょう。いつ爆発するかも分かりませんから」",
     "showIllust": [
-      "Mika_serious"
+      "Mika_neutral_injured"
     ],
     "illustPositions": {
       "Mika": "center"
@@ -10965,7 +11164,14 @@ export const scenarioData = [
     "role": "SAKURA",
     "text": "「───っ、何、ここ……」",
     "bg": "scene/moon_surface.png",
-    "bgm": "Moon.mp3"
+    "bgm": "Moon.mp3",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsu",
+      "Mutunori"
+    ]
   },
   {
     "scene": "月面",
@@ -10985,7 +11191,7 @@ export const scenarioData = [
     "role": "MIKA",
     "text": "「……墜落はしましたけど、一応『月』にはたどり着けたみたいですね」",
     "showIllust": [
-      "Mika_neutral"
+      "Mika_surprise_injured"
     ],
     "illustPositions": {
       "Mika": "center"
@@ -11008,7 +11214,14 @@ export const scenarioData = [
   {
     "scene": "月面",
     "text": "はっとして、思わずある天体を指さした。\nそこには、あの禍々しい青い人工月とは明らかに違う、優しく、けれど圧倒的な存在感を放つ『黄金色の天体』が静かに浮かんでいた。",
-    "bg": "/scene/yellow_moon.png"
+    "bg": "/scene/yellow_moon.png",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsu",
+      "Mutunori"
+    ]
   },
   {
     "scene": "月面",
@@ -11054,7 +11267,7 @@ export const scenarioData = [
     "action": "SHAKE_SCREEN",
     "bg": "/scene/moon_surface.png",
     "showIllust": [
-      "Mika_serious"
+      "Mika_serious_injured"
     ],
     "illustPositions": {
       "Mika": "center"
@@ -11090,7 +11303,7 @@ export const scenarioData = [
     "role": "MIKA",
     "text": "「す、みません……ちょっと、ここの空気に当てられちゃったみたいで……。でも、先輩が触れてくれたら、すごく楽に……」",
     "showIllust": [
-      "Mika_smile"
+      "Mika_smile_injured"
     ],
     "illustPositions": {
       "Mika": "center"
@@ -11254,18 +11467,18 @@ export const scenarioData = [
     "role": "MIKA",
     "text": "「はぁ、はぁ……っ、く……先輩……」",
     "bg": "/scene/moon_surface.png",
-    "hideItem": true,
-    "showIllust": [
-      "Mika_serious"
-    ],
-    "illustPositions": {
-      "Mika": "center"
-    }
+    "hideItem": true
   },
   {
     "scene": "月面",
     "text": "読み終えたところに、隣でミカくんが限界を迎えたように膝をつく。彼の首元の黒いアザは、今や顎のラインにまで達しようとしていた。",
-    "action": "SHAKE_SCREEN"
+    "action": "SHAKE_SCREEN",
+    "showIllust": [
+      "Mika_serious_injured"
+    ],
+    "illustPositions": {
+      "Mika": "center"
+    }
   },
   {
     "scene": "月面",
@@ -11289,7 +11502,14 @@ export const scenarioData = [
   },
   {
     "scene": "月面",
-    "text": "紙面の内容に驚いている暇はない。恐怖でちぎれそうな心を奮い立たせ、私はミカくんの手をしっかりと握り締め、白い砂を踏み締めて一歩を歩み出した。"
+    "text": "紙面の内容に驚いている暇はない。恐怖でちぎれそうな心を奮い立たせ、私はミカくんの手をしっかりと握り締め、白い砂を踏み締めて一歩を歩み出した。",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsu",
+      "Mutunori"
+    ]
   },
   {
     "scene": "フラグメントコレクト",
@@ -11323,9 +11543,9 @@ export const scenarioData = [
     "scene": "制御室",
     "speaker": "ミカ",
     "role": "MIKA",
-    "text": "「大丈夫です。……休んでいる暇なんて、ありませんから",
+    "text": "「大丈夫です。……休んでいる暇なんて、ありませんから」",
     "showIllust": [
-      "Mika_serious"
+      "Mika_serious_injured"
     ],
     "illustPositions": {
       "Mika": "center"
@@ -11333,7 +11553,14 @@ export const scenarioData = [
   },
   {
     "scene": "制御室",
-    "text": "私の声を遮るように、ミカくんはそう言って歩き出す。その姿があまりにも弱っているように見えて…私は不安を覚えた。"
+    "text": "私の声を遮るように、ミカくんはそう言って歩き出す。その姿があまりにも弱っているように見えて…私は不安を覚えた。",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsu",
+      "Mutunori"
+    ]
   },
   {
     "scene": "最深部",
@@ -11389,19 +11616,19 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "私が圧倒されているところで、ミカくんは物怖じもせず前に進んでいく。"
+    "text": "私が圧倒されているところで、ミカくんは物怖じもせず前に進んでいく。",
+    "showIllust": [
+      "Mika_serious_injured"
+    ],
+    "illustPositions": {
+      "Mika": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
     "speaker": "ミカ",
     "role": "MIKA",
-    "text": "「……」",
-    "showIllust": [
-      "Mika_serious"
-    ],
-    "illustPositions": {
-      "Mika": "center"
-    }
+    "text": "「……」"
   },
   {
     "scene": "研究所の最奥",
@@ -11441,19 +11668,19 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "不安と恐怖で押し潰されそうな私を安心させるように、ミカくんは振り返り、いつも通りのあどけない笑みを私に投げかけた。"
+    "text": "不安と恐怖で押し潰されそうな私を安心させるように、ミカくんは振り返り、いつも通りのあどけない笑みを私に投げかけた。",
+    "showIllust": [
+      "Mika_smile_injured"
+    ],
+    "illustPositions": {
+      "Mika": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
     "speaker": "ミカ",
     "role": "MIKA",
-    "text": "「大丈夫です、先輩。俺たち、二人でここまでやってこれたんですから」",
-    "showIllust": [
-      "Mika_smile"
-    ],
-    "illustPositions": {
-      "Mika": "center"
-    }
+    "text": "「大丈夫です、先輩。俺たち、二人でここまでやってこれたんですから」"
   },
   {
     "scene": "研究所の最奥",
@@ -11467,19 +11694,13 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "これ以上力を注ぎ込めば、彼がどうなってしまうか、想像するだけで胸が引き裂かれそうになる。\nそんな私を見つめるミカくんの瞳は、どこか遠くを見るように、酷く静かだった。"
+    "text": "これ以上力を注ぎ込めば、彼がどうなってしまうか、想像するだけで胸が引き裂かれそうになる。そんな私を見つめるミカくんの瞳は、どこか遠くを見るように、酷く静かだった。"
   },
   {
     "scene": "研究所の最奥",
     "speaker": "ミカ",
     "role": "MIKA",
-    "text": "「……俺は最初から、このために来たんです」",
-    "showIllust": [
-      "Mika_serious"
-    ],
-    "illustPositions": {
-      "Mika": "center"
-    }
+    "text": "「……俺は最初から、このために来たんです」"
   },
   {
     "scene": "研究所の最奥",
@@ -11496,7 +11717,14 @@ export const scenarioData = [
     "speaker": "？？？",
     "text": "『──ハハッ、素晴らしい。実に見事な先輩後輩の絆だね』",
     "bgm": "stop",
-    "bgmFade": 0
+    "bgmFade": 0,
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsu",
+      "Mutunori"
+    ]
   },
   {
     "scene": "研究所の最奥",
@@ -11539,7 +11767,7 @@ export const scenarioData = [
     "role": "MIKA",
     "text": "「騙されるな……先輩……っ。こいつの、言うことなんて……！」",
     "showIllust": [
-      "Mika_serious"
+      "Mika_serious_injured"
     ],
     "illustPositions": {
       "Mika": "center"
@@ -11574,7 +11802,14 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "スピーカーの声を遮るように、私は叫んでいた。\n恐怖で震える足を踏み出し、ミカくんを背中に庇うようにして、見えない敵に向かって声を張り上げる。"
+    "text": "スピーカーの声を遮るように、私は叫んでいた。\n恐怖で震える足を踏み出し、ミカくんを背中に庇うようにして、見えない敵に向かって声を張り上げる。",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsu",
+      "Mutunori"
+    ]
   },
   {
     "scene": "研究所の最奥",
@@ -11588,7 +11823,7 @@ export const scenarioData = [
     "role": "MIKA",
     "text": "「先輩……？」",
     "showIllust": [
-      "Mika_surprise"
+      "Mika_surprise_injured"
     ],
     "illustPositions": {
       "Mika": "center"
@@ -11628,7 +11863,7 @@ export const scenarioData = [
     "role": "MIKA",
     "text": "「く……っ……」",
     "showIllust": [
-      "Mika_serious"
+      "Mika_serious_injured"
     ],
     "illustPositions": {
       "Mika": "center"
@@ -11660,13 +11895,7 @@ export const scenarioData = [
     "scene": "研究所の最奥",
     "speaker": "ミカ",
     "role": "MIKA",
-    "text": "「先輩……っ、だめ、です……逃げて……」",
-    "showIllust": [
-      "Mika_serious"
-    ],
-    "illustPositions": {
-      "Mika": "center"
-    }
+    "text": "「先輩……っ、だめ、です……逃げて……」"
   },
   {
     "scene": "研究所の最奥",
@@ -11694,19 +11923,19 @@ export const scenarioData = [
   {
     "scene": "研究所の最奥",
     "text": "ジュウウウ、と激しい音が鳴り響く。 ミカくんの身体を蝕んでいたはずのあの黒いアザが、まるで私の手に吸い寄せられるように、濁流となって私の体内へと流れ込み始めた。",
-    "action": "BLACK_DISTORTION"
+    "action": "BLACK_DISTORTION",
+    "showIllust": [
+      "Mika_surprise_injured"
+    ],
+    "illustPositions": {
+      "Mika": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
     "speaker": "ミカ",
     "role": "MIKA",
-    "text": "「な……っ、先輩……！？ 何を……アザが、消えて……っ！？」",
-    "showIllust": [
-      "Mika_surprise"
-    ],
-    "illustPositions": {
-      "Mika": "center"
-    }
+    "text": "「な……っ、先輩……！？ 何を……アザが、消えて……っ！？」"
   },
   {
     "scene": "研究所の最奥",
@@ -11743,13 +11972,7 @@ export const scenarioData = [
     "scene": "研究所の最奥",
     "speaker": "ミカ",
     "role": "MIKA",
-    "text": "「先輩……！ 待ってください、そんなことをしたら、今度は先輩が……！」",
-    "showIllust": [
-      "Mika_surprise"
-    ],
-    "illustPositions": {
-      "Mika": "center"
-    }
+    "text": "「先輩……！ 待ってください、そんなことをしたら、今度は先輩が……！」"
   },
   {
     "scene": "研究所の最奥",
@@ -11764,7 +11987,14 @@ export const scenarioData = [
   {
     "scene": "研究所の最奥",
     "text": "私は、自分の内に満ちた光の塊を、惜しみなくコアへと放出した。",
-    "bg": "/scene/core_close2.png"
+    "bg": "/scene/core_close2.png",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsu",
+      "Mutunori"
+    ]
   },
   {
     "scene": "研究所の最奥",
@@ -11813,7 +12043,7 @@ export const scenarioData = [
     "role": "MIKA",
     "text": "「先輩……！！ 一人に、させない……っ！！」",
     "showIllust": [
-      "Mika_serious"
+      "Mika_serious_injured"
     ],
     "illustPositions": {
       "Mika": "center"
@@ -11833,13 +12063,7 @@ export const scenarioData = [
     "scene": "研究所の最奥",
     "speaker": "ミカ",
     "role": "MIKA",
-    "text": "「俺たちの『呼吸』を合わせるんです。……一人で背負わせるなんて、絶対に嫌だ！」",
-    "showIllust": [
-      "Mika_serious"
-    ],
-    "illustPositions": {
-      "Mika": "center"
-    }
+    "text": "「俺たちの『呼吸』を合わせるんです。……一人で背負わせるなんて、絶対に嫌だ！」"
   },
   {
     "scene": "研究所の最奥",
@@ -11858,7 +12082,14 @@ export const scenarioData = [
   {
     "scene": "研究所の最奥",
     "text": "私たちの絶叫とともに、限界を超えたエネルギーがコアの最深部へと突き刺さった。",
-    "action": "WHITE_PULSE_STOP"
+    "action": "WHITE_PULSE_STOP",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsu",
+      "Mutunori"
+    ]
   },
   {
     "scene": "研究所の最奥",
@@ -11900,7 +12131,7 @@ export const scenarioData = [
     "role": "MIKA",
     "text": "「……先輩」",
     "showIllust": [
-      "Mika_smile"
+      "Mika_smile_injured"
     ],
     "illustPositions": {
       "Mika": "center"
@@ -11920,13 +12151,7 @@ export const scenarioData = [
     "scene": "研究所の最奥",
     "speaker": "ミカ",
     "role": "MIKA",
-    "text": "「はい……。先輩が、俺を助けてくれたから……」",
-    "showIllust": [
-      "Mika_smile"
-    ],
-    "illustPositions": {
-      "Mika": "center"
-    }
+    "text": "「はい……。先輩が、俺を助けてくれたから……」"
   },
   {
     "scene": "研究所の最奥",
@@ -11945,7 +12170,13 @@ export const scenarioData = [
   {
     "scene": "研究所の最奥",
     "text": "ドゴゴゴゴ……ッ！！",
-    "action": "SHAKE_SCREEN_EXTREME"
+    "action": "SHAKE_SCREEN_EXTREME",
+    "showIllust": [
+      "Mika_surprise_injured"
+    ],
+    "illustPositions": {
+      "Mika": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -11969,7 +12200,7 @@ export const scenarioData = [
     "role": "MIKA",
     "text": "「先輩、急ぎましょう！ ここが崩れます！」",
     "showIllust": [
-      "Mika_serious"
+      "Mika_serious_injured"
     ],
     "illustPositions": {
       "Mika": "center"
@@ -11986,7 +12217,14 @@ export const scenarioData = [
     "text": "背後で壁が崩れ、天井が落ちてくる轟音が響く中、私たちはガレキの嵐を駆け抜けた。",
     "action": "CLEAR_ALL_ALERTS_AND_SHAKES",
     "bgm": "stop",
-    "bg": "black"
+    "bg": "black",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsu",
+      "Mutunori"
+    ]
   },
   {
     "scene": "研究所の最奥",
@@ -12023,7 +12261,13 @@ export const scenarioData = [
   },
   {
     "scene": "ロケット内部",
-    "text": "アザの消えた彼の横顔を見つめているうちに、ここへ来る前にずっと引っかかっていた、ある疑問が口をついて出た。"
+    "text": "アザの消えた彼の横顔を見つめているうちに、ここへ来る前にずっと引っかかっていた、ある疑問が口をついて出た。",
+    "showIllust": [
+      "Mika_neutral_injured"
+    ],
+    "illustPositions": {
+      "Mika": "center"
+    }
   },
   {
     "scene": "ロケット内部",
@@ -12035,13 +12279,7 @@ export const scenarioData = [
     "scene": "ロケット内部",
     "speaker": "ミカ",
     "role": "MIKA",
-    "text": "「なんですか？ 先輩」",
-    "showIllust": [
-      "Mika_neutral"
-    ],
-    "illustPositions": {
-      "Mika": "center"
-    }
+    "text": "「なんですか？ 先輩」"
   },
   {
     "scene": "ロケット内部",
@@ -12051,19 +12289,19 @@ export const scenarioData = [
   },
   {
     "scene": "ロケット内部",
-    "text": "ミカくんはコンソールから手を離し、少しだけ困ったように、けれど隠し事はもうしないというように静かに微笑んだ。"
+    "text": "ミカくんはコンソールから手を離し、少しだけ困ったように、けれど隠し事はもうしないというように静かに微笑んだ。",
+    "showIllust": [
+      "Mika_smile_injured"
+    ],
+    "illustPositions": {
+      "Mika": "center"
+    }
   },
   {
     "scene": "ロケット内部",
     "speaker": "ミカ",
     "role": "MIKA",
-    "text": "「……あの研究所から、逃げ出してきたんです。俺はあそこで、ずっとキメラの実験体として扱われていました。あの日は、研究所の警備たちを振り切って、命からがら地上へ脱出した直後だったんです。だから、あんな怪我を……」",
-    "showIllust": [
-      "Mika_serious"
-    ],
-    "illustPositions": {
-      "Mika": "center"
-    }
+    "text": "「……あの研究所から、逃げ出してきたんです。俺はあそこで、ずっとキメラの実験体として扱われていました。あの日は、研究所の警備たちを振り切って、命からがら地上へ脱出した直後だったんです。だから、あんな怪我を……」"
   },
   {
     "scene": "ロケット内部",
@@ -12073,13 +12311,7 @@ export const scenarioData = [
     "scene": "ロケット内部",
     "speaker": "ミカ",
     "role": "MIKA",
-    "text": "「あの時、先輩がくれた水とハンカチが、本当に嬉しかった。だから今度は、俺が先輩を助けなきゃって……そのために、俺はまたあの地獄みたいな場所に、先輩と一緒に戻る覚悟を決めたんです」",
-    "showIllust": [
-      "Mika_smile"
-    ],
-    "illustPositions": {
-      "Mika": "center"
-    }
+    "text": "「あの時、先輩がくれた水とハンカチが、本当に嬉しかった。だから今度は、俺が先輩を助けなきゃって……そのために、俺はまたあの地獄みたいな場所に、先輩と一緒に戻る覚悟を決めたんです」"
   },
   {
     "scene": "ロケット内部",
@@ -12091,13 +12323,7 @@ export const scenarioData = [
     "scene": "ロケット内部",
     "speaker": "ミカ",
     "role": "MIKA",
-    "text": "「……いいえ。俺を人間にしてくれたのは、先輩ですから」",
-    "showIllust": [
-      "Mika_smile"
-    ],
-    "illustPositions": {
-      "Mika": "center"
-    }
+    "text": "「……いいえ。俺を人間にしてくれたのは、先輩ですから」"
   },
   {
     "scene": "ロケット内部",
@@ -12110,7 +12336,14 @@ export const scenarioData = [
   {
     "scene": "宇宙空間",
     "action": "SLOW_FADE_TO_BLACK",
-    "duration": 4000
+    "duration": 4000,
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsu",
+      "Mutunori"
+    ]
   },
   {
     "scene": "大学の敷地内",
@@ -12138,8 +12371,11 @@ export const scenarioData = [
     "text": "「やあ、二人とも。実習報告書のデータ、じつに素晴らしい出来だったよ。あの極限状態の後できちんとフォントサイズまで揃えてくるとは、さすが我が研究室の学生だね」",
     "bg": "/scene/lab.png",
     "showIllust": [
-      "Hirumi_smile"
-    ]
+      "Hirumi_happy"
+    ],
+    "illustPositions": {
+      "Hirumi": "center-right"
+    }
   },
   {
     "scene": "大学の研究室",
@@ -12159,7 +12395,11 @@ export const scenarioData = [
     "bg": "black",
     "bgm": "stop",
     "hideIllust": [
-      "Hirumi"
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsu",
+      "Mutunori"
     ]
   },
   {
@@ -12170,7 +12410,7 @@ export const scenarioData = [
     "bgm": "HappyEnd.mp3",
     "bg": "/scene/university_hallway.png",
     "showIllust": [
-      "Mika_smile"
+      "Mika_neutral"
     ],
     "illustPositions": {
       "Mika": "center"
@@ -12199,12 +12439,14 @@ export const scenarioData = [
     "speaker": "ミカ",
     "role": "MIKA",
     "text": "「不思議、ですか？ 俺は……今のほうが、ずっと夢みたいです」",
-    "showIllust": [
-      "Mika_smile"
-    ],
-    "illustPositions": {
-      "Mika": "center"
-    }
+    "bg": "/character/Mika/Mika_CG2.png",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsu",
+      "Mutunori"
+    ]
   },
   {
     "scene": "大学の敷地内",
@@ -12214,13 +12456,7 @@ export const scenarioData = [
     "scene": "大学の敷地内",
     "speaker": "ミカ",
     "role": "MIKA",
-    "text": "「あの冷たい廃墟で、先輩が俺の手を握ってくれたから……『どちらも選ばない、君を助ける』って言ってくれたから、今の俺があるんです。先輩が俺を、人間にしてくれたんですよ？」",
-    "showIllust": [
-      "Mika_smile"
-    ],
-    "illustPositions": {
-      "Mika": "center"
-    }
+    "text": "「あの冷たい廃墟で、先輩が俺の手を握ってくれたから……『どちらも選ばない、君を助ける』って言ってくれたから、今の俺があるんです。先輩が俺を、人間にしてくれたんですよ？」"
   },
   {
     "scene": "大学の敷地内",
@@ -12244,13 +12480,7 @@ export const scenarioData = [
     "scene": "大学の敷地内",
     "speaker": "ミカ",
     "role": "MIKA",
-    "text": "「先輩」",
-    "showIllust": [
-      "Mika_smile"
-    ],
-    "illustPositions": {
-      "Mika": "center"
-    }
+    "text": "「先輩」"
   },
   {
     "scene": "大学の敷地内",
@@ -12260,13 +12490,7 @@ export const scenarioData = [
     "scene": "大学の敷地内",
     "speaker": "ミカ",
     "role": "MIKA",
-    "text": "「これからは、俺が先輩を守ります。何があっても、ずっと隣にいますから」",
-    "showIllust": [
-      "Mika_smile"
-    ],
-    "illustPositions": {
-      "Mika": "center"
-    }
+    "text": "「これからは、俺が先輩を守ります。何があっても、ずっと隣にいますから」"
   },
   {
     "scene": "大学の敷地内",
@@ -12282,13 +12506,7 @@ export const scenarioData = [
     "scene": "大学の敷地内",
     "speaker": "ミカ",
     "role": "MIKA",
-    "text": "「はい、先輩」",
-    "showIllust": [
-      "Mika_smile"
-    ],
-    "illustPositions": {
-      "Mika": "center"
-    }
+    "text": "「はい、先輩」"
   },
   {
     "scene": "大学の敷地内",
@@ -12309,17 +12527,17 @@ export const scenarioData = [
     "scene": "大学の敷地内",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「───ッ、朔良！！」",
+    "text": "「───ッ、朔良！！」"
+  },
+  {
+    "scene": "大学の敷地内",
+    "text": "強い力で腕を引かれ、私は硬い胸の中に抱きとめられる。\n見上げれば、息を切らせた睦典が、いつものおちゃらけた表情を完全に消し去って私を見下ろしていた。",
     "showIllust": [
       "Mutsunori_serious"
     ],
     "illustPositions": {
       "Mutsunori": "center"
     }
-  },
-  {
-    "scene": "大学の敷地内",
-    "text": "強い力で腕を引かれ、私は硬い胸の中に抱きとめられる。\n見上げれば、息を切らせた睦典が、いつものおちゃらけた表情を完全に消し去って私を見下ろしていた。"
   },
   {
     "scene": "大学の敷地内",
@@ -12339,20 +12557,22 @@ export const scenarioData = [
     "scene": "大学の敷地内",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「いいから走るよ！ アイツがすぐそこまで来てる！」",
-    "showIllust": [
-      "Mutsunori_smile"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center"
-    }
+    "text": "「いいから走るよ！ アイツがすぐそこまで来てる！」"
   },
   {
     "scene": "大学の敷地内",
     "text": "背後から迫る、すべてを薙ぎ払うような圧倒的な質量と、漆黒のプレッシャー。",
     "bg": "/scene/university_hallway_collapse.png",
     "action": "PLAY_RUNNING_SE",
-    "bgAnimation": "dash"
+    "bgAnimation": "dash",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsu",
+      "Mutunori",
+      "Mutsunori"
+    ]
   },
   {
     "scene": "大学の敷地内",
@@ -12390,7 +12610,7 @@ export const scenarioData = [
       "Mutsunori_serious"
     ],
     "illustPositions": {
-      "Mutsunori": "center"
+      "Mutsunori": "center-left"
     }
   },
   {
@@ -12403,8 +12623,13 @@ export const scenarioData = [
     "role": "PROFESSOR",
     "text": "「待っていたよ。よく無事でたどり着いてくれたね、二人とも」",
     "showIllust": [
-      "Hirumi_serious"
-    ]
+      "Mutsunori_serious",
+      "Hirumi_smile"
+    ],
+    "illustPositions": {
+      "Mutsunori": "center-left",
+      "Hirumi": "center-right"
+    }
   },
   {
     "scene": "研究室",
@@ -12434,13 +12659,7 @@ export const scenarioData = [
     "scene": "研究室",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「な、何言ってるんだよ教授！？ この状況で月に行けって、意味がわかんないよ！」",
-    "showIllust": [
-      "Mutsunori_smile"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center"
-    }
+    "text": "「な、何言ってるんだよ教授！？ この状況で月に行けって、意味がわかんないよ！」"
   },
   {
     "scene": "研究室",
@@ -12462,8 +12681,13 @@ export const scenarioData = [
     "role": "PROFESSOR",
     "text": "「残りの彼らの心配ならいらない。全員、自力で生き残るだけの力を持った怪物たちだからね」",
     "showIllust": [
-      "Hirumi_smile"
-    ]
+      "Mutsunori_serious",
+      "Hirumi_serious"
+    ],
+    "illustPositions": {
+      "Mutsunori": "center-left",
+      "Hirumi": "center-right"
+    }
   },
   {
     "scene": "研究室",
@@ -12479,7 +12703,15 @@ export const scenarioData = [
     "scene": "研究室",
     "speaker": "ヒルミ教授",
     "role": "PROFESSOR",
-    "text": "「詳しいことはこの資料に全て書いた。落ち着いた時に読みなさい」"
+    "text": "「詳しいことはこの資料に全て書いた。落ち着いた時に読みなさい」",
+    "showIllust": [
+      "Mutsunori_serious",
+      "Hirumi_smile"
+    ],
+    "illustPositions": {
+      "Mutsunori": "center-left",
+      "Hirumi": "center-right"
+    }
   },
   {
     "scene": "研究室",
@@ -12510,17 +12742,19 @@ export const scenarioData = [
     "scene": "研究室",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「クソッ、迷ってる暇はなさそうだ……！ 行こう、朔良！」",
-    "showIllust": [
-      "Mutsunori_serious"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center"
-    }
+    "text": "「クソッ、迷ってる暇はなさそうだ……！ 行こう、朔良！」"
   },
   {
     "scene": "ロケット内部",
-    "text": "睦典が私の手を強く引き、躊躇うことなくハッチの奥へと飛び込んだ。私も引きずられるようにして、暗いはしごを駆け下りる。"
+    "text": "睦典が私の手を強く引き、躊躇うことなくハッチの奥へと飛び込んだ。私も引きずられるようにして、暗いはしごを駆け下りる。",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsu",
+      "Mutunori",
+      "Mutsunori"
+    ]
   },
   {
     "scene": "ロケット内部",
@@ -12531,26 +12765,6 @@ export const scenarioData = [
   {
     "scene": "ロケット内部",
     "text": "私たちがシートになだれ込み、安全ベルトを締めると同時に、頭上のハッチが金属音を立てて完全に閉鎖される。"
-  },
-  {
-    "scene": "ロケット内部",
-    "speaker": "睦典",
-    "role": "MUTSUNORI",
-    "text": "「──大丈夫だよ、朔良」",
-    "showIllust": [
-      "Mutsunori_smile"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center"
-    }
-  },
-  {
-    "scene": "ロケット内部",
-    "text": "隣のシートから、睦典が精一杯作ったいつもの能天気な声が聞こえた。"
-  },
-  {
-    "scene": "ロケット内部",
-    "text": "だけど、横目で見た彼の横顔は、恐怖を押し殺すように真っ白で、その瞳は深淵を覗くように底知れず冷え切っていた。"
   },
   {
     "scene": "ロケット内部",
@@ -12576,7 +12790,7 @@ export const scenarioData = [
     "role": "MUTSUNORI",
     "text": "「朔良……っ！ 大丈夫！？ 気分悪くなってない！？ 痛いところとか、ない！？」",
     "showIllust": [
-      "Mutsunori_smile"
+      "Mutsunori_serious"
     ],
     "illustPositions": {
       "Mutsunori": "center"
@@ -12612,7 +12826,7 @@ export const scenarioData = [
     "role": "MUTSUNORI",
     "text": "「あはは、店の心配？ 大丈夫だって！ シャッターはちゃんと閉めてきたしさ。……それにしても、ホントあの教授、無茶苦茶言うよね。何が『コアを止めてきなさい』だよ、レポートの課題じゃあるまいし、唐突すぎ！」",
     "showIllust": [
-      "Mutsunori_happy"
+      "Mutsunori_smile"
     ],
     "illustPositions": {
       "Mutsunori": "center"
@@ -12628,17 +12842,19 @@ export const scenarioData = [
     "scene": "ロケット内部",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「ま、とにかくさ！ こんなよくわかんない実習、さっさと用事済ませて地球に帰ろう。そしたらさ、俺、朔良に特製のうどん作ってあげるから。とびきり美味しいやつ。だから、ね？」",
-    "showIllust": [
-      "Mutsunori_smile"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center"
-    }
+    "text": "「ま、とにかくさ！ こんなよくわかんない実習、さっさと用事済ませて地球に帰ろう。そしたらさ、俺、朔良に特製のうどん作ってあげるから。とびきり美味しいやつ。だから、ね？」"
   },
   {
     "scene": "ロケット内部",
-    "text": "帰ってきたらうどんを作る──。そのいつもの日常の延長線上にある約束に、私の胸の奥の強張りが、すっと解けていくのがわかった。"
+    "text": "帰ってきたらうどんを作る──。そのいつもの日常の延長線上にある約束に、私の胸の奥の強張りが、すっと解けていくのがわかった。",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsu",
+      "Mutunori",
+      "Mutsunori"
+    ]
   },
   {
     "scene": "ロケット内部",
@@ -12682,7 +12898,7 @@ export const scenarioData = [
     "role": "MUTSUNORI",
     "text": "「嘘、だろ……っ、これ、落ちて──」",
     "showIllust": [
-      "Mutsunori_smile"
+      "Mutsunori_serious"
     ],
     "illustPositions": {
       "Mutsunori": "center"
@@ -12707,6 +12923,11 @@ export const scenarioData = [
     "stopSe": "Rocket_Shock.mp3",
     "bg": "black",
     "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsu",
+      "Mutunori",
       "Mutsunori"
     ]
   },
@@ -12736,13 +12957,7 @@ export const scenarioData = [
     "role": "MUTSUNORI",
     "text": "重い瞼をこじ開けると、視界に飛び込んできたのは、無機質な計器類がひしゃげ、火花を散らしているロケットの無惨な内部だった。コックピットを包むのは、不気味なほどの静寂と、どこか鉄の匂いが混ざった冷たい空気。",
     "bg": "/scene/rocket_collapse.png",
-    "action": "WAKE_UP",
-    "showIllust": [
-      "Mutsunori_serious"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center"
-    }
+    "action": "WAKE_UP"
   },
   {
     "scene": "ロケット内部(墜落後)",
@@ -12754,13 +12969,7 @@ export const scenarioData = [
     "scene": "ロケット内部(墜落後)",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「よかった……！ ああ、本当によかった……っ！」",
-    "showIllust": [
-      "Mutsunori_smile"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center"
-    }
+    "text": "「よかった……！ ああ、本当によかった……っ！」"
   },
   {
     "scene": "ロケット内部(墜落後)",
@@ -12800,13 +13009,7 @@ export const scenarioData = [
     "scene": "ロケット内部(墜落後)",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「さ、いつまでもここにいると爆発するかもしれないし、外に出よう。黒騎士が追ってきてるかもしれないしね」",
-    "showIllust": [
-      "Mutsunori_smile"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center"
-    }
+    "text": "「さ、いつまでもここにいると爆発するかもしれないし、外に出よう。黒騎士が追ってきてるかもしれないしね」"
   },
   {
     "scene": "ロケット内部(墜落後)",
@@ -12815,8 +13018,7 @@ export const scenarioData = [
   {
     "scene": "ロケット内部(墜落後)",
     "text": "彼の大きな手を掴んで、私はよろよろと大破したロケットの外へと這い出した。",
-    "hideillust": true,
-    "hideIllust": true
+    "hideillust": true
   },
   {
     "scene": "月面",
@@ -12844,7 +13046,7 @@ export const scenarioData = [
     "role": "MUTSUNORI",
     "text": "「地上の、すぐ近くの隔離領域……？ それとも、本当に月まで来ちゃったのかな」",
     "showIllust": [
-      "Mutsunori_smile"
+      "Mutsunori_serious"
     ],
     "illustPositions": {
       "Mutsunori": "center"
@@ -12858,25 +13060,24 @@ export const scenarioData = [
     "scene": "月面",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「……あ、見て、朔良」",
-    "showIllust": [
-      "Mutsunori_smile"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center"
-    }
+    "text": "「……あ、見て、朔良」"
   },
   {
     "scene": "月面",
-    "text": "睦典が、地球のすぐ傍ら、天の特等席を指差した。",
-    "hideIllust": [
-      "Mutsunori_smile"
-    ]
+    "text": "睦典が、地球のすぐ傍ら、天の特等席を指差した。"
   },
   {
     "scene": "月面",
     "text": "そこには、あの禍々しい青い人工月とは明らかに違う、優しく、けれど圧倒的な存在感を放つ『黄金色の天体』が静かに浮かんでいた。",
-    "bg": "/scene/yellow_moon.png"
+    "bg": "/scene/yellow_moon.png",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsu",
+      "Mutunori",
+      "Mutsunori"
+    ]
   },
   {
     "scene": "月面",
@@ -12947,7 +13148,13 @@ export const scenarioData = [
   },
   {
     "scene": "月面",
-    "text": "覗き込んだ睦典の顔は、まるで血の気が引いたように真っ白になっていたのだ。生気を失ったその瞳は、私の姿すら映していないように虚空を彷徨っている。"
+    "text": "覗き込んだ睦典の顔は、まるで血の気が引いたように真っ白になっていたのだ。生気を失ったその瞳は、私の姿すら映していないように虚空を彷徨っている。",
+    "showIllust": [
+      "Mutsunori_serious"
+    ],
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "月面",
@@ -12957,13 +13164,7 @@ export const scenarioData = [
     "scene": "月面",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「……え、あ、どうかした？ 朔良」",
-    "showIllust": [
-      "Mutsunori_smile"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center"
-    }
+    "text": "「……え、あ、どうかした？ 朔良」"
   },
   {
     "scene": "月面",
@@ -13009,11 +13210,11 @@ export const scenarioData = [
   },
   {
     "scene": "月面",
-    "speaker": "陸典",
+    "speaker": "睦典",
     "role": "MUTSUNORI",
     "text": "「つっても、コアって何なんだよな！説明不足すぎるだろ…」",
     "showIllust": [
-      "Mutsunori_serious"
+      "Mutsunori_pout"
     ],
     "illustPositions": {
       "Mutsunori": "center"
@@ -13021,7 +13222,7 @@ export const scenarioData = [
   },
   {
     "scene": "月面",
-    "text": "途方もない、というように陸典が肩をすくめる。それでようやく思い出した。"
+    "text": "途方もない、というように睦典が肩をすくめる。それでようやく思い出した。"
   },
   {
     "scene": "月面",
@@ -13041,13 +13242,7 @@ export const scenarioData = [
     "scene": "月面",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「ん？あーそういえばなんか朔良に渡してたよな？これに書いてあるのか……？」",
-    "showIllust": [
-      "Mutsunori_smile"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center"
-    }
+    "text": "「ん？あーそういえばなんか朔良に渡してたよな？これに書いてあるのか……？」"
   },
   {
     "scene": "月面",
@@ -13190,14 +13385,8 @@ export const scenarioData = [
     "speaker": "睦典",
     "role": "MUTSUNORI",
     "text": "「はぁ！？ 単位がかかってるって、どこまで教授なんだよあの人……！」",
-    "showIllust": [
-      "Mutsunori_serious"
-    ],
     "bg": "/scene/moon_surface.png",
-    "hideItem": true,
-    "illustPositions": {
-      "Mutsunori": "center"
-    }
+    "hideItem": true
   },
   {
     "scene": "月面",
@@ -13227,13 +13416,15 @@ export const scenarioData = [
   },
   {
     "scene": "月面",
-    "speaker": "朔良",
-    "role": "SAKURA",
-    "text": "「よし、行こう朔良。化け物やセキュリティに見つからないように、慎重に、かつ急いで集めるぞ！」"
-  },
-  {
-    "scene": "月面",
-    "text": "私たちは紙面を握り締め、不気味な警告灯が明滅する研究所の不気味な廊下へと、一歩を踏み出した。"
+    "text": "私たちは紙面を握り締め、不気味な警告灯が明滅する研究所の不気味な廊下へと、一歩を踏み出した。",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsu",
+      "Mutunori",
+      "Mutsunori"
+    ]
   },
   {
     "scene": "フラグメントコレクト",
@@ -13257,7 +13448,7 @@ export const scenarioData = [
     "role": "MUTSUNORI",
     "text": "「やったね、朔良。……これで、あのでっかい扉が開くはずだ」",
     "showIllust": [
-      "Mutsunori_happy"
+      "Mutsunori_smile"
     ],
     "illustPositions": {
       "Mutsunori": "center"
@@ -13285,13 +13476,7 @@ export const scenarioData = [
     "scene": "制御室",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「な、何言ってんだよ。言ったろ？ 俺、身体だけは丈夫だって」",
-    "showIllust": [
-      "Mutsunori_smile"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center"
-    }
+    "text": "「な、何言ってんだよ。言ったろ？ 俺、身体だけは丈夫だって」"
   },
   {
     "scene": "制御室",
@@ -13307,7 +13492,7 @@ export const scenarioData = [
     "role": "MUTSUNORI",
     "text": "「……ちょっと、目がチカチカするだけ。ほら、急ごうぜ。教授の言う通り、単位がかかってんだからさ」",
     "showIllust": [
-      "Mutsunori_smile"
+      "Mutsunori_serious"
     ],
     "illustPositions": {
       "Mutsunori": "center"
@@ -13315,7 +13500,15 @@ export const scenarioData = [
   },
   {
     "scene": "制御室",
-    "text": "彼は私にそれ以上踏み込ませないように、わざとらしくおどけてみせると、先に立って歩き出した。"
+    "text": "彼は私にそれ以上踏み込ませないように、わざとらしくおどけてみせると、先に立って歩き出した。",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsu",
+      "Mutunori",
+      "Mutsunori"
+    ]
   },
   {
     "scene": "廊下",
@@ -13346,7 +13539,7 @@ export const scenarioData = [
     "role": "MUTSUNORI",
     "text": "「なぁ、朔良」",
     "showIllust": [
-      "Mutsunori_smile"
+      "Mutsunori_serious"
     ],
     "illustPositions": {
       "Mutsunori": "center"
@@ -13362,13 +13555,7 @@ export const scenarioData = [
     "role": "MUTSUNORI",
     "text": "「俺さ……さっきから、ちょっと変なんだよね」",
     "bgm": "stop",
-    "bgmFade": 0.5,
-    "showIllust": [
-      "Mutsunori_serious"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center"
-    }
+    "bgmFade": 0.5
   },
   {
     "scene": "最深部",
@@ -13378,13 +13565,7 @@ export const scenarioData = [
     "scene": "最深部",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「……終わったらさ、地球に帰って……。あれ、俺、いっつも何作ってたっけ……」",
-    "showIllust": [
-      "Mutsunori_happy"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center"
-    }
+    "text": "「……終わったらさ、地球に帰って……。あれ、俺、いっつも何作ってたっけ……」"
   },
   {
     "scene": "最深部",
@@ -13401,7 +13582,7 @@ export const scenarioData = [
     "bgmVolume": 0.5,
     "bgmFade": 0.5,
     "showIllust": [
-      "Mutsunori_happy"
+      "Mutsunori_smile"
     ],
     "illustPositions": {
       "Mutsunori": "center"
@@ -13413,7 +13594,15 @@ export const scenarioData = [
   },
   {
     "scene": "最深部",
-    "text": "私は震える手で、揃えたデータチップをスロットへと差し込んでいく。\nカチリ、カチリと、ロックが解除される音が静まり返った空間に響く。"
+    "text": "私は震える手で、揃えたデータチップをスロットへと差し込んでいく。\nカチリ、カチリと、ロックが解除される音が静まり返った空間に響く。",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsu",
+      "Mutunori",
+      "Mutsunori"
+    ]
   },
   {
     "scene": "最深部",
@@ -13453,7 +13642,7 @@ export const scenarioData = [
     "role": "MUTSUNORI",
     "text": "「……あいつか。あのでっかい真珠みたいなやつを止めれば、世界は元に戻るんだな」",
     "showIllust": [
-      "Mutsunori_smile"
+      "Mutsunori_serious"
     ],
     "illustPositions": {
       "Mutsunori": "center"
@@ -13475,7 +13664,15 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "道中の端末で嫌でも突きつけられた事実が、頭を殴られたように蘇る。\n私は適応者なんかじゃない。力なんて何一つ持たない、ただの無能力者。"
+    "text": "道中の端末で嫌でも突きつけられた事実が、頭を殴られたように蘇る。\n私は適応者なんかじゃない。力なんて何一つ持たない、ただの無能力者。",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsu",
+      "Mutunori",
+      "Mutsunori"
+    ]
   },
   {
     "scene": "研究所の最奥",
@@ -13505,7 +13702,7 @@ export const scenarioData = [
     "role": "MUTSUNORI",
     "text": "「ありがとう朔良。でも……きっと俺が”頑張った”方が、早く楽に済むんだろ？」",
     "showIllust": [
-      "Mutsunori_smile"
+      "Mutsunori_serious"
     ],
     "illustPositions": {
       "Mutsunori": "center"
@@ -13531,7 +13728,15 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "睦典は私の手をそっと離し、眩い光を放つコアへと、その拳を力強く突き出した。"
+    "text": "睦典は私の手をそっと離し、眩い光を放つコアへと、その拳を力強く突き出した。",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsu",
+      "Mutunori",
+      "Mutsunori"
+    ]
   },
   {
     "scene": "研究所の最奥",
@@ -13548,7 +13753,7 @@ export const scenarioData = [
     "role": "MUTSUNORI",
     "text": "「が、はっ……あ、れ……！？」",
     "showIllust": [
-      "Mutsunori_smile"
+      "Mutsunori_serious"
     ],
     "illustPositions": {
       "Mutsunori": "center"
@@ -13563,17 +13768,19 @@ export const scenarioData = [
     "scene": "研究所の最奥",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「う、あ、あああああっ……！！」",
-    "showIllust": [
-      "Mutsunori_smile"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center"
-    }
+    "text": "「う、あ、あああああっ……！！」"
   },
   {
     "scene": "研究所の最奥",
-    "text": "睦典が頭を掻きむしり、その場に激しくのたうち回った。彼の肌からさらに生気が失われ、瞳の奥の光が、急速に濁った闇へと塗り潰されていく。"
+    "text": "睦典が頭を掻きむしり、その場に激しくのたうち回った。彼の肌からさらに生気が失われ、瞳の奥の光が、急速に濁った闇へと塗り潰されていく。",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsu",
+      "Mutunori",
+      "Mutsunori"
+    ]
   },
   {
     "scene": "研究所の最奥",
@@ -13600,17 +13807,20 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "爆煙の向こうから、凄まじい威圧感を放ちながら、ゆっくりと姿を現す影。\n漆黒の甲冑に身を包み、大剣を携えた、あの異形の化け物。",
-    "showIllust": [
-      "BlackKnight"
-    ]
+    "text": "爆煙の向こうから、凄まじい威圧感を放ちながら、ゆっくりと姿を現す影。\n漆黒の甲冑に身を包み、大剣を携えた、あの異形の化け物。"
   },
   {
     "scene": "研究所の最奥",
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「──『黒騎士』……っ！？」",
-    "bgm": "Battle1.mp3"
+    "bgm": "Battle1.mp3",
+    "showIllust": [
+      "BlackKnight"
+    ],
+    "illustPositions": {
+      "BlackKnight": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -13619,7 +13829,13 @@ export const scenarioData = [
   {
     "scene": "研究所の最奥",
     "text": "黒騎士が容赦なく大剣を振り上げ、私たちに襲いかかる──！",
-    "bgAnimation": "center_zoom"
+    "bgAnimation": "center_zoom",
+    "showIllust": [
+      "BlackKnight_attack"
+    ],
+    "illustPositions": {
+      "BlackKnight": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -13648,32 +13864,28 @@ export const scenarioData = [
     "speaker": "睦典",
     "role": "MUTSUNORI",
     "text": "「朔良っ……！！」",
-    "showIllust": [
-      "Mutsunori_smile"
-    ],
-    "bgAnimation": "dodge_left",
-    "illustPositions": {
-      "Mutsunori": "center"
-    }
+    "bgAnimation": "dodge_left"
   },
   {
     "scene": "研究所の最奥",
     "text": "鋭い叫び声と共に、強い力で身体を突き飛ばされた。\nガレキの床に激しく転がり、痛みに耐えながら目を開けた私の視界に、最悪の光景が飛び込んでくる。",
     "action": "SHAKE_SCREEN_VERY_LARGE",
-    "bgAnimation": "stumble_zoom"
+    "bgAnimation": "stumble_zoom",
+    "showIllust": [
+      "BlackKnight_attack",
+      "Mutsunori_serious"
+    ],
+    "illustPositions": {
+      "BlackKnight": "center",
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
     "speaker": "睦典",
     "role": "MUTSUNORI",
     "text": "「が、あ……っ！」",
-    "showIllust": [
-      "Mutsunori_smile"
-    ],
-    "bgAnimation": "impact_zoom",
-    "illustPositions": {
-      "Mutsunori": "center"
-    }
+    "bgAnimation": "impact_zoom"
   },
   {
     "scene": "研究所の最奥",
@@ -13687,7 +13899,15 @@ export const scenarioData = [
     "role": "SAKURA",
     "text": "「ムッちゃん！！」",
     "action": "SHAKE_SCREEN",
-    "bgAnimation": "impact_zoom"
+    "bgAnimation": "impact_zoom",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsu",
+      "Mutunori",
+      "Mutsunori"
+    ]
   },
   {
     "scene": "研究所の最奥",
@@ -13712,7 +13932,7 @@ export const scenarioData = [
     "role": "MUTSUNORI",
     "text": "「……っ、走れ、朔良……こっちだ！」",
     "showIllust": [
-      "Mutsunori_smile"
+      "Mutsunori_serious"
     ],
     "illustPositions": {
       "Mutsunori": "center"
@@ -13721,7 +13941,15 @@ export const scenarioData = [
   {
     "scene": "瓦礫裏",
     "text": "睦典は信じられないほどの力で私の手を掴むと、傷など最初からなかったかのように猛然と走り出した。黒騎士の追撃を間一髪でかわし、私たちは部屋の隅にある、辛うじて瓦礫の隙間へと滑り込む。",
-    "bg": "/scene/Rubble.png"
+    "bg": "/scene/Rubble.png",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsu",
+      "Mutunori",
+      "Mutsunori"
+    ]
   },
   {
     "scene": "瓦礫裏",
@@ -13749,13 +13977,7 @@ export const scenarioData = [
     "speaker": "睦典",
     "role": "MUTSUNORI",
     "text": "「…ちょっとした怪我ならすぐ治るの、見ただろ？ 俺の異能さ、これなんだよ。どんな傷を負っても、一瞬で元通りになる。……文字通りの『不死身』」",
-    "bgm": "serious_3.mp3",
-    "showIllust": [
-      "Mutsunori_serious"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center"
-    }
+    "bgm": "serious_3.mp3"
   },
   {
     "scene": "瓦礫裏",
@@ -13767,7 +13989,7 @@ export const scenarioData = [
     "role": "MUTSUNORI",
     "text": "「でもさ……タダでこんな都合のいい身体になれるわけ、ないんだよね」",
     "showIllust": [
-      "Mutsunori_smile"
+      "Mutsunori_sad"
     ],
     "illustPositions": {
       "Mutsunori": "center"
@@ -13781,13 +14003,7 @@ export const scenarioData = [
     "scene": "瓦礫裏",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「傷が治るたびに……身体が修復されるたびに、俺の『中身』が削れていくんだ。……さっき、コアに力を注ごうとして跳ね返された時、一気に持ってかれちゃったみたいでさ」",
-    "showIllust": [
-      "Mutsunori_smile"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center"
-    }
+    "text": "「傷が治るたびに……身体が修復されるたびに、俺の『中身』が削れていくんだ。……さっき、コアに力を注ごうとして跳ね返された時、一気に持ってかれちゃったみたいでさ」"
   },
   {
     "scene": "瓦礫裏",
@@ -13799,13 +14015,7 @@ export const scenarioData = [
     "scene": "瓦礫裏",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「記憶、だよ」",
-    "showIllust": [
-      "Mutsunori_smile"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center"
-    }
+    "text": "「記憶、だよ」"
   },
   {
     "scene": "瓦礫裏",
@@ -13815,13 +14025,7 @@ export const scenarioData = [
     "scene": "瓦礫裏",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「俺さ、……もう、自分の家のうどんの味が思い出せないんだ。……脳みそが、俺の『自我』が、傷を治すためのエネルギーとして、消しゴムで消されるみたいに摩耗していってるんだよ」",
-    "showIllust": [
-      "Mutsunori_pout"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center"
-    }
+    "text": "「俺さ、……もう、自分の家のうどんの味が思い出せないんだ。……脳みそが、俺の『自我』が、傷を治すためのエネルギーとして、消しゴムで消されるみたいに摩耗していってるんだよ」"
   },
   {
     "scene": "瓦礫裏",
@@ -13833,13 +14037,7 @@ export const scenarioData = [
     "scene": "瓦礫裏",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「全部忘れちゃっても、朔良のことだけ覚えていられればいいって思ってた。……だけど、今……それすらも、指の隙間からサラサラ零れ落ちていくみたいで、……すごく、怖いんだ」",
-    "showIllust": [
-      "Mutsunori_pout"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center"
-    }
+    "text": "「全部忘れちゃっても、朔良のことだけ覚えていられればいいって思ってた。……だけど、今……それすらも、指の隙間からサラサラ零れ落ちていくみたいで、……すごく、怖いんだ」"
   },
   {
     "scene": "瓦礫裏",
@@ -13873,13 +14071,7 @@ export const scenarioData = [
     "scene": "瓦礫裏",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「あ、はは……」",
-    "showIllust": [
-      "Mutsunori_smile"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center"
-    }
+    "text": "「あ、はは……」"
   },
   {
     "scene": "瓦礫裏",
@@ -13889,13 +14081,7 @@ export const scenarioData = [
     "scene": "瓦礫裏",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「そっか。俺、もうダメなんだ。……何も、思い出せないや」",
-    "showIllust": [
-      "Mutsunori_pout"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center"
-    }
+    "text": "「そっか。俺、もうダメなんだ。……何も、思い出せないや」"
   },
   {
     "scene": "瓦礫裏",
@@ -13909,13 +14095,7 @@ export const scenarioData = [
     "scene": "瓦礫裏",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「あ、が……っ、あああああああッ！！！？？？」",
-    "showIllust": [
-      "Mutsunori_pout"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center"
-    }
+    "text": "「あ、が……っ、あああああああッ！！！？？？」"
   },
   {
     "scene": "瓦礫裏",
@@ -13931,13 +14111,7 @@ export const scenarioData = [
     "scene": "瓦礫裏",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「来るなァッ！！！」",
-    "showIllust": [
-      "Mutsunori_pout"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center"
-    }
+    "text": "「来るなァッ！！！」"
   },
   {
     "scene": "瓦礫裏",
@@ -13947,13 +14121,7 @@ export const scenarioData = [
     "scene": "瓦礫裏",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「逃げて、朔良……っ！ 俺が……俺の身体が、君を殺しちゃう前に……早く、早く行けぇっ！！」",
-    "showIllust": [
-      "Mutsunori_pout"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center"
-    }
+    "text": "「逃げて、朔良……っ！ 俺が……俺の身体が、君を殺しちゃう前に……早く、早く行けぇっ！！」"
   },
   {
     "scene": "瓦礫裏",
@@ -13963,13 +14131,7 @@ export const scenarioData = [
     "scene": "瓦礫裏",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「ガ、アアアアアアアアアアアアアアアアアッ！！！！」",
-    "showIllust": [
-      "Mutsunori_pout"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center"
-    }
+    "text": "「ガ、アアアアアアアアアアアアアアアアアッ！！！！」"
   },
   {
     "scene": "瓦礫裏",
@@ -14010,13 +14172,7 @@ export const scenarioData = [
     "scene": "研究所の最奥",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「オオオオオオオッ！！」",
-    "showIllust": [
-      "Mutsunori_pout"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center"
-    }
+    "text": "「オオオオオオオッ！！」"
   },
   {
     "scene": "研究所の最奥",
@@ -14131,7 +14287,7 @@ export const scenarioData = [
     "text": "「逃げて、朔良……っ！ 俺が……君を殺しちゃう前に……早く、早く行けぇっ！！」",
     "bgm": "stop",
     "showIllust": [
-      "Mutsunori_smile"
+      "Mutsunori_serious"
     ],
     "illustPositions": {
       "Mutsunori": "center"
@@ -14159,12 +14315,14 @@ export const scenarioData = [
     "role": "MUTSUNORI",
     "text": "「ガ、アアアアアアアア……ッ！」",
     "action": "SHAKE_SCREEN",
-    "showIllust": [
-      "Mutsunori_serious"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center"
-    }
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsu",
+      "Mutunori",
+      "Mutsunori"
+    ]
   },
   {
     "scene": "瓦礫裏",
@@ -14191,7 +14349,7 @@ export const scenarioData = [
     "role": "MUTSUNORI",
     "text": "「な、……に、して……っ！ 離れろ、朔良……！」",
     "showIllust": [
-      "Mutsunori_smile"
+      "Mutsunori_serious"
     ],
     "illustPositions": {
       "Mutsunori": "center"
@@ -14237,7 +14395,15 @@ export const scenarioData = [
   {
     "scene": "研究所の最奥",
     "text": "──ゴォォッ……！ と、部屋の空気が鳴動する。\n私の身体の奥底から、温かく眩しい光の波紋が、溢れんばかりに広がった。",
-    "action": "LIGHT_WAVE_BURST"
+    "action": "LIGHT_WAVE_BURST",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsu",
+      "Mutunori",
+      "Mutsunori"
+    ]
   },
   {
     "scene": "研究所の最奥",
@@ -14248,10 +14414,10 @@ export const scenarioData = [
     "speaker": "睦典",
     "role": "MUTSUNORI",
     "text": "「あ……、さく、ら……？」",
-    "showIllust": [
-      "Mutsunori_smile"
-    ],
     "action": "CLEAR_LIGHT_WAVE",
+    "showIllust": [
+      "Mutsunori_serious"
+    ],
     "illustPositions": {
       "Mutsunori": "center"
     }
@@ -14270,7 +14436,7 @@ export const scenarioData = [
     "role": "MUTSUNORI",
     "text": "「お待たせ、朔良。……心配かけたな」",
     "showIllust": [
-      "Mutsunori_pout"
+      "Mutsunori_smile"
     ],
     "illustPositions": {
       "Mutsunori": "center"
@@ -14297,7 +14463,13 @@ export const scenarioData = [
     "speaker": "黒騎士",
     "role": "ENEMY",
     "text": "「ギ、ギギ……ッ」",
-    "bg": "/scene/core_hakai1.png"
+    "bg": "/scene/core_hakai1.png",
+    "showIllust": [
+      "BlackKnight"
+    ],
+    "illustPositions": {
+      "BlackKnight": "center-left"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -14309,10 +14481,12 @@ export const scenarioData = [
     "role": "MUTSUNORI",
     "text": "「朔良、後ろに下がってろ。──いや、違うな」",
     "showIllust": [
+      "BlackKnight",
       "Mutsunori_smile"
     ],
     "illustPositions": {
-      "Mutsunori": "center"
+      "BlackKnight": "center-left",
+      "Mutsunori": "center-right"
     }
   },
   {
@@ -14325,10 +14499,12 @@ export const scenarioData = [
     "role": "MUTSUNORI",
     "text": "「俺の目になってくれ、朔良。二人で、あいつをぶっ飛ばそう」",
     "showIllust": [
+      "BlackKnight",
       "Mutsunori_smile"
     ],
     "illustPositions": {
-      "Mutsunori": "center"
+      "BlackKnight": "center-left",
+      "Mutsunori": "center-right"
     }
   },
   {
@@ -14341,7 +14517,15 @@ export const scenarioData = [
     "scene": "研究所の最奥",
     "text": "ガレキを蹴り崩し、黒騎士が恐ろしい速度で突進してくる。\n私は黒騎士の構えの癖や、崩落した天井の死角を瞬時に見抜き、睦典に鋭く指示を飛ばした。",
     "action": "SHAKE_SCREEN",
-    "bgAnimation": "center_zoom"
+    "bgAnimation": "center_zoom",
+    "showIllust": [
+      "BlackKnight_attack",
+      "Mutsunori_serious"
+    ],
+    "illustPositions": {
+      "BlackKnight": "center-left",
+      "Mutsunori": "center-right"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -14355,13 +14539,7 @@ export const scenarioData = [
     "speaker": "睦典",
     "role": "MUTSUNORI",
     "text": "「おうっ！」",
-    "bgAnimation": "center_zoom",
-    "showIllust": [
-      "Mutsunori_pout"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center"
-    }
+    "bgAnimation": "center_zoom"
   },
   {
     "scene": "研究所の最奥",
@@ -14371,7 +14549,15 @@ export const scenarioData = [
   {
     "scene": "研究所の最奥",
     "text": "避けると同時に、睦典は爆発的な踏み込みで黒騎士の懐へ潜り込み、拳を黒騎士の硬強な鎧へと叩き込む。",
-    "bgAnimation": "dodge_right"
+    "bgAnimation": "dodge_right",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsu",
+      "Mutunori",
+      "Mutsunori"
+    ]
   },
   {
     "scene": "研究所の最奥",
@@ -14390,7 +14576,13 @@ export const scenarioData = [
     "scene": "研究所の最奥",
     "speaker": "黒騎士",
     "role": "ENEMY",
-    "text": "「──チッ」"
+    "text": "「──チッ」",
+    "showIllust": [
+      "BlackKnight"
+    ],
+    "illustPositions": {
+      "BlackKnight": "center"
+    }
   },
   {
     "scene": "研究所の最奥",
@@ -14403,7 +14595,15 @@ export const scenarioData = [
   {
     "scene": "研究所の最奥",
     "text": "ズガガガガガッ！！！",
-    "action": "SHAKE_AND_SMOKE"
+    "action": "SHAKE_AND_SMOKE",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsu",
+      "Mutunori",
+      "Mutsunori"
+    ]
   },
   {
     "scene": "研究所の最奥",
@@ -14423,7 +14623,7 @@ export const scenarioData = [
       "Mutsunori_serious"
     ],
     "illustPositions": {
-      "Mutsunori": "center"
+      "Mutsunori": "center-right"
     }
   },
   {
@@ -14446,13 +14646,7 @@ export const scenarioData = [
     "scene": "研究所の最奥",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「チッ、逃げ足の速い野郎だ……。でも、追ってる時間はなさそうだな」",
-    "showIllust": [
-      "Mutsunori_serious"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center"
-    }
+    "text": "「チッ、逃げ足の速い野郎だ……。でも、追ってる時間はなさそうだな」"
   },
   {
     "scene": "研究所の最奥",
@@ -14467,7 +14661,7 @@ export const scenarioData = [
       "Mutsunori_smile"
     ],
     "illustPositions": {
-      "Mutsunori": "center"
+      "Mutsunori": "center-right"
     }
   },
   {
@@ -14486,13 +14680,7 @@ export const scenarioData = [
     "scene": "研究所の最奥",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「……朔良」",
-    "showIllust": [
-      "Mutsunori_smile"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center"
-    }
+    "text": "「……朔良」"
   },
   {
     "scene": "研究所の最奥",
@@ -14502,13 +14690,7 @@ export const scenarioData = [
     "scene": "研究所の最奥",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「さっきは一人でやろうとして失敗した。でも、今は朔良がいてくれる。……俺の力を全部注ぎ込む。暴走しそうになったら、お前が全部中和してくれ。──二人なら、いけるだろ？」",
-    "showIllust": [
-      "Mutsunori_smile"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center"
-    }
+    "text": "「さっきは一人でやろうとして失敗した。でも、今は朔良がいてくれる。……俺の力を全部注ぎ込む。暴走しそうになったら、お前が全部中和してくれ。──二人なら、いけるだろ？」"
   },
   {
     "scene": "研究所の最奥",
@@ -14518,7 +14700,15 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "私は強く頷いた。私は無能力者なんかじゃない。ムッちゃんの盾になり、彼の心をこの世界に繋ぎ止める、世界で唯一のパートナーだ。"
+    "text": "私は強く頷いた。私は無能力者なんかじゃない。ムッちゃんの盾になり、彼の心をこの世界に繋ぎ止める、世界で唯一のパートナーだ。",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsu",
+      "Mutunori",
+      "Mutsunori"
+    ]
   },
   {
     "scene": "研究所の最奥",
@@ -14529,13 +14719,7 @@ export const scenarioData = [
     "scene": "研究所の最奥",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「いくぞ、朔良……せーのっ！」",
-    "showIllust": [
-      "Mutsunori_smile"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center"
-    }
+    "text": "「いくぞ、朔良……せーのっ！」"
   },
   {
     "scene": "研究所の最奥",
@@ -14565,7 +14749,7 @@ export const scenarioData = [
     "text": "「くっ、あ、あああぁぁぁっ……！！」",
     "action": "WHITE_PULSE_MID",
     "showIllust": [
-      "Mutsunori_smile"
+      "Mutsunori_serious"
     ],
     "illustPositions": {
       "Mutsunori": "center"
@@ -14589,13 +14773,7 @@ export const scenarioData = [
     "scene": "研究所の最奥",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「あああああぁぁぁッ！！！」",
-    "showIllust": [
-      "Mutsunori_serious"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center"
-    }
+    "text": "「あああああぁぁぁッ！！！」"
   },
   {
     "scene": "研究所の最奥",
@@ -14614,13 +14792,7 @@ export const scenarioData = [
     "scene": "研究所の最奥",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「──これで、終わりだぁぁぁッ！！！！」",
-    "showIllust": [
-      "Mutsunori_serious"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center"
-    }
+    "text": "「──これで、終わりだぁぁぁッ！！！！」"
   },
   {
     "scene": "研究所の最奥",
@@ -14629,7 +14801,15 @@ export const scenarioData = [
   {
     "scene": "研究所の最奥",
     "text": "パリィィィィィィンッ！！！！",
-    "action": "WHITE_OUT_START"
+    "action": "WHITE_OUT_START",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsu",
+      "Mutunori",
+      "Mutsunori"
+    ]
   },
   {
     "scene": "研究所の最奥",
@@ -14704,13 +14884,7 @@ export const scenarioData = [
     "scene": "研究所の最奥",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「泣くなって、朔良。ほら、上見てみろよ」",
-    "showIllust": [
-      "Mutsunori_smile"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center"
-    }
+    "text": "「泣くなって、朔良。ほら、上見てみろよ」"
   },
   {
     "scene": "研究所の最奥",
@@ -14719,7 +14893,15 @@ export const scenarioData = [
   {
     "scene": "研究所の最奥",
     "text": "そこには、隔離領域を覆っていた不気味なエネルギーの霧が晴れ、本来の姿を取り戻した、息を呑むほど美しい星空が広がっていた。",
-    "bg": "/scene/Moon_Lab.png"
+    "bg": "/scene/Moon_Lab.png",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsu",
+      "Mutunori",
+      "Mutsunori"
+    ]
   },
   {
     "scene": "研究所の最奥",
@@ -14735,13 +14917,7 @@ export const scenarioData = [
     "scene": "研究所の最奥",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「あぁ。……これで、やっと帰れるな、地球に」",
-    "showIllust": [
-      "Mutsunori_smile"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center"
-    }
+    "text": "「あぁ。……これで、やっと帰れるな、地球に」"
   },
   {
     "scene": "研究所の最奥",
@@ -14791,7 +14967,15 @@ export const scenarioData = [
   {
     "scene": "最下層",
     "text": "背後で壁が崩れ、天井が落ちてくる轟音が響く中、私たちはガレキの嵐を駆け抜けた。",
-    "bg": "black"
+    "bg": "black",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsu",
+      "Mutunori",
+      "Mutsunori"
+    ]
   },
   {
     "scene": "最下層",
@@ -14830,7 +15014,7 @@ export const scenarioData = [
     "bgm": "Room_Night.mp3",
     "bgmVolume": 0.2,
     "showIllust": [
-      "Mutsunori_happy"
+      "Mutsunori_smile"
     ],
     "illustPositions": {
       "Mutsunori": "center"
@@ -14857,7 +15041,15 @@ export const scenarioData = [
   {
     "scene": "宇宙空間",
     "action": "SLOW_FADE_TO_BLACK",
-    "duration": 4000
+    "duration": 4000,
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsu",
+      "Mutunori",
+      "Mutsunori"
+    ]
   },
   {
     "scene": "いつもの大学",
@@ -14889,8 +15081,11 @@ export const scenarioData = [
     "text": "「やあ、二人とも。実習報告書のデータ、じつに素晴らしい出来だったよ」",
     "bg": "/scene/lab.png",
     "showIllust": [
-      "Hirumi_smile"
-    ]
+      "Hirumi_happy"
+    ],
+    "illustPositions": {
+      "Hirumi": "center"
+    }
   },
   {
     "scene": "研究室",
@@ -14916,7 +15111,12 @@ export const scenarioData = [
     "bg": "black",
     "bgm": "stop",
     "hideIllust": [
-      "Hirumi_smile"
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsu",
+      "Mutunori",
+      "Mutsunori"
     ]
   },
   {
@@ -14927,7 +15127,7 @@ export const scenarioData = [
     "bg": "/scene/mutsu_inside.png",
     "bgm": "HappyEnd.mp3",
     "showIllust": [
-      "Mutsunori_happy"
+      "Mutsunori_smile"
     ],
     "illustPositions": {
       "Mutsunori": "center"
@@ -14947,13 +15147,7 @@ export const scenarioData = [
     "scene": "割烹『むつ』",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「だろ？ 記憶を取り戻すために親父の店で何度も試作したんだから」",
-    "showIllust": [
-      "Mutsunori_smile"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center"
-    }
+    "text": "「だろ？ 記憶を取り戻すために親父の店で何度も試作したんだから」"
   },
   {
     "scene": "割烹『むつ』",
@@ -14987,21 +15181,18 @@ export const scenarioData = [
     "scene": "割烹『むつ』",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「よかったぁ。あ、そうだ。あの時、うどんの味は忘れかけてたんだけどさ……」",
-    "showIllust": [
-      "Mutsunori_happy"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center"
-    }
+    "text": "「よかったぁ。あ、そうだ。あの時、うどんの味は忘れかけてたんだけどさ……」"
   },
   {
     "scene": "割烹『むつ』",
     "text": "睦典はふっと真面目な顔になると、テーブル越しに私の手をそっと包み込んだ。",
-    "hideIllust": [
-      "Mutsunori_happy"
+    "bg": "character/Mutsunori/Mutsunori_CG2.png",
+    "showIllust": [
+      "Mutsunori_smile"
     ],
-    "bg": "character/Mutsunori/Mutsunori_CG2.png"
+    "illustPositions": {
+      "Mutsunori": "center"
+    }
   },
   {
     "scene": "割烹『むつ』",
@@ -15043,7 +15234,16 @@ export const scenarioData = [
   },
   {
     "scene": "割烹『むつ』",
-    "text": "少しだけ不安そうに揺れる彼の瞳が、愛おしくてたまらなくなる。私は溢れそうになる笑みを堪えきれずに、繋いだ手を強く握り返した。"
+    "text": "少しだけ不安そうに揺れる彼の瞳が、愛おしくてたまらなくなる。私は溢れそうになる笑みを堪えきれずに、繋いだ手を強く握り返した。",
+    "bg": "/character/Mutsunori/Mutsunori_CG2.png",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsu",
+      "Mutunori",
+      "Mutsunori"
+    ]
   },
   {
     "scene": "割烹『むつ』",
@@ -15060,13 +15260,7 @@ export const scenarioData = [
     "speaker": "睦典",
     "role": "MUTSUNORI",
     "text": "「よっしゃ……！ あ、じゃあさ、彼女の特権として、これからは毎日俺のうどん、食べに来てくれる？」",
-    "bg": "/scene/mutsu_inside.png",
-    "showIllust": [
-      "Mutsunori_happy"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center"
-    }
+    "bg": "/scene/mutsu_inside.png"
   },
   {
     "scene": "割烹『むつ』",
@@ -15078,20 +15272,11 @@ export const scenarioData = [
     "scene": "割烹『むつ』",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「よし、言ったな？ 毎食でも作ってやるから覚悟しろよ！」",
-    "showIllust": [
-      "Mutsunori_happy"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center"
-    }
+    "text": "「よし、言ったな？ 毎食でも作ってやるから覚悟しろよ！」"
   },
   {
     "scene": "割烹『むつ』",
     "text": "窓の外を見上げると、抜けるような青空が広がっている。かつて見上げた、冷たくて遠いあの青い星は、今、私たちの足元で確かに息づいている。",
-    "hideIllust": [
-      "Mutsunori_happy"
-    ],
     "bg": "/scene/sky.png"
   },
   {
@@ -15118,7 +15303,13 @@ export const scenarioData = [
   },
   {
     "scene": "大学の敷地内",
-    "text": "見上げると、眼帯に覆われていない剥き出しの片目が、暗闇の中でギラリと私を見下ろしていた。"
+    "text": "見上げると、眼帯に覆われていない剥き出しの片目が、暗闇の中でギラリと私を見下ろしていた。",
+    "showIllust": [
+      "Akane_neutral"
+    ],
+    "illustPositions": {
+      "Akane": "center-right"
+    }
   },
   {
     "scene": "大学の敷地内",
@@ -15184,7 +15375,16 @@ export const scenarioData = [
     "scene": "教授の研究室",
     "text": "スラムの無法地帯のような冷たい沈黙を保ったまま、彼が私を連れて押し入ったのは、見慣れた大学の、けれど誰も近寄らない最奥──ヒルミ教授の研究室だった。",
     "bg": "/scene/university_hallway_collapse.png",
-    "bgAnimation": "dash"
+    "bgAnimation": "dash",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsunori",
+      "Akane",
+      "Michiru",
+      "Ruki"
+    ]
   },
   {
     "scene": "教授の研究室",
@@ -15197,14 +15397,19 @@ export const scenarioData = [
     "scene": "教授の研究室",
     "speaker": "ヒルミ教授",
     "role": "PROFESSOR",
-    "text": "「……遅かったね」",
-    "showIllust": [
-      "Hirumi_serious"
-    ]
+    "text": "「……遅かったね」"
   },
   {
     "scene": "教授の研究室",
-    "text": "白衣を翻し、眼鏡の奥の瞳で部屋の主が飄々と私たちを迎えた。 息を切らす私と、その横で片目で部屋を睨みつけるアカネさんを交互に見て、教授は形の良い唇を歪める。"
+    "text": "白衣を翻し、眼鏡の奥の瞳で部屋の主が飄々と私たちを迎えた。 息を切らす私と、その横で片目で部屋を睨みつけるアカネさんを交互に見て、教授は形の良い唇を歪める。",
+    "showIllust": [
+      "Hirumi_smile",
+      "Akane_neutral"
+    ],
+    "illustPositions": {
+      "Hirumi": "center-left",
+      "Akane": "center-right"
+    }
   },
   {
     "scene": "教授の研究室",
@@ -15214,8 +15419,13 @@ export const scenarioData = [
     "bgm": "serious_1.mp3",
     "bgmFade": 1.5,
     "showIllust": [
-      "Hirumi_smile"
-    ]
+      "Hirumi_serious",
+      "Akane_neutral"
+    ],
+    "illustPositions": {
+      "Hirumi": "center-left",
+      "Akane": "center-right"
+    }
   },
   {
     "scene": "教授の研究室",
@@ -15223,10 +15433,12 @@ export const scenarioData = [
     "role": "AKANE",
     "text": "「…チッ」",
     "showIllust": [
+      "Hirumi_serious",
       "Akane_serious"
     ],
     "illustPositions": {
-      "Akane": "center"
+      "Hirumi": "center-left",
+      "Akane": "center-right"
     }
   },
   {
@@ -15239,8 +15451,13 @@ export const scenarioData = [
     "role": "PROFESSOR",
     "text": "「冗談だ。それで本題だが…君たちにはこれからこのロケットに乗って、あの青い月まで行ってもらう」",
     "showIllust": [
-      "Hirumi_smile"
-    ]
+      "Hirumi_smile",
+      "Akane_serious"
+    ],
+    "illustPositions": {
+      "Hirumi": "center-left",
+      "Akane": "center-right"
+    }
   },
   {
     "scene": "教授の研究室",
@@ -15264,10 +15481,7 @@ export const scenarioData = [
     "scene": "教授の研究室",
     "speaker": "ヒルミ教授",
     "role": "PROFESSOR",
-    "text": "「戸惑う気持ちもわかる。だがあまりここに時間はかけられない。この紙にすべてのことを記しておいたから、しっかり読んで、冷静に行動しなさい」",
-    "showIllust": [
-      "Hirumi_smile"
-    ]
+    "text": "「戸惑う気持ちもわかる。だがあまりここに時間はかけられない。この紙にすべてのことを記しておいたから、しっかり読んで、冷静に行動しなさい」"
   },
   {
     "scene": "教授の研究室",
@@ -15279,16 +15493,41 @@ export const scenarioData = [
     "role": "PROFESSOR",
     "text": "「……まぁ、隣の彼が何とかしてくれるだろう」",
     "showIllust": [
-      "Hirumi_smile"
+      "Hirumi_serious"
+    ],
+    "illustPositions": {
+      "Hirumi": "center-left"
+    }
+  },
+  {
+    "scene": "教授の研究室",
+    "text": "教授のその言葉と同時に、部屋の空気が一瞬で凍りついたような錯覚に陥った。眼鏡の奥にある教授の瞳が、何かを値踏みするような、酷く意味深な光を帯びてアカネさんを見つめている。",
+    "showIllust": [
+      "Hirumi_serious",
+      "Akane_serious"
+    ],
+    "illustPositions": {
+      "Hirumi": "center-left",
+      "Akane": "center-right"
+    }
+  },
+  {
+    "scene": "教授の研究室",
+    "text": "当のアカネさんは、教授の視線などこれっぽっちも気にしていない様子で、研究室の奥に鎮座する巨大なロケットの計器類を黙々と調べていた。",
+    "showIllust": [
+      "Akane_serious"
+    ],
+    "illustPositions": {
+      "Akane": "center"
+    },
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsunori",
+      "Michiru",
+      "Ruki"
     ]
-  },
-  {
-    "scene": "教授の研究室",
-    "text": "教授のその言葉と同時に、部屋の空気が一瞬で凍りついたような錯覚に陥った。眼鏡の奥にある教授の瞳が、何かを値踏みするような、酷く意味深な光を帯びてアカネさんを見つめている。"
-  },
-  {
-    "scene": "教授の研究室",
-    "text": "当のアカネさんは、教授の視線などこれっぽっちも気にしていない様子で、研究室の奥に鎮座する巨大なロケットの計器類を黙々と調べていた。"
   },
   {
     "scene": "教授の研究室",
@@ -15304,13 +15543,7 @@ export const scenarioData = [
     "scene": "教授の研究室",
     "speaker": "アカネ",
     "role": "AKANE",
-    "text": "「……なんでもいいだろ、早く行くぞ」",
-    "showIllust": [
-      "Akane_serious"
-    ],
-    "illustPositions": {
-      "Akane": "center"
-    }
+    "text": "「……なんでもいいだろ、早く行くぞ」"
   },
   {
     "scene": "教授の研究室",
@@ -15318,7 +15551,16 @@ export const scenarioData = [
   },
   {
     "scene": "教授の研究室",
-    "text": "ただ、その刹那──。"
+    "text": "ただ、その刹那──。",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsunori",
+      "Akane",
+      "Michiru",
+      "Ruki"
+    ]
   },
   {
     "scene": "教授の研究室",
@@ -15327,11 +15569,23 @@ export const scenarioData = [
     "text": "「……ふふっ」",
     "showIllust": [
       "Hirumi_smile"
-    ]
+    ],
+    "illustPositions": {
+      "Hirumi": "center-left"
+    }
   },
   {
     "scene": "教授の研究室",
-    "text": "その瞬間、アカネさんの横顔がピキリと強張る。彼の残された片目に、どろりとした強い不快感と、底知れない憎悪の色が混ざり合うのを私は見た。それに応じるように、教授の唇の端が、さらに不敵に吊り上がったような気がした。"
+    "text": "その瞬間、アカネさんの横顔がピキリと強張る。彼の残された片目に、どろりとした強い不快感と、底知れない憎悪の色が混ざり合うのを私は見た。それに応じるように、教授の唇の端が、さらに不敵に吊り上がったような気がした。",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsunori",
+      "Akane",
+      "Michiru",
+      "Ruki"
+    ]
   },
   {
     "scene": "教授の研究室",
@@ -15343,8 +15597,11 @@ export const scenarioData = [
     "role": "PROFESSOR",
     "text": "「さぁ、タイムリミットだ。行きなさい──朔良」",
     "showIllust": [
-      "Hirumi_smile"
-    ]
+      "Hirumi_happy"
+    ],
+    "illustPositions": {
+      "Hirumi": "center-left"
+    }
   },
   {
     "scene": "教授の研究室",
@@ -15358,7 +15615,16 @@ export const scenarioData = [
   {
     "scene": "ロケット内部",
     "text": "ロケットの内部は、無機質な計器機と二人分のシートがあるだけの、おそろしく狭い空間だった。",
-    "bg": "/scene/rocket.png"
+    "bg": "/scene/rocket.png",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsunori",
+      "Akane",
+      "Michiru",
+      "Ruki"
+    ]
   },
   {
     "scene": "ロケット内部",
@@ -15390,7 +15656,13 @@ export const scenarioData = [
   },
   {
     "scene": "ロケット内部",
-    "text": "震える声で尋ねても、横のシートに深く背を預けたアカネさんからの返事はない。"
+    "text": "震える声で尋ねても、横のシートに深く背を預けたアカネさんからの返事はない。",
+    "showIllust": [
+      "Akane_neutral"
+    ],
+    "illustPositions": {
+      "Akane": "center"
+    }
   },
   {
     "scene": "ロケット内部",
@@ -15470,19 +15742,22 @@ export const scenarioData = [
     "bgm": "stop",
     "bgmFade": 3,
     "bg": "black",
-    "stopSe": "Rocket_Shock.mp3"
+    "stopSe": "Rocket_Shock.mp3",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsunori",
+      "Akane",
+      "Michiru",
+      "Ruki"
+    ]
   },
   {
     "scene": "ロケット内部",
     "speaker": "アカネ",
     "role": "AKANE",
-    "text": "「……ッ、……おい、起きろ」",
-    "showIllust": [
-      "Akane_serious"
-    ],
-    "illustPositions": {
-      "Akane": "center"
-    }
+    "text": "「……ッ、……おい、起きろ」"
   },
   {
     "scene": "ロケット内部",
@@ -15532,7 +15807,7 @@ export const scenarioData = [
     "role": "AKANE",
     "text": "「このロケットは、最初から墜落するようにできていた」",
     "showIllust": [
-      "Akane_serious"
+      "Akane_neutral"
     ],
     "illustPositions": {
       "Akane": "center"
@@ -15749,13 +16024,7 @@ export const scenarioData = [
     "scene": "月面",
     "speaker": "アカネ",
     "role": "AKANE",
-    "text": "「グズグズすんな、行くぞ」",
-    "showIllust": [
-      "Akane_serious"
-    ],
-    "illustPositions": {
-      "Akane": "center"
-    }
+    "text": "「グズグズすんな、行くぞ」"
   },
   {
     "scene": "月面",
@@ -15763,7 +16032,16 @@ export const scenarioData = [
   },
   {
     "scene": "月面",
-    "text": "彼から放たれる圧倒的な威圧感と、この場に取り残される恐怖に抗うことなどできず、私は突き放すように歩き出したアカネさんの背中を必死に追いかけた。"
+    "text": "彼から放たれる圧倒的な威圧感と、この場に取り残される恐怖に抗うことなどできず、私は突き放すように歩き出したアカネさんの背中を必死に追いかけた。",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsunori",
+      "Akane",
+      "Michiru",
+      "Ruki"
+    ]
   },
   {
     "scene": "フラグメントコレクト",
@@ -15784,7 +16062,13 @@ export const scenarioData = [
   },
   {
     "scene": "制御室",
-    "text": "息をつく暇もなく、アカネさんはどんどん廊下の奥へと進んでしまう。"
+    "text": "息をつく暇もなく、アカネさんはどんどん廊下の奥へと進んでしまう。",
+    "showIllust": [
+      "Akane_neutral"
+    ],
+    "illustPositions": {
+      "Akane": "center"
+    }
   },
   {
     "scene": "制御室",
@@ -15794,13 +16078,7 @@ export const scenarioData = [
   },
   {
     "scene": "制御室",
-    "text": "思わず声を上げると、一層眉間にしわを寄せて殺気立っているアカネさんが振り返る。その殺気に鳥肌が立つ。"
-  },
-  {
-    "scene": "制御室",
-    "speaker": "アカネ",
-    "role": "AKANE",
-    "text": "「早くしろ」",
+    "text": "思わず声を上げると、一層眉間にしわを寄せて殺気立っているアカネさんが振り返る。その殺気に鳥肌が立つ。",
     "showIllust": [
       "Akane_serious"
     ],
@@ -15810,7 +16088,22 @@ export const scenarioData = [
   },
   {
     "scene": "制御室",
-    "text": "それだけ言うと、私を待ってくれるわけでもなく先へ進んでしまった。何なの…！？あの人…！！"
+    "speaker": "アカネ",
+    "role": "AKANE",
+    "text": "「早くしろ」"
+  },
+  {
+    "scene": "制御室",
+    "text": "それだけ言うと、私を待ってくれるわけでもなく先へ進んでしまった。何なの…！？あの人…！！",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsunori",
+      "Akane",
+      "Michiru",
+      "Ruki"
+    ]
   },
   {
     "scene": "制御室",
@@ -15892,7 +16185,13 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の奧",
-    "text": "思わず悲鳴のような声を上げると、アカネさんは死骸の胸元をナイフで抉り、かすかに青白く明滅する異能のエネルギーの結晶を強引に毟り取った。"
+    "text": "思わず悲鳴のような声を上げると、アカネさんは死骸の胸元をナイフで抉り、かすかに青白く明滅する異能のエネルギーの結晶を強引に毟り取った。",
+    "showIllust": [
+      "Akane_neutral"
+    ],
+    "illustPositions": {
+      "Akane": "center"
+    }
   },
   {
     "scene": "研究所の奧",
@@ -15903,13 +16202,7 @@ export const scenarioData = [
     "scene": "研究所の奧",
     "speaker": "アカネ",
     "role": "AKANE",
-    "text": "「こいつらの異能を……少しずつ注ぎ込むしかない」",
-    "showIllust": [
-      "Akane_serious"
-    ],
-    "illustPositions": {
-      "Akane": "center"
-    }
+    "text": "「こいつらの異能を……少しずつ注ぎ込むしかない」"
   },
   {
     "scene": "研究所の奧",
@@ -15919,7 +16212,16 @@ export const scenarioData = [
     "scene": "研究所の奧",
     "speaker": "？？？",
     "text": "「──そんなことしてたら日が暮れちゃうよ」",
-    "action": "ENERGY_AURA_STOP"
+    "action": "ENERGY_AURA_STOP",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsunori",
+      "Akane",
+      "Michiru",
+      "Ruki"
+    ]
   },
   {
     "scene": "研究所の奧",
@@ -15928,7 +16230,13 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の奧",
-    "text": "ゲートの影からゆっくりと姿を現したのは、小柄な少年だった。私と同じくらいの、あるいは少し下に見えるその少年は、この地獄のような光景にはあまりにも不釣り合いな、無邪気で残酷な笑みを浮かべていた。"
+    "text": "ゲートの影からゆっくりと姿を現したのは、小柄な少年だった。私と同じくらいの、あるいは少し下に見えるその少年は、この地獄のような光景にはあまりにも不釣り合いな、無邪気で残酷な笑みを浮かべていた。",
+    "showIllust": [
+      "Ruki_neutral"
+    ],
+    "illustPositions": {
+      "Ruki": "center-left"
+    }
   },
   {
     "scene": "研究所の奧",
@@ -15956,7 +16264,16 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の奧",
-    "text": "その瞬間、部屋の空気が一瞬で、まるで真空になったかのように凍りついた。"
+    "text": "その瞬間、部屋の空気が一瞬で、まるで真空になったかのように凍りついた。",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsunori",
+      "Akane",
+      "Michiru",
+      "Ruki"
+    ]
   },
   {
     "scene": "研究所の奧",
@@ -15967,7 +16284,7 @@ export const scenarioData = [
       "Akane_serious"
     ],
     "illustPositions": {
-      "Akane": "center"
+      "Akane": "center-right"
     }
   },
   {
@@ -15982,20 +16299,22 @@ export const scenarioData = [
     "scene": "研究所の奧",
     "speaker": "アカネ",
     "role": "AKANE",
-    "text": "「俺のオフクロの名前をその汚ねえ口で二度と呼ぶな。……無能力者？ ゴミ？ ああ、そうかもな。\nだがな、無能力者の引き金でも、てめえの脳髄をブチ撒くくらいは簡単にできるんだよ」",
-    "showIllust": [
-      "Akane_serious"
-    ],
-    "illustPositions": {
-      "Akane": "center"
-    }
+    "text": "「俺のオフクロの名前をその汚ねえ口で二度と呼ぶな。……無能力者？ ゴミ？ ああ、そうかもな。\nだがな、無能力者の引き金でも、てめえの脳髄をブチ撒くくらいは簡単にできるんだよ」"
   },
   {
     "scene": "研究所の奧",
     "speaker": "少年",
     "role": "RUKI",
     "text": "「あはは！銃とか、そんなオモチャ効くわけねーじゃん。\nさあ、おいで──俺のボディーガード」",
-    "bgm": "stop"
+    "bgm": "stop",
+    "showIllust": [
+      "Ruki_neutral",
+      "Akane_serious"
+    ],
+    "illustPositions": {
+      "Ruki": "center-left",
+      "Akane": "center-right"
+    }
   },
   {
     "scene": "研究所の奧",
@@ -16007,30 +16326,50 @@ export const scenarioData = [
     "scene": "研究所の奧",
     "bg": "/scene/core_hakai1.png",
     "text": "凄まじい衝撃と共に土煙とガラスの破片が舞い散る。 灰色の粉塵がゆっくりと晴れていく中、そこには──",
-    "action": "GRAY_OUT_END_SLOW"
+    "action": "GRAY_OUT_END_SLOW",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsunori",
+      "Akane",
+      "Michiru",
+      "Ruki"
+    ]
   },
   {
     "scene": "研究所の奧",
-    "text": "黒騎士から放たれる、あの不快で悍ましい空気。それが、彼の母親を無残に殺害した犯人のものと完全に一致した瞬間、アカネさんの咆哮が部屋中に響き渡った。"
+    "text": "黒騎士から放たれる、あの不快で悍ましい空気。それが、彼の母親を無残に殺害した犯人のものと完全に一致した瞬間、アカネさんの咆哮が部屋中に響き渡った。",
+    "showIllust": [
+      "BlackKnight",
+      "Akane_serious"
+    ],
+    "illustPositions": {
+      "BlackKnight": "center-left",
+      "Akane": "center-right"
+    }
   },
   {
     "scene": "研究所の奧",
     "speaker": "アカネ",
     "role": "AKANE",
     "text": "「…………そこにいたか、クソ野郎が…ッ！！ここでなら…ようやく殺り合える… \n絶対に………殺してやるッ！！！！！」",
-    "bgm": "Battle1.mp3",
-    "showIllust": [
-      "Akane_serious"
-    ],
-    "illustPositions": {
-      "Akane": "center"
-    }
+    "bgm": "Battle1.mp3"
   },
   {
     "scene": "研究所の奧",
     "text": "アカネさんは完全に理性を失い、我を忘れて、憎悪のままに拳銃を連射しながら黒騎士へと弾丸のように飛び込んでいった。",
     "bgAnimation": "run_dash",
-    "action": "RED_ALERT_AND_SMALL_SHAKE"
+    "action": "RED_ALERT_AND_SMALL_SHAKE",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsunori",
+      "Akane",
+      "Michiru",
+      "Ruki"
+    ]
   },
   {
     "scene": "研究所の奧",
@@ -16080,7 +16419,13 @@ export const scenarioData = [
     "scene": "研究所の奧",
     "speaker": "少年",
     "role": "RUKI",
-    "text": "「あはは！傑作だ！」"
+    "text": "「あはは！傑作だ！」",
+    "showIllust": [
+      "Ruki_neutral"
+    ],
+    "illustPositions": {
+      "Ruki": "center-left"
+    }
   },
   {
     "scene": "研究所の奧",
@@ -16097,10 +16442,10 @@ export const scenarioData = [
     "role": "AKANE",
     "text": "「──チッ、ふざけんじゃねえ……！」",
     "showIllust": [
-      "Akane_serious"
+      "Akane_serious_injured"
     ],
     "illustPositions": {
-      "Akane": "center"
+      "Akane": "center-right"
     }
   },
   {
@@ -16110,7 +16455,16 @@ export const scenarioData = [
   {
     "scene": "研究所の奧",
     "text": "暴走する私のエネルギーが、近づく彼の衣服を焼き、肌を焦がす。普通の人間なら怯んで逃げ出すような狂気の渦の中、アカネさんは怯むことなく、ガシィッ！！ と私の細い両肩を、壊れ物を引き留めるような強さで掴み込んできた。",
-    "bgm": "Battle2.mp3"
+    "bgm": "Battle2.mp3",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsunori",
+      "Akane",
+      "Michiru",
+      "Ruki"
+    ]
   },
   {
     "scene": "研究所の奧",
@@ -16118,10 +16472,10 @@ export const scenarioData = [
     "role": "AKANE",
     "text": "「おい……！！しっかりしろ！！」",
     "showIllust": [
-      "Akane_serious"
+      "Akane_serious_injured"
     ],
     "illustPositions": {
-      "Akane": "center"
+      "Akane": "center-close"
     }
   },
   {
@@ -16139,17 +16493,41 @@ export const scenarioData = [
   {
     "scene": "研究所の奧",
     "text": "私の身体が、周囲に満ちていた黒騎士の異能の残滓、そして驚愕に目を見開いた少年の力を、爆発的な勢いで一滴残らず「吸収」し始めたのだ。",
-    "action": "ENERGY_AURA_START"
+    "action": "ENERGY_AURA_START",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsunori",
+      "Akane",
+      "Michiru",
+      "Ruki"
+    ]
   },
   {
     "speaker": "少年",
     "role": "RUKI",
     "scene": "研究所の奧",
-    "text": "「……はぁ、めんどくさいことになったな」"
+    "text": "「……はぁ、めんどくさいことになったな」",
+    "showIllust": [
+      "Ruki_neutral"
+    ],
+    "illustPositions": {
+      "Ruki": "center-left"
+    }
   },
   {
     "scene": "研究所の奧",
-    "text": "少年の冷たい声が響く。だが、私の身体に吸い上げられた莫大なエネルギーは、そのまま限界を超えた濁流となり、背後の『コア』へと一気に逆流入していった。"
+    "text": "少年の冷たい声が響く。だが、私の身体に吸い上げられた莫大なエネルギーは、そのまま限界を超えた濁流となり、背後の『コア』へと一気に逆流入していった。",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsunori",
+      "Akane",
+      "Michiru",
+      "Ruki"
+    ]
   },
   {
     "scene": "研究所の奧",
@@ -16170,13 +16548,7 @@ export const scenarioData = [
     "scene": "研究所の奧",
     "speaker": "アカネ",
     "role": "AKANE",
-    "text": "「……よく耐えた。あとは眠ってろ」",
-    "showIllust": [
-      "Akane_serious"
-    ],
-    "illustPositions": {
-      "Akane": "center"
-    }
+    "text": "「……よく耐えた。あとは眠ってろ」"
   },
   {
     "scene": "研究所の奧",
@@ -16216,7 +16588,7 @@ export const scenarioData = [
     "role": "AKANE",
     "text": "「──目が覚めたか」",
     "showIllust": [
-      "Akane_serious"
+      "Akane_neutral"
     ],
     "illustPositions": {
       "Akane": "center"
@@ -16238,13 +16610,7 @@ export const scenarioData = [
     "scene": "アジト",
     "speaker": "アカネ",
     "role": "AKANE",
-    "text": "「あの後、研究所が崩落を始めた。コアは完全に沈黙した。……お前を抱えて、ここまで這いずり戻ってきた」",
-    "showIllust": [
-      "Akane_serious"
-    ],
-    "illustPositions": {
-      "Akane": "center"
-    }
+    "text": "「あの後、研究所が崩落を始めた。コアは完全に沈黙した。……お前を抱えて、ここまで這いずり戻ってきた」"
   },
   {
     "scene": "アジト",
@@ -16258,13 +16624,7 @@ export const scenarioData = [
   },
   {
     "scene": "アジト",
-    "text": "私が恐る恐る尋ねると、アカネさんの目が一瞬だけ鋭く細められた。"
-  },
-  {
-    "scene": "アジト",
-    "speaker": "アカネ",
-    "role": "AKANE",
-    "text": "「生き埋めになったか、あるいは逃げ延びたか……。死体は確認できていない。だが、あいつらが何を目論んでいようが、俺たちの『実習』はこれで終わりだ。コアは止まった」",
+    "text": "私が恐る恐る尋ねると、アカネさんの目が一瞬だけ鋭く細められた。",
     "showIllust": [
       "Akane_serious"
     ],
@@ -16274,19 +16634,19 @@ export const scenarioData = [
   },
   {
     "scene": "アジト",
-    "text": "そう言って、アカネさんはゆっくりと立ち上がり、私のベッドの傍らまで歩いてきた。その足取りはまだ重く、痛々しい。\nけれど、その片目はいつになく深刻な光を宿して、私をじっと見下ろしていた。"
+    "speaker": "アカネ",
+    "role": "AKANE",
+    "text": "「生き埋めになったか、あるいは逃げ延びたか……。死体は確認できていない。だが、あいつらが何を目論んでいようが、俺たちの『実習』はこれで終わりだ。コアは止まった」"
+  },
+  {
+    "scene": "アジト",
+    "text": "そう言って、アカネさんはゆっくりと立ち上がり、私のベッドの傍らまで歩いてきた。その足取りはまだ重く、痛々しい。けれど、その片目はいつになく深刻な光を宿して、私をじっと見下ろしていた。"
   },
   {
     "scene": "アジト",
     "speaker": "アカネ",
     "role": "AKANE",
-    "text": "「……だが、朔良。一つ、お前に話さないといけないことがある」",
-    "showIllust": [
-      "Akane_serious"
-    ],
-    "illustPositions": {
-      "Akane": "center"
-    }
+    "text": "「……だが、朔良。一つ、お前に話さないといけないことがある」"
   },
   {
     "scene": "アジト",
@@ -16302,13 +16662,7 @@ export const scenarioData = [
     "scene": "アジト",
     "speaker": "アカネ",
     "role": "AKANE",
-    "text": "「…あのクソガキのことだ」",
-    "showIllust": [
-      "Akane_serious"
-    ],
-    "illustPositions": {
-      "Akane": "center"
-    }
+    "text": "「…あのクソガキのことだ」"
   },
   {
     "scene": "アジト",
@@ -16318,13 +16672,7 @@ export const scenarioData = [
     "scene": "アジト",
     "speaker": "アカネ",
     "role": "AKANE",
-    "text": "「あいつは……俺のオフクロを、あの黒騎士と共に殺した」",
-    "showIllust": [
-      "Akane_serious"
-    ],
-    "illustPositions": {
-      "Akane": "center"
-    }
+    "text": "「あいつは……俺のオフクロを、あの黒騎士と共に殺した」"
   },
   {
     "scene": "アジト",
@@ -16335,13 +16683,7 @@ export const scenarioData = [
     "speaker": "アカネ",
     "role": "AKANE",
     "text": "「あいつの名前は『ルキ』。……表の戸籍じゃ、とっくの昔に死んだことになってる、お前の、年の離れた実の弟だ」",
-    "bgmVolume": 0.01,
-    "showIllust": [
-      "Akane_serious"
-    ],
-    "illustPositions": {
-      "Akane": "center"
-    }
+    "bgmVolume": 0.01
   },
   {
     "scene": "アジト",
@@ -16362,13 +16704,7 @@ export const scenarioData = [
     "speaker": "アカネ",
     "role": "AKANE",
     "text": "「覚えていないのも無理はない。お前の父親…月の研究員が何か裏で手を回していたのかもしれないな」",
-    "bgmVolume": 0.3,
-    "showIllust": [
-      "Akane_serious"
-    ],
-    "illustPositions": {
-      "Akane": "center"
-    }
+    "bgmVolume": 0.3
   },
   {
     "scene": "アジト",
@@ -16378,13 +16714,7 @@ export const scenarioData = [
     "scene": "アジト",
     "speaker": "アカネ",
     "role": "AKANE",
-    "text": "「黒騎士の正体も、あいつらが何のためにコアを動かしていたのかも、何も聞き出せなかった。……それに、あの時お前の身体に起きた『異常』もな。あのガキは、お前の力を知っている口ぶりだった」",
-    "showIllust": [
-      "Akane_serious"
-    ],
-    "illustPositions": {
-      "Akane": "center"
-    }
+    "text": "「黒騎士の正体も、あいつらが何のためにコアを動かしていたのかも、何も聞き出せなかった。……それに、あの時お前の身体に起きた『異常』もな。あのガキは、お前の力を知っている口ぶりだった」"
   },
   {
     "scene": "アジト",
@@ -16400,7 +16730,7 @@ export const scenarioData = [
     "role": "AKANE",
     "text": "「……まあ、今はこれ以上考えても答えは出ないがな」",
     "showIllust": [
-      "Akane_serious"
+      "Akane_neutral"
     ],
     "illustPositions": {
       "Akane": "center"
@@ -16416,7 +16746,7 @@ export const scenarioData = [
     "role": "AKANE",
     "text": "「何があろうと、あいつらがまた這い出てくるなら、その時はまとめてブチ殺すだけだ。だから、今は余計なことは考えずに寝ていろ」",
     "showIllust": [
-      "Akane_serious"
+      "Akane_smile"
     ],
     "illustPositions": {
       "Akane": "center"
@@ -16439,7 +16769,16 @@ export const scenarioData = [
   {
     "scene": "宇宙空間",
     "action": "FADE_TO_BLACK",
-    "duration": 4000
+    "duration": 4000,
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsunori",
+      "Akane",
+      "Michiru",
+      "Ruki"
+    ]
   },
   {
     "scene": "青い月無い青空",
@@ -16508,7 +16847,16 @@ export const scenarioData = [
   },
   {
     "scene": "面会室",
-    "text": "グレーの囚人服に身を包み、気だるげにパイプ椅子に腰掛けたのは、見慣れたあの巨体だった。全身の傷にはまだ白い包帯が巻かれているけれど、剥き出しの片目は相変わらず鋭くギラついている。"
+    "text": "グレーの囚人服に身を包み、気だるげにパイプ椅子に腰掛けたのは、見慣れたあの巨体だった。全身の傷にはまだ白い包帯が巻かれているけれど、剥き出しの片目は相変わらず鋭くギラついている。",
+    "showIllust": [
+      "Akane_neutral_syujin"
+    ],
+    "illustPositions": {
+      "Akane": "center"
+    },
+    "hideIllust": [
+      "Akane"
+    ]
   },
   {
     "scene": "面会室",
@@ -16516,13 +16864,7 @@ export const scenarioData = [
     "role": "AKANE",
     "text": "「……毎度毎度どうも」",
     "bgm": "serious_3.mp3",
-    "bgmVolume": 0.3,
-    "showIllust": [
-      "Akane_neutral_syujin"
-    ],
-    "illustPositions": {
-      "Akane": "center"
-    }
+    "bgmVolume": 0.3
   },
   {
     "scene": "面会室",
@@ -16616,19 +16958,22 @@ export const scenarioData = [
   },
   {
     "scene": "面会室",
-    "text": "けれど、すぐにそれはいつもの、呆れたような笑みへと変わっていった。"
-  },
-  {
-    "scene": "面会室",
-    "speaker": "アカネ",
-    "role": "AKANE",
-    "text": "「ハッ……。人の忠告も無視か。まぁいい、そこまで言うなら連れていこう」",
+    "text": "けれど、すぐにそれはいつもの、呆れたような笑みへと変わっていった。",
     "showIllust": [
       "Akane_smile_syujin"
     ],
     "illustPositions": {
       "Akane": "center"
-    }
+    },
+    "hideIllust": [
+      "Akane"
+    ]
+  },
+  {
+    "scene": "面会室",
+    "speaker": "アカネ",
+    "role": "AKANE",
+    "text": "「ハッ……。人の忠告も無視か。まぁいい、そこまで言うなら連れていこう」"
   },
   {
     "scene": "面会室",
@@ -16638,13 +16983,7 @@ export const scenarioData = [
     "scene": "面会室",
     "speaker": "アカネ",
     "role": "AKANE",
-    "text": "「ただし、自分の身は自分で守れるくらいにはなっておけ。俺がお前をいつでも守れるとは限らないからな」",
-    "showIllust": [
-      "Akane_neutral_syujin"
-    ],
-    "illustPositions": {
-      "Akane": "center"
-    }
+    "text": "「ただし、自分の身は自分で守れるくらいにはなっておけ。俺がお前をいつでも守れるとは限らないからな」"
   },
   {
     "scene": "面会室",
@@ -16658,7 +16997,17 @@ export const scenarioData = [
   },
   {
     "scene": "面会室",
-    "text": "アカネさんはゆっくりと椅子から立ち上がると、背を向け、部屋の奥へと歩き出した。重い鉄格子の向こうへと消えていく彼の背中は、これから始まる本当の戦いを予感させるように、どこまでも大きく、頼もしかった。"
+    "text": "アカネさんはゆっくりと椅子から立ち上がると、背を向け、部屋の奥へと歩き出した。重い鉄格子の向こうへと消えていく彼の背中は、これから始まる本当の戦いを予感させるように、どこまでも大きく、頼もしかった。",
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsunori",
+      "Akane",
+      "Michiru",
+      "Ruki"
+    ],
+    "bg": "/character/Akane/Akane_CG2.png"
   },
   {
     "scene": "面会室",
@@ -16696,13 +17045,7 @@ export const scenarioData = [
     "scene": "面会室",
     "speaker": "アカネ",
     "role": "AKANE",
-    "text": "「……こちらこそ、ありがとう」",
-    "showIllust": [
-      "Akane_smile_syujin"
-    ],
-    "illustPositions": {
-      "Akane": "center"
-    }
+    "text": "「……こちらこそ、ありがとう」"
   },
   {
     "scene": "面会室",
@@ -16715,7 +17058,16 @@ export const scenarioData = [
   {
     "scene": "宇宙空間",
     "action": "FADE_TO_BLACK",
-    "duration": 3000
+    "duration": 3000,
+    "hideIllust": [
+      "Mika",
+      "Hirumi",
+      "BlackKnight",
+      "Mutsunori",
+      "Akane",
+      "Michiru",
+      "Ruki"
+    ]
   },
   {
     "scene": "青い月ない青空",
