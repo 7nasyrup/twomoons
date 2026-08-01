@@ -1248,6 +1248,10 @@ export default function App() {
           'TRIGGER_TAP_COMMUNICATION',
           'TRIGGER_EYE_OF_PROFILER',
           'TRIGGER_FRAGMENT_COLLECT',
+          'TRIGGER_FRAGMENT_COLLECT_NAGISA',
+          'TRIGGER_FRAGMENT_COLLECT_MIKA',
+          'TRIGGER_FRAGMENT_COLLECT_AKANE',
+          'TRIGGER_FRAGMENT_COLLECT_SOLO',
           'TRIGGER_STEALTH_GAME'
         ].includes(currentLine?.action);
 
