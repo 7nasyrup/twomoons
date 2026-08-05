@@ -9,19 +9,16 @@ import { useAudioSystem } from '../hooks/useAudioSystem';
 const OBJECT_DETAILS = {
   bag: {
     messages: [
-      { role: 'narrative', text: `教科書が詰まった重いカバンを持ち上げ、自分の手元を見つめる。` },
-      { role: 'narrative', text: `大学にまで入って月科学なんて不気味な勉強してるのに、私には、何の関係もない話。` },
-      { role: 'narrative', text: `周囲の優秀な──何らかの力を隠し持っているであろう特待生たちとは違う。私は人工月の恩恵を一切受けられなかった、ただの『無能力者』。` },
-      { role: 'narrative', text: `牙を持たない羊として生きるために、目立たないように、波風を立てないように。ただ二十歳の学生としての静かな日常を消化することだけが、私の生存戦略だった。` }
+      { role: 'narrative', text: `机の横に置いたカバンを手に取る。教科書。ノート。学生証。そして、小さな音楽プレイヤー。` },
+      { role: 'narrative', text: `私はそれを少しだけ眺める。父に買ってもらった、古びた機械。けれどそれだけは今でも大切に持ち歩いている。` },
     ]
   },
 
   photo: {
     messages: [
-      { role: 'narrative', text: `棚の特等席に飾られた、若き日の優しい父親と、まだ幼い私が写った写真に触れる。` },
-      { role: 'father', speaker: '父', text: `『朔良、あの青い月を見ちゃダメだ。あの裏側にはね、もっと優しくて、満ちたり欠けたりしながら、ただ静かに僕たちを照らしてくれていた本物の月があるんだよ』` },
-      { role: 'narrative', text: `父は私によく、隠されてしまった本物の月の姿を、何度も何度も話してくれた。そして、私の前から突然消えてしまった。` },
-      { role: 'narrative', text: `父が何を求めて失踪したのか、その真相を知りたくて、私は最先端の、そして危険な『月科学エネルギー学部』の門を叩いたのだ。` }
+      { role: 'narrative', text: `机の隅に飾られた写真には、幼い頃の私と父が写っている。色褪せた写真の中の父は優しい笑みを浮かべている。父は昔から、変わったことを言う人だった。` },
+      { role: 'father', speaker: '父', text: `『朔良。もし迷った時は、自分の声を信じなさい。…お前の歌は、きっと誰かを導くから』` },
+      { role: 'narrative', text: `父が残した言葉。その意味を、私はまだ完全には理解できていない。ただ――歌うことだけは、昔から続けている。` },
     ]
   },
 };
@@ -110,9 +107,10 @@ export default function SearchAndLearning({
 
   // --- Message Queue System ---
   const { playSE } = useAudioSystem();
-  
+
   // Local state for displaying an item sprite
   const [displayedItem, setDisplayedItem] = useState(null);
+  const [hudVisible, setHudVisible] = useState(true);
 
   const [messageQueue, setMessageQueue] = useState([]);
   const [currentMessage, setCurrentMessage] = useState(null);
@@ -220,7 +218,7 @@ export default function SearchAndLearning({
     if (currentMessage) return;
 
     // アイテム表示とSE再生
-    setDisplayedItem('/item/phone_alert.jpg');
+    setDisplayedItem('/item/phone_alert.png');
     playSE(assetPath('/assets/audio/se/phone_alert.mp3'));
 
     if (!visited.artificial_moon) {
@@ -237,12 +235,11 @@ export default function SearchAndLearning({
     }
 
     const queue = [
-      { role: 'narrative', speaker: '', text: `画面を点灯させると、『月波観測庁』が発令した最新の警告通知が、不吉な赤色で明滅していた。` },
-      { role: 'info', speaker: '警告通知', text: `【月波観測予報：警戒レベル3（厳重警戒）】 本日、人工月の活性化に伴い、地上への月波照射量が基準値を大幅に超過。一般市民は不要不急の外出を控え、特に『適応不全（【キメラ】化）』の兆候がある個体への接近に注意してください。` },
-      { role: 'narrative', speaker: '', text: `月波（げっぱ）を浴びた人間の中から、常人離れした『異能力』に目覚める者が現れる。` },
-      { role: 'narrative', speaker: '', text: `今やそれは珍しいことではないけれど、みんな国の研究機関に目をつけられるリスクを恐れて力を隠し、互いに探り合いながら生きている。` },
-      { role: 'narrative', speaker: '', text: `そしてもう一つの警戒が、生態系の破壊──『キメラ』の発生。人工月のエネルギーに適応できず、怪物と化した動植物や元・人間の成れの果て。` },
-      { role: 'narrative', speaker: '', text: `警戒レベル3ってことは、今夜あたり、またあの化け物どもが街を徘徊し始めるかもしれない。` }
+      { role: 'narrative', speaker: '', text: `画面を点けると、月波観測庁からの警告通知が表示されていた。` },
+      { role: 'info', speaker: '警告通知', text: `【月波観測予報：警戒レベル3】本日、人工月の活動周期変化により、地上への月波照射量が増加しています。不要不急の外出は控えてください。また、キメラ発生区域への接近には十分注意してください。` },
+      { role: 'narrative', speaker: '', text: `最近、こうした通知を見る機会が増えた。以前なら、ニュースの中だけの出来事だったはずなのに。今では、この青い月の下で暮らす誰もが、無関係ではいられなくなっている。` },
+      { role: 'narrative', speaker: '', text: `数年前までは、キメラなんて遠い場所で起きる事件だと思っていた。でも今は人の生活圏のすぐ近くでも確認されている。` },
+      { role: 'SAKURA', speaker: '朔良', text: `「……気をつけないと」` },
     ];
 
     setMessageQueue(queue.slice(1));
@@ -555,18 +552,29 @@ export default function SearchAndLearning({
       {/* Confirmation Modal */}
       <ConfirmModal {...confirmModal} />
 
+      {/* HUD hidden overlay to restore HUD on click */}
+      {!hudVisible && !!currentMessage && (
+        <div
+          className="absolute inset-0 z-20 cursor-pointer"
+          onClick={(e) => {
+            e.stopPropagation();
+            setHudVisible(true);
+          }}
+        />
+      )}
+
       <DialogueBox
         speaker={currentMessage?.speaker || ''}
         role={currentMessage?.role || ''}
         text={displayedText}
         isTyping={isTyping}
-        isVisible={!!currentMessage}
+        isVisible={!!currentMessage && hudVisible}
         autoMode={autoMode}
         skipMode={skipMode}
         onNext={handleNextMessage}
         onToggleAuto={onToggleAuto}
         onToggleSkip={onToggleSkip}
-        onToggleHud={() => console.log('Hide HUD not supported here')}
+        onToggleHud={() => setHudVisible(!hudVisible)}
         onOpenLog={onOpenLog}
         choices={null}
         isWaitingForChoice={false}

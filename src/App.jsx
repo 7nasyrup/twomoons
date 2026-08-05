@@ -5,6 +5,7 @@ import ShakeLayer from './components/ShakeLayer';
 import SpriteSlot from './components/SpriteSlot';
 import DialogueBox from './components/DialogueBox';
 import CinemaLayer from './components/CinemaLayer';
+import PopupLayer from './components/PopupLayer';
 import AlertModal from './components/AlertModal';
 import ConfirmModal from './components/ConfirmModal';
 import DevConsole from './components/DevConsole';
@@ -22,6 +23,7 @@ import FragmentCollectAkane from './components/FragmentCollectAkane';
 import FragmentCollectSolo from './components/FragmentCollectSolo';
 import PortraitWarningOverlay from './components/PortraitWarningOverlay';
 import StealthGame from './components/StealthGame';
+import BattleSystem from './components/BattleSystem';
 import SaveSlotModal, { SAVE_KEY_PREFIX, loadAllSlots } from './components/SaveSlotModal';
 import InstallPrompt from './components/InstallPrompt';
 import { useNovelEngine } from './hooks/useNovelEngine';
@@ -405,6 +407,7 @@ export default function App() {
   const [isTearBlurActive, setIsTearBlurActive] = useState(false);
   const [isSpeedEffectActive, setIsSpeedEffectActive] = useState(false);
   const [stealthGameResult, setStealthGameResult] = useState(null);
+  const [showBattle, setShowBattle] = useState(false);
 
   const [saveToast, setSaveToast] = useState(null); // 'saved' | 'loaded' | null
   // セーブスロットモーダル
@@ -449,6 +452,16 @@ export default function App() {
     setShowTitle(false);
     setFlags({});
     jumpToStep(0);
+  };
+
+  const handleStartBattle = () => {
+    setShowBattle(true);
+    setShowTitle(false);
+  };
+
+  const handleBattleComplete = (result) => {
+    setShowBattle(false);
+    setShowTitle(true);
   };
 
   const handleExitToTitle = () => {
@@ -623,7 +636,7 @@ export default function App() {
 
   // Track present items
   useEffect(() => {
-    if (!visualLine || showTitle) return;
+    if (!visualLine || showTitle || showBattle) return;
 
     if (visualLine.hideItem || visualLine.clearItem) {
       setDisplayedItem(null);
@@ -632,11 +645,11 @@ export default function App() {
     if (visualLine.showItem) {
       setDisplayedItem(visualLine.showItem);
     }
-  }, [visualLine, showTitle]);
+  }, [visualLine, showTitle, showBattle]);
 
   // Track present characters (including manual triggers)
   useEffect(() => {
-    if (!visualLine || showTitle) return;
+    if (!visualLine || showTitle || showBattle) return;
 
     const jpToEngBase = {
       "睦典": "Mutsunori",
@@ -677,9 +690,16 @@ export default function App() {
 
     // 3. Force Show specific illustrations
     if (Array.isArray(visualLine.showIllust)) {
-      visualLine.showIllust.forEach(char => {
+      visualLine.showIllust.forEach(charRaw => {
+        let char = charRaw;
+        const match = charRaw.match(/^(.+?)([1-5])$/);
+        if (match) {
+          char = match[1];
+        }
+
         const rawBase = char.split('_')[0];
         const baseName = jpToEngBase[rawBase] || rawBase;
+
         const existingIndex = nextList.findIndex(c => {
           const cBase = c.split('_')[0];
           return (jpToEngBase[cBase] || cBase) === baseName;
@@ -699,11 +719,11 @@ export default function App() {
     if (listChanged) {
       setPresentCharacters(nextList);
     }
-  }, [visualLine, showTitle, presentCharacters]);
+  }, [visualLine, showTitle, showBattle, presentCharacters]);
 
   // Audio system and sprite positioning logic based on active step details
   useEffect(() => {
-    if (!currentLine || showTitle) return;
+    if (!currentLine || showTitle || showBattle) return;
 
     // Track scene changes to reset BGM override
     if (currentLine.scene !== lastSceneRef.current) {
@@ -746,7 +766,11 @@ export default function App() {
 
     // Allow explicit SE play / stop from scenario data
     if (currentLine.se) {
-      playSE(assetPath(`/assets/audio/bgm/${currentLine.se}`));
+      if (currentLine.se === "stop") {
+        stopSE(null, currentLine.seFade || 2000); // Default to 2 seconds slow fade
+      } else {
+        playSE(assetPath(`/assets/audio/bgm/${currentLine.se}`));
+      }
     }
     if (currentLine.stopSe) {
       stopSE(assetPath(`/assets/audio/bgm/${currentLine.stopSe}`));
@@ -1011,11 +1035,11 @@ export default function App() {
     } else {
       setFocusSlot(null);
     }
-  }, [currentStep, currentLine, playBGM, stopBGM, pauseBGM, resumeBGM, playSE, stopSE]);
+  }, [currentStep, currentLine, playBGM, stopBGM, pauseBGM, resumeBGM, playSE, stopSE, showTitle, showBattle]);
 
   // Cinema Mode Autoplay timers
   useEffect(() => {
-    if (!currentLine || showTitle || manualTestMode) return;
+    if (!currentLine || showTitle || showBattle || manualTestMode) return;
     if (currentLine.style === 'cinema' || currentLine.action === 'FADE_TO_BLACK' || currentLine.action === 'SLOW_FADE_TO_BLACK' || currentLine.action === 'WAIT_FADE') {
       let delay = 3000;
       if (currentLine.action === 'FADE_IN') delay = 2500;
@@ -1032,11 +1056,11 @@ export default function App() {
       }, delay);
       return () => clearTimeout(timer);
     }
-  }, [currentStep, currentLine, nextStep, showTitle, manualTestMode]);
+  }, [currentStep, currentLine, nextStep, showTitle, showBattle, manualTestMode]);
 
   // Persist Good Ending completion flags
   useEffect(() => {
-    if (!currentLine || showTitle) return;
+    if (!currentLine || showTitle || showBattle) return;
 
     // 1. Nagisa Route Happy End
     if (currentLine.text && currentLine.text.includes("凪砂ルート・ハッピーエンド")) {
@@ -1061,7 +1085,7 @@ export default function App() {
       localStorage.setItem('cleared_akane_good_end', 'true');
       setClearedAkane(true);
     }
-  }, [currentLine, showTitle]);
+  }, [currentLine, showTitle, showBattle]);
 
   // Handle conditional branching and special actions
   useEffect(() => {
@@ -1135,13 +1159,13 @@ export default function App() {
   // Backup: trigger end screen when typing finishes on an ending slide
   // This catches any timing edge-cases where the above useEffect fires too early
   useEffect(() => {
-    if (showTitle || isTyping) return;
+    if (showTitle || showBattle || isTyping) return;
     if (currentLine?.action === 'FADE_TO_HAPPY_END') {
       setEndType('happy');
     } else if (currentLine?.action === 'FADE_TO_BAD_END') {
       setEndType('bad');
     }
-  }, [isTyping, currentLine, showTitle]);
+  }, [isTyping, currentLine, showTitle, showBattle]);
 
   // Handle touch events for gestures
   const handleTouchStart = (e) => {
@@ -1150,7 +1174,7 @@ export default function App() {
   };
 
   const handleTouchEnd = (e) => {
-    if (showTitle) return;
+    if (showTitle || showBattle) return;
 
     // If the touch target is a button or inside a button/link, don't advance the scenario.
     // Let the button's own click handler handle it instead.
@@ -1210,7 +1234,7 @@ export default function App() {
   // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (showTitle || alertActive) return;
+      if (showTitle || showBattle || alertActive) return;
 
       // Handle backlog closing via keyboard
       if (backlogOpen) {
@@ -1256,7 +1280,7 @@ export default function App() {
         ].includes(currentLine?.action);
 
         const isTransition = currentLine?.action === 'FADE_TO_BLACK' || currentLine?.action === 'SLOW_FADE_TO_BLACK' || currentLine?.action === 'WAIT_FADE' || isBgTransitioning || isBgFadingOut;
-        if (!isWaitingForChoice && !isMinigameActive && !isAnyEnd && !isEndScreen && !isTransition) {
+        if (!isWaitingForChoice && !isMinigameActive && !isAnyEnd && !isEndScreen && !isTransition && !isPopup) {
           nextStep();
         }
       }
@@ -1264,7 +1288,7 @@ export default function App() {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [nextStep, prevStep, toggleHud, toggleAuto, isWaitingForChoice, backlogOpen, alertActive, hudVisible, setHudVisible, currentLine, skipMode, setSkipMode, showTitle, isBgTransitioning, isBgFadingOut, isEndScreen]);
+  }, [nextStep, prevStep, toggleHud, toggleAuto, isWaitingForChoice, backlogOpen, alertActive, hudVisible, setHudVisible, currentLine, skipMode, setSkipMode, showTitle, showBattle, isBgTransitioning, isBgFadingOut, isEndScreen]);
 
   const handleDismissAlert = () => {
     setAlertActive(false);
@@ -1272,6 +1296,7 @@ export default function App() {
   };
 
   const isCinema = currentLine?.style === 'cinema';
+  const isPopup = currentLine?.style === 'popup';
   const isHappyEnd = currentLine?.action === 'FADE_TO_HAPPY_END';
   const isBadEnd = currentLine?.action === 'FADE_TO_BAD_END';
   const isTransition = currentLine?.action === 'FADE_TO_BLACK' || currentLine?.action === 'SLOW_FADE_TO_BLACK' || currentLine?.action === 'WAIT_FADE' || isBgTransitioning || isBgFadingOut;
@@ -1411,7 +1436,7 @@ export default function App() {
         }
         const isTransition = currentLine?.action === 'FADE_TO_BLACK' || currentLine?.action === 'SLOW_FADE_TO_BLACK' || currentLine?.action === 'WAIT_FADE' || isBgTransitioning || isBgFadingOut;
 
-        if (!showTitle && !isWaitingForChoice && !alertActive && !backlogOpen && !isMinigameActive && !isAnyEnd && !isEndScreen && !isTransition) {
+        if (!showTitle && !showBattle && !isWaitingForChoice && !alertActive && !backlogOpen && !isMinigameActive && !isAnyEnd && !isEndScreen && !isTransition && !isPopup) {
           nextStep();
         } else if (isMinigameActive) {
           window.dispatchEvent(new Event('minigame-tap'));
@@ -1420,10 +1445,18 @@ export default function App() {
     >
       <GameFrame>
         <ShakeLayer shakeEffect={shakeEffect}>
-        {showTitle ? (
+        {showBattle ? (
+          <BattleSystem
+            onComplete={handleBattleComplete}
+            playBGM={playBGM}
+            stopBGM={stopBGM}
+            playSE={playSE}
+          />
+        ) : showTitle ? (
           <TitleScreen
             onStart={handleStartGame}
             onContinue={handleOpenLoadFromTitle}
+            onBattle={handleStartBattle}
             hasSave={hasSave}
             playBGM={playBGM}
           />
@@ -1567,6 +1600,14 @@ export default function App() {
             <CinemaLayer
               text={currentLine?.text}
               isActive={isCinema && !isAnyEnd && !isTypingGameActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isFragmentCollectActive && !isFragmentCollectMikaActive && !isFragmentCollectAkaneActive && !isFragmentCollectSoloActive && !isStealthGameActive}
+              isTyping={isTyping}
+              onNext={nextStep}
+            />
+
+            {/* Popup Text Overlay */}
+            <PopupLayer
+              text={displayedText}
+              isActive={isPopup && !isAnyEnd}
               isTyping={isTyping}
               onNext={nextStep}
             />
@@ -2116,6 +2157,7 @@ export default function App() {
             {/* Subtitles & Normal Dialogue Boxes */}
             {!isCinema && !isTransition && !isAnyEnd && !alertActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isTypingGameActive && !isFragmentCollectActive && !isFragmentCollectMikaActive && !isFragmentCollectAkaneActive && !isFragmentCollectSoloActive && !isStealthGameActive && (
               <DialogueBox
+                isPopup={isPopup}
                 speaker={currentLine?.speaker}
                 role={currentLine?.role}
                 text={displayedText}

@@ -102,11 +102,15 @@ export function useAudioSystem() {
         }, fadeDuration + 50);
       }
     } else {
-      Object.values(sePool.current).forEach(h => {
-        h.stop();
-        h.unload();
-      });
+      const currentSounds = { ...sePool.current };
       sePool.current = {};
+      Object.values(currentSounds).forEach(h => {
+        h.fade(h.volume(), 0, fadeDuration);
+        setTimeout(() => {
+          h.stop();
+          h.unload();
+        }, fadeDuration + 50);
+      });
     }
   }, []);
 

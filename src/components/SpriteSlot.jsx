@@ -87,7 +87,12 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
   }
 
   if (Array.isArray(currentLine?.showIllust)) {
-    currentLine.showIllust.forEach(c => {
+    currentLine.showIllust.forEach(charRaw => {
+      let c = charRaw;
+      const match = charRaw.match(/^(.+?)([1-5])$/);
+      if (match) {
+        c = match[1];
+      }
       const rawBase = c.split('_')[0];
       const base = SPEAKER_TO_ROMAJI[rawBase] || rawBase;
       if (SPEAKER_CONFIGS[base]) {
@@ -96,17 +101,78 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
     });
   }
 
+  const effectiveScene = currentLine?.scene || (Array.isArray(scenarioData) && typeof currentStep === 'number' && currentStep > 0 ? scenarioData[currentStep - 1]?.scene : '');
 
+  const orderedCharacters = Object.keys(SPEAKER_CONFIGS).filter(c => resolvedDisplayMap[c]);
 
   return (
-    <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden">
+    <div className="absolute inset-0 pointer-events-none z-[12]">
       <AnimatePresence>
-        {Object.entries(resolvedDisplayMap).map(([baseCharName, charName]) => {
-          let config = SPEAKER_CONFIGS[baseCharName];
+        {orderedCharacters.map((baseCharName) => {
+          const charState = resolvedDisplayMap[baseCharName];
+          const config = SPEAKER_CONFIGS[baseCharName];
           if (!config) return null;
 
-          const underscoreIndex = charName.indexOf('_');
-          const expression = underscoreIndex !== -1 ? charName.substring(underscoreIndex + 1) : config.defaultExpression;
+          let expression = config.defaultExpression;
+          if (charState && charState.includes('_')) {
+            expression = charState.split('_')[1];
+            if (expression.match(/^[a-zA-Z]+[0-9]+$/)) {
+              const match = expression.match(/^([a-zA-Z]+)([0-9]+)$/);
+              if (match) {
+                expression = match[1];
+              }
+            }
+          }
+
+          let posIndex = null;
+          
+          const getForcedPos = (charRaw) => {
+            const match = charRaw.match(/^(.+?)([1-5])$/);
+            if (match) return parseInt(match[2], 10);
+            return null;
+          };
+
+          const getBaseName = (charRaw) => {
+             let c = charRaw;
+             const match = charRaw.match(/^(.+?)([1-5])$/);
+             if (match) c = match[1];
+             const rawBase = c.split('_')[0];
+             return SPEAKER_TO_ROMAJI[rawBase] || rawBase;
+          };
+
+          if (Array.isArray(currentLine?.showIllust)) {
+             for (const charRaw of currentLine.showIllust) {
+                if (getBaseName(charRaw) === baseCharName) {
+                   const p = getForcedPos(charRaw);
+                   if (p) posIndex = p;
+                }
+             }
+          }
+
+          if (!posIndex && Array.isArray(scenarioData) && typeof currentStep === 'number') {
+            for (let i = currentStep - 1; i >= 0; i--) {
+              const prevLine = scenarioData[i];
+              if (Array.isArray(prevLine?.showIllust)) {
+                 let foundPos = null;
+                 for (const charRaw of prevLine.showIllust) {
+                    if (getBaseName(charRaw) === baseCharName) {
+                       const p = getForcedPos(charRaw);
+                       if (p) foundPos = p;
+                    }
+                 }
+                 if (foundPos) {
+                   posIndex = foundPos;
+                   break;
+                 }
+              }
+            }
+          }
+
+          let pos = null;
+          if (typeof posIndex === 'number') {
+             const POS_MAP = ['left', 'center-left', 'center', 'center-right', 'right'];
+             pos = POS_MAP[posIndex - 1];
+          }
 
           let imagePath = assetPath(`${config.folder}/${config.baseFileName}_${expression}.png`);
           if (baseCharName === "BlackKnight") {
@@ -156,33 +222,7 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
             }
           }
 
-          // Determine the effective scene (skip empty scenes like jumpTo)
-          let effectiveScene = currentLine?.scene;
-          if (!effectiveScene && Array.isArray(scenarioData) && typeof currentStep === 'number') {
-            for (let j = currentStep - 1; j >= 0; j--) {
-              if (scenarioData[j]?.scene) {
-                effectiveScene = scenarioData[j].scene;
-                break;
-              }
-            }
-          }
 
-          // Look up position from current line, or find the nearest previous position
-          // in the same scene for this character
-          let pos = null;
-          if (currentLine?.illustPositions && currentLine.illustPositions[baseCharName]) {
-            pos = currentLine.illustPositions[baseCharName];
-          } else if (Array.isArray(scenarioData) && typeof currentStep === 'number') {
-            for (let i = currentStep - 1; i >= 0; i--) {
-              const prevLine = scenarioData[i];
-              // Stop if we explicitly leave the same scene
-              if (prevLine?.scene && prevLine.scene !== effectiveScene) break;
-              if (prevLine?.illustPositions && prevLine.illustPositions[baseCharName]) {
-                pos = prevLine.illustPositions[baseCharName];
-                break;
-              }
-            }
-          }
 
           // Position map: divide screen into 5 equal slots (each ~20% wide, sprite is 45% wide)
           // Slots are centered at: 10%, 30%, 50%, 70%, 90% of screen

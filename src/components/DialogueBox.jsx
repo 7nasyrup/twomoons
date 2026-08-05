@@ -19,6 +19,7 @@ export default function DialogueBox({
   text,
   isTyping,
   isVisible,
+  isPopup,
   autoMode,
   skipMode,
   onNext,
@@ -64,11 +65,52 @@ export default function DialogueBox({
           <HudButton icon={<LogOut className="dlg-hud-icon w-[2vh] h-[2vh]" />} label="EXIT" onClick={onExit} />
         </div>
 
+        {/* Popup Choices (Centered) */}
+        {isPopup && isWaitingForChoice && choices && (
+          <div className="absolute inset-0 flex flex-col justify-center items-center pointer-events-none z-50">
+            {/* The Prompt Text */}
+            {fullText && (
+              <div className="mb-6 lg:mb-10 w-[70vw] max-w-[500px] bg-[#0a192f]/90 backdrop-blur-md border border-[#4dd0e1]/50 rounded-xl py-4 lg:py-[3vh] px-6 lg:px-[4vh] shadow-[0_0_20px_rgba(0,229,255,0.15)] flex justify-center text-center pointer-events-auto">
+                <span className="text-[#e2f1f8] font-noto text-sm md:text-lg lg:text-[2.2vh] tracking-[0.1em] font-medium leading-relaxed">
+                  {fullText}
+                </span>
+              </div>
+            )}
+            
+            {/* The Choices */}
+            <div className="flex flex-col items-center gap-3 lg:gap-5 w-full pointer-events-auto">
+              {choices.map((choice, idx) => {
+                const isInteractive = !choice.isLocked;
+                return (
+                  <motion.div
+                    key={idx}
+                    className="relative p-[1px] bg-slate-700 hover:bg-[#00e5ff] transition-colors cursor-pointer group w-[70vw] max-w-[500px] rounded-md shadow-lg"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0, transition: { delay: idx * 0.1 } }}
+                    whileHover={isInteractive ? { scale: 1.03 } : {}}
+                    whileTap={isInteractive ? { scale: 0.97 } : {}}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      if (isInteractive) {
+                        onSelectChoice(idx);
+                      }
+                    }}
+                  >
+                    <div className={`w-full bg-slate-900/95 backdrop-blur-md py-3 lg:py-[2.5vh] px-4 flex justify-center items-center border border-slate-700/50 rounded-md ${isInteractive ? '' : 'opacity-60 cursor-default'}`}>
+                      <span className="text-slate-200 font-noto text-[13px] md:text-base lg:text-[2.2vh] tracking-widest font-bold text-center leading-snug">{choice.text}</span>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
         {/* Bottom Area Wrapper */}
         <div className="absolute bottom-0 w-full flex flex-col pointer-events-none items-center">
 
-          {/* Choices */}
-          {isWaitingForChoice && choices && (
+          {/* Normal Choices */}
+          {!isPopup && isWaitingForChoice && choices && (
             <div className="flex flex-col items-end gap-2 lg:gap-4 mb-2 lg:mb-4 w-full px-6 md:px-12 lg:px-24 pointer-events-auto">
               {choices.map((choice, idx) => {
                 const isInteractive = !choice.isLocked;
@@ -98,9 +140,10 @@ export default function DialogueBox({
           )}
 
           {/* FUI Dialogue Box based on user image */}
-          <div 
-            className="dlg-box w-[90vw] max-w-[1100px] mb-[8vh] cursor-pointer pointer-events-auto relative mt-[4vh] flex flex-col items-center"
-          >
+          {!isPopup && (
+            <div 
+              className="dlg-box w-[90vw] max-w-[1100px] mb-[8vh] cursor-pointer pointer-events-auto relative mt-[4vh] flex flex-col items-center"
+            >
 
             <div className="w-full relative shadow-[0_10px_40px_rgba(0,0,0,0.3)] rounded-xl overflow-hidden border-b-[0.8vh] border-[#4dd0e1] flex flex-col">
 
@@ -177,8 +220,8 @@ export default function DialogueBox({
               <HudButton icon={<BookOpen className="dlg-hud-icon w-[2.2vh] h-[2.2vh]" />} label="LOG" onClick={onOpenLog} />
               <HudButton icon={<FastForward className="dlg-hud-icon w-[2.2vh] h-[2.2vh]" />} label="AUTO" onClick={onToggleAuto} active={autoMode} />
             </div>
-
           </div>
+          )}
         </div>
       </motion.div>
     </AnimatePresence>

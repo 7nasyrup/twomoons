@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { assetPath } from '../utils/assetPath'; export default function TitleScreen({ onStart, onContinue, hasSave, playBGM }) {
+import { assetPath } from '../utils/assetPath'; export default function TitleScreen({ onStart, onContinue, onBattle, hasSave, playBGM }) {
     const [showCredits, setShowCredits] = useState(false);
     const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < 1024 : false);
 
@@ -73,6 +73,16 @@ import { assetPath } from '../utils/assetPath'; export default function TitleScr
                                 : 'border border-gray-800 text-gray-600 cursor-not-allowed bg-black/10'}`}
                     >
                         CONTINUE
+                    </button>
+
+                    {/* Battle Test Button */}
+                    <button
+                        onClick={onBattle}
+                        className="w-full py-3 bg-pink-950/30 border border-pink-500/40 text-pink-300 hover:text-white font-orbitron text-sm tracking-[0.3em] rounded
+                       hover:bg-pink-500/25 hover:border-pink-300 hover:shadow-[0_0_20px_rgba(236,72,153,0.35)]
+                       transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 active:scale-98"
+                    >
+                        BATTLE
                     </button>
 
                     {/* Credits Button */}

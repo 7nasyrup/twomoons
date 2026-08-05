@@ -53,6 +53,9 @@ export function useNovelEngine(scenarioData, options = {}) {
     isAdvancingRef.current = false;
     if (currentLine?.text) {
       triggerTypewriter(currentLine.text);
+    } else {
+      setDisplayedText('');
+      setIsTyping(false);
     }
     if (currentLine?.type === 'choice') {
       setIsWaitingForChoice(true);
