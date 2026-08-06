@@ -1149,8 +1149,7 @@ export const scenarioData = [
   },
   {
     "scene": "昼の商店街",
-    "action": "JUMP",
-    "targetLabel": "exploration_choice_2"
+    "jumpTo": "exploration_choice_2_after_street"
   },
   {
     "label": "explore_park_1",
@@ -1198,8 +1197,7 @@ export const scenarioData = [
   },
   {
     "scene": "公園",
-    "action": "JUMP",
-    "targetLabel": "exploration_choice_2"
+    "jumpTo": "exploration_choice_2_after_park"
   },
   {
     "label": "explore_mall_1",
@@ -1228,7 +1226,10 @@ export const scenarioData = [
   },
   {
     "scene": "ショッピングモール",
-    "text": "聞き覚えのある声がした。振り返ると、そこには大きな袋を抱えた睦典が立っていた。"
+    "text": "聞き覚えのある声がした。振り返ると、そこには大きな袋を抱えた睦典が立っていた。",
+    "showIllust": [
+      "Mutsunori_smile3"
+    ]
   },
   {
     "scene": "ショッピングモール",
@@ -1240,7 +1241,6 @@ export const scenarioData = [
     "scene": "ショッピングモール",
     "speaker": "睦典",
     "text": "「やっぱり朔良だ！ 偶然だな！」",
-    "speaker_sprite": "Mutsunori_smile"
   },
   {
     "scene": "ショッピングモール",
@@ -1252,7 +1252,6 @@ export const scenarioData = [
     "scene": "ショッピングモール",
     "speaker": "睦典",
     "text": "「新しい食材探し！」",
-    "speaker_sprite": "Mutsunori_smile"
   },
   {
     "scene": "ショッピングモール",
@@ -1262,7 +1261,6 @@ export const scenarioData = [
     "scene": "ショッピングモール",
     "speaker": "睦典",
     "text": "「実は新メニューの改良をしててさ！」",
-    "speaker_sprite": "Mutsunori_default"
   },
   {
     "scene": "ショッピングモール",
@@ -1274,7 +1272,6 @@ export const scenarioData = [
     "scene": "ショッピングモール",
     "speaker": "睦典",
     "text": "「今回は自信あるぞ！」",
-    "speaker_sprite": "Mutsunori_smile"
   },
   {
     "scene": "ショッピングモール",
@@ -1290,7 +1287,6 @@ export const scenarioData = [
     "scene": "ショッピングモール",
     "speaker": "睦典",
     "text": "「え？ 急にどうした？」",
-    "speaker_sprite": "Mutsunori_default"
   },
   {
     "scene": "ショッピングモール",
@@ -1304,8 +1300,7 @@ export const scenarioData = [
   },
   {
     "scene": "ショッピングモール",
-    "action": "JUMP",
-    "targetLabel": "exploration_choice_2"
+    "jumpTo": "exploration_choice_2_after_mall"
   },
   {
     "label": "explore_university_1",
@@ -1367,11 +1362,70 @@ export const scenarioData = [
   },
   {
     "scene": "大学",
-    "action": "JUMP",
-    "targetLabel": "exploration_choice_2"
+    "jumpTo": "exploration_choice_2_after_university"
   },
   {
-    "label": "exploration_choice_2",
+    "label": "exploration_choice_2_after_street",
+    "scene": "朔良の部屋",
+    "type": "choice",
+    "style": "popup",
+    "choices": [
+      {
+        "text": "公園",
+        "targetLabel": "explore_park_2"
+      },
+      {
+        "text": "大型ショッピングモール",
+        "targetLabel": "explore_mall_2"
+      },
+      {
+        "text": "大学周辺",
+        "targetLabel": "explore_university_2"
+      }
+    ]
+  },
+  {
+    "label": "exploration_choice_2_after_park",
+    "scene": "朔良の部屋",
+    "type": "choice",
+    "style": "popup",
+    "choices": [
+      {
+        "text": "商店街",
+        "targetLabel": "explore_street_2"
+      },
+      {
+        "text": "大型ショッピングモール",
+        "targetLabel": "explore_mall_2"
+      },
+      {
+        "text": "大学周辺",
+        "targetLabel": "explore_university_2"
+      }
+    ]
+  },
+  {
+    "label": "exploration_choice_2_after_mall",
+    "scene": "朔良の部屋",
+    "type": "choice",
+    "style": "popup",
+    "choices": [
+      {
+        "text": "商店街",
+        "targetLabel": "explore_street_2"
+      },
+      {
+        "text": "公園",
+        "targetLabel": "explore_park_2"
+      },
+      {
+        "text": "大学周辺",
+        "targetLabel": "explore_university_2"
+      }
+    ]
+  },
+  {
+    "label": "exploration_choice_2_after_university",
     "scene": "朔良の部屋",
     "type": "choice",
     "style": "popup",
@@ -1387,10 +1441,6 @@ export const scenarioData = [
       {
         "text": "大型ショッピングモール",
         "targetLabel": "explore_mall_2"
-      },
-      {
-        "text": "大学周辺",
-        "targetLabel": "explore_university_2"
       }
     ]
   },
@@ -2079,7 +2129,7 @@ export const scenarioData = [
     "bgm": "stop",
     "bgmFade": 3
   },
-  //=====　翌日、大学 =====
+  //=====　翌日、大学の正門前 =====
   {
     "scene": "大学の正門前",
     "text": "午前の講義を終え、私は睦典と学食へ向かっていた。",
@@ -2092,7 +2142,8 @@ export const scenarioData = [
     "text": " 「朔良、早く行こう！ 今日の日替わり定食、絶対逃したくないんだよ！」",
     "showIllust": [
       "Mutsunori_happy3"
-    ]
+    ],
+    "bgm": "Normal_Morning.mp3"
   },
   {
     "scene": "大学の正門前",
@@ -2103,7 +2154,8 @@ export const scenarioData = [
     "text": "──その時。",
     "hideIllust": [
       "Mutsunori"
-    ]
+    ],
+    "bgm": "stop"
   },
   {
     "scene": "大学の正門前",
@@ -2128,7 +2180,8 @@ export const scenarioData = [
     "text": "顔を上げると、そこには正門の壁にもたれかかるように立つ、一人の青年がいた。",
     "showIllust": [
       "Nagisa_smile4"
-    ]
+    ],
+    "bgm": "serious_2.mp3"
   },
   {
     "scene": "大学の正門前",
@@ -2261,7 +2314,8 @@ export const scenarioData = [
     "scene": "大学の正門前",
     "speaker": "ヒルミ教授",
     "role": "PROFESSOR",
-    "text": "「──はいはーい、何事かな？」"
+    "text": "「──はいはーい、何事かな？」",
+    "bgm": "stop"
   },
   {
     "scene": "大学の正門前",
@@ -2343,7 +2397,8 @@ export const scenarioData = [
     "speaker": "朔良",
     "role": "SAKURA",
     "bgm": "Normal_Morning.mp3",
-    "text": "「あ、ありがとうございます……」"
+    "text": "「あ、ありがとうございます……」",
+    "bgm": "Normal_Morning.mp3"
   },
   {
     "scene": "大学の正門前",
@@ -2457,16 +2512,16 @@ export const scenarioData = [
   {
     "scene": "夜の裏路地",
     "bg": "/scene/rojiura.png",
-    "text": "急ぎ足で薄暗い路地を進む。\n街灯の青い光が届かない、ゴミ箱が並ぶビルの隙間を通り抜けようとした、その時。"
+    "text": "講義を終え、時計台へ向かうため薄暗い路地を急ぐ。\n街灯の青い光も届かない、ゴミ箱が並ぶビルの隙間を通りかかった、その時。",
   },
   {
     "scene": "夜の裏路地",
     "speaker": "？？？",
-    "text": "「……う、……っ……」"
+    "text": "「……う、……っ……」 "
   },
   {
     "scene": "夜の裏路地",
-    "text": "壁の影から、衣服が擦れる音と、押し殺したような苦しげな呻き声が聞こえた。"
+    "text": "壁の影から、苦しげな呻き声が聞こえた。"
   },
   {
     "scene": "夜の裏路地",
@@ -2476,27 +2531,23 @@ export const scenarioData = [
   },
   {
     "scene": "夜の裏路地",
-    "text": "足を止め、恐る恐る暗がりのゴミ箱の横を覗き込む。\nそこには、地面に膝をつき、お腹を押さえるようにしてぐったりと倒れ込んでいる、一人の少年がいた。",
-    "bg": "/character/Mika/Mika_CG1.png",
-    "bgm": "serious_1.mp3"
+    "text": "足を止め、恐る恐る暗がりを覗き込む。",
   },
   {
     "scene": "夜の裏路地",
-    "text": "年齢は私と同じか、少し下くらいだろうか。夜の闇を溶かしたような綺麗な髪の隙間から、ひどく整った、けれど今は苦痛に歪んだ横顔が見える。"
+    "text": "そこには、地面に膝をつき、お腹を押さえて倒れ込む一人の少年がいた。私と同じくらいの年頃だろうか。夜を溶かしたような黒髪の隙間から覗く端正な顔は、苦痛に歪んでいる。",
+    "bg": "/character/Mika/Mika_CG1.png",
+    "bgm": "serious_2.mp3"
   },
   {
     "scene": "夜の裏路地",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「あ……あの、大丈夫ですか……！？」"
+    "text": "「あ、あの……大丈夫ですか？」"
   },
   {
     "scene": "夜の裏路地",
-    "text": "思わず駆け寄り、声をかける。私の声に反応したのか、少年はゆっくりと重そうな瞼を持ち上げた。"
-  },
-  {
-    "scene": "夜の裏路地",
-    "text": "よく見ると、彼の端正な顔の半分には、何かに激しく焼かれたような痛々しい火傷の痣があった。息を呑む私を、少年は鋭く睨みつける。"
+    "text": "思わず駆け寄ると、少年はゆっくりと瞼を開いた。その顔の半分には、何かに焼かれたような痛々しい火傷の痣が刻まれている。"
   },
   {
     "scene": "夜の裏路地",
@@ -2505,152 +2556,98 @@ export const scenarioData = [
   },
   {
     "scene": "夜の裏路地",
-    "text": "冷徹で低い声で唸った彼に、私は恐怖を感じて思わず一歩後ずさりした。"
-  },
-  {
-    "scene": "夜の裏路地",
-    "text": "暗がりですぐには見えなかったが、目を凝らしてよく見ると、彼はお腹のあたりを深く負傷していた。服は破れ、そこからどくどくと赤黒い血が地面に垂れている。"
+    "text": "鋭く睨みつける冷たい声に、思わず一歩後ずさる。視線を落とすと、腹部の服が大きく裂け、そこから赤黒い血が溢れていた。"
   },
   {
     "scene": "夜の裏路地",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「血が……っ。とりあえず、救急車───」",
-    "bg": "/scene/rojiura.png",
-    "showIllust": [
-      "Mika_serious_injured"
-    ]
+    "text": "「ひどい怪我……！ とりあえず救急車を──」",
   },
   {
     "scene": "夜の裏路地",
     "speaker": "？？？",
-    "text": "「ッ、ダメだッ！ 呼ぶなッ……」"
+    "text": "「ッ、呼ぶな！」"
   },
   {
     "scene": "夜の裏路地",
-    "text": "激しく拒絶するように、少年が私の言葉を遮った。傷口を押さえる彼の指先が、怒りと痛みのせいでガタガタと震えている。公にできない事情があるのか、その必死な形相に私はそれ以上言葉を重ねることができなかった。"
+    "text": "私の言葉を遮るように叫ぶ。傷口を押さえる指先は痛みで震えていた。公にできない事情があるのだろう。その必死な表情を見て、それ以上は言えなかった。"
   },
   {
     "scene": "夜の裏路地",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「わかりました…とりあえず、これを……」"
+    "text": "「……分かりました。せめて、これを」",
+    "bg": "/scene/rojiura.png"
   },
   {
     "scene": "夜の裏路地",
-    "text": "私はカバンから自分のハンカチを取り出し、近くの自販機で今買ったばかりの未開封のミネラルウォーターと一緒に彼へと手渡す。せめてもの応急処置に使ってほしかった。"
+    "text": "私はカバンからハンカチを取り出し、さっき買った未開封のミネラルウォーターと一緒に差し出す。"
   },
   {
     "scene": "夜の裏路地",
-    "speaker": "？？？",
-    "text": "「………」"
+    "text": "「少年は黙ったまま受け取り、濡らしたハンカチを傷口へ強く押し当てた。"
   },
   {
     "scene": "夜の裏路地",
-    "text": "少年は何も言わなかったが、拒むことなく、促されるままにそれらを受け取った。ハンカチを傷口に強く押し当て、痛みに耐えるようにじっと俯く。"
-  },
-  {
-    "scene": "夜の裏路地",
-    "text": "彼の傷は酷く気になるけれど、救急車すら呼んじゃいけない状況なんて、普通じゃない。"
-  },
-  {
-    "scene": "夜の裏路地",
-    "text": "彼が一体どんな状況下に置かれているのか、無能力者の私には想像もつかないし、今は深く関わる気は起きなかった。それに、何より私には──満との約束もある。"
-  },
-  {
-    "scene": "夜の裏路地",
-    "type": "choice",
-    "text": "とはいえ、あんな酷い怪我をしている人を放っておいていいのだろうか？",
-    "choices": [
-      {
-        "text": "もう少し心配する",
-        "targetLabel": "worry_about_mika"
-      },
-      {
-        "text": "このまま立ち去る",
-        "targetLabel": "leave_mika"
-      }
-    ]
-  },
-  {
-    "label": "worry_about_mika",
-    "scene": "夜の裏路地",
-    "speaker": "朔良",
-    "role": "SAKURA",
-    "text": "「あの……本当に、救急車とか呼ばなくて大丈夫ですか？ 傷口から血が滲んでて……」",
-    "action": "UNLOCK_MIKA_ROUTE"
-  },
-  {
-    "scene": "夜の裏路地",
-    "speaker": "？？？",
-    "text": "「……大丈夫だと言っている。余計なお世話だ」"
-  },
-  {
-    "jumpTo": "mika_merge_point"
-  },
-  {
-    "label": "leave_mika",
-    "scene": "夜の裏路地",
-    "text": "深く関わるべきじゃない。私は急いで立ち去ろうと決めた。"
-  },
-  {
-    "jumpTo": "mika_merge_point"
+    "text": "傷は気になった。けれど救急車も呼べない事情に、これ以上踏み込むべきではない気がした。それに、私には満との約束もある。"
   },
   {
     "label": "mika_merge_point",
     "scene": "夜の裏路地",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「それじゃあ、私はこれで……」"
+    "text": "「それじゃあ、私はこれで」"
   },
   {
     "scene": "夜の裏路地",
-    "text": "ささっとその場を後にしようと背を向けると、後ろから引き留めるような声がかかった。"
+    "text": "背を向けると、不意に声が掛かった。"
   },
   {
     "scene": "夜の裏路地",
     "speaker": "？？？",
-    "text": "「待ってくれ……」"
+    "text": "「……待ってくれ」"
   },
   {
     "scene": "夜の裏路地",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「なんでしょうか？」"
+    "text": "「はい？」"
   },
   {
     "scene": "夜の裏路地",
-    "text": "振り返ると、少年は水を滴らせたハンカチで傷を抑えたまま、私をじっと見つめていた。その瞳には、先ほどまでの刺々しい警戒心とは違う、どこか奇妙な色が混ざっている。"
+    "text": "振り返ると、少年は私を真っ直ぐ見つめていた。"
   },
   {
     "scene": "夜の裏路地",
     "speaker": "？？？",
-    "text": "「…アンタの名前は……」"
+    "text": "「……アンタの名前は」"
   },
   {
     "scene": "夜の裏路地",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「私は朔良。アナタは……？」"
+    "text": "「私は朔良。あなたは？」"
+  },
+  {
+    "scene": "夜の裏路地",
+    "text": "私が名乗ると、少年は一度目を伏せ、小さく呟く。"
   },
   {
     "scene": "夜の裏路地",
     "speaker": "ミカ",
     "role": "MIKA",
-    "text": "「俺は……ミカ」",
-    "showIllust": [
-      "Mika_neutral_injured"
-    ]
+    "text": "「……ミカ」",
   },
   {
     "scene": "夜の裏路地",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「ミカくん、ね。……傷、ちゃんとお医者さんに診てもらってね」"
+    "text": "「ミカくん。ちゃんと病院には行ってね」"
   },
   {
     "scene": "夜の裏路地",
-    "text": "私はそれだけ言い残すと、今度こそ彼の前から立ち去って、満との約束場所へ向かって夜の路地を急いだ。"
+    "text": "それだけ言い残し、私は待ち合わせ場所へ向かって再び歩き出した。"
   },
   {
     "scene": "夜の裏路地",
@@ -2658,24 +2655,27 @@ export const scenarioData = [
     "bgm": "stop",
     "bgmFade": 2
   },
+  //===== 時計台 =====
   {
     "scene": "時計塔前",
-    "text": "裏通りを抜け、少し開けた広場に出ると、そこには街のランドマークである古い時計塔が、人工月の青い光を浴びてひっそりと佇んでいた。",
+    "text": "裏通りを抜けて広場へ出ると、街のランドマークである古い時計塔が、人工月の青い光に照らされ静かに佇んでいた。",
     "bg": "/scene/clock_tower.png",
-    "bgm": "Room_Night.mp3"
   },
   {
     "scene": "時計塔前",
+    "speaker": "朔良",
+    "role": "SAKURA",
     "text": "（満……！）"
   },
   {
     "scene": "時計塔前",
     "text": "息を切らせて広場を見渡すと、時計塔の真下、深い影が落ちる街灯のそばに、一人の青年が立っているのが見えた。",
-    "bg": "/character/Michiru/Michiru_CG1.png"
+    "bg": "/character/Michiru/Michiru_CG1.png",
+    "bgm": "Room_Night.mp3"
   },
   {
     "scene": "時計塔前",
-    "text": "すっと通った高い鼻筋に、どこか現実離れした儚さを纏った、綺麗な顔立ち。\n人工月の光を背負って立つその姿は、幻想的で、どこか神聖ですらある。"
+    "text": "時計塔の下には、一人の青年が立っている。整った顔立ちに、どこか儚げな雰囲気を纏ったその姿は、青白い月明かりの中で幻想的に映っていた。"
   },
   {
     "scene": "時計塔前",
@@ -2685,7 +2685,7 @@ export const scenarioData = [
   },
   {
     "scene": "時計塔前",
-    "text": "私が声をかけると、彼はゆっくりとこちらを振り返った。その瞬間、彼のいつもの穏やかで、すべてを包み込むような優しい瞳が私を捉え、その薄い唇がふわりと綻ぶ。",
+    "text": "声を掛けると、彼はゆっくり振り返り、穏やかな笑みを浮かべる。",
     "bg": "/character/Michiru/Michiru_CG2.png"
   },
   {
@@ -2693,26 +2693,22 @@ export const scenarioData = [
     "speaker": "満",
     "role": "Michiru",
     "text": "「よかった、来てくれたんだね。……朔良」",
-    "bg": "/scene/clock_tower.png",
-    "showIllust": [
-      "Michiru_smile"
-    ]
   },
   {
     "scene": "時計塔前",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「ごめんね、待たせちゃって」"
+    "text": "「ごめんね、待たせちゃって。途中でちょっと……」"
   },
   {
     "scene": "時計塔前",
-    "text": "一歩、彼が距離を詰める。それだけで、ゆうべからずっと私の心を支配していた恐怖や緊張が、嘘のように溶けていく気がした。"
+    "text": "路地裏で出会った少年のことが頭をよぎり、言葉を濁す。満は何も追及せず、安心したように微笑んだ。"
   },
   {
     "scene": "時計塔前",
     "speaker": "満",
     "role": "Michiru",
-    "text": "「ううん、僕も今来たところだから。……それにしても、少し見ない間にまた可愛くなった？」"
+    "text": "「僕も今来たところだよ。それに……少し見ない間に、また可愛くなった？」"
   },
   {
     "scene": "時計塔前",
@@ -2722,153 +2718,155 @@ export const scenarioData = [
   },
   {
     "scene": "時計塔前",
-    "text": "幼い頃から変わらない、少し意地悪で、でも私を特別扱いしてくれる満のトーン。無能力者で、色んな事件に怯えるだけの私にとって、ここだけが心が休まる場所だった。"
+    "text": "昔から変わらないそのやり取りに、自然と肩の力が抜ける。"
   },
   {
     "scene": "時計塔前",
     "speaker": "満",
     "role": "Michiru",
-    "text": "「ふふ、ごめん。……でも、本当に無事でよかった。ゆうべのニュース、君の大学のすぐ近くの区画だっただろう？ 心配で、生きた心地がしなかったんだ。朔良の顔を見たら、やっと安心できたよ」",
+    "text": "「昨日のニュース、君の大学の近くだっただろう？ 本当に心配だったんだ。顔を見て安心したよ」",
+    "bg": "/scene/clock_tower.png",
     "showIllust": [
-      "Michiru_smile"
-    ],
-    "illustPositions": {
-      "Michiru": "center"
-    }
-  },
-  {
-    "scene": "時計塔前",
-    "text": "満がそっと手を伸ばし、私の頬に触れようとする。その指先が、冷たい夜風の中で微かに震えているように見えて、胸がキュッとした。"
-  },
-  {
-    "scene": "時計塔前",
-    "speaker": "朔良",
-    "role": "SAKURA",
-    "text": "「うん、私は大丈夫だよ。大学の友達も一緒だったし……」"
-  },
-  {
-    "scene": "時計塔前",
-    "text": "その時、ぐらり、と視界が大きく歪んだ。頭の芯が急激にカッカと焼けつくように熱くなり、地面がぐにゃりと傾くような凄まじい目眩が私を襲う。",
-    "action": "DIZZY_EFFECT"
-  },
-  {
-    "scene": "時計塔前",
-    "text": "（あ……あれ……？）"
-  },
-  {
-    "scene": "時計塔前",
-    "text": "頽れそうになる身体を必死に堪え、自分の額を押さえる。"
-  },
-  {
-    "scene": "時計塔前",
-    "speaker": "満",
-    "role": "Michiru",
-    "text": "「大丈夫？ 朔良？」",
-    "showIllust": [
-      "Michiru_surprise"
-    ],
-    "illustPositions": {
-      "Michiru": "center"
-    }
-  },
-  {
-    "scene": "時計塔前",
-    "text": "心配そうな声がかけられ、ハッと意識が引き戻される。気がつくと、満がすぐ近くまで顔を寄せて、私の顔を覗き込んでいた。その端正な顔が、本気で私を心配して曇っている。",
-    "action": "CLEAR_SHAKE"
-  },
-  {
-    "scene": "時計塔前",
-    "speaker": "朔良",
-    "role": "SAKURA",
-    "text": "「……っ、ごめん、なんでもないよ」"
-  },
-  {
-    "scene": "時計塔前",
-    "speaker": "満",
-    "role": "Michiru",
-    "text": "「本当に？ やっぱり、無理をして疲れてるんじゃないかな」",
-    "showIllust": [
-      "Michiru_serious"
+      "Michiru_smile3"
     ]
   },
   {
     "scene": "時計塔前",
-    "text": "満はそっと私の肩を支えると、その冷たくて心地いい掌で、私の乱れた前髪を優しく払ってくれた。"
+    "text": "そう言って、満はそっと私との距離を縮める。"
+  },
+  {
+    "scene": "時計塔前",
+    "speaker": "朔良",
+    "role": "SAKURA",
+    "text": "「私は大丈夫。大学の友達も一緒だったし……」"
+  },
+  {
+    "scene": "時計塔前",
+    "text": "その瞬間だった。",
+  },
+  {
+    "scene": "時計塔前",
+    "text": "ぐらり、と視界が揺れる。頭の奥が焼けるように熱くなり、立っていられないほどの眩暈が襲ってきた。",
+    "bgmVolum": 0.2,
+    "action": "DIZZY_EFFECT"
+  },
+  {
+    "scene": "時計塔前",
+    "speaker": "朔良",
+    "role": "SAKURA",
+    "text": "「……っ」"
+  },
+  {
+    "scene": "時計塔前",
+    "text": "思わず額を押さえる。"
   },
   {
     "scene": "時計塔前",
     "speaker": "満",
     "role": "Michiru",
-    "text": "「そっか。……ねぇ、せっかく会えたんだし、温かいものでも飲みながら、今日あったこと、いっぱい聞かせてよ」",
+    "text": "「朔良、大丈夫？」",
+    "showIllust": [
+      "Michiru_surprise"
+    ]
+  },
+  {
+    "scene": "時計塔前",
+    "text": "気が付くと、満がすぐそばで私を支えていた。",
+  },
+  {
+    "scene": "時計塔前",
+    "speaker": "朔良",
+    "role": "SAKURA",
+    "text": "「ごめん……ちょっと目眩がしただけ」"
+  },
+  {
+    "scene": "時計塔前",
+    "speaker": "満",
+    "role": "Michiru",
+    "text": "「無理してるんじゃない？」"
+  },
+  {
+    "scene": "時計塔前",
+    "text": "満は私の肩を支え、乱れた前髪をそっと払う。その冷たい手に触れられると、不思議と頭の熱が少しだけ引いていく気がした。",
+    "action": "CLEAR_SHAKE",
+    "bgmVolume": 1
+  },
+  {
+    "scene": "時計塔前",
+    "speaker": "満",
+    "role": "Michiru",
+    "text": "「せっかく会えたんだし、少し歩こうか。温かいものでも飲みながら、朔良の話を聞かせてよ」",
     "showIllust": [
       "Michiru_happy"
-    ],
-    "illustPositions": {
-      "Michiru": "center"
-    }
+    ]
   },
   {
     "scene": "時計塔前",
-    "text": "満はそう言って、私に歩調を合わせるようにゆっくりと歩き出した。\n人工月に照らされた二人の影が、アスファルトの上に長く伸びていく。"
+    "speaker": "朔良",
+    "role": "SAKURA",
+    "text": "「……うん」"
   },
   {
     "scene": "時計塔前",
-    "text": "不穏な事件ばかりが起きるこの街で、満の隣だけは、私にとって変わらない暖かな日常そのものだった。"
+    "text": "私は小さく頷く。"
+  },
+  {
+    "scene": "時計塔前",
+    "text": "人工月に照らされた帰り道を、私たちはゆっくりと歩き始めた。満の隣だけは、この街で唯一、変わらない日常のように思えた。"
   },
   {
     "scene": "時計塔前",
     "action": "FADE_TO_BLACK",
+    "hideIllust": [
+      "Michiru"
+    ],
     "duration": 3000,
     "bgm": "stop",
     "bgmFade": 3
   },
+  //===== 満と解散後 =====
   {
-    "scene": "大学の講義室",
-    "text": "翌朝。私はいつも通り、大学の講義室へと足を運んでいた。",
-    "bg": "/scene/university_classroom.png",
+    "scene": "朔良の部屋",
+    "text": "満と温かいココアを飲みながら過ごした時間は、まるで夢のようだった。大学であった出来事を話し、彼と別れて家に帰る頃には、あれほど怯えていた心も嘘のように落ち着いていた。",
+    "bg": "black",
     "bgm": "Normal_Morning.mp3"
   },
   {
+    "scene": "時計塔前",
+    "speaker": "朔良",
+    "role": "SAKURA",
+    "text": "（やっぱり、満の隣が一番安心するな……）"
+  },
+  {
+    "scene": "朔良の部屋",
+    "text": "そんな余韻のまま眠りにつき──翌朝。",
+  },
+  //===== 大学の講義室 =====
+  {
     "scene": "大学の講義室",
-    "text": "一限目のチャイムが鳴り、教授が教壇に立つ。\nいつも通りの退屈で、でも平和な日常の講義が始まった。"
+    "text": "私はいつも通り大学へ向かい、一限目の講義が始まった。",
+    "bg": "/scene/university_classroom.png",
   },
   {
     "scene": "大学の講義室",
-    "text": "──はずだった。",
-    "bgm": "stop",
-    "bgmFade": 2
-  },
-  {
-    "scene": "大学の講義室",
-    "speaker": "男子学生",
-    "role": "STUDENT",
+    "speaker": "？？？",
     "text": "「──あ、あの、すみません。遅れました」"
   },
   {
     "scene": "大学の講義室",
-    "text": "講義が始まって数分後。前方のドアがガラリと開き、一人の男子学生が気まずそうに入ってきた。"
+    "text": "講義が始まって数分後、教室の扉が開き、一人の男子学生が慌てて入ってくる。教授に軽く注意されながら空席を探して歩くその姿を見た瞬間、私は息を呑んだ。",
+    "bgm": "stop",
   },
   {
     "scene": "大学の講義室",
-    "text": "その瞬間、私は息が止まりそうになった。"
-  },
-  {
-    "scene": "大学の講義室",
-    "text": "綺麗な紫髪。その姿は昨晩、路地裏で蹲っていた彼とうり二つで―――",
+    "text": "（嘘……ミカくん……！？）",
     "showIllust": [
-      "Mika_neutral"
-    ],
-    "illustPositions": {
-      "Mika": "center"
-    }
+      "Mika_neutral3"
+    ]
   },
   {
     "scene": "大学の講義室",
-    "text": "（嘘……ミカくん……！？）"
-  },
-  {
-    "scene": "大学の講義室",
-    "text": "驚きで固まる私を余所に、彼は私の数個隣の空席にカバンを置いた。\nふと、彼が顔を上げる。バチッと、私と彼の視線が真っ向から交錯した。"
+    "text": "紫色の髪。昨夜、路地裏で血を流していた少年と同じ顔だった。彼は私の数席隣へ腰を下ろすと、不意にこちらを見た。"
   },
   {
     "scene": "大学の講義室",
@@ -2877,42 +2875,30 @@ export const scenarioData = [
     "text": "「あ……」",
     "showIllust": [
       "Mika_surprise"
-    ],
-    "illustPositions": {
-      "Mika": "center"
-    }
+    ]
   },
   {
     "scene": "大学の講義室",
-    "text": "ミカくんは一瞬だけ丸く目を見開いたが、すぐにツンとした表情に戻る。",
-    "bgm": "Normal_Morning.mp3"
+    "text": "一瞬だけ目を見開いた彼は、すぐに無表情へ戻り、小さく呟く。"
   },
   {
     "scene": "大学の講義室",
     "speaker": "ミカ",
     "role": "MIKA",
-    "text": "「……奇遇ですね、先輩。──昨日は、ありがとうございます」",
+    "text": "「……奇遇ですね、先輩。昨日は、ありがとうございました」",
     "showIllust": [
-      "Mika_neutral"
-    ],
-    "illustPositions": {
-      "Mika": "center"
-    }
+      "Mika_smile"
+    ]
   },
   {
     "scene": "大学の講義室",
-    "text": "ぶっきらぼうだけど、確かに昨日のお礼だった。"
+    "text": "素っ気なかったけれど、確かに機能のお礼だった。まさかあの少年が、同じ大学の学生だったなんて。私は講義どころではなかった。"
   },
-  {
-    "scene": "大学の講義室",
-    "action": "FADE_TO_BLACK",
-    "duration": 1500,
-    "bgm": "Normal_Morning.mp3"
-  },
+  //===== キャンパスの裏手 =====
   {
     "label": "insight_mika_end",
     "scene": "キャンパスの裏手",
-    "text": "授業が終わった後、すぐにどこかへ消えてしまったミカくんのことが気になり、私は一人で彼を探してキャンパスの裏手へと歩いていた。",
+    "text": "昼休み。すぐに姿を消してしまったミカくんが気になり、私はキャンパスの裏手を歩いていた。",
     "bg": "/scene/university_back.png",
     "bgm": "Normal_Morning.mp3"
   },
@@ -2924,30 +2910,23 @@ export const scenarioData = [
   },
   {
     "scene": "キャンパスの裏手",
-    "text": "古い講堂の裏、人気のない木陰に差し掛かった、その時。"
+    "text": "古い講堂の裏へ差しかかった、その時。"
   },
   {
     "scene": "キャンパスの裏手",
-    "text": "チカッ、と手元のスマートフォンが短く震えた。"
+    "text": "スマートフォンが短く震えた。",
+    "action": "SHAKE_SCREEN"
   },
   {
     "scene": "キャンパスの裏手",
-    "text": "一瞬、お散歩の余韻から満からの連絡かと思って跳ね上がった胸は、画面をよく見た瞬間にすうっと冷めていく。",
-    "showItem": "/item/phone_mail.png"
-  },
-  {
-    "scene": "キャンパスの裏手",
-    "text": "差出人は、英数字が不規則に並んだ完全にアドレス不明の不審なメールだった。",
+    "text": "満からかと思って画面を開くと、表示されていたのは見覚えのないアドレス。\n恐る恐るメールを開く。",
+    "showItem": "/item/phone_mail.png",
     "bgm": "stop"
   },
   {
     "scene": "キャンパスの裏手",
-    "text": "恐る恐るメールを開くと、そこには簡潔で、けれど心臓を鷲掴みにされるような一文が並んでいた。"
-  },
-  {
-    "scene": "キャンパスの裏手",
     "speaker": "メール",
-    "text": "『お前の父親と、お前の無能力について、話したいことがある。今夜20時、三丁通りの西路地裏に一人で来い。通報すればその瞬間にお前の周囲に危害を及ぼす』"
+    "text": "『お前の父親と、お前の無能力について話したいことがある。今夜20時、三丁通り西路地裏へ一人で来い。通報すれば、その瞬間に周囲へ危害を加える』"
   },
   {
     "scene": "キャンパスの裏手",
@@ -2957,31 +2936,21 @@ export const scenarioData = [
   },
   {
     "scene": "キャンパスの裏手",
-    "text": "スマホを握る指先がガタガタと震え出す。\nお父さんの研究のことも、私の無能力のことも……限られた人しか知らないはずなのに。"
+    "text": "指先が震える。父の研究も、私が無能力者であることも、本来ほとんど知られていないはずだ。"
   },
   {
     "scene": "キャンパスの裏手",
-    "text": "それにもし、私が完全に「何も持たない無能力者」であることが、悪い異能者たちにバレてしまったらどうなるだろう。 "
+    "text": "もしその事実が悪意ある能力者に知られれば、私は抵抗する術もなく狙われる。悪戯かもしれない。罠かもしれない。それでも、周りの人に危害が及ぶかもしれないと思うと、警察へ通報することすらできなかった。"
   },
   {
     "scene": "キャンパスの裏手",
-    "text": "この世界では、異能を持っている人間の方が多い。その中で、異能を一切持たず抵抗する術のない「無能力者」の存在は、悪意ある異能者たちから見れば格好の的でしかない。"
+    "text": "（……行くしか、ない）",
+    "clearItem": true
   },
-  {
-    "scene": "キャンパスの裏手",
-    "text": "一度でも目をつけられれば、容赦ない異能の暴力によって危害を与えてくるかもしれない。無能力者の私には、迫り来る彼らの暴力に抵抗する術がない。"
-  },
-  {
-    "scene": "キャンパスの裏手",
-    "text": "悪質なイタズラかもしれない、罠かもしれない。\nけれど、もし周りの人達に危険が及んだら──そう思うと、無能力者の私には、警察に通報する勇気すら湧かなかった。"
-  },
-  {
-    "scene": "キャンパスの裏手",
-    "text": "（行くしかない……。一人で……）"
-  },
+  //===== アカネ、路地裏 =====
   {
     "scene": "裏路地",
-    "text": "そして、すっかり太陽が沈み、人工月の青い光が街を不気味に照らし出す夜に、私は指定された人通りの全くない薄暗い西路地裏へと足を踏み入れていた",
+    "text": "夜20時。指定された西路地裏は、人影ひとつない。湿った空気と生ゴミの臭いが漂い、人工月の青白い光だけが路地を照らしていた。",
     "bg": "/scene/rojiura.png"
   },
   {
@@ -2992,11 +2961,7 @@ export const scenarioData = [
   },
   {
     "scene": "裏路地",
-    "text": "壁に背を預け、怯えながら辺りを見回した、その時だった。"
-  },
-  {
-    "scene": "裏路地",
-    "text": "──すっ、と背後の闇から、気配もなく一つの影が滑り込んできた。"
+    "text": "不安に駆られ辺りを見回した、その瞬間。背後の闇から、音もなく誰かが近づく。"
   },
   {
     "scene": "裏路地",
@@ -3006,156 +2971,134 @@ export const scenarioData = [
   },
   {
     "scene": "裏路地",
-    "text": "振り返るよりも早く、背後から強固な腕が私の身体をがっちりと拘束する。",
-    "action": "SHAKE_SCREEN"
-  },
-  {
-    "scene": "裏路地",
-    "text": "驚きで声を上げようとした瞬間、容赦のない力で、薬品のツンとした鼻を突く匂いがする布が口と鼻に強く押し当てられた。"
+    "text": "振り向くより早く、太い腕が私の身体を拘束した。"
   },
   {
     "scene": "裏路地",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「むぐっ……！？ んん……っ！！」"
+    "text": "「むぐっ……！？」",
+    "action": "SHAKE_SCREEN_VERY_LARGE"
   },
   {
     "scene": "裏路地",
-    "text": "必死に暴れて男の腕を振り払おうとするけれど、無能力者の私の力なんて、男の鉄のような腕の前には全く歯が立たない。"
+    "text": "必死に暴れて男の腕を振り払おうとするけれど、無能力者の私の力なんて、男の鉄のような腕の前には全く歯が立たない。",
+    "se": "+struggle.mp3"
   },
   {
     "scene": "裏路地",
-    "text": "吸い込んでしまった冷たい薬品の匂いが、一瞬で頭の芯を真っ白に麻痺させていく。薄れゆく意識の向こうで、私はその正体を見た。",
+    "text": "口元へ薬品の染み込んだ布が押し当てられる。必死にもがいても、大男の腕はびくともしない。鼻を突く匂いとともに、意識が急速に遠のいていく。",
     "action": "BLUR_EFFECT"
   },
   {
     "scene": "裏路地",
-    "speaker": "朔良",
-    "role": "SAKURA",
-    "text": "「……………」",
+    "text": "霞む視界の中、最後に見えたのは── \n眼帯をつけた、岩のような体格の―前に私を助けてくれた男だった。",
     "showIllust": [
-      "Akane_neutral"
+      "Akane_neutral3"
     ]
   },
   {
     "scene": "裏路地",
-    "text": "見上げるほどに高い身長と、岩のようにがっしりとした分厚い体格。右目に黒い眼帯を嵌めたその男を。"
+    "text": "私の身体は力なく崩れ落ち、そのまま男に抱え上げられる。抗うこともできないまま、日常は静かに奪われていった。",
   },
   {
     "scene": "裏路地",
-    "text": "私の身体はそのまま崩れ落ち、大男の巨大な腕の中へと完全に回収された。",
+    "text": "人工月の青い光だけが、意識を失った私を冷たく照らしていた。",
     "hideIllust": [
       "Akane"
-    ],
-    "bg": "black"
+    ]
   },
+  {
+    "scene": "裏路地",
+    "action": "SLOW_FADE_TO_BLACK",
+    "action": "CLEAR_SHAKE"
+  },
+
+  //===== アジト =====
   {
     "scene": "廃倉庫",
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「……っ、……ぅ……」",
-    "action": "CLEAR_SHAKE",
+    "action": "WAKE_UP",
     "bg": "/scene/warehouse.png",
     "bgTransitionDuration": 3500
   },
   {
     "scene": "廃倉庫",
-    "text": "頭を殴られたような激しい頭痛と、鼻の奥に残る薬品の匂いで目が覚めた。"
-  },
-  {
-    "scene": "廃倉庫",
-    "text": "視界がぐにゃりと歪む中、自分が冷たいコンクリートの床に座らされ、手足が太いロープでがんじがらめに縛り付けられていることに気づく。"
+    "text": "激しい頭痛と鼻に残る薬品の匂いで目が覚める。視界がぼやける中、自分が冷たいコンクリートの床に座らされ、手足を太いロープで縛られていることに気づいた。"
   },
   {
     "scene": "廃倉庫",
     "speaker": "大男",
     "role": "BIG_MAN",
     "text": "「……気づいたか」",
+  },
+  {
+    "scene": "廃倉庫",
+    "text": "低い声に顔を上げる。そこは薄暗い廃倉庫だった。周囲にはガラの悪い男たち。そして中央には、路地裏で私を襲った眼帯の大男が立っていた。",
+    "bgm": "serious_2.mp3",
+    "bgmFade": 2,
+    "bgmVolume": 0.2,
     "bg": "/character/Akane/Akane_CG1.png"
   },
   {
     "scene": "廃倉庫",
-    "text": "低く、地響きのような声が聞こえ、私は弾かれたように顔を上げた。\nそこは、薄暗い廃倉庫のような場所だった。",
-    "bgm": "serious_2.mp3",
-    "bgmFade": 2,
-    "bgmVolume": 0.2
-  },
-  {
-    "scene": "廃倉庫",
-    "text": "私の周りを取り囲むように、見るからにガラの悪い男たちが何人も立っている。そして、その中心にいたのは──さっき路地裏で私を襲った、右目に眼帯をつけたあの大男だった。"
+    "text": "そしてやはりというか、その男は、夜道にキメラに遭遇した時に私に「歌え」と言って助けてくれた男でもあった。"
   },
   {
     "scene": "廃倉庫",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「どういうつもり……っ、あなたたち、何者なの……！？」"
+    "text": "「どういうつもり……！ あなたたち、何者なの！？」"
   },
   {
     "scene": "廃倉庫",
-    "text": "必死に声を絞り出して睨みつけるけれど、大男の表情はピクリとも動かない。私の問いを完全に無視して、ただ淡々と、低い声を響かせた。"
+    "text": "必死に睨み返すが、大男は表情一つ変えない。"
   },
   {
     "scene": "廃倉庫",
     "speaker": "大男",
     "role": "BIG_MAN",
-    "text": "「お前に質問がある」",
-    "bg": "/scene/warehouse.png",
-    "showIllust": [
-      "Akane_neutral"
-    ],
-    "illustPositions": {
-      "Akane": "center-right"
-    }
+    "text": "「お前に質問がある」"
   },
   {
     "scene": "廃倉庫",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「答えてよ！ それにいったい、ここはどこなの―――――」"
-  },
-  {
-    "scene": "廃倉庫",
-    "text": "──ドンッ！！！",
-    "action": "SHAKE_SCREEN"
+    "text": "「答えてよ！ ここは一体──」"
   },
   {
     "scene": "廃倉庫",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「ぐぅ……っ！？」"
+    "text": "「ぐぅ……っ！？」",
+    "action": "WHITE_FLASH_AND_SHAKE",
+    "se": "+panchi.mp3",
   },
   {
     "scene": "廃倉庫",
-    "text": "言葉の途中で、横にいた男の一人に容赦なく顔を殴り飛ばされた。"
-  },
-  {
-    "scene": "廃倉庫",
-    "text": "衝撃で視界が火花を散らし、口の中に鉄の味が広がる。縛られた身体が椅子ごと激しく揺れ、床に叩きつけられそうになるのを、大男が片手で強引に掴んで引き戻した。"
+    "text": "隣の男に顔を殴り飛ばされる。口の中に鉄の味が広がり、身体が大きく揺れた。倒れかけた私を、大男が片手で乱暴に支え直す。"
   },
   {
     "scene": "廃倉庫",
     "speaker": "大男",
     "role": "BIG_MAN",
     "text": "「質問に答えろ」",
+    "bg": "/scene/warehouse.png",
     "showIllust": [
-      "Akane_serious"
-    ],
-    "illustPositions": {
-      "Akane": "center-right"
-    }
+      "Akane_serious3"
+    ]
   },
   {
     "scene": "廃倉庫",
-    "text": "この人は何……？\n恐怖と痛みに涙が滲むけれど、ここで怯えたら本当に殺される。私は痛む頬を抑えるようにして、大男を睨み返した。"
+    "text": "無機質な声に、恐怖で身体が震える。"
   },
   {
     "scene": "廃倉庫",
     "speaker": "大男",
     "role": "BIG_MAN",
-    "text": "「お前の血縁者について質問がある」",
-    "showIllust": [
-      "Akane_serious"
-    ]
+    "text": "「お前の血縁者について聞く」",
   },
   {
     "scene": "廃倉庫",
@@ -3165,221 +3108,169 @@ export const scenarioData = [
   },
   {
     "scene": "廃倉庫",
-    "text": "お父さんの研究データが目的だったの？ そう思った私に、大男は眼帯のない左の眼をさらに細め、冷たく言い渡した。"
+    "text": "そう問い返すと、大男は冷たく言い放った。"
   },
   {
     "scene": "廃倉庫",
     "speaker": "大男",
     "role": "BIG_MAN",
-    "text": "「お前の血縁者──”弟”について、知っていることを教えろ」",
-    "showIllust": [
-      "Akane_serious"
-    ]
+    "text": "「お前の血縁者──'弟'について知っていることを話せ」"
   },
   {
     "scene": "廃倉庫",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「え……？」"
+    "text": "「……え？」"
   },
   {
     "scene": "廃倉庫",
-    "text": "言われた言葉の意味が、一瞬、理解できなかった。"
+    "text": "思考が止まる。弟？そんな人、いるはずがない。私にはお父さんしかいないはず…。"
   },
   {
     "scene": "廃倉庫",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「どういうこと……？ 私に、弟なんていないわよ……っ！」"
+    "text": "「どういうこと……？ 私に弟なんていない！」"
   },
   {
     "scene": "廃倉庫",
-    "text": "私の困惑の表情を見た大男は、その冷徹な瞳にさらに禍々しい闇を宿し、低く唸るように言った。"
+    "text": "困惑する私を見ても、大男の表情は変わらなかった。"
   },
   {
     "scene": "廃倉庫",
     "speaker": "大男",
     "role": "BIG_MAN",
-    "text": "「……とぼけるつもりか」",
-    "showIllust": [
-      "Akane_serious"
-    ]
-  },
-  {
-    "scene": "廃倉庫",
-    "text": "大男が顎で小さく合図を出す。\n次の瞬間、横にいた男がニヤニヤと笑いながら、再び私に向けて拳を振り上げた。"
+    "text": "「……とぼけるな」"
   },
   {
     "scene": "廃倉庫",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「待って、本当に知らないの──」"
-  },
-  {
-    "scene": "廃倉庫",
-    "text": "──ドカッ！！！",
-    "action": "SHAKE_SCREEN"
+    "text": "「待って、本当に知らな──」"
   },
   {
     "scene": "廃倉庫",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「あぐっ……ぅ、っ……！！」"
+    "text": "「あっ……！」",
+    "action": "WHITE_FLASH_AND_SHAKE",
+    "se": "+panchi.mp3",
   },
   {
     "scene": "廃倉庫",
-    "text": "再び激しい衝撃が走り、脳を揺さぶられるような痛みに視界が真っ白に染まる。口の端からツッと血が流れ落ち、あまりの痛みに息が詰まった。"
+    "text": "再び頬を殴られ、視界が白く弾けた。口の端を血が伝う。何も知らないのに。どうして……。"
   },
   {
     "scene": "廃倉庫",
     "speaker": "大男",
     "role": "BIG_MAN",
-    "text": "「吐くまで殴れ」",
-    "showIllust": [
-      "Akane_neutral"
-    ],
-    "illustPositions": {
-      "Akane": "center-right"
-    }
+    "text": "「吐くまで殴れ」"
   },
   {
     "scene": "廃倉庫",
-    "text": "大男の冷酷な命令が下り、男たちが一斉に私を囲んで拳を構える。無能力者の私が、こんな大男たちの暴力に敵うわけがない。\n恐怖に身体を強張らせ、ぎゅっと目を瞑って次の衝撃に備えた、その時だった。"
+    "text": "冷たい命令と同時に、男たちが一斉に近づいてくる。無能力者の私に抵抗する術はない。恐怖で目を強く閉じ、次の衝撃を覚悟した、その時だった。"
   },
   {
     "scene": "廃倉庫",
-    "speaker": "？？？",
-    "text": "「──おい。その人から手を離せ、デカブツ」"
+    "text": "──ビーッ！！ ビーッ！！",
+    "bgm": "+alert.mp3"
   },
   {
     "scene": "廃倉庫",
-    "speaker": "朔良",
-    "role": "SAKURA",
-    "text": "「っ」"
+    "text": "けたたましい警報音が廃倉庫中に鳴り響いた。"
   },
   {
     "scene": "廃倉庫",
-    "text": "聞き覚えのある声が、廃倉庫の凍りついた空気を切り裂いた。\n目を開けると、倉庫の割れた窓枠のところに、息を切らせたミカくんが立っていた。",
-    "showIllust": [
-      "Mika_serious",
-      "Akane_serious"
-    ],
-    "illustPositions": {
-      "Mika": "center-left",
-      "Akane": "center-right"
-    }
-  },
-  {
-    "scene": "廃倉庫",
-    "speaker": "朔良",
-    "role": "SAKURA",
-    "text": "「ミカくん……っ！？」"
-  },
-  {
-    "scene": "廃倉庫",
-    "speaker": "大男",
-    "role": "BIG_MAN",
-    "text": "「チッ、面倒なのが来たか」",
-    "showIllust": [
-      "Akane_serious"
-    ]
-  },
-  {
-    "scene": "廃倉庫",
-    "text": "ミカくんが私を助けるために一歩を踏み出そうとした──まさにその瞬間だった。"
-  },
-  {
-    "scene": "廃倉庫",
-    "text": "ズズズズズズン……ッッ！！！！",
+    "text": "続いて、外から爆発音のような轟音。建物全体が大きく揺れ、天井から砂埃がぱらぱらと落ちてくる。",
+    "se": "+bakuhatsu.mp3",
     "action": "SHAKE_SCREEN_VERY_LARGE"
   },
   {
     "scene": "廃倉庫",
     "speaker": "男たち",
-    "text": "「うおっ！？ な、なんだぁっ！？」"
+    "text": "「なんだ！？」"
   },
   {
     "scene": "廃倉庫",
-    "text": "倉庫の頑丈な鉄扉が、外からの凄まじい衝撃波でボコボコに歪み、隙間から真っ赤な炎と不気味な煙が吹き込んできた。"
+    "speaker": "男たち",
+    "text": "「外で何が起きた！」"
   },
   {
     "scene": "廃倉庫",
-    "text": "外から聞こえてくるのは、男たちの悲鳴と凄まじい破壊音。一瞬にしてアジト全体がパニックに陥る。"
+    "text": "男たちが一斉に入口へ視線を向ける。眼帯の大男も舌打ちし、無線機を耳へ当てた。"
   },
   {
     "scene": "廃倉庫",
     "speaker": "大男",
     "role": "BIG_MAN",
-    "text": "「おい、外はどうなってる」",
-    "showIllust": [
-      "Akane_serious"
-    ],
-    "illustPositions": {
-      "Akane": "center-right"
-    }
+    "text": "「……チッ。キメラか」"
   },
   {
     "scene": "廃倉庫",
-    "text": "大男の一声で、男たちが一斉に外の様子を確認しようと私の前から離れた。",
+    "text": "無線の向こうから慌ただしい声が漏れる。"
+  },
+  {
+    "scene": "廃倉庫",
+    "speaker": "男たち",
+    "text": "「北側が突破されました！ 数が多すぎます！」"
+  },
+  {
+    "scene": "廃倉庫",
+    "speaker": "大男",
+    "role": "BIG_MAN",
+    "text": "「全員、外へ出ろ」"
+  },
+  {
+    "scene": "廃倉庫",
+    "text": "大男の一言で男たちは慌ただしく倉庫を飛び出していく。"
+  },
+  {
+    "scene": "廃倉庫",
+    "speaker": "大男",
+    "role": "BIG_MAN",
+    "text": "「こいつは後回しだ。逃げられる状態じゃない」",
+    "bgm": "stop"
+  },
+  {
+    "scene": "廃倉庫",
+    "text": "最後に眼帯の男も私を一瞥すると、そのまま外へ消えた。\nやがて倉庫は静まり返る。",
     "hideIllust": [
       "Akane"
     ]
   },
   {
     "scene": "廃倉庫",
-    "text": "（今だ──！）"
+    "speaker": "朔良",
+    "role": "SAKURA",
+    "text": "「…………」"
   },
   {
     "scene": "廃倉庫",
-    "text": "全員の意識が外の混乱に向いたその一瞬の隙を、ミカくんは見逃さなかった。"
-  },
-  {
-    "scene": "廃倉庫",
-    "text": "彼は音もなく私の元へ駆け寄ると、ポケットから取り出したナイフで、私を縛っていたロープを瞬く間に切り裂いた。",
-    "action": "PLAY_SLICE_SE",
-    "showIllust": [
-      "Mika_serious"
-    ],
-    "illustPositions": {
-      "Mika": "center-left"
-    }
-  },
-  {
-    "scene": "廃倉庫",
-    "speaker": "ミカ",
-    "role": "MIKA",
-    "text": "「立てますか？ 朔良先輩」",
-    "showIllust": [
-      "Mika_neutral"
-    ]
+    "text": "残されたのは、私一人。けれど―― "
   },
   {
     "scene": "廃倉庫",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「ミカくん……っ、うん！」"
+    "text": "（……縄が、少し緩んでる……？）",
   },
   {
     "scene": "廃倉庫",
-    "speaker": "ミカ",
-    "role": "MIKA",
-    "text": "「……行きましょう」",
-    "showIllust": [
-      "Mika_serious"
-    ]
+    "text": "手首の縄がわずかに緩んでいた。",
+    "se": "+struggle.mp3",
+    "seDuration": 2
   },
   {
     "scene": "廃倉庫",
-    "text": "自由になった私の手首を、ミカくんは迷いなく強い力で掴んだ。"
+    "speaker": "朔良",
+    "role": "SAKURA",
+    "text": "（今しかない……！）",
   },
   {
     "scene": "廃倉庫",
-    "text": "ミカくんは私の歩調に合わせながら、崩落しかけているアジトの裏口のドアを蹴り開け、煙が立ち込める外の闇へと私をささっと連れ出した。",
-    "action": "PLAY_FOOTSTEP_SE_FAST"
-  },
-  {
-    "scene": "廃倉庫",
-    "text": "冷たい夜風が、殴られた頬の熱を冷ましていく。"
+    "text": "私は必死に手首を動かし始める――。",
+    "se": "+struggle.mp3",
+    "seDuration": 2
   },
   {
     "scene": "廃倉庫",
