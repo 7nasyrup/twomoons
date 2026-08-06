@@ -1063,28 +1063,10 @@ export const scenarioData = [
     "style": "popup"
   },
   {
-    "label": "exploration_choice_1",
+    "label": "exploration_select",
     "scene": "朔良の部屋(朝)",
-    "type": "choice",
-    "style": "popup",
-    "choices": [
-      {
-        "text": "商店街",
-        "targetLabel": "explore_street_1"
-      },
-      {
-        "text": "公園",
-        "targetLabel": "explore_park_1"
-      },
-      {
-        "text": "大型ショッピングモール",
-        "targetLabel": "explore_mall_1"
-      },
-      {
-        "text": "大学周辺",
-        "targetLabel": "explore_university_1"
-      }
-    ]
+    "bg": "/scene/sakura_room.png",
+    "action": "TRIGGER_EXPLORATION_PHASE"
   },
   {
     "label": "explore_street_1",
@@ -1149,7 +1131,7 @@ export const scenarioData = [
   },
   {
     "scene": "昼の商店街",
-    "jumpTo": "exploration_choice_2_after_street"
+    "jumpTo": "exploration_select"
   },
   {
     "label": "explore_park_1",
@@ -1197,7 +1179,7 @@ export const scenarioData = [
   },
   {
     "scene": "公園",
-    "jumpTo": "exploration_choice_2_after_park"
+    "jumpTo": "exploration_select"
   },
   {
     "label": "explore_mall_1",
@@ -1300,7 +1282,7 @@ export const scenarioData = [
   },
   {
     "scene": "ショッピングモール",
-    "jumpTo": "exploration_choice_2_after_mall"
+    "jumpTo": "exploration_select"
   },
   {
     "label": "explore_university_1",
@@ -1362,372 +1344,9 @@ export const scenarioData = [
   },
   {
     "scene": "大学",
-    "jumpTo": "exploration_choice_2_after_university"
+    "jumpTo": "exploration_select"
   },
-  {
-    "label": "exploration_choice_2_after_street",
-    "scene": "朔良の部屋",
-    "type": "choice",
-    "style": "popup",
-    "choices": [
-      {
-        "text": "公園",
-        "targetLabel": "explore_park_2"
-      },
-      {
-        "text": "大型ショッピングモール",
-        "targetLabel": "explore_mall_2"
-      },
-      {
-        "text": "大学周辺",
-        "targetLabel": "explore_university_2"
-      }
-    ]
-  },
-  {
-    "label": "exploration_choice_2_after_park",
-    "scene": "朔良の部屋",
-    "type": "choice",
-    "style": "popup",
-    "choices": [
-      {
-        "text": "商店街",
-        "targetLabel": "explore_street_2"
-      },
-      {
-        "text": "大型ショッピングモール",
-        "targetLabel": "explore_mall_2"
-      },
-      {
-        "text": "大学周辺",
-        "targetLabel": "explore_university_2"
-      }
-    ]
-  },
-  {
-    "label": "exploration_choice_2_after_mall",
-    "scene": "朔良の部屋",
-    "type": "choice",
-    "style": "popup",
-    "choices": [
-      {
-        "text": "商店街",
-        "targetLabel": "explore_street_2"
-      },
-      {
-        "text": "公園",
-        "targetLabel": "explore_park_2"
-      },
-      {
-        "text": "大学周辺",
-        "targetLabel": "explore_university_2"
-      }
-    ]
-  },
-  {
-    "label": "exploration_choice_2_after_university",
-    "scene": "朔良の部屋",
-    "type": "choice",
-    "style": "popup",
-    "choices": [
-      {
-        "text": "商店街",
-        "targetLabel": "explore_street_2"
-      },
-      {
-        "text": "公園",
-        "targetLabel": "explore_park_2"
-      },
-      {
-        "text": "大型ショッピングモール",
-        "targetLabel": "explore_mall_2"
-      }
-    ]
-  },
-  {
-    "label": "explore_street_2",
-    "scene": "昼の商店街",
-    "text": "昨日の戦闘現場からは少し離れているものの、街の人々はまだどこか落ち着かない様子だった。",
-    "bg": "/scene/shopping_street.png"
-  },
-  {
-    "scene": "昼の商店街",
-    "text": "いつもなら賑やかな商店街も、今日は少しだけ静かに感じる。"
-  },
-  {
-    "scene": "昼の商店街",
-    "speaker": "朔良",
-    "role": "SAKURA",
-    "text": "「……」"
-  },
-  {
-    "scene": "昼の商店街",
-    "text": "何気なく歩いていると、店先に並んだテレビからニュースの音が聞こえてきた。"
-  },
-  {
-    "scene": "昼の商店街",
-    "text": "『昨日発生した月波異常区域について、防衛局は――』"
-  },
-  {
-    "scene": "昼の商店街",
-    "text": "思わず足を止める。画面に映ったのは、黒い甲冑をまとった異形の存在。"
-  },
-  {
-    "scene": "昼の商店街",
-    "text": "【黒騎士】…その名前が、再び耳に入る。"
-  },
-  {
-    "scene": "昼の商店街",
-    "speaker": "朔良",
-    "role": "SAKURA",
-    "text": "「……本当に、噂じゃなかったんだ」"
-  },
-  {
-    "scene": "昼の商店街",
-    "text": "そんな私の横で、店員たちが小声で話している。"
-  },
-  {
-    "scene": "昼の商店街",
-    "speaker": "店員A",
-    "text": "「最近、キメラの動きがおかしいって話だよな」"
-  },
-  {
-    "scene": "昼の商店街",
-    "speaker": "店員B",
-    "text": "「黒騎士とかいう奴、本当にいるのかねぇ」"
-  },
-  {
-    "scene": "昼の商店街",
-    "speaker": "店員A",
-    "text": "「怖い話だよ……」"
-  },
-  {
-    "scene": "昼の商店街",
-    "text": "私はその会話を聞きながら、静かにその場を離れた。"
-  },
-  {
-    "scene": "昼の商店街",
-    "action": "JUMP",
-    "targetLabel": "exploration_end"
-  },
-  {
-    "label": "explore_park_2",
-    "scene": "公園",
-    "text": "人工月の光が降り注ぐ、静かな公園。\n子供たちが遊ぶ姿を眺めながら、私はベンチに腰掛けた。",
-    "bg": "/scene/park.png"
-  },
-  {
-    "scene": "公園",
-    "speaker": "朔良",
-    "role": "SAKURA",
-    "text": "「……平和に見えるのに」"
-  },
-  {
-    "scene": "公園",
-    "text": "この世界では、いつ何が起こるか分からない。\n昨日だって、少し間違えば――。そこまで考えて、私は首を振る。"
-  },
-  {
-    "scene": "公園",
-    "speaker": "朔良",
-    "role": "SAKURA",
-    "text": "「考えすぎだよね」"
-  },
-  {
-    "scene": "公園",
-    "text": "ふと、昔父と来た日のことを思い出す。父はいつも、この場所から空を見上げていた。"
-  },
-  {
-    "scene": "公園",
-    "text": "『朔良、本当の月はね、もっと綺麗なんだ』"
-  },
-  {
-    "scene": "公園",
-    "text": "あの頃は、ただの昔話だと思っていた。でも今は。"
-  },
-  {
-    "scene": "公園",
-    "speaker": "朔良",
-    "role": "SAKURA",
-    "text": "「……お父さんは、何を知ってたの？」"
-  },
-  {
-    "scene": "公園",
-    "text": "答えのない問いだけが、静かな公園に消えていった。"
-  },
-  {
-    "scene": "公園",
-    "action": "JUMP",
-    "targetLabel": "exploration_end"
-  },
-  {
-    "label": "explore_mall_2",
-    "scene": "ショッピングモール",
-    "text": "久しぶりに訪れた大型ショッピングモール。",
-    "bg": "/scene/shopping_mall.png"
-  },
-  {
-    "scene": "ショッピングモール",
-    "text": "店内には休日を楽しむ人々の姿があり、少しだけ肩の力が抜ける。"
-  },
-  {
-    "scene": "ショッピングモール",
-    "speaker": "朔良",
-    "role": "SAKURA",
-    "text": "「こういう普通の時間も、まだ残ってるんだな……」"
-  },
-  {
-    "scene": "ショッピングモール",
-    "text": "服屋を眺めたり、雑貨店を覗いたり。\n昨日の出来事を忘れるように歩いていると――"
-  },
-  {
-    "scene": "ショッピングモール",
-    "speaker": "？？？",
-    "text": "「朔良！？」"
-  },
-  {
-    "scene": "ショッピングモール",
-    "text": "聞き覚えのある声がした。振り返ると、そこには大きな袋を抱えた睦典が立っていた。"
-  },
-  {
-    "scene": "ショッピングモール",
-    "speaker": "朔良",
-    "role": "SAKURA",
-    "text": "「ムッちゃん？」"
-  },
-  {
-    "scene": "ショッピングモール",
-    "speaker": "睦典",
-    "text": "「やっぱり朔良だ！ 偶然だな！」",
-    "speaker_sprite": "Mutsunori_smile"
-  },
-  {
-    "scene": "ショッピングモール",
-    "speaker": "朔良",
-    "role": "SAKURA",
-    "text": "「その荷物……何？」"
-  },
-  {
-    "scene": "ショッピングモール",
-    "speaker": "睦典",
-    "text": "「新しい食材探し！」",
-    "speaker_sprite": "Mutsunori_smile"
-  },
-  {
-    "scene": "ショッピングモール",
-    "text": "睦典は得意げに袋を持ち上げる。"
-  },
-  {
-    "scene": "ショッピングモール",
-    "speaker": "睦典",
-    "text": "「実は新メニューの改良をしててさ！」",
-    "speaker_sprite": "Mutsunori_default"
-  },
-  {
-    "scene": "ショッピングモール",
-    "speaker": "朔良",
-    "role": "SAKURA",
-    "text": "「……また？」"
-  },
-  {
-    "scene": "ショッピングモール",
-    "speaker": "睦典",
-    "text": "「今回は自信あるぞ！」",
-    "speaker_sprite": "Mutsunori_smile"
-  },
-  {
-    "scene": "ショッピングモール",
-    "text": "昨日の戦闘とは無縁な、いつもの調子。その姿を見て、少しだけ安心する。"
-  },
-  {
-    "scene": "ショッピングモール",
-    "speaker": "朔良",
-    "role": "SAKURA",
-    "text": "「……平和だね」"
-  },
-  {
-    "scene": "ショッピングモール",
-    "speaker": "睦典",
-    "text": "「え？ 急にどうした？」",
-    "speaker_sprite": "Mutsunori_default"
-  },
-  {
-    "scene": "ショッピングモール",
-    "speaker": "朔良",
-    "role": "SAKURA",
-    "text": "「ううん。なんでもない」"
-  },
-  {
-    "scene": "ショッピングモール",
-    "text": "私は小さく笑った。"
-  },
-  {
-    "scene": "ショッピングモール",
-    "action": "JUMP",
-    "targetLabel": "exploration_end"
-  },
-  {
-    "label": "explore_university_2",
-    "scene": "大学",
-    "text": "休日の大学は、平日の喧騒が嘘のように静かだった。",
-    "bg": "/scene/university_outside.png"
-  },
-  {
-    "scene": "大学",
-    "text": "研究棟の前を通りかかった時、ふと足が止まる。昨日、ヒルミ教授に言われた言葉。"
-  },
-  {
-    "scene": "大学",
-    "text": "『本物の月について』"
-  },
-  {
-    "scene": "大学",
-    "text": "あれがずっと気になっていた。"
-  },
-  {
-    "scene": "大学",
-    "speaker": "朔良",
-    "role": "SAKURA",
-    "text": "「……」"
-  },
-  {
-    "scene": "大学",
-    "text": "研究棟を見上げる。人工月について学ぶ場所。\nそして、父が残した謎に近づけるかもしれない場所。"
-  },
-  {
-    "scene": "大学",
-    "speaker": "朔良",
-    "role": "SAKURA",
-    "text": "「もっと調べないと……」"
-  },
-  {
-    "scene": "大学",
-    "text": "そう決意した、その時。"
-  },
-  {
-    "scene": "大学",
-    "speaker": "朔良",
-    "role": "SAKURA",
-    "text": "「……？」"
-  },
-  {
-    "scene": "大学",
-    "text": "ふと視線を感じて、後ろを振り返る。だけどそこには誰もいなかった。…昨日のこともあって、過敏になっているのかもしれない。"
-  },
-  {
-    "scene": "大学",
-    "speaker": "朔良",
-    "role": "SAKURA",
-    "text": "「気のせい……かな」"
-  },
-  {
-    "scene": "大学",
-    "text": "私はその場を後にした。"
-  },
-  {
-    "scene": "大学",
-    "action": "JUMP",
-    "targetLabel": "exploration_end"
-  },
+
   //===== 探索終了 =====
   {
     "label": "exploration_end",
