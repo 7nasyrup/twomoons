@@ -173,6 +173,7 @@ export const scenarioData = [
   },
   {
     "scene": "街（朝）",
+    "speaker": "通行人",
     "text": "「逃げろ！！」",
     "action": "CLEAR_SHAKE",
     "se": "stop"
@@ -203,7 +204,8 @@ export const scenarioData = [
   {
     "scene": "街（朝）",
     "text": "キメラがこちらへ顔を向けた。",
-    "bgm": ""
+    "bgm": "serious_2.mp3",
+    "bgmVolume": 0.5
   },
   {
     "scene": "街（朝）",
@@ -237,6 +239,7 @@ export const scenarioData = [
   },
   {
     "scene": "街（朝）",
+    "speaker": "？？？",
     "text": "「うぉりゃあああああっ！！」",
     "action": "WHITE_FLASH",
     "se": "+sword.mp3",
@@ -374,7 +377,8 @@ export const scenarioData = [
   },
   {
     "scene": "街（朝）",
-    "text": "いつもの軽い口調。けれど、額に浮かんだ汗と僅かに震える手が、彼も決して余裕だったわけではないことを物語っていた。"
+    "text": "いつもの軽い口調。けれど、額に浮かんだ汗と僅かに震える手が、彼も決して余裕だったわけではないことを物語っていた。",
+    "bgm": "Normal_Morning.mp3"
   },
   {
     "scene": "街（朝）",
@@ -488,7 +492,7 @@ export const scenarioData = [
     "scene": "街（朝）",
     "action": "FADE_TO_BLACK"
   },
-  //3️⃣大学
+  //=============== 大学 ===============
   {
     "scene": "月科学大講義室",
     "text": "講義終了を告げるチャイムが鳴り響く。",
@@ -519,7 +523,7 @@ export const scenarioData = [
     "role": "MUTSUNORI",
     "text": "「今日の講義これで終わりだろ？頼む、レポート手伝ってくれ！」",
     "showIllust": [
-      "Mutsunori_sad3"
+      "Mutsunori_smile3"
     ]
   },
   {
@@ -590,8 +594,7 @@ export const scenarioData = [
     "scene": "大学の廊下",
     "speaker": "？？？",
     "text": "「おい、睦典。朔良のレポート、丸写しするなよ」",
-    "se": "stop",
-    "bgm": "Normal_Morning2"
+    "se": "stop"
   },
   {
     "scene": "大学の廊下",
@@ -602,7 +605,8 @@ export const scenarioData = [
     "text": "驚いて振り返ると、そこには白衣をラフに羽織り、眼鏡をかけた若い男性が立っていた。",
     "showIllust": [
       "Hirumi_smile4"
-    ]
+    ],
+    "bgm": "Normal_Morning2"
   },
   {
     "scene": "大学の廊下",
@@ -621,8 +625,7 @@ export const scenarioData = [
     "text": "「げぇっ、教授！？」",
     "showIllust": [
       "Mutsunori_pout2"
-    ],
-
+    ]
   },
   {
     "scene": "大学の廊下",
@@ -709,7 +712,8 @@ export const scenarioData = [
     "text": "教授は軽く手を振り、その場を後にした。",
     "hideIllust": [
       "Hirumi"
-    ]
+    ],
+    "bgm": "stop"
   },
   {
     "scene": "大学の廊下",
@@ -757,7 +761,7 @@ export const scenarioData = [
     "scene": "大学の廊下",
     "text": "睦典は慌てて表情を引き締める。私たちは顔を見合わせて笑い、そのまま図書館へ向かった。"
   },
-  //4️⃣夜の帰り道
+  //=============== 夜の帰り道 ===============
   {
     "scene": "夜の帰り道",
     "speaker": "朔良",
@@ -806,8 +810,10 @@ export const scenarioData = [
   {
     "scene": "夜の帰り道",
     "text": "青白い光を纏ったキメラが、低く唸りながらじりじりと距離を詰めてくる。",
-    "se": "+kimera2.mp3"
-    //キメライラスト
+    "se": "+kimera2.mp3",
+    "showIllust": [
+      "kimera23"
+    ]
   },
   {
     "scene": "夜の帰り道",
@@ -838,7 +844,10 @@ export const scenarioData = [
     "scene": "夜の帰り道",
     "text": "鋭い前脚が私の身体を弾き飛ばした。",
     "se": "+panchi.mp3",
-    "action": "SHAKE_SCREEN"
+    "action": "SHAKE_SCREEN",
+    "hideIllust": [
+      "kimera2"
+    ]
   },
   {
     "scene": "夜の帰り道",
@@ -848,7 +857,14 @@ export const scenarioData = [
   },
   {
     "scene": "夜の帰り道",
-    "text": "背中から地面へ叩きつけられ、肺の中の空気が一気に押し出される。痛みで身体が思うように動かない。それでも必死に立ち上がろうとする。だが、キメラは容赦なくこちらへ歩み寄ってくる。"
+    "text": "背中から地面へ叩きつけられ、肺の中の空気が一気に押し出される。"
+  },
+  {
+    "scene": "夜の帰り道",
+    "text": "痛みで身体が思うように動かない。それでも必死に立ち上がろうとする。だが、キメラは容赦なくこちらへ歩み寄ってくる。",
+    "showIllust": [
+      "kimera23"
+    ]
   },
   {
     "scene": "夜の帰り道",
@@ -863,7 +879,10 @@ export const scenarioData = [
   {
     "scene": "夜の帰り道",
     "se": "+sword.mp3",
-    "text": "鋭い一撃がキメラを弾き飛ばす。"
+    "text": "鋭い一撃がキメラを弾き飛ばす。",
+    "hideIllust": [
+      "kimera2"
+    ]
   },
   {
     "scene": "夜の帰り道",
@@ -913,7 +932,7 @@ export const scenarioData = [
     "scene": "夜の帰り道",
     "action": "FADE_TO_BLACK"
   },
-  //戦闘
+  //=============== 戦闘開始 ==============
   {
     "scene": "夜の帰り道",
     "text": "キメラが消滅し、静寂が戻る。"
@@ -932,7 +951,7 @@ export const scenarioData = [
     "scene": "夜の帰り道",
     "text": "問いかけても、返事はない。男は興味を失ったように視線を逸らすと、お礼を言う暇もなくそのまま夜の闇へと消えていった。"
   },
-  //=====  朔良の部屋(夜) =====
+  //===============  朔良の部屋(夜) ===============
   {
     "scene": "朔良の部屋(夜)",
     "speaker": "朔良",
@@ -1034,8 +1053,10 @@ export const scenarioData = [
   },
   {
     "scene": "朔良の部屋(夜)",
-    "action": "FADE_TO_BLACK"
+    "action": "FADE_TO_BLACK",
+    "bgm": "stop"
   },
+  //=============== 翌朝 ===============
   {
     "scene": "朔良の部屋(朝)",
     "speaker": "朔良",
@@ -1047,6 +1068,8 @@ export const scenarioData = [
   {
     "scene": "朔良の部屋(朝)",
     "text": "聞き慣れたアラーム音で目を覚ます。ゆっくりと身体を起こし、窓の外を見る。今日も変わらず、人工月の青白い光が街を照らしていた。",
+    "bgm": "Room_Morning.mp3",
+    "se": "stop"
   },
   {
     "scene": "朔良の部屋(朝)",
@@ -1062,7 +1085,7 @@ export const scenarioData = [
     "scene": "朔良の部屋(朝)",
     "text": "そう呟きながら、出かける準備を始める。"
   },
-  //===== 探索パート1 =====
+  //=============== 探索パート1 ===============
   {
     "scene": "朔良の部屋(朝)",
     "text": "【探索パート開始】",
@@ -1140,10 +1163,7 @@ export const scenarioData = [
   },
   {
     "scene": "昼の商店街",
-    "text": "私はその会話を聞きながら、静かにその場を離れた。"
-  },
-  {
-    "scene": "昼の商店街",
+    "text": "私はその会話を聞きながら、静かにその場を離れた。",
     "jumpTo": "exploration_select"
   },
   {
@@ -1188,10 +1208,7 @@ export const scenarioData = [
   },
   {
     "scene": "公園",
-    "text": "答えのない問いだけが、静かな公園に消えていった。"
-  },
-  {
-    "scene": "公園",
+    "text": "答えのない問いだけが、静かな公園に消えていった。",
     "jumpTo": "exploration_select"
   },
   {
@@ -1291,10 +1308,7 @@ export const scenarioData = [
   },
   {
     "scene": "ショッピングモール",
-    "text": "私は小さく笑った。"
-  },
-  {
-    "scene": "ショッピングモール",
+    "text": "私は小さく笑った。",
     "jumpTo": "exploration_select"
   },
   {
@@ -1353,10 +1367,7 @@ export const scenarioData = [
   },
   {
     "scene": "大学",
-    "text": "私はその場を後にした。"
-  },
-  {
-    "scene": "大学",
+    "text": "私はその場を後にした。",
     "jumpTo": "exploration_select"
   },
 
@@ -1366,7 +1377,8 @@ export const scenarioData = [
     "scene": "夜の街",
     "text": "帰り道を歩きながら、ふとスマートフォンを確認しようとポケットへ手を伸ばす。けれど、いつもそこにあるはずの感触がない。",
     "bg": "/scene/shopping_street_night.png",
-    "action": "SLOW_FADE_IN"
+    "action": "SLOW_FADE_IN",
+    "bgm": "Normal_Night.mp3"
   },
   {
     "scene": "夜の街",

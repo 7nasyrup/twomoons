@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Map, MapPin, Building, TreePine, ShoppingBag, GraduationCap } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -12,19 +12,25 @@ const LOCATIONS = [
 export default function ExplorationPhase({ flags, setFlags, onSelectLocation, onFinishExploration }) {
   const [show, setShow] = useState(false);
 
+  const visitedCount = LOCATIONS.filter(loc => flags[`visited_${loc.id}`]).length;
+  const remainingActions = 2 - visitedCount;
+
+  const isSelecting = useRef(false);
+
   useEffect(() => {
+    if (isSelecting.current) return;
     // Check if we already visited 2 places
-    const visitedCount = LOCATIONS.filter(loc => flags[`visited_${loc.id}`]).length;
     if (visitedCount >= 2) {
       onFinishExploration();
     } else {
       setShow(true);
     }
-  }, [flags, onFinishExploration]);
+  }, [visitedCount, onFinishExploration]);
 
   const handleSelect = (loc) => {
-    if (flags[`visited_${loc.id}`]) return;
+    if (flags[`visited_${loc.id}`] || isSelecting.current) return;
     
+    isSelecting.current = true;
     setFlags(prev => ({
       ...prev,
       [`visited_${loc.id}`]: true
@@ -47,8 +53,13 @@ export default function ExplorationPhase({ flags, setFlags, onSelectLocation, on
       >
         <div className="flex items-center gap-3 mb-8 pb-4 border-b border-slate-200 text-slate-800">
           <Map className="w-8 h-8 text-sky-600" />
-          <div>
-            <h2 className="text-2xl font-bold tracking-wider">行き先を選択</h2>
+          <div className="flex-1">
+            <h2 className="text-2xl font-bold tracking-wider flex items-center gap-4">
+              行き先を選択
+              <span className="text-sm font-medium px-3 py-1 bg-sky-100 text-sky-700 rounded-full tracking-normal">
+                残り行動回数: {remainingActions}回
+              </span>
+            </h2>
             <p className="text-sm text-slate-500 mt-1">調査したい場所を選んでください</p>
           </div>
         </div>
