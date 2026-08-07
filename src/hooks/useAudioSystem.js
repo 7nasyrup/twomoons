@@ -118,11 +118,11 @@ export function useAudioSystem() {
     if (bgmRef.current) {
       const oldBgm = bgmRef.current;
       oldBgm.fade(oldBgm.volume(), 0, fadeDuration);
+      currentBgmSrc.current = null;
       setTimeout(() => {
         oldBgm.unload();
         if (bgmRef.current === oldBgm) {
           bgmRef.current = null;
-          currentBgmSrc.current = null;
         }
       }, fadeDuration + 100);
     }
