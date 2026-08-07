@@ -73,9 +73,7 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
   presentCharacters.forEach(c => {
     const rawBase = c.split('_')[0];
     const base = SPEAKER_TO_ROMAJI[rawBase] || rawBase;
-    if (SPEAKER_CONFIGS[base]) {
-      resolvedDisplayMap[base] = c;
-    }
+    resolvedDisplayMap[base] = c;
   });
 
   if (Array.isArray(currentLine?.hideIllust)) {
@@ -89,29 +87,34 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
   if (Array.isArray(currentLine?.showIllust)) {
     currentLine.showIllust.forEach(charRaw => {
       let c = charRaw;
-      const match = charRaw.match(/^(.+?)([1-5])$/);
+      const match = charRaw.match(/^(.+?)([1-6])$/);
       if (match) {
         c = match[1];
       }
       const rawBase = c.split('_')[0];
       const base = SPEAKER_TO_ROMAJI[rawBase] || rawBase;
-      if (SPEAKER_CONFIGS[base]) {
-        resolvedDisplayMap[base] = c;
-      }
+      resolvedDisplayMap[base] = c;
     });
   }
 
   const effectiveScene = currentLine?.scene || (Array.isArray(scenarioData) && typeof currentStep === 'number' && currentStep > 0 ? scenarioData[currentStep - 1]?.scene : '');
 
-  const orderedCharacters = Object.keys(SPEAKER_CONFIGS).filter(c => resolvedDisplayMap[c]);
+  const orderedCharacters = Object.keys(resolvedDisplayMap);
 
   return (
     <div className="absolute inset-0 pointer-events-none z-[12]">
       <AnimatePresence>
         {orderedCharacters.map((baseCharName) => {
           const charState = resolvedDisplayMap[baseCharName];
-          const config = SPEAKER_CONFIGS[baseCharName];
-          if (!config) return null;
+          let config = SPEAKER_CONFIGS[baseCharName];
+          if (!config) {
+            config = {
+              folder: "/character",
+              baseFileName: baseCharName,
+              defaultExpression: "",
+              positionClass: "left-[27.5%] w-[45%] h-[95%]" // center
+            };
+          }
 
           let expression = config.defaultExpression;
           if (charState && charState.includes('_')) {
@@ -125,56 +128,56 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
           }
 
           let posIndex = null;
-          
+
           const getForcedPos = (charRaw) => {
-            const match = charRaw.match(/^(.+?)([1-5])$/);
+            const match = charRaw.match(/^(.+?)([1-6])$/);
             if (match) return parseInt(match[2], 10);
             return null;
           };
 
           const getBaseName = (charRaw) => {
-             let c = charRaw;
-             const match = charRaw.match(/^(.+?)([1-5])$/);
-             if (match) c = match[1];
-             const rawBase = c.split('_')[0];
-             return SPEAKER_TO_ROMAJI[rawBase] || rawBase;
+            let c = charRaw;
+            const match = charRaw.match(/^(.+?)([1-6])$/);
+            if (match) c = match[1];
+            const rawBase = c.split('_')[0];
+            return SPEAKER_TO_ROMAJI[rawBase] || rawBase;
           };
 
           if (Array.isArray(currentLine?.showIllust)) {
-             for (const charRaw of currentLine.showIllust) {
-                if (getBaseName(charRaw) === baseCharName) {
-                   const p = getForcedPos(charRaw);
-                   if (p) posIndex = p;
-                }
-             }
+            for (const charRaw of currentLine.showIllust) {
+              if (getBaseName(charRaw) === baseCharName) {
+                const p = getForcedPos(charRaw);
+                if (p) posIndex = p;
+              }
+            }
           }
 
           if (!posIndex && Array.isArray(scenarioData) && typeof currentStep === 'number') {
             for (let i = currentStep - 1; i >= 0; i--) {
               const prevLine = scenarioData[i];
               if (Array.isArray(prevLine?.showIllust)) {
-                 let foundPos = null;
-                 for (const charRaw of prevLine.showIllust) {
-                    if (getBaseName(charRaw) === baseCharName) {
-                       const p = getForcedPos(charRaw);
-                       if (p) foundPos = p;
-                    }
-                 }
-                 if (foundPos) {
-                   posIndex = foundPos;
-                   break;
-                 }
+                let foundPos = null;
+                for (const charRaw of prevLine.showIllust) {
+                  if (getBaseName(charRaw) === baseCharName) {
+                    const p = getForcedPos(charRaw);
+                    if (p) foundPos = p;
+                  }
+                }
+                if (foundPos) {
+                  posIndex = foundPos;
+                  break;
+                }
               }
             }
           }
 
           let pos = null;
           if (typeof posIndex === 'number') {
-             const POS_MAP = ['left', 'center-left', 'center', 'center-right', 'right'];
-             pos = POS_MAP[posIndex - 1];
+            const POS_MAP = ['left', 'center-left', 'center', 'center-right', 'right', 'center-close'];
+            pos = POS_MAP[posIndex - 1];
           }
 
-          let imagePath = assetPath(`${config.folder}/${config.baseFileName}_${expression}.png`);
+          let imagePath = assetPath(`${config.folder}/${config.baseFileName}${expression ? `_${expression}` : ''}.png`);
           if (baseCharName === "BlackKnight") {
             if (expression === "attack") {
               imagePath = assetPath(`${config.folder}/BlackKnight_attack.png`);
@@ -228,14 +231,14 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
           // Slots are centered at: 10%, 30%, 50%, 70%, 90% of screen
           // Since sprite is 45% wide, left edge = center - 22.5%
           const positionStyleMap = {
-            'left':         { left: '-7.5%' },   // center 15% → left = -7.5%
-            'center-left':  { left: '10%' },     // center 32.5% → left = 10%
-            'center':       { left: '27.5%' },   // center 50% → left = 27.5%
-            'center-close': { left: '27.5%', scale: 1.35, y: '5%' }, // center 50% but zoomed in
+            'left': { left: '-7.5%' },   // center 15% → left = -7.5%
+            'center-left': { left: '10%' },     // center 32.5% → left = 10%
+            'center': { left: '27.5%' },   // center 50% → left = 27.5%
+            'center-close': { left: '27.5%', scale: 1.6, y: '10%' }, // center 50% but zoomed in
             'center-right': { left: '45%' },     // center 67.5% → left = 45%
-            'right':        { left: '62.5%' },   // center 85% → left = 62.5%
+            'right': { left: '62.5%' },   // center 85% → left = 62.5%
           };
-          
+
           let overrideStyle = null;
           if (pos && positionStyleMap[pos]) {
             overrideStyle = positionStyleMap[pos];
@@ -266,7 +269,8 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
                   }
                 }
               }
-              if (!hasSpokenInThisScene) {
+              const isMonster = baseCharName.toLowerCase().includes('kimera');
+              if (!hasSpokenInThisScene && !isMonster) {
                 isSpeaker = true;
               }
             }
@@ -277,7 +281,7 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
             const pc = config.positionClass;
             const leftMatch = pc.match(/left-\[([^\]]+)\]/);
             const rightMatch = pc.match(/right-\[([^\]]+)\]/);
-            
+
             if (leftMatch) return { left: leftMatch[1] };
             if (rightMatch) {
               const rVal = rightMatch[1];
@@ -290,23 +294,31 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
             return {};
           })();
 
+          const isKimera = baseCharName.toLowerCase().includes('kimera');
+
+          const { scale: posScale, y: posY, ...layoutStyles } = positionStyles || {};
+
           return (
             <motion.div
               key={baseCharName}
-              className={`absolute bottom-[-50px] flex flex-col justify-end items-center`}
+              className={`absolute flex flex-col justify-end items-center`}
               style={{
-                width: '45%',
-                height: '95%'
+                width: isKimera ? '60%' : '45%',
+                height: isKimera ? '75%' : '95%',
+                bottom: isKimera ? '28vh' : '-50px',
+                left: isKimera && (!overrideStyle) ? '20%' : undefined,
+                transformOrigin: 'bottom center',
+                ...layoutStyles
               }}
-              initial={{ opacity: 0, y: 30, ...positionStyles }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{
                 opacity: 1,
-                y: 0,
-                scale: 1.0,
+                y: posY !== undefined ? posY : 0,
+                scale: posScale !== undefined ? posScale : 1.0,
                 filter: isSpeaker ? "brightness(1) drop-shadow(0 10px 20px rgba(0,0,0,0.5))" : "brightness(0.4) drop-shadow(0 5px 10px rgba(0,0,0,0.3))",
                 zIndex: isSpeaker ? 20 : 10,
-                ...positionStyles
               }}
+              layout="position"
               exit={{ opacity: 0, y: 30 }}
               transition={{ duration: 0.35, ease: "easeOut" }}
             >

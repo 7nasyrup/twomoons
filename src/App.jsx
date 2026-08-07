@@ -24,6 +24,8 @@ import FragmentCollectSolo from './components/FragmentCollectSolo';
 import PortraitWarningOverlay from './components/PortraitWarningOverlay';
 import StealthGame from './components/StealthGame';
 import ExplorationPhase from './components/ExplorationPhase';
+import StruggleGame from './components/StruggleGame';
+import WarehouseExploration from './components/WarehouseExploration';
 import BattleSystem from './components/BattleSystem';
 import SaveSlotModal, { SAVE_KEY_PREFIX, loadAllSlots } from './components/SaveSlotModal';
 import InstallPrompt from './components/InstallPrompt';
@@ -693,7 +695,7 @@ export default function App() {
     if (Array.isArray(visualLine.showIllust)) {
       visualLine.showIllust.forEach(charRaw => {
         let char = charRaw;
-        const match = charRaw.match(/^(.+?)([1-5])$/);
+        const match = charRaw.match(/^(.+?)([1-6])$/);
         if (match) {
           char = match[1];
         }
@@ -1213,7 +1215,7 @@ export default function App() {
     } else {
       // Tap detected (not a swipe)
       if (currentLine?.action === 'TRIGGER_MINIGAME' || currentLine?.action === 'TRIGGER_TYPING_GAME') return;
-      const isMinigameActive = isTypingGameActive || isSearchAndLearningActive || isSilentScoreActive || isTapCommunicationActive || isEyeOfProfilerActive || isFragmentCollectActive || isFragmentCollectNagisaActive || isFragmentCollectMikaActive || isFragmentCollectAkaneActive || isFragmentCollectSoloActive || isStealthGameActive || isExplorationPhaseActive;
+      const isMinigameActive = isTypingGameActive || isSearchAndLearningActive || isSilentScoreActive || isTapCommunicationActive || isEyeOfProfilerActive || isFragmentCollectActive || isFragmentCollectNagisaActive || isFragmentCollectMikaActive || isFragmentCollectAkaneActive || isFragmentCollectSoloActive || isStealthGameActive || isExplorationPhaseActive || isStruggleGameActive || isWarehouseExplorationActive;
 
       if (skipMode && !isMinigameActive) {
         setSkipMode(false);
@@ -1278,7 +1280,9 @@ export default function App() {
           'TRIGGER_FRAGMENT_COLLECT_MIKA',
           'TRIGGER_FRAGMENT_COLLECT_AKANE',
           'TRIGGER_FRAGMENT_COLLECT_SOLO',
-          'TRIGGER_STEALTH_GAME'
+          'TRIGGER_STEALTH_GAME',
+          'TRIGGER_STRUGGLE_GAME',
+          'TRIGGER_WAREHOUSE_EXPLORATION'
         ].includes(currentLine?.action);
 
         const isTransition = currentLine?.action === 'FADE_TO_BLACK' || currentLine?.action === 'SLOW_FADE_TO_BLACK' || currentLine?.action === 'WAIT_FADE' || isBgTransitioning || isBgFadingOut;
@@ -1317,7 +1321,8 @@ export default function App() {
   const isFragmentCollectAkaneActive = currentLine?.action === 'TRIGGER_FRAGMENT_COLLECT_AKANE';
   const isFragmentCollectSoloActive = currentLine?.action === 'TRIGGER_FRAGMENT_COLLECT_SOLO';
   const isStealthGameActive = currentLine?.action === 'TRIGGER_STEALTH_GAME';
-
+  const isStruggleGameActive = currentLine?.action === 'TRIGGER_STRUGGLE_GAME';
+  const isWarehouseExplorationActive = currentLine?.action === 'TRIGGER_WAREHOUSE_EXPLORATION';
   const handleEyeOfProfilerComplete = (success) => {
     setEyeOfProfilerSuccess(success);
     nextStep();
@@ -1360,6 +1365,14 @@ export default function App() {
 
   const handleSearchAndLearningComplete = (score) => {
     setLearningScore(score);
+    nextStep();
+  };
+
+  const handleStruggleComplete = () => {
+    nextStep();
+  };
+
+  const handleWarehouseComplete = () => {
     nextStep();
   };
 
@@ -1431,7 +1444,7 @@ export default function App() {
       onClick={() => {
         // On mobile, onTouchEnd already handled the tap — skip onClick to prevent double-fire
         if (touchHandledRef.current) return;
-        const isMinigameActive = isTypingGameActive || isSearchAndLearningActive || isSilentScoreActive || isTapCommunicationActive || isEyeOfProfilerActive || isFragmentCollectActive || isFragmentCollectNagisaActive || isFragmentCollectMikaActive || isFragmentCollectAkaneActive || isFragmentCollectSoloActive || isStealthGameActive || isExplorationPhaseActive;
+        const isMinigameActive = isTypingGameActive || isSearchAndLearningActive || isSilentScoreActive || isTapCommunicationActive || isEyeOfProfilerActive || isFragmentCollectActive || isFragmentCollectNagisaActive || isFragmentCollectMikaActive || isFragmentCollectAkaneActive || isFragmentCollectSoloActive || isStealthGameActive || isExplorationPhaseActive || isStruggleGameActive || isWarehouseExplorationActive;
 
         if (skipMode && !isMinigameActive) {
           setSkipMode(false);
@@ -1498,6 +1511,27 @@ export default function App() {
             {isSearchAndLearningActive && (
               <SearchAndLearning 
                 onComplete={handleSearchAndLearningComplete} 
+                onSave={handleSave}
+                onLoad={handleLoad}
+                onOpenLog={() => setBacklogOpen(true)}
+                onToggleAuto={toggleAuto}
+                onToggleSkip={toggleSkip}
+                setSkipMode={setSkipMode}
+                onExit={handleExitToTitle}
+                autoMode={autoMode}
+                skipMode={skipMode}
+              />
+            )}
+
+            {/* Struggle Game Overlay */}
+            {isStruggleGameActive && (
+              <StruggleGame onComplete={handleStruggleComplete} />
+            )}
+
+            {/* Warehouse Exploration Overlay */}
+            {isWarehouseExplorationActive && (
+              <WarehouseExploration 
+                onComplete={handleWarehouseComplete} 
                 onSave={handleSave}
                 onLoad={handleLoad}
                 onOpenLog={() => setBacklogOpen(true)}
@@ -1621,7 +1655,7 @@ export default function App() {
             {/* Cinematic Black Letterbox Overlay */}
             <CinemaLayer
               text={currentLine?.text}
-              isActive={isCinema && !isAnyEnd && !isTypingGameActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isFragmentCollectActive && !isFragmentCollectMikaActive && !isFragmentCollectAkaneActive && !isFragmentCollectSoloActive && !isStealthGameActive && !isExplorationPhaseActive}
+              isActive={isCinema && !isAnyEnd && !isTypingGameActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isFragmentCollectActive && !isFragmentCollectMikaActive && !isFragmentCollectAkaneActive && !isFragmentCollectSoloActive && !isStealthGameActive && !isExplorationPhaseActive && !isStruggleGameActive && !isWarehouseExplorationActive}
               isTyping={isTyping}
               onNext={nextStep}
             />
@@ -2177,7 +2211,7 @@ export default function App() {
         {!showTitle && (
           <>
             {/* Subtitles & Normal Dialogue Boxes */}
-            {!isCinema && !isTransition && !isAnyEnd && !alertActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isTypingGameActive && !isFragmentCollectActive && !isFragmentCollectMikaActive && !isFragmentCollectAkaneActive && !isFragmentCollectSoloActive && !isStealthGameActive && !isExplorationPhaseActive && (
+            {!isCinema && !isTransition && !isAnyEnd && !alertActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isTypingGameActive && !isFragmentCollectActive && !isFragmentCollectMikaActive && !isFragmentCollectAkaneActive && !isFragmentCollectSoloActive && !isStealthGameActive && !isExplorationPhaseActive && !isStruggleGameActive && !isWarehouseExplorationActive && !currentLine?.hideWindow && (
               <DialogueBox
                 isPopup={isPopup}
                 speaker={currentLine?.speaker}

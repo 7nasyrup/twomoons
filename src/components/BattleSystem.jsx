@@ -1,14 +1,11 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import SpriteAnimator from './SpriteAnimator';
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // CONSTANTS & TUNING
 // ═══════════════════════════════════════════════════════════════════════════════
 const TURN_DELAY = 1000;              // Delay between turns (ms)
-const ATTACK_DURATION = 1500;         // Total time for enemy attack windup
-const GLINT_TIME = 900;               // When the red glint appears (earlier to give more reaction time)
-const PARRY_WINDOW_START = 900;       // Parry window opens when glint appears
-const PARRY_WINDOW_END = 1500;        // Parry window closes when attack hits (600ms window)
 const HEAL_COOLDOWN = 12000;
 
 // Damage values
@@ -20,9 +17,17 @@ const HEAL_AMOUNT = 80;
 const COUNTER_DAMAGE = 35;            // Parry counter-attack damage
 
 // Sync
-const SYNC_PER_HIT = 2;               
-const SYNC_PER_PARRY = 25;            
-const SYNC_COST_ULTIMATE = 100;
+const SYNC_PER_HIT = 5;               // Sync points gained on normal attack
+const SYNC_PER_PARRY = 20;            // Sync points gained on parry
+const SYNC_MAX = 100;                 // Max sync points (unleashes Resonance)
+const SYNC_COST_ULTIMATE = 100;       // Cost to use ultimate
+
+const ATTACK_PATTERNS = [
+  { type: 'normal', hits: 1, duration: 1500, label: '通常攻撃' },
+  { type: 'fast', hits: 1, duration: 800, label: '高速攻撃' },
+  { type: 'double', hits: 2, duration: 1000, label: '連続攻撃' },
+  { type: 'delayed', hits: 1, duration: 2500, label: 'ディレイ攻撃' },
+];
 
 // Turn order
 const TURN_ORDER = ['mutsunori', 'nagisa', 'enemy1', 'enemy2'];
@@ -116,7 +121,7 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
   }, []);
 
   const addSync = useCallback((amount) => {
-    setSyncRate(prev => Math.min(100, prev + amount));
+    setSyncRate(prev => Math.min(SYNC_MAX, prev + amount));
   }, []);
 
   const spawnGlint = useCallback((enemyId) => {
@@ -153,9 +158,10 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
 
   // ─── BGM ───
   useEffect(() => {
-    if (battlePhase === 'fighting' && playBGM) {
-      playBGM('/assets/audio/bgm/Battle1.mp3');
-    }
+    // ユーザーのリクエストにより一時的にBGMをオフ
+    // if (battlePhase === 'fighting' && playBGM) {
+    //   playBGM('/assets/audio/bgm/Battle1.mp3');
+    // }
     return () => { if (stopBGM) stopBGM(); };
   }, [battlePhase]);
 
@@ -292,16 +298,20 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
           const target = aliveAllies[Math.floor(Math.random() * aliveAllies.length)];
           const enemy = stateRef.current.enemies.find(e => e.id === turnId);
           
+          const pattern = ATTACK_PATTERNS[Math.floor(Math.random() * ATTACK_PATTERNS.length)];
+
           const attack = {
             enemyId: turnId,
             targetId: target.id,
             startTime: now,
-            duration: ATTACK_DURATION,
+            pattern: pattern,
+            duration: pattern.duration,
+            hitsRemaining: pattern.hits,
             glintFired: false,
             resolved: false
           };
           setCurrentAttack(attack);
-          if (enemy) addLog(`⚠ ${enemy.name} が ${target.name} を狙っている！`);
+          if (enemy) addLog(`⚠ ${enemy.name} が ${target.name} を狙っている！ [${pattern.label}]`);
         } else {
           // No alive allies, skip
           setCurrentTurnIndex(p => p + 1);
@@ -315,8 +325,8 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
         const attack = stateRef.current.currentAttack;
         const elapsed = now - attack.startTime;
         
-        // Trigger Glint
-        if (elapsed >= GLINT_TIME && !attack.glintFired) {
+        // Trigger Glint (Optional UI marker)
+        if (elapsed >= Math.max(0, attack.duration - 500) && !attack.glintFired) {
           setCurrentAttack(prev => prev ? { ...prev, glintFired: true } : null);
           spawnGlint(attack.enemyId);
         }
@@ -350,9 +360,20 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
             spawnDamageNumber(attack.targetId, dmg, isGuarding ? 'damage' : 'critical');
           }
           
-          setCurrentAttack(null);
-          setTurnPhase('enemy_resolve');
-          setTurnTimer(150); // Visual step forward duration (snappy!)
+          if (attack.hitsRemaining > 1) {
+            // Setup next hit in the combo
+            setCurrentAttack({
+              ...attack,
+              startTime: now,
+              hitsRemaining: attack.hitsRemaining - 1,
+              glintFired: false,
+              resolved: false
+            });
+          } else {
+            setCurrentAttack(null);
+            setTurnPhase('enemy_resolve');
+            setTurnTimer(150); // Visual step forward duration (snappy!)
+          }
         }
       }
 
@@ -409,20 +430,17 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
   // ═══════════════════════════════════════════════════════════════════════════════
   
   const handlePointerDown = useCallback((allyId) => {
-    if (stateRef.current.battlePhase !== 'fighting') return;
-    const ally = stateRef.current.allies.find(a => a.id === allyId);
-    if (!ally || ally.isDead) return;
-
-    const now = Date.now();
+    const attack = stateRef.current.currentAttack;
     let parrySuccess = false;
 
-    // Check for Parry Window
-    const attack = stateRef.current.currentAttack;
-    if (attack && attack.targetId === allyId) {
-      const elapsed = now - attack.startTime;
+    if (stateRef.current.turnPhase === 'enemy_windup' && attack && attack.targetId === allyId) {
+      const elapsed = Date.now() - attack.startTime;
       
-      // Parry window is active just after the glint starts until the attack hits
-      if (elapsed >= PARRY_WINDOW_START && elapsed <= PARRY_WINDOW_END) {
+      // Parry window is active just before the attack hits until slightly after
+      const parryStart = attack.duration - 300;
+      const parryEnd = attack.duration + 100;
+      
+      if (elapsed >= parryStart && elapsed <= parryEnd) {
         // PARRY!
         parrySuccess = true;
         if (playSE) playSE('/assets/audio/bgm/+parry.mp3');
@@ -431,7 +449,7 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
         triggerSakuraNote();
         addSync(SYNC_PER_PARRY);
         
-        // Cancel the attack, stun enemy, trigger counter-attack
+        // Cancel the attack (including subsequent hits if it's a combo), stun enemy, trigger counter-attack
         setCurrentAttack(null);
         setEnemies(prev => prev.map(e => {
           if (e.id === attack.enemyId) {
@@ -718,6 +736,7 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
         <div className="w-[35%] flex flex-col justify-around items-center pr-4 border-r border-cyan-500/10">
           {allies.map(ally => {
             const isTargeted = targetedAllies.has(ally.id);
+            const attackInfo = activeAttacksCompat.find(a => a.targetId === ally.id);
             const isGuarding = guardingAllies.has(ally.id);
             const isCurrentTurn = TURN_ORDER[currentTurnIndex % TURN_ORDER.length] === ally.id && turnPhase !== 'turn_delay';
             
@@ -735,7 +754,8 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
 
                 {/* Ally Portrait (Interactable) */}
                 <motion.div
-                  className={`relative cursor-pointer touch-none w-24 h-32 md:w-32 md:h-40 rounded-xl flex items-center justify-center transition-all duration-200
+                  className={`relative cursor-pointer touch-none rounded-xl flex items-center justify-center transition-all duration-200
+                    ${ally.id === 'nagisa' ? 'w-[125px] h-[166px] md:w-[166px] md:h-[208px]' : 'w-24 h-32 md:w-32 md:h-40'}
                     ${ally.isDead ? 'opacity-40 grayscale' : ''}
                   `}
                   animate={{ x: isCurrentTurn && turnPhase === 'ally_attack' ? 30 : 0 }}
@@ -745,25 +765,38 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
                   onPointerLeave={() => handlePointerUp(ally.id)}
                   onContextMenu={(e) => e.preventDefault()}
                 >
-                  {/* Active Turn Indicator */}
-                  {isCurrentTurn && !ally.isDead && (
-                    <motion.div
-                      className="absolute inset-[-12px] rounded-xl border-2 border-cyan-400 bg-cyan-400/10"
-                      animate={{ opacity: [0.3, 0.7, 0.3] }}
-                      transition={{ duration: 0.8, repeat: Infinity }}
-                    />
-                  )}
-                  {/* Target Highlight Effect */}
-                  {isTargeted && !ally.isDead && (
-                    <motion.div
-                      className="absolute inset-[-12px] rounded-xl border-2 border-red-500 bg-red-500/10"
-                      animate={{ opacity: [0.3, 0.8, 0.3], scale: [1, 1.02, 1] }}
-                      transition={{ duration: 0.5, repeat: Infinity }}
-                    />
+
+                  {/* Target Highlight & Shrinking Circle (Osu! Style) */}
+                  {isTargeted && !ally.isDead && attackInfo && (
+                    <div className="absolute inset-0 pointer-events-none flex items-center justify-center z-40">
+                      {/* Inner Target Circle (Red) */}
+                      <div className="absolute w-[90px] h-[90px] md:w-[110px] md:h-[110px] rounded-full border-[3px] border-red-500 bg-red-500/20 shadow-[0_0_15px_rgba(239,68,68,0.6)]" />
+                      {/* Shrinking Outer Circle (Cyan -> Red) */}
+                      <motion.div
+                        key={attackInfo.startTime} // Re-trigger animation when new attack starts
+                        className="absolute w-[225px] h-[225px] md:w-[275px] md:h-[275px] rounded-full border-[4px] shadow-[0_0_12px_rgba(0,245,255,0.8)]"
+                        initial={{ scale: 1, opacity: 0, borderColor: '#22d3ee' }}
+                        animate={{ scale: 0.4, opacity: 1, borderColor: '#ef4444' }}
+                        transition={{ duration: attackInfo.duration / 1000, ease: 'linear' }}
+                      />
+                    </div>
                   )}
                   {/* Guard Shield Effect */}
                   {isGuarding && !ally.isDead && (
-                    <div className="absolute inset-[-8px] rounded-xl border-2 border-cyan-400/70 bg-cyan-400/10 shadow-[0_0_15px_rgba(0,245,255,0.4)]" />
+                    <div className={`absolute inset-0 flex items-center justify-center pointer-events-none z-50 ${ally.id === 'nagisa' ? '-translate-y-4' : ''}`}>
+                      <SpriteAnimator 
+                        src="/battle/pipo-btleffect111f.png" 
+                        frameWidth={192} 
+                        frameHeight={192} 
+                        columns={5} 
+                        totalFrames={10} 
+                        fps={15} 
+                        loop={false} 
+                        holdOnFrame={4}
+                        pulsateOnHold={true}
+                        scale={0.9} 
+                      />
+                    </div>
                   )}
                   
                   {ally.image ? (
@@ -778,9 +811,7 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
                   {isTargeted && !ally.isDead && (
                     <div className="absolute -top-6 bg-red-950/80 border border-red-500/50 px-2 py-0.5 rounded text-[10px] font-orbitron text-red-400 animate-pulse z-20">⚠ TARGET</div>
                   )}
-                  {isGuarding && !ally.isDead && (
-                    <div className="absolute -bottom-4 font-orbitron text-[9px] text-cyan-300 bg-black/60 px-2 py-0.5 rounded-full border border-cyan-500/30 z-20">GUARDING</div>
-                  )}
+
                   {ally.isDead && (
                     <div className="absolute inset-0 flex items-center justify-center bg-black/50 rounded-xl z-20">
                       <span className="font-orbitron text-xs text-red-500 font-bold">DEAD</span>
@@ -840,24 +871,7 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
                     />
                   )}
 
-                  {/* Glint Effect for Parry Timing (Horizontal Slash) */}
-                  <AnimatePresence>
-                    {activeGlint && (
-                      <motion.div 
-                        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-40 pointer-events-none flex items-center justify-center"
-                        initial={{ scaleX: 0, opacity: 0 }}
-                        animate={{ scaleX: [0, 1.2, 1.5], opacity: [0, 1, 0] }}
-                        transition={{ duration: 0.5, ease: "easeOut" }}
-                      >
-                        {/* Red glow base */}
-                        <div className="w-[250px] md:w-[350px] h-2 bg-red-600/60 absolute blur-[4px] rounded-full" />
-                        {/* Sharp red line */}
-                        <div className="w-[200px] md:w-[300px] h-[2px] bg-red-500 absolute shadow-[0_0_15px_rgba(255,0,0,1)] rounded-full" />
-                        {/* Bright core */}
-                        <div className="w-[100px] md:w-[150px] h-[1px] bg-white absolute shadow-[0_0_10px_rgba(255,255,255,1)] rounded-full" />
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                  {/* (Glint Effect removed in favor of Shrinking Circle on ally) */}
 
                   {/* Enemy Image */}
                   <img src={enemy.image} alt={enemy.name} className={`w-full h-full object-contain drop-shadow-[0_0_10px_rgba(239,68,68,0.2)] ${enemy.isStunned ? 'opacity-50 blur-[1px]' : ''}`} />

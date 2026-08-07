@@ -41,7 +41,7 @@ export const scenarioData = [
     "style": "cinema",
     "action": "ALL_FADE_OUT"
   },
-  //1️⃣朔良の部屋
+  //=============== 朔良の部屋 =============== 
   {
     "scene": "朔良の部屋",
     "speaker": "朔良",
@@ -108,7 +108,7 @@ export const scenarioData = [
     "scene": "朔良の部屋",
     "text": "私はカバンを肩にかけ、玄関へ向かった。"
   },
-  //2️⃣通学路
+  //=============== 通学路 ===============
   {
     "scene": "街（朝）",
     "text": "扉を開けると、人工月から降り注ぐ光によって、朝の街は淡い青色に染まっていた。",
@@ -180,7 +180,10 @@ export const scenarioData = [
   {
     "scene": "街（朝）",
     "text": "その声と同時に―――建物の影から、大きな影が現れた。",
-    "action": "SHAKE_SCREEN"
+    "action": "SHAKE_SCREEN",
+    "showIllust": [
+      "kimera13"
+    ]
   },
   {
     "scene": "街（朝）",
@@ -215,25 +218,31 @@ export const scenarioData = [
   {
     "scene": "街（朝）",
     "text": "と、思った瞬間、キメラが地面を蹴る。巨大な身体がこちらへ向かって迫る。",
-    "action": "SPEED_EFFECT_START",
-    "se": "+kimera1.mp3"
+    "bgAnimation": "dash",
+    "se": "+kimera1.mp3",
+    "showIllust": [
+      "kimera16"
+    ]
   },
   {
     "scene": "街（朝）",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "（……、ダメだ……っ）"
+    "text": "（……、ダメだ……っ）",
+    "bgAnimation": "dash",
   },
   {
     "scene": "街（朝）",
     "text": "諦めたその時。",
-    "action": "SPEED_EFFECT_STOP"
   },
   {
     "scene": "街（朝）",
     "text": "「うぉりゃあああああっ！！」",
     "action": "WHITE_FLASH",
-    "se": "+sword.mp3"
+    "se": "+sword.mp3",
+    "hideIllust": [
+      "kimera1"
+    ]
   },
   {
     "scene": "街（朝）",
@@ -289,7 +298,8 @@ export const scenarioData = [
     "text": "逃げなきゃ。そう思っているのに、足は地面に縫い付けられたように動かない。目の前の異形への恐怖と、大切な友人を一人で戦わせてしまう罪悪感が胸の中でぐちゃぐちゃに渦巻いていた。",
     "bg": "/scene/shopping_street.png",
     "showIllust": [
-      "Mutsunori_serious2"
+      "Mutsunori_serious2",
+      "kimera14"
     ]
   },
   {
@@ -317,7 +327,7 @@ export const scenarioData = [
     "scene": "街（朝）",
     "text": "睦典は驚いたように自分の身体を見下ろす。全身に力が満ちていくような、不思議な感覚が駆け巡っていた。",
     "showIllust": [
-      "Mutsunori_surprise2"
+      "Mutsunori_serious2" //驚き
     ]
   },
   {
@@ -344,7 +354,10 @@ export const scenarioData = [
   //=========================戦闘チュートリアル=============================
   {
     "scene": "街（朝）",
-    "text": "キメラの身体を包んでいた青白い光が徐々に薄れ、やがて異形の姿は月波の残滓だけを残して消えていった。"
+    "text": "キメラの身体を包んでいた青白い光が徐々に薄れ、やがて異形の姿は月波の残滓だけを残して消えていった。",
+    "hideIllust": [
+      "kimera1"
+    ]
   },
   {
     "scene": "街（朝）",
@@ -2310,7 +2323,7 @@ export const scenarioData = [
   {
     "scene": "時計塔前",
     "speaker": "満",
-    "role": "Michiru",
+    "role": "MICHIRU",
     "text": "「よかった、来てくれたんだね。……朔良」",
   },
   {
@@ -2326,7 +2339,7 @@ export const scenarioData = [
   {
     "scene": "時計塔前",
     "speaker": "満",
-    "role": "Michiru",
+    "role": "MICHIRU",
     "text": "「僕も今来たところだよ。それに……少し見ない間に、また可愛くなった？」"
   },
   {
@@ -2342,7 +2355,7 @@ export const scenarioData = [
   {
     "scene": "時計塔前",
     "speaker": "満",
-    "role": "Michiru",
+    "role": "MICHIRU",
     "text": "「昨日のニュース、君の大学の近くだっただろう？ 本当に心配だったんだ。顔を見て安心したよ」",
     "bg": "/scene/clock_tower.png",
     "showIllust": [
@@ -2382,7 +2395,7 @@ export const scenarioData = [
   {
     "scene": "時計塔前",
     "speaker": "満",
-    "role": "Michiru",
+    "role": "MICHIRU",
     "text": "「朔良、大丈夫？」",
     "showIllust": [
       "Michiru_surprise"
@@ -2401,7 +2414,7 @@ export const scenarioData = [
   {
     "scene": "時計塔前",
     "speaker": "満",
-    "role": "Michiru",
+    "role": "MICHIRU",
     "text": "「無理してるんじゃない？」"
   },
   {
@@ -2413,7 +2426,7 @@ export const scenarioData = [
   {
     "scene": "時計塔前",
     "speaker": "満",
-    "role": "Michiru",
+    "role": "MICHIRU",
     "text": "「せっかく会えたんだし、少し歩こうか。温かいものでも飲みながら、朔良の話を聞かせてよ」",
     "showIllust": [
       "Michiru_happy"
@@ -2650,7 +2663,6 @@ export const scenarioData = [
   {
     "scene": "廃倉庫",
     "speaker": "大男",
-    "role": "BIG_MAN",
     "text": "「……気づいたか」",
   },
   {
@@ -2678,7 +2690,6 @@ export const scenarioData = [
   {
     "scene": "廃倉庫",
     "speaker": "大男",
-    "role": "BIG_MAN",
     "text": "「お前に質問がある」"
   },
   {
@@ -2702,7 +2713,6 @@ export const scenarioData = [
   {
     "scene": "廃倉庫",
     "speaker": "大男",
-    "role": "BIG_MAN",
     "text": "「質問に答えろ」",
     "bg": "/scene/warehouse.png",
     "showIllust": [
@@ -2716,7 +2726,6 @@ export const scenarioData = [
   {
     "scene": "廃倉庫",
     "speaker": "大男",
-    "role": "BIG_MAN",
     "text": "「お前の血縁者について聞く」",
   },
   {
@@ -2732,7 +2741,6 @@ export const scenarioData = [
   {
     "scene": "廃倉庫",
     "speaker": "大男",
-    "role": "BIG_MAN",
     "text": "「お前の血縁者──'弟'について知っていることを話せ」"
   },
   {
@@ -2758,7 +2766,6 @@ export const scenarioData = [
   {
     "scene": "廃倉庫",
     "speaker": "大男",
-    "role": "BIG_MAN",
     "text": "「……とぼけるな」"
   },
   {
@@ -2782,7 +2789,6 @@ export const scenarioData = [
   {
     "scene": "廃倉庫",
     "speaker": "大男",
-    "role": "BIG_MAN",
     "text": "「吐くまで殴れ」"
   },
   {
@@ -2821,7 +2827,6 @@ export const scenarioData = [
   {
     "scene": "廃倉庫",
     "speaker": "大男",
-    "role": "BIG_MAN",
     "text": "「……チッ。キメラか」"
   },
   {
@@ -2836,7 +2841,6 @@ export const scenarioData = [
   {
     "scene": "廃倉庫",
     "speaker": "大男",
-    "role": "BIG_MAN",
     "text": "「全員、外へ出ろ」"
   },
   {
@@ -2846,7 +2850,6 @@ export const scenarioData = [
   {
     "scene": "廃倉庫",
     "speaker": "大男",
-    "role": "BIG_MAN",
     "text": "「こいつは後回しだ。逃げられる状態じゃない」",
     "bgm": "stop"
   },
@@ -2891,112 +2894,179 @@ export const scenarioData = [
     "se": "+struggle.mp3",
     "seDuration": 2
   },
+  //=============== 探索パート2 ===============
+  {
+    "scene": "廃倉庫探索",
+    "action": "TRIGGER_STRUGGLE_GAME"
+  },
+  {
+    "scene": "廃倉庫探索",
+    "action": "TRIGGER_WAREHOUSE_EXPLORATION"
+  },
+  //=============== 探索終了 ================
   {
     "scene": "廃倉庫",
-    "text": "外では何かが激しく燃え盛り、別の勢力が大暴れしているような混沌とした音が響いていたけれど、私はただ、前を走るミカくんの背中を必死に追いかけて走るししか動かせなかった。"
+    "text": "ある程度部屋を探索した私は、息を整える。とにかくここから脱出しないと。",
+    "bg": "/scene/warehouse2.png"
   },
   {
-    "scene": "崩壊した街",
-    "text": "ミカくんに手首を引かれ、煙の立ち込める崩壊した街へと飛び出す。けれど、一歩外へ出た瞬間、私は周囲の光景に息を呑んだ。",
-    "bg": "/scene/town_collapse.png"
+    "scene": "廃倉庫",
+    "se": "+knock.mp3",
+    "hideWindow": true
   },
   {
+    "scene": "廃倉庫",
+    "speaker": "朔良",
+    "role": "SAKURA",
+    "text": "「……？」"
+  },
+  {
+    "scene": "廃倉庫",
+    "text": "その時、ドンドンッ、と窓の向こうから激しい音が響く。",
+    "se": "+Knock.mp3"
+  },
+  {
+    "scene": "廃倉庫",
+    "text": "振り返った瞬間──。",
+  },
+  {
+    "scene": "廃倉庫",
+    "se": "+window_break.mp3",
+    "hideWindow": true
+  },
+  {
+    "scene": "廃倉庫",
+    "text": "割れた窓から、一人の影が飛び込んできた。"
+  },
+  {
+    "scene": "廃倉庫",
+    "speaker": "朔良",
+    "role": "SAKURA",
+    "text": "「ミ、ミカくん……！？」"
+  },
+  {
+    "scene": "廃倉庫",
+    "speaker": "ミカ",
+    "role": "MIKA",
+    "text": "「先輩！ 無事ですか」",
+    "showIllust": [
+      "Mika_neutral4"
+    ]
+  },
+  {
+    "scene": "廃倉庫",
+    "text": "ミカくんは焦った様子で周囲を確認する。"
+  },
+  {
+    "scene": "廃倉庫",
+    "speaker": "ミカ",
+    "role": "MIKA",
+    "text": "「事情は後で説明します。今は俺についてきてください」",
+    "showIllust": [
+      "Mika_serious"
+    ]
+  },
+  {
+    "scene": "廃倉庫",
+    "text": "そう言うと、私の手を引いて走り出した。",
+  },
+  //=============== 崩壊した街 ===============
+  {
     "scene": "崩壊した街",
-    "text": "あたり一帯の建物は激しく炎上し、瓦礫が散乱している。大男の部下たちが血を流して倒れ伏す中、不気味な咆哮が夜の街に響き渡っていた。外がここまで騒然としていたのは、防衛隊と【キメラ】の戦闘が行われていたからだ。"
+    "text": "冷たい夜風が、殴られた頬の熱を冷ましていく。ミカくんに引かれるまま外へ飛び出した私は、そこで足を止める。",
+    "bg": "/scene/town_collapse.png",
+    "hideIllust": [
+      "Mika"
+    ],
+    "bgm": "serious_2.mp3"
   },
   {
     "scene": "崩壊した街",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「はぁ、はぁ……っ、ミカくん、これって……っ」"
+    "text": "「……え……」"
   },
   {
     "scene": "崩壊した街",
-    "speaker": "ミカ",
-    "role": "MIKA",
-    "text": "「いいから、前だけ見て走って……っ！」",
-    "showIllust": [
-      "Mika_serious"
-    ],
-    "illustPositions": {
-      "Mika": "center-left"
-    }
-  },
-  {
-    "scene": "崩壊した街",
-    "text": "必死に足を動かす。けれど、路地の角を曲がろうとしたその瞬間──。"
-  },
-  {
-    "scene": "崩壊した街",
-    "speaker": "キメラ",
-    "text": "──グルルルルッ！！！",
-    "action": "SHAKE_SCREEN_VERY_LARGE"
-  },
-  {
-    "scene": "崩壊した街",
-    "text": "突如、目の前のビルの影から、何匹もの生物が歪に融合したかのような、巨大な【キメラ】が躍り出てきた。"
-  },
-  {
-    "scene": "崩壊した街",
-    "text": "人工月の青い光に照らされたその巨体は、禍々しい粘液を滴らせながら、私たちの進路を完全に塞ぐ。"
+    "text": "目の前に広がっていたのは、崩壊した街だった。建物は炎に包まれ、瓦礫が散乱している。外では爆発音や怒号が響き、何者かが激しい戦闘を繰り広げていた。防衛隊と【キメラ】の戦闘によって、この一帯は地獄のような有様になっていた。",
   },
   {
     "scene": "崩壊した街",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「そ、そんな……！ なんでこんなところに……っ」"
-  },
-  {
-    "scene": "崩壊した街",
-    "text": "目の前の圧倒的な怪物の存在に、私の足がすくむ。けれど、隣のミカくんは私の手をさらに強く握り締め、鋭い視線を周囲に走らせた。",
-    "showIllust": [
-      "Mika_serious"
-    ],
-    "illustPositions": {
-      "Mika": "center-left"
-    }
+    "text": "「ミカくん……これって……」"
   },
   {
     "scene": "崩壊した街",
     "speaker": "ミカ",
     "role": "MIKA",
-    "text": "「チッ……クソ、逃げましょう」",
+    "text": "「いいから、前だけ見て走ってください……！」"
+  },
+  {
+    "scene": "崩壊した街",
+    "text": "ミカくんに促され、私は必死に走る。"
+  },
+  {
+    "scene": "崩壊した街",
+    "text": "しかし、路地を曲がった瞬間──。 "
+  },
+  {
+    "scene": "崩壊した街",
+    "se": "+kimera2.mp3",
+    "showIllust": [
+      "kimera22"
+    ],
+    "hideWindow": true
+  },
+  {
+    "scene": "崩壊した街",
+    "text": "巨大な【キメラ】が、目の前に姿を現した。複数の生物が歪に融合したような異形の姿。\nその巨体が、私たちの進路を完全に塞ぐ。"
+  },
+  {
+    "scene": "崩壊した街",
+    "speaker": "朔良",
+    "role": "SAKURA",
+    "text": "「そんな……！」"
+  },
+  {
+    "scene": "崩壊した街",
+    "text": "足がすくむ私とは対照的に、ミカくんは冷静に周囲を確認する。"
+  },
+  //ここから追加して
+  {
+    "scene": "崩壊した街",
+    "speaker": "ミカ",
+    "role": "MIKA",
+    "text": "「……あそこです。隙間を抜けますよ！」",
     "showIllust": [
       "Mika_serious"
     ]
   },
   {
     "scene": "崩壊した街",
-    "text": "その低く、極限状態でも信じられないほど冷静なミカくんの声が、恐怖で麻痺しかけていた私の心を奮い立たせる。"
-  },
-  {
-    "scene": "崩壊した街",
-    "speaker": "ミカ",
-    "role": "MIKA",
-    "text": "「あっちの隙間から抜ける、行きますよ……！」",
-    "showIllust": [
+    "text": "ミカくんの指示で、私たちはキメラの横をすり抜けようと走り出す。",
+    "hideIllust": [
       "Mika_serious"
     ]
   },
   {
     "scene": "崩壊した街",
-    "text": "ミカくんの合図で、私たちは【キメラ】の巨体の脇をすり抜けようと一気に地を蹴った。"
+    "text": "しかし──。"
   },
   {
     "scene": "崩壊した街",
-    "text": "しかし、人間の接近を察知した【キメラ】が、まるで巨大な丸太のような太い尾を、凄まじい風切り音と共にこちらへ向かって一閃させる。"
+    "text": "キメラの巨大な尾が、凄まじい勢いで振り下ろされた。",
+    "se": "+wind.mp3"
   },
   {
     "scene": "崩壊した街",
-    "text": "ヒュンッ！！！と夜風を引き裂く凶悪な一撃。"
+    "speaker": "朔良",
+    "role": "SAKURA",
+    "text": "（避けられない……！）"
   },
   {
     "scene": "崩壊した街",
-    "text": "（あ……っ、攻撃がくる……！ 避けられない……！）"
-  },
-  {
-    "scene": "崩壊した街",
-    "text": "身体が完全に反応を拒否し、死を覚悟してぎゅっと目を瞑った、まさにその時だった。"
+    "text": "そう思った瞬間。"
   },
   {
     "scene": "崩壊した街",
@@ -3005,16 +3075,20 @@ export const scenarioData = [
   },
   {
     "scene": "崩壊した街",
-    "text": "低く、耳に心地よく響く、どこか聞き覚えのある声が頭上から降ってきた。\n同時に、私の身体が強い力でグイッと真横に引き寄せられる。"
+    "text": "聞き覚えのある声と共に、身体が強く引き寄せられる。",
+    "hideIllust": [
+      "kimera2"
+    ]
   },
   {
     "scene": "崩壊した街",
-    "text": "ドゴォォォンッ！！！",
+    "se": "+bakuhatsu.mp3",
+    "hideWindow": true,
     "action": "SHAKE_SCREEN_VERY_LARGE"
   },
   {
     "scene": "崩壊した街",
-    "text": "間一髪で直撃を免れ、誰かの胸の中にすっぽりと抱きとめられていた私は、恐る恐るその顔を見上げる。"
+    "text": "直後、先ほどまでいた場所が粉々に砕け散った。"
   },
   {
     "scene": "崩壊した街",
@@ -3024,207 +3098,136 @@ export const scenarioData = [
   },
   {
     "scene": "崩壊した街",
-    "text": "彼は私を抱きとめたまま、目の前で咆咆を上げる巨大な【キメラ】を気にする風でもなく、まるで夜の散歩でも楽しんでいるかのようにクスクスと楽しそうに笑う。",
+    "text": "そこにいたのは、あの謎の男だった。\n凪砂さんは私を支えたまま、巨大なキメラを前にしても余裕の笑みを浮かべている。",
     "showIllust": [
-      "Nagisa_neutral"
-    ],
-    "illustPositions": {
-      "Nagisa": "center-right"
-    }
+      "Nagisa_smile4"
+    ]
   },
   {
     "scene": "崩壊した街",
     "speaker": "凪砂",
     "role": "NAGISA",
-    "text": "「やぁ、また会ったね。──これも運命かな」",
-    "showIllust": [
-      "Nagisa_happy"
-    ]
+    "text": "「やぁ。また会ったね。──これも運命かな」"
   },
   {
     "scene": "崩壊した街",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「な……っ、なんであなたがここに……！」"
+    "text": "「なんであなたが……！」"
   },
   {
     "scene": "崩壊した街",
-    "text": "驚愕する私の傍らで、ミカくんが瞬時に私を凪砂さんから引き離すように腕を引き、眼前の謎の男へ怪訝そうな表情を向けた。",
+    "text": "ミカくんがすぐに私を引き寄せ、警戒する。",
     "showIllust": [
-      "Mika_surprise",
-      "Nagisa_neutral"
-    ],
-    "illustPositions": {
-      "Mika": "center-left",
-      "Nagisa": "center-right"
-    }
+      "Mika_surprise2",
+    ]
   },
   {
     "scene": "崩壊した街",
     "speaker": "ミカ",
     "role": "MIKA",
-    "text": "「なんだアンタ。朔良先輩とどういう関係だ」",
-    "showIllust": [
-      "Mika_serious"
-    ]
+    "text": "「アンタ……朔良先輩とどういう関係だ」"
   },
   {
     "scene": "崩壊した街",
     "speaker": "凪砂",
     "role": "NAGISA",
-    "text": "「誰でもいいさ」",
-    "showIllust": [
-      "Mika_surprise",
-      "Nagisa_serious"
-    ],
-    "illustPositions": {
-      "Mika": "center-left",
-      "Nagisa": "center-right"
-    }
+    "text": "「誰でもいいさ」"
   },
   {
     "scene": "崩壊した街",
-    "text": "凪砂は肩をすくめ、ひらひらと手を振ってミカくんの質問を煙に巻く。そして、薄暗い街の奥へと視線を向けながら、意味深に嫌悪が混じった顔をした。"
+    "text": "凪砂さんは軽く流し、街の奥へ視線を向ける。"
   },
   {
     "scene": "崩壊した街",
     "speaker": "凪砂",
     "role": "NAGISA",
-    "text": "「それより、お仲間が待ってるんじゃないか？」",
+    "text": "「それより、お仲間が待っているんじゃないか？」",
     "showIllust": [
       "Nagisa_neutral"
     ]
+  },
+  {
+    "scene": "崩壊した街",
+    "speaker": "ミカ",
+    "role": "MIKA",
+    "text": "「……なぜそれを知っている」",
+    "showIllust": [
+      "Mika_serious",
+    ]
+  },
+  {
+    "scene": "崩壊した街",
+    "speaker": "凪砂",
+    "role": "NAGISA",
+    "text": "「さぁ？お前の顔に書いてあったから、かな」"
+  },
+  {
+    "scene": "崩壊した街",
+    "text": "こんな状況でもあっけらかんとした凪砂さんの態度に、ミカくんは険しい表情を浮かべる。"
+  },
+  {
+    "scene": "崩壊した街",
+    "speaker": "ミカ",
+    "role": "MIKA",
+    "text": "「……行きますよ、先輩」"
   },
   {
     "scene": "崩壊した街",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「お仲間……？」"
+    "text": "「う、うん……！」"
   },
   {
     "scene": "崩壊した街",
-    "text": "一体誰のことだろう、と私が尋ねようとした瞬間、ミカくんがハッとしたように目を見開き、より一層眉間のシワを増やして凪砂を睨みつけた。"
+    "text": "走り出す私たちの後ろから、凪砂さんもついてくる。",
+    "hideIllust": [
+      "Mika",
+      "Nagisa"
+    ]
   },
   {
     "scene": "崩壊した街",
     "speaker": "ミカ",
     "role": "MIKA",
-    "text": "「……そんなこと、なぜ知っている？」",
+    "text": "「おい、ついてくるな…！」",
     "showIllust": [
-      "Mika_serious",
-      "Nagisa_serious"
-    ],
-    "illustPositions": {
-      "Mika": "center-left",
-      "Nagisa": "center-right"
-    }
+      "Mika_serious2",
+      "Nagisa_smile4"
+    ]
   },
   {
     "scene": "崩壊した街",
     "speaker": "凪砂",
     "role": "NAGISA",
-    "text": "「さぁ？ お前の顔にそう書いてあったからかな」",
-    "showIllust": [
-      "Mika_serious",
-      "Nagisa_neutral"
-    ],
-    "illustPositions": {
-      "Mika": "center-left",
-      "Nagisa": "center-right"
-    }
+    "text": "「そう邪険にしないでくれよ。一応、命の恩人だろ？それに、こんな危険な街だ。男手は多い方が安心じゃないか」"
   },
   {
     "scene": "崩壊した街",
-    "text": "ミカくんは忌々しそうにチッと舌打ちをしたが、アジトが壊滅し、大男の追手や他の【キメラ】がいつ迫ってくるかも分からない今、ここでこの謎の男と揉めている時間はないと判断したようだ。"
-  },
-  {
-    "scene": "崩壊した街",
-    "speaker": "ミカ",
-    "role": "MIKA",
-    "text": "「……朔良先輩、行きますよ。そいつは放っておきましょう」",
-    "showIllust": [
-      "Mika_serious"
-    ]
-  },
-  {
-    "scene": "崩壊した街",
-    "speaker": "朔良",
-    "role": "SAKURA",
-    "text": "「あ、うん……っ！」"
-  },
-  {
-    "scene": "崩壊した街",
-    "text": "ミカくんに促され、再び走り出そうとした私達の後ろから、凪砂の軽快な足音がついてくる。"
-  },
-  {
-    "scene": "崩壊した街",
-    "speaker": "ミカ",
-    "role": "MIKA",
-    "text": "「おい、ついてくるな！」",
-    "showIllust": [
-      "Mika_serious"
-    ],
-    "illustPositions": {
-      "Mika": "center-left"
-    }
-  },
-  {
-    "scene": "崩壊した街",
-    "text": "ミカくんが鋭く振り返るが、凪砂は微笑みを崩さないまま、楽しそうに言った。",
-    "showIllust": [
-      "Mika_serious",
-      "Nagisa_neutral"
-    ],
-    "illustPositions": {
-      "Mika": "center-left",
-      "Nagisa": "center-right"
-    }
-  },
-  {
-    "scene": "崩壊した街",
-    "speaker": "凪砂",
-    "role": "NAGISA",
-    "text": "「そう邪険にしないでくれよ。一応命の恩人なんだし。それにこんな危険な街、男手が二人いた方が心強いだろう？僕もお供させてもらうよ。可愛い朔良ちゃんもいるしね」",
-    "showIllust": [
-      "Nagisa_smile"
-    ]
-  },
-  {
-    "scene": "崩壊した街",
-    "text": "い、一体何なのこの人は……！？まるで【キメラ】の動きを予知しているようだったし、そもそもミカくんの計画をなにか知っているみたいだった。"
-  },
-  {
-    "scene": "崩壊した街",
-    "text": "こうして、ミカくんと、底の知れない謎の男凪砂という、最悪に奇妙で危険な組み合わせに挟まれたまま、私の命がけの逃亡劇が幕を開けた。"
+    "text": "こうして私は、ミカくんと、何を考えているのか分からない凪砂さん。\n二人の能力者と共に、崩壊した街を進むことになった。"
   },
   {
     "scene": "廃ビルへの階段",
-    "text": "背後から迫る【キメラ】の気配や街の騒音を振り切るようにして、私たちはとある寂れた廃ビルの3階部分まで一気に階段を駆け上がった。",
-    "bg": "/scene/ajito_kaidan.png",
-    "style": "novel"
-  },
-  {
-    "scene": "廃ビルへの階段",
-    "text": "息を切らしながら、ミカくんが一番奥にあるこじんまりとした部屋の扉を開ける。",
+    "text": "背後から迫る【キメラ】の気配を振り切り、私たちは寂れた廃ビルへ辿り着いた。",
+    "style": "novel",
+    "bg": "black",
     "bgm": "stop",
     "bgmFade": 1.5
   },
   {
-    "scene": "廃ビルの一室",
-    "text": "薄暗い室内へと足を踏み入れた、その瞬間──。",
-    "bg": "/scene/ajito.png",
-    "action": "FADE_IN"
+    "scene": "廃ビルへの階段",
+    "text": "ミカくんが3階の奥にある小さな部屋の扉を開く。\n薄暗い室内へ足を踏み入れた、その瞬間──。",
   },
+  //=============== 廃ビル ===============
   {
     "scene": "廃ビルの一室",
-    "speaker": "？？？",
+    "speaker": "睦典",
+    "role": "MUTSUNORI",
     "text": "「──っ、朔良！！」",
+    "bg": "/scene/ajito.png",
     "showIllust": [
-      "Mutsunori_pout"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center-left"
-    }
+      "Mutsunori_pout3" //驚き
+    ]
   },
   {
     "scene": "廃ビルの一室",
@@ -3234,29 +3237,24 @@ export const scenarioData = [
   },
   {
     "scene": "廃ビルの一室",
+    "text": "そこにいたのは、昼間大学で別れたはずの睦典だった。"
+  },
+  {
+    "scene": "廃ビルの一室",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「ああ良かった……無事だったんだな、朔良……っ！」",
+    "text": "「ああ、よかった……無事だったんだな……っ！」",
     "showIllust": [
       "Mutsunori_happy"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center-left"
-    }
+    ]
   },
   {
     "scene": "廃ビルの一室",
-    "text": "睦典は私の姿を見るなり、大きな身体を震わせて駆け寄り、涙目になりながら私の肩をがっしりと掴んだ。",
-    "bgm": "serious_1.mp3",
-    "bgmFade": 2
+    "text": "私の姿を見るなり、睦典は駆け寄り、安心したように肩を掴む。",
   },
   {
     "scene": "廃ビルの一室",
-    "text": "ゆうべの事件から始まって、大男への監禁、路地裏での拉致、怪物【キメラ】の襲撃……"
-  },
-  {
-    "scene": "廃ビルの一室",
-    "text": "あまりにも現実離れした光景ばかりを立て続けに目の当たりにしていたせいか、この日常の象徴とも言える馴染み深い顔を見た瞬間、張り詰めていた心の糸がふっと緩んで、心の底からほっと胸を撫で下ろした。"
+    "text": "監禁、拉致、【キメラ】の襲撃……あまりにも非現実的な出来事が続いていたせいか、見慣れた彼の顔を見た瞬間、張り詰めていた心が少しだけ緩んだ。"
   },
   {
     "scene": "廃ビルの一室",
@@ -3264,17 +3262,14 @@ export const scenarioData = [
     "role": "NAGISA",
     "text": "「はぁ……」",
     "showIllust": [
-      "Mutsunori_happy",
-      "Nagisa_serious"
+      "Mutsunori_happy2",
+      "Nagisa_neutral4"
     ],
-    "illustPositions": {
-      "Mutsunori": "center-left",
-      "Nagisa": "center-right"
-    }
+    "bgm": "serious_1.mp3"
   },
   {
     "scene": "廃ビルの一室",
-    "text": "背後から凪砂がこれ見よがしに、思いっきり大きなため息を吐き出した。\nその不躾な態度にいち早く気づいた睦典が、一瞬で顔を険しくさせて不機嫌そうに身構える。"
+    "text": "その空気を壊すように、背後から大きなため息が響く。"
   },
   {
     "scene": "廃ビルの一室",
@@ -3282,276 +3277,185 @@ export const scenarioData = [
     "role": "MUTSUNORI",
     "text": "「お前……！ なんでここにいるんだよ」",
     "showIllust": [
-      "Mutsunori_pout"
-    ]
-  },
-  {
-    "scene": "廃ビルの一室",
-    "text": "昼間の大学での一件がある。睦典が凪砂を激しく敵視するのも当然だった。"
-  },
-  {
-    "scene": "廃ビルの一室",
-    "speaker": "凪砂",
-    "role": "NAGISA",
-    "text": "「運命だよ。お前とは違ってね」",
-    "showIllust": [
-      "Nagisa_happy"
-    ]
-  },
-  {
-    "scene": "廃ビルの一室",
-    "speaker": "睦典",
-    "role": "MUTSUNORI",
-    "text": "「お前……ッ、ふざけんな！」",
-    "showIllust": [
       "Mutsunori_serious"
     ]
   },
   {
     "scene": "廃ビルの一室",
-    "speaker": "ミカ",
-    "role": "MIKA",
-    "text": "「はいはい、喧嘩は後。──そんなことより、この先どうするか考えましょう」",
-    "showIllust": [
-      "Mutsunori_serious",
-      "Mika_serious",
-      "Nagisa_serious"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center-left",
-      "Mika": "center",
-      "Nagisa": "center-right"
-    }
-  },
-  {
-    "scene": "廃ビルの一室",
-    "text": "一触即発の二人の間に、ミカくんが冷ややかな声を挟んで割り込んだ。その冷徹なトーンに、睦典も凪砂も一瞬だけ口を閉ざす。"
-  },
-  {
-    "scene": "廃ビルの一室",
-    "speaker": "朔良",
-    "role": "SAKURA",
-    "text": "「ま、待って！」"
-  },
-  {
-    "scene": "廃ビルの一室",
-    "text": "二人の喧嘩を止めるよりも先に、私にはどうしても消化しきれない疑問が山積みだった。"
-  },
-  {
-    "scene": "廃ビルの一室",
-    "speaker": "ミカ",
-    "role": "MIKA",
-    "text": "「なんでしょう」",
-    "showIllust": [
-      "Mika_surprise"
-    ],
-    "illustPositions": {
-      "Mika": "center"
-    }
-  },
-  {
-    "scene": "廃ビルの一室",
-    "speaker": "朔良",
-    "role": "SAKURA",
-    "text": "「その……どうしてミカくんは、私が裏路地に連れ去られた居場所がわかったの？ それに……どうしてこんな場所に、ムッちゃんがいるの……？」"
-  },
-  {
-    "scene": "廃ビルの一室",
-    "text": "私が疑問を口にすると、部屋の中に一瞬、奇妙な沈黙が流れた。\nその沈黙を破るように、まずミカくんが頭を掻きながら口を開いた。"
-  },
-  {
-    "scene": "廃ビルの一室",
-    "speaker": "ミカ",
-    "role": "MIKA",
-    "text": "「……そこの睦典先輩に、頼まれたからですよ。『朔良と連絡が取れない』って、泣きつかれました」",
-    "showIllust": [
-      "Mika_neutral"
-    ],
-    "illustPositions": {
-      "Mika": "center"
-    }
-  },
-  {
-    "scene": "廃ビルの一室",
-    "speaker": "朔良",
-    "role": "SAKURA",
-    "text": "「え、ムッちゃんに……？」"
-  },
-  {
-    "scene": "廃ビルの一室",
-    "speaker": "ミカ",
-    "role": "MIKA",
-    "text": "「そもそも俺、睦典先輩の店の常連で、よく通ってたんです。だから多少の融通は利くっていうか……」",
-    "showIllust": [
-      "Mika_smile"
-    ]
-  },
-  {
-    "scene": "廃ビルの一室",
-    "speaker": "睦典",
-    "role": "MUTSUNORI",
-    "text": "「大学で別れた後、何回連絡しても全然返信が返ってこなくて……。いつもならすぐ返すお前にしては遅すぎるから、すごく心配だったんだ」",
-    "showIllust": [
-      "Mutsunori_serious",
-      "Mika_neutral"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center-left",
-      "Mika": "center"
-    }
-  },
-  {
-    "scene": "廃ビルの一室",
-    "speaker": "睦典",
-    "role": "MUTSUNORI",
-    "text": "「それで、もしかして何かに巻き込まれたんじゃないかって焦って……たまたま店に来てたミカに相談したら、アイツが裏のツテを使って、お前のスマートフォンの電波から居場所を割り出してくれたんだよ」",
-    "showIllust": [
-      "Mutsunori_pout"
-    ]
-  },
-  {
-    "scene": "廃ビルの一室",
-    "speaker": "朔良",
-    "role": "SAKURA",
-    "text": "「ミカくんが、場所を……」"
-  },
-  {
-    "scene": "廃ビルの一室",
-    "text": "まさか、裏でそんなことが起きていたなんて。驚いてミカくんを見ると、彼はフイッと気まずそうに視線を逸らした。"
-  },
-  {
-    "scene": "廃ビルの一室",
-    "speaker": "睦典",
-    "role": "MUTSUNORI",
-    "text": "「俺は何かあった時の待機係として、ミカにここを教えられて待ってたんだ」",
-    "showIllust": [
-      "Mutsunori_serious"
-    ]
-  },
-  {
-    "scene": "廃ビルの一室",
-    "text": "睦典は悔しそうに顔を歪め、ぎゅっと拳を握り締める。"
-  },
-  {
-    "scene": "廃ビルの一室",
-    "speaker": "睦典",
-    "role": "MUTSUNORI",
-    "text": "「本当は俺もすぐに飛び出して助けに行きたかったんだけど……俺が足手まといになったら意味がないからって、ミカに止められてさ」",
-    "showIllust": [
-      "Mutsunori_smile"
-    ]
-  },
-  {
-    "scene": "廃ビルの一室",
-    "speaker": "睦典",
-    "role": "MUTSUNORI",
-    "text": "「大人しく待ってようと思ったら、突然外があんな爆発だの【キメラ】だので大混乱になって、出るに出れなくなっちゃって……。本当に、無事で良かった……っ」",
-    "showIllust": [
-      "Mutsunori_pout"
-    ]
-  },
-  {
-    "scene": "廃ビルの一室",
-    "text": "大きな身体を縮めるようにしてホッとした笑みを浮かべる睦典。\nこの二人は私のために必死に動いてくれていた。その事実は、恐怖で凍りついていた私の心をじんわりと温めていく。"
-  },
-  {
-    "scene": "廃ビルの一室",
-    "text": "けれど、そんな私たちの様子を壁に背を預けて眺めていた凪砂さんが、面白そうに目を細めて口を開いた。"
+    "text": "睦典が振り返ると、そこには凪砂さんがいた。"
   },
   {
     "scene": "廃ビルの一室",
     "speaker": "凪砂",
     "role": "NAGISA",
-    "text": "「へぇ、なるほどね。バカの連携プレイってわけだ。……でもさ、一番大事なことが抜けてるんじゃない？」",
-    "action": "FOCUS_SILHOUETTE_RIGHT",
-    "showIllust": [
-      "Nagisa_neutral"
-    ],
-    "illustPositions": {
-      "Nagisa": "center-right"
-    }
+    "text": "「運命だよ。お前とは違ってね」"
   },
   {
     "scene": "廃ビルの一室",
-    "text": "凪砂さんは壁から背を離すと、私に向かって一歩、距離を詰めてきた。"
+    "speaker": "睦典",
+    "role": "MUTSUNORI",
+    "text": "「お前……ッ！」"
   },
   {
     "scene": "廃ビルの一室",
-    "speaker": "凪砂",
-    "role": "NAGISA",
-    "text": "「外がどんな状況になってるか、知ってる？」",
+    "speaker": "ミカ",
+    "role": "MIKA",
+    "text": "「はいはい、喧嘩は後です」",
     "showIllust": [
-      "Nagisa_serious"
-    ],
-    "illustPositions": {
-      "Nagisa": "center-right"
-    }
+      "Mika_serious3",
+    ]
+  },
+  {
+    "scene": "廃ビルの一室",
+    "text": "二人の間に、ミカくんが割って入る。"
+  },
+  {
+    "scene": "廃ビルの一室",
+    "speaker": "ミカ",
+    "role": "MIKA",
+    "text": "「そんなことより、今後のことを考えましょう」"
+  },
+  {
+    "scene": "廃ビルの一室",
+    "text": "その冷静な声に、睦典も凪砂さんも一度口を閉ざした。けれど、私にはまだ分からないことが多すぎた。",
+    "hideIllust": [
+      "Mutsunori",
+      "Nagisa",
+      "Mika"
+    ]
   },
   {
     "scene": "廃ビルの一室",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「え……？」"
+    "text": "「ミカくん……どうして私が連れ去られた場所が分かったの？ それに、どうしてムッちゃんがここに……？」"
   },
   {
     "scene": "廃ビルの一室",
-    "text": "私がきょとんとしていると、凪砂さんはポケットから自分のスマートフォンを取り出し、その画面をこちらに向けて見せてきた。"
+    "text": "少しの沈黙の後、ミカくんが答える。"
+  },
+  {
+    "scene": "廃ビルの一室",
+    "speaker": "ミカ",
+    "role": "MIKA",
+    "text": "「睦典先輩に頼まれたからです。『朔良と連絡が取れない』って」",
+    "showIllust": [
+      "Mika_neutral4"
+    ]
+  },
+  {
+    "scene": "廃ビルの一室",
+    "speaker": "朔良",
+    "role": "SAKURA",
+    "text": "「え……ムッちゃんが？」"
+  },
+  {
+    "scene": "廃ビルの一室",
+    "speaker": "ミカ",
+    "role": "MIKA",
+    "text": "「俺、睦典先輩の店の常連なんです。それで相談を受けました」 "
+  },
+  {
+    "scene": "廃ビルの一室",
+    "text": "睦典が申し訳なさそうに口を開く。"
+  },
+  {
+    "scene": "廃ビルの一室",
+    "speaker": "睦典",
+    "role": "MUTSUNORI",
+    "text": "「大学で別れてから何度連絡しても返事がなくて……嫌な予感がしたんだ。だから、たまたま店に来ていたミカに相談した。アイツが裏のツテを使って、お前のスマートフォンの電波から居場所を割り出してくれたんだよ」",
+    "showIllust": [
+      "Mutsunori_serious2"
+    ]
+  },
+  {
+    "scene": "廃ビルの一室",
+    "speaker": "睦典",
+    "role": "MUTSUNORI",
+    "text": "「俺は何かあった時の待機係として、ミカにここを教えられて待ってたんだ」"
+  },
+  {
+    "scene": "廃ビルの一室",
+    "text": "睦典は悔しそうに拳を握る。"
+  },
+  {
+    "scene": "廃ビルの一室",
+    "speaker": "睦典",
+    "role": "MUTSUNORI",
+    "text": "「でも、外が急にあんなことになって……動けなくなった。本当に、無事でよかった……」"
+  },
+  {
+    "scene": "廃ビルの一室",
+    "text": "二人が私のために動いてくれていた。その事実に、凍っていた心が少しずつ温まっていく。\nそんな私たちを見ていた凪砂さんが、壁から背を離した。"
+  },
+  {
+    "scene": "廃ビルの一室",
+    "speaker": "凪砂",
+    "role": "NAGISA",
+    "text": "「へぇ。バカ同士の連携プレイってわけね。でも、一番大事なことを忘れてない？」",
+    "showIllust": [
+      "Nagisa_neutral3"
+    ],
+    "hideIllust": [
+      "Mutsunori",
+      "Mika"
+    ]
+  },
+  {
+    "scene": "廃ビルの一室",
+    "text": "凪砂さんはスマホを取り出し、画面をこちらへ向ける。",
+    "bgm": "stop"
   },
   {
     "scene": "廃ビルの一室",
     "speaker": "アナウンサー",
-    "text": "『──速報です！現在、〇〇区を中心に、正体不明の巨大な怪物たちが多数出現しています！適応者防衛班の制止を振り切り、街は現在──危険です！避難してください！』",
-    "bgm": "alert.mp3",
+    "text": "『現在、〇〇区を中心に正体不明の巨大生物が多数出現しています！ 防衛班も対応していますが、街は危険な状態です！』",
+    "bgm": "+alert.mp3",
     "bgmVolume": 0.3,
     "bgmFade": 1.5,
     "showItem": "/item/phone_news.png"
   },
   {
     "scene": "廃ビルの一室",
-    "speaker": "アナウンサー",
-    "text": "『─うわ、うわあああ──！！』",
-    "showItem": "/item/phone_news.png"
+    "text": "画面に映っていたのは、炎と瓦礫に包まれた街の姿だった。街そのものが、【キメラ】によって崩壊している。"
   },
   {
     "scene": "廃ビルの一室",
-    "text": "画面の向こうで、絶叫するアナウンサーの映像が激しいノイズと共に途切れる。背景に映っていたのは、私たちがさっきまでいたあの街が、無数の【キメラ】と激しい炎によって文字通り生き地獄と化している光景だった。"
-  },
-  {
-    "scene": "廃ビルの一室",
-    "text": "（そ…そんな……っ）"
-  },
-  {
-    "scene": "廃ビルの一室",
-    "text": "あまりの凄惨さに言葉を失う。部屋の中に、重苦しい沈黙が訪れた。",
+    "speaker": "凪砂",
+    "role": "NAGISA",
+    "text": "「これで分かっただろ。——もう、この世界は安全じゃない」",
     "clearItem": true,
     "bgm": "stop",
     "bgmFade": 2
   },
   {
     "scene": "廃ビルの一室",
-    "text": "──チリリリリンッ！",
-    "bgm": "Phone.mp3"
+    "text": "凪砂さんが静かに告げる。戻れると思っていた日常は、もうそこにはなかった。重苦しい沈黙が部屋を包む。その時。 "
   },
   {
     "scene": "廃ビルの一室",
-    "text": "その静寂を切り裂くように、今度はミカくんのポケットでスマートフォンの着信音がけたたましく鳴り響いた。"
+    "bgm": "Phone.mp3",
+    "hideIllust": [
+      "Nagisa"
+    ],
+    "hideWindow": true
   },
   {
     "scene": "廃ビルの一室",
-    "text": "ミカくんは画面を確認すると、気まずそうに私へと視線を向けた。"
+    "text": "ミカくんのスマホが鳴った。"
   },
   {
     "scene": "廃ビルの一室",
     "speaker": "ミカ",
     "role": "MIKA",
-    "text": "「……ヒルミ教授からだ。……その、さっき朔良先輩を助けるために使った電波探知機も、実は教授から借りてたもので……っと。はい、ミカです」",
+    "text": "「……ヒルミ教授からです」",
     "showIllust": [
-      "Mika_neutral"
+      "Mika_neutral3"
     ]
   },
   {
     "scene": "廃ビルの一室",
-    "text": "スピーカーにしているわけでもないのに、静まり返った室内には、焦ったような教授の声が漏れて聞こえてくる。",
+    "text": "ミカくんが通話に出る。",
     "bgm": "stop",
     "bgmFade": 1
   },
@@ -3559,79 +3463,42 @@ export const scenarioData = [
     "scene": "廃ビルの一室",
     "speaker": "ヒルミ教授",
     "role": "PROFESSOR",
-    "text": "『どうだミカ、朔良はちゃんと救出できたかな』",
-    "bgm": "serious_1.mp3",
-    "bgmVolume": 0.15,
-    "action": "START_PHONE_CALL_RIGHT",
-    "showIllust": [
-      "Hirumi_serious"
-    ],
-    "illustPositions": {
-      "Hirumi": "right",
-      "Mutsunori": "left",
-      "Mika": "center-left",
-      "Nagisa": "center"
-    }
+    "text": "『ミカ、朔良は救出できたか？』",
+    "bgm": "serious_2.mp3",
+    "bgmVolume": 0.15
   },
   {
     "scene": "廃ビルの一室",
     "speaker": "ミカ",
     "role": "MIKA",
-    "text": "「ええ、なんとか。今、適当な廃ビルにいます。それより教授、外の様子が──」",
-    "showIllust": [
-      "Mika_neutral"
-    ],
-    "illustPositions": {
-      "Mika": "center-left"
-    }
+    "text": "「はい。今、廃ビルにいます。それより外の状況が──」",
   },
   {
     "scene": "廃ビルの一室",
     "speaker": "ヒルミ教授",
     "role": "PROFESSOR",
-    "text": "『話は後だ。とりあえず、今すぐそこから離れて、大学の私の研究室へ来なさい』"
+    "text": "『話は後だ。すぐに大学の研究室へ来なさい』"
   },
   {
     "scene": "廃ビルの一室",
-    "speaker": "睦典",
-    "role": "MUTSUNORI",
-    "text": "「ど、どういうことです！？何が起こってるんですか！？」",
+    "speaker": "ミカ",
+    "role": "MIKA",
+    "text": "「どういうことですか？」",
     "showIllust": [
-      "Mutsunori_pout",
-      "Mika_neutral"
-    ],
-    "illustPositions": {
-      "Mutsunori": "left",
-      "Mika": "center-left"
-    }
-  },
-  {
-    "scene": "廃ビルの一室",
-    "text": "隣からスピーカー越しに聞こえる声に向かって、睦典が悲痛な声をあげる。けれど、電話の向こうの教授は冷静な声で事実を告げた。"
-  },
-  {
-    "scene": "廃ビルの一室",
-    "speaker": "ヒルミ教授",
-    "role": "PROFESSOR",
-    "text": "『私にもよく分かってない。とりあえず……ここら一体の市民は甚大な被害に遭っている。まともに動けるのは、君たちしかいないんだ』",
-    "showIllust": [
-      "Hirumi_serious"
+      "Mika_surprise"
     ]
   },
   {
     "scene": "廃ビルの一室",
-    "text": "それだけを一方的に話すと、通話はブツリと途切れてしまった。プー、プー、と無機質な音が薄暗い部屋に虚しく響く。",
-    "bgm": "CallOut.mp3",
-    "bgmVolume": 0.5,
-    "action": "END_PHONE_CALL",
-    "hideIllust": [
-      "Hirumi"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center-left",
-      "Mika": "center",
-      "Nagisa": "center-right"
-    }
+    "speaker": "ヒルミ教授",
+    "role": "PROFESSOR",
+    "text": "『私にも詳しいことは分からない。ただ……今動けるのは君たちしかいない』"
+  },
+  {
+    "scene": "廃ビルの一室",
+    "text": "それだけ告げると、通話は切れた。",
+    "se": "CallOut.mp3",
+    "bgmVolume": 0.5
   },
   {
     "scene": "廃ビルの一室",
@@ -3639,61 +3506,45 @@ export const scenarioData = [
     "role": "MUTSUNORI",
     "text": "「……どうするんだ？」",
     "showIllust": [
-      "Mutsunori_serious",
-      "Mika_neutral"
-    ],
-    "bgm": "serious_1.mp3",
-    "bgmVolume": 0.5,
-    "illustPositions": {
-      "Mutsunori": "center-left",
-      "Mika": "center"
-    }
+      "Mutsunori_serious2" //驚き
+    ]
+  },
+  {
+    "scene": "廃ビルの一室",
+    "text": "睦典が不安そうに尋ねる。",
   },
   {
     "scene": "廃ビルの一室",
     "speaker": "凪砂",
     "role": "NAGISA",
-    "text": "「行くしかないだろ。その教授さんとこにな」",
+    "text": "「行くしかないでしょ。その教授さんのところにね」",
     "showIllust": [
-      "Mutsunori_serious",
-      "Mika_neutral",
-      "Nagisa_serious"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center-left",
-      "Mika": "center",
-      "Nagisa": "center-right"
-    }
-  },
-  {
-    "scene": "廃ビルの一室",
-    "text": "凪砂さんがスマートフォンの画面から目を離し、珍しく真面目なトーンで窓の外を見やる。街のあちこちから、未だに黒い煙が立ち上っていた。"
+      "Nagisa_neutral4"
+    ]
   },
   {
     "scene": "廃ビルの一室",
     "speaker": "ミカ",
     "role": "MIKA",
-    "text": "「でも、ここ一体はまだ危険ですよ。もう少し様子を見て、敵が引くのを待った方が──」",
+    "text": "「でも、今は危険すぎます」",
     "showIllust": [
-      "Mutsunori_serious",
       "Mika_serious",
-      "Nagisa_serious"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center-left",
-      "Mika": "center",
-      "Nagisa": "center-right"
-    }
+    ]
   },
   {
     "scene": "廃ビルの一室",
-    "text": "ミカくんがそう言って、慎重に現状を分析しようと言葉を紡ぐ。安全を重視する彼の言葉を、私は遮った。"
+    "text": "ミカくんは慎重に言う。けれど、私は首を横に振った。"
   },
   {
     "scene": "廃ビルの一室",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「……行こう」"
+    "text": "「……行こう」",
+    "hideIllust": [
+      "Mutsunori",
+      "Mika",
+      "Nagisa"
+    ]
   },
   {
     "scene": "廃ビルの一室",
@@ -3701,276 +3552,135 @@ export const scenarioData = [
     "role": "MIKA",
     "text": "「朔良先輩……」",
     "showIllust": [
-      "Mutsunori_serious",
-      "Mika_surprise",
-      "Nagisa_serious"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center-left",
-      "Mika": "center",
-      "Nagisa": "center-right"
-    }
-  },
-  {
-    "scene": "廃ビルの一室",
-    "text": "ミカくんが驚いたように瞳を丸くする。私はぎゅっと拳を握りしめ、自分に言い聞かせるように言葉を重ねた。"
+      "Mika_surprise3"
+    ]
   },
   {
     "scene": "廃ビルの一室",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「動ける人は私たちだけ、って教授は言ってた。──ってことは、ヒルミ教授も今、あの大学で一人で恐怖に耐えてるのかもしれない。私たちを心配して、ずっと待っててくれてるのかもしれない……」"
+    "text": "「教授も、きっと怖い思いをしながら待ってる。私たちを心配してくれているなら……助けに行きたい」"
   },
   {
     "scene": "廃ビルの一室",
-    "text": "怖いのは山々だ。外に出れば、またあの大男や、恐ろしい【キメラ】に襲われるかもしれない。身体の震えは止まらないけれど、私を気遣ってくれた教授のことを考えると、どうしても居ても立ってもいられなかった。"
-  },
-  {
-    "scene": "廃ビルの一室",
-    "speaker": "睦典",
-    "role": "MUTSUNORI",
-    "text": "「朔良がそう言うなら……俺が全力でお前を守るよ！」",
-    "showIllust": [
-      "Mutsunori_smile",
-      "Mika_surprise",
-      "Nagisa_serious"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center-left",
-      "Mika": "center",
-      "Nagisa": "center-right"
-    }
-  },
-  {
-    "scene": "廃ビルの一室",
-    "text": "睦典が私の前に一歩踏み出し、頼もしく胸を叩く。その真っ直ぐな言葉に、凪砂さんがくすくすと意地悪そうに笑った。"
-  },
-  {
-    "scene": "廃ビルの一室",
-    "speaker": "凪砂",
-    "role": "NAGISA",
-    "text": "「お前の方が先やられそうだけどね」",
-    "showIllust": [
-      "Mutsunori_smile",
-      "Mika_surprise",
-      "Nagisa_neutral"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center-left",
-      "Mika": "center",
-      "Nagisa": "center-right"
-    }
-  },
-  {
-    "scene": "廃ビルの一室",
-    "text": "いつもなら「なんだとコラ！」と怒鳴り散らすはずの睦典が、珍しく静かに、けれど底知れない怒りを宿した瞳で凪砂を見据えた。"
+    "text": "怖い。またキメラや男たちに襲われるかもしれない。\nそれでも、ここで動かなければ後悔する。"
   },
   {
     "scene": "廃ビルの一室",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「俺は、朔良の盾になる。──アイツに指一本触れさせない」",
+    "text": "「朔良がそう言うなら、俺は朔良の盾になる。絶対に指一本触れさせない」",
     "showIllust": [
-      "Mutsunori_serious"
+      "Mutsunori_serious2"
     ]
   },
   {
     "scene": "廃ビルの一室",
-    "text": "その、覚悟が決まりすぎている睦典の言い回しに、私はほんの少しだけ妙な引っかかりを覚えた。ただの学校の友人のセリフにしては、どこか重すぎるような、そんな違和感。"
-  },
-  {
-    "scene": "廃ビルの一室",
-    "text": "けれど、今はそれを突き詰めている時間なんてない。私は深く、深く呼吸をして、胸のザワつきを押し殺した。"
+    "text": "睦典が力強く言った。その言葉には、いつもの明るさとは違う強い覚悟が込められていた。"
   },
   {
     "scene": "廃ビルの一室",
     "speaker": "ミカ",
     "role": "MIKA",
-    "text": "「……それなら、早く行きましょう。今なら、あの化け物たちの猛攻は少し治まってます」",
+    "text": "「それなら、急ぎましょう。今なら、【キメラ】の動きも少し落ち着いています」",
     "showIllust": [
-      "Mutsunori_smile",
-      "Mika_serious",
-      "Nagisa_neutral"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center-left",
-      "Mika": "center",
-      "Nagisa": "center-right"
-    }
+      "Mika_serious3",
+    ]
   },
   {
     "scene": "廃ビルの一室",
-    "text": "私たちは覚悟を決め、ヒルミ教授が待つ大学の研究室へと向かうため、再び廃ビルの階段を駆け下り始めた。"
+    "text": "私たちは覚悟を決め、ヒルミ教授の待つ大学へ向かうため、廃ビルを後にした。"
   },
+  //=============== アジトを出た後 ===============
   {
     "scene": "崩壊した街",
-    "text": "廃ビルを飛び出した私たちを待っていたのは、夜の闇に紛れて街を蹂躙する、異形の怪物──【キメラ】たちの群れだった。",
+    "text": "廃ビルを出た私たちを待っていたのは、炎と瓦礫に包まれた街だった。人工月の青白い光の下、あちこちから不気味な咆哮が響いている。",
     "bg": "/scene/town_collapse.png",
     "bgm": "serious_2.mp3"
   },
   {
     "scene": "崩壊した街",
-    "text": "黒い空に覆われた街路は、割れたアスファルトと炎上する車の黒煙で埋め尽くされている。大学までの距離は、無能力者の私にとっては果てしなく遠い死線そのものだった。"
+    "text": "──ドンッ！！ ",
+    "action": "SHAKE_SCREEN_VERY_LARGE",
+    "se": "rock_attack.mp3"
+  },
+  {
+    "scene": "崩壊した街",
+    "text": "近くのビルの壁が大きく崩れた。"
   },
   {
     "scene": "崩壊した街",
     "speaker": "ミカ",
     "role": "MIKA",
-    "text": "「──右からまた来ます！ 伏せて、先輩！」",
+    "text": "「来ます！」"
+  },
+  {
+    "scene": "崩壊した街",
+    "text": "ミカくんの声。瓦礫の向こうから、巨大な蜘蛛のような姿をした【キメラ】が姿を現す。その瞬間、アジトで見つけた書類の一文が脳裏をよぎった。",
     "showIllust": [
-      "Mika_serious"
-    ],
-    "illustPositions": {
-      "Mika": "center-left"
-    }
-  },
-  {
-    "scene": "崩壊した街",
-    "text": "ミカくんの鋭い警告と同時に、ビルの壁を蹴って、巨大な蜘蛛のような脚を生やした【キメラ】が飛びかかってきた。",
-    "action": "SHAKE_SCREEN"
-  },
-  {
-    "scene": "崩壊した街",
-    "text": "ミカくんは一切怯むことなく地を蹴ると、低空へ滑り込むようにしてその爪撃をかわす。すれ違いざま、手首を返して逆手に握った軍用ナイフを、【キメラ】の無数にある眼球へと正確に突き刺した。"
-  },
-  {
-    "scene": "崩壊した街",
-    "speaker": "凪砂",
-    "role": "NAGISA",
-    "text": "「めんどくさいなぁ」",
-    "showIllust": [
-      "Nagisa_serious"
-    ],
-    "illustPositions": {
-      "Nagisa": "center-right"
-    }
-  },
-  {
-    "scene": "崩壊した街",
-    "text": "そのすぐ隣、犬と猛禽類が混ざったような獰猛な【キメラ】が、鋭い牙を剥いて凪砂の首元へ跳びかかる。"
-  },
-  {
-    "scene": "崩壊した街",
-    "text": "しかし凪砂さんは、まるでスローモーションの映像でも見ているかのように、一歩だけ横にスライドしてそれを避けた。コートの裾をひらりと翻し、風を切るような爪の軌道を、髪の毛一筋の差ですべて見切っている。",
-    "showIllust": [
-      "Nagisa_serious"
-    ],
-    "illustPositions": {
-      "Nagisa": "right"
-    }
-  },
-  {
-    "scene": "崩壊した街",
-    "speaker": "凪砂",
-    "role": "NAGISA",
-    "text": "「っと、そっちはダメ。お嬢さんがいるからね」",
-    "showIllust": [
-      "Nagisa_smile"
+      "kimera43"
     ]
   },
   {
     "scene": "崩壊した街",
-    "text": "凪砂さんは避けた勢いのまま、【キメラ】の巨体を軽く足蹴にして軌道を変えさせ、私から遠ざける。"
+    "text": "──『研究所のデータの中で、『歌』の力を持つ者の存在を確認。歌によって対象者の身体能力を向上させることができる』"
   },
   {
     "scene": "崩壊した街",
-    "text": "ただの『反射神経』だけで化け物を翻弄していくその姿は、見ていて鳥肌が立つほどに不気味だった。"
-  },
-  {
-    "scene": "崩壊した街",
-    "text": "そして睦典は、とにかく私の前に立ち塞がり、その大きな身体を盾にして頑張ってくれていた。"
-  },
-  {
-    "scene": "崩壊した街",
-    "speaker": "睦典",
-    "role": "MUTSUNORI",
-    "text": "「朔良、俺の後ろにいろ！ 絶対に離れるな！」",
-    "showIllust": [
-      "Mutsunori_serious"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center"
-    }
-  },
-  {
-    "scene": "崩壊した街",
-    "text": "迫り来る小型の【キメラ】の体当たりを、睦典はガチッと両腕で受け止める。凄まじい衝撃に足元のアスファルトが削れるが、睦典は歯を食いしばってそれを押し返した。",
-    "showIllust": [
-      "Mutsunori_serious"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center"
-    }
-  },
-  {
-    "scene": "崩壊した街",
-    "text": "だが、その背後──瓦礫の影から、もう一匹の【キメラ】が、鉄塊のような太い尾を鞭のようにしならせて睦典の脇腹を強襲した。",
-    "showIllust": [
-      "Mutsunori_serious"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center"
-    }
-  },
-  {
-    "scene": "崩壊した街",
-    "speaker": "キメラ",
-    "text": "ドゴォッ！！！",
-    "action": "SHAKE_SCREEN"
-  },
-  {
-    "scene": "崩壊した街",
-    "speaker": "睦典",
-    "role": "MUTSUNORI",
-    "text": "「ッ……！」",
-    "clearIllust": true
-  },
-  {
-    "scene": "崩壊した街",
-    "text": "鈍い衝撃音が響き、睦典の巨体が真横へ激しく吹き飛ばされる。近くのコンクリート壁に背中から叩きつけられ、激しい土煙が舞い上がった。"
+    "text": "もし、この力が本当に私のものなら。今、この場でみんなを守るために使えるのは……これしかない。"
   },
   {
     "scene": "崩壊した街",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「ムッちゃん！！」"
+    "text": "（……やるしかない）",
+    "hideIllust": [
+      "kimera4 "
+    ]
   },
   {
     "scene": "崩壊した街",
-    "text": "心臓が凍りつく。あんな一撃、無能力者の人間が喰らえば、骨が砕けて内臓が破裂してもおかしくない。\n血の気が引く思いで駆け寄ったけれど──土煙の向こうで、睦典は何事もなかったかのように、ゆっくりと上体を起こした。"
+    "text": "私は震える手を握りしめ、大声で叫んだ。"
   },
   {
     "scene": "崩壊した街",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「……あれ？」"
+    "text": "「みんな……！！ どうか私の歌に耳を貸してほしいの！！」"
   },
   {
     "scene": "崩壊した街",
-    "text": "ボロボロに破れた衣服の隙間から見える肌を買いま見るが、血の一滴すら流れていない。大きな痣すらなく、完全に……無傷だ。",
-    "showIllust": [
-      "Mutsunori_smile"
-    ],
-    "illustPositions": {
-      "Mutsunori": "center"
-    }
+    "text": "瓦礫と炎に包まれた街の中に、私の声だけが響き渡る。突然の言葉に、三人の動きが一瞬止まった。"
   },
   {
     "scene": "崩壊した街",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「平気だよ、朔良。言っただろ、お前の盾になるって」",
+    "text": "「……歌？」",
     "showIllust": [
-      "Mutsunori_serious"
+      "Mutsunori_serious2", //驚き
+      "Mika_surprise3",
+      "Nagisa_neutral4"
     ]
   },
   {
     "scene": "崩壊した街",
-    "text": "睦典はいつもと変わらない優しい笑顔で、汚れた服を払いながら立ち上がる。そっか、怪我がなくて本当に良かった。"
+    "text": "戸惑ったような三人の反応。当然だ。私自身だって、この力が本当に戦いに使えるのか分からない。"
   },
   {
     "scene": "崩壊した街",
-    "text": "そう安堵しかけたけれど、私の身体にも別の「異変」が起き始めていた。"
+    "text": "それでも――。\n私は深く息を吸い、胸の奥に眠る何かを信じるように、ゆっくりと歌声を響かせた。",
+    "hideIllust": [
+      "Musunori",
+      "Mika",
+      "Nagisa"
+    ]
+  },
+  //=============== 戦闘開始 ===============
+  {
+    "scene": "崩壊した街",
+    "text": "ある程度のキメラを蹴散らしたところで… ",
+    "bgm": "serious_2.mp3"
   },
   {
     "scene": "崩壊した街",
@@ -3979,27 +3689,19 @@ export const scenarioData = [
   },
   {
     "scene": "崩壊した街",
-    "text": "視界が急激に歪み、頭の芯がカッカと焼けつくように熱くなっていく。"
+    "text": "歌の力を使った直後から、身体の奥に異様な熱が広がっていく。【キメラ】たちが放つ異能の残滓が、まるで私の中へ流れ込んでくるような、不気味な感覚だった。視界が歪み、意識が遠のきそうになる。"
   },
   {
     "scene": "崩壊した街",
-    "text": "（ダメ……っ！ 気を確かに持って、私……！ 今倒れたら、みんなの足手まといに……！）"
+    "text": "（ダメ……！ ここで倒れたら、みんなの足手まといになる……！）"
   },
   {
     "scene": "崩壊した街",
-    "text": "自分の両頬をパチンと強く叩き、無理やり意識を現実へと繋ぎ止める。\nけれど、地獄は終わらない。"
+    "text": "私は頬を叩き、必死に意識を繋ぎ止める。しかし、戦いは終わらなかった。"
   },
   {
     "scene": "崩壊した街",
-    "text": "さらに大型の【キメラ】が地響きを立てて現れ、ミカくんと凪砂がそれを迎撃するために前方へと躍り出た。"
-  },
-  {
-    "scene": "崩壊した街",
-    "text": "睦典も私を背に庇いながら、押し寄せる化け物の群れに肉体一つで立ち向かっていく。"
-  },
-  {
-    "scene": "崩壊した街",
-    "text": "激しい爆風、巻き上がる土煙、視界を覆い尽くす黒煙と炎の照り返し──。"
+    "text": "さらに現れた大型の【キメラ】を前に、ミカくんと凪砂さんが迎撃へ向かい、睦典も私を守りながら敵の群れへ立ち向かう。爆音、炎、舞い上がる煙。"
   },
   {
     "scene": "崩壊した街",
@@ -4007,7 +3709,7 @@ export const scenarioData = [
     "role": "MIKA",
     "text": "「──先輩、こっちです！」",
     "showIllust": [
-      "Mika_serious"
+      "Mika_serious2"
     ]
   },
   {
@@ -4016,425 +3718,280 @@ export const scenarioData = [
     "role": "MUTSUNORI",
     "text": "「朔良、手を伸ばせ！」",
     "showIllust": [
-      "Mutsunori_smile"
+      "Mutsunori_serious4"
     ]
   },
   {
     "scene": "崩壊した街",
-    "text": "誰かの声が聞こえた気がして、私は煙の中へ必死に手を伸ばした。\nけれど、急激に襲ってきた目眩のせいで足元がふらつき、瓦礫に躓いて激しく転倒してしまう。"
+    "text": "聞こえた声に手を伸ばすけれど、目眩で足元が崩れ、私は瓦礫に躓いて倒れ込んでしまう。"
+  },
+  //=============== 大学(皆とはぐれた後) ===============
+  {
+    "scene": "崩壊後-大学の敷地内",
+    "text": "そして、煙が晴れた時。そこに三人の姿はなかった。",
+    "bgm": "stop",
+    "bg": "/scene/university_collapse.png",
+    "hideIllust": [
+      "Mutsunori",
+      "Mika"
+    ]
   },
   {
-    "scene": "崩壊した街",
-    "speaker": "朔良",
-    "role": "SAKURA",
-    "text": "「きゃあッ！」"
-  },
-  {
-    "scene": "崩壊した街",
-    "text": "慌てて起き上がり、煙の向こうを見渡したけれど……。"
-  },
-  {
-    "scene": "崩壊した街",
-    "text": "そこにはもう、誰もいなかった。激しい戦闘の音だけが、少し離れた場所から響いてくる。"
-  },
-  {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "text": "（嘘……はぐれちゃった……？）",
-    "bg": "/scene/university_collapse.png"
   },
   {
-    "scene": "大学の敷地内",
-    "text": "気がつくと私は、混乱の中でみんなとはぐれ、夜の大学の敷地内で、完全に一人きりで迷子になっていた。"
+    "scene": "崩壊後-大学の敷地内",
+    "text": "気づけば私は、崩壊した大学構内で一人きりになっていた。身体の熱と恐怖に耐えながら、ふらふらと歩いた先。"
   },
   {
-    "scene": "大学の敷地内",
-    "text": "静まり返ったキャンパス。自分の荒い呼吸の音と、身体の奥に流れ込んでくる謎の熱さの恐怖に押しつぶされそうになりながら、私はふらふらと、前方の木々が鬱蒼と茂る庭園のほうへと足を進めた。"
+    "scene": "崩壊後-大学の敷地内",
+    "text": "木々が生い茂る庭園の奥に、青い人工月の光を浴びて佇む人影が見えた。"
   },
   {
-    "scene": "大学の敷地内",
-    "text": "崩壊したキャンパスの中に、ポツンとたたずむ人影を見て、私は思わず声を上げていた。",
-    "bgm": "Normal_Night.mp3"
+    "scene": "崩壊後-大学の敷地内",
+    "speaker": "朔良",
+    "role": "SAKURA",
+    "text": "「……あ」"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
+    "text": "そこにいたのは──満だった。"
+    //背景　満CG(刺される前)
+  },
+  {
+    "scene": "崩壊後-大学の敷地内",
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「満……！！」"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "speaker": "満",
-    "role": "Michiru",
-    "text": "「朔良！」",
-    "showIllust": [
-      "Michiru_surprise"
-    ],
-    "illustPositions": {
-      "Michiru": "center"
-    }
+    "role": "MICHIRU",
+    "text": "「朔良！」"
   },
   {
-    "scene": "大学の敷地内",
-    "text": "そこにいたのは、間違いなく、この前お散歩をして別れたばかりの満だった。\n私は目から溢れそうになる涙を拭うことも忘れて、縋り付くような思いで、満の元へと駆け出した。"
+    "scene": "崩壊後-大学の敷地内",
+    "text": "地獄のような有様の中で見つけた、唯一の救い。私は泣き出しそうなのを必死に堪え、彼を目掛けて一心不乱に駆け出した。"
   },
   {
-    "scene": "大学の敷地内",
-    "speaker": "朔良",
-    "role": "SAKURA",
-    "text": "「満……！！」"
+    "scene": "崩壊後-大学の敷地内",
+    "text": "満も私に気づいて、愛おしそうな表情でその両腕を広げてくれる。\nあと数歩で、その温かい胸の中に飛び込める──まさに、その瞬間だった。"
   },
   {
-    "scene": "大学の敷地内",
-    "text": "地獄のような有様の中で見つけた、唯一の救い。私は泣き出しそうなのを必死に堪え、彼を目掛けて一心不乱に駆け出した。\n満も私に気づいて、愛おしそうな表情でその両腕を広げてくれる。"
-  },
-  {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "text": "あと数歩で、その温かい胸の中に飛び込める──まさに、その瞬間だった。"
   },
   {
-    "scene": "大学の敷地内",
-    "text": "──グサァッッ！！",
-    "bgm": "stop",
-    "bgmFade": 0,
+    "scene": "崩壊後-大学の敷地内",
+    "text": "──グサッ。",
     "se": "Slash.mp3",
-    "action": "BLOOD_SCREEN",
-    "showIllust": [
-      "Michiru_surprise"
-    ],
-    "illustPositions": {
-      "Michiru": "center"
-    }
+    "action": "BLOOD_SCREEN"
+    //背景　満CG(刺された後)
   },
   {
-    "scene": "大学の敷地内",
-    "text": "重苦しく、肉を、骨を無慈悲に破壊する鈍い音が、静かな庭園に響き渡った。"
+    "scene": "崩壊後-大学の敷地内",
+    "text": "静かな庭園に、嫌な音が響いた。"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「え……」"
+    "text": "「……え？」"
   },
   {
-    "scene": "大学の敷地内",
-    "text": "目の前の光景が、一瞬、理解できなかった。スローモーションのように世界が止まる。",
-    "hideIllust": [
-      "Michiru_surprise"
+    "scene": "崩壊後-大学の敷地内",
+    "text": "目の前の光景を理解できない。満の胸元から、禍々しい黒い剣が突き出していた。"
+  },
+  {
+    "scene": "崩壊後-大学の敷地内",
+    "text": "その背後に立っていたのは、漆黒の鎧に身を包んだ異様な存在──【黒騎士】。",
+    "bgm": "serious_4.mp3"
+  },
+  {
+    "scene": "崩壊後-大学の敷地内",
+    "speaker": "満",
+    "role": "MICHIRU",
+    "text": "「……さく、ら……」"
+  },
+  {
+    "scene": "崩壊後-大学の敷地内",
+    "text": "満は最後まで私へ手を伸ばそうとして、そのまま力なく崩れ落ちる。",
+    "bg": "/scene/university_collapse.png",
+    "action": "CLEAR_BLOOD"
+  },
+  {
+    "scene": "崩壊後-大学の敷地内",
+    "speaker": "朔良",
+    "role": "SAKURA",
+    "text": "「いやあああああっ！！」"
+  },
+  {
+    "scene": "崩壊後-大学の敷地内",
+    "text": "駆け寄ろうとした私の身体は、背後から強い力で止められた。"
+  },
+  {
+    "scene": "崩壊後-大学の敷地内",
+    "text": "振り返ると、そこにいたのはアジトで私を連れ去った眼帯の大男だった。",
+    "showIllust": [
+      "Akane_serious3"
     ]
   },
   {
-    "scene": "大学の敷地内",
-    "text": "満の胸の真ん中から、ドス黒い、禍々しい鉄の剣が鋭く突き出ていた。"
+    "scene": "崩壊後-大学の敷地内",
+    "speaker": "朔良",
+    "role": "SAKURA",
+    "text": "「離して……！！ 満が……！！」",
   },
   {
-    "scene": "大学の敷地内",
-    "text": "彼の背後の闇からいつの間にか現れていたのは、頭からつま先まで、禍々しい漆黒の鎧に身を包んだ──",
+    "scene": "崩壊後-大学の敷地内",
+    "text": "必死に抵抗する私をよそに、大男はただ【黒騎士】を睨みつけている。"
+  },
+  {
+    "scene": "崩壊後-大学の敷地内",
+    "text": "その時、煙の向こうからミカくん、睦典、凪砂さんが駆けつけた。",
     "showIllust": [
+      "Mika_serious1",
+      "Mutsunori_serious2",
+      "Nagisa_neutral4"
+    ]
+  },
+  {
+    "scene": "崩壊後-大学の敷地内",
+    "speaker": "ミカ",
+    "role": "MIKA",
+    "text": "「朔良先輩！！」"
+  },
+  {
+    "scene": "崩壊後-大学の敷地内",
+    "speaker": "睦典",
+    "role": "MUTSUNORI",
+    "text": "「朔良ーー！！……って、誰だよお前！」"
+  },
+  {
+    "scene": "崩壊後-大学の敷地内",
+    "text": "睦典が大男へ怒りを向けるが、大男は鋭く言い放つ。"
+  },
+  {
+    "scene": "崩壊後-大学の敷地内",
+    "speaker": "大男",
+    "text": "「そんなことを気にしている場合か」"
+  },
+  {
+    "scene": "崩壊後-大学の敷地内",
+    "text": "その視線の先にいる【黒騎士】。",
+    "bgm": "stop ",
+    "showIllust": [
+      "BlackKnight3"
+    ],
+    "hideIllust": [
+      "Akane",
+      "Mutsunori",
+      "Mika",
+      "Nagisa"
+    ]
+  },
+  {
+    "scene": "崩壊後-大学の敷地内",
+    "text": "その圧倒的な存在感に、ミカくんも凪砂さんも警戒を露わにする。満が目の前で奪われた現実を、私は受け止めきれずにいた。"
+  },
+  {
+    "scene": "崩壊後-大学の敷地内",
+    "text": "そんな時、ポケットのスマートフォンが鳴る。\n画面に表示された名前は──ヒルミ教授。",
+    "se": "Phone.mp3",
+    "hideIllust": [
       "BlackKnight"
     ]
   },
   {
-    "scene": "大学の敷地内",
-    "text": "──異様な存在【黒騎士】。"
+    "scene": "崩壊後-大学の敷地内",
+    "text": "震える手で通話に出る。",
+    "se": "stop",
   },
   {
-    "scene": "大学の敷地内",
-    "speaker": "満",
-    "role": "Michiru  ",
-    "text": "「ぁ……っ……さく、ら……、……？」"
+    "scene": "崩壊後-大学の敷地内",
+    "speaker": "朔良",
+    "role": "SAKURA",
+    "text": "「教授……っ、満が……！」",
+    "se": "+pi.mp3"
   },
   {
-    "scene": "大学の敷地内",
-    "text": "満の綺麗な瞳から、急速に光が失われていく。彼は血を吐きながら、最期まで私に向けて手を伸ばそうとして──。",
-    "hideIllust": [
-      "満",
-      "黒騎士"
+    "scene": "崩壊後-大学の敷地内",
+    "speaker": "ヒルミ教授",
+    "role": "PROFESSOR",
+    "text": "『朔良か！？ その黒い鎧の奴……監視カメラで確認した。そいつは……』"
+  },
+  {
+    "scene": "崩壊後-大学の敷地内",
+    "text": "その瞬間、【黒騎士】がゆっくりと大剣をこちらへ向ける。兜の奥の赤い瞳が、私たちを捉えた。"
+  },
+  {
+    "scene": "崩壊後-大学の敷地内",
+    "speaker": "ヒルミ教授",
+    "role": "PROFESSOR",
+    "text": "『──かなり危険な存在かもしれない』"
+  },
+  {
+    "scene": "崩壊後-大学の敷地内",
+    "text": "教授の冷静な声がスピーカーから漏れた瞬間、【黒騎士】の姿がブレた。",
+    "showIllust": [
+      "BlackKnight_attack3"
     ]
   },
   {
-    "scene": "大学の敷地内",
-    "speaker": "朔良",
-    "role": "SAKURA",
-    "text": "「いやあああああああああああっ！！！！」"
+    "scene": "崩壊後-大学の敷地内",
+    "text": "次の瞬間、爆発するような速度で距離を詰めた【黒騎士】が、大剣を横薙ぎに振り抜く。",
+    "action": "SHAKE_SCREEN_EXTREME",
+    "bgm": "serious_2"
   },
   {
-    "scene": "大学の敷地内",
-    "text": "私の絶叫が響き渡る中、【黒騎士】は一切の感情を排した動作で、満の身体から無慈悲に剣を引き抜いた。"
-  },
-  {
-    "scene": "大学の敷地内",
-    "text": "支えを失った満の身体が、まるで魂の抜けた人形のように、ドサリと冷たい地面へ崩れ落ちる。"
-  },
-  {
-    "scene": "大学の敷地内",
-    "speaker": "朔良",
-    "role": "SAKURA",
-    "text": "「満！！満──っ！！」",
-    "action": "CLEAR_BLOOD",
-    "bgm": "serious_2.mp3",
-    "bgmFade": 1.5
-  },
-  {
-    "scene": "大学の敷地内",
-    "text": "狂ったように満の元へ駆け寄ろうとした。けれど、その身体が前に進むことはなかった。"
-  },
-  {
-    "scene": "大学の敷地内",
-    "speaker": "朔良",
-    "role": "SAKURA",
-    "text": "「きゃっ！？」",
-    "action": "SHAKE_SCREEN"
-  },
-  {
-    "scene": "大学の敷地内",
-    "text": "後ろから、まるで子猫の首根っこでも掴むかのような圧倒的な力で、グイッと服の襟を引っ掴まれて持ち上げられる。\n恐怖と怒りで涙をボロボロと流しながら振り返ると、そこにいたのは──。"
-  },
-  {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "speaker": "大男",
-    "role": "BIG_MAN",
-    "text": "「……」",
-    "showIllust": [
-      "Akane_neutral"
-    ],
-    "illustPositions": {
-      "Akane": "center"
-    }
-  },
-  {
-    "scene": "大学の敷地内",
-    "text": "眼帯をした、あの大男──アジトで私を監禁していた大男だった。\nなぜここにいるのか、なぜ私を捕まえたのか。そんなことはどうでもよかった。"
-  },
-  {
-    "scene": "大学の敷地内",
-    "speaker": "朔良",
-    "role": "SAKURA",
-    "text": "「は、離してっっ……！！ 離してよ！！ 満が、満が刺されたの……っ！ お願いだから離して！！」"
-  },
-  {
-    "scene": "大学の敷地内",
-    "text": "暴れて大男の岩のような腕を叩くけれど、びくともしない。大男は、黒い鎧だけを一身に睨みつけていた。"
-  },
-  {
-    "scene": "大学の敷地内",
-    "speaker": "ミカ",
-    "role": "MIKA",
-    "text": "「──朔良先輩！！」",
-    "showIllust": [
-      "Mika_serious",
-      "Akane_neutral"
-    ],
-    "illustPositions": {
-      "Mika": "center-left",
-      "Akane": "center"
-    }
-  },
-  {
-    "scene": "大学の敷地内",
-    "speaker": "睦典",
-    "role": "MUTSUNORI",
-    "text": "「朔良ーーーって、おい、誰だよお前！！」",
-    "showIllust": [
-      "Mika_serious",
-      "Akane_neutral",
-      "Mutsunori_serious"
-    ],
-    "illustPositions": {
-      "Mika": "center-left",
-      "Akane": "center",
-      "Mutsunori": "center-right"
-    }
-  },
-  {
-    "scene": "大学の敷地内",
-    "text": "煙の向こうから、ミカくん、睦典、凪砂の三人が息を切らせて飛び込んできた。\n睦典は、私を掴んでいる大男を見るなり、怒髪天を突く勢いで大男を睨みつける。",
-    "showIllust": [
-      "Mika_serious",
-      "Akane_neutral",
-      "Mutsunori_serious",
-      "Nagisa_serious"
-    ],
-    "illustPositions": {
-      "Mika": "center-left",
-      "Akane": "center",
-      "Mutsunori": "center-right",
-      "Nagisa": "right"
-    }
-  },
-  {
-    "scene": "大学の敷地内",
-    "speaker": "大男",
-    "role": "BIG_MAN",
-    "text": "「そんなこと気にしてる場合か」",
-    "showIllust": [
-      "Akane_serious"
-    ],
-    "illustPositions": {
-      "Akane": "center"
-    }
-  },
-  {
-    "scene": "大学の敷地内",
-    "text": "大男が鋭い声で睦典を制した。その視線の先──満の亡骸の前に立つ、圧倒的な死のオーラを放つ【黒騎士】の存在に、全員が一瞬で総毛立っているのが分かった。"
-  },
-  {
-    "scene": "大学の敷地内",
-    "text": "満が目の前で刺し殺された。その現実があまりにも凄惨すぎて、頭が現実を拒否し、どこか悪い夢を見ているような感覚に陥る。"
-  },
-  {
-    "scene": "大学の敷地内",
-    "text": "そんな私のポケットの中で、チリリリリ、と場違いなスマートフォンの電子音が鳴り響いた。\n画面には『ヒルミ教授』の文字。",
-    "se": "Phone.mp3",
-    "bgm": "serious_2.mp3",
-    "bgmVolume": 0.2
-  },
-  {
-    "scene": "大学の敷地内",
-    "text": "私はガタガタと震える指先で、画面をスワイプして耳に当てた。"
-  },
-  {
-    "scene": "大学の敷地内",
-    "speaker": "朔良",
-    "role": "SAKURA",
-    "text": "「もしもし……っ、教授……っ、満が……！」",
-    "action": "START_PHONE_CALL_RIGHT",
-    "stopSe": "Phone.mp3",
-    "bgm": "serious_2.mp3",
-    "bgmVolume": 0.5,
-    "showIllust": [
-      "Hirumi_serious"
-    ],
-    "illustPositions": {
-      "Hirumi": "right",
-      "Mika": "left",
-      "Akane": "center-left",
-      "Mutsunori": "center",
-      "Nagisa": "center-right"
-    }
-  },
-  {
-    "scene": "大学の敷地内",
-    "speaker": "ヒルミ教授",
-    "role": "PROFESSOR",
-    "text": "『もしもし？ 朔良か！？ その……今、大学の監視カメラを見てるんだが、お前らの目の前にいる、その黒い鎧を着た【黒騎士】って奴……』"
-  },
-  {
-    "scene": "大学の敷地内",
-    "text": "その時、【黒騎士】が、満を無慈悲に貫いたその大剣を、ゆっくりとこちらへ向けて構えた。\n兜の奥の、血のように赤い眼光が、明確に私たちをロックオンする。"
-  },
-  {
-    "scene": "大学の敷地内",
-    "speaker": "ヒルミ教授",
-    "role": "PROFESSOR",
-    "text": "『──結構ヤバい奴かもしれない』"
-  },
-  {
-    "scene": "大学の敷地内",
-    "text": "ドォッッ！！！と、空気が爆発するような凄まじい速度。\n一瞬で距離を詰めてきた【黒騎士】が、私たちの首を一網打尽にする軌道で、大剣を真横に一閃させる。",
-    "action": "END_PHONE_CALL_AND_SHAKE",
-    "hideIllust": [
-      "Hirumi_serious"
-    ],
-    "illustPositions": {
-      "Mika": "center-left",
-      "Akane": "center",
-      "Mutsunori": "center-right",
-      "Nagisa": "right"
-    }
-  },
-  {
-    "scene": "大学の敷地内",
-    "speaker": "大男",
-    "role": "BIG_MAN",
     "text": "「チッ、全員伏せろ！！」",
     "showIllust": [
-      "Akane_serious"
+      "Akane_serious2"
     ],
-    "illustPositions": {
-      "Akane": "center"
-    }
+    "action": "CLEAR_SHAKE"
   },
   {
-    "scene": "大学の敷地内",
-    "speaker": "睦典",
-    "role": "MUTSUNORI",
-    "text": "「うわああああっ！？」",
-    "showIllust": [
-      "Akane_serious",
-      "Mutsunori_pout"
-    ],
-    "illustPositions": {
-      "Akane": "center",
-      "Mutsunori": "center-right"
-    }
+    "scene": "崩壊後-大学の敷地内",
+    "text": "大男が私を抱えたまま後方へ飛び退き、睦典がその身体で衝撃を受け止める。凪砂さんとミカくんも、迫る一撃を間一髪で回避した。",
+    "hideIllust": [
+      "Akane",
+      "BlackKnight"
+    ]
   },
   {
-    "scene": "大学の敷地内",
-    "text": "大男が私を小脇に抱えたまま凄まじい力でバックステップする。睦典がその肉体で爆風を受け止め、凪砂が冷や汗を流しながら執念で刃を紙一重でかわした。"
+    "scene": "崩壊後-大学の敷地内",
+    "text": "振り抜かれた剣は地面や周囲の木々を衝撃波だけで薙ぎ払い、その圧倒的な力に誰もが息を呑む。"
   },
   {
-    "scene": "大学の敷地内",
-    "text": "ミカくんも、周りの凶暴化した【キメラ】を一つ一つ振りほどいていた。"
-  },
-  {
-    "scene": "大学の敷地内",
-    "speaker": "ミカ",
-    "role": "MIKA",
-    "text": "「……ッ！！！」",
-    "showIllust": [
-      "Mika_surprise"
-    ],
-    "illustPositions": {
-      "Mika": "center-left"
-    }
-  },
-  {
-    "scene": "大学の敷地内",
-    "text": "地面が、背後の大木が、触れてもいないのに衝撃波だけで真っ二つに裂ける。",
-    "action": "SHAKE_SCREEN"
-  },
-  {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "speaker": "大男",
-    "role": "BIG_MAN",
-    "text": "「戦うな！ 走れ！！ 死ぬぞ！！」",
-    "showIllust": [
-      "Akane_serious"
-    ],
-    "illustPositions": {
-      "Akane": "center"
-    }
+    "text": "「戦うな！ 走れ！！ 死ぬぞ！！」"
   },
   {
-    "scene": "大学の敷地内",
-    "text": "大男の合図に、私たちは満の遺体を残したまま、大学の敷地内を全力で巻き戻るように逃げ出した。",
-    "action": "PLAY_RUNNING_SE",
-    "bgAnimation": "dash"
+    "scene": "崩壊後-大学の敷地内",
+    "text": "大男の声に押され、私たちは満を残したまま、大学構内を全力で駆け出した。背後から響く、鎧の擦れる音。そして、ゆっくりと、けれど確実に迫る【黒騎士】の足音。",
+    "bgAnimation": "dash",
+    "bgm": "+dash.mp3"
   },
   {
-    "scene": "大学の敷地内",
-    "text": "背後からは、鎧の擦れる不気味な音と、地を割るような絶望の足音が、ものすごいスピードで追いかけてきていた──。"
+    "scene": "崩壊後-大学の敷地内",
+    "text": "私は必死に走った。けれど──。"
   },
   {
-    "scene": "大学の敷地内",
-    "text": "私は一心不乱にキャンパスを走った。だけど──。"
-  },
-  {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「ッ……きゃっ……！！」",
     "action": "SHAKE_SCREEN",
     "bgAnimation": "stumble_zoom",
-    "hideIllust": [
-      "睦典",
-      "ミカ",
-      "大男",
-      "凪砂"
-    ]
+    "bgm": "stop"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "type": "choice",
     "text": "満のあの光景を思い出して、力が抜けてしまったのかどこかに足を取られてしまい、咄嗟に私は……。",
     "choices": [
@@ -4464,18 +4021,18 @@ export const scenarioData = [
   },
   {
     "label": "mitsuru_route_start",
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「…ぅわっ……！！」",
     "action": "SHAKE_SCREEN"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "text": "転びそうになったところで、何もないはずの空間から伸びた見えない何かに、グイっと力強く腕を引っ張られた。"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "text": "人間業とは思えないものすごい速さで引っ張られる。あまりの勢いに押されて前が見えない。風を切り、視界が激しく歪む。",
     "action": "SPEED_EFFECT"
   },
@@ -7713,7 +7270,7 @@ export const scenarioData = [
     "action": "FADE_TO_HAPPY_END"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "speaker": "凪砂",
     "role": "NAGISA",
     "text": "「おっと、危ない」 ",
@@ -7721,11 +7278,11 @@ export const scenarioData = [
     "label": "nagisa_route_start"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "text": "低く、耳に心地よい声が頭上から降ってくる。 抱きとめられるようにしてその胸に飛び込んでしまった私は、慌てて顔を上げた。"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "text": "端正な顔立ちに、完璧に計算されたような優しい笑みを浮かべた青年──凪砂さんだった。",
     "showIllust": [
       "Nagisa_neutral"
@@ -7735,17 +7292,17 @@ export const scenarioData = [
     }
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「……っ、凪砂、さん……！？」"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "text": "走りながら一切息を切らさず、それどころか楽しそうに私を見つめる。"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "speaker": "凪砂",
     "role": "NAGISA",
     "text": "「さて、と。どうしようか」",
@@ -7757,29 +7314,29 @@ export const scenarioData = [
     }
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「研究室…！とりあえずっ、行きましょう……！！」"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "text": "私の必死の訴えに、凪砂さんは一瞬だけいつもの笑みを消し、背後の不穏な空気へと視線を走らせた。"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "speaker": "凪砂",
     "role": "NAGISA",
     "text": "「──了解。とりあえずあの鎧野郎から逃げようか」"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「……っ、ちょっと…きゃっ……！」"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "text": "凪砂さんは私の手を引いて力強く走り出した。睦典や他の人の姿が見えないことを聞こうとしようとしたけど、そんな暇を与えられないまま引っ張られてしまう。 ",
     "bg": "/scene/university_hallway_collapse.png",
     "bgAnimation": "dash",
@@ -7795,18 +7352,18 @@ export const scenarioData = [
     ]
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「凪砂さん、こっちです……！ 教授の研究室なら、頑丈なセキュリティがかかってますから！」",
     "bg": "/scene/university_hallway_collapse.png"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "text": "走りながら私は必死に声を張り上げ、自分が通う月科学エネルギー学部の研究棟へと凪砂さんを案内した。"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "text": "背後から迫る黒騎士の凄まじいプレッシャーに背中を押されるようにして、私たちは廊下を駆け抜け、目的の部屋へと滑り込む。"
   },
   {
@@ -10400,53 +9957,53 @@ export const scenarioData = [
     "label": "route_under_construction"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "text": "焦げあとのある服の袖を掴んだ。",
     "label": "mika_route_start"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "speaker": "ミカ",
     "role": "MIKA",
     "text": "「朔良先輩っ！！」"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "text": "私の身体が地面に叩きつけられる寸前、鋭い踏み込みの音と共に、強い力でその腕を引き戻された。",
     "action": "SHAKE_SCREEN"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "text": "焦げあとのある彼の服の袖をぎゅっと掴んだまま、私は荒い息を吐き出す。息を切らしながら私の身体を真っ直ぐに支えてくれたのは、ミカくんだった。"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「ミカくん……っ、みんなは！？ 他のみんなはどこ！？」"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "text": "周囲の暗がりに必死で視線を巡らせるけれど、黒い木々の隙間には誰も見当たらない。激しい戦闘の音が遠くで響いているだけだった。ミカくんは悔しそうに眉をひそめ、私の手をきゅっと握り締める。"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "speaker": "ミカ",
     "role": "MIKA",
     "text": "「すみません、激戦のどさくさでみんなとはぐれちゃって……！ でも、感傷に浸っている暇はありません。教授の指示通り、とりあえず研究室に向かいましょう！」"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "text": "混乱する頭のまま、私はミカくんに手を引かれて再び走り出した。キャンパスのレンガ道を蹴り、冷たい夜風を切り裂いて進む。背後を振り返る余裕なんてなかったけれど、肌を刺すような冷たいプレッシャーで分かった。",
     "bgAnimation": "dash"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "text": "あの不気味な重圧──黒騎士が、確実に私たちのすぐ後ろまで迫ってきている。まるで、獲物を特定の場所へと追い詰める猟犬のように。",
     "bg": "/scene/university_hallway_collapse.png"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "text": "心臓が破裂しそうなほどの恐怖の中、私たちは月科学エネルギー学部の研究棟へと滑り込み、エレベーターを待つ時間すら惜しんで階段を駆け上がった。",
     "bg": "/scene/university_hallway_collapse.png"
   },
@@ -12138,22 +11695,22 @@ export const scenarioData = [
     ]
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "text": "私たちの日常は、驚くほどあっけなく戻ってきた。",
     "bgm": "Normal_Morning2.mp3",
     "bgmVolume": 0.2,
     "bg": "/scene/sky.png"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "text": "教授の手記とデータチップを持ち帰ったおかげで、実習の単位は無事に出たし─それどころか、世界を救った大功績として学部内でちょっとした騒ぎになったけれど─世界も何事もなかったかのように平穏な時を刻んでいる。"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "text": "あんなに街を恐怖に陥れていたキメラ騒動は、驚くべき速さで鎮圧へと向かった。対策本部が総力を挙げて開発した中和剤によって、異形化していた生物たちは次々と元の姿を取り戻し、崩壊しかけていたインフラも急速に復興を遂げている。"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "text": "そして、私たちの運命を引っくり返した張本人であるヒルミ教授はというと──。"
   },
   {
@@ -12195,7 +11752,7 @@ export const scenarioData = [
     ]
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "speaker": "ミカ",
     "role": "MIKA",
     "text": "「先輩、その資料、俺が持ちます。……あ、手、貸してください」",
@@ -12209,25 +11766,25 @@ export const scenarioData = [
     }
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "text": "そう言って私の手から分厚いバインダーをひょいと取り上げたミカくんの手が、私の指先に一瞬、優しく触れる。ただそれだけのことなのに、心臓が跳ね上がるほどドギマギしてしまう自分がいた。"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "text": "首元を覆っていたあの悍ましい黒いアザは綺麗に消え去り、実験体としての呪いから解放された彼は、眩しいくらいに一人の端正な男の子として、私の隣に並んで歩いている。"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「あ、ありがとう、ミカくん。……なんだか、本当に不思議だね。数日前に世界を救っちゃったなんて」"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "text": "照れ隠しに、私は澄み切った初夏の青空を見上げた。"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "speaker": "ミカ",
     "role": "MIKA",
     "text": "「不思議、ですか？ 俺は……今のほうが、ずっと夢みたいです」",
@@ -12241,88 +11798,88 @@ export const scenarioData = [
     ]
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "text": "ミカくんは歩調を緩めると、私と肩が触れ合うほどの距離までそっと近づいてきた。 その綺麗な瞳が、まっすぐに私だけを映し出す。"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "speaker": "ミカ",
     "role": "MIKA",
     "text": "「あの冷たい廃墟で、先輩が俺の手を握ってくれたから……『どちらも選ばない、君を助ける』って言ってくれたから、今の俺があるんです。先輩が俺を、人間にしてくれたんですよ？」"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「もう、大袈裟だなぁ……」"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "text": "そっぽを向いた私の耳たぶが、夕焼けみたいに熱くなっていくのが自分でも分かった。 "
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "text": "あの研究所の最奥で聴いた謎の声、お父さんの行方、私の身体に眠る強大な力──世界の謎はまだ何も解決していないし、これは束の間の平穏なのかもしれない。"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "text": "だけど、私の指先に触れる彼の体温が、何よりも確かな現実として私を支えていた。"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "speaker": "ミカ",
     "role": "MIKA",
     "text": "「先輩」"
   },
   {
-    "scene": "大学の敷地内",
-    "text": "不意に、ミカくんがバインダーを持っていない方の手で、私の空いた手をそっと包み込んだ。大学の敷地内なのに、周りに人がいるのに、彼はもう躊躇わない。"
+    "scene": "崩壊後-大学の敷地内",
+    "text": "不意に、ミカくんがバインダーを持っていない方の手で、私の空いた手をそっと包み込んだ。崩壊後-大学の敷地内なのに、周りに人がいるのに、彼はもう躊躇わない。"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "speaker": "ミカ",
     "role": "MIKA",
     "text": "「これからは、俺が先輩を守ります。何があっても、ずっと隣にいますから」"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "text": "優しい笑みを浮かべる彼に、私はもう敵いそうになかった。"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「……うん。遅れるとまた教授に単位を人質にされちゃうから、急ごう？ ミカくん」"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "speaker": "ミカ",
     "role": "MIKA",
     "text": "「はい、先輩」"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "text": "繋いだ手から伝わる、トクン、トクンというお互いの愛おしい心臓の鼓動。 あの黄金色の月の下で、ひとつに重なり合った私たちの『呼吸』は、これからどんな未来が訪れようとも、もう二度と離れることはない。"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "text": "私は彼の大きな手に優しく引かれながら、愛しさに胸を弾ませて、光に満ちたキャンパスの雑踏の中へと歩き出した。",
     "jumpTo": "route_under_construction"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "text": "見知った服の袖を掴んだ。",
     "label": "mutsunori_route_start",
     "bg": "/scene/university_collapse.png"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "speaker": "睦典",
     "role": "MUTSUNORI",
     "text": "「───ッ、朔良！！」"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "text": "強い力で腕を引かれ、私は硬い胸の中に抱きとめられる。\n見上げれば、息を切らせた睦典が、いつものおちゃらけた表情を完全に消し去って私を見下ろしていた。",
     "showIllust": [
       "Mutsunori_serious"
@@ -12332,27 +11889,27 @@ export const scenarioData = [
     }
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「あ、あれ……ムッちゃん、他の、みんなは……？」"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "text": "瓦礫を吹き飛ばす音、空を覆う異様な警戒色。凪砂も、ミカくんも、あの恐ろしい大男も、混沌としたキャンパスの中でいつの間にかはぐれてしまっていた。"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "text": "けれど、睦典だけは私の手を離さなかった。"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "speaker": "睦典",
     "role": "MUTSUNORI",
     "text": "「いいから走るよ！ アイツがすぐそこまで来てる！」"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "text": "背後から迫る、すべてを薙ぎ払うような圧倒的な質量と、漆黒のプレッシャー。",
     "bg": "/scene/university_hallway_collapse.png",
     "action": "PLAY_RUNNING_SE",
@@ -12367,12 +11924,12 @@ export const scenarioData = [
     ]
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "text": "私は満の幻影を必死に脳裏から振り払い、睦典に引っ張られるがままに、私を呼び出した差出人のいる場所──月科学エネルギー学部の特級研究棟へ向かって、一心不乱に足を突き動かした。",
     "action": "PLAY_RUNNING_SE"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "text": "息が苦しい。肺が焼けるようだ。",
     "action": "PLAY_RUNNING_SE"
   },
@@ -15082,19 +14639,19 @@ export const scenarioData = [
     "style": "cinema"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "text": "視界が激しく揺れ、冷たいコンクリートが目の前に迫る。 衝撃を覚悟して強く目を瞑った瞬間、私の身体は硬く、圧倒的に巨大な「肉壁」に衝突するような形で受け止められていた。",
     "label": "akane_route_start",
     "action": "SHAKE_SCREEN"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「……っ」"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "text": "見上げると、眼帯に覆われていない剥き出しの片目が、暗闇の中でギラリと私を見下ろしていた。",
     "showIllust": [
       "Akane_neutral"
@@ -15104,63 +14661,63 @@ export const scenarioData = [
     }
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "text": "周りを見回しても、ついさっきまで近くにいたはずのムッちゃんや他の人たちの姿はどこにもない。完全に完全にはぐれてしまったのだ。"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「…っ、あのっ！」"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "text": "息も絶え絶えになりながら言葉を紡ぐと、ちらっと後ろを振り向いた。"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "speaker": "？？？",
     "role": "AKANE",
     "text": "「…なんだ」"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「なまえ……」"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "speaker": "？？？",
     "role": "AKANE",
     "text": "「あ？」"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「名前！教えてください！！」"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "text": "突然そんなことを言い出した私に、男は眉間にしわを寄せる。私も言った後に、「今聞くべきじゃなかった…？」なんて思ったりもした。"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "text": "だけどこの人は、転びそうになった私を助けてくれたのだ。誘拐されたとはいえ、名前を知っておきたかった。"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "text": "しばらくお互いの息を切らす音しか聞こえなくなって、名前は教えてくれないのかな…なんて思っていた矢先、小さな声で、"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "speaker": "？？？",
     "role": "AKANE",
     "text": "「…アカネだ」"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "text": "とつぶやいたのをかろうじて聞き取ることができた。"
   },
   {
@@ -16891,7 +16448,7 @@ export const scenarioData = [
     "jumpTo": "route_under_construction"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "speaker": "システム",
     "role": "SYSTEM",
     "text": "（今後のアップデートをお楽しみに！ 開発中のミニゲームシステムを体験してみましょう！）",
@@ -17020,7 +16577,7 @@ export const scenarioData = [
     "jumpTo": "route_under_construction"
   },
   {
-    "scene": "大学の敷地内",
+    "scene": "崩壊後-大学の敷地内",
     "speaker": "システム",
     "role": "SYSTEM",
     "text": "（今後のアップデートをお楽しみに！）",
