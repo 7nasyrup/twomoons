@@ -870,7 +870,6 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
                         animate={{ height: 0 }}
                         transition={{ duration: 0.8, ease: 'linear' }}
                       >
-                        <div className="absolute top-1 font-noto text-[10px] text-slate-300 font-bold">CD</div>
                       </motion.div>
                     )}
                   </AnimatePresence>
