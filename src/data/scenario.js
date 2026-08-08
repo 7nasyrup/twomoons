@@ -4031,6 +4031,8 @@ export const scenarioData = [
       }
     ]
   },
+
+  //=============== 満ルート ===============
   {
     "label": "mitsuru_route_start",
     "scene": "崩壊後-大学の敷地内",
@@ -7281,6 +7283,8 @@ export const scenarioData = [
     "text": "見上げれば、漆黒の空には黄色い、温かな光を宿した月が、私たちを優しく見守るように静かに輝いていた。",
     "action": "FADE_TO_HAPPY_END"
   },
+
+  //=============== 凪砂ルート ===============
   {
     "scene": "崩壊後-大学の敷地内",
     "speaker": "凪砂",
