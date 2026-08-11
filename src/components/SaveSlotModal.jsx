@@ -158,7 +158,7 @@ export default function SaveSlotModal({ mode, onClose, onSelectSlot, slots }) {
           <div className="mx-8 h-px bg-slate-100" />
 
           {/* スロット一覧（スクロール対応） */}
-          <div className="px-8 py-5 space-y-3 max-h-[60vh] overflow-y-auto scrollbar-thin scrollbar-thumb-slate-300 scrollbar-track-transparent">
+          <div className="px-8 py-5 space-y-3 max-h-[60cqh] overflow-y-auto scrollbar-thin scrollbar-thumb-slate-300 scrollbar-track-transparent">
             {slots.map((slot, i) => (
               <SlotCard
                 key={i}

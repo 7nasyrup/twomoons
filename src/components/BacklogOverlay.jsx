@@ -33,7 +33,7 @@ export default function BacklogOverlay({ isOpen, onClose, backlog }) {
 
           {/* Main Panel matching DialogueBox style */}
           <motion.div
-            className="w-full max-w-[1200px] h-[85vh] relative shadow-[0_10px_40px_rgba(0,0,0,0.4)] rounded-xl overflow-hidden border-b-8 border-[#4dd0e1] flex flex-col z-10"
+            className="w-full max-w-[1200px] h-[85cqh] relative shadow-[0_10px_40px_rgba(0,0,0,0.4)] rounded-xl overflow-hidden border-b-8 border-[#4dd0e1] flex flex-col z-10"
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1, transition: { type: "spring", damping: 25, stiffness: 200 } }}
             exit={{ y: 10, opacity: 0 }}

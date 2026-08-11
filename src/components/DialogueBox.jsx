@@ -61,8 +61,8 @@ export default function DialogueBox({
         exit="exit"
       >
         {/* EXIT Button (Top Left) */}
-        <div className="absolute top-[4vh] left-[4vh] z-50 pointer-events-auto">
-          <HudButton icon={<LogOut className="dlg-hud-icon w-[2vh] h-[2vh]" />} label="EXIT" onClick={onExit} />
+        <div className="absolute top-[4cqh] left-[4cqh] z-50 pointer-events-auto">
+          <HudButton icon={<LogOut className="dlg-hud-icon w-[2cqh] h-[2cqh]" />} label="EXIT" onClick={onExit} />
         </div>
 
         {/* Popup Choices (Centered) */}
@@ -70,8 +70,8 @@ export default function DialogueBox({
           <div className="absolute inset-0 flex flex-col justify-center items-center pointer-events-none z-50">
             {/* The Prompt Text */}
             {fullText && (
-              <div className="mb-6 lg:mb-10 w-[70vw] max-w-[500px] bg-[#0a192f]/90 backdrop-blur-md border border-[#4dd0e1]/50 rounded-xl py-4 lg:py-[3vh] px-6 lg:px-[4vh] shadow-[0_0_20px_rgba(0,229,255,0.15)] flex justify-center text-center pointer-events-auto">
-                <span className="text-[#e2f1f8] font-noto text-sm md:text-lg lg:text-[2.2vh] tracking-[0.1em] font-medium leading-relaxed">
+              <div className="mb-6 lg:mb-10 w-[70cqw] bg-[#0a192f]/90 backdrop-blur-md border border-[#4dd0e1]/50 rounded-xl py-4 lg:py-[3cqh] px-6 lg:px-[4cqh] shadow-[0_0_20px_rgba(0,229,255,0.15)] flex justify-center text-center pointer-events-auto">
+                <span className="text-[#e2f1f8] font-noto text-sm md:text-lg lg:text-[2.2cqh] tracking-[0.1em] font-medium leading-relaxed">
                   {fullText}
                 </span>
               </div>
@@ -84,7 +84,7 @@ export default function DialogueBox({
                 return (
                   <motion.div
                     key={idx}
-                    className="relative p-[1px] bg-slate-700 hover:bg-[#00e5ff] transition-colors cursor-pointer group w-[70vw] max-w-[500px] rounded-md shadow-lg"
+                    className="relative p-[1px] bg-slate-700 hover:bg-[#00e5ff] transition-colors cursor-pointer group w-[70cqw] rounded-md shadow-lg"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0, transition: { delay: idx * 0.1 } }}
                     whileHover={isInteractive ? { scale: 1.03 } : {}}
@@ -96,8 +96,8 @@ export default function DialogueBox({
                       }
                     }}
                   >
-                    <div className={`w-full bg-slate-900/95 backdrop-blur-md py-3 lg:py-[2.5vh] px-4 flex justify-center items-center border border-slate-700/50 rounded-md ${isInteractive ? '' : 'opacity-60 cursor-default'}`}>
-                      <span className="text-slate-200 font-noto text-[13px] md:text-base lg:text-[2.2vh] tracking-widest font-bold text-center leading-snug">{choice.text}</span>
+                    <div className={`w-full bg-slate-900/95 backdrop-blur-md py-3 lg:py-[2.5cqh] px-4 flex justify-center items-center border border-slate-700/50 rounded-md ${isInteractive ? '' : 'opacity-60 cursor-default'}`}>
+                      <span className="text-slate-200 font-noto text-[13px] md:text-base lg:text-[2.2cqh] tracking-widest font-bold text-center leading-snug">{choice.text}</span>
                     </div>
                   </motion.div>
                 );
@@ -129,9 +129,9 @@ export default function DialogueBox({
                       }
                     }}
                   >
-                    <div className={`w-full bg-slate-900/95 backdrop-blur-md py-1.5 px-3 lg:py-[2vh] lg:px-[4vh] flex items-center border border-slate-700/50 rounded-md ${isInteractive ? '' : 'opacity-60 cursor-default'}`}>
-                      <span className="text-[#00e5ff] font-bold text-[10px] lg:text-[2vh] mr-2 lg:mr-4 tracking-widest">{String(idx + 1).padStart(2, '0')}</span>
-                      <span className="text-slate-200 font-noto text-[11px] md:text-sm lg:text-[2.5vh] tracking-wide font-bold flex-1 leading-snug">{choice.text}</span>
+                    <div className={`w-full bg-slate-900/95 backdrop-blur-md py-1.5 px-3 lg:py-[2cqh] lg:px-[4cqh] flex items-center border border-slate-700/50 rounded-md ${isInteractive ? '' : 'opacity-60 cursor-default'}`}>
+                      <span className="text-[#00e5ff] font-bold text-[10px] lg:text-[2cqh] mr-2 lg:mr-4 tracking-widest">{String(idx + 1).padStart(2, '0')}</span>
+                      <span className="text-slate-200 font-noto text-[11px] md:text-sm lg:text-[2.5cqh] tracking-wide font-bold flex-1 leading-snug">{choice.text}</span>
                     </div>
                   </motion.div>
                 );
@@ -142,13 +142,13 @@ export default function DialogueBox({
           {/* FUI Dialogue Box based on user image */}
           {!isPopup && (
             <div 
-              className="dlg-box w-[90vw] max-w-[1100px] mb-[8vh] cursor-pointer pointer-events-auto relative mt-[4vh] flex flex-col items-center"
+              className="dlg-box w-[90cqw] mb-[8cqh] cursor-pointer pointer-events-auto relative mt-[4cqh] flex flex-col items-center"
             >
 
-            <div className="w-full relative shadow-[0_10px_40px_rgba(0,0,0,0.3)] rounded-xl overflow-hidden border-b-[0.8vh] border-[#4dd0e1] flex flex-col">
+            <div className="w-full relative shadow-[0_10px_40px_rgba(0,0,0,0.3)] rounded-xl overflow-hidden border-b-[0.8cqh] border-[#4dd0e1] flex flex-col">
 
               {/* Header Bar */}
-              <div className="w-full h-[6vh] bg-[#0a192f] flex justify-between items-center relative overflow-hidden">
+              <div className="w-full h-[6cqh] bg-[#0a192f] flex justify-between items-center relative overflow-hidden">
                 {/* Geometric Pattern Background for Header */}
                 <div
                   className="absolute inset-0 opacity-80"
@@ -160,13 +160,13 @@ export default function DialogueBox({
                 />
 
                 {/* Left side: Nameplate */}
-                <div className="flex items-center px-[3vh] relative z-10 bg-[#0a192f] h-full pr-[6vh] shadow-[10px_0_20px_rgba(10,25,47,0.8)]" style={{ clipPath: 'polygon(0 0, 100% 0, 92% 100%, 0 100%)' }}>
+                <div className="flex items-center px-[3cqh] relative z-10 bg-[#0a192f] h-full pr-[6cqh] shadow-[10px_0_20px_rgba(10,25,47,0.8)]" style={{ clipPath: 'polygon(0 0, 100% 0, 92% 100%, 0 100%)' }}>
                   {showSpeaker && (
                     <>
-                      <div className="w-0 h-0 border-t-[0.8vh] border-t-transparent border-l-[1.2vh] border-l-[#00e5ff] border-b-[0.8vh] border-b-transparent mr-[1.5vh]" />
-                      <span className="dlg-speaker text-white font-bold tracking-widest text-[2.5vh] mr-[1.5vh] shadow-md">{displaySpeaker}</span>
+                      <div className="w-0 h-0 border-t-[0.8cqh] border-t-transparent border-l-[1.2cqh] border-l-[#00e5ff] border-b-[0.8cqh] border-b-transparent mr-[1.5cqh]" />
+                      <span className="dlg-speaker text-white font-bold tracking-widest text-[2.5cqh] mr-[1.5cqh] shadow-md">{displaySpeaker}</span>
                       {displayRole && (
-                        <span className="dlg-role text-[#00e5ff] font-bold text-[1.2vh] tracking-widest uppercase mt-[0.2vh]">
+                        <span className="dlg-role text-[#00e5ff] font-bold text-[1.2cqh] tracking-widest uppercase mt-[0.2cqh]">
                           {displayRole}
                         </span>
                       )}
@@ -180,19 +180,19 @@ export default function DialogueBox({
                     e.stopPropagation();
                     onToggleHud();
                   }}
-                  className="px-[3vh] text-[#00e5ff]/50 hover:text-[#00e5ff] hover:bg-[#00e5ff]/10 relative z-10 h-full flex items-center transition-colors"
+                  className="px-[3cqh] text-[#00e5ff]/50 hover:text-[#00e5ff] hover:bg-[#00e5ff]/10 relative z-10 h-full flex items-center transition-colors"
                 >
-                  <X className="dlg-x-icon w-[3.5vh] h-[3.5vh]" strokeWidth={2.5} />
+                  <X className="dlg-x-icon w-[3.5cqh] h-[3.5cqh]" strokeWidth={2.5} />
                 </button>
               </div>
 
               {/* Text Area */}
-              <div className="dlg-text-area bg-white w-full h-[22vh] min-h-[22vh] max-h-[22vh] flex-none overflow-hidden p-[4vh] pb-[4vh] relative">
-                <p className="dlg-body-text m-0 text-slate-800 text-[2.8vh] leading-[1.8] font-noto tracking-wide whitespace-pre-line font-medium">
+              <div className="dlg-text-area bg-white w-full h-[22cqh] min-h-[22cqh] max-h-[22cqh] flex-none overflow-hidden p-[4cqh] pb-[4cqh] relative">
+                <p className="dlg-body-text m-0 text-slate-800 text-[2.8cqh] leading-[1.8] font-noto tracking-wide whitespace-pre-line font-medium">
                   {renderTextWithLinks(text)}
                   {isTyping && (
                     <motion.span
-                      className="inline-block w-[1.5vh] h-[2.5vh] bg-[#00e5ff] ml-[1vh] align-middle opacity-80"
+                      className="inline-block w-[1.5cqh] h-[2.5cqh] bg-[#00e5ff] ml-[1cqh] align-middle opacity-80"
                       animate={{ opacity: [1, 0.2] }}
                       transition={{ duration: 0.6, repeat: Infinity, ease: "linear" }}
                     />
@@ -202,23 +202,23 @@ export default function DialogueBox({
                 {/* Next indicator */}
                 {!isTyping && !isWaitingForChoice && (
                   <motion.div
-                    className="absolute bottom-[3vh] right-[4vh] flex items-center text-[#4dd0e1]"
+                    className="absolute bottom-[3cqh] right-[4cqh] flex items-center text-[#4dd0e1]"
                     animate={{ x: [0, 8, 0] }}
                     transition={{ duration: 0.8, repeat: Infinity, ease: "easeInOut" }}
                   >
-                    <ChevronRight className="w-[4vh] h-[4vh]" strokeWidth={2.5} />
+                    <ChevronRight className="w-[4cqh] h-[4cqh]" strokeWidth={2.5} />
                   </motion.div>
                 )}
               </div>
             </div>
 
             {/* HUD Buttons Grouped Together (Overlapping the bottom cyan border) */}
-            <div className="dlg-hud-row absolute -bottom-[1.5vh] right-[6vw] flex gap-[0.8vh] z-20">
-              <HudButton icon={<Save className="dlg-hud-icon w-[2.2vh] h-[2.2vh]" />} label="SAVE" onClick={onSave} />
-              <HudButton icon={<FolderOpen className="dlg-hud-icon w-[2.2vh] h-[2.2vh]" />} label="LOAD" onClick={onLoad} />
-              <HudButton icon={<SkipForward className="dlg-hud-icon w-[2.2vh] h-[2.2vh]" />} label="SKIP" onClick={onToggleSkip} active={skipMode} />
-              <HudButton icon={<BookOpen className="dlg-hud-icon w-[2.2vh] h-[2.2vh]" />} label="LOG" onClick={onOpenLog} />
-              <HudButton icon={<FastForward className="dlg-hud-icon w-[2.2vh] h-[2.2vh]" />} label="AUTO" onClick={onToggleAuto} active={autoMode} />
+            <div className="dlg-hud-row absolute -bottom-[1.5cqh] right-[6cqw] flex gap-[0.8cqh] z-20">
+              <HudButton icon={<Save className="dlg-hud-icon w-[2.2cqh] h-[2.2cqh]" />} label="SAVE" onClick={onSave} />
+              <HudButton icon={<FolderOpen className="dlg-hud-icon w-[2.2cqh] h-[2.2cqh]" />} label="LOAD" onClick={onLoad} />
+              <HudButton icon={<SkipForward className="dlg-hud-icon w-[2.2cqh] h-[2.2cqh]" />} label="SKIP" onClick={onToggleSkip} active={skipMode} />
+              <HudButton icon={<BookOpen className="dlg-hud-icon w-[2.2cqh] h-[2.2cqh]" />} label="LOG" onClick={onOpenLog} />
+              <HudButton icon={<FastForward className="dlg-hud-icon w-[2.2cqh] h-[2.2cqh]" />} label="AUTO" onClick={onToggleAuto} active={autoMode} />
             </div>
           </div>
           )}
@@ -232,7 +232,7 @@ function HudButton({ icon, label, onClick, active }) {
   return (
     <button
       onClick={(e) => { e.stopPropagation(); onClick(); }}
-      className={`hud-btn flex items-center gap-[0.8vh] px-[2vh] py-[0.8vh] rounded-full text-[1.6vh] font-bold tracking-widest font-noto
+      className={`hud-btn flex items-center gap-[0.8cqh] px-[2cqh] py-[0.8cqh] rounded-full text-[1.6cqh] font-bold tracking-widest font-noto
                   transition-all duration-300 shadow-md border
                   ${active
           ? 'bg-[#00e5ff] text-slate-900 border-[#00e5ff] shadow-[0_4px_12px_rgba(0,229,255,0.4)]'

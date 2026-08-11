@@ -56,7 +56,7 @@ export default function StruggleGame({ onComplete }) {
       </div>
 
       {/* Progress Bar Container */}
-      <div className="w-96 max-w-[90vw] h-8 bg-slate-800 rounded-full border border-slate-600 overflow-hidden mb-12 relative shadow-[0_0_15px_rgba(0,0,0,0.5)]">
+      <div className="w-96 max-w-[90cqw] h-8 bg-slate-800 rounded-full border border-slate-600 overflow-hidden mb-12 relative shadow-[0_0_15px_rgba(0,0,0,0.5)]">
         <motion.div
           className="h-full bg-gradient-to-r from-red-600 to-red-400"
           initial={{ width: 0 }}

@@ -576,7 +576,7 @@ export default function SilentScore({ onComplete }) {
           </div>
 
           {/* Gameplay Scrolling Lanes */}
-          <div className="flex-1 w-full bg-[#030514]/90 rounded-xl border border-indigo-500/20 relative flex overflow-hidden min-h-[42vh] my-2 select-none">
+          <div className="flex-1 w-full bg-[#030514]/90 rounded-xl border border-indigo-500/20 relative flex overflow-hidden min-h-[42cqh] my-2 select-none">
             <canvas
               ref={canvasRef}
               className="absolute inset-0 w-full h-full block z-0"

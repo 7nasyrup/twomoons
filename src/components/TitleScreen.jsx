@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { assetPath } from '../utils/assetPath'; export default function TitleScreen({ onStart, onContinue, onBattle, hasSave, playBGM }) {
-    const [showCredits, setShowCredits] = useState(false);
-    const [isMobile, setIsMobile] = useState(typeof window !== 'undefined' ? window.innerWidth < 1024 : false);
+import { assetPath } from '../utils/assetPath'; 
 
-    useEffect(() => {
-        const handleResize = () => setIsMobile(window.innerWidth < 1024);
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
+export default function TitleScreen({ onStart, onContinue, onBattle, hasSave, playBGM }) {
+    const [showCredits, setShowCredits] = useState(false);
 
     // Play title BGM when component mounts
     useEffect(() => {
@@ -17,89 +12,73 @@ import { assetPath } from '../utils/assetPath'; export default function TitleScr
     }, [playBGM]);
 
     return (
-        <div className="absolute inset-0 w-full h-full bg-[#030712] overflow-hidden flex flex-col justify-between p-8 md:p-12 z-40 select-none">
-            {/* Cyberpunk background grid & glow */}
-            <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,245,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,245,255,0.03)_1px,transparent_1px)] [background-size:40px_40px] pointer-events-none" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/40 pointer-events-none" />
-
-            {/* Golden Real Moon & Cyan Artificial Moon in Background */}
-            <div className="absolute top-[15%] right-[15%] w-48 h-48 rounded-full bg-[#ffe49e]/5 border border-[#ffe49e]/20 shadow-[0_0_50px_rgba(255,228,158,0.1)] pointer-events-none animate-pulse" />
-            <div className="absolute top-[20%] right-[10%] w-56 h-56 rounded-full bg-cyan-400/5 border border-cyan-400/20 shadow-[0_0_70px_rgba(0,245,255,0.15)] pointer-events-none" />
-
-            {/* Header Info / Cyber details */}
-            <div className="w-full flex justify-between items-start z-10 font-orbitron text-[10px] tracking-[0.2em] text-cyan-500/60">
-                <div>
-                    <p className="animate-pulse">SYS_STATUS: ACTIVE</p>
-                    <p>SECTOR: LUNAR_GATE_02</p>
-                </div>
-                <div className="text-right">
-                    <p>VER. 1.0.0_DEMO</p>
-                    <p className="text-pink-500/60">WAVE RESONANCE: HIGH</p>
-                </div>
-            </div>
-
-            {/* Main Title Block */}
-            <div className="my-auto text-center z-10 relative origin-center transition-transform" style={{ transform: isMobile ? 'scale(0.67)' : 'scale(1)' }}>
-                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 rounded-full bg-cyan-500/5 blur-3xl pointer-events-none" />
-
-                {/* Japanese Title */}
-                <h1 className="text-4xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-400 tracking-[0.25em] font-noto mb-2 drop-shadow-[0_0_20px_rgba(6,182,212,0.3)] select-none">
-                    青い月の裏側で
-                </h1>
-                {/* English Subtitle */}
-                <p className="text-sm md:text-base font-orbitron font-medium text-cyan-400/70 tracking-[0.5em] uppercase mb-16 pl-2">
-                    Behind the Blue Moon
-                </p>
+        <div className="absolute inset-0 w-full h-full bg-black flex items-center justify-center overflow-hidden z-40 select-none">
+            {/* 16:9コンテナ（背景画像と完全に一致する領域） */}
+            <div 
+                className="relative w-full max-w-full max-h-full aspect-video flex flex-col justify-end"
+                style={{ containerType: 'size' }}
+            >
+                {/* Background Image */}
+                <div 
+                    className="absolute inset-0 w-full h-full bg-contain bg-center bg-no-repeat pointer-events-none" 
+                    style={{ backgroundImage: `url(${assetPath('/title.png')})` }}
+                />
 
                 {/* Buttons / Menu */}
-                <div className="flex flex-col items-center justify-center space-y-5 max-w-xs mx-auto">
-                    {/* Start Button */}
-                    <button
-                        onClick={onStart}
-                        className="w-full py-3 bg-cyan-950/30 border border-cyan-500/40 text-cyan-300 hover:text-white font-orbitron text-sm tracking-[0.3em] rounded
-                       hover:bg-cyan-500/25 hover:border-cyan-300 hover:shadow-[0_0_20px_rgba(0,245,255,0.35)]
-                       transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 active:scale-98"
-                    >
-                        NEW GAME
-                    </button>
+                <div className="w-full text-center z-10 relative mb-[9%]">
+                    <div className="flex flex-col items-center justify-center w-[24%] mx-auto" style={{ gap: '3cqh' }}>
+                        {/* Start Button */}
+                        <button
+                            onClick={onStart}
+                            className="w-full bg-cyan-950/30 border border-cyan-500/40 text-cyan-300 hover:text-white font-orbitron rounded
+                           hover:bg-cyan-500/25 hover:border-cyan-300 hover:shadow-[0_0_20px_rgba(0,245,255,0.35)]
+                           transition-all duration-300 transform hover:-translate-y-[2%] active:translate-y-0 active:scale-98"
+                            style={{ padding: '2.5cqh 0', fontSize: '1.4cqw', letterSpacing: '0.3em' }}
+                        >
+                            NEW GAME
+                        </button>
 
-                    {/* Continue Button */}
-                    <button
-                        onClick={onContinue}
-                        disabled={!hasSave}
-                        className={`w-full py-3 font-orbitron text-sm tracking-[0.3em] rounded transition-all duration-300
-                       ${hasSave
-                                ? 'bg-indigo-950/30 border border-indigo-500/40 text-indigo-300 hover:text-white hover:bg-indigo-500/25 hover:border-indigo-300 hover:shadow-[0_0_20px_rgba(99,102,241,0.35)] transform hover:-translate-y-0.5 active:translate-y-0 active:scale-98'
-                                : 'border border-gray-800 text-gray-600 cursor-not-allowed bg-black/10'}`}
-                    >
-                        CONTINUE
-                    </button>
+                        {/* Continue Button */}
+                        <button
+                            onClick={onContinue}
+                            disabled={!hasSave}
+                            className={`w-full font-orbitron rounded transition-all duration-300
+                           ${hasSave
+                                    ? 'bg-indigo-950/30 border border-indigo-500/40 text-indigo-300 hover:text-white hover:bg-indigo-500/25 hover:border-indigo-300 hover:shadow-[0_0_20px_rgba(99,102,241,0.35)] transform hover:-translate-y-[2%] active:translate-y-0 active:scale-98'
+                                    : 'border border-gray-800 text-gray-600 cursor-not-allowed bg-black/10'}`}
+                            style={{ padding: '2.5cqh 0', fontSize: '1.4cqw', letterSpacing: '0.3em' }}
+                        >
+                            CONTINUE
+                        </button>
 
-                    {/* Battle Test Button */}
-                    <button
-                        onClick={onBattle}
-                        className="w-full py-3 bg-pink-950/30 border border-pink-500/40 text-pink-300 hover:text-white font-orbitron text-sm tracking-[0.3em] rounded
-                       hover:bg-pink-500/25 hover:border-pink-300 hover:shadow-[0_0_20px_rgba(236,72,153,0.35)]
-                       transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 active:scale-98"
-                    >
-                        BATTLE
-                    </button>
+                        {/* Battle Test Button */}
+                        <button
+                            onClick={onBattle}
+                            className="w-full bg-pink-950/30 border border-pink-500/40 text-pink-300 hover:text-white font-orbitron rounded
+                           hover:bg-pink-500/25 hover:border-pink-300 hover:shadow-[0_0_20px_rgba(236,72,153,0.35)]
+                           transition-all duration-300 transform hover:-translate-y-[2%] active:translate-y-0 active:scale-98"
+                            style={{ padding: '2.5cqh 0', fontSize: '1.4cqw', letterSpacing: '0.3em' }}
+                        >
+                            BATTLE
+                        </button>
 
-                    {/* Credits Button */}
-                    <button
-                        onClick={() => setShowCredits(true)}
-                        className="w-full py-2 bg-transparent border border-transparent text-gray-400 hover:text-cyan-300 font-orbitron text-xs tracking-[0.2em] rounded
-                       hover:bg-cyan-950/20 hover:border-cyan-500/20 transition-all duration-300"
-                    >
-                        CREDITS
-                    </button>
+                        {/* Credits Button */}
+                        <button
+                            onClick={() => setShowCredits(true)}
+                            className="w-full bg-transparent border border-transparent text-gray-400 hover:text-cyan-300 font-orbitron rounded
+                           hover:bg-cyan-950/20 hover:border-cyan-500/20 transition-all duration-300"
+                            style={{ padding: '2cqh 0', fontSize: '1.1cqw', letterSpacing: '0.2em' }}
+                        >
+                            CREDITS
+                        </button>
+                    </div>
                 </div>
-            </div>
 
-            {/* Footer / Copyright */}
-            <div className="w-full flex flex-col md:flex-row justify-between items-center z-10 font-orbitron text-[9px] text-gray-500 tracking-wider space-y-2 md:space-y-0">
-                <p>© 2026 TWOMOONS PROJECT. ALL RIGHTS RESERVED.</p>
-                <p className="text-cyan-600/40">POWERED BY CYBER_NOVEL_ENGINE</p>
+                {/* Footer / Copyright */}
+                <div className="w-full flex flex-row justify-between items-center z-10 font-orbitron px-[4%] pb-[2%] opacity-70" style={{ fontSize: '1cqw' }}>
+                    <p className="text-gray-400">© 2026 TWOMOONS PROJECT. ALL RIGHTS RESERVED.</p>
+                    <p className="text-cyan-400/40">POWERED BY CYBER_NOVEL_ENGINE</p>
+                </div>
             </div>
 
             {/* Credits Modal Overlay */}
@@ -110,7 +89,7 @@ import { assetPath } from '../utils/assetPath'; export default function TitleScr
                             CREDITS
                         </h3>
 
-                        <div className="space-y-4 text-sm font-noto text-gray-300 max-h-[60vh] overflow-y-auto pr-2">
+                        <div className="space-y-4 text-sm font-noto text-gray-300 max-h-[60cqh] overflow-y-auto pr-2">
                             {/* 一旦非表示
                             <div className="text-center">
                                 <p className="text-xs font-orbitron text-cyan-500/60 tracking-widest mb-1">PRODUCER / SCENARIO</p>

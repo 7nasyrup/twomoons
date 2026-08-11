@@ -305,7 +305,7 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
               style={{
                 width: isKimera ? '60%' : '45%',
                 height: isKimera ? '75%' : '95%',
-                bottom: isKimera ? '28vh' : '-50px',
+                bottom: isKimera ? '28cqh' : '-50px',
                 left: isKimera && (!overrideStyle) ? '20%' : undefined,
                 transformOrigin: 'bottom center',
                 ...layoutStyles

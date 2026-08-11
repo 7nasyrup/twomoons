@@ -11,7 +11,7 @@ const TARGETS_DATA = {
     resultText: '【監視ドローンの特定】防衛局のドローン。こちらの月波適応度をスキャンしようとしていた形跡。しかし誰かによってハッキングされ、機能停止している。',
     color: '#06b6d4', // Cyan
     top: '15%',      // Higher up in the sky
-    left: '125vw',    // Panoramic coordinate
+    left: '125cqw',    // Panoramic coordinate
     width: '90px',
     height: '90px'
   },
@@ -22,7 +22,7 @@ const TARGETS_DATA = {
     resultText: '【睦典のプロファイリング】割烹着の代わりに、見たこともない特殊戦闘装備を纏っている。実家の包丁ではなく、巨大な大剣の柄を握り締め、こちらを見守るように静止していた。周囲の熱量が完全に凍結している。',
     color: '#bc84ee', // Purple
     top: '60%',      // Middle-low on the street
-    left: '30vw',
+    left: '30cqw',
     width: '100px',
     height: '140px'
   },
@@ -33,7 +33,7 @@ const TARGETS_DATA = {
     resultText: '【ミカのプロファイリング】闇に溶ける特殊な迷彩マントを羽織り、指先から感覚幻覚を遮断する微細なノイズを散布している。しかしその視線は、ただ一途にこちらの安全を監視しているようだ。',
     color: '#ff758f', // Pink
     top: '45%',      // Mid-level
-    left: '165vw',
+    left: '165cqw',
     width: '100px',
     height: '130px'
   },
@@ -44,7 +44,7 @@ const TARGETS_DATA = {
     resultText: '【凪砂のプロファイリング】暗闇の中、虚空の一点を見つめたまま、因果律の因果線をその眼球で数秒先まで絶対予知している。脳に凄まじい激痛が走っているのか、冷や汗を流しながら、こちらの足元を見つめている。',
     color: '#ffb703', // Yellow/Gold
     top: '72%',      // Low down near a bench/ground
-    left: '85vw',
+    left: '85cqw',
     width: '100px',
     height: '120px'
   }
@@ -98,7 +98,7 @@ export default function EyeOfProfiler({ onComplete }) {
     const deltaX = e.clientX - dragStartX.current;
     const deltaY = e.clientY - dragStartY.current;
     
-    // Width is 200vw (max pan is 100vw), Height is 150vh (max pan is 50vh)
+    // Width is 200cqw (max pan is 100cqw), Height is 150cqh (max pan is 50cqh)
     const maxPanX = window.innerWidth;
     const maxPanY = window.innerHeight * 0.5;
     
@@ -180,7 +180,7 @@ export default function EyeOfProfiler({ onComplete }) {
       >
         {/* Scrollable Panorama Track (2D panning using translate) */}
         <div 
-          className="absolute left-0 top-0 w-[200vw] h-[150vh] transition-transform duration-100 ease-out"
+          className="absolute left-0 top-0 w-[200cqw] h-[150cqh] transition-transform duration-100 ease-out"
           style={{ 
             transform: `translate(-${panX}px, -${panY}px)`
           }}
@@ -201,7 +201,7 @@ export default function EyeOfProfiler({ onComplete }) {
             </div>
           )}
 
-          {/* Floating targets placed absolutely inside 200vw width and 150vh height panoramic bg */}
+          {/* Floating targets placed absolutely inside 200cqw width and 150cqh height panoramic bg */}
           {Object.entries(TARGETS_DATA).map(([key, target]) => {
             const isScanned = scanned[key];
             return (
@@ -259,9 +259,9 @@ export default function EyeOfProfiler({ onComplete }) {
 
       {/* Large HUD Circular Vignette (Scope) (Absolute Overlay) */}
       <div className="absolute inset-0 border-[30px] border-black/40 rounded-[20%] pointer-events-none z-20 flex items-center justify-center">
-        <div className="w-[85vh] h-[85vh] rounded-full border border-green-500/10 absolute pointer-events-none" />
-        <div className="w-[65vh] h-[65vh] rounded-full border border-green-500/20 border-dashed absolute pointer-events-none" />
-        <div className="w-[45vh] h-[45vh] rounded-full border-2 border-green-500/30 absolute pointer-events-none flex items-center justify-center">
+        <div className="w-[85cqh] h-[85cqh] rounded-full border border-green-500/10 absolute pointer-events-none" />
+        <div className="w-[65cqh] h-[65cqh] rounded-full border border-green-500/20 border-dashed absolute pointer-events-none" />
+        <div className="w-[45cqh] h-[45cqh] rounded-full border-2 border-green-500/30 absolute pointer-events-none flex items-center justify-center">
           <div className="w-4 h-[1px] bg-green-500" />
           <div className="h-4 w-[1px] bg-green-500" />
         </div>
@@ -308,7 +308,7 @@ export default function EyeOfProfiler({ onComplete }) {
               initial={{ scale: 0.9, y: 15 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 15 }}
-              className="w-full max-w-2xl bg-black/80 border border-white/10 rounded-sm p-10 relative flex flex-col shadow-2xl h-[55vh] justify-between overflow-hidden backdrop-blur-md"
+              className="w-full max-w-2xl bg-black/80 border border-white/10 rounded-sm p-10 relative flex flex-col shadow-2xl h-[55cqh] justify-between overflow-hidden backdrop-blur-md"
             >
               {/* Modal Header */}
               <div className="flex justify-between items-center mb-8">
@@ -359,7 +359,7 @@ export default function EyeOfProfiler({ onComplete }) {
             className="absolute inset-0 bg-[#011408]/98 flex flex-col items-center justify-center p-6 z-[90]"
           >
             {/* Holographic background radar */}
-            <div className="absolute w-[60vh] h-[60vh] rounded-full border border-green-500/5 shadow-[0_0_80px_rgba(34,197,94,0.03)] pointer-events-none" />
+            <div className="absolute w-[60cqh] h-[60cqh] rounded-full border border-green-500/5 shadow-[0_0_80px_rgba(34,197,94,0.03)] pointer-events-none" />
 
             <div className="w-full max-w-xl border border-white/10 rounded-sm p-10 bg-black/80 backdrop-blur-md relative flex flex-col items-center text-center shadow-2xl">
               {gameState === 'won' ? (

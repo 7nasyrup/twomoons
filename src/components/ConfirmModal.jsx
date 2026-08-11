@@ -18,7 +18,7 @@ export default function ConfirmModal({ isActive, title, message, onConfirm, onCa
 
           {/* Modal card */}
           <motion.div
-            className="relative bg-[#0a192f] border-[0.3vh] border-[#4dd0e1] rounded-xl p-6 max-w-md w-[90%] shadow-[0_10px_40px_rgba(0,0,0,0.5)] flex flex-col"
+            className="relative bg-[#0a192f] border-[0.3cqh] border-[#4dd0e1] rounded-xl p-6 max-w-md w-[90%] shadow-[0_10px_40px_rgba(0,0,0,0.5)] flex flex-col"
             initial={{ scale: 0.9, opacity: 0, y: 20 }}
             animate={{
               scale: 1, opacity: 1, y: 0,
@@ -53,7 +53,7 @@ export default function ConfirmModal({ isActive, title, message, onConfirm, onCa
             </div>
 
             {/* Content */}
-            <div className="border-t-[0.2vh] border-[#4dd0e1]/30 pt-5 pb-6 relative z-10">
+            <div className="border-t-[0.2cqh] border-[#4dd0e1]/30 pt-5 pb-6 relative z-10">
               <p className="text-slate-200 font-noto text-base leading-relaxed whitespace-pre-line text-center">
                 {message}
               </p>

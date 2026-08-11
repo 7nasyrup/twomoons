@@ -75,6 +75,27 @@ export default function DevConsole({
     return acc;
   }, []) || [];
 
+  const prevIsOpen = useRef(false);
+  useEffect(() => {
+    if (isOpen && !prevIsOpen.current && sceneBreaks.length > 0) {
+      let activeSceneStep = 0;
+      for (let i = 0; i < sceneBreaks.length; i++) {
+        if (currentStep >= sceneBreaks[i].step) {
+          activeSceneStep = sceneBreaks[i].step;
+        } else {
+          break;
+        }
+      }
+      setTimeout(() => {
+        const el = document.getElementById(`scene-btn-${activeSceneStep}`);
+        if (el) {
+          el.scrollIntoView({ behavior: 'auto', block: 'center' });
+        }
+      }, 100);
+    }
+    prevIsOpen.current = isOpen;
+  }, [isOpen, currentStep, sceneBreaks]);
+
   if (!isUnlocked) return null;
 
   return (
@@ -96,7 +117,7 @@ export default function DevConsole({
           <motion.div
             onClick={(e) => e.stopPropagation()}
             className="absolute top-12 right-3 z-[60] bg-[#080a10]/95 backdrop-blur-xl border border-cyan-500/20
-                       rounded-lg p-4 w-72 max-h-[85vh] overflow-y-auto scrollbar-thin shadow-[0_0_40px_rgba(0,245,255,0.1)] pointer-events-auto"
+                       rounded-lg p-4 w-72 max-h-[85cqh] overflow-y-auto scrollbar-thin shadow-[0_0_40px_rgba(0,245,255,0.1)] pointer-events-auto"
             initial={{ opacity: 0, y: -10, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -10, scale: 0.95 }}
@@ -157,6 +178,7 @@ export default function DevConsole({
               {sceneBreaks.map((sb) => (
                 <button
                   key={sb.step}
+                  id={`scene-btn-${sb.step}`}
                   onClick={() => onJumpToStep(sb.step)}
                   className={`text-left text-xs px-2 py-1.5 rounded transition-colors font-orbitron
                     ${currentStep >= sb.step ? 'text-cyan-400 bg-cyan-500/10' : 'text-cyan-500/40 hover:text-cyan-300 hover:bg-cyan-500/5'}`}

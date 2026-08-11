@@ -5,7 +5,7 @@ import SpriteAnimator from './SpriteAnimator';
 // ═══════════════════════════════════════════════════════════════════════════════
 // CONSTANTS & TUNING
 // ═══════════════════════════════════════════════════════════════════════════════
-const TURN_DELAY = 1000;              // Delay between turns (ms)
+const TURN_DELAY = 300;              // Delay between turns (ms) (Snappy tempo)
 const HEAL_COOLDOWN = 12000;
 
 // Damage values
@@ -29,7 +29,6 @@ const ATTACK_PATTERNS = [
   { type: 'double', hits: 2, duration: 1000, label: '連続攻撃' },
   { type: 'triple', hits: 3, duration: 900, label: '三連撃' },
   { type: 'quad', hits: 4, duration: 800, label: '四連撃' },
-  { type: 'delayed', hits: 1, duration: 2500, label: 'ディレイ攻撃' },
 ];
 
 // Turn order
@@ -662,6 +661,92 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
   }, [battlePhase, onComplete, stopBGM]);
 
   // ═══════════════════════════════════════════════════════════════════════════════
+  // KEYBOARD CONTROLS
+  // ═══════════════════════════════════════════════════════════════════════════════
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.repeat) return;
+      if (stateRef.current.battlePhase !== 'fighting') return;
+      
+      const key = e.key.toLowerCase();
+      
+      const getAllyIdByPos = (posIndex) => {
+        if (posIndex < allies.length) return allies[posIndex].id;
+        return null;
+      };
+
+      // Pos 1 (f for parry, r for ult)
+      if (key === 'f') {
+        const id = getAllyIdByPos(0);
+        if (id) handlePointerDown(id);
+      } else if (key === 'r') {
+        const id = getAllyIdByPos(0);
+        if (id === 'mutsunori') handleMutsunoriUltimate();
+      }
+      
+      // Pos 2 (d for parry, e for ult)
+      if (key === 'd') {
+        const id = getAllyIdByPos(1);
+        if (id) handlePointerDown(id);
+      } else if (key === 'e') {
+        const id = getAllyIdByPos(1);
+        if (id === 'nagisa') handleNagisaUltimate();
+      }
+
+      // Pos 3 (s for parry, w for ult)
+      if (key === 's') {
+        const id = getAllyIdByPos(2);
+        if (id) handlePointerDown(id);
+      }
+      
+      // Pos 4 (a for parry, q for ult)
+      if (key === 'a') {
+        const id = getAllyIdByPos(3);
+        if (id) handlePointerDown(id);
+      }
+
+      // Heal (space)
+      if (key === ' ' || key === 'spacebar') {
+        e.preventDefault();
+        handleHeal();
+      }
+    };
+
+    const handleKeyUp = (e) => {
+      const key = e.key.toLowerCase();
+      const getAllyIdByPos = (posIndex) => {
+        if (posIndex < allies.length) return allies[posIndex].id;
+        return null;
+      };
+
+      if (key === 'f') {
+        const id = getAllyIdByPos(0);
+        if (id) handlePointerUp(id);
+      }
+      if (key === 'd') {
+        const id = getAllyIdByPos(1);
+        if (id) handlePointerUp(id);
+      }
+      if (key === 's') {
+        const id = getAllyIdByPos(2);
+        if (id) handlePointerUp(id);
+      }
+      if (key === 'a') {
+        const id = getAllyIdByPos(3);
+        if (id) handlePointerUp(id);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('keyup', handleKeyUp);
+    
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('keyup', handleKeyUp);
+    };
+  }, [allies, handlePointerDown, handlePointerUp, handleMutsunoriUltimate, handleNagisaUltimate, handleHeal]);
+
+  // ═══════════════════════════════════════════════════════════════════════════════
   // RENDER COMPUTATIONS
   // ═══════════════════════════════════════════════════════════════════════════════
   
@@ -674,6 +759,45 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
   const activeAttacksCompat = useMemo(() => {
     return currentAttack ? [currentAttack] : [];
   }, [currentAttack]);
+
+  const svgRef = useRef(null);
+  const [lineCoords, setLineCoords] = useState(null);
+
+  useEffect(() => {
+    if (activeAttacksCompat.length === 0) {
+      setLineCoords(null);
+      return;
+    }
+    
+    const updateCoords = () => {
+      const attack = activeAttacksCompat[0];
+      const enemyEl = document.getElementById(`char-${attack.enemyId}`);
+      const allyEl = document.getElementById(`char-${attack.targetId}`);
+      const svgEl = svgRef.current;
+      
+      if (enemyEl && allyEl && svgEl) {
+        const eRect = enemyEl.getBoundingClientRect();
+        const aRect = allyEl.getBoundingClientRect();
+        const sRect = svgEl.getBoundingClientRect();
+        
+        setLineCoords({
+          x1: eRect.left + eRect.width / 2 - sRect.left,
+          y1: eRect.top + eRect.height / 2 - sRect.top,
+          x2: aRect.left + aRect.width / 2 - sRect.left,
+          y2: aRect.top + aRect.height / 2 - sRect.top,
+          enemyId: attack.enemyId,
+          targetId: attack.targetId
+        });
+      }
+    };
+    
+    const raf = requestAnimationFrame(updateCoords);
+    window.addEventListener('resize', updateCoords);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener('resize', updateCoords);
+    };
+  }, [activeAttacksCompat]);
 
   // ═══════════════════════════════════════════════════════════════════════════════
   // RENDER
@@ -774,6 +898,25 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
          ═══════════════════════════════════════════════════════════════ */}
       <div className="relative flex-1 flex items-stretch px-2 md:px-8 pt-20 pb-32 z-10 overflow-hidden">
         
+        {/* ── Attack Warning Lines Overlay ── */}
+        <svg ref={svgRef} className="absolute inset-0 w-full h-full pointer-events-none z-10">
+          {lineCoords && (
+            <motion.line
+              key={`attack-line-${lineCoords.enemyId}-${lineCoords.targetId}`}
+              x1={lineCoords.x1} y1={lineCoords.y1}
+              x2={lineCoords.x2} y2={lineCoords.y2}
+              stroke="#ef4444"
+              strokeWidth="5"
+              strokeDasharray="15 10"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: [1, 0.4, 1] }}
+              transition={{ 
+                opacity: { duration: 0.6, repeat: Infinity }
+              }}
+            />
+          )}
+        </svg>
+        
         {/* ── Allies (Left Column) ── */}
         <div className="w-1/2 flex flex-col justify-around items-center pr-4">
           {allies.map(ally => {
@@ -796,6 +939,7 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
 
                 {/* Ally Portrait (Interactable) */}
                 <motion.div
+                  id={`char-${ally.id}`}
                   className={`relative cursor-pointer touch-none flex items-center justify-center transition-all duration-200
                     ${ally.id === 'nagisa' ? 'w-[140px] h-[186px] md:w-[180px] md:h-[230px]' : 'w-28 h-36 md:w-36 md:h-48'}
                     ${ally.isDead ? 'opacity-40 grayscale' : ''}
@@ -807,15 +951,13 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
                   onPointerLeave={() => handlePointerUp(ally.id)}
                   onContextMenu={(e) => e.preventDefault()}
                 >
-                  {/* Warning Line Effect (Targeted) */}
-                  {isTargeted && !ally.isDead && attackInfo && (
-                    <motion.div 
-                      className="absolute top-1/2 -right-64 md:-right-96 w-64 md:w-96 h-1 bg-gradient-to-l from-transparent via-red-500 to-red-500 z-10 origin-right"
-                      initial={{ scaleX: 0, opacity: 0 }}
-                      animate={{ scaleX: 1, opacity: [0.8, 0.4, 0.8] }}
-                      transition={{ duration: 0.3, repeat: Infinity }}
-                    />
-                  )}
+
+                  {/* Keyboard Hint */}
+                  <div className="absolute top-2 right-2 md:top-4 md:right-4 bg-slate-900/80 px-2 py-0.5 rounded border border-slate-500 shadow-[0_0_10px_rgba(0,0,0,0.5)] pointer-events-none z-50">
+                    <span className="font-orbitron font-bold text-xs md:text-sm text-cyan-200">
+                      [{ally.id === 'mutsunori' ? 'F' : ally.id === 'nagisa' ? 'D' : ''}]
+                    </span>
+                  </div>
 
                   {/* Target Highlight & Shrinking Circle (Osu! Style) */}
                   {isTargeted && !ally.isDead && attackInfo && (
@@ -919,6 +1061,7 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
 
                 {/* Enemy Body */}
                 <motion.div 
+                  id={`char-${enemy.id}`}
                   className={`relative w-28 h-36 md:w-36 md:h-48 flex items-center justify-center transition-all duration-200 ${
                     enemy.isDead ? 'opacity-30 grayscale'
                     : enemy.flashTimer > 0 ? 'animate-battle-hit-flash'
@@ -965,7 +1108,7 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
       {/* ═══════════════════════════════════════════════════════════════
            BOTTOM HUD (Sakura, Commands, Cards)
          ═══════════════════════════════════════════════════════════════ */}
-      <div className="absolute bottom-0 inset-x-0 h-[15vh] md:h-[18vh] bg-slate-900/40 backdrop-blur-md border-t border-slate-700/50 z-40 flex flex-row items-center justify-between px-2 md:px-6 shadow-[0_-10px_30px_rgba(0,0,0,0.5)]">
+      <div className="absolute bottom-0 inset-x-0 h-[15cqh] md:h-[18cqh] bg-slate-900/40 backdrop-blur-md border-t border-slate-700/50 z-40 flex flex-row items-center justify-between px-2 md:px-6 shadow-[0_-10px_30px_rgba(0,0,0,0.5)]">
         
         {/* Left: Sakura & Sync */}
         <div className="flex items-center gap-2 md:gap-4 w-[30%]">
@@ -1014,6 +1157,9 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
                 : 'bg-gradient-to-b from-emerald-500/20 to-emerald-900/80 text-emerald-100 border border-emerald-400/50 hover:bg-emerald-500/40 hover:shadow-[0_0_20px_rgba(52,211,153,0.5)] active:scale-95 cursor-pointer'
             }`}
           >
+            <div className="absolute top-1 left-1 md:top-1.5 md:left-1.5 bg-slate-900/90 px-1 md:px-1.5 py-0.5 rounded border border-emerald-500/50 pointer-events-none z-20 shadow-md">
+              <span className="font-orbitron font-bold text-[7px] md:text-[9px] text-emerald-200 tracking-wider">SPC</span>
+            </div>
             {healCooldown > 0 && (
               <div className="absolute bottom-0 left-0 right-0 bg-slate-900/60 transition-all duration-100" style={{ height: `${(healCooldown / HEAL_COOLDOWN) * 100}%` }} />
             )}
@@ -1031,6 +1177,9 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
                 : 'bg-gradient-to-b from-cyan-400/20 to-cyan-900/80 text-cyan-50 border border-cyan-300/60 hover:shadow-[0_0_25px_rgba(34,211,238,0.6)] active:scale-95 cursor-pointer'
             }`}
           >
+            <div className="absolute top-1 left-1 md:top-1.5 md:left-1.5 bg-slate-900/90 px-1.5 py-0.5 rounded border border-cyan-500/50 pointer-events-none z-20 shadow-md">
+              <span className="font-orbitron font-bold text-[7px] md:text-[9px] text-cyan-200">R</span>
+            </div>
             <span className="font-noto font-black text-[10px] md:text-sm relative z-10 text-cyan-100 drop-shadow-md">睦典<br/>必殺技</span>
             {syncRate >= SYNC_COST_ULTIMATE && (
               <motion.div className="absolute inset-0 bg-gradient-to-t from-cyan-400/40 to-transparent pointer-events-none" animate={{ opacity: [0.3, 0.8, 0.3] }} transition={{ duration: 1.5, repeat: Infinity }} />
@@ -1047,6 +1196,9 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
                 : 'bg-gradient-to-b from-pink-400/20 to-pink-900/80 text-pink-50 border border-pink-300/60 hover:shadow-[0_0_25px_rgba(244,114,182,0.6)] active:scale-95 cursor-pointer'
             }`}
           >
+            <div className="absolute top-1 left-1 md:top-1.5 md:left-1.5 bg-slate-900/90 px-1.5 py-0.5 rounded border border-pink-500/50 pointer-events-none z-20 shadow-md">
+              <span className="font-orbitron font-bold text-[7px] md:text-[9px] text-pink-200">E</span>
+            </div>
             <span className="font-noto font-black text-[10px] md:text-sm relative z-10 text-pink-100 drop-shadow-md">凪砂<br/>必殺技</span>
             {syncRate >= SYNC_COST_ULTIMATE && (
               <motion.div className="absolute inset-0 bg-gradient-to-t from-pink-400/40 to-transparent pointer-events-none" animate={{ opacity: [0.3, 0.8, 0.3] }} transition={{ duration: 1.5, repeat: Infinity }} />

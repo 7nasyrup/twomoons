@@ -64,6 +64,7 @@
   position: relative;
   overflow: hidden;
   margin: auto;
+  container-type: size;
 }
 
 /* Near-Future Geometric UI */

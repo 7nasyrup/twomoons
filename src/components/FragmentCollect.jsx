@@ -17,69 +17,58 @@ const MUTSUNORI_CHIP = [
   // 1つ目
   [
     {
-      speaker: '睦典', role: '睦典', illust: 'Mutsunori_smile',
-      text: '「よし、セキュリティコードの断片だ。……あ、ちょっと頭痛が」'
-    },
-    {
-      speaker: '睦典', role: '睦典', illust: 'Mutsunori_smile',
-      text: '「最近ちょっと物忘れが激しくてさ。気にしないでくれ」'
+      speaker: '睦典', role: 'MUTSUNORI', illust: 'Mutsunori_happy',
+      text: '「やったね！フラグメントゲットだぜ！」'
     }
   ],
   // 2つ目
   [
     {
-      speaker: '睦典', role: '睦典', illust: 'Mutsunori_serious',
-      text: '「チップ確保。……あれ、俺さっきどうやってアイツ倒したっけ？」'
-    },
-    {
-      speaker: '睦典', role: '睦典', illust: 'Mutsunori_serious',
-      text: '「傷は一瞬で治るのに、直前の戦闘の記憶が……いまいちぼやけるな」'
+      speaker: '睦典', role: 'MUTSUNORI', illust: 'Mutsunori_smile',
+      text: '「この調子でどんどん集めていこう！」'
     }
   ],
   // 3つ目
   [
     {
-      speaker: '睦典', role: '睦典', illust: 'Mutsunori_pout',
-      text: '「……っ、朔良の顔が二重に見える。目を擦ったら治るか」'
-    },
-    {
-      speaker: '睦典', role: '睦典', illust: 'Mutsunori_pout',
-      text: '「手の感覚があんまりない。……異常じゃねぇよ、たぶん」'
+      speaker: '睦典', role: 'MUTSUNORI', illust: 'Mutsunori_smile',
+      text: '「あと少しだ！早く見つけよう！」'
     }
   ],
   // 4つ目以降
   [
     {
-      speaker: '睦典', role: '睦典', illust: 'Mutsunori_pout',
-      text: '「……。朔良、俺は大丈夫だから。先を急ごう」'
+      speaker: '睦典', role: 'MUTSUNORI', illust: 'Mutsunori_happy',
+      text: '「これで全部だ！コアのところへ急ごうぜ！」'
     }
   ]
 ];
 
 // ファイル取得時
 const MUTSUNORI_FILE = [
-  [{
-    speaker: '睦典', role: '睦典', illust: 'Mutsunori_serious',
-    text: '「機密ファイル？　マジか。あとで中身を確認しろよ」'
-  }],
-  [{
-    speaker: '睦典', role: '睦典', illust: 'Mutsunori_serious',
-    text: '「……そのファイル、見ない方がいいかもな。いや、見ろ。情報は力だ」'
-  }],
-  [{
-    speaker: '睦典', role: '睦典', illust: 'Mutsunori_serious',
-    text: '「……ファイル。どこかで、似たような字を見た気がする。気のせいか」'
-  }],
-  [{
-    speaker: '睦典', role: '睦典', illust: 'Mutsunori_pout',
-    text: '「……ッ。そのファイル、俺の名前が書いてないか。……見なかったことにしろ」'
-  }],
+  // 最初に見つけた時だけ再生
+  [
+    { speaker: '睦典', role: 'MUTSUNORI', text: '「朔良！ 何か手掛かりは見つかったか？」' },
+    { speaker: '朔良', role: 'SAKURA', text: '「っ、うわッ！！」' },
+    { speaker: '', role: 'SYSTEM', text: '背後から突然声をかけられ、思わず肩が跳ねる。' },
+    { speaker: '睦典', role: 'MUTSUNORI', illust: 'Mutsunori_pout', text: '「あ……ごめん、驚かせちゃったか？」' },
+    { speaker: '朔良', role: 'SAKURA', text: '「え、あ……ううん、大丈夫」' },
+    { speaker: '', role: 'SYSTEM', text: '睦典のいつもの優しい顔を見て、私は咄嗟に手にしていた書類を隠した。' },
+    { speaker: '朔良', role: 'SAKURA', text: '（……なんで、隠したんだろう）' },
+    { speaker: '', role: 'SYSTEM', text: '自分でも理由は分からない。\nただ、この内容を今すぐ彼に見せてはいけない気がした。' },
+    { speaker: '睦典', role: 'MUTSUNORI', illust: 'Mutsunori_smile', text: '「……何か見つけた？」' },
+    { speaker: '朔良', role: 'SAKURA', text: '「ううん、何も。もう少し探してみよう」' },
+    { speaker: '', role: 'SYSTEM', text: '小さな違和感を胸に抱えたまま、私は研究所の奥へと歩き出した。' }
+  ],
+  [],
+  [],
+  []
 ];
 
 // ゲート解錠時
 const MUTSUNORI_GATE = [
   {
-    speaker: '睦典', role: '睦典', illust: 'Mutsunori_happy',
+    speaker: '睦典', role: 'MUTSUNORI', illust: 'Mutsunori_happy',
     text: '「コードが揃った！　行くぞ朔良、ゲートを開ける！」'
   },
 ];
@@ -94,19 +83,19 @@ const ROOM_ITEMS = {
       {
         id: 'file_1',
         pos: { top: '62%', left: '65%' },
-        label: '機密ファイル 01',
+        label: '書類①',
         messages: [
           {
             speaker: 'システム', role: 'SYSTEM',
-            text: '【機密ファイル 01 ／ 被験者：ムツノリ・異能初期設定】'
+            text: '書類①：【適応者臨床データ No.190837】'
           },
           {
             speaker: null, role: null,
-            text: '被験者コード：M-001。異能分類：《超再生／不死》。\n肉体の時間軸を任意の時点まで「巻き戻す」ことにより、いかなる損傷・欠損も瞬時に修復する。\n理論上、致死ダメージすら無効化できるチート級の性能と評価され、研究所より「最優先適応者」の認定を受ける。'
+            text: '被観察者の------は異常値----す。致命的---傷であっ-----短時間で完全--復を確認。\nただし、回復処-----に一時的な記----濁、人格------低下が見られる。'
           },
           {
             speaker: null, role: null,
-            text: '初回同期時の本人コメント（録音記録より抜粋）：\n「ああ、この能力マジでやばくない？　俺、死なないじゃん」\n\n…当時の本人に、その代償を知る術はなかった。'
+            text: '※長期使用による影響は現在調査中――。'
           },
         ],
       },
@@ -116,25 +105,24 @@ const ROOM_ITEMS = {
   lab2: {
     chips: [
       { id: 'chip_2', pos: { top: '38%', left: '20%' }, label: 'コード断片②' },
-      { id: 'chip_3', pos: { top: '55%', left: '75%' }, label: 'コード断片③' },
     ],
     files: [
       {
         id: 'file_2',
         pos: { top: '30%', left: '50%' },
-        label: '機密ファイル 02',
+        label: '書類②',
         messages: [
           {
             speaker: 'システム', role: 'SYSTEM',
-            text: '【機密ファイル 02 ／ エラー報告：修復の等価交換】'
+            text: '書類②：【異能力解析報告書】'
           },
           {
             speaker: null, role: null,
-            text: '重大バグ報告 ／ 優先度：最高。\n被験者M-001の超再生機能に、想定外のエネルギー消費プロセスが確認された。\n肉体を「巻き戻す」際のエネルギー源として、脳内の記憶細胞――特に直近の出来事に関わる短期記憶、および自己同一性（アイデンティティ）に紐づく長期記憶の一部が、優先的に消費・消去されていることが判明。'
+            text: '対象者の能力は「------に特化しているものと思われる。\nしかし能力発----時、身----けでなく精-----も大きな負荷が--生。'
           },
           {
             speaker: null, role: null,
-            text: '平易な言葉で言い換えれば：\n\n「治れば治るほど、彼は自分を忘れていく」\n\n被験者本人への開示：　──　【見送り】\n理由：研究上の継続使用に支障をきたす可能性があるため。'
+            text: '※「-----」と呼べる状態をど-----持できるかは不明――。'
           },
         ],
       },
@@ -149,19 +137,19 @@ const ROOM_ITEMS = {
       {
         id: 'file_3',
         pos: { top: '35%', left: '68%' },
-        label: '機密ファイル 03',
+        label: '書類③',
         messages: [
           {
             speaker: 'システム', role: 'SYSTEM',
-            text: '【機密ファイル 03 ／ 適応者の末路：防衛兵器化】'
+            text: '書類③【研究員個人メモ】'
           },
           {
             speaker: null, role: null,
-            text: '摩耗率が100%に達した場合の予測シミュレーション（機密）。\n\n記憶の摩耗が限界を超えた時点で、被験者の「自我」は消失する。\n残るのは、脳に焼き付いた本能的な防衛プログラムのみ。\n自律型の《防衛兵器》として再起動し、周囲を無差別に排除しようとする。'
+            text: 'あの--年は、自分が何-----失っ--いるのか理解していない。\n--は治る。だが、そのた------ずつ“---なもの”が削れて----うに見える。'
           },
           {
             speaker: null, role: null,
-            text: '研究所の内部評価（一行メモ）：\n「制御不能になる前に処分するか、兵器として運用するかを選択せよ」\n\n──　そこに、人として扱う選択肢は、どこにもなかった。'
+            text: '…でももし、適応者の精神を繋ぎ止---方法があるとしたら…。それはきっと、『強い感情的な結びつきによる同調』なのかもしれない。'
           },
         ],
       },
@@ -169,28 +157,10 @@ const ROOM_ITEMS = {
   },
 
   lab4: {
-    chips: [],
-    files: [
-      {
-        id: 'file_4',
-        pos: { top: '58%', left: '25%' },
-        label: '機密ファイル 04',
-        messages: [
-          {
-            speaker: 'システム', role: 'SYSTEM',
-            text: '【機密ファイル 04 ／ プロジェクト・ウェッジ（楔）：無能力者の適合性】'
-          },
-          {
-            speaker: null, role: null,
-            text: '仮説：適応者の暴走を止める「楔（ウェッジ）」の条件。\n\n超再生能力の暴走と記憶摩耗を止める理論的な方法が、ただ一つ存在する。\n適応者が「絶対に忘れたくないと強く願う精神的支柱（絶対の存在）」と出会い、強度の感情同調（シンクロ）を起こした場合――'
-          },
-          {
-            speaker: null, role: null,
-            text: '――無能力者の持つ「中和・吸収」の特性が《楔》として機能し、異能の代償を無効化できるという仮説が成立する。\n\nキー要素：無能力者の存在。感情の深さ。そして、互いに選び合う意志。\n\n（余白に走り書き）「──　つまり、誰かが彼を"選び続けること"が、唯一の解になりうる」'
-          },
-        ],
-      },
+    chips: [
+      { id: 'chip_3', pos: { top: '55%', left: '75%' }, label: 'コード断片③' },
     ],
+    files: [],
   },
 };
 
@@ -238,14 +208,23 @@ const InfoParticle = ({ startX, startY, targetX, targetY, color, onComplete }) =
 
 
 
-// ─── キャラクタースプライト（本編SpriteSlot準拠） ───────────────────────────────
 function FCSprite({ currentMessage }) {
-  const illust = currentMessage?.illust;
-  if (!illust) return null;
-  const sepIdx = illust.indexOf('_');
+  const [activeIllust, setActiveIllust] = useState(null);
+
+  useEffect(() => {
+    if (!currentMessage) {
+      setActiveIllust(null);
+    } else if (currentMessage.illust) {
+      setActiveIllust(currentMessage.illust);
+    }
+  }, [currentMessage]);
+
+  if (!activeIllust) return null;
+
+  const sepIdx = activeIllust.indexOf('_');
   if (sepIdx === -1) return null;
-  const base = illust.substring(0, sepIdx);
-  const expression = illust.substring(sepIdx + 1);
+  const base = activeIllust.substring(0, sepIdx);
+  const expression = activeIllust.substring(sepIdx + 1);
 
   const CFGS = {
     Mutsunori: {
@@ -257,14 +236,21 @@ function FCSprite({ currentMessage }) {
   const cfg = CFGS[base];
   if (!cfg) return null;
   const imgPath = `${cfg.folder}/${cfg.file}_${expression}.png`;
+  
+  // 睦典が喋っているかどうか
+  const isSpeaking = currentMessage?.role === 'MUTSUNORI' || currentMessage?.speaker === '睦典';
 
   return (
     <AnimatePresence>
       <motion.div
-        key={illust}
+        key={base}
         className={`absolute bottom-[-50px] flex flex-col justify-end items-center pointer-events-none z-20 ${cfg.posClass}`}
         initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0, filter: 'brightness(1) drop-shadow(0 10px 20px rgba(0,0,0,0.5))' }}
+        animate={{ 
+          opacity: 1, 
+          y: 0, 
+          filter: isSpeaking ? 'brightness(1) drop-shadow(0 10px 20px rgba(0,0,0,0.5))' : 'brightness(0.5) drop-shadow(0 5px 10px rgba(0,0,0,0.5))' 
+        }}
         exit={{ opacity: 0, y: 20 }}
         transition={{ duration: 0.3, ease: 'easeOut' }}
       >
