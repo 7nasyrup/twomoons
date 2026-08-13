@@ -404,6 +404,7 @@ export default function App() {
   const [isMonochromeFlashActive, setIsMonochromeFlashActive] = useState(false);
   const [isEnergyAuraActive, setIsEnergyAuraActive] = useState(false);
   const [isDarkEnergyActive, setIsDarkEnergyActive] = useState(false);
+  const [isBlackEnergyEdgeActive, setIsBlackEnergyEdgeActive] = useState(false);
   const [isEyesClosed, setIsEyesClosed] = useState(false);
   const [isBlackAuraActive, setIsBlackAuraActive] = useState(false);
   const [isLightWaveActive, setIsLightWaveActive] = useState(false);
@@ -779,10 +780,30 @@ export default function App() {
       stopSE(assetPath(`/assets/audio/bgm/${currentLine.stopSe}`));
     }
 
-    const action = currentLine.action;
-    if (action) {
-      // Blood overlay actions
-      if (action === 'SHOW_BLOOD' || action === 'BLOOD_SCREEN' || action === 'BLOOD_SPLATTING') {
+    const actions = Array.isArray(currentLine.action) ? currentLine.action : (currentLine.action ? [currentLine.action] : []);
+    
+    let cleanupFuncs = [];
+    actions.forEach(action => {
+      if (action === 'clear') {
+        setIsBloodActive(false);
+        setIsRedAlertActive(false);
+        setShakeEffect(false);
+        setIsMonochromeFlashActive(false);
+        setIsWhiteOut(false);
+        setIsEnergyAuraActive(false);
+        setIsBlackAuraActive(false);
+        setIsDarkEnergyActive(false);
+        setIsBlackEnergyEdgeActive(false);
+        setIsSmokeActive(false);
+        setIsEyesClosed(false);
+        setIsTearBlurActive(false);
+        setIsLightWaveActive(false);
+        setIsSpeedEffectActive(false);
+        setIsBlackDistortActive(false);
+        setIsWhiteFlash70Active(false);
+        setWhitePulseLevel(0);
+        setIsGrayOut(false);
+      } else if (action === 'SHOW_BLOOD' || action === 'BLOOD_SCREEN' || action === 'BLOOD_SPLATTING') {
         setIsBloodActive(true);
       } else if (action === 'CLEAR_BLOOD' || action === 'MUTSUNORI_HEALING_CUTIN') {
         setIsBloodActive(false);
@@ -842,18 +863,18 @@ export default function App() {
           setIsPhoneCallRight(false);
         }
         const timer = setTimeout(() => setShakeEffect(false), 600);
-        return () => {
+        cleanupFuncs.push(() => {
           clearTimeout(timer);
           setShakeEffect(false);
-        };
+        });
       } else if (action === 'SHAKE_SCREEN_VERY_LARGE' || action === 'SHAKE_AND_SMOKE') {
         if (action === 'SHAKE_AND_SMOKE') setIsSmokeActive(true);
         setShakeEffect('large');
         const timer = setTimeout(() => setShakeEffect(false), 800);
-        return () => {
+        cleanupFuncs.push(() => {
           clearTimeout(timer);
           setShakeEffect(false);
-        };
+        });
       } else if (action === 'SHAKE_SCREEN_EXTREME') {
         setShakeEffect('extreme');
         // continuous shake, no auto-clear
@@ -862,10 +883,10 @@ export default function App() {
       } else if (action === 'SHAKE_SCREEN_LONG_SMALL') {
         setShakeEffect('small_continuous');
         const timer = setTimeout(() => setShakeEffect(false), 2500);
-        return () => {
+        cleanupFuncs.push(() => {
           clearTimeout(timer);
           setShakeEffect(false);
-        };
+        });
       } else if (action === 'DIZZY_EFFECT') {
         setShakeEffect('dizzy');
         // 継続的なエフェクトとするため自動クリアはしない
@@ -893,6 +914,10 @@ export default function App() {
         setIsDarkEnergyActive(true);
       } else if (action === 'CLEAR_DARK_ENERGY') {
         setIsDarkEnergyActive(false);
+      } else if (action === 'BLACK_ENERGY_EDGE') {
+        setIsBlackEnergyEdgeActive(true);
+      } else if (action === 'CLEAR_BLACK_ENERGY_EDGE') {
+        setIsBlackEnergyEdgeActive(false);
       } else if (action === 'CLOSE_EYES') {
         setIsEyesClosed(true);
       } else if (action === 'OPEN_EYES' || action === 'WAKE_UP') {
@@ -1030,14 +1055,20 @@ export default function App() {
         if ('vibrate' in navigator) {
           navigator.vibrate([200, 100, 200]);
         }
-        return () => {
+        cleanupFuncs.push(() => {
           clearTimeout(timer);
           setShakeEffect(false);
-        };
+        });
       }
-    } else {
+    });
+
+    if (actions.length === 0) {
       setFocusSlot(null);
     }
+    
+    return () => {
+      cleanupFuncs.forEach(fn => fn());
+    };
   }, [currentStep, currentLine, playBGM, stopBGM, pauseBGM, resumeBGM, playSE, stopSE, showTitle, showBattle]);
 
   // Cinema Mode Autoplay timers
@@ -1985,6 +2016,26 @@ export default function App() {
               )}
             </AnimatePresence>
 
+            {/* Black Energy Edge Overlay */}
+            <AnimatePresence>
+              {isBlackEnergyEdgeActive && !isCinema && !isAnyEnd && (
+                <motion.div
+                  className="absolute inset-0 pointer-events-none z-[5] mix-blend-multiply"
+                  style={{
+                    boxShadow: 'inset 0 0 120px 60px rgba(20, 0, 40, 0.9), inset 0 0 250px 100px rgba(0, 0, 0, 0.9)',
+                  }}
+                  initial={{ opacity: 0 }}
+                  animate={{ 
+                    opacity: [0.8, 1, 0.8],
+                  }}
+                  exit={{ opacity: 0, transition: { duration: 0.2, ease: 'easeOut', repeat: 0 } }}
+                  transition={{ 
+                    opacity: { duration: 2, repeat: Infinity, ease: 'easeInOut' }
+                  }}
+                />
+              )}
+            </AnimatePresence>
+
             {/* Light Wave Burst Overlay */}
             <AnimatePresence>
               {isLightWaveActive && !isCinema && !isAnyEnd && (
@@ -2211,7 +2262,7 @@ export default function App() {
         {!showTitle && (
           <>
             {/* Subtitles & Normal Dialogue Boxes */}
-            {!isCinema && !isTransition && !isAnyEnd && !alertActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isTypingGameActive && !isFragmentCollectActive && !isFragmentCollectMikaActive && !isFragmentCollectAkaneActive && !isFragmentCollectSoloActive && !isStealthGameActive && !isExplorationPhaseActive && !isStruggleGameActive && !isWarehouseExplorationActive && !currentLine?.hideWindow && (
+            {!isCinema && !isTransition && !isAnyEnd && !alertActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isTypingGameActive && !isFragmentCollectActive && !isFragmentCollectNagisaActive && !isFragmentCollectMikaActive && !isFragmentCollectAkaneActive && !isFragmentCollectSoloActive && !isStealthGameActive && !isExplorationPhaseActive && !isStruggleGameActive && !isWarehouseExplorationActive && !currentLine?.hideWindow && currentLine?.text && (
               <DialogueBox
                 isPopup={isPopup}
                 speaker={currentLine?.speaker}

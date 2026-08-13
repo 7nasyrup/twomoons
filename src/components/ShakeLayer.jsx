@@ -2,7 +2,10 @@ import { motion } from 'framer-motion';
 
 export default function ShakeLayer({ children, shakeEffect }) {
   const shakeVariants = {
-    idle: { x: 0, y: 0, scale: 1, rotate: 0, filter: 'blur(0px) hue-rotate(0deg) contrast(1)' },
+    idle: { 
+      x: 0, y: 0, scale: 1, rotate: 0, filter: 'blur(0px) hue-rotate(0deg) contrast(1)',
+      transition: { duration: 0.1, ease: 'easeOut' }
+    },
     shake: {
       x: [0, -10, 10, -8, 8, -5, 5, -2, 2, 0],
       y: [0, 5, -5, 4, -4, 3, -3, 1, -1, 0],

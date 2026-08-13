@@ -13,27 +13,42 @@ const ROOMS = [
 
 const NAGISA_CHIP = [
   [
-    { speaker: '凪砂', role: '凪砂', illust: 'Nagisa_neutral', text: '「コードの断片、確保。……あれ、少し眩暈が」' },
-    { speaker: '凪砂', role: '凪砂', illust: 'Nagisa_neutral', text: '「……いや、少し眩暈がしただけ。問題ないよ」' }
+    { speaker: '凪砂', role: 'NAGISA', illust: 'Nagisa_smile', text: '「一つ目、確保。……順調な滑り出しだね」' }
   ],
   [
-    { speaker: '凪砂', role: '凪砂', illust: 'Nagisa_serious', text: '「っ──！」' },
-    { speaker: '凪砂', role: '凪砂', illust: 'Nagisa_serious', text: '「あれ、音が消えてた……？　いや、僕の油断だ。そう、ただの油断」' }
+    { speaker: '凪砂', role: 'NAGISA', illust: 'Nagisa_neutral', text: '「よし、見つけたね。流石だよ」' }
   ],
   [
-    { speaker: '凪砂', role: '凪砂', illust: 'Nagisa_serious', text: '「……君の声が、遠くで響いているみたいに聞こえない」' },
-    { speaker: '凪砂', role: '凪砂', illust: 'Nagisa_serious', text: '「今、世界の色が抜けて見えた……。……何でもない、急ごう」' }
+    { speaker: '凪砂', role: 'NAGISA', illust: 'Nagisa_smile', text: '「あと少しだ。油断せずに行こうか」' }
   ],
   [
-    { speaker: '凪砂', role: '凪砂', illust: 'Nagisa_neutral', text: '「……。とりあえず、先を急ごう」' }
+    { speaker: '凪砂', role: 'NAGISA', illust: 'Nagisa_neutral', text: '「見つけたね。これで最後だ」' }
   ]
 ];
 
 const NAGISA_FILE = [
-  [{ speaker: '凪砂', role: '凪砂', illust: 'Nagisa_neutral', text: '「機密ファイル？　ふうん。後で確認してみて」' }],
-  [{ speaker: '凪砂', role: '凪砂', illust: 'Nagisa_serious', text: '「……そのファイル。見ない方が、君のためかもしれないね」' }],
-  [{ speaker: '凪砂', role: '凪砂', illust: 'Nagisa_serious', text: '「……そのファイル、僕の名前が書いてあったか？　……見なかったことにして」' }],
-  [{ speaker: '凪砂', role: '凪砂', illust: 'Nagisa_serious', text: '「……。……ねえ、朔良。君、今、僕のことを心配してる？」' }],
+  [
+    { speaker: '凪砂', role: 'NAGISA', text: '「……何か見つけた？」' },
+    { speaker: '朔良', role: 'SAKURA', text: '「っ……！」' },
+    { speaker: null, role: null, illust: 'Nagisa_smile', text: '突然すぐ後ろから声がして、私は思わず肩を震わせた。振り返ると、凪砂さんがいつの間にかすぐ後ろに立っている。' },
+    { speaker: '朔良', role: 'SAKURA', illust: 'Nagisa_neutral', text: '「お、脅かさないでください……！」' },
+    { speaker: '凪砂', role: 'NAGISA', illust: 'Nagisa_smile', text: '「ごめんごめん。君、周りが見えなくなってたから」' },
+    { speaker: null, role: null, illust: 'Nagisa_smile', text: '私は慌てて、手にしていた書類を胸元へ隠した。' },
+    { speaker: '朔良', role: 'SAKURA', illust: 'Nagisa_smile', text: '（……あれ？）' },
+    { speaker: null, role: null, illust: 'Nagisa_smile', text: 'どうして隠したんだろう。自分でも理由は分からない。\nただ、この紙だけは──今は凪砂さんに見せたくない。' },
+    { speaker: '凪砂', role: 'NAGISA', illust: 'Nagisa_smile', text: '「……隠すんだ」' },
+    { speaker: null, role: null, illust: 'Nagisa_smile', text: '凪砂さんが小さく目を細める。その声には責める色も、興味本位の色もない。\nただ、不思議そうだった。' },
+    { speaker: '朔良', role: 'SAKURA', illust: 'Nagisa_smile', text: '「え、これは、その……」' },
+    { speaker: null, role: null, illust: 'Nagisa_smile', text: '言葉に詰まる。理由を説明しようにも、私自身が理由を分かっていない。' },
+    { speaker: null, role: null, illust: 'Nagisa_smile', text: 'しばらく私を見つめていた凪砂さんは、小さく肩をすくめた。' },
+    { speaker: '凪砂', role: 'NAGISA', illust: 'Nagisa_neutral', text: '「まぁいいや。君が見せたくないなら、無理に見る趣味はないし」' },
+    { speaker: null, role: null, text: 'そう言うと、何事もなかったように踵を返す。' },
+    { speaker: '凪砂', role: 'NAGISA', text: '「その代わり、手掛かりが見つかったらちゃんと教えて。二人しかいないんだから」' },
+    { speaker: '朔良', role: 'SAKURA', text: '「……はい」' },
+    { speaker: null, role: null, text: 'どこか胸の奥に引っかかる違和感を抱えたまま、私は書類をしまい、凪砂さんの後を追って研究所の奥へと歩き出した。' }
+  ],
+  [],
+  []
 ];
 
 const NAGISA_GATE = [
@@ -44,49 +59,41 @@ const ROOM_ITEMS = {
   lab1: {
     chips: [{ id: 'chip_1', pos: { top: '45%', left: '28%' }, label: 'コード断片①' }],
     files: [{
-      id: 'file_1', pos: { top: '62%', left: '65%' }, label: '機密ファイル 01',
+      id: 'file_1', pos: { top: '62%', left: '65%' }, label: '書類 01',
       messages: [
-        { speaker: 'システム', role: 'SYSTEM', text: '【機密ファイル 01 ／ 被験者：ナギサ・異能初期設定】' },
-        { speaker: null, role: null, text: '被験者コード：N-001。異能分類：《精神透視（サトリ）》。\n視界に入った人間の思考・感情・記憶を残らず読み解き、いかなる行動も完全に先読みできる人心掌握の能力として研究所より「最優先適応者」の認定を受ける。' },
-        { speaker: null, role: null, text: '初回同期時の本人コメント（録音記録より抜粋）：\n「便利だって思うだろ？」\n\n…当時の彼に、その代償を知る術はなかった。' },
+        { speaker: 'システム', role: 'SYSTEM', text: '【書類①：適応者臨床データ No.07593】' },
+        { speaker: null, role: null, text: '対象者は周囲の------を、---常とは異な-------性あり。\n---覚・聴---・--覚など複数の経路から、-------思われる反応を確認。' },
+        { speaker: null, role: null, text: '※「自己」と「外---報-----については現在調査中――。\n※一部データは損傷により判読不可。' },
       ],
     }],
   },
   lab2: {
     chips: [
       { id: 'chip_2', pos: { top: '38%', left: '20%' }, label: 'コード断片②' },
-      { id: 'chip_3', pos: { top: '55%', left: '75%' }, label: 'コード断片③' },
     ],
     files: [{
-      id: 'file_2', pos: { top: '30%', left: '50%' }, label: '機密ファイル 02',
+      id: 'file_2', pos: { top: '30%', left: '50%' }, label: '書類 02',
       messages: [
-        { speaker: 'システム', role: 'SYSTEM', text: '【機密ファイル 02 ／ エラー報告：過負荷による感覚拒絶】' },
-        { speaker: null, role: null, text: '重大バグ報告 ／ 優先度：最高。\n被験者N-001の精神透視能力に、想定外の副作用が確認された。\n絶え間なく流れ込む膨大な他者の思考データが、脳に致命的な過負荷（キャパオーバー）を与えている。' },
-        { speaker: null, role: null, text: '脳が自己防衛に走った結果、一時的に五感のいずれかをランダムに遮断・喪失していく肉体拒絶反応が記録されている。\n\n被験者本人への開示：──【見送り】\n理由：研究上の継続使用に支障をきたす可能性があるため。' },
+        { speaker: 'システム', role: 'SYSTEM', text: '【書類②：異能力解析報告書：感応型能力について】' },
+        { speaker: null, role: null, text: '対象者の能力発動時、周------間に発生した精神的変---の関連---確認。\nただし、取得してい------感情のみなのか、そ----上のものを含------不明。' },
+        { speaker: null, role: null, text: '※長期間の使用による精神領域への影響について――' },
       ],
     }],
   },
   lab3: {
     chips: [{ id: 'chip_4', pos: { top: '50%', left: '35%' }, label: 'コード断片④' }],
     files: [{
-      id: 'file_3', pos: { top: '35%', left: '68%' }, label: '機密ファイル 03',
+      id: 'file_3', pos: { top: '35%', left: '68%' }, label: '書類 03',
       messages: [
-        { speaker: 'システム', role: 'SYSTEM', text: '【機密ファイル 03 ／ 適応者の末路：五感の完全喪失】' },
-        { speaker: null, role: null, text: '摩耗率が100%に達した場合の予測シミュレーション（機密）。\n\n脳への過負荷が限界を超えた時点で、全ての五感が永久に機能停止する。\n情報の嵐に脳を焼き尽くされながら、暗黒と静寂の中で生き地獄を味わう「完全なる廃人」への強制変貌が不可避となる。' },
-        { speaker: null, role: null, text: '研究所の内部評価（一行メモ）：\n「制御不能になる前に廃棄するか、情報収集機器として運用するかを選択せよ」\n\n──そこに、人として扱う選択肢は、どこにもなかった。' },
+        { speaker: 'システム', role: 'SYSTEM', text: '【書類③：研究員個人メモ】' },
+        { speaker: null, role: null, text: '周囲------仕草、わず------な変化から、あまり------多くの--報を拾い続けている。\nそのうち------の感情すら、見失------まうのではないだろうか。' },
+        { speaker: null, role: null, text: '……もし彼を---めるものがあるとすれば、それは他----から与えられるものではなく……彼自身が心から選んだ――――。' },
       ],
     }],
   },
   lab4: {
-    chips: [],
-    files: [{
-      id: 'file_4', pos: { top: '58%', left: '25%' }, label: '機密ファイル 04',
-      messages: [
-        { speaker: 'システム', role: 'SYSTEM', text: '【機密ファイル 04 ／ プロジェクト・ウェッジ（楔）：能力中和の適合性】' },
-        { speaker: null, role: null, text: '仮説：適応者の代償を止める「楔（ウェッジ）」の条件。\n\n精神透視能力の過負荷と五感の喪失を止める理論的な方法が、ただ一つ存在する。\n精神透視能力が「完全に遮断される存在（異物）」と接触・同調した場合──' },
-        { speaker: null, role: null, text: '──相手が持つ「中和・吸収」の力が《楔》として機能し、脳を情報の濁流から解放して代償（五感の喪失）を無効化・リセットできるという仮説が成立する。\n\nキー要素：中和する者の存在。感情の深さ。そして、互いに選び合う意志。\n\n（余白に走り書き）「──つまり、誰かが彼を"選び続けること"が、唯一の解になりうる」' },
-      ],
-    }],
+    chips: [{ id: 'chip_3', pos: { top: '55%', left: '75%' }, label: 'コード断片③' }],
+    files: [],
   },
 };
 
@@ -121,15 +128,34 @@ function FCSprite({ currentMessage }) {
   if (sepIdx === -1) return null;
   const base = illust.substring(0, sepIdx);
   const expression = illust.substring(sepIdx + 1);
-  const CFGS = { Nagisa: { folder: '/character/Nagisa', file: 'Nagisa', posClass: 'right-[5%] w-[45%] h-[95%]' } };
+  const CFGS = { Nagisa: { folder: '/character/Nagisa', file: 'Nagisa', posClass: 'left-1/2 -translate-x-1/2 w-[45%] h-[95%]' } };
   const cfg = CFGS[base];
   if (!cfg) return null;
+
+  const isDimmed = currentMessage.speaker === '朔良' || currentMessage.role === 'SAKURA';
+  const filterStyle = isDimmed ? 'brightness(0.5) drop-shadow(0 10px 20px rgba(0,0,0,0.5))' : 'brightness(1) drop-shadow(0 10px 20px rgba(0,0,0,0.5))';
+
   return (
-    <AnimatePresence>
-      <motion.div key={illust} className={`absolute bottom-[-50px] flex flex-col justify-end items-center pointer-events-none z-20 ${cfg.posClass}`} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0, filter: 'brightness(1) drop-shadow(0 10px 20px rgba(0,0,0,0.5))' }} exit={{ opacity: 0, y: 20 }} transition={{ duration: 0.3, ease: 'easeOut' }}>
-        <img src={assetPath(`${cfg.folder}/${cfg.file}_${expression}.png`)} alt={base} className="w-full h-full object-contain object-bottom" />
-      </motion.div>
-    </AnimatePresence>
+    <motion.div
+      className={`absolute bottom-[-50px] flex flex-col justify-end items-center pointer-events-none z-20 ${cfg.posClass}`}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 20 }}
+      transition={{ duration: 0.3, ease: 'easeOut' }}
+    >
+      <AnimatePresence>
+        <motion.img
+          key={illust}
+          src={assetPath(`${cfg.folder}/${cfg.file}_${expression}.png`)}
+          alt={base}
+          className="absolute inset-0 w-full h-full object-contain object-bottom"
+          initial={{ opacity: 0, filter: filterStyle }}
+          animate={{ opacity: 1, filter: filterStyle }}
+          exit={{ opacity: 0, filter: filterStyle }}
+          transition={{ duration: 0.2 }}
+        />
+      </AnimatePresence>
+    </motion.div>
   );
 }
 
@@ -139,25 +165,25 @@ function FCFileModal({ file, onClose }) {
     <motion.div className="absolute inset-0 z-[60] flex items-center justify-center p-8 bg-black/80 backdrop-blur-sm" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
       <div className="w-full h-full max-w-2xl flex justify-center items-center pointer-events-none">
         <motion.div className="relative w-full max-h-full bg-[#080c14]/95 border border-green-500/30 rounded shadow-[0_0_30px_rgba(74,222,128,0.1)] overflow-hidden flex flex-col pointer-events-auto" initial={{ scale: 0.95, y: 20 }} animate={{ scale: isMobile ? 0.85 : 1, y: 0 }} exit={{ scale: 0.95, y: 20 }}>
-        <div className="bg-green-950/40 border-b border-green-500/20 px-6 py-4 flex items-center gap-3 shrink-0">
-          <FileText className="w-5 h-5 text-green-400" />
-          <span className="text-green-100 font-orbitron tracking-widest text-sm">CONFIDENTIAL DATA</span>
-        </div>
-        <div className="p-8 overflow-y-auto grow custom-scrollbar">
-          {file.messages.map((m, idx) => (
-            <div key={idx} className="mb-6 last:mb-0">
-              {m.speaker === 'システム' ? (
-                <h3 className="text-green-300 font-bold tracking-widest mb-4 border-b border-green-500/30 pb-2 text-base md:text-lg">{m.text.replace('【', '').replace('】', '')}</h3>
-              ) : (
-                <p className="text-gray-300 leading-loose font-noto tracking-wide whitespace-pre-line text-sm md:text-base">{m.text}</p>
-              )}
-            </div>
-          ))}
-        </div>
-        <div className="bg-black/40 border-t border-green-500/20 p-4 flex justify-end shrink-0">
-          <button onClick={onClose} className="px-8 py-2.5 bg-green-900/50 hover:bg-green-800/60 border border-green-400/30 hover:border-green-400 text-green-200 text-sm font-orbitron tracking-widest transition-all rounded">CLOSE</button>
-        </div>
-      </motion.div>
+          <div className="bg-green-950/40 border-b border-green-500/20 px-6 py-4 flex items-center gap-3 shrink-0">
+            <FileText className="w-5 h-5 text-green-400" />
+            <span className="text-green-100 font-orbitron tracking-widest text-sm">DOCUMENT</span>
+          </div>
+          <div className="p-8 overflow-y-auto grow custom-scrollbar">
+            {file.messages.map((m, idx) => (
+              <div key={idx} className="mb-6 last:mb-0">
+                {m.speaker === 'システム' ? (
+                  <h3 className="text-green-300 font-bold tracking-widest mb-4 border-b border-green-500/30 pb-2 text-base md:text-lg">{m.text.replace('【', '').replace('】', '')}</h3>
+                ) : (
+                  <p className="text-gray-300 leading-loose font-noto tracking-wide whitespace-pre-line text-sm md:text-base">{m.text}</p>
+                )}
+              </div>
+            ))}
+          </div>
+          <div className="bg-black/40 border-t border-green-500/20 p-4 flex justify-end shrink-0">
+            <button onClick={onClose} className="px-8 py-2.5 bg-green-900/50 hover:bg-green-800/60 border border-green-400/30 hover:border-green-400 text-green-200 text-sm font-orbitron tracking-widest transition-all rounded">CLOSE</button>
+          </div>
+        </motion.div>
       </div>
     </motion.div>
   );
@@ -171,6 +197,7 @@ export default function FragmentCollectNagisa({ onComplete, onSave, onLoad, onTo
   const [isBlackout, setIsBlackout] = useState(false);
   const [messageQueue, setMessageQueue] = useState([]);
   const [currentMessage, setCurrentMessage] = useState(null);
+  const [showStartAnim, setShowStartAnim] = useState(true);
   const [displayedText, setDisplayedText] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const typingTimer = useRef(null);
@@ -197,10 +224,17 @@ export default function FragmentCollectNagisa({ onComplete, onSave, onLoad, onTo
   const currentRoomItems = ROOM_ITEMS[currentRoom.id];
 
   useEffect(() => {
-    if (gateUnlocked || currentMessage || activeFile || isGameOver || isTransitioning) return;
+    if (gateUnlocked || currentMessage || activeFile || isGameOver || isTransitioning || showStartAnim) return;
     const timer = setInterval(() => { setTimeLeft(prev => { if (prev <= 1) { clearInterval(timer); setIsGameOver(true); return 0; } return prev - 1; }); }, 1000);
     return () => clearInterval(timer);
-  }, [gateUnlocked, currentMessage, activeFile, isGameOver, isTransitioning]);
+  }, [gateUnlocked, currentMessage, activeFile, isGameOver, isTransitioning, showStartAnim]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowStartAnim(false);
+    }, 2500);
+    return () => clearTimeout(timer);
+  }, []);
 
   const getTarget = useCallback((elId, fallbackX) => {
     const el = document.getElementById(elId);
@@ -279,15 +313,23 @@ export default function FragmentCollectNagisa({ onComplete, onSave, onLoad, onTo
   const closeActiveFile = () => {
     setActiveFile(null);
     const lv = Math.min(collectedFiles.size - 1, NAGISA_FILE.length - 1);
-    showMessages(NAGISA_FILE[lv] || NAGISA_FILE[0]);
+    const msgs = NAGISA_FILE[lv];
+    if (msgs && msgs.length > 0) {
+      showMessages(msgs);
+    } else {
+      if (pendingParticle) {
+        triggerParticle(pendingParticle.sx, pendingParticle.sy, pendingParticle.type);
+        setPendingParticle(null);
+      }
+    }
   };
 
   const handleParticleComplete = useCallback((id) => { setAnimations(p => p.filter(a => a.id !== id)); }, []);
 
-  const handlePointerDown = (e) => { if (currentMessage || activeFile || isTransitioning || isGameOver || e.target.closest('button')) return; setIsDragging(true); lastMousePos.current = { x: e.clientX, y: e.clientY }; };
+  const handlePointerDown = (e) => { if (currentMessage || activeFile || isTransitioning || isGameOver || showStartAnim || e.target.closest('button')) return; setIsDragging(true); lastMousePos.current = { x: e.clientX, y: e.clientY }; };
   const handlePointerUp = () => setIsDragging(false);
   const handlePointerMove = (e) => {
-    if (currentMessage || activeFile || isTransitioning || isGameOver || !isDragging) return;
+    if (currentMessage || activeFile || isTransitioning || isGameOver || showStartAnim || !isDragging) return;
     const dx = e.clientX - lastMousePos.current.x, dy = e.clientY - lastMousePos.current.y;
     lastMousePos.current = { x: e.clientX, y: e.clientY };
     setLightX(prev => Math.max(0, Math.min(window.innerWidth, prev - dx * 1.5)));
@@ -376,10 +418,10 @@ export default function FragmentCollectNagisa({ onComplete, onSave, onLoad, onTo
       )}
 
       {currentMessage && !activeFile && <FCSprite currentMessage={currentMessage} />}
-      {!activeFile && <FCDialogueBox 
-        currentMessage={currentMessage} 
-        displayedText={displayedText} 
-        isTyping={isTyping} 
+      {!activeFile && <FCDialogueBox
+        currentMessage={currentMessage}
+        displayedText={displayedText}
+        isTyping={isTyping}
         onNext={handleNextMessage}
         onSave={onSave}
         onLoad={onLoad}
@@ -389,6 +431,33 @@ export default function FragmentCollectNagisa({ onComplete, onSave, onLoad, onTo
         skipMode={skipMode}
         autoMode={autoMode}
       />}
+
+      <AnimatePresence>
+        {showStartAnim && (
+          <motion.div
+            className="absolute inset-0 z-[100] flex items-center justify-center pointer-events-none"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0, scale: 1.1, filter: 'blur(10px)' }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+          >
+            <div className="absolute inset-0 bg-black/60" />
+            <motion.div
+              initial={{ opacity: 0, y: 20, letterSpacing: '0.1em' }}
+              animate={{ opacity: 1, y: 0, letterSpacing: '0.3em' }}
+              transition={{ delay: 0.3, duration: 1, ease: "easeOut" }}
+              className="relative z-10 flex flex-col items-center gap-2"
+            >
+              <div className="text-cyan-400 font-orbitron tracking-[0.5em] text-xl md:text-2xl font-bold drop-shadow-[0_0_10px_rgba(34,211,238,0.8)]">
+                EXPLORATION START
+              </div>
+              <div className="text-white font-bold tracking-widest text-lg md:text-xl drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]">
+                探索開始
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <AnimatePresence>{activeFile && <FCFileModal file={activeFile} onClose={closeActiveFile} />}</AnimatePresence>
 

@@ -223,8 +223,9 @@ export function useNovelEngine(scenarioData, options = {}) {
   }, [scenarioData]);
 
   useEffect(() => {
-    const isMinigame = currentLine?.action?.startsWith('TRIGGER_');
-    const isActionWithoutText = currentLine?.action && !currentLine?.text && !currentLine?.action?.startsWith('TRIGGER_');
+    const actionArr = Array.isArray(currentLine?.action) ? currentLine.action : (currentLine?.action ? [currentLine.action] : []);
+    const isMinigame = actionArr.some(a => a.startsWith('TRIGGER_'));
+    const isActionWithoutText = currentLine?.action && !currentLine?.text && !isMinigame;
     
     // We pause autoMode if it's a minigame, choice, or during a background transition.
     if (autoMode && !isBgTransitioning && !isBgFadingOut && !isTyping && !isWaitingForChoice && !isMinigame && !isActionWithoutText && !manualTestMode && !endMode) {
@@ -245,7 +246,8 @@ export function useNovelEngine(scenarioData, options = {}) {
         return;
       }
       
-      const isMinigame = currentLine?.action?.startsWith('TRIGGER_');
+      const actionArr = Array.isArray(currentLine?.action) ? currentLine.action : (currentLine?.action ? [currentLine.action] : []);
+      const isMinigame = actionArr.some(a => a.startsWith('TRIGGER_'));
       
       if (!isTyping && !isWaitingForChoice && !isBgTransitioning && !isBgFadingOut && !isMinigame) {
         skipTimer.current = setTimeout(() => {

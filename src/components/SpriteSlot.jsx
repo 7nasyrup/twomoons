@@ -295,6 +295,7 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
           })();
 
           const isKimera = baseCharName.toLowerCase().includes('kimera');
+          const isMachine = baseCharName.toLowerCase().includes('machine');
 
           const { scale: posScale, y: posY, ...layoutStyles } = positionStyles || {};
 
@@ -305,7 +306,7 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
               style={{
                 width: isKimera ? '60%' : '45%',
                 height: isKimera ? '75%' : '95%',
-                bottom: isKimera ? '28cqh' : '-50px',
+                bottom: isKimera ? '28cqh' : (isMachine ? '20cqh' : '-50px'),
                 left: isKimera && (!overrideStyle) ? '20%' : undefined,
                 transformOrigin: 'bottom center',
                 ...layoutStyles
