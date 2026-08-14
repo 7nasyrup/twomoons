@@ -16,36 +16,42 @@ const ROOMS = [
 const MIKA_CHIP = [
   // 1つ目
   [
-    { speaker: 'ミカ', role: 'ミカ', illust: 'Mika_neutral', text: '「……コードの断片、確保しました。少し……身体が重いですけど、大丈夫です」' },
-    { speaker: 'ミカ', role: 'ミカ', illust: 'Mika_neutral', text: '「さっきからアザのあたりが、じくじく疼いていて。……でも、先へ行きましょう」' },
+    { speaker: 'ミカ', role: 'MIKA', illust: 'Mika_smile_injured', text: '「一つ目ですね。この調子で探していきましょう」' },
   ],
   // 2つ目
   [
-    { speaker: 'ミカ', role: 'ミカ', illust: 'Mika_serious', text: '「……っ。朔良さん、この研究所の空気、どこか変な気がしませんか」' },
-    { speaker: 'ミカ', role: 'ミカ', illust: 'Mika_serious', text: '「……いや、気のせいかもしれない。コード確保できました。次へ行きましょう」' },
+    { speaker: 'ミカ', role: 'MIKA', illust: 'Mika_neutral_injured', text: '「これで半分です。……急ぎましょう、先輩」' },
   ],
   // 3つ目
   [
-    { speaker: 'ミカ', role: 'ミカ', illust: 'Mika_serious', text: '「……視界が少し滲んでいる。アザが、また広がっているのかもしれない」' },
-    { speaker: 'ミカ', role: 'ミカ', illust: 'Mika_serious', text: '「……心配させたくないので言いませんでしたけど、正直、かなり辛くて……。でも、ここで止まれません」' },
+    { speaker: 'ミカ', role: 'MIKA', illust: 'Mika_serious_injured', text: '「あと一つです。周囲に気をつけてくださいね」' },
   ],
   // 4つ目以降
   [
-    { speaker: 'ミカ', role: 'ミカ', illust: 'Mika_serious', text: '「……。朔良さんの手が、あたたかい。……それだけで、もう少し歩けます」' },
+    { speaker: 'ミカ', role: 'MIKA', illust: 'Mika_smile_injured', text: '「よし、全て見つけましたね。やりました」' },
   ],
 ];
 
 // ─── ファイル取得時のミカ台詞 ─────────────────────────────────────────────────
 const MIKA_FILE = [
-  [{ speaker: 'ミカ', role: 'ミカ', illust: 'Mika_neutral', text: '「機密ファイル……。後で一緒に確認しましょう」' }],
-  [{ speaker: 'ミカ', role: 'ミカ', illust: 'Mika_serious', text: '「……そのファイル、朔良さんには見せたくないな。……いや、でも、あなたに知っていてほしいか」' }],
-  [{ speaker: 'ミカ', role: 'ミカ', illust: 'Mika_serious', text: '「……ファイルに、父の名前があったりしませんでしたか。……見なかったことにしてください」' }],
-  [{ speaker: 'ミカ', role: 'ミカ', illust: 'Mika_serious', text: '「……朔良さん。このファイルを、最後まで読んでくれますか。……僕には、もう読む勇気がなくて」' }],
+  [
+    { speaker: '朔良', role: 'SAKURA', illust: null, text: '（…これは、何？）' },
+    { speaker: 'ミカ', role: 'MIKA', text: '「先輩、何か見つかりましたか？」' },
+    { speaker: '朔良', role: 'SAKURA', illust: null, text: '「っ……！」' },
+    { speaker: null, role: null, illust: null, text: '不意に後ろから声をかけられ、私は慌てて手にしていた書類を胸元へ隠した。' },
+    { speaker: 'ミカ', role: 'MIKA', illust: 'Mika_surprise_injured', text: '「……先輩？」' },
+    { speaker: '朔良', role: 'SAKURA', illust: null, text: '「あ、ううん！ 何でもないよ。もう少し探してみよう」' },
+    { speaker: null, role: null, illust: null, text: '一瞬、不思議そうな表情を浮かべたミカくんだったが、それ以上は何も聞かず、小さく頷いた。' },
+    { speaker: 'ミカ', role: 'MIKA', illust: 'Mika_neutral_injured', text: '「……分かりました」' },
+    { speaker: null, role: null, illust: null, text: '私は胸の奥に引っかかる違和感を抱えたまま、そっと書類をしまい込み、再び研究所の奥へと歩き出した。' },
+  ],
+  [],
+  [],
 ];
 
 // ─── ゲート解錠時 ─────────────────────────────────────────────────────────────
 const MIKA_GATE = [
-  { speaker: 'ミカ', role: 'ミカ', illust: 'Mika_neutral', text: '「コードが揃いました。……朔良さん、ゲートを開けましょう」' },
+  { speaker: 'ミカ', role: 'MIKA', illust: 'Mika_neutral_injured', text: '「コードが揃いました。……朔良さん、ゲートを開けましょう」' },
 ];
 
 // ─── 各エリアのアイテム配置 ──────────────────────────────────────────────────────
@@ -58,19 +64,15 @@ const ROOM_ITEMS = {
       {
         id: 'file_1',
         pos: { top: '62%', left: '65%' },
-        label: '機密ファイル 01',
+        label: '資料①',
         messages: [
           {
             speaker: 'システム', role: 'SYSTEM',
-            text: '【機密ファイル 01 ／ 被験者の出自：ミカの父親について】'
+            text: '【適応実験経過報告　被験者 M-02】'
           },
           {
             speaker: null, role: null,
-            text: '研究員番号：R-047　ハヤカワ・ケンジ（早川 賢二）。\n職位：上席研究員 ／ 異能適応プログラム第三期主任。\n在籍期間：プログラム発足から七年間。退職理由：「家族の事情により」として処理されるも、実態は内部告発未遂による強制退職。'
-          },
-          {
-            speaker: null, role: null,
-            text: '備考（内部メモ）：\n「R-047は被験者への倫理的配慮を繰り返し訴え、上層部との対立が激化。\n特に自身の子息（被験者コード：MI-003）が適応者リストに加えられたことを知り、告発を試みた。\n──隔離の上、記憶処置を施し、証拠ごと抹消済み」'
+            text: '身体能力の大幅な向上を確認。しかし代償として、黒色侵食（痣）が全身へ徐々に拡大する。侵食が臨界に達した場合の生存率は……以降、文字が滲んで読めない。'
           },
         ],
       },
@@ -80,25 +82,20 @@ const ROOM_ITEMS = {
   lab2: {
     chips: [
       { id: 'chip_2', pos: { top: '38%', left: '20%' }, label: 'コード断片②' },
-      { id: 'chip_3', pos: { top: '55%', left: '75%' }, label: 'コード断片③' },
     ],
     files: [
       {
         id: 'file_2',
         pos: { top: '30%', left: '50%' },
-        label: '機密ファイル 02',
+        label: '資料②',
         messages: [
           {
             speaker: 'システム', role: 'SYSTEM',
-            text: '【機密ファイル 02 ／ 被験者：ミカ・異能初期設定とアザの記録】'
+            text: '【異能力解析報告書】'
           },
           {
             speaker: null, role: null,
-            text: '被験者コード：MI-003。異能分類：《感情共鳴（エコー）》。\n他者の感情・痛み・感覚を皮膚感覚として自身の身体に「写し取る」能力。\n特定の相手と深く共鳴した場合、その相手の苦痛・恐怖・傷を引き受けることができる。\n理論上、守りたい相手の代わりに死ぬことも可能とされ、研究所より「高価値感情型適応者」と評価される。'
-          },
-          {
-            speaker: null, role: null,
-            text: '副作用の記録：\n能力発現と同時に、首元に黒い模様（通称：アザ）が出現。\n強い共鳴を起こすたびに、アザは体表を侵食するように拡大する。\n推定メカニズム：他者の「死・消滅への傾き」を吸収するたびに、被験者の生命力が削られている可能性が高い。\n──端的に言えば、誰かを助けるたびに、彼は少しずつ死に近づいている。'
+            text: '被験者M-02は主任研究員██の実子であり、研究員本人は実験の中止と計画の告発を申し出た。しかし数日後、██は殺人容疑で拘束・処刑され、関連資料の大半は回収された。'
           },
         ],
       },
@@ -113,19 +110,19 @@ const ROOM_ITEMS = {
       {
         id: 'file_3',
         pos: { top: '35%', left: '68%' },
-        label: '機密ファイル 03',
+        label: '資料③',
         messages: [
           {
             speaker: 'システム', role: 'SYSTEM',
-            text: '【機密ファイル 03 ／ アザの進行と末路予測】'
+            text: '【極秘記録】'
           },
           {
             speaker: null, role: null,
-            text: '摩耗率が100%に達した場合の予測シミュレーション（機密）。\n\nアザが全身に達した時点で、被験者の「自分の感情」は完全に消滅する。\n他者の痛みと感情だけを写し続けた空洞の身体は、自分を人間だと認識できなくなり、感情共鳴の制御が不可能になる。\n周囲に存在するあらゆる痛みと苦しみを無限に吸収し続けながら、自分の意識は消え、ただ苦痛だけが残る──《感情の器》への変貌が不可避となる。'
+            text: 'M-02への異能移植は予定通り完了。実験は成功とする。なお、主任研究員██は計画の漏洩を防ぐため、殺人容疑を適用して処分した。'
           },
           {
             speaker: null, role: null,
-            text: '研究所の内部評価（一行メモ）：\n「アザの進行は抑制できないが、進行速度は制御できる。限界到達まで"適切に運用"すること」\n\n──そこに、人として扱う選択肢は、どこにもなかった。'
+            text: '本件の真相を知る者は速やかに処分し、被験者には経緯を知らせる必要はない。……末尾は黒く塗り潰され、読むことができない。'
           },
         ],
       },
@@ -133,28 +130,10 @@ const ROOM_ITEMS = {
   },
 
   lab4: {
-    chips: [],
-    files: [
-      {
-        id: 'file_4',
-        pos: { top: '58%', left: '25%' },
-        label: '機密ファイル 04',
-        messages: [
-          {
-            speaker: 'システム', role: 'SYSTEM',
-            text: '【機密ファイル 04 ／ プロジェクト・ウェッジ（楔）：アザを止める唯一の方法】'
-          },
-          {
-            speaker: null, role: null,
-            text: '仮説：感情共鳴能力の暴走とアザの進行を止める「楔（ウェッジ）」の条件。\n\n《感情共鳴》の本質は「与える」ことにある。被験者が一方的に他者の痛みを引き受け続ける限り、摩耗は止まらない。\nしかし──被験者が「受け取る」側に回ることができた場合、すなわち誰かから無条件の感情を注がれ続けた場合──'
-          },
-          {
-            speaker: null, role: null,
-            text: '──その人物が持つ「中和・吸収」の特性が《楔》として機能し、アザの進行が停止・逆転するという仮説が成立する。\n\nキー要素：無能力者の存在。一方通行でない、双方向の感情の流れ。そして──互いが互いを「選び続ける」という意志。\n\n（余白に走り書き）「──つまり、誰かが彼を\"受け取り続けること\"が、唯一の解になりうる」'
-          },
-        ],
-      },
+    chips: [
+      { id: 'chip_3', pos: { top: '45%', left: '60%' }, label: 'コード断片③' },
     ],
+    files: [],
   },
 };
 
@@ -201,11 +180,21 @@ const InfoParticle = ({ startX, startY, targetX, targetY, color, onComplete }) =
 
 // ─── キャラクタースプライト ───────────────────────────────────────────────────────
 function FCSprite({ currentMessage }) {
-  const illust = currentMessage?.illust;
+  const [lastIllust, setLastIllust] = useState(null);
+
+  useEffect(() => {
+    if (currentMessage?.illust) {
+      setLastIllust(currentMessage.illust);
+    }
+  }, [currentMessage]);
+
+  const illust = currentMessage?.illust || lastIllust;
   if (!illust) return null;
+
   const sepIdx = illust.indexOf('_');
   if (sepIdx === -1) return null;
   const base = illust.substring(0, sepIdx);
+  // expression parse fix for multiple underscores like Mika_smile_injured
   const expression = illust.substring(sepIdx + 1);
 
   const CFGS = {
@@ -218,19 +207,33 @@ function FCSprite({ currentMessage }) {
   const cfg = CFGS[base];
   if (!cfg) return null;
 
+  // ミカが話しているかどうか（システムや朔良が話しているときは暗くする）
+  const isMikaSpeaking = currentMessage?.speaker === 'ミカ' || currentMessage?.role === 'MIKA';
+  const filterStyle = isMikaSpeaking ? 'brightness(1) drop-shadow(0 10px 20px rgba(0,0,0,0.5))' : 'brightness(0.5) drop-shadow(0 10px 20px rgba(0,0,0,0.5))';
+
   return (
-    <AnimatePresence>
-      <motion.div
-        key={illust}
-        className={`absolute bottom-[-50px] flex flex-col justify-end items-center pointer-events-none z-20 ${cfg.posClass}`}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0, filter: 'brightness(1) drop-shadow(0 10px 20px rgba(0,0,0,0.5))' }}
-        exit={{ opacity: 0, y: 20 }}
-        transition={{ duration: 0.3, ease: 'easeOut' }}
-      >
-        <img src={assetPath(`${cfg.folder}/${cfg.file}_${expression}.png`)} alt={base} className="w-full h-full object-contain object-bottom" />
-      </motion.div>
-    </AnimatePresence>
+    <motion.div
+      className={`absolute bottom-[-50px] flex flex-col justify-end items-center pointer-events-none z-20 ${cfg.posClass}`}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 20 }}
+      transition={{ duration: 0.3, ease: 'easeOut' }}
+    >
+      <AnimatePresence>
+        {illust && (
+          <motion.img
+            key={illust}
+            src={assetPath(`${cfg.folder}/${cfg.file}_${expression}.png`)}
+            alt={base}
+            className="absolute inset-0 w-full h-full object-contain object-bottom"
+            initial={{ opacity: 0, filter: filterStyle }}
+            animate={{ opacity: 1, filter: filterStyle }}
+            exit={{ opacity: 0, filter: filterStyle }}
+            transition={{ duration: 0.2 }}
+          />
+        )}
+      </AnimatePresence>
+    </motion.div>
   );
 }
 
@@ -247,33 +250,33 @@ function FCFileModal({ file, onClose }) {
           className="relative w-full max-h-full bg-[#080c14]/95 border border-green-500/30 rounded shadow-[0_0_30px_rgba(74,222,128,0.1)] overflow-hidden flex flex-col pointer-events-auto"
           initial={{ scale: 0.95, y: 20 }} animate={{ scale: isMobile ? 0.85 : 1, y: 0 }} exit={{ scale: 0.95, y: 20 }}
         >
-        <div className="bg-green-950/40 border-b border-green-500/20 px-6 py-4 flex items-center gap-3 shrink-0">
-          <FileText className="w-5 h-5 text-green-400" />
-          <span className="text-green-100 font-orbitron tracking-widest text-sm">CONFIDENTIAL DATA</span>
-        </div>
-        <div className="p-8 overflow-y-auto grow custom-scrollbar">
-          {file.messages.map((m, idx) => (
-            <div key={idx} className="mb-6 last:mb-0">
-              {m.speaker === 'システム' ? (
-                <h3 className="text-green-300 font-bold tracking-widest mb-4 border-b border-green-500/30 pb-2 text-base md:text-lg">
-                  {m.text.replace('【', '').replace('】', '')}
-                </h3>
-              ) : (
-                <p className="text-gray-300 leading-loose font-noto tracking-wide whitespace-pre-line text-sm md:text-base">
-                  {m.text}
-                </p>
-              )}
-            </div>
-          ))}
-        </div>
-        <div className="bg-black/40 border-t border-green-500/20 p-4 flex justify-end shrink-0">
-          <button
-            onClick={onClose}
-            className="px-8 py-2.5 bg-green-900/50 hover:bg-green-800/60 border border-green-400/30 hover:border-green-400 text-green-200 text-sm font-orbitron tracking-widest transition-all rounded shadow-[0_0_10px_rgba(74,222,128,0.2)]"
-          >
-            CLOSE
-          </button>
-        </div>
+          <div className="bg-green-950/40 border-b border-green-500/20 px-6 py-4 flex items-center gap-3 shrink-0">
+            <FileText className="w-5 h-5 text-green-400" />
+            <span className="text-green-100 font-orbitron tracking-widest text-sm">CONFIDENTIAL DATA</span>
+          </div>
+          <div className="p-8 overflow-y-auto grow custom-scrollbar">
+            {file.messages.map((m, idx) => (
+              <div key={idx} className="mb-6 last:mb-0">
+                {m.speaker === 'システム' ? (
+                  <h3 className="text-green-300 font-bold tracking-widest mb-4 border-b border-green-500/30 pb-2 text-base md:text-lg">
+                    {m.text.replace('【', '').replace('】', '')}
+                  </h3>
+                ) : (
+                  <p className="text-gray-300 leading-loose font-noto tracking-wide whitespace-pre-line text-sm md:text-base">
+                    {m.text}
+                  </p>
+                )}
+              </div>
+            ))}
+          </div>
+          <div className="bg-black/40 border-t border-green-500/20 p-4 flex justify-end shrink-0">
+            <button
+              onClick={onClose}
+              className="px-8 py-2.5 bg-green-900/50 hover:bg-green-800/60 border border-green-400/30 hover:border-green-400 text-green-200 text-sm font-orbitron tracking-widest transition-all rounded shadow-[0_0_10px_rgba(74,222,128,0.2)]"
+            >
+              CLOSE
+            </button>
+          </div>
         </motion.div>
       </div>
     </motion.div>
@@ -289,6 +292,7 @@ export default function FragmentCollectMika({ onComplete, onSave, onLoad, onTogg
   const [isBlackout, setIsBlackout] = useState(false);
   const [messageQueue, setMessageQueue] = useState([]);
   const [currentMessage, setCurrentMessage] = useState(null);
+  const [showStartAnim, setShowStartAnim] = useState(true);
   const [displayedText, setDisplayedText] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const typingTimer = useRef(null);
@@ -317,7 +321,7 @@ export default function FragmentCollectMika({ onComplete, onSave, onLoad, onTogg
 
   // ─── 全体タイマー ──────────────────────────────────────────────
   useEffect(() => {
-    if (gateUnlocked || currentMessage || activeFile || isGameOver || isTransitioning) return;
+    if (gateUnlocked || currentMessage || activeFile || isGameOver || isTransitioning || showStartAnim) return;
     const timer = setInterval(() => {
       setTimeLeft(prev => {
         if (prev <= 1) { clearInterval(timer); setIsGameOver(true); return 0; }
@@ -325,7 +329,15 @@ export default function FragmentCollectMika({ onComplete, onSave, onLoad, onTogg
       });
     }, 1000);
     return () => clearInterval(timer);
-  }, [gateUnlocked, currentMessage, activeFile, isGameOver, isTransitioning]);
+  }, [gateUnlocked, currentMessage, activeFile, isGameOver, isTransitioning, showStartAnim]);
+
+  // ─── 探索開始アニメーション ────────────────────────────────────────
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowStartAnim(false);
+    }, 2500);
+    return () => clearTimeout(timer);
+  }, []);
 
   const getTarget = useCallback((elId, fallbackX) => {
     const el = document.getElementById(elId);
@@ -461,13 +473,13 @@ export default function FragmentCollectMika({ onComplete, onSave, onLoad, onTogg
   }, []);
 
   const handlePointerDown = (e) => {
-    if (currentMessage || activeFile || isTransitioning || isGameOver || e.target.closest('button')) return;
+    if (currentMessage || activeFile || isTransitioning || isGameOver || showStartAnim || e.target.closest('button')) return;
     setIsDragging(true);
     lastMousePos.current = { x: e.clientX, y: e.clientY };
   };
   const handlePointerUp = () => setIsDragging(false);
   const handlePointerMove = (e) => {
-    if (currentMessage || activeFile || isTransitioning || isGameOver || !isDragging) return;
+    if (currentMessage || activeFile || isTransitioning || isGameOver || showStartAnim || !isDragging) return;
     const dx = e.clientX - lastMousePos.current.x;
     const dy = e.clientY - lastMousePos.current.y;
     lastMousePos.current = { x: e.clientX, y: e.clientY };
@@ -496,7 +508,12 @@ export default function FragmentCollectMika({ onComplete, onSave, onLoad, onTogg
   };
 
   return (
-    <div className="absolute inset-0 bg-[#030712] z-50 overflow-hidden select-none">
+    <motion.div
+      className="absolute inset-0 bg-[#030712] z-50 overflow-hidden select-none"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+    >
       <div
         ref={containerRef}
         className="absolute inset-0 w-full h-full select-none z-10"
@@ -564,7 +581,7 @@ export default function FragmentCollectMika({ onComplete, onSave, onLoad, onTogg
               <FileText className="w-3.5 h-3.5 lg:w-4 lg:h-4 text-green-500" />
               <span className="text-[11px] lg:text-xs font-orbitron text-slate-600 tracking-widest font-bold">FILE</span>
               <div className="flex items-center gap-1.5 lg:gap-2">
-                {Array.from({ length: 4 }, (_, i) => (
+                {Array.from({ length: 3 }, (_, i) => (
                   <div key={i} className={`w-2.5 h-2.5 lg:w-3 lg:h-3 rounded-full border transition-all duration-500 ${i < fileCount ? 'bg-green-400 border-green-300 shadow-[0_0_8px_rgba(74,222,128,0.8)]' : 'bg-transparent border-white/30'}`} />
                 ))}
               </div>
@@ -644,6 +661,34 @@ export default function FragmentCollectMika({ onComplete, onSave, onLoad, onTogg
         />
       )}
 
+      {/* ─── 探索開始アニメーション ─── */}
+      <AnimatePresence>
+        {showStartAnim && (
+          <motion.div
+            className="absolute inset-0 z-[100] flex items-center justify-center pointer-events-none"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0, scale: 1.1, filter: 'blur(10px)' }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+          >
+            <div className="absolute inset-0 bg-black/60" />
+            <motion.div
+              initial={{ opacity: 0, y: 20, letterSpacing: '0.1em' }}
+              animate={{ opacity: 1, y: 0, letterSpacing: '0.3em' }}
+              transition={{ delay: 0.3, duration: 1, ease: "easeOut" }}
+              className="relative z-10 flex flex-col items-center gap-2"
+            >
+              <div className="text-cyan-400 font-orbitron tracking-[0.5em] text-xl md:text-2xl font-bold drop-shadow-[0_0_10px_rgba(34,211,238,0.8)]">
+                EXPLORATION START
+              </div>
+              <div className="text-white font-bold tracking-widest text-lg md:text-xl drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]">
+                探索開始
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* ─── 機密ファイルモーダル ─── */}
       <AnimatePresence>
         {activeFile && <FCFileModal file={activeFile} onClose={closeActiveFile} />}
@@ -691,6 +736,6 @@ export default function FragmentCollectMika({ onComplete, onSave, onLoad, onTogg
           onComplete={() => handleParticleComplete(anim.id)}
         />
       ))}
-    </div>
+    </motion.div>
   );
 }

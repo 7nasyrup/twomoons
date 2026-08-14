@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { assetPath } from '../utils/assetPath'; 
+import { assetPath } from '../utils/assetPath';
 
 export default function TitleScreen({ onStart, onContinue, onBattle, hasSave, playBGM }) {
     const [showCredits, setShowCredits] = useState(false);
@@ -14,13 +14,13 @@ export default function TitleScreen({ onStart, onContinue, onBattle, hasSave, pl
     return (
         <div className="absolute inset-0 w-full h-full bg-black flex items-center justify-center overflow-hidden z-40 select-none">
             {/* 16:9コンテナ（背景画像と完全に一致する領域） */}
-            <div 
+            <div
                 className="relative w-full max-w-full max-h-full aspect-video flex flex-col justify-end"
                 style={{ containerType: 'size' }}
             >
                 {/* Background Image */}
-                <div 
-                    className="absolute inset-0 w-full h-full bg-contain bg-center bg-no-repeat pointer-events-none" 
+                <div
+                    className="absolute inset-0 w-full h-full bg-contain bg-center bg-no-repeat pointer-events-none"
                     style={{ backgroundImage: `url(${assetPath('/title.png')})` }}
                 />
 
@@ -145,6 +145,14 @@ export default function TitleScreen({ onStart, onContinue, onBattle, hasSave, pl
                                             <span className="text-gray-400 leading-relaxed">「Glistening Ripples」</span>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+
+                            <div className="text-center w-full mt-8">
+                                <p className="text-sm font-orbitron text-cyan-500/80 tracking-widest mb-6">■効果音・SE</p>
+
+                                <div className="max-w-lg mx-auto text-left w-full">
+                                    <p className="text-white text-sm mb-3 pl-2 border-l-2 border-cyan-500/50">OtoLogic　様</p>
                                 </div>
                             </div>
 

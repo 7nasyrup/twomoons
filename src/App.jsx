@@ -773,7 +773,7 @@ export default function App() {
       if (currentLine.se === "stop") {
         stopSE(null, currentLine.seFade || 2000); // Default to 2 seconds slow fade
       } else {
-        playSE(assetPath(`/assets/audio/bgm/${currentLine.se}`), currentLine.seDuration || null);
+        playSE(assetPath(`/assets/audio/bgm/${currentLine.se}`), currentLine.seDuration || null, currentLine.seLoop || false);
       }
     }
     if (currentLine.stopSe) {
@@ -878,6 +878,8 @@ export default function App() {
       } else if (action === 'SHAKE_SCREEN_EXTREME') {
         setShakeEffect('extreme');
         // continuous shake, no auto-clear
+      } else if (action === 'SHAKE_SCREEN_CONTINUOUS_MEDIUM') {
+        setShakeEffect('medium_continuous');
       } else if (action === 'SHAKE_SCREEN_CONTINUOUS_SMALL') {
         setShakeEffect('small_continuous');
       } else if (action === 'SHAKE_SCREEN_LONG_SMALL') {

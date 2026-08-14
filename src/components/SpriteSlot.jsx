@@ -62,7 +62,8 @@ const SPEAKER_TO_ROMAJI = {
   "アカネ": "Akane",
   "満": "Michiru",
   "黒騎士": "BlackKnight",
-  "ルキ": "Ruki"
+  "ルキ": "Ruki",
+  "少年": "Ruki"
 };
 
 export default function SpriteSlot({ leftActive, rightActive, focusSlot, currentSpeaker, presentCharacters = [], currentLine, currentStep, scenarioData = [], isPhoneCallRight }) {
@@ -118,7 +119,7 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
 
           let expression = config.defaultExpression;
           if (charState && charState.includes('_')) {
-            expression = charState.split('_')[1];
+            expression = charState.split('_').slice(1).join('_');
             if (expression.match(/^[a-zA-Z]+[0-9]+$/)) {
               const match = expression.match(/^([a-zA-Z]+)([0-9]+)$/);
               if (match) {
@@ -269,7 +270,7 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
                   }
                 }
               }
-              const isMonster = baseCharName.toLowerCase().includes('kimera');
+              const isMonster = baseCharName.toLowerCase().includes('kimera') || baseCharName.toLowerCase().includes('blackknight') || baseCharName.toLowerCase().includes('machine');
               if (!hasSpokenInThisScene && !isMonster) {
                 isSpeaker = true;
               }

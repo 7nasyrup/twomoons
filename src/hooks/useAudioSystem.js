@@ -59,7 +59,7 @@ export function useAudioSystem() {
     currentBgmSrc.current = src;
   }, []);
 
-  const playSE = useCallback((src, duration = null) => {
+  const playSE = useCallback((src, duration = null, loop = false) => {
     if (!src) return;
 
     if (sePool.current[src]) {
@@ -71,6 +71,7 @@ export function useAudioSystem() {
       src: [src],
       html5: false,
       volume: seVolume.current * masterVolume.current,
+      loop: loop || false,
     });
     sePool.current[src] = sound;
     const soundId = sound.play();

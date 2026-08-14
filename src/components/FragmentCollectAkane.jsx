@@ -37,10 +37,21 @@ const AKANE_CHIP = [
 
 // ─── ファイル取得時のアカネ台詞 ──────────────────────────────────────────────────
 const AKANE_FILE = [
-  [{ speaker: 'アカネ', role: 'アカネ', illust: 'Akane_serious', text: '「機密ファイル……。あとで確認しろ。今は先を急ぐ」' }],
-  [{ speaker: 'アカネ', role: 'アカネ', illust: 'Akane_serious', text: '「……そのファイル。中身は……あとでいい。今は関係ない」' }],
-  [{ speaker: 'アカネ', role: 'アカネ', illust: 'Akane_serious', text: '「……っ。それは……捨てておけ。余計な情報だ」' }],
-  [{ speaker: 'アカネ', role: 'アカネ', illust: 'Akane_serious', text: '「……見たのか。……まあ、いい。全部、知っておいた方がいいこともある」' }],
+  [
+    { speaker: '朔良', role: 'SAKURA', text: '（……これは）' },
+    { speaker: null, role: null, text: '古びた書類に目を通そうとした、その時。' },
+    { speaker: 'アカネ', role: 'AKANE', text: '「何を見ている」' },
+    { speaker: '朔良', role: 'SAKURA', text: '「っ！」' },
+    { speaker: null, role: null, illust: 'Akane_neutral', text: '低い声に肩を震わせる。振り返ると、アカネさんがこちらをじっと見ていた。' },
+    { speaker: '朔良', role: 'SAKURA', illust: 'Akane_neutral', text: '「……いえ、少し気になって」' },
+    { speaker: null, role: null, illust: 'Akane_neutral', text: 'そう答えると、アカネさんは書類を一瞥しただけで興味を失ったように視線を逸らす。' },
+    { speaker: 'アカネ', role: 'AKANE', illust: 'Akane_serious', text: '「くだらんものなら捨てろ。時間がない」' },
+    { speaker: null, role: null, text: 'それだけ言い残し、先へ歩いていく。' },
+    { speaker: '朔良', role: 'SAKURA', text: '「……」' },
+    { speaker: null, role: null, text: '私は書類をそっとポケットへしまい、その背中を追いかけた。' },
+  ],
+  [],
+  []
 ];
 
 // ─── ゲート解錠時 ─────────────────────────────────────────────────────────────
@@ -58,20 +69,16 @@ const ROOM_ITEMS = {
       {
         id: 'file_1',
         pos: { top: '62%', left: '65%' },
-        label: '機密ファイル 01',
+        label: '書類①',
         messages: [
           {
             speaker: 'システム', role: 'SYSTEM',
-            text: '【機密ファイル 01 ／ 適応者登録記録：被験者"SA-002"の存在について】'
+            text: '書類①【適応者臨床データ No.07593】'
           },
           {
             speaker: null, role: null,
-            text: '被験者コード：SA-002。登録年齢：7歳。性別：男。\n登録理由：異能自然発現の確認。能力概要：詳細は別紙「SA-002特別管理要項」参照のこと。\n備考：SA-001（登録年齢19歳、女性）との生物学的親族関係が認められる。具体的な続柄については、倫理委員会の勧告により当記録から除外。'
-          },
-          {
-            speaker: null, role: null,
-            text: '管理担当：R-012。\nステータス：【厳重管理中】\n\n（余白に走り書き）\n「……SA-001は、SA-002の存在を知らない。そのままでいい」'
-          },
+            text: '被観察者No.07593の能力検査を実施。結果は陰性。\n当該被験者は現時点で無能力者と判断する。また、親族に関しても陰性が確認されている。'
+          }
         ],
       },
     ],
@@ -79,27 +86,22 @@ const ROOM_ITEMS = {
 
   lab2: {
     chips: [
-      { id: 'chip_2', pos: { top: '38%', left: '20%' }, label: 'コード断片②' },
-      { id: 'chip_3', pos: { top: '55%', left: '75%' }, label: 'コード断片③' },
+      { id: 'chip_2', pos: { top: '38%', left: '20%' }, label: 'コード断片②' }
     ],
     files: [
       {
         id: 'file_2',
         pos: { top: '30%', left: '50%' },
-        label: '機密ファイル 02',
+        label: '資料②',
         messages: [
           {
             speaker: 'システム', role: 'SYSTEM',
-            text: '【機密ファイル 02 ／ 新聞スクラップ：××市連続殺人事件（第三報）】'
+            text: '資料② 【新聞スクラップ】\n違法異能移植施設を摘発'
           },
           {
             speaker: null, role: null,
-            text: '（色あせた新聞の切り抜き。日付は十数年前）\n\n「──昨夜、××市△△区の自宅にて、30代女性の遺体が発見された。\n死因は鋭利な刃物による刺傷（複数箇所）。遺体の発見者は同居の長男（10代）とのみ発表されており、警察は事件との関連について調査中。\n被害者は元研究職に就いていたとされるが、詳細について遺族のプライバシー保護を理由に開示を拒否──」'
-          },
-          {
-            speaker: null, role: null,
-            text: '（余白に赤ペンで書き込み）\n\n「処理済み。遺族への接触は禁止。長男については継続監視対象とする。\n──この件は、研究所とは無関係」\n\n（赤いインクが滲んで、最後の一行は半ば判読不能になっている）'
-          },
+            text: '○○市郊外で非合法の異能移植施設が発覚。\n無能力者への移植実験が繰り返され、多数の死傷者が出た。\n生存者は一名のみとみられ、現在も所在不明。'
+          }
         ],
       },
     ],
@@ -107,54 +109,32 @@ const ROOM_ITEMS = {
 
   lab3: {
     chips: [
-      { id: 'chip_4', pos: { top: '50%', left: '35%' }, label: 'コード断片④' },
+      { id: 'chip_3', pos: { top: '50%', left: '35%' }, label: 'コード断片③' },
     ],
     files: [
       {
         id: 'file_3',
         pos: { top: '35%', left: '68%' },
-        label: '機密ファイル 03',
+        label: '書類③',
         messages: [
           {
             speaker: 'システム', role: 'SYSTEM',
-            text: '【機密ファイル 03 ／ 被験者：アカネ・適応審査報告書】'
+            text: '書類③　【20年程前の古びた新聞スクラップ】\n住宅街で女性死亡'
           },
           {
             speaker: null, role: null,
-            text: '被験者コード：AK-007。審査年齢：16歳。\n異能検査結果：【陰性】──異能の発現、同調反応、潜在波形、いずれも検出されず。\n\n総合評価：《無能力者》\n研究所における適応者プログラムへの参加資格：なし。\n\n審査担当コメント：\n「検体としての価値はゼロ。ただし、他の適応者との接触・情報共有には細心の注意を要する。状況次第では排除も検討する」'
-          },
-          {
-            speaker: null, role: null,
-            text: '付記（別担当者の手書き）：\n「──彼が無能力である事実を、彼自身は知っているのだろうか。\n知らないまま使い続ける方が、都合がいい。\nそれにしても……あの目だけは、普通じゃない」'
-          },
+            text: '昨夜、○○市内の住宅で女性一名が死亡。\n現場には激しい戦闘の痕跡が残り、警察は異能事件として捜査を開始。\n生存していた少年は保護された。'
+          }
         ],
       },
     ],
   },
 
   lab4: {
-    chips: [],
-    files: [
-      {
-        id: 'file_4',
-        pos: { top: '58%', left: '25%' },
-        label: '機密ファイル 04',
-        messages: [
-          {
-            speaker: 'システム', role: 'SYSTEM',
-            text: '【機密ファイル 04 ／ プロジェクト・ウェッジ（楔）：無能力者の特殊性について】'
-          },
-          {
-            speaker: null, role: null,
-            text: '考察：無能力者が持つ「中和・吸収」の特性について。\n\n適応者の異能が暴走・摩耗する際のトリガーは、一貫して「孤立」と「断絶」である。\n逆説的に、適応者が誰かと「繋がり続ける」ことができた場合──\n特に、異能を持たない（中和の器を持つ）者との深い情動的結合が達成された場合に限り、代償の進行が停止もしくは逆転するという仮説が成立する。'
-          },
-          {
-            speaker: null, role: null,
-            text: '付記：\n「AK-007は無能力者として研究所に"用済み"の烙印を押された。\nしかし、逆に言えば──彼こそが、特定の適応者にとっての《楔》になりうる存在である。\n\n本人への開示：【永久に見送り】\n理由：彼がその力を知れば、自らを犠牲にすることを、一秒も躊躇しないだろうから」'
-          },
-        ],
-      },
+    chips: [
+      { id: 'chip_4', pos: { top: '58%', left: '45%' }, label: 'コード断片④' }
     ],
+    files: [],
   },
 };
 
@@ -202,37 +182,58 @@ const InfoParticle = ({ startX, startY, targetX, targetY, color, onComplete }) =
 // ─── キャラクタースプライト ───────────────────────────────────────────────────────
 function FCSprite({ currentMessage }) {
   const illust = currentMessage?.illust;
-  if (!illust) return null;
-  const sepIdx = illust.indexOf('_');
+  let content = null;
 
-  // 表情なし（"Akane"単体）の場合
-  const base = sepIdx !== -1 ? illust.substring(0, sepIdx) : illust;
-  const expression = sepIdx !== -1 ? illust.substring(sepIdx + 1) : 'neutral';
+  if (illust) {
+    const sepIdx = illust.indexOf('_');
+    const base = sepIdx !== -1 ? illust.substring(0, sepIdx) : illust;
+    const expression = sepIdx !== -1 ? illust.substring(sepIdx + 1) : 'neutral';
 
-  const CFGS = {
-    Akane: {
-      folder: '/character/Akane',
-      file: 'Akane',
-      posClass: 'right-[5%] w-[45%] h-[95%]',
-    },
-  };
-  const cfg = CFGS[base];
-  if (!cfg) return null;
+    const CFGS = {
+      Akane: {
+        folder: '/character/Akane',
+        file: 'Akane',
+        posClass: 'right-[5%] w-[45%] h-[95%]',
+      },
+    };
+    const cfg = CFGS[base];
 
-  const imgPath = `${cfg.folder}/${cfg.file}_${expression}.png`;
+    if (cfg) {
+      const imgPath = `${cfg.folder}/${cfg.file}_${expression}.png`;
+      const isSpeaking = currentMessage.speaker === 'アカネ' || currentMessage.role === 'AKANE';
+      const brightness = isSpeaking ? 1 : 0.5;
+
+      content = (
+        <motion.div
+          key={base}
+          className={`absolute bottom-[-50px] flex flex-col justify-end items-center pointer-events-none z-20 ${cfg.posClass}`}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0, filter: `brightness(${brightness}) drop-shadow(0 10px 20px rgba(0,0,0,0.5))` }}
+          exit={{ opacity: 0, y: 20 }}
+          transition={{ duration: 0.3, ease: 'easeOut' }}
+        >
+          <div className="relative w-full h-full">
+            <AnimatePresence>
+              <motion.img
+                key={imgPath}
+                src={assetPath(imgPath)}
+                alt={base}
+                className="absolute bottom-0 left-0 w-full h-full object-contain object-bottom"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+              />
+            </AnimatePresence>
+          </div>
+        </motion.div>
+      );
+    }
+  }
 
   return (
     <AnimatePresence>
-      <motion.div
-        key={illust}
-        className={`absolute bottom-[-50px] flex flex-col justify-end items-center pointer-events-none z-20 ${cfg.posClass}`}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0, filter: 'brightness(1) drop-shadow(0 10px 20px rgba(0,0,0,0.5))' }}
-        exit={{ opacity: 0, y: 20 }}
-        transition={{ duration: 0.3, ease: 'easeOut' }}
-      >
-        <img src={assetPath(imgPath)} alt={base} className="w-full h-full object-contain object-bottom" />
-      </motion.div>
+      {content}
     </AnimatePresence>
   );
 }
@@ -292,6 +293,7 @@ export default function FragmentCollectAkane({ onComplete, onSave, onLoad, onTog
   const [isBlackout, setIsBlackout] = useState(false);
   const [messageQueue, setMessageQueue] = useState([]);
   const [currentMessage, setCurrentMessage] = useState(null);
+  const [showStartAnim, setShowStartAnim] = useState(true);
   const [displayedText, setDisplayedText] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const typingTimer = useRef(null);
@@ -320,7 +322,7 @@ export default function FragmentCollectAkane({ onComplete, onSave, onLoad, onTog
 
   // ─── 全体タイマー ──────────────────────────────────────────────
   useEffect(() => {
-    if (gateUnlocked || currentMessage || activeFile || isGameOver || isTransitioning) return;
+    if (gateUnlocked || currentMessage || activeFile || isGameOver || isTransitioning || showStartAnim) return;
     const timer = setInterval(() => {
       setTimeLeft(prev => {
         if (prev <= 1) { clearInterval(timer); setIsGameOver(true); return 0; }
@@ -328,7 +330,14 @@ export default function FragmentCollectAkane({ onComplete, onSave, onLoad, onTog
       });
     }, 1000);
     return () => clearInterval(timer);
-  }, [gateUnlocked, currentMessage, activeFile, isGameOver, isTransitioning]);
+  }, [gateUnlocked, currentMessage, activeFile, isGameOver, isTransitioning, showStartAnim]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowStartAnim(false);
+    }, 2500);
+    return () => clearTimeout(timer);
+  }, []);
 
   const getTarget = useCallback((elId, fallbackX) => {
     const el = document.getElementById(elId);
@@ -464,13 +473,13 @@ export default function FragmentCollectAkane({ onComplete, onSave, onLoad, onTog
   }, []);
 
   const handlePointerDown = (e) => {
-    if (currentMessage || activeFile || isTransitioning || isGameOver || e.target.closest('button')) return;
+    if (currentMessage || activeFile || isTransitioning || isGameOver || showStartAnim || e.target.closest('button')) return;
     setIsDragging(true);
     lastMousePos.current = { x: e.clientX, y: e.clientY };
   };
   const handlePointerUp = () => setIsDragging(false);
   const handlePointerMove = (e) => {
-    if (currentMessage || activeFile || isTransitioning || isGameOver || !isDragging) return;
+    if (currentMessage || activeFile || isTransitioning || isGameOver || showStartAnim || !isDragging) return;
     const dx = e.clientX - lastMousePos.current.x;
     const dy = e.clientY - lastMousePos.current.y;
     lastMousePos.current = { x: e.clientX, y: e.clientY };
@@ -555,7 +564,7 @@ export default function FragmentCollectAkane({ onComplete, onSave, onLoad, onTog
               <FileText className="w-3.5 h-3.5 lg:w-4 lg:h-4 text-green-500" />
               <span className="text-[11px] lg:text-xs font-orbitron text-slate-600 tracking-widest font-bold">FILE</span>
               <div className="flex items-center gap-1.5 lg:gap-2">
-                {Array.from({ length: 4 }, (_, i) => (
+                {Array.from({ length: 3 }, (_, i) => (
                   <div key={i} className={`w-2.5 h-2.5 lg:w-3 lg:h-3 rounded-full border transition-all duration-500 ${i < fileCount ? 'bg-green-400 border-green-300 shadow-[0_0_8px_rgba(74,222,128,0.8)]' : 'bg-transparent border-white/30'}`} />
                 ))}
               </div>
@@ -616,7 +625,7 @@ export default function FragmentCollectAkane({ onComplete, onSave, onLoad, onTog
       )}
 
       {/* ─── キャラクタースプライト ─── */}
-      {currentMessage && !activeFile && <FCSprite currentMessage={currentMessage} />}
+      <FCSprite currentMessage={!activeFile ? currentMessage : null} />
 
       {/* ─── メッセージウィンドウ ─── */}
       {!activeFile && (
@@ -638,6 +647,33 @@ export default function FragmentCollectAkane({ onComplete, onSave, onLoad, onTog
       {/* ─── 機密ファイルモーダル ─── */}
       <AnimatePresence>
         {activeFile && <FCFileModal file={activeFile} onClose={closeActiveFile} />}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {showStartAnim && (
+          <motion.div
+            className="absolute inset-0 z-[100] flex items-center justify-center pointer-events-none"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0, scale: 1.1, filter: 'blur(10px)' }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+          >
+            <div className="absolute inset-0 bg-black/60" />
+            <motion.div
+              initial={{ opacity: 0, y: 20, letterSpacing: '0.1em' }}
+              animate={{ opacity: 1, y: 0, letterSpacing: '0.3em' }}
+              transition={{ delay: 0.3, duration: 1, ease: "easeOut" }}
+              className="relative z-10 flex flex-col items-center gap-2"
+            >
+              <div className="text-cyan-400 font-orbitron tracking-[0.5em] text-xl md:text-2xl font-bold drop-shadow-[0_0_10px_rgba(34,211,238,0.8)]">
+                EXPLORATION START
+              </div>
+              <div className="text-white font-bold tracking-widest text-lg md:text-xl drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]">
+                探索開始
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
       </AnimatePresence>
 
       {/* ─── ゲームオーバー ─── */}
