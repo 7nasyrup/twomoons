@@ -1,0 +1,96 @@
+/* src/battle.css */
+
+/* 1. Typography */
+.font-rajdhani {
+  font-family: 'Rajdhani', sans-serif;
+}
+
+.text-glow {
+  text-shadow: 0 0 8px rgba(34, 211, 238, 0.8), 0 0 15px rgba(34, 211, 238, 0.4);
+}
+.text-glow-amber {
+  text-shadow: 0 0 8px rgba(251, 191, 36, 0.8), 0 0 15px rgba(251, 191, 36, 0.4);
+}
+.text-glow-red {
+  text-shadow: 0 0 8px rgba(239, 68, 68, 0.8), 0 0 15px rgba(239, 68, 68, 0.4);
+}
+.text-glow-emerald {
+  text-shadow: 0 0 8px rgba(52, 211, 153, 0.8), 0 0 15px rgba(52, 211, 153, 0.4);
+}
+
+/* 2. HP Bars */
+.jrpg-hp-wrapper {
+  /* Parent filter for outer glow since clip-path clips outer box-shadow */
+  filter: drop-shadow(0 0 5px rgba(34, 211, 238, 0.6));
+}
+
+.hp-bar-container {
+  clip-path: polygon(15px 0, 100% 0, calc(100% - 15px) 100%, 0 100%);
+  background: rgba(4, 10, 24, 0.65);
+  backdrop-filter: blur(10px);
+  /* Inner neon glow */
+  box-shadow: inset 0 0 12px rgba(34, 211, 238, 0.4), inset 0 0 2px rgba(255, 255, 255, 0.5);
+  position: relative;
+}
+
+.hp-bar-fill-ally {
+  background: linear-gradient(90deg, rgba(34, 211, 238, 0.9) 0%, rgba(59, 130, 246, 0.9) 100%);
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.hp-bar-fill-enemy {
+  background: linear-gradient(90deg, rgba(244, 63, 94, 0.9) 0%, rgba(249, 115, 22, 0.9) 100%);
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+/* 3. Character Portrait Frame */
+.jrpg-char-wrapper {
+  filter: drop-shadow(0 0 8px rgba(34, 211, 238, 0.7));
+}
+
+.hud-glass {
+  /* Sharp tech cut corners */
+  clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
+  background: rgba(4, 10, 24, 0.65);
+  backdrop-filter: blur(12px);
+  /* Intense inner neon light */
+  box-shadow: inset 0 0 20px rgba(34, 211, 238, 0.5), inset 0 0 4px rgba(255, 255, 255, 0.6);
+}
+
+/* 4. Equalizer / Visualizer */
+.neon-wave {
+  background: linear-gradient(180deg, rgba(34, 211, 238, 1) 0%, rgba(34, 211, 238, 0.1) 100%);
+  border-radius: 2px 2px 0 0;
+  box-shadow: 0 -2px 8px rgba(34, 211, 238, 0.5);
+  width: 2px; /* Delicate thin lines */
+  margin: 0 4px;
+}
+
+.neon-wave-max {
+  background: linear-gradient(180deg, rgba(251, 191, 36, 1) 0%, rgba(251, 191, 36, 0.1) 100%);
+  box-shadow: 0 -2px 8px rgba(251, 191, 36, 0.5);
+}
+
+/* 5. Vignette & Atmosphere */
+.vignette-overlay {
+  background: radial-gradient(circle at center, transparent 20%, rgba(2, 6, 23, 0.85) 100%);
+  pointer-events: none;
+}
+
+.cinematic-guideline-top {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+}
+
+.cinematic-guideline-bottom {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(34,211,238,0.3), transparent);
+}

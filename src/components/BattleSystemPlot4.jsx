@@ -5,7 +5,7 @@ import SpriteAnimator from './SpriteAnimator';
 // ═══════════════════════════════════════════════════════════════════════════════
 // CONSTANTS & TUNING
 // ═══════════════════════════════════════════════════════════════════════════════
-const TURN_DELAY = 1500;             // Delay between turns (ms) (Allows time for heal/absorb and reading next action)
+const TURN_DELAY = 300;              // Delay between turns (ms) (Snappy tempo)
 const HEAL_COOLDOWN = 12000;
 
 // Damage values
@@ -22,37 +22,32 @@ const SYNC_PER_PARRY = 20;            // Sync points gained on parry
 const SYNC_MAX = 100;                 // Max sync points (unleashes Resonance)
 const SYNC_COST_ULTIMATE = 100;       // Cost to use ultimate
 const SYNC_COST_BUFF = 30;            // Cost to use buff song
+const SYNC_COST_HEAL = 20;            // Cost to use heal song
 
 const ATTACK_PATTERNS = [
-  { label: '通常攻撃', sequence: [ { hits: 1, duration: 1200, interval: 0, delayStart: 0 } ] },
-  { label: '高速攻撃', sequence: [ { hits: 1, duration: 800, interval: 0, delayStart: 0 } ] },
-  { label: '二連撃', sequence: [ { hits: 2, duration: 1000, interval: 250, delayStart: 0 } ] },
-  { label: 'ディレイ連撃', sequence: [ 
-    { hits: 1, duration: 1000, interval: 0, delayStart: 0 }, 
-    { hits: 2, duration: 800, interval: 200, delayStart: 1000 } 
-  ] },
-  { label: '変拍子連撃', sequence: [ 
-    { hits: 2, duration: 900, interval: 200, delayStart: 0 }, 
-    { hits: 1, duration: 900, interval: 0, delayStart: 1200 } 
-  ] },
-  { label: '三連撃', sequence: [ { hits: 3, duration: 900, interval: 250, delayStart: 0 } ] },
-  { label: '乱舞', sequence: [ 
-    { hits: 2, duration: 800, interval: 150, delayStart: 0 },
-    { hits: 2, duration: 800, interval: 150, delayStart: 900 }
-  ] },
+  { label: '通常攻撃', sequence: [{ hits: 1, duration: 1200, interval: 0, delayStart: 0 }] },
+  { label: '高速攻撃', sequence: [{ hits: 1, duration: 800, interval: 0, delayStart: 0 }] },
+  { label: '二連撃', sequence: [{ hits: 2, duration: 1000, interval: 250, delayStart: 0 }] },
+  {
+    label: 'ディレイ連撃', sequence: [
+      { hits: 1, duration: 1000, interval: 0, delayStart: 0 },
+      { hits: 2, duration: 800, interval: 200, delayStart: 1000 }
+    ]
+  },
+  {
+    label: '変拍子連撃', sequence: [
+      { hits: 2, duration: 900, interval: 200, delayStart: 0 },
+      { hits: 1, duration: 900, interval: 0, delayStart: 1200 }
+    ]
+  },
+  { label: '三連撃', sequence: [{ hits: 3, duration: 900, interval: 250, delayStart: 0 }] },
+  {
+    label: '乱舞', sequence: [
+      { hits: 2, duration: 800, interval: 150, delayStart: 0 },
+      { hits: 2, duration: 800, interval: 150, delayStart: 900 }
+    ]
+  },
 ];
-
-// ═══════════════════════════════════════════════════════════════════════════════
-// ANOMALY FRAGMENTS
-// ═══════════════════════════════════════════════════════════════════════════════
-const ANOMALY_FRAGMENTS = {
-  ATK_UP: { id: 'ATK_UP', name: '猛攻の欠片', desc: '与えるダメージが1.5倍になる', color: 'bg-red-500', glow: 'shadow-[0_0_15px_rgba(239,68,68,0.6)]', icon: '⚔️' },
-  DEF_UP: { id: 'DEF_UP', name: '堅守の欠片', desc: '受けるダメージを半減する', color: 'bg-blue-500', glow: 'shadow-[0_0_15px_rgba(59,130,246,0.6)]', icon: '🛡️' },
-  SYNC_BOOST: { id: 'SYNC_BOOST', name: '共鳴の欠片', desc: 'SYNC獲得量が2倍になる', color: 'bg-amber-500', glow: 'shadow-[0_0_15px_rgba(245,158,11,0.6)]', icon: '✨' },
-  HEAL_BOOST: { id: 'HEAL_BOOST', name: '慈愛の欠片', desc: '回復量が2倍になる', color: 'bg-emerald-500', glow: 'shadow-[0_0_15px_rgba(16,185,129,0.6)]', icon: '💖' },
-  ULT_BOOST: { id: 'ULT_BOOST', name: '崩壊の欠片', desc: '必殺技ダメージが2.5倍になる', color: 'bg-violet-500', glow: 'shadow-[0_0_15px_rgba(139,92,246,0.6)]', icon: '🔥' },
-};
-const MAX_ANOMALY_SLOTS = 5;
 
 // Turn order
 const TURN_ORDER = ['mutsunori', 'enemy1'];
@@ -73,9 +68,9 @@ const createEnemies = () => [
 const getCharInfo = (id) => {
   const map = {
     mutsunori: { name: '睦典', image: '/battle/mutsunori.png', isAlly: true },
-    nagisa:    { name: '凪砂', image: '/battle/nagisa.png', isAlly: true },
-    enemy1:    { name: 'キメラα', image: '/character/kimera1.png', isAlly: false },
-    enemy2:    { name: 'キメラβ', image: '/character/kimera1.png', isAlly: false },
+    nagisa: { name: '凪砂', image: '/battle/nagisa.png', isAlly: true },
+    enemy1: { name: 'キメラα', image: '/character/kimera1.png', isAlly: false },
+    enemy2: { name: 'キメラβ', image: '/character/kimera1.png', isAlly: false },
   };
   return map[id] || { name: '？', image: '', isAlly: false };
 };
@@ -83,33 +78,25 @@ const getCharInfo = (id) => {
 // ═══════════════════════════════════════════════════════════════════════════════
 // COMPONENT
 // ═══════════════════════════════════════════════════════════════════════════════
-export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
+export default function BattleSystemPlot4({ onComplete, playBGM, stopBGM, playSE }) {
   // ─── Core State ───
   const [allies, setAllies] = useState(createAllies);
   const [enemies, setEnemies] = useState(createEnemies);
   const [syncRate, setSyncRate] = useState(0);          // 0-100
   const [battlePhase, setBattlePhase] = useState('intro');
   const [battleLog, setBattleLog] = useState([]);
-  
+
   // ─── Turn State ───
   const [currentTurnIndex, setCurrentTurnIndex] = useState(0);  // index in TURN_ORDER
-  const [turnPhase, setTurnPhase] = useState('waiting');  // 'waiting' | 'ally_windup' | 'ally_attack' | 'enemy_windup' | 'enemy_resolve' | 'counter_attack' | 'turn_delay'
+  const [turnPhase, setTurnPhase] = useState('waiting');  // 'waiting' | 'ally_attack' | 'enemy_windup' | 'enemy_resolve' | 'counter_attack' | 'turn_delay'
   const [turnTimer, setTurnTimer] = useState(0);
   const [activeAttacks, setActiveAttacks] = useState([]); // Array of { id, enemyId, targetId, startTime, delay, duration, glintFired, resolved }
   const [counterAttack, setCounterAttack] = useState(null); // { allyId, enemyId }
-  const [allyQTEState, setAllyQTEState] = useState('none'); // 'none' | 'waiting' | 'success' | 'fail'
-  const qteStartTimeRef = useRef(0);
-  const qteSuccessRef = useRef(false);
-  
+
   const [guardingAllies, setGuardingAllies] = useState(new Set());
-  const [healCooldown, setHealCooldown] = useState(0);
   const [buffTurnsLeft, setBuffTurnsLeft] = useState(0);
   const [guardCooldownTrigger, setGuardCooldownTrigger] = useState({ mutsunori: 0, nagisa: 0 });
-  
-  // ─── Anomaly State ───
-  const [activeFragments, setActiveFragments] = useState([]);
-  const [corruption, setCorruption] = useState(0); // 0-100 Rampage gauge
-  
+
   // ─── Visual Effects State ───
   const [sakuraSinging, setSakuraSinging] = useState(false);
   const [isCommandMenuOpen, setIsCommandMenuOpen] = useState(false);
@@ -120,7 +107,7 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
   const [ultimateFlash, setUltimateFlash] = useState(false);
   const [healFlash, setHealFlash] = useState(false);
   const [counterAnim, setCounterAnim] = useState(null); // { allyId, enemyId }
-  const [duetCutin, setDuetCutin] = useState(null); 
+  const [duetCutin, setDuetCutin] = useState(null);
   const [glintEffects, setGlintEffects] = useState([]); // { id, enemyId }
   const [isPaused, setIsPaused] = useState(false);
   const [showTutorial, setShowTutorial] = useState(true); // New tutorial state
@@ -132,11 +119,11 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
   const lastTickRef = useRef(0);
   const hitStopRef = useRef(0);
   const guardCooldownsRef = useRef({ mutsunori: 0, nagisa: 0 });
-  const stateRef = useRef({ allies, enemies, activeAttacks, guardingAllies, syncRate, battlePhase, turnPhase, currentTurnIndex, counterAttack, buffTurnsLeft, activeFragments, corruption });
+  const stateRef = useRef({ allies, enemies, activeAttacks, guardingAllies, syncRate, battlePhase, turnPhase, currentTurnIndex, counterAttack, buffTurnsLeft });
 
   useEffect(() => {
-    stateRef.current = { allies, enemies, activeAttacks, guardingAllies, syncRate, battlePhase, turnPhase, currentTurnIndex, counterAttack, buffTurnsLeft, activeFragments, corruption };
-  }, [allies, enemies, activeAttacks, guardingAllies, syncRate, battlePhase, turnPhase, currentTurnIndex, counterAttack, buffTurnsLeft, activeFragments, corruption]);
+    stateRef.current = { allies, enemies, activeAttacks, guardingAllies, syncRate, battlePhase, turnPhase, currentTurnIndex, counterAttack, buffTurnsLeft };
+  }, [allies, enemies, activeAttacks, guardingAllies, syncRate, battlePhase, turnPhase, currentTurnIndex, counterAttack, buffTurnsLeft]);
 
   // ─── Helpers ───
   const addLog = useCallback((msg) => {
@@ -149,71 +136,16 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
     setTimeout(() => setShowDamageNumbers(prev => prev.filter(d => d.id !== id)), 1200);
   }, []);
 
-  const addSync = useCallback((amount) => {
-    setSyncRate(prev => Math.min(SYNC_MAX, prev + amount));
-  }, []);
-
-  const executeAllyAttack = useCallback((isJust) => {
-    const allAllies = stateRef.current.allies;
-    const allEnemies = stateRef.current.enemies;
-    const turnId = TURN_ORDER[stateRef.current.currentTurnIndex % TURN_ORDER.length];
-    
-    const aliveEnemies = allEnemies.filter(e => !e.isDead);
-    if (aliveEnemies.length > 0) {
-      const hasBuff = stateRef.current.buffTurnsLeft > 0;
-      
-      if (hasBuff) {
-        setBuffTurnsLeft(prev => {
-          const next = Math.max(0, prev - 1);
-          if (next === 0) {
-            addLog("🎵 強化の歌の効果が切れた");
-            setSakuraSinging(false);
-          }
-          return next;
-        });
-      }
-      
-      const target = aliveEnemies.reduce((min, e) => e.hp < min.hp ? e : min, aliveEnemies[0]);
-      const atkMult = stateRef.current.activeFragments.includes('ATK_UP') ? 1.5 : 1.0;
-      const baseDmg = ALLY_BASE_DAMAGE + Math.floor(Math.random() * 8);
-      let dmg = hasBuff ? Math.floor(baseDmg * 1.5) : baseDmg;
-      dmg = Math.floor(dmg * atkMult);
-      
-      if (isJust) {
-        dmg = Math.floor(dmg * 1.5);
-      }
-      
-      setEnemies(prev => prev.map(e => {
-        if (e.id === target.id) {
-          const newHp = Math.max(0, e.hp - dmg);
-          return { ...e, hp: newHp, flashTimer: 300, isDead: newHp <= 0 };
-        }
-        return e;
-      }));
-      spawnDamageNumber(target.id, dmg, isJust ? 'critical' : 'damage');
-      addSync(SYNC_PER_HIT);
-      const ally = allAllies.find(a => a.id === turnId);
-      if (ally) {
-        if (isJust) addLog(`⚡ジャスト攻撃！ ${ally.name} が ${target.name} に大ダメージ！`);
-        else addLog(`⚔ ${ally.name} が ${target.name} に攻撃！`);
-      }
-      if (playSE) playSE('/assets/audio/bgm/+game_sword.mp3');
-    }
-    setTurnPhase('ally_attack');
-    stateRef.current.turnPhase = 'ally_attack';
-    setTurnTimer(150);
-  }, [addLog, spawnDamageNumber, addSync, playSE]);
-
   const triggerSakuraNote = useCallback(() => {
     setSakuraSinging(true);
-    
+
     // Generate 5-8 cyber notes/data particles
     const count = Math.floor(Math.random() * 4) + 5;
     const newNotes = [];
     const symbols = ['♪', '♬', '//', '01', '❖', '>>', '◇'];
     const colors = ['text-cyan-300', 'text-cyan-400', 'text-emerald-300', 'text-amber-300', 'text-violet-300'];
-    
-    for (let i=0; i<count; i++) {
+
+    for (let i = 0; i < count; i++) {
       newNotes.push({
         id: Date.now() + Math.random(),
         x: (Math.random() * 200) - 100, // Spread around the ally
@@ -225,12 +157,16 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
     }
 
     setSakuraNotes(prev => [...prev.slice(-15), ...newNotes]);
-    
+
     setTimeout(() => {
       const noteIds = newNotes.map(n => n.id);
       setSakuraNotes(prev => prev.filter(n => !noteIds.includes(n.id)));
       setSakuraSinging(false);
     }, 1200);
+  }, []);
+
+  const addSync = useCallback((amount) => {
+    setSyncRate(prev => Math.min(SYNC_MAX, prev + amount));
   }, []);
 
   const spawnGlint = useCallback((enemyId, targetId) => {
@@ -295,9 +231,9 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
       if (!lastTickRef.current) lastTickRef.current = timestamp;
       const rawDt = timestamp - lastTickRef.current;
       lastTickRef.current = timestamp;
-      
-      if (rawDt > 200) { gameLoopRef.current = requestAnimationFrame(tick); return; } 
-      
+
+      if (rawDt > 200) { gameLoopRef.current = requestAnimationFrame(tick); return; }
+
       let dt = rawDt;
       if (isPausedRef.current) {
         dt = 0;
@@ -318,9 +254,6 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
       if (currentAllies.every(a => a.isDead)) { setBattlePhase('defeat'); return; }
       if (currentEnemies.every(e => e.isDead)) { setBattlePhase('victory'); return; }
 
-      // Tick cooldowns
-      setHealCooldown(prev => Math.max(0, prev - dt));
-      
       // Tick flash timers
       setAllies(prev => prev.map(a => ({ ...a, flashTimer: Math.max(0, a.flashTimer - dt) })));
       setEnemies(prev => prev.map(e => ({ ...e, flashTimer: Math.max(0, e.flashTimer - dt) })));
@@ -356,12 +289,41 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
             }
 
             if (isAlly) {
-              setTurnPhase('ally_windup');
-              stateRef.current.turnPhase = 'ally_windup';
-              setTurnTimer(650); // Increased from 500ms to 650ms for more reaction time
-              setAllyQTEState('waiting');
-              qteStartTimeRef.current = Date.now();
-              qteSuccessRef.current = false;
+              // Deal damage immediately as the animation starts
+              const aliveEnemies = allEnemies.filter(e => !e.isDead);
+              if (aliveEnemies.length > 0) {
+                const hasBuff = stateRef.current.buffTurnsLeft > 0;
+
+                if (hasBuff) {
+                  setBuffTurnsLeft(prev => {
+                    const next = Math.max(0, prev - 1);
+                    if (next === 0) {
+                      addLog("🎵 強化の歌の効果が切れた");
+                      setSakuraSinging(false);
+                    }
+                    return next;
+                  });
+                }
+
+                const target = aliveEnemies.reduce((min, e) => e.hp < min.hp ? e : min, aliveEnemies[0]);
+                const baseDmg = ALLY_BASE_DAMAGE + Math.floor(Math.random() * 8);
+                const dmg = hasBuff ? Math.floor(baseDmg * 1.5) : baseDmg;
+
+                setEnemies(prev => prev.map(e => {
+                  if (e.id === target.id) {
+                    const newHp = Math.max(0, e.hp - dmg);
+                    return { ...e, hp: newHp, flashTimer: 300, isDead: newHp <= 0 };
+                  }
+                  return e;
+                }));
+                spawnDamageNumber(target.id, dmg, 'damage');
+                addSync(SYNC_PER_HIT);
+                const ally = allAllies.find(a => a.id === turnId);
+                if (ally) addLog(`⚔ ${ally.name} が ${target.name} に攻撃！`);
+                if (playSE) playSE('/assets/audio/bgm/+game_sword.mp3');
+              }
+              setTurnPhase('ally_attack');
+              setTurnTimer(150); // Visual step forward duration (snappy!)
             } else {
               // Check if enemy is stunned (from parry)
               const enemy = allEnemies.find(e => e.id === turnId);
@@ -375,19 +337,6 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
               }
               setTurnPhase('enemy_windup');
             }
-            return 0;
-          }
-          return next;
-        });
-      }
-
-      // ── ALLY WINDUP (QTE Window) ──
-      if (phase === 'ally_windup') {
-        setTurnTimer(prev => {
-          const next = prev - dt;
-          if (next <= 0) {
-            setAllyQTEState('none');
-            executeAllyAttack(qteSuccessRef.current);
             return 0;
           }
           return next;
@@ -413,11 +362,11 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
         const turnId = TURN_ORDER[stateRef.current.currentTurnIndex % TURN_ORDER.length];
         const allAllies = stateRef.current.allies;
         const aliveAllies = allAllies.filter(a => !a.isDead);
-        
+
         if (aliveAllies.length > 0) {
           const target = aliveAllies[Math.floor(Math.random() * aliveAllies.length)];
           const enemy = stateRef.current.enemies.find(e => e.id === turnId);
-          
+
           const pattern = ATTACK_PATTERNS[Math.floor(Math.random() * ATTACK_PATTERNS.length)];
 
           const attacks = [];
@@ -462,7 +411,7 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
           allResolved = false;
 
           const elapsed = now - attack.startTime;
-          
+
           // Trigger Glint (Converging UI marker)
           if (elapsed >= Math.max(0, attack.delay + attack.duration - 600) && !attack.glintFired) {
             attack.glintFired = true;
@@ -474,30 +423,27 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
           if (elapsed >= attack.delay + attack.duration) {
             attack.resolved = true;
             modified = true;
-            
+
             const allAllies = stateRef.current.allies;
             const targetIdx = allAllies.findIndex(a => a.id === attack.targetId && !a.isDead);
             const enemy = stateRef.current.enemies.find(e => e.id === attack.enemyId);
-            
+
             if (targetIdx !== -1 && enemy) {
               const hasBuff = stateRef.current.buffTurnsLeft > 0;
               const isGuarding = currentGuards.has(attack.targetId);
-              const defMult = stateRef.current.activeFragments.includes('DEF_UP') ? 0.5 : 1.0;
               let dmg = ENEMY_BASE_DAMAGE + Math.floor(Math.random() * 10);
-              
+
               if (hasBuff) {
                 dmg = Math.floor(dmg * 0.8);
               }
-              
-              dmg = Math.floor(dmg * defMult);
-              
+
               if (isGuarding) {
                 dmg = Math.floor(dmg * GUARD_REDUCTION);
                 addLog(`🛡️ ${allAllies[targetIdx].name} がガード！ 被害軽減`);
               } else {
                 addLog(`💥 ${enemy.name} の攻撃が ${allAllies[targetIdx].name} に直撃！`);
               }
-              
+
               setAllies(prev => prev.map((a, idx) => {
                 if (a.id === attack.targetId) {
                   const newHp = Math.max(0, a.hp - dmg);
@@ -542,16 +488,16 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
         const { allyId, enemyId } = stateRef.current.counterAttack;
         const ally = stateRef.current.allies.find(a => a.id === allyId);
         const enemy = stateRef.current.enemies.find(e => e.id === enemyId);
-        
+
         if (ally && enemy && !enemy.isDead) {
-          if (playSE) playSE('/assets/audio/bgm/+game_counter.mp3'); 
+          if (playSE) playSE('/assets/audio/bgm/+game_counter.mp3');
           setShakeActive(true);
           hitStopRef.current = 700; // Perfect impact weight
-          
+
           setCounterAnim({ id: Date.now(), allyId, enemyId });
           setTimeout(() => setCounterAnim(null), 700);
 
-          const dmg = COUNTER_DAMAGE * 2 + Math.floor(Math.random() * 20); 
+          const dmg = COUNTER_DAMAGE * 2 + Math.floor(Math.random() * 20);
           setEnemies(prev => prev.map(e => {
             if (e.id === enemyId) {
               const newHp = Math.max(0, e.hp - dmg);
@@ -559,18 +505,18 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
             }
             return e;
           }));
-          spawnDamageNumber(enemyId, dmg, 'ultimate'); 
+          spawnDamageNumber(enemyId, dmg, 'ultimate');
           addLog(`⚡⚡ パーフェクト・パリィ！ ${ally.name} が踏み込み一閃！ ⚡⚡`);
-          
+
           setTimeout(() => setShakeActive(false), 700);
         }
-        
+
         setCounterAttack(null);
         stateRef.current.counterAttack = null;
         // Advance turn
         setCurrentTurnIndex(p => p + 1);
         setTurnPhase('turn_delay');
-        setTurnTimer(800); 
+        setTurnTimer(800);
       }
 
       gameLoopRef.current = requestAnimationFrame(tick);
@@ -584,18 +530,18 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
   // ═══════════════════════════════════════════════════════════════════════════════
   // INTERACTIONS (PARRY & GUARD)
   // ═══════════════════════════════════════════════════════════════════════════════
-  
+
   const handlePointerDown = useCallback((allyId) => {
     const nowTime = Date.now();
     if (nowTime - guardCooldownsRef.current[allyId] < 800) {
       return;
     }
-    
+
     let parrySuccess = false;
 
     if (stateRef.current.turnPhase === 'enemy_windup' && stateRef.current.activeAttacks.length > 0) {
       const activeAttacks = stateRef.current.activeAttacks;
-      
+
       const parryableIndex = activeAttacks.findIndex(attack => {
         if (attack.targetId !== allyId || attack.resolved) return false;
         const elapsed = Date.now() - attack.startTime;
@@ -611,35 +557,31 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
         setParryFlash(true);
         setTimeout(() => setParryFlash(false), 500);
         triggerSakuraNote();
-        
-        // パリィ成功時に暴走ゲージを軽減
-        setCorruption(prev => Math.max(0, prev - 20));
 
-        const syncMult = stateRef.current.activeFragments.includes('SYNC_BOOST') ? 2.0 : 1.0;
         const hasBuff = stateRef.current.buffTurnsLeft > 0;
-        addSync((hasBuff ? SYNC_PER_PARRY * 2 : SYNC_PER_PARRY) * syncMult);
-        
+        addSync(hasBuff ? SYNC_PER_PARRY * 2 : SYNC_PER_PARRY);
+
         const attack = activeAttacks[parryableIndex];
-        
+
         const nextAttacks = [...activeAttacks];
         nextAttacks.splice(parryableIndex, 1);
-        
+
         setActiveAttacks(nextAttacks);
         stateRef.current.activeAttacks = nextAttacks;
 
         const ally = stateRef.current.allies.find(a => a.id === allyId);
-        
+
         if (!attack.isLast) {
           addLog(`✨ ${ally?.name} が弾いた！ さらに追撃が来る！`);
         } else {
           addLog(`✨ パリィ成功！ ${ally?.name} が敵の攻撃を弾き返した！`);
-          
+
           setEnemies(prev => prev.map(e => e.id === attack.enemyId ? { ...e, isStunned: true } : e));
           setCounterAttack({ allyId, enemyId: attack.enemyId });
           stateRef.current.counterAttack = { allyId, enemyId: attack.enemyId };
           setTurnPhase('counter_attack');
           stateRef.current.turnPhase = 'counter_attack';
-          
+
           setActiveAttacks([]);
           stateRef.current.activeAttacks = [];
         }
@@ -676,23 +618,23 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
         e.preventDefault();
         const attacks = stateRef.current.activeAttacks || [];
         const attack = attacks[0];
-        const targetId = (attack && stateRef.current.turnPhase === 'enemy_windup') 
-          ? attack.targetId 
+        const targetId = (attack && stateRef.current.turnPhase === 'enemy_windup')
+          ? attack.targetId
           : stateRef.current.allies[0]?.id;
-          
+
         if (targetId) handlePointerDown(targetId);
       }
     };
-    
+
     const handleKeyUp = (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         const attacks = stateRef.current.activeAttacks || [];
         const attack = attacks[0];
-        const targetId = (attack && stateRef.current.turnPhase === 'enemy_windup') 
-          ? attack.targetId 
+        const targetId = (attack && stateRef.current.turnPhase === 'enemy_windup')
+          ? attack.targetId
           : stateRef.current.allies[0]?.id;
-          
+
         if (targetId) handlePointerUp(targetId);
       }
     };
@@ -705,112 +647,29 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
     };
   }, [handlePointerDown, handlePointerUp]);
 
-  // ─── UI Button Controls (Defend) ───
-  const handleDefendButtonDown = useCallback(() => {
-    const attacks = stateRef.current.activeAttacks || [];
-    const attack = attacks[0];
-    const targetId = (attack && stateRef.current.turnPhase === 'enemy_windup') 
-      ? attack.targetId 
-      : stateRef.current.allies[0]?.id;
-      
-    if (targetId) handlePointerDown(targetId);
-  }, [handlePointerDown]);
-
-  const handleDefendButtonUp = useCallback(() => {
-    const attacks = stateRef.current.activeAttacks || [];
-    const attack = attacks[0];
-    const targetId = (attack && stateRef.current.turnPhase === 'enemy_windup') 
-      ? attack.targetId 
-      : stateRef.current.allies[0]?.id;
-      
-    if (targetId) handlePointerUp(targetId);
-  }, [handlePointerUp]);
-
   // ═══════════════════════════════════════════════════════════════════════════════
   // ABILITIES
   // ═══════════════════════════════════════════════════════════════════════════════
 
-  const handleAllyAttack = useCallback(() => {
-    if (stateRef.current.turnPhase !== 'ally_windup') return;
-    if (qteSuccessRef.current) return;
-    
-    const elapsed = Date.now() - qteStartTimeRef.current;
-    
-    // Animation hits scale:1 at 500ms.
-    // Perfect timing window widened to 250ms - 750ms for extremely easy timing.
-    const isJust = elapsed >= 250 && elapsed <= 750;
-    
-    if (isJust) {
-      qteSuccessRef.current = true;
-      setAllyQTEState('success');
-      // 成功時の演出（音と画面揺れは控えめにし、UIのボタン発光に任せる）
-      if (playSE) playSE('/assets/audio/bgm/+parry.mp3'); 
-    } else {
-      setAllyQTEState('fail');
-    }
-  }, [playSE, triggerSakuraNote]);
-
-  const handleAbsorb = useCallback(() => {
-    if (stateRef.current.battlePhase !== 'fighting') return;
-    
-    // Add corruption
-    setCorruption(prev => {
-      const next = prev + 30;
-      if (next >= 100) {
-        // Rampage!
-        addLog(`⚠️ 異能が暴走した！ 睦典はダメージを受け、全能力を失った！`);
-        setActiveFragments([]);
-        setShakeActive(true);
-        setTimeout(() => setShakeActive(false), 800);
-        
-        setAllies(allyPrev => allyPrev.map(a => {
-          if (a.id === 'mutsunori') {
-            const dmg = 150; // Heavy damage
-            const newHp = Math.max(0, a.hp - dmg);
-            spawnDamageNumber(a.id, dmg, 'critical');
-            return { ...a, hp: newHp, flashTimer: 800, isDead: newHp <= 0 };
-          }
-          return a;
-        }));
-        
-        return 0; // Reset corruption after rampage
-      }
-      return next;
-    });
-
-    if (stateRef.current.activeFragments.length < MAX_ANOMALY_SLOTS) {
-      const keys = Object.keys(ANOMALY_FRAGMENTS);
-      const fragId = keys[Math.floor(Math.random() * keys.length)];
-      setActiveFragments(prev => [...prev, fragId]);
-      addLog(`🧬 異能【${ANOMALY_FRAGMENTS[fragId].name}】を強制吸収した！`);
-      triggerSakuraNote();
-    } else {
-      addLog(`⚠️ スロットが一杯でこれ以上吸収できない！ (暴走値のみ上昇)`);
-    }
-  }, [addLog, triggerSakuraNote, spawnDamageNumber]);
-
   const handleHeal = useCallback(() => {
-    if (healCooldown > 0 || stateRef.current.battlePhase !== 'fighting') return;
-    
-    setHealCooldown(HEAL_COOLDOWN);
+    if (syncRate < SYNC_COST_HEAL || stateRef.current.battlePhase !== 'fighting') return;
+
+    setSyncRate(prev => Math.max(0, prev - SYNC_COST_HEAL));
     setHealFlash(true);
     setTimeout(() => setHealFlash(false), 500);
     triggerSakuraNote();
 
-    const healMult = stateRef.current.activeFragments.includes('HEAL_BOOST') ? 2.0 : 1.0;
-    const amount = Math.floor(HEAL_AMOUNT * healMult);
-    
     setAllies(prev => prev.map(a => {
       if (a.isDead) return a;
-      spawnDamageNumber(a.id, amount, 'heal');
-      return { ...a, hp: Math.min(a.maxHp, a.hp + amount), flashTimer: 0 };
+      spawnDamageNumber(a.id, HEAL_AMOUNT, 'heal');
+      return { ...a, hp: Math.min(a.maxHp, a.hp + HEAL_AMOUNT), flashTimer: 0 };
     }));
     addLog(`💖 朔良の歌でパーティ全体が回復！`);
-  }, [healCooldown, addLog, triggerSakuraNote, spawnDamageNumber]);
+  }, [syncRate, addLog, triggerSakuraNote, spawnDamageNumber]);
 
   const handleBuff = useCallback(() => {
     if (syncRate < SYNC_COST_BUFF || stateRef.current.battlePhase !== 'fighting') return;
-    
+
     setSyncRate(prev => Math.max(0, prev - SYNC_COST_BUFF));
     setBuffTurnsLeft(2); // 2 turns
     setHealFlash(true);
@@ -822,16 +681,16 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
 
   const handleMutsunoriUltimate = useCallback(() => {
     if (syncRate < SYNC_COST_ULTIMATE || stateRef.current.battlePhase !== 'fighting') return;
-    
+
     const mutsunori = allies.find(a => a.id === 'mutsunori');
     if (!mutsunori || mutsunori.isDead) return;
 
     setSyncRate(0);
     setDuetCutin({ allyId: mutsunori.id, name: mutsunori.name, image: mutsunori.cutinImage });
-    
+
     setUltimateFlash(true);
     triggerSakuraNote();
-    
+
     // 必殺技中は戦闘時間を2.5秒間完全に停止させる
     hitStopRef.current = 2500;
 
@@ -840,13 +699,12 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
       setEnemies(prev => {
         const aliveEnemies = prev.filter(e => !e.isDead);
         if (aliveEnemies.length === 0) return prev;
-        
+
         const target = aliveEnemies.reduce((min, e) => e.hp < min.hp ? e : min, aliveEnemies[0]);
-        const ultMult = stateRef.current.activeFragments.includes('ULT_BOOST') ? 2.5 : 1.0;
-        const dmg = Math.floor((250 + Math.floor(Math.random() * 20)) * ultMult);
-        
+        const dmg = 250 + Math.floor(Math.random() * 20);
+
         spawnDamageNumber(target.id, dmg, 'ultimate');
-        
+
         return prev.map(e => {
           if (e.id === target.id) {
             return { ...e, hp: Math.max(0, e.hp - dmg), flashTimer: 800, isDead: e.hp - dmg <= 0 };
@@ -870,7 +728,7 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
   // ═══════════════════════════════════════════════════════════════════════════════
   // RENDER COMPUTATIONS
   // ═══════════════════════════════════════════════════════════════════════════════
-  
+
   const targetedAllies = useMemo(() => {
     const set = new Set();
     activeAttacks.forEach(a => set.add(a.targetId));
@@ -887,18 +745,18 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
       setLineCoords(null);
       return;
     }
-    
+
     const updateCoords = () => {
       const attack = activeAttacksCompat[0];
       const enemyEl = document.getElementById(`char-${attack.enemyId}`);
       const allyEl = document.getElementById(`char-${attack.targetId}`);
       const svgEl = svgRef.current;
-      
+
       if (enemyEl && allyEl && svgEl) {
         const eRect = enemyEl.getBoundingClientRect();
         const aRect = allyEl.getBoundingClientRect();
         const sRect = svgEl.getBoundingClientRect();
-        
+
         setLineCoords({
           x1: eRect.left + eRect.width / 2 - sRect.left,
           y1: eRect.top + eRect.height / 2 - sRect.top,
@@ -909,7 +767,7 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
         });
       }
     };
-    
+
     const raf = requestAnimationFrame(updateCoords);
     window.addEventListener('resize', updateCoords);
     return () => {
@@ -926,8 +784,8 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         {/* Full color bright image */}
-        <img src="/battle/shopping.png" alt="Background" className="absolute inset-0 w-full h-full object-cover scale-[1.15] -translate-y-[5%]" />
-        
+        <img src="/battle/shopping2.png" alt="Background" className="absolute inset-0 w-full h-full object-cover" />
+
         {/* Very subtle cyber tech overlays so UI is still readable */}
         <div className="absolute inset-0 bg-[#090e17]/20" />
         <div className="absolute inset-0 fui-grid-bg opacity-[0.2] mix-blend-overlay" />
@@ -971,15 +829,14 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
                   </p>
                 </section>
                 
-                {/* 2. 攻撃タイミング */}
+                {/* 2. 味方の攻撃 */}
                 <section>
                   <h3 className="text-lg font-bold text-emerald-200 mb-2 flex items-center gap-2">
                     <span className="bg-emerald-900/50 px-2 py-0.5 rounded text-emerald-300 border border-emerald-500/30 text-sm">2</span>
-                    ジャスト攻撃
+                    味方の攻撃（オート）
                   </h3>
                   <p>
-                    味方の攻撃時、画面に表示される丸いタイミングマーカーに合わせて攻撃ボタン（またはキー）を押してください。<br />
-                    タイミングが完璧（ジャスト）だと、<strong>与えるダメージが1.5倍</strong>に増加します。
+                    味方のターンが回ってくると、<strong>自動で攻撃を行います</strong>。プレイヤーは防御や特殊アクションのタイミングに集中できます。
                   </p>
                 </section>
                 
@@ -990,8 +847,8 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
                     シンクロ率ゲージと特殊アクション
                   </h3>
                   <p>
-                    攻撃を当てたりパリィを成功させると右下の<strong>シンクロ率</strong>が溜まります。このゲージを消費して必殺技や強化などの強力なアクションが可能です。<br />
-                    また、ターンとターンの間の猶予時間（1.5秒）を活用して、<strong>「吸収」</strong>ボタンなどを押すことで戦況を有利に進められます。
+                    攻撃を当てたりパリィを成功させると右下の<strong>シンクロ率</strong>が溜まります。このゲージを消費して必殺技・強化・回復などの強力なアクションが可能です。<br />
+                    ターンとターンの間の猶予時間（1.5秒）を活用してボタンを押し、戦況を有利に進めましょう。
                   </p>
                 </section>
               </div>
@@ -1032,14 +889,14 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
         {counterAnim && (
           <motion.div key={counterAnim.id} className="absolute inset-0 z-[70] pointer-events-none flex items-center justify-center overflow-hidden" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.1 }}>
             <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px]" />
-            <motion.div 
+            <motion.div
               className="absolute w-[150%] h-1 bg-cyan-50 shadow-[0_0_40px_20px_rgba(165,243,252,0.8)]"
               style={{ rotate: -15 }}
               initial={{ scaleX: 0, opacity: 1 }}
               animate={{ scaleX: [0, 1, 1], opacity: [1, 1, 0] }}
               transition={{ duration: 0.4, ease: "easeOut", times: [0, 0.2, 1] }}
             />
-            <motion.div 
+            <motion.div
               className="absolute w-[150%] h-[1px] bg-white shadow-[0_0_10px_2px_rgba(255,255,255,0.9)]"
               style={{ rotate: -15 }}
               initial={{ scaleX: 0, opacity: 1 }}
@@ -1073,9 +930,9 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
            BATTLE FIELD
          ═══════════════════════════════════════════════════════════════ */}
       <div className="relative flex-1 flex items-stretch px-4 md:px-12 pt-32 pb-24 z-10 overflow-hidden">
-        
+
         {/* Projectiles and warning lines removed for melee attack style */}
-        
+
         {/* ── Allies (Left Column) ── */}
         <div className="w-1/2 flex flex-col justify-around items-center pr-4">
           {allies.map(ally => {
@@ -1084,10 +941,43 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
             const isGuarding = guardingAllies.has(ally.id);
             const isCurrentTurn = TURN_ORDER[currentTurnIndex % TURN_ORDER.length] === ally.id && turnPhase === 'ally_attack';
             const isCounterDashing = counterAnim && counterAnim.allyId === ally.id;
-            
+
             return (
               <div key={ally.id} className="relative flex flex-col items-center w-full">
-                {/* Ally Status Panel has been moved to the Bottom Left HUD */}
+                {/* ── Ally Status Panel ── */}
+                <div className="w-36 md:w-48 mb-2 z-20 relative">
+                  <div className="bg-[#090e17]/80 backdrop-blur-sm border border-cyan-500/40 fui-clip-basic p-1.5 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPjxyZWN0IHdpZHRoPSIyIiBoZWlnaHQ9IjQiIGZpbGw9InJnYmEoMzQsIDIxMSwgMjM4LCAwLjA1KSIvPjwvc3ZnPg==')] z-0 pointer-events-none" />
+
+                    <div className="flex items-center justify-between mb-1 px-1 relative z-10">
+                      <div className="flex items-center gap-1.5">
+                        <div className="w-1.5 h-1.5 bg-cyan-400" />
+                        <span className="font-orbitron font-bold text-[10px] md:text-[11px] text-cyan-300 tracking-widest leading-none shadow-[0_0_5px_rgba(34,211,238,0.5)]">
+                          {ally.name.toUpperCase()}
+                        </span>
+                      </div>
+                      <span className="font-orbitron text-[9px] md:text-[10px] text-cyan-100 tabular-nums leading-none">
+                        {ally.hp}<span className="text-cyan-500/80 text-[7px] md:text-[8px]">/{ally.maxHp}</span>
+                      </span>
+                    </div>
+
+                    <div className="w-full h-[6px] bg-[#000] border border-cyan-900/50 relative z-10 overflow-hidden fui-clip-basic">
+                      <motion.div
+                        className="h-full relative"
+                        style={{
+                          width: `${(ally.hp / ally.maxHp) * 100}%`,
+                          background: ally.hp / ally.maxHp > 0.5
+                            ? 'linear-gradient(90deg, rgba(34,211,238,0.5), #22d3ee)'
+                            : ally.hp / ally.maxHp > 0.25
+                              ? '#fbbf24'
+                              : '#ef4444',
+                          boxShadow: ally.hp / ally.maxHp > 0.5 ? '0 0 8px rgba(34,211,238,0.8)' : 'none'
+                        }}
+                        transition={{ duration: 0.4 }}
+                      />
+                    </div>
+                  </div>
+                </div>
 
                 {/* ── Ally Portrait (Interactable) ── */}
                 <motion.div
@@ -1107,7 +997,7 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
                   {/* Target Danger Zone (Sci-Fi Lock-on) */}
                   {isTargeted && !ally.isDead && (
                     <div className="absolute inset-0 pointer-events-none flex items-center justify-center z-40">
-                      
+
                       {/* Bracket corners */}
                       <div className="absolute w-[120px] h-[120px] md:w-[140px] md:h-[140px]">
                         <svg viewBox="0 0 100 100" className="w-full h-full stroke-amber-400 opacity-80 drop-shadow-[0_0_8px_rgba(251,191,36,0.8)]">
@@ -1123,14 +1013,14 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
                       </div>
 
                       {/* Outer rotating dashed ring */}
-                      <motion.div 
+                      <motion.div
                         className="absolute w-[100px] h-[100px] md:w-[120px] md:h-[120px] rounded-full border border-dashed border-amber-500/50"
                         animate={{ rotate: 360 }}
                         transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
                       />
 
                       {/* Inner tech ring (segmented) */}
-                      <motion.div 
+                      <motion.div
                         className="absolute w-[80px] h-[80px] md:w-[90px] md:h-[90px]"
                         animate={{ rotate: -360 }}
                         transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
@@ -1160,67 +1050,33 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
                     </div>
                   )}
 
-                  {/* Ally Attack Timing UI */}
-                  {turnPhase === 'ally_windup' && TURN_ORDER[currentTurnIndex % TURN_ORDER.length] === ally.id && !ally.isDead && (
-                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-40">
-                      {/* Static target ring */}
-                      <div className="absolute w-[120px] h-[120px] md:w-[140px] md:h-[140px] border-[2px] border-red-500/50 shadow-[0_0_10px_rgba(239,68,68,0.5)] flex items-center justify-center rotate-45 rounded-full overflow-hidden">
-                         <div className="w-full h-[1px] bg-red-500/30" />
-                         <div className="absolute h-full w-[1px] bg-red-500/30" />
-                      </div>
-                      
-                      {/* Converging ring */}
-                      <motion.div 
-                        className="absolute w-[120px] h-[120px] md:w-[140px] md:h-[140px] border-[3px] border-yellow-400 shadow-[0_0_15px_rgba(253,224,71,1)] rounded-full"
-                        initial={{ scale: 2.5, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        exit={{ opacity: 0, scale: 1.5 }}
-                        transition={{ duration: 0.5, ease: "linear" }}
-                      />
-                      
-                      {/* JUST pop-up if success */}
-                      <AnimatePresence>
-                        {allyQTEState === 'success' && (
-                          <motion.div
-                            initial={{ scale: 0, opacity: 0, y: 0 }}
-                            animate={{ scale: 1.5, opacity: 1, y: -20 }}
-                            exit={{ opacity: 0 }}
-                            className="absolute font-orbitron font-black text-yellow-300 text-[18px] md:text-[24px] tracking-widest drop-shadow-[0_0_10px_rgba(253,224,71,1)] z-50"
-                          >
-                            JUST!
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  )}
-
                   {/* Guard Shield Effect */}
                   {isGuarding && !ally.isDead && (
                     <div className={`absolute inset-0 flex items-center justify-center pointer-events-none z-50 ${ally.id === 'nagisa' ? '-translate-y-4' : ''}`}>
-                      <SpriteAnimator 
-                        src="/battle/pipo-btleffect111f.png" 
-                        frameWidth={192} 
-                        frameHeight={192} 
-                        columns={5} 
-                        totalFrames={10} 
-                        fps={15} 
-                        loop={false} 
+                      <SpriteAnimator
+                        src="/battle/pipo-btleffect111f.png"
+                        frameWidth={192}
+                        frameHeight={192}
+                        columns={5}
+                        totalFrames={10}
+                        fps={15}
+                        loop={false}
                         holdOnFrame={4}
                         pulsateOnHold={true}
-                        scale={1.2} 
+                        scale={1.2}
                       />
                     </div>
                   )}
-                  
+
                   {/* Buff Aura Effect */}
                   {buffTurnsLeft > 0 && !ally.isDead && (
-                    <motion.div 
+                    <motion.div
                       className="absolute inset-[-10px] rounded-2xl border border-pink-300/40 pointer-events-none z-10"
                       animate={{ opacity: [0.3, 0.7, 0.3], boxShadow: ['0 0 8px rgba(244,114,182,0.15)', '0 0 20px rgba(244,114,182,0.4)', '0 0 8px rgba(244,114,182,0.15)'] }}
                       transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
                     />
                   )}
-                  
+
                   {/* Guard Cooldown Indicator */}
                   <AnimatePresence>
                     {guardCooldownTrigger[ally.id] && !ally.isDead && (
@@ -1233,7 +1089,7 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
                       />
                     )}
                   </AnimatePresence>
-                  
+
                   {ally.image ? (
                     <img src={ally.image} alt={ally.name} className={`w-full h-full object-contain relative z-10 ${ally.flashTimer > 0 ? 'animate-battle-hit-flash drop-shadow-[0_0_20px_rgba(248,113,113,0.8)]' : 'drop-shadow-lg'}`} />
                   ) : (
@@ -1251,7 +1107,7 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
                   {/* Attack Intent Indicator (Converging Sci-Fi Rings) */}
                   <AnimatePresence>
                     {glintEffects.filter(g => g.targetId === ally.id).map(g => (
-                      <motion.div 
+                      <motion.div
                         key={g.id}
                         className="absolute inset-0 flex items-center justify-center z-50 pointer-events-none"
                       >
@@ -1307,7 +1163,7 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
                 <div className="w-40 md:w-52 mb-2 z-20 relative">
                   <div className="bg-[#090e17]/80 backdrop-blur-sm border border-amber-500/40 fui-clip-basic p-1.5 relative overflow-hidden">
                     <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPjxyZWN0IHdpZHRoPSIyIiBoZWlnaHQ9IjQiIGZpbGw9InJnYmEoMjUxLCAxOTEsIDM2LCAwLjA1KSIvPjwvc3ZnPg==')] z-0 pointer-events-none" />
-                    
+
                     <div className="flex items-center justify-between mb-1 px-1 relative z-10">
                       <div className="flex items-center gap-1.5">
                         <div className="w-1.5 h-1.5 bg-amber-400 shadow-[0_0_5px_rgba(251,191,36,0.8)]" />
@@ -1320,10 +1176,10 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
                       </span>
                     </div>
 
-                    <div className="w-full h-[12px] bg-[#000] border border-amber-900/50 relative z-10 overflow-hidden fui-clip-basic">
-                      <motion.div 
+                    <div className="w-full h-[6px] bg-[#000] border border-amber-900/50 relative z-10 overflow-hidden fui-clip-basic">
+                      <motion.div
                         className="h-full relative"
-                        style={{ 
+                        style={{
                           width: `${hpRatio * 100}%`,
                           background: 'linear-gradient(90deg, rgba(245,158,11,0.5), #fbbf24)',
                           boxShadow: '0 0 8px rgba(251,191,36,0.6)'
@@ -1335,20 +1191,19 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
                 </div>
 
                 {/* Enemy Body */}
-                <motion.div 
+                <motion.div
                   id={`char-${enemy.id}`}
-                  className={`relative w-48 h-60 md:w-80 md:h-96 flex items-center justify-center z-40 ${
-                    enemy.isDead ? 'opacity-30 grayscale'
+                  className={`relative w-48 h-60 md:w-80 md:h-96 flex items-center justify-center z-40 ${enemy.isDead ? 'opacity-30 grayscale'
                     : enemy.flashTimer > 0 ? 'animate-battle-hit-flash'
-                    : ''
-                  }`}
-                  animate={{ 
+                      : ''
+                    }`}
+                  animate={{
                     x: isAttacking ? -30 : (isCurrentTurn && turnPhase === 'enemy_resolve' ? -30 : 0),
                     scale: isAttacking ? 1.05 : 1
                   }}
-                  transition={{ 
-                    duration: isAttacking ? 0.3 : 0.2, 
-                    ease: isAttacking ? 'easeOut' : 'easeInOut' 
+                  transition={{
+                    duration: isAttacking ? 0.3 : 0.2,
+                    ease: isAttacking ? 'easeOut' : 'easeInOut'
                   }}
                 >
                   <img src={enemy.image} alt={enemy.name} className={`w-full h-full object-contain drop-shadow-[0_0_15px_rgba(244,63,94,0.3)] ${enemy.isStunned ? 'opacity-70 grayscale-[50%]' : ''}`} />
@@ -1373,7 +1228,7 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
             );
           })}
         </div>
-        
+
         {/* Top Right Controls */}
         <div className="absolute top-3 right-3 md:top-5 md:right-5 flex gap-2 z-50">
           <button onClick={() => setIsPaused(!isPaused)} className={`px-3 py-1.5 bg-[#0a1628]/60 backdrop-blur-sm border ${isPaused ? 'border-amber-400 text-amber-300 shadow-[0_0_10px_rgba(251,191,36,0.3)]' : 'border-slate-600/30 text-slate-400'} font-noto text-[10px] tracking-[0.2em] rounded hover:border-slate-400/50 hover:text-slate-200 transition-all`}>
@@ -1384,298 +1239,157 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
           </button>
         </div>
       </div>
-        
-      {/* ── TURN NOTIFICATION ── */}
-      <AnimatePresence>
-        {turnPhase === 'turn_delay' && battlePhase === 'fighting' && (
-          <motion.div 
-            initial={{ opacity: 0, y: -20, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, scale: 1.05 }}
-            transition={{ duration: 0.2 }}
-            className="absolute top-[25%] left-1/2 -translate-x-1/2 z-50 pointer-events-none"
-          >
-              {(() => {
-                const nextTurnId = TURN_ORDER[currentTurnIndex % TURN_ORDER.length];
-                const isAllyTurn = nextTurnId === 'mutsunori' || nextTurnId === 'nagisa';
-                const enemy = enemies.find(e => e.id === nextTurnId);
-                const ally = allies.find(a => a.id === nextTurnId);
-                
-                const isDead = isAllyTurn ? ally?.isDead : enemy?.isDead;
-                const isStunned = !isAllyTurn && enemy && enemy.isStunned;
 
-                if (isDead) return null;
-
-                const actorName = isAllyTurn 
-                  ? (nextTurnId === 'mutsunori' ? '睦典' : '渚')
-                  : (enemy?.name || 'エネミー');
-
-                if (isStunned) {
-                  return (
-                    <div className="flex flex-col items-center px-16 py-4 border-y border-x-4 shadow-[0_10px_30px_rgba(0,0,0,0.8)] backdrop-blur-md bg-amber-950/80 border-y-amber-500/50 border-x-amber-500 text-amber-100">
-                      <div className="font-orbitron font-bold tracking-[0.3em] text-[10px] md:text-xs mb-1 text-amber-300">
-                        NEXT ACTION
-                      </div>
-                      <div className="font-noto font-black text-xl md:text-2xl tracking-widest drop-shadow-[0_0_8px_rgba(251,191,36,0.8)]">
-                        {actorName}はスタン中！
-                      </div>
-                    </div>
-                  );
-                }
-
-                return (
-                  <div className={`flex flex-col items-center px-16 py-4 border-y border-x-4 shadow-[0_10px_30px_rgba(0,0,0,0.8)] backdrop-blur-md ${
-                    isAllyTurn ? 'bg-cyan-950/80 border-y-cyan-500/50 border-x-cyan-400 text-cyan-100' : 'bg-red-950/80 border-y-red-500/50 border-x-red-500 text-red-100'
-                  }`}>
-                    <div className={`font-orbitron font-bold tracking-[0.3em] text-[10px] md:text-xs mb-1 ${isAllyTurn ? 'text-cyan-300' : 'text-red-300'}`}>
-                      NEXT ACTION
-                    </div>
-                    <div className={`font-noto font-black text-xl md:text-2xl tracking-widest ${isAllyTurn ? 'drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]' : 'drop-shadow-[0_0_8px_rgba(239,68,68,0.8)]'}`}>
-                      {actorName}の{isAllyTurn ? '攻撃' : 'ターン'}
-                    </div>
-                  </div>
-                );
-              })()}
-          </motion.div>
-        )}
-      </AnimatePresence>
       {/* ═══════════════════════════════════════════════════════════════
            BOTTOM HUD (Cyber Radar & Sync)
          ═══════════════════════════════════════════════════════════════ */}
-      
+
       {/* Dark gradient film at the bottom to make the UI pop */}
       <div className="absolute bottom-0 inset-x-0 h-[40vh] bg-gradient-to-t from-black via-black/80 to-transparent pointer-events-none z-30" />
 
       <div className="absolute inset-0 z-40 pointer-events-none">
+        {/* ── Top Left: Sakura Tactical Link & Recover ── */}
+        <div className="absolute top-3 left-3 md:top-5 md:left-5 pointer-events-auto flex items-start gap-3 md:gap-4">
 
-        {/* ── Top Left: Character Portrait (Sakura) ── */}
-        <div className="absolute top-4 left-4 md:top-6 md:left-6 pointer-events-auto flex flex-col">
-          {/* Portrait Container (Shoulders up, no round frame) */}
-          <div className="relative w-32 h-24 md:w-44 md:h-36 overflow-hidden">
-            <img 
-              src="/character/Sakura/Sakura.png" 
-              alt="Sakura" 
-              className="absolute left-1/2 -translate-x-1/2 w-[300%] max-w-none h-auto pointer-events-none drop-shadow-[0_0_15px_rgba(6,182,212,0.4)]"
-              style={{ top: '5%' }}
-              onError={(e) => {
-                e.target.onerror = null;
-                e.target.src = "/battle/sakura.png";
-              }}
-            />
-          </div>
-          
-          {/* Anomaly Slots */}
-          <div className="flex items-center gap-1 mt-1 px-1">
-            {[...Array(MAX_ANOMALY_SLOTS)].map((_, i) => {
-              const fragId = activeFragments[i];
-              const frag = fragId ? ANOMALY_FRAGMENTS[fragId] : null;
-              return (
-                <div key={i} className={`w-5 h-5 md:w-7 md:h-7 bg-[#090e17]/80 border ${frag ? 'border-cyan-400/80 shadow-[0_0_8px_rgba(34,211,238,0.5)]' : 'border-slate-700/50'} flex items-center justify-center relative overflow-hidden`}>
-                  {frag && (
-                    <motion.div initial={{ scale: 0, rotate: -90 }} animate={{ scale: 1, rotate: 0 }} className={`text-[10px] md:text-xs ${frag.glow} drop-shadow-md`}>
-                      {frag.icon}
-                    </motion.div>
-                  )}
+          {/* Sakura Comm Link Icon (Vinyl Record) */}
+          <div className="relative w-20 h-20 md:w-28 md:h-28">
+            {/* The Record */}
+            <motion.div
+              className="absolute inset-0 rounded-full bg-gradient-to-br from-[#27272a] to-[#09090b] shadow-[0_4px_12px_rgba(0,0,0,0.9)] border border-[#000] flex items-center justify-center overflow-hidden"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
+            >
+              {/* Grooves */}
+              <div className="absolute inset-[4px] rounded-full border border-black/40 shadow-[inset_0_0_2px_rgba(255,255,255,0.05)]" />
+              <div className="absolute inset-[10px] rounded-full border border-black/40 shadow-[inset_0_0_2px_rgba(255,255,255,0.05)]" />
+              <div className="absolute inset-[16px] rounded-full border border-black/40 shadow-[inset_0_0_2px_rgba(255,255,255,0.05)]" />
+              <div className="absolute inset-[22px] rounded-full border border-black/40 shadow-[inset_0_0_2px_rgba(255,255,255,0.05)]" />
+              <div className="absolute inset-[28px] rounded-full border border-black/40 shadow-[inset_0_0_2px_rgba(255,255,255,0.05)]" />
+
+              {/* Center Label */}
+              <div className="w-10 h-10 md:w-14 md:h-14 rounded-full overflow-hidden bg-gradient-to-b from-[#38bdf8] to-[#0284c7] border-4 border-[#18181b] shadow-[inset_0_0_6px_rgba(0,0,0,0.4)] flex items-center justify-center relative">
+
+                {/* Visual cue to show rotation (Light band) */}
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  <div className="w-full h-2.5 md:h-3.5 bg-white/20 -rotate-12" />
                 </div>
+
+                {/* Center hole */}
+                <div className="w-2 h-2 bg-[#09090b] rounded-full relative z-10 shadow-[inset_0_2px_2px_rgba(0,0,0,0.8)]" />
+              </div>
+            </motion.div>
+
+            {/* Floating Notes */}
+            <AnimatePresence>
+              {battlePhase === 'fighting' && ['♪', '♫', '♬'].map((note, i) => (
+                <motion.div
+                  key={`note-${i}`}
+                  className="absolute top-0 right-0 text-cyan-200 text-sm md:text-base pointer-events-none opacity-80"
+                  initial={{ opacity: 0, scale: 0.5, x: 0, y: 0 }}
+                  animate={{
+                    opacity: [0, 0.8, 0],
+                    scale: [0.5, 1, 0.8],
+                    x: [0, 10 + i * 15, 20 + i * 20],
+                    y: [0, -20 - i * 10, -50 - i * 15],
+                    rotate: [-15, 15, -15]
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    delay: i * 1,
+                    ease: "easeOut"
+                  }}
+                >
+                  {note}
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </div>
+
+          {/* Audio Waveform */}
+          <div className="flex items-center gap-[3px] md:gap-[4px] h-12 md:h-16 mt-4 md:mt-6 pl-4">
+            {Array.from({ length: 14 }).map((_, i) => {
+              const heights = [
+                ['20%', '70%', '30%'],
+                ['50%', '100%', '60%'],
+                ['30%', '80%', '40%'],
+                ['80%', '40%', '90%'],
+                ['40%', '90%', '50%'],
+                ['60%', '30%', '70%'],
+                ['20%', '100%', '40%'],
+                ['70%', '40%', '80%']
+              ][i % 8];
+              return (
+                <motion.div
+                  key={`wave-${i}`}
+                  className="w-[4px] md:w-[6px] bg-[#22d3ee] shadow-[0_0_10px_rgba(34,211,238,0.6)] rounded-[2px] mix-blend-screen opacity-90"
+                  animate={{ height: battlePhase === 'fighting' ? heights : '10%' }}
+                  transition={{
+                    duration: 0.5 + (i % 3) * 0.2,
+                    repeat: Infinity,
+                    repeatType: 'mirror',
+                    ease: "easeInOut",
+                    delay: i * 0.05
+                  }}
+                />
               );
             })}
           </div>
-          
-          {/* Text underneath the slots */}
-          <div className="flex flex-col mt-1.5 px-1">
-            <div className="flex items-end justify-end w-full pr-2">
-              <span className={`font-orbitron text-[9px] ${corruption >= 80 ? 'text-red-400 animate-pulse' : 'text-slate-400'}`}>
-                CRPT: {corruption}%
-              </span>
-            </div>
-            {/* Corruption Bar */}
-            <div className="w-full h-[2px] bg-black border border-slate-800 mt-1 relative overflow-hidden">
-              <motion.div 
-                className="h-full bg-gradient-to-r from-red-600 to-red-400" 
-                style={{ width: `${corruption}%` }} 
-                animate={{ boxShadow: corruption >= 80 ? '0 0 10px rgba(239,68,68,0.8)' : 'none' }}
-              />
-            </div>
-          </div>
         </div>
 
-        {/* ── Bottom Left: Character Status (Mutsunori) ── */}
-        {(() => {
-          const ally = allies[0]; // Active ally
-          if (!ally) return null;
-          return (
-            <div className="absolute bottom-12 left-12 md:bottom-16 md:left-16 pointer-events-auto flex items-end gap-4 md:gap-5">
-              {/* Portrait */}
-              <div className="w-20 h-20 md:w-24 md:h-24 bg-slate-900 border-2 border-red-500/80 relative overflow-hidden flex-shrink-0 shadow-[0_0_15px_rgba(239,68,68,0.3)]">
-                <img 
-                  src="/character/Mutsunori/Mutsunori_serious.png" 
-                  alt="Mutsunori" 
-                  className="absolute w-[400%] max-w-none object-top"
-                  style={{ top: '5%', left: '50%', transform: 'translateX(-48%)' }}
-                  onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.src = "/battle/mutsunori.png";
-                  }}
-                />
-                <div className="absolute inset-0 shadow-[inset_0_0_10px_rgba(0,0,0,0.9)] pointer-events-none" />
-              </div>
-              
-              {/* Status Info */}
-              <div className="flex flex-col justify-end w-40 md:w-56 pb-1">
-                <div className="flex justify-between items-end mb-1">
-                  <span className="font-noto font-bold text-red-50 text-base md:text-lg tracking-widest drop-shadow-[0_0_5px_rgba(239,68,68,0.8)] leading-none">
-                    睦典
-                  </span>
-                  <span className="font-orbitron text-[10px] md:text-[11px] text-red-100 tabular-nums leading-none">
-                    {ally.hp}<span className="text-red-500/80 text-[8px] md:text-[9px]">/{ally.maxHp}</span>
-                  </span>
-                </div>
-                
-                <div className="flex items-center gap-2">
-                  <span className="font-orbitron font-bold text-red-400 text-[11px] md:text-[13px] leading-none">HP</span>
-                  <div className="flex-1 h-[16px] md:h-[20px] bg-black border border-red-900/50 p-[1px] relative overflow-hidden">
-                    <motion.div 
-                      className="h-full relative"
-                      style={{ 
-                        width: `${(ally.hp / ally.maxHp) * 100}%`,
-                        background: ally.hp / ally.maxHp > 0.5 
-                          ? 'linear-gradient(90deg, rgba(239,68,68,0.6), #ef4444)' 
-                          : ally.hp / ally.maxHp > 0.25 
-                            ? '#f97316' 
-                            : '#b91c1c',
-                        boxShadow: ally.hp / ally.maxHp > 0.5 ? '0 0 8px rgba(239,68,68,0.8)' : 'none'
-                      }}
-                      transition={{ duration: 0.3 }}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          );
-        })()}
+        {/* ── Bottom Right: Sync Radial Menu ── */}
+        <div className="absolute bottom-24 right-24 md:bottom-28 md:right-32 pointer-events-auto">
+          {/* Connecting Lines */}
+          <svg className="absolute w-[200px] h-[200px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-0" viewBox="0 0 200 200">
+            {/* To Ultimate (Top Left) */}
+            <line x1="100" y1="100" x2="30" y2="30" stroke="rgba(255,255,255,0.4)" strokeWidth="3" strokeLinecap="round" className="drop-shadow-[0_0_5px_rgba(255,255,255,0.8)]" />
+            {/* To Buff (Bottom Left) */}
+            <line x1="100" y1="100" x2="30" y2="170" stroke="rgba(255,255,255,0.4)" strokeWidth="3" strokeLinecap="round" className="drop-shadow-[0_0_5px_rgba(255,255,255,0.8)]" />
+            {/* To Heal (Top Right) */}
+            <line x1="100" y1="100" x2="170" y2="30" stroke="rgba(255,255,255,0.4)" strokeWidth="3" strokeLinecap="round" className="drop-shadow-[0_0_5px_rgba(255,255,255,0.8)]" />
+          </svg>
 
-        {/* ── Bottom Right: Action Buttons (Diamond Grid) ── */}
-        <div className="absolute bottom-10 right-12 md:bottom-16 md:right-20 pointer-events-auto flex items-center justify-center gap-8 md:gap-12">
-          
-          {/* ── ULTIMATE BUTTON ── */}
+          {/* Central Node (Sync Rate) */}
+          <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-full border-[6px] border-white/90 shadow-[0_0_15px_rgba(255,255,255,0.8),inset_0_0_20px_rgba(255,255,255,0.5)] flex items-center justify-center z-10 bg-black/40 backdrop-blur-md">
+            <div className="absolute inset-2 rounded-full border border-white/20 animate-[spin_10s_linear_infinite]" />
+            <div className="absolute inset-4 rounded-full border border-white/10 animate-[spin_7s_linear_infinite_reverse]" />
+            <span className="font-rajdhani font-black text-4xl md:text-5xl text-white drop-shadow-[0_0_10px_rgba(255,255,255,1)]">
+              {Math.floor(syncRate)}
+            </span>
+          </div>
+
+          {/* Satellite: Ultimate (Top Left) */}
           <motion.button
+            className="absolute -top-16 -left-16 w-16 h-16 md:w-20 md:h-20 rounded-full border-[4px] border-[#b45309]/80 bg-[#171717]/90 flex items-center justify-center z-20 shadow-[0_0_15px_rgba(180,83,9,0.6),inset_0_0_15px_rgba(180,83,9,0.4)] hover:bg-[#451a03]/80 transition-colors disabled:opacity-50 disabled:grayscale disabled:cursor-not-allowed"
             onClick={handleMutsunoriUltimate}
-            disabled={syncRate < SYNC_COST_ULTIMATE || battlePhase !== 'fighting'}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className={`relative w-20 h-20 md:w-24 md:h-24 rounded-full border-4 flex flex-col items-center justify-center transition-all shadow-[0_0_15px_rgba(245,158,11,0.5),inset_0_0_10px_rgba(245,158,11,0.5)] ${
-              syncRate < SYNC_COST_ULTIMATE || battlePhase !== 'fighting'
-                ? 'bg-[#171717]/90 border-amber-900/50 cursor-not-allowed opacity-50 grayscale'
-                : 'bg-[#451a03]/90 border-amber-500 hover:bg-amber-900 hover:shadow-[0_0_20px_rgba(251,191,36,0.8)] cursor-pointer'
-            }`}
+            disabled={syncRate < SYNC_COST_ULTIMATE || battlePhase !== 'fighting' || allies.find(a => a.id === 'mutsunori')?.isDead}
+            whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}
           >
-            {/* Spinning Ring */}
-            <div className="absolute inset-1 rounded-full border border-amber-400/20 animate-[spin_4s_linear_infinite]" />
-            <div className="absolute inset-2 rounded-full border border-amber-400/10 animate-[spin_3s_linear_infinite_reverse]" />
-            
-            <div className="font-rajdhani font-black text-2xl md:text-3xl text-amber-400 drop-shadow-[0_0_8px_rgba(251,191,36,1)] z-10 leading-none">
-              {Math.floor(syncRate)}<span className="text-sm md:text-base opacity-80">%</span>
-            </div>
-            <div className="font-noto font-bold text-[10px] md:text-xs text-amber-200 mt-1 tracking-widest z-10 drop-shadow-[0_0_5px_rgba(251,191,36,0.8)]">
-              必殺技
-            </div>
-            
-            {/* Cost Indicator */}
-            <div className="absolute -top-2 -right-2 bg-white text-black font-rajdhani font-bold text-[10px] md:text-xs rounded-full w-5 h-5 md:w-6 md:h-6 flex items-center justify-center shadow-[0_2px_4px_rgba(0,0,0,0.5)] border border-slate-200">
-              {SYNC_COST_ULTIMATE}
-            </div>
+            <span className="font-noto font-bold text-sm md:text-base tracking-widest text-amber-500 drop-shadow-[0_0_8px_rgba(245,158,11,1)]">必殺技</span>
+            <div className="absolute -top-2 -right-2 bg-white text-black font-rajdhani font-bold text-xs md:text-sm rounded-full w-6 h-6 md:w-8 md:h-8 flex items-center justify-center shadow-[0_2px_4px_rgba(0,0,0,0.5)] border border-slate-200">{SYNC_COST_ULTIMATE}</div>
           </motion.button>
 
-          <div className="relative w-36 h-36 md:w-44 md:h-44 rotate-45 grid grid-cols-2 grid-rows-2 gap-3 md:gap-4 drop-shadow-[0_0_15px_rgba(34,211,238,0.2)]">
-            
-            {/* Top Button (Grid [0,0]) - ATTACK */}
-            <div className="relative w-full h-full">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={handleAllyAttack}
-                className={`w-full h-full flex flex-col items-center justify-center overflow-hidden transition-all duration-200 relative ${
-                  turnPhase === 'ally_windup' 
-                    ? 'bg-red-950/80 border-red-500/50 hover:bg-red-900 cursor-pointer shadow-[inset_0_0_20px_rgba(239,68,68,0.6)] z-20'
-                    : 'bg-[#090e17]/80 border border-slate-700/50 cursor-not-allowed group shadow-[inset_0_0_10px_rgba(0,0,0,0.8)]'
-                }`}
-              >
-                <div className="-rotate-45 flex flex-col items-center z-10 relative">
-                  <span className={`font-noto font-bold text-[10px] md:text-xs tracking-widest ${
-                    turnPhase === 'ally_windup' 
-                      ? 'text-red-400 drop-shadow-[0_0_5px_rgba(239,68,68,0.8)]' 
-                      : 'text-slate-600'
-                  }`}>攻撃</span>
-                  <span className={`font-orbitron font-bold text-[8px] md:text-[9px] mt-1 ${
-                    turnPhase === 'ally_windup' 
-                      ? 'text-red-300' 
-                      : 'text-slate-700'
-                  }`}>ATTACK</span>
-                </div>
-              </motion.button>
-            </div>
+          {/* Satellite: Buff (Bottom Left) */}
+          <motion.button
+            className="absolute -bottom-16 -left-16 w-16 h-16 md:w-20 md:h-20 rounded-full border-[4px] border-[#9f1239]/80 bg-[#171717]/90 flex items-center justify-center z-20 shadow-[0_0_15px_rgba(159,18,57,0.6),inset_0_0_15px_rgba(159,18,57,0.4)] hover:bg-[#4c0519]/80 transition-colors disabled:opacity-50 disabled:grayscale disabled:cursor-not-allowed"
+            onClick={handleBuff}
+            disabled={syncRate < SYNC_COST_BUFF || battlePhase !== 'fighting'}
+            whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}
+          >
+            <span className="font-noto font-bold text-sm md:text-base tracking-widest text-rose-500 drop-shadow-[0_0_8px_rgba(244,63,94,1)]">強化</span>
+            <div className="absolute -top-2 -right-2 bg-white text-black font-rajdhani font-bold text-xs md:text-sm rounded-full w-6 h-6 md:w-8 md:h-8 flex items-center justify-center shadow-[0_2px_4px_rgba(0,0,0,0.5)] border border-slate-200">{SYNC_COST_BUFF}</div>
+          </motion.button>
 
-            {/* Right Button (Grid [0,1]) - DEFEND */}
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onPointerDown={handleDefendButtonDown}
-              onPointerUp={handleDefendButtonUp}
-              onPointerLeave={handleDefendButtonUp}
-              className="w-full h-full flex flex-col items-center justify-center overflow-hidden group transition-all duration-200 cursor-pointer shadow-[inset_0_0_15px_rgba(0,0,0,0.8)] bg-blue-950/80 border border-blue-500/50 hover:bg-blue-900 hover:border-blue-400 hover:shadow-[0_0_20px_rgba(59,130,246,0.6)]"
-            >
-              <div className="-rotate-45 flex flex-col items-center z-10">
-                <span className="font-noto font-bold text-blue-400 drop-shadow-[0_0_5px_rgba(59,130,246,0.8)] text-[10px] md:text-xs tracking-widest">防御</span>
-                <span className="font-orbitron font-bold text-[8px] md:text-[9px] mt-1 text-blue-300">DEFEND</span>
-              </div>
-            </motion.button>
-
-            {/* Left Button (Grid [1,0]) - HEAL */}
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={handleHeal}
-              disabled={healCooldown > 0 || battlePhase !== 'fighting'}
-              className={`w-full h-full flex flex-col items-center justify-center overflow-hidden group transition-all duration-200 relative shadow-[inset_0_0_15px_rgba(0,0,0,0.8)] ${
-                healCooldown > 0 || battlePhase !== 'fighting'
-                  ? 'bg-[#090e17]/90 border border-slate-700/50 cursor-not-allowed'
-                  : 'bg-emerald-950/80 border border-emerald-500/50 hover:bg-emerald-900 hover:border-emerald-400 hover:shadow-[0_0_20px_rgba(16,185,129,0.6)] cursor-pointer'
-              }`}
-            >
-              <div className="-rotate-45 flex flex-col items-center z-10">
-                <span className={`font-noto font-bold text-xs md:text-sm tracking-widest ${healCooldown <= 0 ? 'text-emerald-400 drop-shadow-[0_0_5px_rgba(16,185,129,0.8)]' : 'text-slate-600'}`}>回復</span>
-                {healCooldown > 0 ? (
-                  <span className="font-orbitron font-bold text-[9px] md:text-[10px] text-emerald-600 mt-1">CD: {healCooldown}</span>
-                ) : (
-                  <div className="flex gap-1 mt-1.5">
-                    <div className="w-1 h-1 bg-emerald-400 shadow-[0_0_5px_#10b981] rotate-45" />
-                    <div className="w-1 h-1 bg-emerald-400 shadow-[0_0_5px_#10b981] rotate-45" />
-                    <div className="w-1 h-1 bg-emerald-400 shadow-[0_0_5px_#10b981] rotate-45" />
-                  </div>
-                )}
-              </div>
-            </motion.button>
-
-            {/* Bottom Button (Grid [1,1]) - ABSORB */}
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={handleAbsorb}
-              disabled={battlePhase !== 'fighting' || activeFragments.length >= MAX_ANOMALY_SLOTS}
-              className={`w-full h-full flex flex-col items-center justify-center overflow-hidden group transition-all duration-200 shadow-[inset_0_0_15px_rgba(0,0,0,0.8)] ${
-                battlePhase !== 'fighting' || activeFragments.length >= MAX_ANOMALY_SLOTS
-                  ? 'bg-[#090e17]/90 border border-slate-700/50 cursor-not-allowed'
-                  : 'bg-indigo-950/80 border border-indigo-500/50 hover:bg-indigo-900 hover:border-indigo-400 hover:shadow-[0_0_20px_rgba(99,102,241,0.6)] cursor-pointer'
-              }`}
-            >
-              <div className="-rotate-45 flex flex-col items-center z-10">
-                <span className={`font-noto font-bold text-xs md:text-sm tracking-widest ${activeFragments.length < MAX_ANOMALY_SLOTS ? 'text-indigo-400 drop-shadow-[0_0_5px_rgba(99,102,241,0.8)]' : 'text-slate-600'}`}>吸収</span>
-                <span className={`font-orbitron font-bold text-[8px] md:text-[9px] mt-1 ${activeFragments.length < MAX_ANOMALY_SLOTS ? 'text-indigo-300/80' : 'text-slate-700'}`}>ABSORB</span>
-              </div>
-            </motion.button>
-
-
-          </div>
+          {/* Satellite: Heal (Top Right) */}
+          <motion.button
+            className="absolute -top-16 -right-16 w-16 h-16 md:w-20 md:h-20 rounded-full border-[4px] border-[#334155]/80 bg-[#171717]/90 flex items-center justify-center z-20 shadow-[0_0_15px_rgba(71,85,105,0.6),inset_0_0_15px_rgba(71,85,105,0.4)] hover:bg-[#0f172a]/80 transition-colors disabled:opacity-50 disabled:grayscale disabled:cursor-not-allowed"
+            onClick={handleHeal}
+            disabled={syncRate < SYNC_COST_HEAL || battlePhase !== 'fighting'}
+            whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}
+          >
+            <span className="font-noto font-bold text-sm md:text-base tracking-widest text-slate-300 drop-shadow-[0_0_8px_rgba(203,213,225,1)]">回復</span>
+            <div className="absolute -top-2 -right-2 bg-white text-black font-rajdhani font-bold text-xs md:text-sm rounded-full w-6 h-6 md:w-8 md:h-8 flex items-center justify-center shadow-[0_2px_4px_rgba(0,0,0,0.5)] border border-slate-200">{SYNC_COST_HEAL}</div>
+          </motion.button>
         </div>
       </div>
 

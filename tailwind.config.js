@@ -16,6 +16,8 @@ export default {
       fontFamily: {
         noto: ['"Noto Sans JP"', 'sans-serif'],
         orbitron: ['Orbitron', 'sans-serif'],
+        rajdhani: ['Rajdhani', 'sans-serif'],
+        pixel: ['"DotGothic16"', 'monospace'],
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

@@ -27,6 +27,10 @@ import ExplorationPhase from './components/ExplorationPhase';
 import StruggleGame from './components/StruggleGame';
 import WarehouseExploration from './components/WarehouseExploration';
 import BattleSystem from './components/BattleSystem';
+import BattleSystemPlot4 from './components/BattleSystemPlot4';
+import BattleResonanceTuning from './components/BattleResonanceTuning';
+import BattleStaffRhythm from './components/BattleStaffRhythm';
+import BattleSelectScreen from './components/BattleSelectScreen';
 import SaveSlotModal, { SAVE_KEY_PREFIX, loadAllSlots } from './components/SaveSlotModal';
 import InstallPrompt from './components/InstallPrompt';
 import { useNovelEngine } from './hooks/useNovelEngine';
@@ -411,7 +415,7 @@ export default function App() {
   const [isTearBlurActive, setIsTearBlurActive] = useState(false);
   const [isSpeedEffectActive, setIsSpeedEffectActive] = useState(false);
   const [stealthGameResult, setStealthGameResult] = useState(null);
-  const [showBattle, setShowBattle] = useState(false);
+  const [battleMode, setBattleMode] = useState(null); // null | 'select' | 'proto1'
 
   const [saveToast, setSaveToast] = useState(null); // 'saved' | 'loaded' | null
   // セーブスロットモーダル
@@ -459,12 +463,12 @@ export default function App() {
   };
 
   const handleStartBattle = () => {
-    setShowBattle(true);
+    setBattleMode('select');
     setShowTitle(false);
   };
 
   const handleBattleComplete = (result) => {
-    setShowBattle(false);
+    setBattleMode(null);
     setShowTitle(true);
   };
 
@@ -640,7 +644,7 @@ export default function App() {
 
   // Track present items
   useEffect(() => {
-    if (!visualLine || showTitle || showBattle) return;
+    if (!visualLine || showTitle || battleMode) return;
 
     if (visualLine.hideItem || visualLine.clearItem) {
       setDisplayedItem(null);
@@ -649,11 +653,11 @@ export default function App() {
     if (visualLine.showItem) {
       setDisplayedItem(visualLine.showItem);
     }
-  }, [visualLine, showTitle, showBattle]);
+  }, [visualLine, showTitle, battleMode]);
 
   // Track present characters (including manual triggers)
   useEffect(() => {
-    if (!visualLine || showTitle || showBattle) return;
+    if (!visualLine || showTitle || battleMode) return;
 
     const jpToEngBase = {
       "睦典": "Mutsunori",
@@ -723,11 +727,11 @@ export default function App() {
     if (listChanged) {
       setPresentCharacters(nextList);
     }
-  }, [visualLine, showTitle, showBattle, presentCharacters]);
+  }, [visualLine, showTitle, battleMode, presentCharacters]);
 
   // Audio system and sprite positioning logic based on active step details
   useEffect(() => {
-    if (!currentLine || showTitle || showBattle) return;
+    if (!currentLine || showTitle || battleMode) return;
 
     // Track scene changes to reset BGM override
     if (currentLine.scene !== lastSceneRef.current) {
@@ -1071,11 +1075,11 @@ export default function App() {
     return () => {
       cleanupFuncs.forEach(fn => fn());
     };
-  }, [currentStep, currentLine, playBGM, stopBGM, pauseBGM, resumeBGM, playSE, stopSE, showTitle, showBattle]);
+  }, [currentStep, currentLine, playBGM, stopBGM, pauseBGM, resumeBGM, playSE, stopSE, showTitle, battleMode]);
 
   // Cinema Mode Autoplay timers
   useEffect(() => {
-    if (!currentLine || showTitle || showBattle || manualTestMode) return;
+    if (!currentLine || showTitle || battleMode || manualTestMode) return;
     if (currentLine.style === 'cinema' || currentLine.action === 'FADE_TO_BLACK' || currentLine.action === 'SLOW_FADE_TO_BLACK' || currentLine.action === 'WAIT_FADE') {
       let delay = 3000;
       if (currentLine.action === 'FADE_IN') delay = 2500;
@@ -1092,11 +1096,11 @@ export default function App() {
       }, delay);
       return () => clearTimeout(timer);
     }
-  }, [currentStep, currentLine, nextStep, showTitle, showBattle, manualTestMode]);
+  }, [currentStep, currentLine, nextStep, showTitle, battleMode, manualTestMode]);
 
   // Persist Good Ending completion flags
   useEffect(() => {
-    if (!currentLine || showTitle || showBattle) return;
+    if (!currentLine || showTitle || battleMode) return;
 
     // 1. Nagisa Route Happy End
     if (currentLine.text && currentLine.text.includes("凪砂ルート・ハッピーエンド")) {
@@ -1121,7 +1125,7 @@ export default function App() {
       localStorage.setItem('cleared_akane_good_end', 'true');
       setClearedAkane(true);
     }
-  }, [currentLine, showTitle, showBattle]);
+  }, [currentLine, showTitle, battleMode]);
 
   // Handle conditional branching and special actions
   useEffect(() => {
@@ -1195,13 +1199,13 @@ export default function App() {
   // Backup: trigger end screen when typing finishes on an ending slide
   // This catches any timing edge-cases where the above useEffect fires too early
   useEffect(() => {
-    if (showTitle || showBattle || isTyping) return;
+    if (showTitle || battleMode || isTyping) return;
     if (currentLine?.action === 'FADE_TO_HAPPY_END') {
       setEndType('happy');
     } else if (currentLine?.action === 'FADE_TO_BAD_END') {
       setEndType('bad');
     }
-  }, [isTyping, currentLine, showTitle, showBattle]);
+  }, [isTyping, currentLine, showTitle, battleMode]);
 
   // Handle touch events for gestures
   const handleTouchStart = (e) => {
@@ -1210,7 +1214,7 @@ export default function App() {
   };
 
   const handleTouchEnd = (e) => {
-    if (showTitle || showBattle) return;
+    if (showTitle || battleMode) return;
 
     // If the touch target is a button or inside a button/link, don't advance the scenario.
     // Let the button's own click handler handle it instead.
@@ -1271,7 +1275,7 @@ export default function App() {
   // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (showTitle || showBattle || alertActive) return;
+      if (showTitle || battleMode || alertActive) return;
 
       // Handle backlog closing via keyboard
       if (backlogOpen) {
@@ -1327,7 +1331,7 @@ export default function App() {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [nextStep, prevStep, toggleHud, toggleAuto, isWaitingForChoice, backlogOpen, alertActive, hudVisible, setHudVisible, currentLine, skipMode, setSkipMode, showTitle, showBattle, isBgTransitioning, isBgFadingOut, isEndScreen]);
+  }, [nextStep, prevStep, toggleHud, toggleAuto, isWaitingForChoice, backlogOpen, alertActive, hudVisible, setHudVisible, currentLine, skipMode, setSkipMode, showTitle, battleMode, isBgTransitioning, isBgFadingOut, isEndScreen]);
 
   const handleDismissAlert = () => {
     setAlertActive(false);
@@ -1485,7 +1489,7 @@ export default function App() {
         }
         const isTransition = currentLine?.action === 'FADE_TO_BLACK' || currentLine?.action === 'SLOW_FADE_TO_BLACK' || currentLine?.action === 'WAIT_FADE' || isBgTransitioning || isBgFadingOut;
 
-        if (!showTitle && !showBattle && !isWaitingForChoice && !alertActive && !backlogOpen && !isMinigameActive && !isAnyEnd && !isEndScreen && !isTransition && !isPopup) {
+        if (!showTitle && !battleMode && !isWaitingForChoice && !alertActive && !backlogOpen && !isMinigameActive && !isAnyEnd && !isEndScreen && !isTransition && !isPopup) {
           nextStep();
         } else if (isMinigameActive) {
           window.dispatchEvent(new Event('minigame-tap'));
@@ -1494,8 +1498,37 @@ export default function App() {
     >
       <GameFrame>
         <ShakeLayer shakeEffect={shakeEffect}>
-        {showBattle ? (
+        {battleMode === 'select' ? (
+          <BattleSelectScreen 
+            onSelect={(id) => setBattleMode(id)} 
+            onCancel={() => {
+              setBattleMode(null);
+              setShowTitle(true);
+            }} 
+          />
+        ) : battleMode === 'proto1' ? (
           <BattleSystem
+            onComplete={handleBattleComplete}
+            playBGM={playBGM}
+            stopBGM={stopBGM}
+            playSE={playSE}
+          />
+        ) : battleMode === 'proto2' ? (
+          <BattleResonanceTuning
+            onComplete={handleBattleComplete}
+            playBGM={playBGM}
+            stopBGM={stopBGM}
+            playSE={playSE}
+          />
+        ) : battleMode === 'proto3' ? (
+          <BattleStaffRhythm
+            onComplete={handleBattleComplete}
+            playBGM={playBGM}
+            stopBGM={stopBGM}
+            playSE={playSE}
+          />
+        ) : battleMode === 'proto4' ? (
+          <BattleSystemPlot4
             onComplete={handleBattleComplete}
             playBGM={playBGM}
             stopBGM={stopBGM}
