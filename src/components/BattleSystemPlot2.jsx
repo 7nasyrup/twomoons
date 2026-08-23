@@ -98,6 +98,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
   const [activeAttacks, setActiveAttacks] = useState([]); // Array of { id, enemyId, targetId, startTime, delay, duration, glintFired, resolved }
   const [counterAttack, setCounterAttack] = useState(null); // { allyId, enemyId }
   const [allyQTEState, setAllyQTEState] = useState('none'); // 'none' | 'waiting' | 'success' | 'fail'
+  const [hitPosition, setHitPosition] = useState(null);
   const qteStartTimeRef = useRef(0);
   const qteSuccessRef = useRef(false);
   const qteResultRef = useRef('miss');
@@ -363,6 +364,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
               stateRef.current.turnPhase = 'ally_windup';
               setTurnTimer(800); // UI animation gives 800ms to hit (down from 1500ms since the bar is fast)
               setAllyQTEState('waiting');
+              setHitPosition(null);
               qteStartTimeRef.current = Date.now();
               qteSuccessRef.current = false;
               qteResultRef.current = 'miss';
@@ -678,6 +680,12 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
     const handleKeyDown = (e) => {
       if ((e.key === 'Enter' || e.key === ' ') && !e.repeat) {
         e.preventDefault();
+        
+        if (stateRef.current.turnPhase === 'ally_windup') {
+          handleAllyAttack();
+          return;
+        }
+
         const attacks = stateRef.current.activeAttacks || [];
         const attack = attacks[0];
         const targetId = (attack && stateRef.current.turnPhase === 'enemy_windup') 
@@ -750,6 +758,8 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
       result = 'good';
     }
     
+    setHitPosition(Math.min((elapsed / 800) * 100, 100));
+
     qteResultRef.current = result;
     qteSuccessRef.current = true;
     
@@ -1173,19 +1183,29 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
 
                   {/* Ally Attack Timing UI (Horizontal Bar) */}
                   {turnPhase === 'ally_windup' && TURN_ORDER[currentTurnIndex % TURN_ORDER.length] === ally.id && !ally.isDead && (
-                    <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-40">
-                      <div className="relative w-[80%] max-w-[400px] h-8 bg-slate-900/80 border border-slate-700 rounded-full overflow-hidden shadow-[0_0_20px_rgba(0,0,0,0.8)]">
+                    <div 
+                      className="absolute inset-0 flex flex-col items-center justify-center z-40"
+                      onClick={handleAllyAttack}
+                    >
+                      <div className="relative w-[80%] max-w-[400px] h-8 bg-slate-900/80 border border-slate-700 rounded-full overflow-hidden shadow-[0_0_20px_rgba(0,0,0,0.8)] pointer-events-none">
                         {/* Perfect Zone */}
                         <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[20%] bg-amber-500/40" />
                         <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[4px] bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,1)] z-10" />
                         
                         {/* Moving Cursor */}
-                        <motion.div
-                          className="absolute top-0 bottom-0 w-[4px] bg-white shadow-[0_0_10px_rgba(255,255,255,1)] z-20"
-                          initial={{ left: '0%' }}
-                          animate={{ left: '100%' }}
-                          transition={{ duration: 0.8, ease: "linear" }}
-                        />
+                        {allyQTEState === 'waiting' ? (
+                          <motion.div
+                            className="absolute top-0 bottom-0 w-[4px] bg-white shadow-[0_0_10px_rgba(255,255,255,1)] z-20"
+                            initial={{ left: '0%' }}
+                            animate={{ left: '100%' }}
+                            transition={{ duration: 0.8, ease: "linear" }}
+                          />
+                        ) : (
+                          <div
+                            className="absolute top-0 bottom-0 w-[4px] bg-white shadow-[0_0_10px_rgba(255,255,255,1)] z-20"
+                            style={{ left: `${hitPosition}%` }}
+                          />
+                        )}
                       </div>
                       
                       <div className="mt-4 bg-[#090e17]/80 border border-red-500/50 px-3 py-1 animate-pulse">
