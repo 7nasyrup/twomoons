@@ -109,7 +109,8 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
   const [guardCooldownTrigger, setGuardCooldownTrigger] = useState({ mutsunori: 0, nagisa: 0 });
   
   // ─── Anomaly State ───
-  const [activeFragments, setActiveFragments] = useState([]);
+  const [activeFragments, setActiveFragments] = useState([]); // [{ id, turnsLeft }]
+  const [absorbCooldown, setAbsorbCooldown] = useState(0); // 0-5
   const [corruption, setCorruption] = useState(0); // 0-100 Rampage gauge
   
   // ─── Visual Effects State ───
@@ -134,11 +135,11 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
   const lastTickRef = useRef(0);
   const hitStopRef = useRef(0);
   const guardCooldownsRef = useRef({ mutsunori: 0, nagisa: 0 });
-  const stateRef = useRef({ allies, enemies, activeAttacks, guardingAllies, syncRate, battlePhase, turnPhase, currentTurnIndex, counterAttack, buffTurnsLeft, activeFragments, corruption });
+  const stateRef = useRef({ allies, enemies, activeAttacks, guardingAllies, syncRate, battlePhase, turnPhase, currentTurnIndex, counterAttack, buffTurnsLeft, activeFragments, absorbCooldown, corruption });
 
   useEffect(() => {
-    stateRef.current = { allies, enemies, activeAttacks, guardingAllies, syncRate, battlePhase, turnPhase, currentTurnIndex, counterAttack, buffTurnsLeft, activeFragments, corruption };
-  }, [allies, enemies, activeAttacks, guardingAllies, syncRate, battlePhase, turnPhase, currentTurnIndex, counterAttack, buffTurnsLeft, activeFragments, corruption]);
+    stateRef.current = { allies, enemies, activeAttacks, guardingAllies, syncRate, battlePhase, turnPhase, currentTurnIndex, counterAttack, buffTurnsLeft, activeFragments, absorbCooldown, corruption };
+  }, [allies, enemies, activeAttacks, guardingAllies, syncRate, battlePhase, turnPhase, currentTurnIndex, counterAttack, buffTurnsLeft, activeFragments, absorbCooldown, corruption]);
 
   // ─── Helpers ───
   const addLog = useCallback((msg) => {
@@ -175,8 +176,16 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
         });
       }
       
+      setAbsorbCooldown(prev => Math.max(0, prev - 1));
+
+      const hasExpiringFragment = stateRef.current.activeFragments.some(f => f.turnsLeft <= 1);
+      if (hasExpiringFragment) {
+        addLog(`⚡ 吸収能力の効果が切れた`);
+      }
+      setActiveFragments(prev => prev.map(f => f.turnsLeft > 1 ? { ...f, turnsLeft: f.turnsLeft - 1 } : null).filter(Boolean));
+
       const target = aliveEnemies.reduce((min, e) => e.hp < min.hp ? e : min, aliveEnemies[0]);
-      const atkMult = stateRef.current.activeFragments.includes('ATK_UP') ? 1.5 : 1.0;
+      const atkMult = stateRef.current.activeFragments.some(f => f.id === 'ATK_UP') ? 1.5 : 1.0;
       const baseDmg = ALLY_BASE_DAMAGE + Math.floor(Math.random() * 8);
       let dmg = hasBuff ? Math.floor(baseDmg * 1.5) : baseDmg;
       dmg = Math.floor(dmg * atkMult);
@@ -488,7 +497,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
             if (targetIdx !== -1 && enemy) {
               const hasBuff = stateRef.current.buffTurnsLeft > 0;
               const isGuarding = currentGuards.has(attack.targetId);
-              const defMult = stateRef.current.activeFragments.includes('DEF_UP') ? 0.5 : 1.0;
+              const defMult = stateRef.current.activeFragments.some(f => f.id === 'DEF_UP') ? 0.5 : 1.0;
               let dmg = ENEMY_BASE_DAMAGE + Math.floor(Math.random() * 10);
               
               if (hasBuff) {
@@ -621,7 +630,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
         // パリィ成功時に暴走ゲージを軽減
         setCorruption(prev => Math.max(0, prev - 20));
 
-        const syncMult = stateRef.current.activeFragments.includes('SYNC_BOOST') ? 2.0 : 1.0;
+        const syncMult = stateRef.current.activeFragments.some(f => f.id === 'SYNC_BOOST') ? 2.0 : 1.0;
         const hasBuff = stateRef.current.buffTurnsLeft > 0;
         addSync((hasBuff ? SYNC_PER_PARRY * 2 : SYNC_PER_PARRY) * syncMult);
         
@@ -773,7 +782,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
   }, [playSE, triggerSakuraNote]);
 
   const handleAbsorb = useCallback(() => {
-    if (stateRef.current.battlePhase !== 'fighting') return;
+    if (stateRef.current.absorbCooldown > 0 || stateRef.current.battlePhase !== 'fighting') return;
     
     // Add corruption
     setCorruption(prev => {
@@ -801,10 +810,14 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
     });
 
     if (stateRef.current.activeFragments.length < MAX_ANOMALY_SLOTS) {
-      const keys = Object.keys(ANOMALY_FRAGMENTS);
-      const fragId = keys[Math.floor(Math.random() * keys.length)];
-      setActiveFragments(prev => [...prev, fragId]);
-      addLog(`🧬 異能【${ANOMALY_FRAGMENTS[fragId].name}】を強制吸収した！`);
+      const aliveEnemies = stateRef.current.enemies.filter(e => !e.isDead);
+      const targetEnemy = aliveEnemies.length > 0 ? aliveEnemies[0].id : 'enemy1';
+      let fragId = 'ATK_UP';
+      if (targetEnemy === 'enemy2') fragId = 'DEF_UP';
+
+      setActiveFragments(prev => [...prev, { id: fragId, turnsLeft: 3 }]);
+      setAbsorbCooldown(5);
+      addLog(`💥 敵から【${ANOMALY_FRAGMENTS[fragId].name}】を吸収！(3ターン)`);
       triggerSakuraNote();
     } else {
       addLog(`⚠️ スロットが一杯でこれ以上吸収できない！ (暴走値のみ上昇)`);
@@ -819,7 +832,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
     setTimeout(() => setHealFlash(false), 500);
     triggerSakuraNote();
 
-    const healMult = stateRef.current.activeFragments.includes('HEAL_BOOST') ? 2.0 : 1.0;
+    const healMult = stateRef.current.activeFragments.some(f => f.id === 'HEAL_BOOST') ? 2.0 : 1.0;
     const amount = Math.floor(HEAL_AMOUNT * healMult);
     
     setAllies(prev => prev.map(a => {
@@ -864,7 +877,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
         if (aliveEnemies.length === 0) return prev;
         
         const target = aliveEnemies.reduce((min, e) => e.hp < min.hp ? e : min, aliveEnemies[0]);
-        const ultMult = stateRef.current.activeFragments.includes('ULT_BOOST') ? 2.5 : 1.0;
+        const ultMult = stateRef.current.activeFragments.some(f => f.id === 'ULT_BOOST') ? 2.5 : 1.0;
         const dmg = Math.floor((250 + Math.floor(Math.random() * 20)) * ultMult);
         
         spawnDamageNumber(target.id, dmg, 'ultimate');
@@ -1094,7 +1107,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
       {/* ═══════════════════════════════════════════════════════════════
            BATTLE FIELD
          ═══════════════════════════════════════════════════════════════ */}
-      <div className="relative flex-1 flex items-stretch px-4 md:px-12 pt-32 pb-24 z-10 overflow-hidden">
+      <div className="relative flex-1 flex items-stretch px-4 md:px-12 pt-32 pb-24 overflow-hidden">
         
         {/* Projectiles and warning lines removed for melee attack style */}
         
@@ -1111,8 +1124,31 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
               <div key={ally.id} className="relative flex flex-col items-center w-full">
                 {/* Ally Status Panel has been moved to the Bottom Left HUD */}
 
-                {/* ── Ally Portrait (Interactable) ── */}
-                <motion.div
+                <div className="relative flex items-center justify-center">
+                  {/* Aura Effect (Active when absorbed) */}
+                  {!ally.isDead && activeFragments.length > 0 && (
+                    <motion.div 
+                      className="absolute inset-0 flex items-center justify-center pointer-events-none z-[45] pb-0 md:pb-10 opacity-60"
+                      style={{ mixBlendMode: 'plus-lighter' }}
+                      animate={{ x: isCounterDashing ? 150 : (isCurrentTurn ? 30 : 0) }}
+                      transition={{ duration: isCounterDashing ? 0.05 : 0.1, ease: 'easeOut' }}
+                    >
+                      <SpriteAnimator 
+                        src="/battle/戦闘エフェクトアニメ８/320×240/pipo-btleffect071.png"
+                        frameWidth={120}
+                        frameHeight={120}
+                        columns={10}
+                        totalFrames={10}
+                        fps={15}
+                        loop={true}
+                        scale={1.8} 
+                        blendMode="plus-lighter"
+                      />
+                    </motion.div>
+                  )}
+
+                  {/* ── Ally Portrait (Interactable) ── */}
+                  <motion.div
                   id={`char-${ally.id}`}
                   className={`relative cursor-pointer touch-none flex items-center justify-center
                     ${ally.id === 'nagisa' ? 'w-[140px] h-[186px] md:w-[180px] md:h-[230px]' : 'w-36 h-48 md:w-48 md:h-64'}
@@ -1315,6 +1351,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
                     ))}
                   </AnimatePresence>
                 </motion.div>
+                </div>
 
                 {/* Damage Numbers */}
                 <AnimatePresence>
@@ -1369,8 +1406,40 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
                   </div>
                 </div>
 
-                {/* Enemy Body */}
-                <motion.div 
+                {/* Enemy Container Wrapper for proper blending */}
+                <div className="relative flex items-center justify-center">
+                  
+                  {/* Aura Effect (Always on unless absorbed) - Sibling for proper mix-blend-mode */}
+                  {!enemy.isDead && activeFragments.length === 0 && (
+                    <motion.div 
+                      className="absolute inset-0 flex items-center justify-center pointer-events-none z-[45] pb-0 md:pb-10 opacity-60"
+                      style={{ mixBlendMode: 'plus-lighter' }}
+                      animate={{ 
+                        x: isAttacking ? -30 : (isCurrentTurn && turnPhase === 'enemy_resolve' ? -30 : 0),
+                        scale: isAttacking ? 1.05 : 1
+                      }}
+                      transition={{ 
+                        duration: isAttacking ? 0.3 : 0.2, 
+                        ease: isAttacking ? 'easeOut' : 'easeInOut' 
+                      }}
+                    >
+                      <SpriteAnimator 
+                        src="/battle/戦闘エフェクトアニメ８/320×240/pipo-btleffect071.png"
+                        frameWidth={120}
+                        frameHeight={120}
+                        columns={10}
+                        totalFrames={10}
+                        fps={15}
+                        loop={true}
+                        scale={1.8} 
+                        blendMode="plus-lighter"
+                      />
+                    </motion.div>
+                  )}
+
+
+                  {/* Enemy Body */}
+                  <motion.div 
                   id={`char-${enemy.id}`}
                   className={`relative w-48 h-60 md:w-80 md:h-96 flex items-center justify-center z-40 ${
                     enemy.isDead ? 'opacity-30 grayscale'
@@ -1395,6 +1464,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
                     </motion.div>
                   )}
                 </motion.div>
+                </div>
 
                 {/* Damage Numbers */}
                 <AnimatePresence>
@@ -1449,14 +1519,19 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
           {/* Anomaly Slots */}
           <div className="flex items-center gap-1 mt-1 px-1">
             {[...Array(MAX_ANOMALY_SLOTS)].map((_, i) => {
-              const fragId = activeFragments[i];
-              const frag = fragId ? ANOMALY_FRAGMENTS[fragId] : null;
+              const fragData = activeFragments[i];
+              const frag = fragData ? ANOMALY_FRAGMENTS[fragData.id] : null;
               return (
                 <div key={i} className={`w-5 h-5 md:w-7 md:h-7 bg-[#090e17]/80 border ${frag ? 'border-cyan-400/80 shadow-[0_0_8px_rgba(34,211,238,0.5)]' : 'border-slate-700/50'} flex items-center justify-center relative overflow-hidden`}>
                   {frag && (
                     <motion.div initial={{ scale: 0, rotate: -90 }} animate={{ scale: 1, rotate: 0 }} className={`text-[10px] md:text-xs ${frag.glow} drop-shadow-md`}>
                       {frag.icon}
                     </motion.div>
+                  )}
+                  {fragData && (
+                    <div className="absolute bottom-0 right-0 bg-black/60 px-0.5 py-0 rounded-tl text-[8px] text-cyan-200 font-bold leading-none">
+                      {fragData.turnsLeft}
+                    </div>
                   )}
                 </div>
               );
@@ -1643,16 +1718,20 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={handleAbsorb}
-              disabled={battlePhase !== 'fighting' || activeFragments.length >= MAX_ANOMALY_SLOTS}
+              disabled={battlePhase !== 'fighting' || absorbCooldown > 0 || activeFragments.length >= MAX_ANOMALY_SLOTS}
               className={`w-full h-full flex flex-col items-center justify-center overflow-hidden group transition-all duration-200 shadow-[inset_0_0_15px_rgba(0,0,0,0.8)] ${
-                battlePhase !== 'fighting' || activeFragments.length >= MAX_ANOMALY_SLOTS
+                battlePhase !== 'fighting' || absorbCooldown > 0 || activeFragments.length >= MAX_ANOMALY_SLOTS
                   ? 'bg-[#090e17]/90 border border-slate-700/50 cursor-not-allowed'
                   : 'bg-indigo-950/80 border border-indigo-500/50 hover:bg-indigo-900 hover:border-indigo-400 hover:shadow-[0_0_20px_rgba(99,102,241,0.6)] cursor-pointer'
               }`}
             >
               <div className="-rotate-45 flex flex-col items-center z-10">
-                <span className={`font-noto font-bold text-xs md:text-sm tracking-widest ${activeFragments.length < MAX_ANOMALY_SLOTS ? 'text-indigo-400 drop-shadow-[0_0_5px_rgba(99,102,241,0.8)]' : 'text-slate-600'}`}>吸収</span>
-                <span className={`font-orbitron font-bold text-[8px] md:text-[9px] mt-1 ${activeFragments.length < MAX_ANOMALY_SLOTS ? 'text-indigo-300/80' : 'text-slate-700'}`}>ABSORB</span>
+                <span className={`font-noto font-bold text-xs md:text-sm tracking-widest ${absorbCooldown <= 0 && activeFragments.length < MAX_ANOMALY_SLOTS ? 'text-indigo-400 drop-shadow-[0_0_5px_rgba(99,102,241,0.8)]' : 'text-slate-600'}`}>吸収</span>
+                {absorbCooldown > 0 ? (
+                  <span className="font-orbitron font-bold text-[9px] md:text-[10px] text-indigo-600 mt-1">CD: {absorbCooldown}</span>
+                ) : (
+                  <span className={`font-orbitron font-bold text-[8px] md:text-[9px] mt-1 ${activeFragments.length < MAX_ANOMALY_SLOTS ? 'text-indigo-300/80' : 'text-slate-700'}`}>ABSORB</span>
+                )}
               </div>
             </motion.button>
 
