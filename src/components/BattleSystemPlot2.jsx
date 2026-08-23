@@ -768,6 +768,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
       if (playSE) playSE('/assets/audio/bgm/+parry.mp3'); 
     } else {
       setAllyQTEState('fail');
+      if (playSE) playSE('/assets/audio/bgm/+knock.mp3'); 
     }
   }, [playSE, triggerSakuraNote]);
 
