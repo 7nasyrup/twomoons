@@ -5,7 +5,7 @@ import SpriteAnimator from './SpriteAnimator';
 // ═══════════════════════════════════════════════════════════════════════════════
 // CONSTANTS & TUNING
 // ═══════════════════════════════════════════════════════════════════════════════
-const TURN_DELAY = 1500;             // Delay between turns (ms) (Allows time for heal/absorb and reading next action)
+const TURN_DELAY = 600;             // Delay between turns (ms) (Allows time for heal/absorb and reading next action)
 const HEAL_COOLDOWN = 12000;
 
 // Damage values
@@ -376,8 +376,8 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
                 addLog(`💫 ${enemy.name} はスタンしているため行動不能！`);
                 setEnemies(prev => prev.map(e => e.id === turnId ? { ...e, isStunned: false } : e));
                 setCurrentTurnIndex(p => p + 1);
-                setTurnTimer(TURN_DELAY);
-                return TURN_DELAY;
+                setTurnTimer(100);
+                return 100;
               }
               setTurnPhase('enemy_windup');
             }
