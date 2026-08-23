@@ -1385,60 +1385,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
         </div>
       </div>
         
-      {/* ── TURN NOTIFICATION ── */}
-      <AnimatePresence>
-        {turnPhase === 'turn_delay' && battlePhase === 'fighting' && (
-          <motion.div 
-            initial={{ opacity: 0, y: -20, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, scale: 1.05 }}
-            transition={{ duration: 0.2 }}
-            className="absolute top-[25%] left-1/2 -translate-x-1/2 z-50 pointer-events-none"
-          >
-              {(() => {
-                const nextTurnId = TURN_ORDER[currentTurnIndex % TURN_ORDER.length];
-                const isAllyTurn = nextTurnId === 'mutsunori' || nextTurnId === 'nagisa';
-                const enemy = enemies.find(e => e.id === nextTurnId);
-                const ally = allies.find(a => a.id === nextTurnId);
-                
-                const isDead = isAllyTurn ? ally?.isDead : enemy?.isDead;
-                const isStunned = !isAllyTurn && enemy && enemy.isStunned;
 
-                if (isDead) return null;
-
-                const actorName = isAllyTurn 
-                  ? (nextTurnId === 'mutsunori' ? '睦典' : '渚')
-                  : (enemy?.name || 'エネミー');
-
-                if (isStunned) {
-                  return (
-                    <div className="flex flex-col items-center px-16 py-4 border-y border-x-4 shadow-[0_10px_30px_rgba(0,0,0,0.8)] backdrop-blur-md bg-amber-950/80 border-y-amber-500/50 border-x-amber-500 text-amber-100">
-                      <div className="font-orbitron font-bold tracking-[0.3em] text-[10px] md:text-xs mb-1 text-amber-300">
-                        NEXT ACTION
-                      </div>
-                      <div className="font-noto font-black text-xl md:text-2xl tracking-widest drop-shadow-[0_0_8px_rgba(251,191,36,0.8)]">
-                        {actorName}はスタン中！
-                      </div>
-                    </div>
-                  );
-                }
-
-                return (
-                  <div className={`flex flex-col items-center px-16 py-4 border-y border-x-4 shadow-[0_10px_30px_rgba(0,0,0,0.8)] backdrop-blur-md ${
-                    isAllyTurn ? 'bg-cyan-950/80 border-y-cyan-500/50 border-x-cyan-400 text-cyan-100' : 'bg-red-950/80 border-y-red-500/50 border-x-red-500 text-red-100'
-                  }`}>
-                    <div className={`font-orbitron font-bold tracking-[0.3em] text-[10px] md:text-xs mb-1 ${isAllyTurn ? 'text-cyan-300' : 'text-red-300'}`}>
-                      NEXT ACTION
-                    </div>
-                    <div className={`font-noto font-black text-xl md:text-2xl tracking-widest ${isAllyTurn ? 'drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]' : 'drop-shadow-[0_0_8px_rgba(239,68,68,0.8)]'}`}>
-                      {actorName}の{isAllyTurn ? '攻撃' : 'ターン'}
-                    </div>
-                  </div>
-                );
-              })()}
-          </motion.div>
-        )}
-      </AnimatePresence>
       {/* ═══════════════════════════════════════════════════════════════
            BOTTOM HUD (Cyber Radar & Sync)
          ═══════════════════════════════════════════════════════════════ */}
