@@ -28,7 +28,7 @@ import StruggleGame from './components/StruggleGame';
 import WarehouseExploration from './components/WarehouseExploration';
 import BattleSystem from './components/BattleSystem';
 import BattleSystemPlot4 from './components/BattleSystemPlot4';
-import BattleResonanceTuning from './components/BattleResonanceTuning';
+import BattleSystemPlot2 from './components/BattleSystemPlot2';
 import BattleStaffRhythm from './components/BattleStaffRhythm';
 import BattleSelectScreen from './components/BattleSelectScreen';
 import SaveSlotModal, { SAVE_KEY_PREFIX, loadAllSlots } from './components/SaveSlotModal';
@@ -1514,7 +1514,7 @@ export default function App() {
             playSE={playSE}
           />
         ) : battleMode === 'proto2' ? (
-          <BattleResonanceTuning
+          <BattleSystemPlot2
             onComplete={handleBattleComplete}
             playBGM={playBGM}
             stopBGM={stopBGM}

@@ -12,7 +12,8 @@ export default function SpriteAnimator({
   holdOnFrame = null,
   pulsateOnHold = false,
   onComplete,
-  scale = 1
+  scale = 1,
+  blendMode = 'normal'
 }) {
   const [frame, setFrame] = useState(0);
 
@@ -55,7 +56,8 @@ export default function SpriteAnimator({
         backgroundImage: `url(${src})`,
         backgroundPosition: `-${x}px -${y}px`,
         backgroundRepeat: 'no-repeat',
-        transformOrigin: 'center center'
+        transformOrigin: 'center center',
+        mixBlendMode: blendMode
       }}
     />
   );
