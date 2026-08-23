@@ -100,6 +100,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
   const [allyQTEState, setAllyQTEState] = useState('none'); // 'none' | 'waiting' | 'success' | 'fail'
   const qteStartTimeRef = useRef(0);
   const qteSuccessRef = useRef(false);
+  const qteResultRef = useRef('miss');
   
   const [guardingAllies, setGuardingAllies] = useState(new Set());
   const [healCooldown, setHealCooldown] = useState(0);
@@ -153,7 +154,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
     setSyncRate(prev => Math.min(SYNC_MAX, prev + amount));
   }, []);
 
-  const executeAllyAttack = useCallback((isJust) => {
+  const executeAllyAttack = useCallback((qteResult) => {
     const allAllies = stateRef.current.allies;
     const allEnemies = stateRef.current.enemies;
     const turnId = TURN_ORDER[stateRef.current.currentTurnIndex % TURN_ORDER.length];
@@ -179,8 +180,10 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
       let dmg = hasBuff ? Math.floor(baseDmg * 1.5) : baseDmg;
       dmg = Math.floor(dmg * atkMult);
       
-      if (isJust) {
+      if (qteResult === 'perfect') {
         dmg = Math.floor(dmg * 1.5);
+      } else if (qteResult === 'good') {
+        dmg = Math.floor(dmg * 1.2);
       }
       
       setEnemies(prev => prev.map(e => {
@@ -190,11 +193,11 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
         }
         return e;
       }));
-      spawnDamageNumber(target.id, dmg, isJust ? 'critical' : 'damage');
+      spawnDamageNumber(target.id, dmg, qteResult === 'perfect' ? 'critical' : 'damage');
       addSync(SYNC_PER_HIT);
       const ally = allAllies.find(a => a.id === turnId);
       if (ally) {
-        if (isJust) addLog(`⚡ジャスト攻撃！ ${ally.name} が ${target.name} に大ダメージ！`);
+        if (qteResult === 'perfect') addLog(`⚡ジャスト攻撃！ ${ally.name} が ${target.name} に大ダメージ！`);
         else addLog(`⚔ ${ally.name} が ${target.name} に攻撃！`);
       }
       if (playSE) playSE('/assets/audio/bgm/+game_sword.mp3');
@@ -358,10 +361,11 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
             if (isAlly) {
               setTurnPhase('ally_windup');
               stateRef.current.turnPhase = 'ally_windup';
-              setTurnTimer(650); // Increased from 500ms to 650ms for more reaction time
+              setTurnTimer(800); // UI animation gives 800ms to hit (down from 1500ms since the bar is fast)
               setAllyQTEState('waiting');
               qteStartTimeRef.current = Date.now();
               qteSuccessRef.current = false;
+              qteResultRef.current = 'miss';
             } else {
               // Check if enemy is stunned (from parry)
               const enemy = allEnemies.find(e => e.id === turnId);
@@ -387,7 +391,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
           const next = prev - dt;
           if (next <= 0) {
             setAllyQTEState('none');
-            executeAllyAttack(qteSuccessRef.current);
+            executeAllyAttack(qteResultRef.current);
             return 0;
           }
           return next;
@@ -736,14 +740,21 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
     
     const elapsed = Date.now() - qteStartTimeRef.current;
     
-    // Animation hits scale:1 at 500ms.
-    // Perfect timing window widened to 250ms - 750ms for extremely easy timing.
-    const isJust = elapsed >= 250 && elapsed <= 750;
+    // The bar duration is 800ms. The center is hit at 400ms.
+    // perfect: 320ms - 480ms
+    // good: 200ms - 600ms
+    let result = 'miss';
+    if (elapsed >= 320 && elapsed <= 480) {
+      result = 'perfect';
+    } else if (elapsed >= 200 && elapsed <= 600) {
+      result = 'good';
+    }
     
-    if (isJust) {
-      qteSuccessRef.current = true;
-      setAllyQTEState('success');
-      // 成功時の演出（音と画面揺れは控えめにし、UIのボタン発光に任せる）
+    qteResultRef.current = result;
+    qteSuccessRef.current = true;
+    
+    if (result === 'perfect' || result === 'good') {
+      setAllyQTEState(result);
       if (playSE) playSE('/assets/audio/bgm/+parry.mp3'); 
     } else {
       setAllyQTEState('fail');
@@ -1160,34 +1171,37 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
                     </div>
                   )}
 
-                  {/* Ally Attack Timing UI */}
+                  {/* Ally Attack Timing UI (Horizontal Bar) */}
                   {turnPhase === 'ally_windup' && TURN_ORDER[currentTurnIndex % TURN_ORDER.length] === ally.id && !ally.isDead && (
-                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-40">
-                      {/* Static target ring */}
-                      <div className="absolute w-[120px] h-[120px] md:w-[140px] md:h-[140px] border-[2px] border-red-500/50 shadow-[0_0_10px_rgba(239,68,68,0.5)] flex items-center justify-center rotate-45 rounded-full overflow-hidden">
-                         <div className="w-full h-[1px] bg-red-500/30" />
-                         <div className="absolute h-full w-[1px] bg-red-500/30" />
+                    <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none z-40">
+                      <div className="relative w-[80%] max-w-[400px] h-8 bg-slate-900/80 border border-slate-700 rounded-full overflow-hidden shadow-[0_0_20px_rgba(0,0,0,0.8)]">
+                        {/* Perfect Zone */}
+                        <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[20%] bg-amber-500/40" />
+                        <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[4px] bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,1)] z-10" />
+                        
+                        {/* Moving Cursor */}
+                        <motion.div
+                          className="absolute top-0 bottom-0 w-[4px] bg-white shadow-[0_0_10px_rgba(255,255,255,1)] z-20"
+                          initial={{ left: '0%' }}
+                          animate={{ left: '100%' }}
+                          transition={{ duration: 0.8, ease: "linear" }}
+                        />
                       </div>
                       
-                      {/* Converging ring */}
-                      <motion.div 
-                        className="absolute w-[120px] h-[120px] md:w-[140px] md:h-[140px] border-[3px] border-yellow-400 shadow-[0_0_15px_rgba(253,224,71,1)] rounded-full"
-                        initial={{ scale: 2.5, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        exit={{ opacity: 0, scale: 1.5 }}
-                        transition={{ duration: 0.5, ease: "linear" }}
-                      />
+                      <div className="mt-4 bg-[#090e17]/80 border border-red-500/50 px-3 py-1 animate-pulse">
+                         <span className="font-orbitron font-bold text-[10px] text-red-400 tracking-widest">TAP / CLICK</span>
+                      </div>
                       
-                      {/* JUST pop-up if success */}
+                      {/* Result pop-up */}
                       <AnimatePresence>
-                        {allyQTEState === 'success' && (
+                        {(allyQTEState === 'perfect' || allyQTEState === 'good') && (
                           <motion.div
                             initial={{ scale: 0, opacity: 0, y: 0 }}
-                            animate={{ scale: 1.5, opacity: 1, y: -20 }}
+                            animate={{ scale: 1.5, opacity: 1, y: -40 }}
                             exit={{ opacity: 0 }}
-                            className="absolute font-orbitron font-black text-yellow-300 text-[18px] md:text-[24px] tracking-widest drop-shadow-[0_0_10px_rgba(253,224,71,1)] z-50"
+                            className={`absolute font-orbitron font-black text-[18px] md:text-[24px] tracking-widest z-50 ${allyQTEState === 'perfect' ? 'text-yellow-300 drop-shadow-[0_0_10px_rgba(253,224,71,1)]' : 'text-cyan-300 drop-shadow-[0_0_10px_rgba(34,211,238,1)]'}`}
                           >
-                            JUST!
+                            {allyQTEState === 'perfect' ? 'PERFECT!' : 'GOOD!'}
                           </motion.div>
                         )}
                       </AnimatePresence>
