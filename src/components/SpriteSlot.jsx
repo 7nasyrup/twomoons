@@ -299,6 +299,10 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
           const isMachine = baseCharName.toLowerCase().includes('machine');
 
           const { scale: posScale, y: posY, ...layoutStyles } = positionStyles || {};
+          let finalScale = posScale !== undefined ? posScale : 1.0;
+          if (baseCharName.toLowerCase() === 'kimera2') {
+            finalScale *= 1.2;
+          }
 
           return (
             <motion.div
@@ -316,8 +320,8 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
               animate={{
                 opacity: 1,
                 y: posY !== undefined ? posY : 0,
-                scale: posScale !== undefined ? posScale : 1.0,
-                filter: isSpeaker ? "brightness(1) drop-shadow(0 10px 20px rgba(0,0,0,0.5))" : "brightness(0.4) drop-shadow(0 5px 10px rgba(0,0,0,0.3))",
+                scale: finalScale,
+                filter: (isSpeaker || isKimera || isMachine) ? "brightness(1) drop-shadow(0 10px 20px rgba(0,0,0,0.5))" : "brightness(0.4) drop-shadow(0 5px 10px rgba(0,0,0,0.3))",
                 zIndex: isSpeaker ? 20 : 10,
               }}
               layout="position"

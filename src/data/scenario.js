@@ -238,6 +238,7 @@ export const scenarioData = [
   {
     "scene": "街（朝）",
     "text": "諦めたその時。",
+    "bgAnimation": "dash"
   },
   {
     "scene": "街（朝）",
@@ -259,7 +260,7 @@ export const scenarioData = [
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「……ムッちゃん？」",
-    "bg": ""
+    "bg": "/character/Mutsunori/Mutsunori_CG3.png"
     //↑↑睦典CG
   },
   {
@@ -326,13 +327,14 @@ export const scenarioData = [
   },
   {
     "scene": "街（朝）",
-    "text": "歌おうなんて考えたわけじゃないけれど、幼い頃から何度も口ずさんできたあの歌が、気づけば自然と唇からこぼれていた。私の歌声が静かに響き始める。最初は小さかった歌声が、不思議と辺り一帯へ広がっていく。"
+    "text": "歌おうなんて考えたわけじゃないけれど、幼い頃から何度も口ずさんできたあの歌が、気づけば自然と唇からこぼれていた。私の歌声が静かに響き始める。最初は小さかった歌声が、不思議と辺り一帯へ広がっていく。",
+    //bgm: TheSong
   },
   {
     "scene": "街（朝）",
     "text": "睦典は驚いたように自分の身体を見下ろす。全身に力が満ちていくような、不思議な感覚が駆け巡っていた。",
     "showIllust": [
-      "Mutsunori_serious2" //驚き
+      "Mutsunori_surprise2"
     ]
   },
   {
@@ -340,29 +342,32 @@ export const scenarioData = [
     "speaker": "睦典",
     "role": "MUTSUNORI",
     "text": "「今なら……いける！」",
-    "bgm": "Battle.mp3"
+    "bgm": "Battle.mp3",
+    "showIllust": [
+      "Mutsunori_serious"
+    ]
   },
   {
     "scene": "街（朝）",
     "text": "睦典は地面を蹴り、キメラへ向かって駆け出す。私も歌を止めることなく、その背中を見つめる。",
     "action": "SPEED_EFFECT_START"
   },
-  {
-    "scene": "街（朝）",
-    "action": "SPEED_EFFECT_STOP"
-  },
+  //=============== 戦闘開始(チュートリアル)==============
   {
     "scene": "街（朝）",
     "action": "FADE_TO_BLACK"
   },
-
-  //=========================戦闘チュートリアル=============================
+  {
+    "scene": "街（朝）",
+    "action": "TRIGGER_BATTLE_TUTORIAL"
+  },
   {
     "scene": "街（朝）",
     "text": "キメラの身体を包んでいた青白い光が徐々に薄れ、やがて異形の姿は月波の残滓だけを残して消えていった。",
     "hideIllust": [
       "kimera1"
-    ]
+    ],
+    "action": "SPEED_EFFECT_STOP"
   },
   {
     "scene": "街（朝）",
@@ -934,7 +939,12 @@ export const scenarioData = [
     "scene": "夜の帰り道",
     "action": "FADE_TO_BLACK"
   },
-  //=============== 戦闘開始 ==============
+  //↓↓ bgm: TheSong
+  //=============== 戦闘開始(2回目) ==============
+  {
+    "scene": "夜の帰り道",
+    "action": "TRIGGER_BATTLE_AKANE_VS_KIMERA2"
+  },
   {
     "scene": "夜の帰り道",
     "text": "キメラが消滅し、静寂が戻る。"
@@ -3671,7 +3681,7 @@ export const scenarioData = [
     "role": "MUTSUNORI",
     "text": "「……歌？」",
     "showIllust": [
-      "Mutsunori_serious2", //驚き
+      "Mutsunori_surprise2", //驚き
       "Mika_surprise3",
       "Nagisa_neutral4"
     ]
@@ -3684,12 +3694,15 @@ export const scenarioData = [
     "scene": "崩壊した街",
     "text": "それでも――。\n私は深く息を吸い、胸の奥に眠る何かを信じるように、ゆっくりと歌声を響かせた。",
     "hideIllust": [
-      "Musunori",
+      "Mutsunori",
       "Mika",
       "Nagisa"
     ]
   },
-  //=============== 戦闘開始 ===============
+  //=============== 戦闘開始(3回目) ===============
+  {
+    "action": "TRIGGER_BATTLE_TEAM_VS_KIMERA"
+  },
   {
     "scene": "崩壊した街",
     "text": "ある程度のキメラを蹴散らしたところで… ",
@@ -4807,7 +4820,9 @@ export const scenarioData = [
     "scene": "廊下",
     "bgm": "serious_2.mp3",
     "text": "閉ざされていた隔壁が開き、その奥から巨大な防衛個体が姿を現した。",
-    //キメラ(機械)
+    "showIllust": [
+      "machine4"
+    ]
   },
   {
     "scene": "廊下",
@@ -4834,8 +4849,11 @@ export const scenarioData = [
     "role": "SAKURA",
     "text": "（この先に進むためには、こいつを倒すしかない……！）"
   },
-  //===============　戦闘開始(中ボス) ==============
-
+  //===============　戦闘開始(睦典中ボス) ==============
+  {
+    "scene": "中ボス(睦典)",
+    "action": "TRIGGER_BATTLE_MIDBOSS_MACHINE"
+  },
   {
     "scene": "廊下",
     "bgm": "stop",
@@ -5473,8 +5491,11 @@ export const scenarioData = [
     "scene": "コア部屋_崩壊①",
     "text": "私は頷く。黒騎士との最後の戦いが、始まった。"
   },
-  //===============　戦闘開始(ラスボス) ===============
-
+  //===============　戦闘開始(睦典ラスボス) ===============
+  {
+    "scene": "ラスボス(睦典)",
+    "action": "TRIGGER_BATTLE_FINAL_MUTSUNORI"
+  },
   {
     "scene": "コア部屋_崩壊①",
     "text": "勝負は決した──そう思った、次の瞬間。"
@@ -10133,7 +10154,7 @@ export const scenarioData = [
     "role": "SAKURA",
     "text": "（この先に進むためには、こいつを倒すしかない……！）"
   },
-  //================= 戦闘開始(中ボス) ===============
+  //================= 戦闘開始(凪砂中ボス) ===============
   {
     "scene": "廊下",
     "text": "崩れ落ちた防衛個体を見つめながら、私は荒い呼吸を整える。",
@@ -10860,7 +10881,7 @@ export const scenarioData = [
     "text": "私は強く頷く。黒騎士との最後の戦いが、始まった。",
     "action": ["clear", "SHAKE_SCREEN_VERY_LARGE"]
   },
-  //============== 戦闘開始(ラスボス) ===============
+  //============== 戦闘開始(凪砂ラスボス) ===============
   {
     "scene": "研究所の最奥",
     "text": "勝負は決した──そう思った、次の瞬間。"
@@ -12328,7 +12349,7 @@ export const scenarioData = [
     "role": "SAKURA",
     "text": "（この先に進むためには、こいつを倒すしかない……！） "
   },
-  //=============== 戦闘開始(中ボス) ===============
+  //=============== 戦闘開始(ミカ中ボス) ===============
   {
     "scene": "廊下",
     "bgm": "stop",
@@ -12839,7 +12860,7 @@ export const scenarioData = [
     "scene": "研究所の最奥",
     "text": "私は息を呑み、ミカくんと並んで立ち上がる。すべての因縁を断ち切るための最後の戦いが、始まろうとしていた。"
   },
-  //=============== 戦闘開始(ラスボス) ===============
+  //=============== 戦闘開始(ミカラスボス) ===============
   {
     "scene": "研究所の最奥",
     "bgm": "stop",
@@ -14076,7 +14097,7 @@ export const scenarioData = [
     "scene": "廊下",
     "text": "私は静かに息を吸い込み、歌声を響かせた。"
   },
-  //=============== 戦闘開始(中ボス) ===============
+  //=============== 戦闘開始(アカネ中ボス) ===============
   {
     "scene": "廊下",
     "text": "崩れ落ちた防衛個体を前に、私は荒い呼吸を整える。",
@@ -14663,7 +14684,7 @@ export const scenarioData = [
     "text": "次の瞬間、研究所全体を揺るがす咆哮と共に、残されたキメラたちが一斉に襲いかかってきた",
     "action": "SHAKE_SCREEN_CONTINUOUS_MEDIUM"
   },
-  //=============== 戦闘開始(ラスボス) ================
+  //=============== 戦闘開始(アカネラスボス) ================
   {
     "scene": "コア部屋",
     "text": "激しい戦闘の末、研究所内に静寂が戻る。",
