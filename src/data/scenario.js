@@ -136,7 +136,7 @@ export const scenarioData = [
     "scene": "街（朝）",
     "text": "通学路を歩く最中、持ってきたイヤホンをつけると小さな音楽が流れる。子供の頃、父と一緒に歌った曲だ。気付けば、私は無意識に口ずさんでいた。",
     "bg": "/scene/shopping_street.png",
-    "bgm": ""
+    "bgm": "TheSong.mp3"
   },
   {
     "scene": "街（朝）",
@@ -6652,7 +6652,8 @@ export const scenarioData = [
     "scene": "コアあり崩壊部屋",
     "text": "直後、ガラス張りの天井が爆音とともに突き破られた。爆煙の向こうから姿を現したのは──。",
     "bg": "/scene/core_hakai1.png",
-    "action": "CLEAR_SHAKE"
+    "action": "CLEAR_SHAKE",
+    "se": "Explosion_Sound.mp3"
   },
   {
     "scene": "コアあり崩壊部屋",
@@ -6678,7 +6679,7 @@ export const scenarioData = [
     "scene": "コアあり崩壊部屋",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「いや……離してッ！！　離してよ……！！」"
+    "text": "「いや……離してッ！！離してよ……！！」"
   },
   {
     "scene": "コアあり崩壊部屋",
@@ -6761,7 +6762,7 @@ export const scenarioData = [
     "role": "SAKURA",
     "text": "「あぐッ……！」",
     "action": "SHAKE_SCREEN_CONTINUOUS_MEDIUM",
-    "se": "attack1.mp3",
+    "se": "attack_1.mp3",
     "hideIllust": [
       "bk"
     ]
@@ -7009,7 +7010,7 @@ export const scenarioData = [
     "scene": "研究所の奧",
     "speaker": "？？？",
     "text": "「————おらぁぁぁぁぁッッ！！」",
-    "se": "attack2.mp3",
+    "se": "attack_2.mp3",
     "action": "SHAKE_SCREEN_MEDIUM"
   },
   {
@@ -7062,7 +7063,7 @@ export const scenarioData = [
     "scene": "研究所の奧",
     "text": "しかし次の瞬間、体勢を立て直した黒騎士──教授の漆黒の一太刀が、睦則の鼻先を襲った。",
     "action": "SHAKE_SCREEN",
-    "se": "sword.mp3",
+    "se": "Slash_Sound.mp3",
     "showIllust": [
       "Mutsunori_smile"
     ]
