@@ -347,17 +347,15 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
             >
               <div className="relative w-full h-full">
                 {isKimera ? (
-                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 h-full overflow-hidden" style={{ aspectRatio: '344 / 768' }}>
-                    <img
-                      src={imagePath}
-                      alt={baseCharName}
-                      className="h-full max-w-none"
-                      style={{ 
-                        width: '400%',
-                        transition: 'opacity 0.25s ease'
-                      }}
-                    />
-                  </div>
+                  <img
+                    src={imagePath}
+                    alt={baseCharName}
+                    className="absolute bottom-0 left-1/2 -translate-x-1/2 h-full object-cover object-left max-w-none"
+                    style={{ 
+                      aspectRatio: '344 / 768',
+                      transition: 'opacity 0.25s ease'
+                    }}
+                  />
                 ) : (
                   <img
                     src={imagePath}
