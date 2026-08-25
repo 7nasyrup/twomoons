@@ -346,26 +346,12 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
               transition={{ duration: 0.35, ease: "easeOut" }}
             >
               <div className="relative w-full h-full">
-                {isKimera ? (
-                  <div 
-                    className="absolute bottom-0 left-1/2 -translate-x-1/2 h-full"
-                    style={{ 
-                      width: 'calc(75vh * 344 / 768)',
-                      backgroundImage: `url(${imagePath})`,
-                      backgroundSize: '400% 100%',
-                      backgroundPosition: 'left center',
-                      backgroundRepeat: 'no-repeat',
-                      transition: 'opacity 0.25s ease'
-                    }}
-                  />
-                ) : (
-                  <img
-                    src={imagePath}
-                    alt={baseCharName}
-                    className="w-full h-full object-contain object-bottom"
-                    style={{ transition: 'opacity 0.25s ease' }}
-                  />
-                )}
+                <img
+                  src={imagePath}
+                  alt={baseCharName}
+                  className="w-full h-full object-contain object-bottom"
+                  style={{ transition: 'opacity 0.25s ease' }}
+                />
               </div>
             </motion.div>
           );
