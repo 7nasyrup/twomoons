@@ -11,6 +11,11 @@ export default function ShakeLayer({ children, shakeEffect }) {
       y: [0, 5, -5, 4, -4, 3, -3, 1, -1, 0],
       transition: { duration: 0.6, ease: 'easeInOut' }
     },
+    shakeMedium: {
+      x: [0, -18, 18, -14, 14, -10, 10, -5, 5, 0],
+      y: [0, 10, -10, 8, -8, 5, -5, 2, -2, 0],
+      transition: { duration: 0.7, ease: 'easeInOut' }
+    },
     shakeLarge: {
       x: [0, -25, 25, -20, 20, -15, 15, -10, 10, -5, 5, 0],
       y: [0, 15, -15, 12, -12, 8, -8, 5, -5, 2, -2, 0],
@@ -67,6 +72,8 @@ export default function ShakeLayer({ children, shakeEffect }) {
   let animState = 'idle';
   if (shakeEffect === 'large' || shakeEffect === 'shakeLarge') {
     animState = 'shakeLarge';
+  } else if (shakeEffect === 'medium' || shakeEffect === 'shakeMedium') {
+    animState = 'shakeMedium';
   } else if (shakeEffect === true || shakeEffect === 'shake') {
     animState = 'shake';
   } else if (shakeEffect === 'extreme' || shakeEffect === 'shakeExtreme') {

@@ -16,29 +16,24 @@ const ROOMS = [
 const SOLO_CHIP = [
   [
     { speaker: null, role: 'SYSTEM', text: 'セキュリティコードの断片を入手した。' },
-    { speaker: '朔良', role: 'SAKURA', text: '「……よし。これで一つ。急がないと」' },
+    { speaker: '朔良', role: 'SAKURA', text: '「（これって……いったいどういうことなんだろう）」' },
   ],
   [
     { speaker: null, role: 'SYSTEM', text: 'セキュリティコードの断片を入手した。' },
-    { speaker: '朔良', role: 'SAKURA', text: '「……静かすぎて、かえって怖い。でも、止まれない」' },
+    { speaker: '朔良', role: 'SAKURA', text: '「（……集めるしかない。何かがわかるかもしれないから）」' },
   ],
   [
     { speaker: null, role: 'SYSTEM', text: 'セキュリティコードの断片を入手した。' },
-    { speaker: '朔良', role: 'SAKURA', text: '「（もうすぐだ。もうすぐ……）」' },
+    { speaker: '朔良', role: 'SAKURA', text: '「（あと少し……）」' },
   ],
   [
     { speaker: null, role: 'SYSTEM', text: 'セキュリティコードの断片を入手した。' },
-    { speaker: '朔良', role: 'SAKURA', text: '「……ッ、これで全部揃った。ゲートを開けられる」' },
+    { speaker: '朔良', role: 'SAKURA', text: '「……よし、これで全部揃った。奥のゲートを開けられる」' },
   ],
 ];
 
 // ─── ファイル取得時のモノローグ ──────────────────────────────────────────────────
-const SOLO_FILE = [
-  [{ speaker: '朔良', role: 'SAKURA', text: '「機密ファイル……。後で確認しよう」' }],
-  [{ speaker: '朔良', role: 'SAKURA', text: '「……これ、重要な情報かもしれない。しっかり読まないと」' }],
-  [{ speaker: '朔良', role: 'SAKURA', text: '「……こんなことが、ここで行われていたなんて」' }],
-  [{ speaker: '朔良', role: 'SAKURA', text: '「……知らなかった。知りたくなかった、かもしれない。でも、知らないままじゃダメだ」' }],
-];
+// SOLO_FILE removed as requested
 
 // ─── ゲート解錠時 ─────────────────────────────────────────────────────────────
 const SOLO_GATE = [
@@ -59,16 +54,20 @@ const ROOM_ITEMS = {
         messages: [
           {
             speaker: 'システム', role: 'SYSTEM',
-            text: '【機密ファイル 01 ／ 月面研究所：設立の目的と経緯】'
+            text: '【歌唱能力に関する研究記録】'
           },
           {
             speaker: null, role: null,
-            text: '月面研究所（正式名称：LUNA-CORE RESEARCH FACILITY）は、地球エネルギー危機への対応策として、約二十年前に秘密裏に設立された。\n表向きは「月面資源採掘」のための施設であるが、その実態は——'
+            text: '能力適合者：0280293\n特殊な歌唱能力を持つ被験者。\n歌声を媒介として、対象者の身体能力・異能力出力を一時的に増幅することが確認された。'
           },
           {
             speaker: null, role: null,
-            text: '人類の異能適応可能性を研究し、エネルギー生成に転用するための「実験場」であった。\n施設の中核たる《コア》は、適応者の異能エネルギーを吸収・増幅・変換するデバイスとして設計されており、初期の実験体は「志願者」として扱われた。\n\n（余白の走り書き）「今は誰も、自分の意志でここにはいない」'
+            text: '特筆すべきは、能力の影響が単なる強化に留まらない点である。\n歌唱者と対象者の間に、極めて強い精神的・生体的な共鳴反応が発生する。\nこの反応が一定値を超えた場合、歌唱者側に対象者の能力因子が移行する可能性がある。'
           },
+          {
+            speaker: '朔良', role: 'SAKURA',
+            text: '「歌声…私が持っている力のことかな…」'
+          }
         ],
       },
     ],
@@ -77,7 +76,6 @@ const ROOM_ITEMS = {
   lab2: {
     chips: [
       { id: 'chip_2', pos: { top: '38%', left: '20%' }, label: 'コード断片②' },
-      { id: 'chip_3', pos: { top: '55%', left: '75%' }, label: 'コード断片③' },
     ],
     files: [
       {
@@ -87,15 +85,15 @@ const ROOM_ITEMS = {
         messages: [
           {
             speaker: 'システム', role: 'SYSTEM',
-            text: '【機密ファイル 02 ／ キメラ生成プロセス：事故報告書】'
+            text: '【異能錬成報告書】'
           },
           {
             speaker: null, role: null,
-            text: '重大事故報告 ／ 優先度：最高。\n適応者の異能エネルギーをコアへ注入する実験中に、エネルギーの逆流・汚染が発生。\n逆流した異能エネルギーが周辺の生体試料と融合・変異し、制御不能な生命体——【キメラ】が生成されることが確認された。'
+            text: '同一の遺伝情報を持つ二つの生命体を同時に錬成することで、極めて高い適応能力を持つ個体を生み出すことに成功。\n個体A、個体B。\n二人は遺伝的にはほぼ完全な双生児でありながら、それぞれ異なる特性を示している。'
           },
           {
             speaker: null, role: null,
-            text: 'キメラは高い攻撃性と環境適応能力を持ち、施設内への封じ込めが困難になりつつある。\n\n上層部の対応（内部メモ）：\n「外部への流出は情報統制で処理。被験者の損耗は『消耗品の誤差』として処理。研究は継続せよ」'
+            text: 'しかし、計画の最終段階を前に、個体Aが研究員の一人によって施設外へ持ち出された。\n持ち出した研究員の行方、および個体Aの現在地は不明。\n残された個体Bについては、引き続き施設内で管理する。'
           },
         ],
       },
@@ -104,7 +102,7 @@ const ROOM_ITEMS = {
 
   lab3: {
     chips: [
-      { id: 'chip_4', pos: { top: '50%', left: '35%' }, label: 'コード断片④' },
+      { id: 'chip_3', pos: { top: '55%', left: '75%' }, label: 'コード断片③' },
     ],
     files: [
       {
@@ -114,44 +112,30 @@ const ROOM_ITEMS = {
         messages: [
           {
             speaker: 'システム', role: 'SYSTEM',
-            text: '【機密ファイル 03 ／ コア暴走の予測シナリオ】'
+            text: '【瀕死の研究員のメモ】'
           },
           {
             speaker: null, role: null,
-            text: 'コアに蓄積されたエネルギーが臨界値を超えた場合のシミュレーション（機密）。\n\n第一段階：施設周辺の電磁環境が崩壊。通信・航法システムが全滅。\n第二段階：コアが放出するエネルギー波が月面全域に拡散。地球の大気圏外にも影響が及ぶ。\n第三段階：キメラの活動が爆発的に増加。制御不能となった群体が地球へ到達する可能性が浮上。'
+            text: '――この研究所は、もう駄目だ。\nあれを止められる者は、もう誰も残っていない。\n私たちが作り出した二人の子供。その片割れが、この研究所を壊滅させた。'
           },
           {
             speaker: null, role: null,
-            text: '上層部の判断（赤いスタンプ）：\n【対処不能と判定。施設は放棄し、証拠を消去せよ】\n\n（付記・手書き）「……誰も、止めに来てくれないのか」'
+            text: '研究員たちは次々に倒され、施設もほとんど機能していない。\nあれほどの力を持つとは、誰が予想できただろう。'
           },
+          {
+            speaker: null, role: null,
+            text: '……だが、あの子は何かを探している。\nもう一人の片割れ――あの少女を。\nもし、あの子が少女を見つけたら――'
+          }
         ],
       },
     ],
   },
 
   lab4: {
-    chips: [],
-    files: [
-      {
-        id: 'file_4',
-        pos: { top: '58%', left: '25%' },
-        label: '機密ファイル 04',
-        messages: [
-          {
-            speaker: 'システム', role: 'SYSTEM',
-            text: '【機密ファイル 04 ／ コアの停止条件：唯一の可能性】'
-          },
-          {
-            speaker: null, role: null,
-            text: 'コアは異能エネルギーを「吸収する」ことで稼働する。\n逆に、コアが処理できる限界値を超えるエネルギーを「一度に注ぎ込む」ことができれば——過負荷（オーバーロード）による強制停止が可能という仮説が成立する。\n\nただし、コアの許容量は既存の適応者の能力値を大幅に上回っており、単体での達成はほぼ不可能とされていた。'
-          },
-          {
-            speaker: null, role: null,
-            text: '付記（最後のページ）：\n「しかし——もし複数の適応者が同時に、あるいは《吸収》という特性を持つ異質な存在が介在するなら。\nその場合に限り、理論的には可能かもしれない。\n\n……後は、頼んだよ」'
-          },
-        ],
-      },
+    chips: [
+      { id: 'chip_4', pos: { top: '50%', left: '35%' }, label: 'コード断片④' },
     ],
+    files: [],
   },
 };
 
@@ -264,6 +248,15 @@ export default function FragmentCollectSolo({ onComplete, onSave, onLoad, onTogg
   const containerRef = useRef(null);
   const [timeLeft, setTimeLeft] = useState(180);
   const [isGameOver, setIsGameOver] = useState(false);
+  const [showStartAnim, setShowStartAnim] = useState(true);
+
+  // ─── 探索開始アニメーション ────────────────────────────────────────
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowStartAnim(false);
+    }, 2500);
+    return () => clearTimeout(timer);
+  }, []);
   const [isDragging, setIsDragging] = useState(false);
   const lastMousePos = useRef({ x: 0, y: 0 });
 
@@ -415,8 +408,6 @@ export default function FragmentCollectSolo({ onComplete, onSave, onLoad, onTogg
   // ─── ファイルモーダルを閉じる ─────────────────────────────────────────────────────
   const closeActiveFile = () => {
     setActiveFile(null);
-    const lv = Math.min(collectedFiles.size - 1, SOLO_FILE.length - 1);
-    showMessages(SOLO_FILE[lv] || SOLO_FILE[0]);
   };
 
   const handleParticleComplete = useCallback((id) => {
@@ -424,13 +415,13 @@ export default function FragmentCollectSolo({ onComplete, onSave, onLoad, onTogg
   }, []);
 
   const handlePointerDown = (e) => {
-    if (currentMessage || activeFile || isTransitioning || isGameOver || e.target.closest('button')) return;
+    if (currentMessage || activeFile || isTransitioning || isGameOver || showStartAnim || e.target.closest('button')) return;
     setIsDragging(true);
     lastMousePos.current = { x: e.clientX, y: e.clientY };
   };
   const handlePointerUp = () => setIsDragging(false);
   const handlePointerMove = (e) => {
-    if (currentMessage || activeFile || isTransitioning || isGameOver || !isDragging) return;
+    if (currentMessage || activeFile || isTransitioning || isGameOver || showStartAnim || !isDragging) return;
     const dx = e.clientX - lastMousePos.current.x;
     const dy = e.clientY - lastMousePos.current.y;
     lastMousePos.current = { x: e.clientX, y: e.clientY };
@@ -515,7 +506,7 @@ export default function FragmentCollectSolo({ onComplete, onSave, onLoad, onTogg
               <FileText className="w-3.5 h-3.5 lg:w-4 lg:h-4 text-green-500" />
               <span className="text-[11px] lg:text-xs font-orbitron text-slate-600 tracking-widest font-bold">FILE</span>
               <div className="flex items-center gap-1.5 lg:gap-2">
-                {Array.from({ length: 4 }, (_, i) => (
+                {Array.from({ length: 3 }, (_, i) => (
                   <div key={i} className={`w-2.5 h-2.5 lg:w-3 lg:h-3 rounded-full border transition-all duration-500 ${i < fileCount ? 'bg-green-400 border-green-300 shadow-[0_0_8px_rgba(74,222,128,0.8)]' : 'bg-transparent border-white/30'}`} />
                 ))}
               </div>
@@ -595,6 +586,34 @@ export default function FragmentCollectSolo({ onComplete, onSave, onLoad, onTogg
       {/* ─── 機密ファイルモーダル ─── */}
       <AnimatePresence>
         {activeFile && <FCFileModal file={activeFile} onClose={closeActiveFile} />}
+      </AnimatePresence>
+
+      {/* ─── 探索開始アニメーション ─── */}
+      <AnimatePresence>
+        {showStartAnim && (
+          <motion.div
+            className="absolute inset-0 z-[100] flex items-center justify-center pointer-events-none"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0, scale: 1.1, filter: 'blur(10px)' }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+          >
+            <div className="absolute inset-0 bg-black/60" />
+            <motion.div
+              initial={{ opacity: 0, y: 20, letterSpacing: '0.1em' }}
+              animate={{ opacity: 1, y: 0, letterSpacing: '0.3em' }}
+              transition={{ delay: 0.3, duration: 1, ease: "easeOut" }}
+              className="relative z-10 flex flex-col items-center gap-2"
+            >
+              <div className="text-cyan-400 font-orbitron tracking-[0.5em] text-xl md:text-2xl font-bold drop-shadow-[0_0_10px_rgba(34,211,238,0.8)]">
+                EXPLORATION START
+              </div>
+              <div className="text-white font-bold tracking-widest text-lg md:text-xl drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]">
+                探索開始
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
       </AnimatePresence>
 
       {/* ─── ゲームオーバー ─── */}

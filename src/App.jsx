@@ -672,8 +672,11 @@ export default function App() {
       "大男": "Akane",
       "アカネ": "Akane",
       "満": "Michiru",
+      "ミチル": "Michiru",
       "朔良": "Sakura",
-      "黒騎士": "BlackKnight"
+      "黒騎士": "BlackKnight",
+      "bk": "bk",
+      "bl": "bl"
     };
 
     // 1. Force Clear all illustrations
@@ -876,6 +879,13 @@ export default function App() {
           clearTimeout(timer);
           setShakeEffect(false);
         });
+      } else if (action === 'SHAKE_SCREEN_MEDIUM') {
+        setShakeEffect('medium');
+        const timer = setTimeout(() => setShakeEffect(false), 700);
+        cleanupFuncs.push(() => {
+          clearTimeout(timer);
+          setShakeEffect(false);
+        });
       } else if (action === 'SHAKE_SCREEN_VERY_LARGE' || action === 'SHAKE_AND_SMOKE') {
         if (action === 'SHAKE_AND_SMOKE') setIsSmokeActive(true);
         setShakeEffect('large');
@@ -975,6 +985,7 @@ export default function App() {
         setIsFadingBlack(true);
         setIsRedAlertActive(false); // Stop red alert flash when transitioning to black
         setIsMonochromeFlashActive(false);
+        setIsBlackAuraActive(false);
         const fadeDuration = currentLine.duration || (action === 'SLOW_FADE_TO_BLACK' ? 3000 : 2000);
         const timer = setTimeout(() => setIsFadingBlack(false), fadeDuration);
         

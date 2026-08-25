@@ -45,6 +45,18 @@ const SPEAKER_CONFIGS = {
     defaultExpression: "black_knight",
     positionClass: "right-[15%] w-[45%] h-[95%]"
   },
+  "bk": {
+    folder: "/character/Hirumi",
+    baseFileName: "bk",
+    defaultExpression: "neutral",
+    positionClass: "right-[15%] w-[45%] h-[95%]"
+  },
+  "bl": {
+    folder: "/character/Hirumi",
+    baseFileName: "bl",
+    defaultExpression: "komari",
+    positionClass: "right-[15%] w-[45%] h-[95%]"
+  },
   "Ruki": {
     folder: "/character/Ruki",
     baseFileName: "Ruki",
@@ -251,6 +263,11 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
             const rawActiveBase = activeTalker.split('_')[0];
             const activeRomajiBase = SPEAKER_TO_ROMAJI[rawActiveBase] || rawActiveBase;
             isSpeaker = activeRomajiBase === baseCharName;
+            
+            // Special cases where multiple sprite prefixes map to the same speaker
+            if (activeRomajiBase === "Hirumi" && (baseCharName === "bk" || baseCharName === "bl" || baseCharName === "BlackKnight")) {
+              isSpeaker = true;
+            }
           }
 
           if (!isSpeaker && (currentSpeaker === "？？？" || currentSpeaker === "？？?")) {
