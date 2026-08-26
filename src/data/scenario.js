@@ -350,8 +350,9 @@ export const scenarioData = [
     "scene": "街（朝）",
     "action": "FADE_TO_BLACK"
   },
+  //=============== 戦闘開始(チュートリアル) ===============
   {
-    "scene": "街（朝）",
+    "scene": "戦闘",
     "action": "TRIGGER_BATTLE_TUTORIAL"
   },
   {
@@ -929,8 +930,9 @@ export const scenarioData = [
     "scene": "夜の帰り道",
     "action": "FADE_TO_BLACK"
   },
+  //=============== 戦闘開始(アカネ) ===============
   {
-    "scene": "夜の帰り道",
+    "scene": "戦闘",
     "action": "TRIGGER_BATTLE_AKANE_VS_KIMERA2"
   },
   {
@@ -3606,7 +3608,7 @@ export const scenarioData = [
     "scene": "崩壊した街",
     "text": "ミカくんの声。瓦礫の向こうから、巨大な蜘蛛のような姿をした【キメラ】が姿を現す。その瞬間、アジトで見つけた書類の一文が脳裏をよぎった。",
     "showIllust": [
-      "kimera43"
+      "kimera33"
     ]
   },
   {
@@ -3623,7 +3625,7 @@ export const scenarioData = [
     "role": "SAKURA",
     "text": "（……やるしかない）",
     "hideIllust": [
-      "kimera4 "
+      "kimera3"
     ]
   },
   {
@@ -3664,7 +3666,9 @@ export const scenarioData = [
       "Nagisa"
     ]
   },
+  //=============== 戦闘開始(3人) ===============
   {
+    "scene": "戦闘",
     "action": "TRIGGER_BATTLE_TEAM_VS_KIMERA"
   },
   {

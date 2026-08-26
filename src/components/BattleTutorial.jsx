@@ -298,7 +298,7 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
       const timer = setTimeout(() => {
         setBattlePhase('fighting');
         setTurnPhase('turn_delay');
-        setTurnTimer(500); // Brief initial delay
+        setTurnTimer(2500); // Wait for black screen to open (1.3s) + brief pause (1.2s)
       }, 2200);
       return () => clearTimeout(timer);
     }
@@ -1551,11 +1551,9 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
 
           {/* Left Button - HEAL */}
           <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
             onClick={handleHeal}
             disabled={healCooldown > 0 || battlePhase !== 'fighting'}
-            className={`w-24 h-12 md:w-32 md:h-16 skew-x-[-15deg] flex items-center justify-center overflow-hidden group transition-all duration-300 relative border-b-2 border-r-2 backdrop-blur-md ${healCooldown > 0 || battlePhase !== 'fighting'
+            className={`w-24 h-12 md:w-32 md:h-16 skew-x-[-15deg] flex items-center justify-center overflow-hidden group transition-all duration-300 relative border-b-2 border-r-2 backdrop-blur-md hover:scale-105 active:scale-95 ${healCooldown > 0 || battlePhase !== 'fighting'
               ? 'bg-[#090e17]/90 border-slate-700/50 cursor-not-allowed'
               : 'bg-emerald-950/60 border-emerald-500/80 hover:bg-emerald-900/80 hover:border-emerald-400 hover:shadow-[0_0_20px_rgba(16,185,129,0.6)] cursor-pointer'
               }`}
@@ -1581,9 +1579,7 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
           <motion.button
             onClick={handleMutsunoriUltimate}
             disabled={syncRate < SYNC_COST_ULTIMATE || battlePhase !== 'fighting'}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className={`relative w-24 h-24 md:w-32 md:h-32 rounded-full border-2 flex flex-col items-center justify-center transition-all -translate-y-4 shadow-[0_0_30px_rgba(0,0,0,0.8)] backdrop-blur-md ${syncRate < SYNC_COST_ULTIMATE || battlePhase !== 'fighting'
+            className={`relative w-24 h-24 md:w-32 md:h-32 rounded-full border-2 flex flex-col items-center justify-center transition-all duration-300 -translate-y-4 shadow-[0_0_30px_rgba(0,0,0,0.8)] backdrop-blur-md hover:scale-105 active:scale-95 ${syncRate < SYNC_COST_ULTIMATE || battlePhase !== 'fighting'
               ? 'bg-[#0a0a0a]/90 border-amber-900/30 cursor-not-allowed grayscale'
               : 'bg-[#1a0a03]/80 border-amber-500 hover:bg-[#2a1005]/90 hover:shadow-[0_0_40px_rgba(251,191,36,0.6)] cursor-pointer'
               }`}
@@ -1627,11 +1623,9 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
 
           {/* Right Button - ABSORB */}
           <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
             onClick={handleAbsorb}
             disabled={battlePhase !== 'fighting' || absorbCooldown > 0 || activeFragments.length >= MAX_ANOMALY_SLOTS}
-            className={`w-24 h-12 md:w-32 md:h-16 skew-x-[15deg] flex items-center justify-center overflow-hidden group transition-all duration-300 relative border-b-2 border-l-2 backdrop-blur-md ${battlePhase !== 'fighting' || absorbCooldown > 0 || activeFragments.length >= MAX_ANOMALY_SLOTS
+            className={`w-24 h-12 md:w-32 md:h-16 skew-x-[15deg] flex items-center justify-center overflow-hidden group transition-all duration-300 relative border-b-2 border-l-2 backdrop-blur-md hover:scale-105 active:scale-95 ${battlePhase !== 'fighting' || absorbCooldown > 0 || activeFragments.length >= MAX_ANOMALY_SLOTS
               ? 'bg-[#090e17]/90 border-slate-700/50 cursor-not-allowed'
               : 'bg-indigo-950/60 border-indigo-500/80 hover:bg-indigo-900/80 hover:border-indigo-400 hover:shadow-[0_0_20px_rgba(99,102,241,0.6)] cursor-pointer'
               }`}
