@@ -967,7 +967,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         {/* Full color bright image */}
-        <img src="/battle/shopping.png" alt="Background" className="absolute inset-0 w-full h-full object-cover scale-[1.15] -translate-y-[5%]" />
+        <img src="/battle/shopping.png" alt="Background" className="absolute inset-0 w-full h-full object-cover scale-[1.02] md:scale-[1.15] -translate-y-0 md:-translate-y-[5%]" />
 
         {/* Very subtle cyber tech overlays so UI is still readable */}
         <div className="absolute inset-0 bg-[#090e17]/20" />
@@ -1478,25 +1478,25 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
       <div className="absolute inset-0 z-40 pointer-events-none">
 
         {/* ── Bottom Right: Character Portrait (Sakura) ── */}
-        <div className="absolute bottom-4 right-4 md:bottom-10 md:right-10 pointer-events-auto flex items-end justify-end">
+        <div className="absolute bottom-3 right-3 md:bottom-10 md:right-10 pointer-events-auto flex items-end justify-end">
           {/* Glassmorphic Panel */}
-          <div className="relative flex flex-col items-end w-32 md:w-64 bg-[#0a1120]/60 backdrop-blur-md border-t border-l border-cyan-500/30 rounded-tl-3xl rounded-br-md p-2 pb-3 md:p-3 md:pb-4 shadow-[0_8px_32px_rgba(0,0,0,0.5)]">
+          <div className="relative flex flex-col items-end w-24 md:w-64 bg-[#0a1120]/60 backdrop-blur-md border-t border-l border-cyan-500/30 rounded-tl-2xl md:rounded-tl-3xl rounded-br-md p-1.5 pb-2 md:p-3 md:pb-4 shadow-[0_8px_32px_rgba(0,0,0,0.5)]">
             {/* Tech accents */}
             <div className="absolute top-0 left-6 w-12 h-[2px] bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.8)]" />
             <div className="absolute bottom-2 right-0 w-[2px] h-8 bg-cyan-500/50" />
             
             <div className="flex items-end w-full justify-between">
               {/* Text Info */}
-              <div className="flex flex-col z-10 w-full pr-14 md:pr-20">
-                <div className="flex justify-between items-end mb-2">
-                  <span className="font-orbitron font-bold text-[8px] md:text-xs text-cyan-300 tracking-[0.2em] drop-shadow-[0_0_5px_rgba(34,211,238,0.5)]">SAKURA</span>
-                  <span className={`font-orbitron font-bold text-[7px] md:text-[10px] tracking-widest ${corruption >= 80 ? 'text-red-400 animate-pulse' : 'text-cyan-100/70'}`}>
+              <div className="flex flex-col z-10 w-full pr-8 md:pr-20">
+                <div className="flex justify-between items-end mb-1 md:mb-2">
+                  <span className="font-orbitron font-bold text-[6px] md:text-xs text-cyan-300 tracking-[0.15em] md:tracking-[0.2em] drop-shadow-[0_0_5px_rgba(34,211,238,0.5)]">SAKURA</span>
+                  <span className={`font-orbitron font-bold text-[5px] md:text-[10px] tracking-widest ${corruption >= 80 ? 'text-red-400 animate-pulse' : 'text-cyan-100/70'}`}>
                     CRPT {corruption}%
                   </span>
                 </div>
                 
                 {/* Corruption Bar (Slanted) */}
-                <div className="w-full h-1.5 md:h-2.5 bg-black/80 border border-slate-700/50 skew-x-[-15deg] overflow-hidden relative shadow-[inset_0_0_5px_rgba(0,0,0,1)]">
+                <div className="w-full h-1 md:h-2.5 bg-black/80 border border-slate-700/50 skew-x-[-15deg] overflow-hidden relative shadow-[inset_0_0_5px_rgba(0,0,0,1)]">
                   <motion.div
                     className="h-full bg-gradient-to-r from-red-600 via-red-500 to-red-400"
                     style={{ width: `${corruption}%` }}
@@ -1508,14 +1508,14 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
               </div>
               
               {/* Portrait floating outside the panel */}
-              <div className="absolute bottom-0 right-1 md:right-2 w-16 md:w-32 pointer-events-none z-20">
+              <div className="absolute bottom-0 right-0.5 md:right-2 w-10 md:w-32 pointer-events-none z-20">
                 <div className="relative w-full">
                   {/* Glowing aura behind portrait */}
                   <div className="absolute inset-0 bg-cyan-500/20 rounded-full blur-xl mix-blend-screen" />
                   <img
                     src="/character/Sakura/Sakura.png"
                     alt="Sakura"
-                    className="relative w-full h-auto drop-shadow-[0_0_15px_rgba(6,182,212,0.6)] object-cover object-top scale-[1.8] translate-y-[-10%]"
+                    className="relative w-full h-auto drop-shadow-[0_0_15px_rgba(6,182,212,0.6)] object-cover object-top scale-[1.5] md:scale-[1.8] translate-y-[-10%]"
                     style={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' }}
                     onError={(e) => {
                       e.target.onerror = null;
@@ -1534,10 +1534,10 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
           if (!ally) return null;
           const hpPercent = (ally.hp / ally.maxHp) * 100;
           return (
-            <div className="absolute top-4 left-4 md:top-8 md:left-10 pointer-events-auto flex items-center gap-2 md:gap-4 drop-shadow-[0_0_15px_rgba(0,0,0,0.8)]">
+            <div className="absolute top-3 left-3 md:top-8 md:left-10 pointer-events-auto flex items-center gap-1.5 md:gap-4 drop-shadow-[0_0_15px_rgba(0,0,0,0.8)]">
               
               {/* Portrait (Diamond shape) */}
-              <div className="relative w-10 h-10 md:w-20 md:h-20 flex-shrink-0 z-20">
+              <div className="relative w-8 h-8 md:w-20 md:h-20 flex-shrink-0 z-20">
                 {/* Background diamond */}
                 <div className="absolute inset-0 bg-slate-900 border-[2px] border-red-500/80 rotate-45 overflow-hidden shadow-[0_0_20px_rgba(239,68,68,0.4)]">
                   <div className="absolute inset-0 -rotate-45 scale-[1.4] w-full h-full">
@@ -1569,25 +1569,25 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
               </div>
 
               {/* Status Info (Tech Panel) */}
-              <div className="flex flex-col justify-center h-10 md:h-20 w-32 md:w-64 bg-gradient-to-r from-[#0a1120]/90 via-[#0a1120]/60 to-transparent pl-2 md:pl-4 py-1 md:py-2 border-l-2 border-red-500/50 backdrop-blur-sm">
-                <div className="flex justify-between items-end mb-1">
-                  <span className="font-noto font-black text-white text-xs md:text-xl tracking-[0.2em] drop-shadow-[0_0_8px_rgba(239,68,68,0.9)] leading-none italic">
+              <div className="flex flex-col justify-center h-8 md:h-20 w-24 md:w-64 bg-gradient-to-r from-[#0a1120]/90 via-[#0a1120]/60 to-transparent pl-1.5 md:pl-4 py-0.5 md:py-2 border-l-2 border-red-500/50 backdrop-blur-sm">
+                <div className="flex justify-between items-end mb-0.5 md:mb-1">
+                  <span className="font-noto font-black text-white text-[10px] md:text-xl tracking-[0.1em] md:tracking-[0.2em] drop-shadow-[0_0_8px_rgba(239,68,68,0.9)] leading-none italic">
                     睦典
                   </span>
-                  <div className="flex items-baseline gap-1 mr-2 md:mr-4">
-                    <span className="font-orbitron font-bold text-[10px] md:text-[18px] text-white tabular-nums leading-none drop-shadow-[0_0_5px_rgba(255,255,255,0.8)]">
+                  <div className="flex items-baseline gap-0.5 md:gap-1 mr-1 md:mr-4">
+                    <span className="font-orbitron font-bold text-[8px] md:text-[18px] text-white tabular-nums leading-none drop-shadow-[0_0_5px_rgba(255,255,255,0.8)]">
                       {ally.hp}
                     </span>
-                    <span className="font-orbitron text-[7px] md:text-[11px] text-red-400 leading-none">
+                    <span className="font-orbitron text-[6px] md:text-[11px] text-red-400 leading-none">
                       /{ally.maxHp}
                     </span>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2 mt-1 md:mt-2 pr-2 md:pr-4">
-                  <span className="font-orbitron font-black text-red-500 text-[8px] md:text-xs leading-none tracking-widest">HP</span>
+                <div className="flex items-center gap-1 md:gap-2 mt-0.5 md:mt-2 pr-1 md:pr-4">
+                  <span className="font-orbitron font-black text-red-500 text-[6px] md:text-xs leading-none tracking-widest">HP</span>
                   {/* Segmented bar */}
-                  <div className="flex-1 h-1.5 md:h-3 bg-black/80 border border-red-900/50 p-[1px] relative overflow-hidden skew-x-[-20deg] shadow-[inset_0_0_5px_rgba(0,0,0,1)]">
+                  <div className="flex-1 h-1 md:h-3 bg-black/80 border border-red-900/50 p-[1px] relative overflow-hidden skew-x-[-20deg] shadow-[inset_0_0_5px_rgba(0,0,0,1)]">
                     <motion.div
                       className="h-full relative"
                       style={{
@@ -1611,13 +1611,13 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
         })()}
 
         {/* ── Bottom Center: Action Buttons (Diamond Grid) ── */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 md:bottom-12 pointer-events-auto flex items-end justify-center gap-2 md:gap-8 drop-shadow-[0_0_20px_rgba(34,211,238,0.2)]">
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 md:bottom-12 pointer-events-auto flex items-end justify-center gap-1.5 md:gap-8 drop-shadow-[0_0_20px_rgba(34,211,238,0.2)]">
 
           {/* Left Button - HEAL */}
           <motion.button
             onClick={handleHeal}
             disabled={healCooldown > 0 || battlePhase !== 'fighting'}
-            className={`w-16 h-8 md:w-32 md:h-16 skew-x-[-15deg] flex items-center justify-center overflow-hidden group transition-all duration-300 relative border-b-2 border-r-2 backdrop-blur-md hover:scale-105 active:scale-95 ${healCooldown > 0 || battlePhase !== 'fighting'
+            className={`w-12 h-6 md:w-32 md:h-16 skew-x-[-15deg] flex items-center justify-center overflow-hidden group transition-all duration-300 relative border-b-2 border-r-2 backdrop-blur-md hover:scale-105 active:scale-95 ${healCooldown > 0 || battlePhase !== 'fighting'
               ? 'bg-[#090e17]/90 border-slate-700/50 cursor-not-allowed'
               : 'bg-emerald-950/60 border-emerald-500/80 hover:bg-emerald-900/80 hover:border-emerald-400 hover:shadow-[0_0_20px_rgba(16,185,129,0.6)] cursor-pointer'
               }`}
@@ -1625,15 +1625,15 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
             {/* Tech grid bg */}
             <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPjxwYXRoIGQ9Ik0wLDggTDgsMCBMMCwwIFoiIGZpbGw9InJnYmEoMCwgMCwgMCwgMC4yKSIvPjwvc3ZnPg==')] pointer-events-none mix-blend-overlay" />
             
-            <div className="flex items-center gap-1 md:gap-2 skew-x-[15deg] z-10">
-              <span className={`font-noto font-black text-[10px] md:text-base tracking-[0.2em] ${healCooldown <= 0 ? 'text-emerald-400 drop-shadow-[0_0_8px_rgba(16,185,129,0.8)]' : 'text-slate-600'}`}>回復</span>
+            <div className="flex items-center gap-0.5 md:gap-2 skew-x-[15deg] z-10">
+              <span className={`font-noto font-black text-[8px] md:text-base tracking-[0.1em] md:tracking-[0.2em] ${healCooldown <= 0 ? 'text-emerald-400 drop-shadow-[0_0_8px_rgba(16,185,129,0.8)]' : 'text-slate-600'}`}>回復</span>
               {healCooldown > 0 ? (
-                <span className="font-orbitron font-bold text-[8px] md:text-[12px] text-emerald-700">CD:{(healCooldown / 1000).toFixed(1)}</span>
+                <span className="font-orbitron font-bold text-[6px] md:text-[12px] text-emerald-700">CD:{(healCooldown / 1000).toFixed(1)}</span>
               ) : (
                 <div className="flex gap-[1px] md:gap-0.5">
-                  <div className="w-1 h-2 md:w-1.5 md:h-3 bg-emerald-400 skew-x-[-15deg] shadow-[0_0_8px_#10b981]" />
-                  <div className="w-1 h-2 md:w-1.5 md:h-3 bg-emerald-400 skew-x-[-15deg] shadow-[0_0_8px_#10b981] opacity-70" />
-                  <div className="w-1 h-2 md:w-1.5 md:h-3 bg-emerald-400 skew-x-[-15deg] shadow-[0_0_8px_#10b981] opacity-40" />
+                  <div className="w-0.5 h-1.5 md:w-1.5 md:h-3 bg-emerald-400 skew-x-[-15deg] shadow-[0_0_8px_#10b981]" />
+                  <div className="w-0.5 h-1.5 md:w-1.5 md:h-3 bg-emerald-400 skew-x-[-15deg] shadow-[0_0_8px_#10b981] opacity-70" />
+                  <div className="w-0.5 h-1.5 md:w-1.5 md:h-3 bg-emerald-400 skew-x-[-15deg] shadow-[0_0_8px_#10b981] opacity-40" />
                 </div>
               )}
             </div>
@@ -1643,7 +1643,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
           <motion.button
             onClick={handleMutsunoriUltimate}
             disabled={syncRate < SYNC_COST_ULTIMATE || battlePhase !== 'fighting'}
-            className={`relative w-16 h-16 md:w-32 md:h-32 rounded-full border-2 flex flex-col items-center justify-center transition-all duration-300 -translate-y-2 md:-translate-y-4 shadow-[0_0_30px_rgba(0,0,0,0.8)] backdrop-blur-md hover:scale-105 active:scale-95 ${syncRate < SYNC_COST_ULTIMATE || battlePhase !== 'fighting'
+            className={`relative w-12 h-12 md:w-32 md:h-32 rounded-full border-2 flex flex-col items-center justify-center transition-all duration-300 -translate-y-1 md:-translate-y-4 shadow-[0_0_30px_rgba(0,0,0,0.8)] backdrop-blur-md hover:scale-105 active:scale-95 ${syncRate < SYNC_COST_ULTIMATE || battlePhase !== 'fighting'
               ? 'bg-[#0a0a0a]/90 border-amber-900/30 cursor-not-allowed grayscale'
               : 'bg-[#1a0a03]/80 border-amber-500 hover:bg-[#2a1005]/90 hover:shadow-[0_0_40px_rgba(251,191,36,0.6)] cursor-pointer'
               }`}
@@ -1658,20 +1658,20 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
             />
 
             {/* Spinning Rings */}
-            <div className={`absolute inset-1 md:inset-2 rounded-full border-2 border-amber-500/20 ${syncRate >= SYNC_COST_ULTIMATE ? 'animate-[spin_3s_linear_infinite]' : ''}`} />
-            <div className={`absolute inset-2 md:inset-4 rounded-full border border-amber-400/10 border-dashed ${syncRate >= SYNC_COST_ULTIMATE ? 'animate-[spin_4s_linear_infinite_reverse]' : ''}`} />
+            <div className={`absolute inset-0.5 md:inset-2 rounded-full border-2 border-amber-500/20 ${syncRate >= SYNC_COST_ULTIMATE ? 'animate-[spin_3s_linear_infinite]' : ''}`} />
+            <div className={`absolute inset-1.5 md:inset-4 rounded-full border border-amber-400/10 border-dashed ${syncRate >= SYNC_COST_ULTIMATE ? 'animate-[spin_4s_linear_infinite_reverse]' : ''}`} />
 
             <div className="relative z-10 flex flex-col items-center">
-              <div className="font-rajdhani font-black text-xl md:text-5xl text-amber-400 drop-shadow-[0_0_12px_rgba(251,191,36,1)] leading-none mb-0.5 md:mb-1">
-                {Math.floor(syncRate)}<span className="text-xs md:text-xl opacity-80">%</span>
+              <div className="font-rajdhani font-black text-sm md:text-5xl text-amber-400 drop-shadow-[0_0_12px_rgba(251,191,36,1)] leading-none mb-0 md:mb-1">
+                {Math.floor(syncRate)}<span className="text-[8px] md:text-xl opacity-80">%</span>
               </div>
-              <div className="font-noto font-black text-[8px] md:text-xs text-amber-200 tracking-[0.3em] drop-shadow-[0_0_8px_rgba(251,191,36,0.8)]">
+              <div className="font-noto font-black text-[6px] md:text-xs text-amber-200 tracking-[0.15em] md:tracking-[0.3em] drop-shadow-[0_0_8px_rgba(251,191,36,0.8)]">
                 必殺技
               </div>
             </div>
 
             {/* Cost Indicator / Tech UI */}
-            <div className="absolute bottom-0 md:bottom-1 right-0 md:right-2 bg-amber-950/80 border border-amber-500 text-amber-400 font-orbitron font-bold text-[7px] md:text-[10px] px-1 py-0 md:px-2 md:py-0.5 shadow-[0_0_10px_rgba(251,191,36,0.5)] skew-x-[-15deg]">
+            <div className="absolute -bottom-0.5 md:bottom-1 -right-0.5 md:right-2 bg-amber-950/80 border border-amber-500 text-amber-400 font-orbitron font-bold text-[5px] md:text-[10px] px-0.5 py-0 md:px-2 md:py-0.5 shadow-[0_0_10px_rgba(251,191,36,0.5)] skew-x-[-15deg]">
               <span className="block skew-x-[15deg]">COST {SYNC_COST_ULTIMATE}</span>
             </div>
             
@@ -1689,7 +1689,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
           <motion.button
             onClick={handleAbsorb}
             disabled={battlePhase !== 'fighting' || absorbCooldown > 0 || activeFragments.length >= MAX_ANOMALY_SLOTS}
-            className={`w-16 h-8 md:w-32 md:h-16 skew-x-[15deg] flex items-center justify-center overflow-hidden group transition-all duration-300 relative border-b-2 border-l-2 backdrop-blur-md hover:scale-105 active:scale-95 ${battlePhase !== 'fighting' || absorbCooldown > 0 || activeFragments.length >= MAX_ANOMALY_SLOTS
+            className={`w-12 h-6 md:w-32 md:h-16 skew-x-[15deg] flex items-center justify-center overflow-hidden group transition-all duration-300 relative border-b-2 border-l-2 backdrop-blur-md hover:scale-105 active:scale-95 ${battlePhase !== 'fighting' || absorbCooldown > 0 || activeFragments.length >= MAX_ANOMALY_SLOTS
               ? 'bg-[#090e17]/90 border-slate-700/50 cursor-not-allowed'
               : 'bg-indigo-950/60 border-indigo-500/80 hover:bg-indigo-900/80 hover:border-indigo-400 hover:shadow-[0_0_20px_rgba(99,102,241,0.6)] cursor-pointer'
               }`}
@@ -1697,15 +1697,15 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
             {/* Tech grid bg */}
             <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPjxwYXRoIGQ9Ik0wLDggTDgsMCBMMCwwIFoiIGZpbGw9InJnYmEoMCwgMCwgMCwgMC4yKSIvPjwvc3ZnPg==')] pointer-events-none mix-blend-overlay" />
             
-            <div className="flex items-center gap-1 md:gap-2 skew-x-[-15deg] z-10">
-              <span className={`font-noto font-black text-[10px] md:text-base tracking-[0.2em] ${absorbCooldown <= 0 && activeFragments.length < MAX_ANOMALY_SLOTS ? 'text-indigo-400 drop-shadow-[0_0_8px_rgba(99,102,241,0.8)]' : 'text-slate-600'}`}>吸収</span>
+            <div className="flex items-center gap-0.5 md:gap-2 skew-x-[-15deg] z-10">
+              <span className={`font-noto font-black text-[8px] md:text-base tracking-[0.1em] md:tracking-[0.2em] ${absorbCooldown <= 0 && activeFragments.length < MAX_ANOMALY_SLOTS ? 'text-indigo-400 drop-shadow-[0_0_8px_rgba(99,102,241,0.8)]' : 'text-slate-600'}`}>吸収</span>
               {absorbCooldown > 0 ? (
-                <span className="font-orbitron font-bold text-[8px] md:text-[12px] text-indigo-700">CD:{absorbCooldown}</span>
+                <span className="font-orbitron font-bold text-[6px] md:text-[12px] text-indigo-700">CD:{absorbCooldown}</span>
               ) : (
                 <div className="flex gap-[1px] md:gap-0.5">
-                  <div className="w-1 h-2 md:w-1.5 md:h-3 bg-indigo-400 skew-x-[15deg] shadow-[0_0_8px_#6366f1] opacity-40" />
-                  <div className="w-1 h-2 md:w-1.5 md:h-3 bg-indigo-400 skew-x-[15deg] shadow-[0_0_8px_#6366f1] opacity-70" />
-                  <div className="w-1 h-2 md:w-1.5 md:h-3 bg-indigo-400 skew-x-[15deg] shadow-[0_0_8px_#6366f1]" />
+                  <div className="w-0.5 h-1.5 md:w-1.5 md:h-3 bg-indigo-400 skew-x-[15deg] shadow-[0_0_8px_#6366f1] opacity-40" />
+                  <div className="w-0.5 h-1.5 md:w-1.5 md:h-3 bg-indigo-400 skew-x-[15deg] shadow-[0_0_8px_#6366f1] opacity-70" />
+                  <div className="w-0.5 h-1.5 md:w-1.5 md:h-3 bg-indigo-400 skew-x-[15deg] shadow-[0_0_8px_#6366f1]" />
                 </div>
               )}
             </div>
