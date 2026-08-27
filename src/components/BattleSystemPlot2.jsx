@@ -967,7 +967,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         {/* Full color bright image */}
-        <img src="/battle/shopping.png" alt="Background" className="absolute inset-0 w-full h-full object-cover scale-[1.02] md:scale-[1.15] -translate-y-0 md:-translate-y-[5%]" />
+        <img src="/battle/shopping.png" alt="Background" className="absolute inset-0 w-full h-full object-cover scale-[1.02] lg:scale-[1.15] -translate-y-0 lg:-translate-y-[5%]" />
 
         {/* Very subtle cyber tech overlays so UI is still readable */}
         <div className="absolute inset-0 bg-[#090e17]/20" />
@@ -987,10 +987,10 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
             <motion.div className="text-center relative" initial={{ opacity: 0, scale: 0.9, y: 10 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: 0.8, ease: 'easeOut' }}>
               <div className="flex items-center justify-center gap-4 mb-2">
                 <div className="h-[1px] w-12 bg-cyan-500/50" />
-                <div className="font-orbitron font-bold text-[10px] md:text-xs tracking-[0.4em] text-cyan-400 uppercase drop-shadow-[0_0_5px_rgba(34,211,238,0.8)]">System Engaged</div>
+                <div className="font-orbitron font-bold text-[10px] lg:text-xs tracking-[0.4em] text-cyan-400 uppercase drop-shadow-[0_0_5px_rgba(34,211,238,0.8)]">System Engaged</div>
                 <div className="h-[1px] w-12 bg-cyan-500/50" />
               </div>
-              <h2 className="font-orbitron text-3xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white via-cyan-100 to-cyan-500 tracking-[0.2em] drop-shadow-[0_0_15px_rgba(34,211,238,0.5)] py-2">
+              <h2 className="font-orbitron text-3xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white via-cyan-100 to-cyan-500 tracking-[0.2em] drop-shadow-[0_0_15px_rgba(34,211,238,0.5)] py-2">
                 BATTLE START
               </h2>
               <motion.div className="mt-4 h-[2px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent shadow-[0_0_10px_rgba(34,211,238,0.8)]" initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ delay: 0.4, duration: 0.8, ease: 'easeInOut' }} />
@@ -1002,13 +1002,13 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
       {/* ── TUTORIAL MODAL ── */}
       <AnimatePresence>
         {showTutorial && (
-          <motion.div className="absolute inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 md:p-8" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <div className="bg-[#0f172a] border border-cyan-500/50 rounded-xl shadow-[0_0_30px_rgba(34,211,238,0.2)] max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 md:p-10 relative">
-              <h2 className="text-2xl md:text-3xl font-black text-cyan-300 mb-6 border-b border-cyan-500/30 pb-4 text-center tracking-widest">
+          <motion.div className="absolute inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 lg:p-8" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+            <div className="bg-[#0f172a] border border-cyan-500/50 rounded-xl shadow-[0_0_30px_rgba(34,211,238,0.2)] max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 lg:p-10 relative">
+              <h2 className="text-2xl lg:text-3xl font-black text-cyan-300 mb-6 border-b border-cyan-500/30 pb-4 text-center tracking-widest">
                 戦闘マニュアル
               </h2>
 
-              <div className="space-y-6 text-sm md:text-base text-slate-300 leading-relaxed text-left">
+              <div className="space-y-6 text-sm lg:text-base text-slate-300 leading-relaxed text-left">
                 {/* 1. 防御 */}
                 <section>
                   <h3 className="text-lg font-bold text-cyan-200 mb-2 flex items-center gap-2">
@@ -1064,7 +1064,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
         {parryFlash && (
           <motion.div className="absolute inset-0 z-[65] pointer-events-none flex items-center justify-center" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.15 }}>
             <div className="absolute inset-0 bg-cyan-100/25" />
-            <motion.div initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: 1.2, opacity: 1 }} exit={{ scale: 2, opacity: 0 }} transition={{ duration: 0.4 }} className="font-noto text-5xl md:text-7xl font-black text-cyan-100 drop-shadow-[0_0_30px_rgba(255,255,255,1)] z-10 italic tracking-wider">
+            <motion.div initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: 1.2, opacity: 1 }} exit={{ scale: 2, opacity: 0 }} transition={{ duration: 0.4 }} className="font-noto text-5xl lg:text-7xl font-black text-cyan-100 drop-shadow-[0_0_30px_rgba(255,255,255,1)] z-10 italic tracking-wider">
               JUST PARRY!!
             </motion.div>
           </motion.div>
@@ -1108,7 +1108,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
             <motion.img src={duetCutin.image} alt={duetCutin.name} className="absolute h-[80%] object-contain z-10 drop-shadow-[0_0_40px_rgba(255,255,255,0.4)]" initial={{ x: '-100%', opacity: 0 }} animate={{ x: '0%', opacity: 1 }} exit={{ x: '100%', opacity: 0 }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} />
             <motion.div className="absolute bottom-[15%] z-20 text-center" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.5 }}>
               <div className="font-noto text-xs tracking-[0.5em] text-cyan-100/80 mb-2">ULTIMATE ART</div>
-              <div className="font-noto text-3xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-100 via-violet-100 to-cyan-100 tracking-wider">必殺技</div>
+              <div className="font-noto text-3xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-100 via-violet-100 to-cyan-100 tracking-wider">必殺技</div>
             </motion.div>
           </motion.div>
         )}
@@ -1117,7 +1117,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
       {/* ═══════════════════════════════════════════════════════════════
            BATTLE FIELD
          ═══════════════════════════════════════════════════════════════ */}
-      <div className="relative flex-1 flex items-stretch px-4 md:px-12 pt-20 md:pt-32 pb-16 md:pb-24 overflow-hidden">
+      <div className="relative flex-1 flex items-stretch px-4 lg:px-12 pt-20 lg:pt-32 pb-16 lg:pb-24 overflow-hidden">
 
         {/* ── Allies (Left Column) ── */}
         <div className="w-1/2 flex flex-col justify-around items-center pr-4">
@@ -1133,7 +1133,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
                 <div className="relative flex items-center justify-center">
                   {!ally.isDead && activeFragments.length > 0 && (
                     <motion.div
-                      className="absolute inset-0 flex items-center justify-center pointer-events-none z-[45] pb-0 md:pb-10 opacity-80"
+                      className="absolute inset-0 flex items-center justify-center pointer-events-none z-[45] pb-0 lg:pb-10 opacity-80"
                       style={{ mixBlendMode: 'screen' }}
                       animate={{ x: isCounterDashing ? 150 : (isCurrentTurn ? 30 : 0) }}
                       transition={{ duration: isCounterDashing ? 0.05 : 0.1, ease: 'easeOut' }}
@@ -1155,7 +1155,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
                   <motion.div
                     id={`char-${ally.id}`}
                     className={`relative cursor-pointer touch-none flex items-center justify-center
-                    ${ally.id === 'nagisa' ? 'w-[60px] h-[80px] md:w-[180px] md:h-[230px]' : 'w-16 h-24 md:w-48 md:h-64 -translate-y-1 md:-translate-y-4'}
+                    ${ally.id === 'nagisa' ? 'w-[60px] h-[80px] lg:w-[180px] lg:h-[230px]' : 'w-16 h-24 lg:w-48 lg:h-64 -translate-y-1 lg:-translate-y-4'}
                     ${ally.isDead ? 'opacity-40 grayscale' : ''}
                   `}
                     animate={{ x: isCounterDashing ? 150 : (isCurrentTurn ? 30 : 0) }}
@@ -1169,18 +1169,18 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
                     {isTargeted && !ally.isDead && (
                       <div className="absolute inset-0 pointer-events-none flex items-center justify-center z-40">
                         <motion.div 
-                          className="absolute w-[80px] h-[80px] md:w-[150px] md:h-[150px] border-[2px] border-amber-500/80 rotate-45 shadow-[0_0_15px_rgba(245,158,11,0.5)]"
+                          className="absolute w-[80px] h-[80px] lg:w-[150px] lg:h-[150px] border-[2px] border-amber-500/80 rotate-45 shadow-[0_0_15px_rgba(245,158,11,0.5)]"
                           animate={{ scale: [1.2, 1, 1.2], opacity: [0.5, 1, 0.5] }}
                           transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
                         />
-                        <div className="absolute w-[100px] h-[100px] md:w-[170px] md:h-[170px] border border-amber-400/30 rotate-45" />
+                        <div className="absolute w-[100px] h-[100px] lg:w-[170px] lg:h-[170px] border border-amber-400/30 rotate-45" />
                         
                         {/* Target Crosshairs */}
-                        <div className="absolute w-[120px] md:w-[200px] h-[1px] bg-gradient-to-r from-transparent via-amber-500/50 to-transparent" />
-                        <div className="absolute h-[120px] md:h-[200px] w-[1px] bg-gradient-to-b from-transparent via-amber-500/50 to-transparent" />
+                        <div className="absolute w-[120px] lg:w-[200px] h-[1px] bg-gradient-to-r from-transparent via-amber-500/50 to-transparent" />
+                        <div className="absolute h-[120px] lg:h-[200px] w-[1px] bg-gradient-to-b from-transparent via-amber-500/50 to-transparent" />
                         
-                        <div className="absolute -bottom-8 md:-bottom-12 bg-amber-950/80 border border-amber-500 px-2 py-0.5 md:px-3 md:py-1 shadow-[0_0_10px_rgba(245,158,11,0.5)] backdrop-blur-sm skew-x-[-15deg]">
-                          <span className="block font-orbitron text-[8px] md:text-[10px] font-bold text-amber-400 tracking-widest animate-pulse skew-x-[15deg]">TARGET LOCK</span>
+                        <div className="absolute -bottom-8 lg:-bottom-12 bg-amber-950/80 border border-amber-500 px-2 py-0.5 lg:px-3 lg:py-1 shadow-[0_0_10px_rgba(245,158,11,0.5)] backdrop-blur-sm skew-x-[-15deg]">
+                          <span className="block font-orbitron text-[8px] lg:text-[10px] font-bold text-amber-400 tracking-widest animate-pulse skew-x-[15deg]">TARGET LOCK</span>
                         </div>
                       </div>
                     )}
@@ -1193,7 +1193,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
                         <div className="absolute inset-[-50px] bg-cyan-900/10 rounded-full blur-xl mix-blend-screen" />
                         
                         {/* High-tech Timing Bar */}
-                        <div className="relative w-[100%] max-w-[200px] md:max-w-[300px] h-4 md:h-8 bg-[#060a12]/80 backdrop-blur-sm border border-cyan-500/50 skew-x-[-15deg] overflow-hidden shadow-[0_0_20px_rgba(34,211,238,0.3)]">
+                        <div className="relative w-[100%] max-w-[200px] lg:max-w-[300px] h-4 lg:h-8 bg-[#060a12]/80 backdrop-blur-sm border border-cyan-500/50 skew-x-[-15deg] overflow-hidden shadow-[0_0_20px_rgba(34,211,238,0.3)]">
                           {/* Grid background */}
                           <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPjxyZWN0IHdpZHRoPSIyIiBoZWlnaHQ9IjQiIGZpbGw9InJnYmEoMzQsIDIxMSwgMjM4LCAwLjIpIi8+PC9zdmc+')] mix-blend-screen" />
                           
@@ -1217,8 +1217,8 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
                           )}
                         </div>
 
-                        <div className="mt-4 md:mt-6 bg-cyan-950/80 border border-cyan-400 px-2 py-1 md:px-4 md:py-1.5 shadow-[0_0_15px_rgba(34,211,238,0.6)] backdrop-blur-sm skew-x-[15deg]">
-                          <span className="block font-orbitron font-bold text-[8px] md:text-xs text-cyan-300 tracking-[0.3em] skew-x-[-15deg] animate-pulse">ENGAGE</span>
+                        <div className="mt-4 lg:mt-6 bg-cyan-950/80 border border-cyan-400 px-2 py-1 lg:px-4 lg:py-1.5 shadow-[0_0_15px_rgba(34,211,238,0.6)] backdrop-blur-sm skew-x-[15deg]">
+                          <span className="block font-orbitron font-bold text-[8px] lg:text-xs text-cyan-300 tracking-[0.3em] skew-x-[-15deg] animate-pulse">ENGAGE</span>
                         </div>
 
                         <AnimatePresence>
@@ -1227,7 +1227,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
                               initial={{ scale: 0.5, opacity: 0, y: 0 }}
                               animate={{ scale: 1.5, opacity: 1, y: -40 }}
                               exit={{ opacity: 0, scale: 2 }}
-                              className={`absolute font-orbitron font-black text-[16px] md:text-[28px] tracking-[0.2em] z-50 italic ${allyQTEState === 'perfect' ? 'text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 to-amber-500 drop-shadow-[0_0_15px_rgba(245,158,11,1)]' : 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-100 to-cyan-500 drop-shadow-[0_0_15px_rgba(34,211,238,1)]'}`}
+                              className={`absolute font-orbitron font-black text-[16px] lg:text-[28px] tracking-[0.2em] z-50 italic ${allyQTEState === 'perfect' ? 'text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 to-amber-500 drop-shadow-[0_0_15px_rgba(245,158,11,1)]' : 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-100 to-cyan-500 drop-shadow-[0_0_15px_rgba(34,211,238,1)]'}`}
                             >
                               {allyQTEState === 'perfect' ? 'EXCELLENT' : 'GOOD'}
                             </motion.div>
@@ -1274,7 +1274,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
                     </AnimatePresence>
 
                     {ally.image ? (
-                      <img src={ally.image} alt={ally.name} className={`w-full h-full object-contain relative z-10 -translate-y-4 md:-translate-y-6 ${ally.flashTimer > 0 ? 'animate-battle-hit-flash drop-shadow-[0_0_20px_rgba(248,113,113,0.8)]' : 'drop-shadow-lg'}`} />
+                      <img src={ally.image} alt={ally.name} className={`w-full h-full object-contain relative z-10 -translate-y-4 lg:-translate-y-6 ${ally.flashTimer > 0 ? 'animate-battle-hit-flash drop-shadow-[0_0_20px_rgba(248,113,113,0.8)]' : 'drop-shadow-lg'}`} />
                     ) : (
                       <div className="w-full h-full bg-slate-800/80 border border-slate-600 rounded-2xl flex items-center justify-center">
                         <span className="font-noto font-bold text-slate-300">{ally.name}</span>
@@ -1294,19 +1294,19 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
                           className="absolute inset-0 flex items-center justify-center z-50 pointer-events-none"
                         >
                           <motion.div
-                            className="absolute w-20 h-20 md:w-40 md:h-40 rounded-full border-[3px] border-amber-400 border-dashed shadow-[0_0_15px_rgba(251,191,36,0.7)]"
+                            className="absolute w-20 h-20 lg:w-40 lg:h-40 rounded-full border-[3px] border-amber-400 border-dashed shadow-[0_0_15px_rgba(251,191,36,0.7)]"
                             initial={{ scale: 2.5, opacity: 0, rotate: 0 }}
                             animate={{ scale: 0.15, opacity: [0, 1, 1, 0], rotate: 180 }}
                             transition={{ duration: 0.6, ease: "linear" }}
                           />
                           <motion.div
-                            className="absolute w-16 h-16 md:w-36 md:h-36 rounded-full border-2 border-amber-300 shadow-[0_0_10px_rgba(252,211,77,0.5)]"
+                            className="absolute w-16 h-16 lg:w-36 lg:h-36 rounded-full border-2 border-amber-300 shadow-[0_0_10px_rgba(252,211,77,0.5)]"
                             initial={{ scale: 3, opacity: 0 }}
                             animate={{ scale: 0.15, opacity: [0, 0.8, 0.8, 0] }}
                             transition={{ duration: 0.6, ease: "linear" }}
                           />
                           <motion.div
-                            className="absolute w-8 h-8 md:w-12 md:h-12 bg-white rounded-sm shadow-[0_0_30px_#fff]"
+                            className="absolute w-8 h-8 lg:w-12 lg:h-12 bg-white rounded-sm shadow-[0_0_30px_#fff]"
                             initial={{ opacity: 0, scale: 0, rotate: 45 }}
                             animate={{ opacity: [0, 1, 0], scale: [0, 2.5, 0], rotate: 90 }}
                             transition={{ duration: 0.3, delay: 0.6, ease: "easeOut" }}
@@ -1319,7 +1319,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
 
                 <AnimatePresence>
                   {showDamageNumbers.filter(d => d.targetId === ally.id).map(d => (
-                    <motion.div key={d.id} className={`absolute top-0 z-30 font-noto font-black text-lg md:text-3xl italic ${d.type === 'heal' ? 'text-emerald-300 drop-shadow-[0_0_8px_rgba(52,211,153,0.6)]' : 'text-red-400 drop-shadow-[0_0_8px_rgba(239,68,68,0.6)]'}`} initial={{ opacity: 1, y: 0, scale: 0.8 }} animate={{ opacity: 0, y: -40, scale: 1.2 }} exit={{ opacity: 0 }} transition={{ duration: 1 }}>
+                    <motion.div key={d.id} className={`absolute top-0 z-30 font-noto font-black text-lg lg:text-3xl italic ${d.type === 'heal' ? 'text-emerald-300 drop-shadow-[0_0_8px_rgba(52,211,153,0.6)]' : 'text-red-400 drop-shadow-[0_0_8px_rgba(239,68,68,0.6)]'}`} initial={{ opacity: 1, y: 0, scale: 0.8 }} animate={{ opacity: 0, y: -40, scale: 1.2 }} exit={{ opacity: 0 }} transition={{ duration: 1 }}>
                       {d.type === 'heal' ? `+${d.amount}` : `-${d.amount}`}
                     </motion.div>
                   ))}
@@ -1338,21 +1338,21 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
 
             return (
               <div key={enemy.id} className="relative flex flex-col items-center w-full">
-                <div className="w-28 md:w-52 mb-2 md:mb-4 z-20 relative">
+                <div className="w-28 lg:w-52 mb-2 lg:mb-4 z-20 relative">
                   <div className="flex flex-col items-center">
-                    <div className="flex items-center justify-between w-full mb-0.5 px-1 md:mb-1 md:px-2">
+                    <div className="flex items-center justify-between w-full mb-0.5 px-1 lg:mb-1 lg:px-2">
                       <div className="flex items-center gap-2">
                         <div className="w-1 h-1 bg-amber-400 shadow-[0_0_8px_#fbbf24] rotate-45" />
-                        <span className="font-orbitron font-bold text-[8px] md:text-[12px] text-amber-300 tracking-[0.2em] drop-shadow-[0_0_5px_rgba(251,191,36,0.5)]">
+                        <span className="font-orbitron font-bold text-[8px] lg:text-[12px] text-amber-300 tracking-[0.2em] drop-shadow-[0_0_5px_rgba(251,191,36,0.5)]">
                           {enemy.name.toUpperCase()}
                         </span>
                       </div>
-                      <span className="font-orbitron font-bold text-[8px] md:text-[10px] text-amber-100/90 tabular-nums">
+                      <span className="font-orbitron font-bold text-[8px] lg:text-[10px] text-amber-100/90 tabular-nums">
                         {Math.ceil(hpRatio * 100)}%
                       </span>
                     </div>
 
-                    <div className="w-full h-1 md:h-2 bg-black/80 border border-amber-500/30 skew-x-[-20deg] relative overflow-hidden shadow-[0_0_15px_rgba(251,191,36,0.2)] backdrop-blur-sm">
+                    <div className="w-full h-1 lg:h-2 bg-black/80 border border-amber-500/30 skew-x-[-20deg] relative overflow-hidden shadow-[0_0_15px_rgba(251,191,36,0.2)] backdrop-blur-sm">
                       <motion.div
                         className="h-full relative"
                         style={{
@@ -1372,7 +1372,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
 
                   {!enemy.isDead && activeFragments.length === 0 && (
                     <motion.div
-                      className="absolute inset-0 flex items-center justify-center pointer-events-none z-[45] pb-0 md:pb-10 opacity-80"
+                      className="absolute inset-0 flex items-center justify-center pointer-events-none z-[45] pb-0 lg:pb-10 opacity-80"
                       style={{ mixBlendMode: 'screen' }}
                       animate={{
                         x: isAttacking ? -30 : (isCurrentTurn && turnPhase === 'enemy_resolve' ? -30 : 0),
@@ -1400,7 +1400,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
 
                   <motion.div
                     id={`char-${enemy.id}`}
-                    className={`relative w-24 h-32 md:w-80 md:h-96 flex items-center justify-center z-40 ${enemy.isDead ? 'opacity-30 grayscale'
+                    className={`relative w-24 h-32 lg:w-80 lg:h-96 flex items-center justify-center z-40 ${enemy.isDead ? 'opacity-30 grayscale'
                       : enemy.flashTimer > 0 ? 'animate-battle-hit-flash'
                         : ''
                       }`}
@@ -1416,7 +1416,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
                     <img src={enemy.image} alt={enemy.name} className={`w-full h-full object-contain drop-shadow-[0_0_15px_rgba(244,63,94,0.3)] ${enemy.isStunned ? 'opacity-70 grayscale-[50%]' : ''}`} />
 
                     {enemy.isStunned && !enemy.isDead && (
-                      <motion.div className="absolute -top-2 md:-top-3 font-noto text-[7px] md:text-[10px] text-amber-200/90 font-bold bg-amber-950/70 backdrop-blur-sm px-1.5 py-0.5 md:px-3 rounded border border-amber-500/30" animate={{ y: [0, -2, 0] }} transition={{ duration: 0.5, repeat: Infinity }}>
+                      <motion.div className="absolute -top-2 lg:-top-3 font-noto text-[7px] lg:text-[10px] text-amber-200/90 font-bold bg-amber-950/70 backdrop-blur-sm px-1.5 py-0.5 lg:px-3 rounded border border-amber-500/30" animate={{ y: [0, -2, 0] }} transition={{ duration: 0.5, repeat: Infinity }}>
                         スタン
                       </motion.div>
                     )}
@@ -1446,7 +1446,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
 
                 <AnimatePresence>
                   {showDamageNumbers.filter(d => d.targetId === enemy.id).map(d => (
-                    <motion.div key={d.id} className={`absolute top-0 z-30 font-noto font-black text-xl md:text-4xl italic ${d.type === 'ultimate' ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 to-violet-300' : 'text-white'} drop-shadow-[0_0_12px_rgba(0,0,0,0.8)]`} initial={{ opacity: 1, y: 0, scale: 1.5 }} animate={{ opacity: 0, y: -50, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1 }}>
+                    <motion.div key={d.id} className={`absolute top-0 z-30 font-noto font-black text-xl lg:text-4xl italic ${d.type === 'ultimate' ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 to-violet-300' : 'text-white'} drop-shadow-[0_0_12px_rgba(0,0,0,0.8)]`} initial={{ opacity: 1, y: 0, scale: 1.5 }} animate={{ opacity: 0, y: -50, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1 }}>
                       {d.amount}
                     </motion.div>
                   ))}
@@ -1457,11 +1457,11 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
         </div>
 
         {/* Top Right Controls */}
-        <div className="absolute top-3 right-3 md:top-5 md:right-5 flex gap-2 z-50">
-          <button onClick={() => setIsPaused(!isPaused)} className={`px-2 py-1 md:px-3 md:py-1.5 bg-[#0a1628]/60 backdrop-blur-sm border ${isPaused ? 'border-amber-400 text-amber-300 shadow-[0_0_10px_rgba(251,191,36,0.3)]' : 'border-slate-600/30 text-slate-400'} font-noto text-[8px] md:text-[10px] tracking-[0.2em] rounded hover:border-slate-400/50 hover:text-slate-200 transition-all`}>
+        <div className="absolute top-3 right-3 lg:top-5 lg:right-5 flex gap-2 z-50">
+          <button onClick={() => setIsPaused(!isPaused)} className={`px-2 py-1 lg:px-3 lg:py-1.5 bg-[#0a1628]/60 backdrop-blur-sm border ${isPaused ? 'border-amber-400 text-amber-300 shadow-[0_0_10px_rgba(251,191,36,0.3)]' : 'border-slate-600/30 text-slate-400'} font-noto text-[8px] lg:text-[10px] tracking-[0.2em] rounded hover:border-slate-400/50 hover:text-slate-200 transition-all`}>
             {isPaused ? '再開 (RESUME)' : '一時停止 (PAUSE)'}
           </button>
-          <button onClick={handleResultClose} className="px-2 py-1 md:px-3 md:py-1.5 bg-[#0a1628]/60 backdrop-blur-sm border border-slate-600/30 text-slate-400 font-noto text-[8px] md:text-[10px] tracking-[0.2em] rounded hover:border-slate-400/50 hover:text-slate-200 transition-all">
+          <button onClick={handleResultClose} className="px-2 py-1 lg:px-3 lg:py-1.5 bg-[#0a1628]/60 backdrop-blur-sm border border-slate-600/30 text-slate-400 font-noto text-[8px] lg:text-[10px] tracking-[0.2em] rounded hover:border-slate-400/50 hover:text-slate-200 transition-all">
             EXIT
           </button>
         </div>
@@ -1478,25 +1478,25 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
       <div className="absolute inset-0 z-40 pointer-events-none">
 
         {/* ── Bottom Right: Character Portrait (Sakura) ── */}
-        <div className="absolute bottom-3 right-3 md:bottom-10 md:right-10 pointer-events-auto flex items-end justify-end">
+        <div className="absolute bottom-3 right-3 lg:bottom-10 lg:right-10 pointer-events-auto flex items-end justify-end">
           {/* Glassmorphic Panel */}
-          <div className="relative flex flex-col items-end w-24 md:w-64 bg-[#0a1120]/60 backdrop-blur-md border-t border-l border-cyan-500/30 rounded-tl-2xl md:rounded-tl-3xl rounded-br-md p-1.5 pb-2 md:p-3 md:pb-4 shadow-[0_8px_32px_rgba(0,0,0,0.5)]">
+          <div className="relative flex flex-col items-end w-24 lg:w-64 bg-[#0a1120]/60 backdrop-blur-md border-t border-l border-cyan-500/30 rounded-tl-2xl lg:rounded-tl-3xl rounded-br-md p-1.5 pb-2 lg:p-3 lg:pb-4 shadow-[0_8px_32px_rgba(0,0,0,0.5)]">
             {/* Tech accents */}
             <div className="absolute top-0 left-6 w-12 h-[2px] bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.8)]" />
             <div className="absolute bottom-2 right-0 w-[2px] h-8 bg-cyan-500/50" />
             
             <div className="flex items-end w-full justify-between">
               {/* Text Info */}
-              <div className="flex flex-col z-10 w-full pr-8 md:pr-20">
-                <div className="flex justify-between items-end mb-1 md:mb-2">
-                  <span className="font-orbitron font-bold text-[6px] md:text-xs text-cyan-300 tracking-[0.15em] md:tracking-[0.2em] drop-shadow-[0_0_5px_rgba(34,211,238,0.5)]">SAKURA</span>
-                  <span className={`font-orbitron font-bold text-[5px] md:text-[10px] tracking-widest ${corruption >= 80 ? 'text-red-400 animate-pulse' : 'text-cyan-100/70'}`}>
+              <div className="flex flex-col z-10 w-full pr-8 lg:pr-20">
+                <div className="flex justify-between items-end mb-1 lg:mb-2">
+                  <span className="font-orbitron font-bold text-[6px] lg:text-xs text-cyan-300 tracking-[0.15em] lg:tracking-[0.2em] drop-shadow-[0_0_5px_rgba(34,211,238,0.5)]">SAKURA</span>
+                  <span className={`font-orbitron font-bold text-[5px] lg:text-[10px] tracking-widest ${corruption >= 80 ? 'text-red-400 animate-pulse' : 'text-cyan-100/70'}`}>
                     CRPT {corruption}%
                   </span>
                 </div>
                 
                 {/* Corruption Bar (Slanted) */}
-                <div className="w-full h-1 md:h-2.5 bg-black/80 border border-slate-700/50 skew-x-[-15deg] overflow-hidden relative shadow-[inset_0_0_5px_rgba(0,0,0,1)]">
+                <div className="w-full h-1 lg:h-2.5 bg-black/80 border border-slate-700/50 skew-x-[-15deg] overflow-hidden relative shadow-[inset_0_0_5px_rgba(0,0,0,1)]">
                   <motion.div
                     className="h-full bg-gradient-to-r from-red-600 via-red-500 to-red-400"
                     style={{ width: `${corruption}%` }}
@@ -1508,14 +1508,14 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
               </div>
               
               {/* Portrait floating outside the panel */}
-              <div className="absolute bottom-0 right-0.5 md:right-2 w-10 md:w-32 pointer-events-none z-20">
+              <div className="absolute bottom-0 right-0.5 lg:right-2 w-10 lg:w-32 pointer-events-none z-20">
                 <div className="relative w-full">
                   {/* Glowing aura behind portrait */}
                   <div className="absolute inset-0 bg-cyan-500/20 rounded-full blur-xl mix-blend-screen" />
                   <img
                     src="/character/Sakura/Sakura.png"
                     alt="Sakura"
-                    className="relative w-full h-auto drop-shadow-[0_0_15px_rgba(6,182,212,0.6)] object-cover object-top scale-[1.5] md:scale-[1.8] translate-y-[-10%]"
+                    className="relative w-full h-auto drop-shadow-[0_0_15px_rgba(6,182,212,0.6)] object-cover object-top scale-[1.5] lg:scale-[1.8] translate-y-[-10%]"
                     style={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' }}
                     onError={(e) => {
                       e.target.onerror = null;
@@ -1534,10 +1534,10 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
           if (!ally) return null;
           const hpPercent = (ally.hp / ally.maxHp) * 100;
           return (
-            <div className="absolute top-3 left-3 md:top-8 md:left-10 pointer-events-auto flex items-center gap-1.5 md:gap-4 drop-shadow-[0_0_15px_rgba(0,0,0,0.8)]">
+            <div className="absolute top-3 left-3 lg:top-8 lg:left-10 pointer-events-auto flex items-center gap-1.5 lg:gap-4 drop-shadow-[0_0_15px_rgba(0,0,0,0.8)]">
               
               {/* Portrait (Diamond shape) */}
-              <div className="relative w-8 h-8 md:w-20 md:h-20 flex-shrink-0 z-20">
+              <div className="relative w-8 h-8 lg:w-20 lg:h-20 flex-shrink-0 z-20">
                 {/* Background diamond */}
                 <div className="absolute inset-0 bg-slate-900 border-[2px] border-red-500/80 rotate-45 overflow-hidden shadow-[0_0_20px_rgba(239,68,68,0.4)]">
                   <div className="absolute inset-0 -rotate-45 scale-[1.4] w-full h-full">
@@ -1569,25 +1569,25 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
               </div>
 
               {/* Status Info (Tech Panel) */}
-              <div className="flex flex-col justify-center h-8 md:h-20 w-24 md:w-64 bg-gradient-to-r from-[#0a1120]/90 via-[#0a1120]/60 to-transparent pl-1.5 md:pl-4 py-0.5 md:py-2 border-l-2 border-red-500/50 backdrop-blur-sm">
-                <div className="flex justify-between items-end mb-0.5 md:mb-1">
-                  <span className="font-noto font-black text-white text-[10px] md:text-xl tracking-[0.1em] md:tracking-[0.2em] drop-shadow-[0_0_8px_rgba(239,68,68,0.9)] leading-none italic">
+              <div className="flex flex-col justify-center h-8 lg:h-20 w-24 lg:w-64 bg-gradient-to-r from-[#0a1120]/90 via-[#0a1120]/60 to-transparent pl-1.5 lg:pl-4 py-0.5 lg:py-2 border-l-2 border-red-500/50 backdrop-blur-sm">
+                <div className="flex justify-between items-end mb-0.5 lg:mb-1">
+                  <span className="font-noto font-black text-white text-[10px] lg:text-xl tracking-[0.1em] lg:tracking-[0.2em] drop-shadow-[0_0_8px_rgba(239,68,68,0.9)] leading-none italic">
                     睦典
                   </span>
-                  <div className="flex items-baseline gap-0.5 md:gap-1 mr-1 md:mr-4">
-                    <span className="font-orbitron font-bold text-[8px] md:text-[18px] text-white tabular-nums leading-none drop-shadow-[0_0_5px_rgba(255,255,255,0.8)]">
+                  <div className="flex items-baseline gap-0.5 lg:gap-1 mr-1 lg:mr-4">
+                    <span className="font-orbitron font-bold text-[8px] lg:text-[18px] text-white tabular-nums leading-none drop-shadow-[0_0_5px_rgba(255,255,255,0.8)]">
                       {ally.hp}
                     </span>
-                    <span className="font-orbitron text-[6px] md:text-[11px] text-red-400 leading-none">
+                    <span className="font-orbitron text-[6px] lg:text-[11px] text-red-400 leading-none">
                       /{ally.maxHp}
                     </span>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-1 md:gap-2 mt-0.5 md:mt-2 pr-1 md:pr-4">
-                  <span className="font-orbitron font-black text-red-500 text-[6px] md:text-xs leading-none tracking-widest">HP</span>
+                <div className="flex items-center gap-1 lg:gap-2 mt-0.5 lg:mt-2 pr-1 lg:pr-4">
+                  <span className="font-orbitron font-black text-red-500 text-[6px] lg:text-xs leading-none tracking-widest">HP</span>
                   {/* Segmented bar */}
-                  <div className="flex-1 h-1 md:h-3 bg-black/80 border border-red-900/50 p-[1px] relative overflow-hidden skew-x-[-20deg] shadow-[inset_0_0_5px_rgba(0,0,0,1)]">
+                  <div className="flex-1 h-1 lg:h-3 bg-black/80 border border-red-900/50 p-[1px] relative overflow-hidden skew-x-[-20deg] shadow-[inset_0_0_5px_rgba(0,0,0,1)]">
                     <motion.div
                       className="h-full relative"
                       style={{
@@ -1611,13 +1611,13 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
         })()}
 
         {/* ── Bottom Center: Action Buttons (Diamond Grid) ── */}
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 md:bottom-12 pointer-events-auto flex items-end justify-center gap-1.5 md:gap-8 drop-shadow-[0_0_20px_rgba(34,211,238,0.2)]">
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 lg:bottom-12 pointer-events-auto flex items-end justify-center gap-1.5 lg:gap-8 drop-shadow-[0_0_20px_rgba(34,211,238,0.2)]">
 
           {/* Left Button - HEAL */}
           <motion.button
             onClick={handleHeal}
             disabled={healCooldown > 0 || battlePhase !== 'fighting'}
-            className={`w-12 h-6 md:w-32 md:h-16 skew-x-[-15deg] flex items-center justify-center overflow-hidden group transition-all duration-300 relative border-b-2 border-r-2 backdrop-blur-md hover:scale-105 active:scale-95 ${healCooldown > 0 || battlePhase !== 'fighting'
+            className={`w-12 h-6 lg:w-32 lg:h-16 skew-x-[-15deg] flex items-center justify-center overflow-hidden group transition-all duration-300 relative border-b-2 border-r-2 backdrop-blur-md hover:scale-105 active:scale-95 ${healCooldown > 0 || battlePhase !== 'fighting'
               ? 'bg-[#090e17]/90 border-slate-700/50 cursor-not-allowed'
               : 'bg-emerald-950/60 border-emerald-500/80 hover:bg-emerald-900/80 hover:border-emerald-400 hover:shadow-[0_0_20px_rgba(16,185,129,0.6)] cursor-pointer'
               }`}
@@ -1625,15 +1625,15 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
             {/* Tech grid bg */}
             <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPjxwYXRoIGQ9Ik0wLDggTDgsMCBMMCwwIFoiIGZpbGw9InJnYmEoMCwgMCwgMCwgMC4yKSIvPjwvc3ZnPg==')] pointer-events-none mix-blend-overlay" />
             
-            <div className="flex items-center gap-0.5 md:gap-2 skew-x-[15deg] z-10">
-              <span className={`font-noto font-black text-[8px] md:text-base tracking-[0.1em] md:tracking-[0.2em] ${healCooldown <= 0 ? 'text-emerald-400 drop-shadow-[0_0_8px_rgba(16,185,129,0.8)]' : 'text-slate-600'}`}>回復</span>
+            <div className="flex items-center gap-0.5 lg:gap-2 skew-x-[15deg] z-10">
+              <span className={`font-noto font-black text-[8px] lg:text-base tracking-[0.1em] lg:tracking-[0.2em] ${healCooldown <= 0 ? 'text-emerald-400 drop-shadow-[0_0_8px_rgba(16,185,129,0.8)]' : 'text-slate-600'}`}>回復</span>
               {healCooldown > 0 ? (
-                <span className="font-orbitron font-bold text-[6px] md:text-[12px] text-emerald-700">CD:{(healCooldown / 1000).toFixed(1)}</span>
+                <span className="font-orbitron font-bold text-[6px] lg:text-[12px] text-emerald-700">CD:{(healCooldown / 1000).toFixed(1)}</span>
               ) : (
-                <div className="flex gap-[1px] md:gap-0.5">
-                  <div className="w-0.5 h-1.5 md:w-1.5 md:h-3 bg-emerald-400 skew-x-[-15deg] shadow-[0_0_8px_#10b981]" />
-                  <div className="w-0.5 h-1.5 md:w-1.5 md:h-3 bg-emerald-400 skew-x-[-15deg] shadow-[0_0_8px_#10b981] opacity-70" />
-                  <div className="w-0.5 h-1.5 md:w-1.5 md:h-3 bg-emerald-400 skew-x-[-15deg] shadow-[0_0_8px_#10b981] opacity-40" />
+                <div className="flex gap-[1px] lg:gap-0.5">
+                  <div className="w-0.5 h-1.5 lg:w-1.5 lg:h-3 bg-emerald-400 skew-x-[-15deg] shadow-[0_0_8px_#10b981]" />
+                  <div className="w-0.5 h-1.5 lg:w-1.5 lg:h-3 bg-emerald-400 skew-x-[-15deg] shadow-[0_0_8px_#10b981] opacity-70" />
+                  <div className="w-0.5 h-1.5 lg:w-1.5 lg:h-3 bg-emerald-400 skew-x-[-15deg] shadow-[0_0_8px_#10b981] opacity-40" />
                 </div>
               )}
             </div>
@@ -1643,7 +1643,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
           <motion.button
             onClick={handleMutsunoriUltimate}
             disabled={syncRate < SYNC_COST_ULTIMATE || battlePhase !== 'fighting'}
-            className={`relative w-12 h-12 md:w-32 md:h-32 rounded-full border-2 flex flex-col items-center justify-center transition-all duration-300 -translate-y-1 md:-translate-y-4 shadow-[0_0_30px_rgba(0,0,0,0.8)] backdrop-blur-md hover:scale-105 active:scale-95 ${syncRate < SYNC_COST_ULTIMATE || battlePhase !== 'fighting'
+            className={`relative w-12 h-12 lg:w-32 lg:h-32 rounded-full border-2 flex flex-col items-center justify-center transition-all duration-300 -translate-y-1 lg:-translate-y-4 shadow-[0_0_30px_rgba(0,0,0,0.8)] backdrop-blur-md hover:scale-105 active:scale-95 ${syncRate < SYNC_COST_ULTIMATE || battlePhase !== 'fighting'
               ? 'bg-[#0a0a0a]/90 border-amber-900/30 cursor-not-allowed grayscale'
               : 'bg-[#1a0a03]/80 border-amber-500 hover:bg-[#2a1005]/90 hover:shadow-[0_0_40px_rgba(251,191,36,0.6)] cursor-pointer'
               }`}
@@ -1658,20 +1658,20 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
             />
 
             {/* Spinning Rings */}
-            <div className={`absolute inset-0.5 md:inset-2 rounded-full border-2 border-amber-500/20 ${syncRate >= SYNC_COST_ULTIMATE ? 'animate-[spin_3s_linear_infinite]' : ''}`} />
-            <div className={`absolute inset-1.5 md:inset-4 rounded-full border border-amber-400/10 border-dashed ${syncRate >= SYNC_COST_ULTIMATE ? 'animate-[spin_4s_linear_infinite_reverse]' : ''}`} />
+            <div className={`absolute inset-0.5 lg:inset-2 rounded-full border-2 border-amber-500/20 ${syncRate >= SYNC_COST_ULTIMATE ? 'animate-[spin_3s_linear_infinite]' : ''}`} />
+            <div className={`absolute inset-1.5 lg:inset-4 rounded-full border border-amber-400/10 border-dashed ${syncRate >= SYNC_COST_ULTIMATE ? 'animate-[spin_4s_linear_infinite_reverse]' : ''}`} />
 
             <div className="relative z-10 flex flex-col items-center">
-              <div className="font-rajdhani font-black text-sm md:text-5xl text-amber-400 drop-shadow-[0_0_12px_rgba(251,191,36,1)] leading-none mb-0 md:mb-1">
-                {Math.floor(syncRate)}<span className="text-[8px] md:text-xl opacity-80">%</span>
+              <div className="font-rajdhani font-black text-sm lg:text-5xl text-amber-400 drop-shadow-[0_0_12px_rgba(251,191,36,1)] leading-none mb-0 lg:mb-1">
+                {Math.floor(syncRate)}<span className="text-[8px] lg:text-xl opacity-80">%</span>
               </div>
-              <div className="font-noto font-black text-[6px] md:text-xs text-amber-200 tracking-[0.15em] md:tracking-[0.3em] drop-shadow-[0_0_8px_rgba(251,191,36,0.8)]">
+              <div className="font-noto font-black text-[6px] lg:text-xs text-amber-200 tracking-[0.15em] lg:tracking-[0.3em] drop-shadow-[0_0_8px_rgba(251,191,36,0.8)]">
                 必殺技
               </div>
             </div>
 
             {/* Cost Indicator / Tech UI */}
-            <div className="absolute -bottom-0.5 md:bottom-1 -right-0.5 md:right-2 bg-amber-950/80 border border-amber-500 text-amber-400 font-orbitron font-bold text-[5px] md:text-[10px] px-0.5 py-0 md:px-2 md:py-0.5 shadow-[0_0_10px_rgba(251,191,36,0.5)] skew-x-[-15deg]">
+            <div className="absolute -bottom-0.5 lg:bottom-1 -right-0.5 lg:right-2 bg-amber-950/80 border border-amber-500 text-amber-400 font-orbitron font-bold text-[5px] lg:text-[10px] px-0.5 py-0 lg:px-2 lg:py-0.5 shadow-[0_0_10px_rgba(251,191,36,0.5)] skew-x-[-15deg]">
               <span className="block skew-x-[15deg]">COST {SYNC_COST_ULTIMATE}</span>
             </div>
             
@@ -1689,7 +1689,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
           <motion.button
             onClick={handleAbsorb}
             disabled={battlePhase !== 'fighting' || absorbCooldown > 0 || activeFragments.length >= MAX_ANOMALY_SLOTS}
-            className={`w-12 h-6 md:w-32 md:h-16 skew-x-[15deg] flex items-center justify-center overflow-hidden group transition-all duration-300 relative border-b-2 border-l-2 backdrop-blur-md hover:scale-105 active:scale-95 ${battlePhase !== 'fighting' || absorbCooldown > 0 || activeFragments.length >= MAX_ANOMALY_SLOTS
+            className={`w-12 h-6 lg:w-32 lg:h-16 skew-x-[15deg] flex items-center justify-center overflow-hidden group transition-all duration-300 relative border-b-2 border-l-2 backdrop-blur-md hover:scale-105 active:scale-95 ${battlePhase !== 'fighting' || absorbCooldown > 0 || activeFragments.length >= MAX_ANOMALY_SLOTS
               ? 'bg-[#090e17]/90 border-slate-700/50 cursor-not-allowed'
               : 'bg-indigo-950/60 border-indigo-500/80 hover:bg-indigo-900/80 hover:border-indigo-400 hover:shadow-[0_0_20px_rgba(99,102,241,0.6)] cursor-pointer'
               }`}
@@ -1697,15 +1697,15 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
             {/* Tech grid bg */}
             <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPjxwYXRoIGQ9Ik0wLDggTDgsMCBMMCwwIFoiIGZpbGw9InJnYmEoMCwgMCwgMCwgMC4yKSIvPjwvc3ZnPg==')] pointer-events-none mix-blend-overlay" />
             
-            <div className="flex items-center gap-0.5 md:gap-2 skew-x-[-15deg] z-10">
-              <span className={`font-noto font-black text-[8px] md:text-base tracking-[0.1em] md:tracking-[0.2em] ${absorbCooldown <= 0 && activeFragments.length < MAX_ANOMALY_SLOTS ? 'text-indigo-400 drop-shadow-[0_0_8px_rgba(99,102,241,0.8)]' : 'text-slate-600'}`}>吸収</span>
+            <div className="flex items-center gap-0.5 lg:gap-2 skew-x-[-15deg] z-10">
+              <span className={`font-noto font-black text-[8px] lg:text-base tracking-[0.1em] lg:tracking-[0.2em] ${absorbCooldown <= 0 && activeFragments.length < MAX_ANOMALY_SLOTS ? 'text-indigo-400 drop-shadow-[0_0_8px_rgba(99,102,241,0.8)]' : 'text-slate-600'}`}>吸収</span>
               {absorbCooldown > 0 ? (
-                <span className="font-orbitron font-bold text-[6px] md:text-[12px] text-indigo-700">CD:{absorbCooldown}</span>
+                <span className="font-orbitron font-bold text-[6px] lg:text-[12px] text-indigo-700">CD:{absorbCooldown}</span>
               ) : (
-                <div className="flex gap-[1px] md:gap-0.5">
-                  <div className="w-0.5 h-1.5 md:w-1.5 md:h-3 bg-indigo-400 skew-x-[15deg] shadow-[0_0_8px_#6366f1] opacity-40" />
-                  <div className="w-0.5 h-1.5 md:w-1.5 md:h-3 bg-indigo-400 skew-x-[15deg] shadow-[0_0_8px_#6366f1] opacity-70" />
-                  <div className="w-0.5 h-1.5 md:w-1.5 md:h-3 bg-indigo-400 skew-x-[15deg] shadow-[0_0_8px_#6366f1]" />
+                <div className="flex gap-[1px] lg:gap-0.5">
+                  <div className="w-0.5 h-1.5 lg:w-1.5 lg:h-3 bg-indigo-400 skew-x-[15deg] shadow-[0_0_8px_#6366f1] opacity-40" />
+                  <div className="w-0.5 h-1.5 lg:w-1.5 lg:h-3 bg-indigo-400 skew-x-[15deg] shadow-[0_0_8px_#6366f1] opacity-70" />
+                  <div className="w-0.5 h-1.5 lg:w-1.5 lg:h-3 bg-indigo-400 skew-x-[15deg] shadow-[0_0_8px_#6366f1]" />
                 </div>
               )}
             </div>
@@ -1740,7 +1740,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
                 <div className={`h-[1px] w-16 ${battlePhase === 'victory' ? 'bg-cyan-500/50' : 'bg-red-500/50'}`} />
               </div>
               
-              <h2 className={`font-noto text-5xl md:text-7xl font-black tracking-[0.2em] py-2 drop-shadow-[0_0_15px_rgba(0,0,0,0.8)] ${battlePhase === 'victory' ? 'text-transparent bg-clip-text bg-gradient-to-b from-white via-cyan-100 to-cyan-500' : 'text-transparent bg-clip-text bg-gradient-to-b from-white via-red-100 to-red-600'}`}>
+              <h2 className={`font-noto text-5xl lg:text-7xl font-black tracking-[0.2em] py-2 drop-shadow-[0_0_15px_rgba(0,0,0,0.8)] ${battlePhase === 'victory' ? 'text-transparent bg-clip-text bg-gradient-to-b from-white via-cyan-100 to-cyan-500' : 'text-transparent bg-clip-text bg-gradient-to-b from-white via-red-100 to-red-600'}`}>
                 {battlePhase === 'victory' ? '作戦成功' : '作戦失敗'}
               </h2>
               

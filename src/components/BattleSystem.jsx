@@ -926,7 +926,7 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         {/* Full color bright image */}
-        <img src="/battle/shopping.png" alt="Background" className="absolute inset-0 w-full h-full object-cover scale-[1.02] md:scale-[1.15] -translate-y-0 md:-translate-y-[5%]" />
+        <img src="/battle/shopping.png" alt="Background" className="absolute inset-0 w-full h-full object-cover scale-[1.02] lg:scale-[1.15] -translate-y-0 lg:-translate-y-[5%]" />
         
         {/* Very subtle cyber tech overlays so UI is still readable */}
         <div className="absolute inset-0 bg-[#090e17]/20" />
@@ -940,7 +940,7 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
           <motion.div className="absolute inset-0 z-[60] flex items-center justify-center bg-black" initial={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.8 }}>
             <motion.div className="text-center" initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6 }}>
               <div className="font-noto text-[10px] tracking-[0.5em] text-cyan-300/60 mb-4 uppercase">Synchronic Vocal Battle</div>
-              <h2 className="font-noto text-3xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 via-sky-100 to-indigo-200 tracking-[0.15em]">
+              <h2 className="font-noto text-3xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 via-sky-100 to-indigo-200 tracking-[0.15em]">
                 BATTLE START
               </h2>
               <motion.div className="mt-4 h-[1px] bg-gradient-to-r from-transparent via-cyan-300/60 to-transparent" initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ delay: 0.3, duration: 0.8 }} />
@@ -952,13 +952,13 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
       {/* ── TUTORIAL MODAL ── */}
       <AnimatePresence>
         {showTutorial && (
-          <motion.div className="absolute inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 md:p-8" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <div className="bg-[#0f172a] border border-cyan-500/50 rounded-xl shadow-[0_0_30px_rgba(34,211,238,0.2)] max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 md:p-10 relative">
-              <h2 className="text-2xl md:text-3xl font-black text-cyan-300 mb-6 border-b border-cyan-500/30 pb-4 text-center tracking-widest">
+          <motion.div className="absolute inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 lg:p-8" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+            <div className="bg-[#0f172a] border border-cyan-500/50 rounded-xl shadow-[0_0_30px_rgba(34,211,238,0.2)] max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 lg:p-10 relative">
+              <h2 className="text-2xl lg:text-3xl font-black text-cyan-300 mb-6 border-b border-cyan-500/30 pb-4 text-center tracking-widest">
                 戦闘マニュアル
               </h2>
               
-              <div className="space-y-6 text-sm md:text-base text-slate-300 leading-relaxed text-left">
+              <div className="space-y-6 text-sm lg:text-base text-slate-300 leading-relaxed text-left">
                 {/* 1. 防御 */}
                 <section>
                   <h3 className="text-lg font-bold text-cyan-200 mb-2 flex items-center gap-2">
@@ -1014,7 +1014,7 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
         {parryFlash && (
           <motion.div className="absolute inset-0 z-[65] pointer-events-none flex items-center justify-center" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.15 }}>
             <div className="absolute inset-0 bg-cyan-100/25" />
-            <motion.div initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: 1.2, opacity: 1 }} exit={{ scale: 2, opacity: 0 }} transition={{ duration: 0.4 }} className="font-noto text-5xl md:text-7xl font-black text-cyan-100 drop-shadow-[0_0_30px_rgba(255,255,255,1)] z-10 italic tracking-wider">
+            <motion.div initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: 1.2, opacity: 1 }} exit={{ scale: 2, opacity: 0 }} transition={{ duration: 0.4 }} className="font-noto text-5xl lg:text-7xl font-black text-cyan-100 drop-shadow-[0_0_30px_rgba(255,255,255,1)] z-10 italic tracking-wider">
               JUST PARRY!!
             </motion.div>
           </motion.div>
@@ -1058,7 +1058,7 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
             <motion.img src={duetCutin.image} alt={duetCutin.name} className="absolute h-[80%] object-contain z-10 drop-shadow-[0_0_40px_rgba(255,255,255,0.4)]" initial={{ x: '-100%', opacity: 0 }} animate={{ x: '0%', opacity: 1 }} exit={{ x: '100%', opacity: 0 }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} />
             <motion.div className="absolute bottom-[15%] z-20 text-center" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.5 }}>
               <div className="font-noto text-xs tracking-[0.5em] text-cyan-100/80 mb-2">ULTIMATE ART</div>
-              <div className="font-noto text-3xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-100 via-violet-100 to-cyan-100 tracking-wider">必殺技</div>
+              <div className="font-noto text-3xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-100 via-violet-100 to-cyan-100 tracking-wider">必殺技</div>
               {/* Projectiles and warning lines removed for melee attack style */}
             </motion.div>
           </motion.div>
@@ -1072,7 +1072,7 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
       {/* ═══════════════════════════════════════════════════════════════
            BATTLE FIELD
          ═══════════════════════════════════════════════════════════════ */}
-      <div className="relative flex-1 flex items-stretch px-4 md:px-12 pt-32 pb-24 z-10 overflow-hidden">
+      <div className="relative flex-1 flex items-stretch px-4 lg:px-12 pt-32 pb-24 z-10 overflow-hidden">
         
         {/* Projectiles and warning lines removed for melee attack style */}
         
@@ -1093,7 +1093,7 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
                 <motion.div
                   id={`char-${ally.id}`}
                   className={`relative cursor-pointer touch-none flex items-center justify-center
-                    ${ally.id === 'nagisa' ? 'w-[140px] h-[186px] md:w-[180px] md:h-[230px]' : 'w-36 h-48 md:w-48 md:h-64'}
+                    ${ally.id === 'nagisa' ? 'w-[140px] h-[186px] lg:w-[180px] lg:h-[230px]' : 'w-36 h-48 lg:w-48 lg:h-64'}
                     ${ally.isDead ? 'opacity-40 grayscale' : ''}
                   `}
                   animate={{ x: isCounterDashing ? 150 : (isCurrentTurn ? 30 : 0) }}
@@ -1109,7 +1109,7 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
                     <div className="absolute inset-0 pointer-events-none flex items-center justify-center z-40">
                       
                       {/* Bracket corners */}
-                      <div className="absolute w-[120px] h-[120px] md:w-[140px] md:h-[140px]">
+                      <div className="absolute w-[120px] h-[120px] lg:w-[140px] lg:h-[140px]">
                         <svg viewBox="0 0 100 100" className="w-full h-full stroke-amber-400 opacity-80 drop-shadow-[0_0_8px_rgba(251,191,36,0.8)]">
                           {/* Top Left */}
                           <path d="M 25 10 L 10 10 L 10 25" fill="none" strokeWidth="3" />
@@ -1124,14 +1124,14 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
 
                       {/* Outer rotating dashed ring */}
                       <motion.div 
-                        className="absolute w-[100px] h-[100px] md:w-[120px] md:h-[120px] rounded-full border border-dashed border-amber-500/50"
+                        className="absolute w-[100px] h-[100px] lg:w-[120px] lg:h-[120px] rounded-full border border-dashed border-amber-500/50"
                         animate={{ rotate: 360 }}
                         transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
                       />
 
                       {/* Inner tech ring (segmented) */}
                       <motion.div 
-                        className="absolute w-[80px] h-[80px] md:w-[90px] md:h-[90px]"
+                        className="absolute w-[80px] h-[80px] lg:w-[90px] lg:h-[90px]"
                         animate={{ rotate: -360 }}
                         transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
                       >
@@ -1142,7 +1142,7 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
                       </motion.div>
 
                       {/* Center Crosshair */}
-                      <div className="absolute w-[40px] h-[40px] md:w-[50px] md:h-[50px]">
+                      <div className="absolute w-[40px] h-[40px] lg:w-[50px] lg:h-[50px]">
                         <svg viewBox="0 0 60 60" className="w-full h-full drop-shadow-[0_0_5px_rgba(251,191,36,1)]">
                           <line x1="30" y1="0" x2="30" y2="15" stroke="#f59e0b" strokeWidth="1.5" />
                           <line x1="30" y1="45" x2="30" y2="60" stroke="#f59e0b" strokeWidth="1.5" />
@@ -1164,14 +1164,14 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
                   {turnPhase === 'ally_windup' && TURN_ORDER[currentTurnIndex % TURN_ORDER.length] === ally.id && !ally.isDead && (
                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-40">
                       {/* Static target ring */}
-                      <div className="absolute w-[120px] h-[120px] md:w-[140px] md:h-[140px] border-[2px] border-red-500/50 shadow-[0_0_10px_rgba(239,68,68,0.5)] flex items-center justify-center rotate-45 rounded-full overflow-hidden">
+                      <div className="absolute w-[120px] h-[120px] lg:w-[140px] lg:h-[140px] border-[2px] border-red-500/50 shadow-[0_0_10px_rgba(239,68,68,0.5)] flex items-center justify-center rotate-45 rounded-full overflow-hidden">
                          <div className="w-full h-[1px] bg-red-500/30" />
                          <div className="absolute h-full w-[1px] bg-red-500/30" />
                       </div>
                       
                       {/* Converging ring */}
                       <motion.div 
-                        className="absolute w-[120px] h-[120px] md:w-[140px] md:h-[140px] border-[3px] border-yellow-400 shadow-[0_0_15px_rgba(253,224,71,1)] rounded-full"
+                        className="absolute w-[120px] h-[120px] lg:w-[140px] lg:h-[140px] border-[3px] border-yellow-400 shadow-[0_0_15px_rgba(253,224,71,1)] rounded-full"
                         initial={{ scale: 2.5, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
                         exit={{ opacity: 0, scale: 1.5 }}
@@ -1185,7 +1185,7 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
                             initial={{ scale: 0, opacity: 0, y: 0 }}
                             animate={{ scale: 1.5, opacity: 1, y: -20 }}
                             exit={{ opacity: 0 }}
-                            className="absolute font-orbitron font-black text-yellow-300 text-[18px] md:text-[24px] tracking-widest drop-shadow-[0_0_10px_rgba(253,224,71,1)] z-50"
+                            className="absolute font-orbitron font-black text-yellow-300 text-[18px] lg:text-[24px] tracking-widest drop-shadow-[0_0_10px_rgba(253,224,71,1)] z-50"
                           >
                             JUST!
                           </motion.div>
@@ -1257,14 +1257,14 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
                       >
                         {/* Outer Dashed Spinning Ring */}
                         <motion.div
-                          className="absolute w-32 h-32 md:w-40 md:h-40 rounded-full border-[3px] border-amber-400 border-dashed shadow-[0_0_15px_rgba(251,191,36,0.7)]"
+                          className="absolute w-32 h-32 lg:w-40 lg:h-40 rounded-full border-[3px] border-amber-400 border-dashed shadow-[0_0_15px_rgba(251,191,36,0.7)]"
                           initial={{ scale: 2.5, opacity: 0, rotate: 0 }}
                           animate={{ scale: 0.15, opacity: [0, 1, 1, 0], rotate: 180 }}
                           transition={{ duration: 0.6, ease: "linear" }}
                         />
                         {/* Inner Solid Ring */}
                         <motion.div
-                          className="absolute w-28 h-28 md:w-36 md:h-36 rounded-full border-2 border-amber-300 shadow-[0_0_10px_rgba(252,211,77,0.5)]"
+                          className="absolute w-28 h-28 lg:w-36 lg:h-36 rounded-full border-2 border-amber-300 shadow-[0_0_10px_rgba(252,211,77,0.5)]"
                           initial={{ scale: 3, opacity: 0 }}
                           animate={{ scale: 0.15, opacity: [0, 0.8, 0.8, 0] }}
                           transition={{ duration: 0.6, ease: "linear" }}
@@ -1284,7 +1284,7 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
                 {/* Damage Numbers */}
                 <AnimatePresence>
                   {showDamageNumbers.filter(d => d.targetId === ally.id).map(d => (
-                    <motion.div key={d.id} className={`absolute top-0 z-30 font-noto font-black text-xl md:text-3xl italic ${d.type === 'heal' ? 'text-emerald-300 drop-shadow-[0_0_8px_rgba(52,211,153,0.6)]' : 'text-red-400 drop-shadow-[0_0_8px_rgba(239,68,68,0.6)]'}`} initial={{ opacity: 1, y: 0, scale: 0.8 }} animate={{ opacity: 0, y: -40, scale: 1.2 }} exit={{ opacity: 0 }} transition={{ duration: 1 }}>
+                    <motion.div key={d.id} className={`absolute top-0 z-30 font-noto font-black text-xl lg:text-3xl italic ${d.type === 'heal' ? 'text-emerald-300 drop-shadow-[0_0_8px_rgba(52,211,153,0.6)]' : 'text-red-400 drop-shadow-[0_0_8px_rgba(239,68,68,0.6)]'}`} initial={{ opacity: 1, y: 0, scale: 0.8 }} animate={{ opacity: 0, y: -40, scale: 1.2 }} exit={{ opacity: 0 }} transition={{ duration: 1 }}>
                       {d.type === 'heal' ? `+${d.amount}` : `-${d.amount}`}
                     </motion.div>
                   ))}
@@ -1304,18 +1304,18 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
             return (
               <div key={enemy.id} className="relative flex flex-col items-center w-full z-20">
                 {/* ── Enemy Status Panel ── */}
-                <div className="w-40 md:w-52 mb-2 z-20 relative">
+                <div className="w-40 lg:w-52 mb-2 z-20 relative">
                   <div className="bg-[#090e17]/80 backdrop-blur-sm border border-amber-500/40 fui-clip-basic p-1.5 relative overflow-hidden">
                     <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPjxyZWN0IHdpZHRoPSIyIiBoZWlnaHQ9IjQiIGZpbGw9InJnYmEoMjUxLCAxOTEsIDM2LCAwLjA1KSIvPjwvc3ZnPg==')] z-0 pointer-events-none" />
                     
                     <div className="flex items-center justify-between mb-1 px-1 relative z-10">
                       <div className="flex items-center gap-1.5">
                         <div className="w-1.5 h-1.5 bg-amber-400 shadow-[0_0_5px_rgba(251,191,36,0.8)]" />
-                        <span className="font-orbitron font-bold text-[10px] md:text-[11px] text-amber-400 tracking-widest leading-none drop-shadow-[0_0_5px_rgba(251,191,36,0.5)]">
+                        <span className="font-orbitron font-bold text-[10px] lg:text-[11px] text-amber-400 tracking-widest leading-none drop-shadow-[0_0_5px_rgba(251,191,36,0.5)]">
                           {enemy.name.toUpperCase()}
                         </span>
                       </div>
-                      <span className="font-orbitron text-[9px] md:text-[10px] text-amber-100/90 tabular-nums leading-none">
+                      <span className="font-orbitron text-[9px] lg:text-[10px] text-amber-100/90 tabular-nums leading-none">
                         {Math.ceil(hpRatio * 100)}%
                       </span>
                     </div>
@@ -1337,7 +1337,7 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
                 {/* Enemy Body */}
                 <motion.div 
                   id={`char-${enemy.id}`}
-                  className={`relative w-48 h-60 md:w-80 md:h-96 flex items-center justify-center z-40 ${
+                  className={`relative w-48 h-60 lg:w-80 lg:h-96 flex items-center justify-center z-40 ${
                     enemy.isDead ? 'opacity-30 grayscale'
                     : enemy.flashTimer > 0 ? 'animate-battle-hit-flash'
                     : ''
@@ -1355,7 +1355,7 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
 
                   {/* Stun Indicator */}
                   {enemy.isStunned && !enemy.isDead && (
-                    <motion.div className="absolute -top-3 font-noto text-[9px] md:text-[10px] text-amber-200/90 font-bold bg-amber-950/70 backdrop-blur-sm px-3 py-0.5 rounded border border-amber-500/30" animate={{ y: [0, -2, 0] }} transition={{ duration: 0.5, repeat: Infinity }}>
+                    <motion.div className="absolute -top-3 font-noto text-[9px] lg:text-[10px] text-amber-200/90 font-bold bg-amber-950/70 backdrop-blur-sm px-3 py-0.5 rounded border border-amber-500/30" animate={{ y: [0, -2, 0] }} transition={{ duration: 0.5, repeat: Infinity }}>
                       スタン
                     </motion.div>
                   )}
@@ -1364,7 +1364,7 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
                 {/* Damage Numbers */}
                 <AnimatePresence>
                   {showDamageNumbers.filter(d => d.targetId === enemy.id).map(d => (
-                    <motion.div key={d.id} className={`absolute top-0 z-30 font-noto font-black text-2xl md:text-4xl italic ${d.type === 'ultimate' ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 to-violet-300' : 'text-white'} drop-shadow-[0_0_12px_rgba(0,0,0,0.8)]`} initial={{ opacity: 1, y: 0, scale: 1.5 }} animate={{ opacity: 0, y: -50, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1 }}>
+                    <motion.div key={d.id} className={`absolute top-0 z-30 font-noto font-black text-2xl lg:text-4xl italic ${d.type === 'ultimate' ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 to-violet-300' : 'text-white'} drop-shadow-[0_0_12px_rgba(0,0,0,0.8)]`} initial={{ opacity: 1, y: 0, scale: 1.5 }} animate={{ opacity: 0, y: -50, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1 }}>
                       {d.amount}
                     </motion.div>
                   ))}
@@ -1375,7 +1375,7 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
         </div>
         
         {/* Top Right Controls */}
-        <div className="absolute top-3 right-3 md:top-5 md:right-5 flex gap-2 z-50">
+        <div className="absolute top-3 right-3 lg:top-5 lg:right-5 flex gap-2 z-50">
           <button onClick={() => setIsPaused(!isPaused)} className={`px-3 py-1.5 bg-[#0a1628]/60 backdrop-blur-sm border ${isPaused ? 'border-amber-400 text-amber-300 shadow-[0_0_10px_rgba(251,191,36,0.3)]' : 'border-slate-600/30 text-slate-400'} font-noto text-[10px] tracking-[0.2em] rounded hover:border-slate-400/50 hover:text-slate-200 transition-all`}>
             {isPaused ? '再開 (RESUME)' : '一時停止 (PAUSE)'}
           </button>
@@ -1413,10 +1413,10 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
                 if (isStunned) {
                   return (
                     <div className="flex flex-col items-center px-16 py-4 border-y border-x-4 shadow-[0_10px_30px_rgba(0,0,0,0.8)] backdrop-blur-md bg-amber-950/80 border-y-amber-500/50 border-x-amber-500 text-amber-100">
-                      <div className="font-orbitron font-bold tracking-[0.3em] text-[10px] md:text-xs mb-1 text-amber-300">
+                      <div className="font-orbitron font-bold tracking-[0.3em] text-[10px] lg:text-xs mb-1 text-amber-300">
                         NEXT ACTION
                       </div>
-                      <div className="font-noto font-black text-xl md:text-2xl tracking-widest drop-shadow-[0_0_8px_rgba(251,191,36,0.8)]">
+                      <div className="font-noto font-black text-xl lg:text-2xl tracking-widest drop-shadow-[0_0_8px_rgba(251,191,36,0.8)]">
                         {actorName}はスタン中！
                       </div>
                     </div>
@@ -1427,10 +1427,10 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
                   <div className={`flex flex-col items-center px-16 py-4 border-y border-x-4 shadow-[0_10px_30px_rgba(0,0,0,0.8)] backdrop-blur-md ${
                     isAllyTurn ? 'bg-cyan-950/80 border-y-cyan-500/50 border-x-cyan-400 text-cyan-100' : 'bg-red-950/80 border-y-red-500/50 border-x-red-500 text-red-100'
                   }`}>
-                    <div className={`font-orbitron font-bold tracking-[0.3em] text-[10px] md:text-xs mb-1 ${isAllyTurn ? 'text-cyan-300' : 'text-red-300'}`}>
+                    <div className={`font-orbitron font-bold tracking-[0.3em] text-[10px] lg:text-xs mb-1 ${isAllyTurn ? 'text-cyan-300' : 'text-red-300'}`}>
                       NEXT ACTION
                     </div>
-                    <div className={`font-noto font-black text-xl md:text-2xl tracking-widest ${isAllyTurn ? 'drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]' : 'drop-shadow-[0_0_8px_rgba(239,68,68,0.8)]'}`}>
+                    <div className={`font-noto font-black text-xl lg:text-2xl tracking-widest ${isAllyTurn ? 'drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]' : 'drop-shadow-[0_0_8px_rgba(239,68,68,0.8)]'}`}>
                       {actorName}の{isAllyTurn ? '攻撃' : 'ターン'}
                     </div>
                   </div>
@@ -1449,9 +1449,9 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
       <div className="absolute inset-0 z-40 pointer-events-none">
 
         {/* ── Top Left: Character Portrait (Sakura) ── */}
-        <div className="absolute top-4 left-4 md:top-6 md:left-6 pointer-events-auto flex flex-col">
+        <div className="absolute top-4 left-4 lg:top-6 lg:left-6 pointer-events-auto flex flex-col">
           {/* Portrait Container (Shoulders up, no round frame) */}
-          <div className="relative w-32 h-24 md:w-44 md:h-36 overflow-hidden">
+          <div className="relative w-32 h-24 lg:w-44 lg:h-36 overflow-hidden">
             <img 
               src="/character/Sakura/Sakura.png" 
               alt="Sakura" 
@@ -1470,9 +1470,9 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
               const fragId = activeFragments[i];
               const frag = fragId ? ANOMALY_FRAGMENTS[fragId] : null;
               return (
-                <div key={i} className={`w-5 h-5 md:w-7 md:h-7 bg-[#090e17]/80 border ${frag ? 'border-cyan-400/80 shadow-[0_0_8px_rgba(34,211,238,0.5)]' : 'border-slate-700/50'} flex items-center justify-center relative overflow-hidden`}>
+                <div key={i} className={`w-5 h-5 lg:w-7 lg:h-7 bg-[#090e17]/80 border ${frag ? 'border-cyan-400/80 shadow-[0_0_8px_rgba(34,211,238,0.5)]' : 'border-slate-700/50'} flex items-center justify-center relative overflow-hidden`}>
                   {frag && (
-                    <motion.div initial={{ scale: 0, rotate: -90 }} animate={{ scale: 1, rotate: 0 }} className={`text-[10px] md:text-xs ${frag.glow} drop-shadow-md`}>
+                    <motion.div initial={{ scale: 0, rotate: -90 }} animate={{ scale: 1, rotate: 0 }} className={`text-[10px] lg:text-xs ${frag.glow} drop-shadow-md`}>
                       {frag.icon}
                     </motion.div>
                   )}
@@ -1504,9 +1504,9 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
           const ally = allies[0]; // Active ally
           if (!ally) return null;
           return (
-            <div className="absolute bottom-12 left-12 md:bottom-16 md:left-16 pointer-events-auto flex items-end gap-4 md:gap-5">
+            <div className="absolute bottom-12 left-12 lg:bottom-16 lg:left-16 pointer-events-auto flex items-end gap-4 lg:gap-5">
               {/* Portrait */}
-              <div className="w-20 h-20 md:w-24 md:h-24 bg-slate-900 border-2 border-red-500/80 relative overflow-hidden flex-shrink-0 shadow-[0_0_15px_rgba(239,68,68,0.3)]">
+              <div className="w-20 h-20 lg:w-24 lg:h-24 bg-slate-900 border-2 border-red-500/80 relative overflow-hidden flex-shrink-0 shadow-[0_0_15px_rgba(239,68,68,0.3)]">
                 <img 
                   src="/character/Mutsunori/Mutsunori_serious.png" 
                   alt="Mutsunori" 
@@ -1521,19 +1521,19 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
               </div>
               
               {/* Status Info */}
-              <div className="flex flex-col justify-end w-40 md:w-56 pb-1">
-                <div className="flex justify-between items-end mb-0.5 md:mb-1">
-                  <span className="font-noto font-bold text-red-50 text-base md:text-lg tracking-widest drop-shadow-[0_0_5px_rgba(239,68,68,0.8)] leading-none">
+              <div className="flex flex-col justify-end w-40 lg:w-56 pb-1">
+                <div className="flex justify-between items-end mb-0.5 lg:mb-1">
+                  <span className="font-noto font-bold text-red-50 text-base lg:text-lg tracking-widest drop-shadow-[0_0_5px_rgba(239,68,68,0.8)] leading-none">
                     睦典
                   </span>
-                  <span className="font-orbitron text-[10px] md:text-[11px] text-red-100 tabular-nums leading-none">
-                    {ally.hp}<span className="text-red-500/80 text-[8px] md:text-[9px]">/{ally.maxHp}</span>
+                  <span className="font-orbitron text-[10px] lg:text-[11px] text-red-100 tabular-nums leading-none">
+                    {ally.hp}<span className="text-red-500/80 text-[8px] lg:text-[9px]">/{ally.maxHp}</span>
                   </span>
                 </div>
                 
                 <div className="flex items-center gap-2">
-                  <span className="font-orbitron font-bold text-red-400 text-[11px] md:text-[13px] leading-none">HP</span>
-                  <div className="flex-1 h-[16px] md:h-[20px] bg-black border border-red-900/50 p-[1px] relative overflow-hidden">
+                  <span className="font-orbitron font-bold text-red-400 text-[11px] lg:text-[13px] leading-none">HP</span>
+                  <div className="flex-1 h-[16px] lg:h-[20px] bg-black border border-red-900/50 p-[1px] relative overflow-hidden">
                     <motion.div 
                       className="h-full relative"
                       style={{ 
@@ -1555,7 +1555,7 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
         })()}
 
         {/* ── Bottom Right: Action Buttons (Diamond Grid) ── */}
-        <div className="absolute bottom-10 right-12 md:bottom-16 md:right-20 pointer-events-auto flex items-center justify-center gap-8 md:gap-12">
+        <div className="absolute bottom-10 right-12 lg:bottom-16 lg:right-20 pointer-events-auto flex items-center justify-center gap-8 lg:gap-12">
           
           {/* ── ULTIMATE BUTTON ── */}
           <motion.button
@@ -1563,7 +1563,7 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
             disabled={syncRate < SYNC_COST_ULTIMATE || battlePhase !== 'fighting'}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className={`relative w-20 h-20 md:w-24 md:h-24 rounded-full border-4 flex flex-col items-center justify-center transition-all shadow-[0_0_15px_rgba(245,158,11,0.5),inset_0_0_10px_rgba(245,158,11,0.5)] ${
+            className={`relative w-20 h-20 lg:w-24 lg:h-24 rounded-full border-4 flex flex-col items-center justify-center transition-all shadow-[0_0_15px_rgba(245,158,11,0.5),inset_0_0_10px_rgba(245,158,11,0.5)] ${
               syncRate < SYNC_COST_ULTIMATE || battlePhase !== 'fighting'
                 ? 'bg-[#171717]/90 border-amber-900/50 cursor-not-allowed opacity-50 grayscale'
                 : 'bg-[#451a03]/90 border-amber-500 hover:bg-amber-900 hover:shadow-[0_0_20px_rgba(251,191,36,0.8)] cursor-pointer'
@@ -1573,20 +1573,20 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
             <div className="absolute inset-1 rounded-full border border-amber-400/20 animate-[spin_4s_linear_infinite]" />
             <div className="absolute inset-2 rounded-full border border-amber-400/10 animate-[spin_3s_linear_infinite_reverse]" />
             
-            <div className="font-rajdhani font-black text-2xl md:text-3xl text-amber-400 drop-shadow-[0_0_8px_rgba(251,191,36,1)] z-10 leading-none">
-              {Math.floor(syncRate)}<span className="text-sm md:text-base opacity-80">%</span>
+            <div className="font-rajdhani font-black text-2xl lg:text-3xl text-amber-400 drop-shadow-[0_0_8px_rgba(251,191,36,1)] z-10 leading-none">
+              {Math.floor(syncRate)}<span className="text-sm lg:text-base opacity-80">%</span>
             </div>
-            <div className="font-noto font-bold text-[10px] md:text-xs text-amber-200 mt-1 tracking-widest z-10 drop-shadow-[0_0_5px_rgba(251,191,36,0.8)]">
+            <div className="font-noto font-bold text-[10px] lg:text-xs text-amber-200 mt-1 tracking-widest z-10 drop-shadow-[0_0_5px_rgba(251,191,36,0.8)]">
               必殺技
             </div>
             
             {/* Cost Indicator */}
-            <div className="absolute -top-2 -right-2 bg-white text-black font-rajdhani font-bold text-[10px] md:text-xs rounded-full w-5 h-5 md:w-6 md:h-6 flex items-center justify-center shadow-[0_2px_4px_rgba(0,0,0,0.5)] border border-slate-200">
+            <div className="absolute -top-2 -right-2 bg-white text-black font-rajdhani font-bold text-[10px] lg:text-xs rounded-full w-5 h-5 lg:w-6 lg:h-6 flex items-center justify-center shadow-[0_2px_4px_rgba(0,0,0,0.5)] border border-slate-200">
               {SYNC_COST_ULTIMATE}
             </div>
           </motion.button>
 
-          <div className="relative w-36 h-36 md:w-44 md:h-44 rotate-45 grid grid-cols-2 grid-rows-2 gap-3 md:gap-4 drop-shadow-[0_0_15px_rgba(34,211,238,0.2)]">
+          <div className="relative w-36 h-36 lg:w-44 lg:h-44 rotate-45 grid grid-cols-2 grid-rows-2 gap-3 lg:gap-4 drop-shadow-[0_0_15px_rgba(34,211,238,0.2)]">
             
             {/* Top Button (Grid [0,0]) - ATTACK */}
             <div className="relative w-full h-full">
@@ -1601,12 +1601,12 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
                 }`}
               >
                 <div className="-rotate-45 flex flex-col items-center z-10 relative">
-                  <span className={`font-noto font-bold text-[10px] md:text-xs tracking-widest ${
+                  <span className={`font-noto font-bold text-[10px] lg:text-xs tracking-widest ${
                     turnPhase === 'ally_windup' 
                       ? 'text-red-400 drop-shadow-[0_0_5px_rgba(239,68,68,0.8)]' 
                       : 'text-slate-600'
                   }`}>攻撃</span>
-                  <span className={`font-orbitron font-bold text-[8px] md:text-[9px] mt-1 ${
+                  <span className={`font-orbitron font-bold text-[8px] lg:text-[9px] mt-1 ${
                     turnPhase === 'ally_windup' 
                       ? 'text-red-300' 
                       : 'text-slate-700'
@@ -1625,8 +1625,8 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
               className="w-full h-full flex flex-col items-center justify-center overflow-hidden group transition-all duration-200 cursor-pointer shadow-[inset_0_0_15px_rgba(0,0,0,0.8)] bg-blue-950/80 border border-blue-500/50 hover:bg-blue-900 hover:border-blue-400 hover:shadow-[0_0_20px_rgba(59,130,246,0.6)]"
             >
               <div className="-rotate-45 flex flex-col items-center z-10">
-                <span className="font-noto font-bold text-blue-400 drop-shadow-[0_0_5px_rgba(59,130,246,0.8)] text-[10px] md:text-xs tracking-widest">防御</span>
-                <span className="font-orbitron font-bold text-[8px] md:text-[9px] mt-1 text-blue-300">DEFEND</span>
+                <span className="font-noto font-bold text-blue-400 drop-shadow-[0_0_5px_rgba(59,130,246,0.8)] text-[10px] lg:text-xs tracking-widest">防御</span>
+                <span className="font-orbitron font-bold text-[8px] lg:text-[9px] mt-1 text-blue-300">DEFEND</span>
               </div>
             </motion.button>
 
@@ -1643,9 +1643,9 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
               }`}
             >
               <div className="-rotate-45 flex flex-col items-center z-10">
-                <span className={`font-noto font-bold text-xs md:text-sm tracking-widest ${healCooldown <= 0 ? 'text-emerald-400 drop-shadow-[0_0_5px_rgba(16,185,129,0.8)]' : 'text-slate-600'}`}>回復</span>
+                <span className={`font-noto font-bold text-xs lg:text-sm tracking-widest ${healCooldown <= 0 ? 'text-emerald-400 drop-shadow-[0_0_5px_rgba(16,185,129,0.8)]' : 'text-slate-600'}`}>回復</span>
                 {healCooldown > 0 ? (
-                  <span className="font-orbitron font-bold text-[9px] md:text-[10px] text-emerald-600 mt-1">CD: {healCooldown}</span>
+                  <span className="font-orbitron font-bold text-[9px] lg:text-[10px] text-emerald-600 mt-1">CD: {healCooldown}</span>
                 ) : (
                   <div className="flex gap-1 mt-1.5">
                     <div className="w-1 h-1 bg-emerald-400 shadow-[0_0_5px_#10b981] rotate-45" />
@@ -1669,8 +1669,8 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
               }`}
             >
               <div className="-rotate-45 flex flex-col items-center z-10">
-                <span className={`font-noto font-bold text-xs md:text-sm tracking-widest ${activeFragments.length < MAX_ANOMALY_SLOTS ? 'text-indigo-400 drop-shadow-[0_0_5px_rgba(99,102,241,0.8)]' : 'text-slate-600'}`}>吸収</span>
-                <span className={`font-orbitron font-bold text-[8px] md:text-[9px] mt-1 ${activeFragments.length < MAX_ANOMALY_SLOTS ? 'text-indigo-300/80' : 'text-slate-700'}`}>ABSORB</span>
+                <span className={`font-noto font-bold text-xs lg:text-sm tracking-widest ${activeFragments.length < MAX_ANOMALY_SLOTS ? 'text-indigo-400 drop-shadow-[0_0_5px_rgba(99,102,241,0.8)]' : 'text-slate-600'}`}>吸収</span>
+                <span className={`font-orbitron font-bold text-[8px] lg:text-[9px] mt-1 ${activeFragments.length < MAX_ANOMALY_SLOTS ? 'text-indigo-300/80' : 'text-slate-700'}`}>ABSORB</span>
               </div>
             </motion.button>
 
@@ -1690,7 +1690,7 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
               {battlePhase === 'victory' && (
                 <motion.div className="mb-6 h-[1px] w-48 mx-auto bg-gradient-to-r from-transparent via-cyan-300/40 to-transparent" initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ delay: 0.8, duration: 0.6 }} />
               )}
-              <h2 className={`font-noto text-4xl md:text-6xl font-black tracking-[0.3em] ${battlePhase === 'victory' ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 via-sky-100 to-indigo-200' : 'text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-red-300 to-orange-300'}`}>
+              <h2 className={`font-noto text-4xl lg:text-6xl font-black tracking-[0.3em] ${battlePhase === 'victory' ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 via-sky-100 to-indigo-200' : 'text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-red-300 to-orange-300'}`}>
                 {battlePhase === 'victory' ? '作戦成功' : '作戦失敗'}
               </h2>
               {battlePhase === 'victory' && (
