@@ -1487,8 +1487,8 @@ export default function BattleAkaneVsKimera2({ onComplete, playBGM, stopBGM, pla
             
             <div className="flex items-end w-full justify-between">
               {/* Text Info */}
-              <div className="flex flex-col z-10 w-full pr-14 md:pr-20">
-                <div className="flex justify-between items-end mb-2">
+              <div className="flex flex-col z-10 w-full pr-8 md:pr-20">
+                <div className="flex justify-between items-end mb-1 md:mb-2">
                   <span className="font-orbitron font-bold text-[10px] md:text-xs text-cyan-300 tracking-[0.2em] drop-shadow-[0_0_5px_rgba(34,211,238,0.5)]">SAKURA</span>
                   <span className={`font-orbitron font-bold text-[9px] md:text-[10px] tracking-widest ${corruption >= 80 ? 'text-red-400 animate-pulse' : 'text-cyan-100/70'}`}>
                     CRPT {corruption}%
@@ -1515,7 +1515,7 @@ export default function BattleAkaneVsKimera2({ onComplete, playBGM, stopBGM, pla
                   <img
                     src="/character/Sakura/Sakura.png"
                     alt="Sakura"
-                    className="relative w-full h-auto drop-shadow-[0_0_15px_rgba(6,182,212,0.6)] object-cover object-top scale-[1.8] translate-y-[-10%]"
+                    className="relative w-full h-auto drop-shadow-[0_0_15px_rgba(6,182,212,0.6)] object-cover object-top scale-[1.5] md:scale-[1.8] translate-y-[-10%]"
                     style={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' }}
                     onError={(e) => {
                       e.target.onerror = null;
@@ -1570,7 +1570,7 @@ export default function BattleAkaneVsKimera2({ onComplete, playBGM, stopBGM, pla
 
               {/* Status Info (Tech Panel) */}
               <div className="flex flex-col justify-center h-16 md:h-20 w-48 md:w-64 bg-gradient-to-r from-[#0a1120]/90 via-[#0a1120]/60 to-transparent pl-4 py-2 border-l-2 border-red-500/50 backdrop-blur-sm">
-                <div className="flex justify-between items-end mb-1">
+                <div className="flex justify-between items-end mb-0.5 md:mb-1">
                   <span className="font-noto font-black text-white text-base md:text-xl tracking-[0.2em] drop-shadow-[0_0_8px_rgba(239,68,68,0.9)] leading-none italic">
                     ？？？
                   </span>

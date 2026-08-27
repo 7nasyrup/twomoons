@@ -967,7 +967,7 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         {/* Full color bright image */}
-        <img src="/battle/shopping.png" alt="Background" className="absolute inset-0 w-full h-full object-cover scale-[1.15] -translate-y-[5%]" />
+        <img src="/battle/shopping.png" alt="Background" className="absolute inset-0 w-full h-full object-cover scale-[1.02] md:scale-[1.15] -translate-y-0 md:-translate-y-[5%]" />
 
         {/* Very subtle cyber tech overlays so UI is still readable */}
         <div className="absolute inset-0 bg-[#090e17]/20" />
@@ -1452,7 +1452,7 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
                 <img
                   src="/character/Sakura/Sakura.png"
                   alt="Sakura"
-                  className="relative w-full h-auto drop-shadow-[0_0_15px_rgba(6,182,212,0.6)] object-cover object-top scale-[1.8] translate-y-[-10%]"
+                  className="relative w-full h-auto drop-shadow-[0_0_15px_rgba(6,182,212,0.6)] object-cover object-top scale-[1.5] md:scale-[1.8] translate-y-[-10%]"
                   style={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' }}
                   onError={(e) => {
                     e.target.onerror = null;
@@ -1506,7 +1506,7 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
 
               {/* Status Info (Tech Panel) */}
               <div className="flex flex-col justify-center h-16 md:h-20 w-48 md:w-64 bg-gradient-to-r from-[#0a1120]/90 via-[#0a1120]/60 to-transparent pl-4 py-2 border-l-2 border-red-500/50 backdrop-blur-sm">
-                <div className="flex justify-between items-end mb-1">
+                <div className="flex justify-between items-end mb-0.5 md:mb-1">
                   <span className="font-noto font-black text-white text-base md:text-xl tracking-[0.2em] drop-shadow-[0_0_8px_rgba(239,68,68,0.9)] leading-none italic">
                     睦典
                   </span>

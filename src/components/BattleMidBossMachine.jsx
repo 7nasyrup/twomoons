@@ -1485,7 +1485,7 @@ export default function BattleMidBossMachine({ onComplete, playBGM, stopBGM, pla
 
               {/* Status Info */}
               <div className="flex flex-col justify-end w-32 md:w-48 pb-0.5">
-                <div className="flex justify-between items-end mb-1">
+                <div className="flex justify-between items-end mb-0.5 md:mb-1">
                   <span className="font-noto font-bold text-red-50 text-sm md:text-base tracking-widest drop-shadow-[0_0_5px_rgba(239,68,68,0.8)] leading-none">
                     睦典
                   </span>

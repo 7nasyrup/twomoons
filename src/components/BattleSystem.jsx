@@ -926,7 +926,7 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         {/* Full color bright image */}
-        <img src="/battle/shopping.png" alt="Background" className="absolute inset-0 w-full h-full object-cover scale-[1.15] -translate-y-[5%]" />
+        <img src="/battle/shopping.png" alt="Background" className="absolute inset-0 w-full h-full object-cover scale-[1.02] md:scale-[1.15] -translate-y-0 md:-translate-y-[5%]" />
         
         {/* Very subtle cyber tech overlays so UI is still readable */}
         <div className="absolute inset-0 bg-[#090e17]/20" />
@@ -1522,7 +1522,7 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
               
               {/* Status Info */}
               <div className="flex flex-col justify-end w-40 md:w-56 pb-1">
-                <div className="flex justify-between items-end mb-1">
+                <div className="flex justify-between items-end mb-0.5 md:mb-1">
                   <span className="font-noto font-bold text-red-50 text-base md:text-lg tracking-widest drop-shadow-[0_0_5px_rgba(239,68,68,0.8)] leading-none">
                     睦典
                   </span>
