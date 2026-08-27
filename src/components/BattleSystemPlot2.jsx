@@ -1155,7 +1155,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
                   <motion.div
                     id={`char-${ally.id}`}
                     className={`relative cursor-pointer touch-none flex items-center justify-center
-                    ${ally.id === 'nagisa' ? 'w-[100px] h-[133px] md:w-[180px] md:h-[230px]' : 'w-24 h-32 md:w-48 md:h-64 -translate-y-2 md:-translate-y-4'}
+                    ${ally.id === 'nagisa' ? 'w-[60px] h-[80px] md:w-[180px] md:h-[230px]' : 'w-16 h-24 md:w-48 md:h-64 -translate-y-1 md:-translate-y-4'}
                     ${ally.isDead ? 'opacity-40 grayscale' : ''}
                   `}
                     animate={{ x: isCounterDashing ? 150 : (isCurrentTurn ? 30 : 0) }}
@@ -1400,7 +1400,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
 
                   <motion.div
                     id={`char-${enemy.id}`}
-                    className={`relative w-32 h-40 md:w-80 md:h-96 flex items-center justify-center z-40 ${enemy.isDead ? 'opacity-30 grayscale'
+                    className={`relative w-24 h-32 md:w-80 md:h-96 flex items-center justify-center z-40 ${enemy.isDead ? 'opacity-30 grayscale'
                       : enemy.flashTimer > 0 ? 'animate-battle-hit-flash'
                         : ''
                       }`}
