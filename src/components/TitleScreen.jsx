@@ -25,7 +25,7 @@ export default function TitleScreen({ onStart, onContinue, onBattle, hasSave, pl
                 />
 
                 {/* Buttons / Menu */}
-                <div className="w-full text-center z-10 relative mb-[9%]">
+                <div className="w-full text-center z-10 relative mb-[9%] -translate-x-[3%] md:translate-x-0">
                     <div className="flex flex-col items-center justify-center w-[24%] mx-auto" style={{ gap: '3cqh' }}>
                         {/* Start Button */}
                         <button
