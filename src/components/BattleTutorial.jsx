@@ -1095,7 +1095,7 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
                   <motion.div
                     id={`char-${ally.id}`}
                     className={`relative cursor-pointer touch-none flex items-center justify-center
-                    ${ally.id === 'nagisa' ? 'w-[140px] h-[186px] lg:w-[180px] lg:h-[230px]' : 'w-36 h-48 lg:w-48 lg:h-64 -translate-y-4'}
+                    ${ally.id === 'nagisa' ? 'w-[140px] h-[186px] lg:w-[180px] lg:h-[230px]' : 'w-36 h-48 lg:w-48 lg:h-64 translate-y-16 lg:-translate-y-4'}
                     ${ally.isDead ? 'opacity-40 grayscale' : ''}
                   `}
                     animate={{ x: isCounterDashing ? 150 : (isCurrentTurn ? 30 : 0) }}
@@ -1340,7 +1340,7 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
 
                   <motion.div
                     id={`char-${enemy.id}`}
-                    className={`relative w-48 h-60 lg:w-80 lg:h-96 flex items-center justify-center z-40 ${enemy.isDead ? 'opacity-30 grayscale'
+                    className={`relative w-[230px] h-[307px] -translate-y-16 lg:translate-y-0 lg:w-80 lg:h-96 flex items-center justify-center z-40 ${enemy.isDead ? 'opacity-30 grayscale'
                       : enemy.flashTimer > 0 ? 'animate-battle-hit-flash'
                         : ''
                       }`}

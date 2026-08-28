@@ -1140,7 +1140,7 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
             let sizeClass = "";
             if (ally.id === 'nagisa') sizeClass = "w-[144px] h-[192px] md:w-[192px] md:h-[252px]";
             else if (ally.id === 'mika') sizeClass = "w-[145px] h-[187px] md:w-[187px] md:h-[250px] -translate-y-2 md:-translate-y-4";
-            else if (ally.id === 'mutsunori') sizeClass = "w-[123px] h-[158px] md:w-[158px] md:h-[211px] -translate-y-2 md:-translate-y-4";
+            else if (ally.id === 'mutsunori') sizeClass = "w-[123px] h-[158px] md:w-[158px] md:h-[211px] translate-y-16 md:-translate-y-4";
             else sizeClass = "w-28 h-36 md:w-36 md:h-48 -translate-y-2 md:-translate-y-4";
 
             return (
@@ -1428,7 +1428,7 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
                       ease: isAttacking ? 'easeOut' : 'easeInOut'
                     }}
                   >
-                    <img src={enemy.image} alt={enemy.name} className={`w-full h-full object-contain object-bottom origin-bottom scale-[2.0] -translate-y-8 md:-translate-y-12 drop-shadow-[0_0_15px_rgba(244,63,94,0.3)] ${enemy.isStunned ? 'opacity-70 grayscale-[50%]' : ''}`} />
+                    <img src={enemy.image} alt={enemy.name} className={`w-full h-full object-contain object-bottom origin-bottom scale-[2.0] -translate-y-24 md:-translate-y-12 drop-shadow-[0_0_15px_rgba(244,63,94,0.3)] ${enemy.isStunned ? 'opacity-70 grayscale-[50%]' : ''}`} />
 
                     {enemy.isStunned && !enemy.isDead && (
                       <motion.div className="absolute -top-3 font-noto text-[9px] md:text-[10px] text-amber-200/90 font-bold bg-amber-950/70 backdrop-blur-sm px-3 py-0.5 rounded border border-amber-500/30" animate={{ y: [0, -2, 0] }} transition={{ duration: 0.5, repeat: Infinity }}>
