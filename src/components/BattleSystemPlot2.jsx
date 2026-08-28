@@ -1130,11 +1130,10 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
 
             return (
               <div key={ally.id} className="relative flex flex-col items-center w-full">
-                <div className={`relative flex items-center justify-center ${ally.id === 'nagisa' ? '' : 'translate-y-24 lg:-translate-y-4'}`}>
+                <div className={`relative flex items-center justify-center ${ally.id === 'nagisa' ? '' : 'translate-y-12 lg:-translate-y-4'}`}>
                   {!ally.isDead && activeFragments.length > 0 && (
                     <motion.div
-                      className="absolute inset-0 flex items-center justify-center pointer-events-none z-[45] pb-0 lg:pb-10 opacity-80"
-                      style={{ mixBlendMode: 'screen' }}
+                      className="absolute inset-0 flex items-center justify-center pointer-events-none z-[45] pb-0 lg:pb-10 opacity-80 mix-blend-screen"
                       animate={{ x: isCounterDashing ? 150 : (isCurrentTurn ? 30 : 0) }}
                       transition={{ duration: isCounterDashing ? 0.05 : 0.1, ease: 'easeOut' }}
                     >
@@ -1368,12 +1367,11 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
                   </div>
                 </div>
 
-                <div className="relative flex items-center justify-center -translate-y-24 lg:translate-y-0">
+                <div className="relative flex items-center justify-center -translate-y-12 lg:translate-y-0">
 
                   {!enemy.isDead && activeFragments.length === 0 && (
                     <motion.div
-                      className="absolute inset-0 flex items-center justify-center pointer-events-none z-[45] pb-0 lg:pb-10 opacity-80"
-                      style={{ mixBlendMode: 'screen' }}
+                      className="absolute inset-0 flex items-center justify-center pointer-events-none z-[45] pb-0 lg:pb-10 opacity-80 mix-blend-screen"
                       animate={{
                         x: isAttacking ? -30 : (isCurrentTurn && turnPhase === 'enemy_resolve' ? -30 : 0),
                         scale: isAttacking ? 1.05 : 1
@@ -1425,7 +1423,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
                       {showDamageNumbers.filter(d => d.targetId === enemy.id && (d.type === 'damage' || d.type === 'critical')).map(d => (
                         <motion.div
                           key={`fx-${d.id}`}
-                          className="absolute inset-0 flex items-center justify-center pointer-events-none z-[60]"
+                          className="absolute inset-0 flex items-center justify-center pointer-events-none z-[60] mix-blend-screen"
                         >
                           <SpriteAnimator
                             src="/battle/戦闘エフェクトアニメ12/320×240/pipo-btleffect084.png"
