@@ -1155,7 +1155,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
                   <motion.div
                     id={`char-${ally.id}`}
                     className={`relative cursor-pointer touch-none flex items-center justify-center
-                    ${ally.id === 'nagisa' ? 'w-[90px] h-[120px] lg:w-[180px] lg:h-[230px]' : 'w-[125px] h-[187px] lg:w-48 lg:h-64 translate-y-16 lg:-translate-y-4'}
+                    ${ally.id === 'nagisa' ? 'w-[90px] h-[120px] lg:w-[180px] lg:h-[230px]' : 'w-[125px] h-[187px] lg:w-48 lg:h-64 translate-y-24 lg:-translate-y-4'}
                     ${ally.isDead ? 'opacity-40 grayscale' : ''}
                   `}
                     animate={{ x: isCounterDashing ? 150 : (isCurrentTurn ? 30 : 0) }}
@@ -1168,17 +1168,17 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
 
                     {isTargeted && !ally.isDead && (
                       <div className="absolute inset-0 pointer-events-none flex items-center justify-center z-40">
-                        <motion.div 
+                        <motion.div
                           className="absolute w-[80px] h-[80px] lg:w-[150px] lg:h-[150px] border-[2px] border-amber-500/80 rotate-45 shadow-[0_0_15px_rgba(245,158,11,0.5)]"
                           animate={{ scale: [1.2, 1, 1.2], opacity: [0.5, 1, 0.5] }}
                           transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
                         />
                         <div className="absolute w-[100px] h-[100px] lg:w-[170px] lg:h-[170px] border border-amber-400/30 rotate-45" />
-                        
+
                         {/* Target Crosshairs */}
                         <div className="absolute w-[120px] lg:w-[200px] h-[1px] bg-gradient-to-r from-transparent via-amber-500/50 to-transparent" />
                         <div className="absolute h-[120px] lg:h-[200px] w-[1px] bg-gradient-to-b from-transparent via-amber-500/50 to-transparent" />
-                        
+
                         <div className="absolute -bottom-8 lg:-bottom-12 bg-amber-950/80 border border-amber-500 px-2 py-0.5 lg:px-3 lg:py-1 shadow-[0_0_10px_rgba(245,158,11,0.5)] backdrop-blur-sm skew-x-[-15deg]">
                           <span className="block font-orbitron text-[8px] lg:text-[10px] font-bold text-amber-400 tracking-widest animate-pulse skew-x-[15deg]">TARGET LOCK</span>
                         </div>
@@ -1191,12 +1191,12 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
                         onPointerDown={handleAllyAttack}
                       >
                         <div className="absolute inset-[-50px] bg-cyan-900/10 rounded-full blur-xl mix-blend-screen" />
-                        
+
                         {/* High-tech Timing Bar */}
                         <div className="relative w-[100%] max-w-[200px] lg:max-w-[300px] h-4 lg:h-8 bg-[#060a12]/80 backdrop-blur-sm border border-cyan-500/50 skew-x-[-15deg] overflow-hidden shadow-[0_0_20px_rgba(34,211,238,0.3)]">
                           {/* Grid background */}
                           <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPjxyZWN0IHdpZHRoPSIyIiBoZWlnaHQ9IjQiIGZpbGw9InJnYmEoMzQsIDIxMSwgMjM4LCAwLjIpIi8+PC9zdmc+')] mix-blend-screen" />
-                          
+
                           {/* Success Zone */}
                           <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[20%] bg-cyan-500/40 shadow-[inset_0_0_10px_rgba(34,211,238,0.8)]" />
                           <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[2px] bg-cyan-300 shadow-[0_0_10px_rgba(34,211,238,1)] z-10" />
@@ -1400,7 +1400,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
 
                   <motion.div
                     id={`char-${enemy.id}`}
-                    className={`relative w-[230px] h-[307px] -translate-y-16 lg:translate-y-0 lg:w-80 lg:h-96 flex items-center justify-center z-40 ${enemy.isDead ? 'opacity-30 grayscale'
+                    className={`relative w-[230px] h-[307px] -translate-y-24 lg:translate-y-0 lg:w-80 lg:h-96 flex items-center justify-center z-40 ${enemy.isDead ? 'opacity-30 grayscale'
                       : enemy.flashTimer > 0 ? 'animate-battle-hit-flash'
                         : ''
                       }`}
@@ -1484,7 +1484,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
             {/* Tech accents */}
             <div className="absolute top-0 left-6 w-12 h-[2px] bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.8)]" />
             <div className="absolute bottom-2 right-0 w-[2px] h-8 bg-cyan-500/50" />
-            
+
             <div className="flex items-end w-full justify-between">
               {/* Text Info */}
               <div className="flex flex-col z-10 w-full pr-8 lg:pr-20">
@@ -1494,7 +1494,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
                     CRPT {corruption}%
                   </span>
                 </div>
-                
+
                 {/* Corruption Bar (Slanted) */}
                 <div className="w-full h-1 lg:h-2.5 bg-black/80 border border-slate-700/50 skew-x-[-15deg] overflow-hidden relative shadow-[inset_0_0_5px_rgba(0,0,0,1)]">
                   <motion.div
@@ -1506,7 +1506,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
                   <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPjxyZWN0IHdpZHRoPSIyIiBoZWlnaHQ9IjQiIGZpbGw9InJnYmEoMjU1LCAyNTUsIDI1NSwgMC4xKSIvPjwvc3ZnPg==')] pointer-events-none mix-blend-overlay" />
                 </div>
               </div>
-              
+
               {/* Portrait floating outside the panel */}
               <div className="absolute bottom-0 right-0.5 lg:right-2 w-10 lg:w-32 pointer-events-none z-20">
                 <div className="relative w-full">
@@ -1535,7 +1535,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
           const hpPercent = (ally.hp / ally.maxHp) * 100;
           return (
             <div className="absolute top-3 left-3 lg:top-8 lg:left-10 pointer-events-auto flex items-center gap-1.5 lg:gap-4 drop-shadow-[0_0_15px_rgba(0,0,0,0.8)]">
-              
+
               {/* Portrait (Diamond shape) */}
               <div className="relative w-12 h-12 lg:w-20 lg:h-20 flex-shrink-0 z-20">
                 {/* Background diamond */}
@@ -1558,9 +1558,9 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
                 {/* Accent corners */}
                 <div className="absolute -top-1 -left-1 w-2 h-2 border-t-2 border-l-2 border-red-400" />
                 <div className="absolute -bottom-1 -right-1 w-2 h-2 border-b-2 border-r-2 border-red-400" />
-                
+
                 {/* Flashing effect when hit */}
-                <motion.div 
+                <motion.div
                   className="absolute inset-0 border-2 border-white rotate-45 pointer-events-none"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: ally.flashTimer > 0 ? [0, 1, 0] : 0, scale: ally.flashTimer > 0 ? 1.2 : 1 }}
@@ -1624,7 +1624,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
           >
             {/* Tech grid bg */}
             <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPjxwYXRoIGQ9Ik0wLDggTDgsMCBMMCwwIFoiIGZpbGw9InJnYmEoMCwgMCwgMCwgMC4yKSIvPjwvc3ZnPg==')] pointer-events-none mix-blend-overlay" />
-            
+
             <div className="flex items-center gap-0.5 lg:gap-2 skew-x-[15deg] z-10">
               <span className={`font-noto font-black text-[12px] lg:text-base tracking-[0.1em] lg:tracking-[0.2em] ${healCooldown <= 0 ? 'text-emerald-400 drop-shadow-[0_0_8px_rgba(16,185,129,0.8)]' : 'text-slate-600'}`}>回復</span>
               {healCooldown > 0 ? (
@@ -1649,7 +1649,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
               }`}
           >
             {/* Sync Rate Glow */}
-            <div 
+            <div
               className="absolute inset-0 rounded-full blur-xl mix-blend-screen transition-opacity duration-300"
               style={{
                 background: syncRate >= SYNC_COST_ULTIMATE ? 'radial-gradient(circle, rgba(251,191,36,0.5) 0%, transparent 70%)' : 'none',
@@ -1674,10 +1674,10 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
             <div className="absolute -bottom-0.5 lg:bottom-1 -right-0.5 lg:right-2 bg-amber-950/80 border border-amber-500 text-amber-400 font-orbitron font-bold text-[5px] lg:text-[10px] px-0.5 py-0 lg:px-2 lg:py-0.5 shadow-[0_0_10px_rgba(251,191,36,0.5)] skew-x-[-15deg]">
               <span className="block skew-x-[15deg]">COST {SYNC_COST_ULTIMATE}</span>
             </div>
-            
+
             {/* Fill Level visualization */}
             {syncRate >= SYNC_COST_ULTIMATE && (
-              <motion.div 
+              <motion.div
                 className="absolute inset-[-10px] rounded-full border border-amber-300/40 pointer-events-none"
                 animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0, 0.3] }}
                 transition={{ duration: 2, repeat: Infinity, ease: 'easeOut' }}
@@ -1696,7 +1696,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
           >
             {/* Tech grid bg */}
             <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPjxwYXRoIGQ9Ik0wLDggTDgsMCBMMCwwIFoiIGZpbGw9InJnYmEoMCwgMCwgMCwgMC4yKSIvPjwvc3ZnPg==')] pointer-events-none mix-blend-overlay" />
-            
+
             <div className="flex items-center gap-0.5 lg:gap-2 skew-x-[-15deg] z-10">
               <span className={`font-noto font-black text-[12px] lg:text-base tracking-[0.1em] lg:tracking-[0.2em] ${absorbCooldown <= 0 && activeFragments.length < MAX_ANOMALY_SLOTS ? 'text-indigo-400 drop-shadow-[0_0_8px_rgba(99,102,241,0.8)]' : 'text-slate-600'}`}>吸収</span>
               {absorbCooldown > 0 ? (
@@ -1722,9 +1722,9 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
         {(battlePhase === 'victory' || battlePhase === 'defeat') && (
           <motion.div className="absolute inset-0 z-[100] flex flex-col items-center justify-center pointer-events-auto" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
             <div className={`absolute inset-0 ${battlePhase === 'victory' ? 'bg-[#030712]/90' : 'bg-[#1e0505]/90'} backdrop-blur-md`} />
-            
+
             {/* Cinematic light beams */}
-            <motion.div 
+            <motion.div
               className={`absolute top-1/2 left-0 w-full h-[30vh] -translate-y-1/2 ${battlePhase === 'victory' ? 'bg-gradient-to-r from-transparent via-cyan-900/20 to-transparent' : 'bg-gradient-to-r from-transparent via-red-900/20 to-transparent'} mix-blend-screen skew-y-[-5deg]`}
               initial={{ scaleY: 0, opacity: 0 }}
               animate={{ scaleY: 1, opacity: 1 }}
@@ -1739,13 +1739,13 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
                 </div>
                 <div className={`h-[1px] w-16 ${battlePhase === 'victory' ? 'bg-cyan-500/50' : 'bg-red-500/50'}`} />
               </div>
-              
+
               <h2 className={`font-noto text-5xl lg:text-7xl font-black tracking-[0.2em] py-2 drop-shadow-[0_0_15px_rgba(0,0,0,0.8)] ${battlePhase === 'victory' ? 'text-transparent bg-clip-text bg-gradient-to-b from-white via-cyan-100 to-cyan-500' : 'text-transparent bg-clip-text bg-gradient-to-b from-white via-red-100 to-red-600'}`}>
                 {battlePhase === 'victory' ? '作戦成功' : '作戦失敗'}
               </h2>
-              
-              <motion.button 
-                onClick={handleResultClose} 
+
+              <motion.button
+                onClick={handleResultClose}
                 className={`mt-12 px-12 py-4 font-noto font-bold text-sm tracking-[0.4em] rounded-sm backdrop-blur-md border transition-all duration-300 relative overflow-hidden group ${battlePhase === 'victory' ? 'bg-cyan-950/30 border-cyan-500/50 text-cyan-50 hover:bg-cyan-900/60 hover:border-cyan-300 hover:shadow-[0_0_30px_rgba(34,211,238,0.4)]' : 'bg-red-950/30 border-red-500/50 text-red-50 hover:bg-red-900/60 hover:border-red-300 hover:shadow-[0_0_30px_rgba(239,68,68,0.4)]'}`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
