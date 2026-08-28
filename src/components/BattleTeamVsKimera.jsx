@@ -1140,7 +1140,7 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
             let sizeClass = "";
             if (ally.id === 'nagisa') sizeClass = "w-[144px] h-[192px] md:w-[192px] md:h-[252px]";
             else if (ally.id === 'mika') sizeClass = "w-[145px] h-[187px] md:w-[187px] md:h-[250px] -translate-y-2 md:-translate-y-4";
-            else if (ally.id === 'mutsunori') sizeClass = "w-[123px] h-[158px] md:w-[158px] md:h-[211px] translate-y-24 md:-translate-y-4";
+            else if (ally.id === 'mutsunori') sizeClass = "w-[123px] h-[158px] md:w-[158px] md:h-[211px] -translate-y-2 md:-translate-y-4";
             else sizeClass = "w-28 h-36 md:w-36 md:h-48 -translate-y-2 md:-translate-y-4";
 
             return (
