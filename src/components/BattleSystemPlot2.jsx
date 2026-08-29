@@ -1371,7 +1371,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
 
                   {!enemy.isDead && activeFragments.length === 0 && (
                     <motion.div
-                      className="absolute inset-0 flex items-center justify-center pointer-events-none z-[45] pb-0 lg:pb-10 opacity-80 mix-blend-screen"
+                      className="absolute inset-0 flex items-center justify-center pointer-events-none z-[45] -top-8 lg:-top-0 pb-0 lg:pb-10 opacity-80 mix-blend-screen"
                       animate={{
                         x: isAttacking ? -30 : (isCurrentTurn && turnPhase === 'enemy_resolve' ? -30 : 0),
                         scale: isAttacking ? 1.05 : 1
@@ -1422,18 +1422,19 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
 
                   <AnimatePresence>
                     {showDamageNumbers.filter(d => d.targetId === enemy.id && (d.type === 'damage' || d.type === 'critical')).map(d => (
-                      <SpriteAnimator
-                        key={`fx-${d.id}`}
-                        src="/battle/戦闘エフェクトアニメ12/320×240/pipo-btleffect084.png"
-                        frameWidth={120}
-                        frameHeight={120}
-                        columns={10}
-                        totalFrames={10}
-                        fps={15}
-                        loop={false}
-                        scale={1.8}
-                        blendMode="screen"
-                      />
+                      <div key={`fx-wrap-${d.id}`} className="absolute inset-0 flex items-center justify-center pointer-events-none -top-8 lg:top-0">
+                        <SpriteAnimator
+                          src="/battle/戦闘エフェクトアニメ12/320×240/pipo-btleffect084.png"
+                          frameWidth={120}
+                          frameHeight={120}
+                          columns={10}
+                          totalFrames={10}
+                          fps={15}
+                          loop={false}
+                          scale={1.8}
+                          blendMode="screen"
+                        />
+                      </div>
                     ))}
                   </AnimatePresence>
                 </div>
