@@ -1057,7 +1057,7 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
       {/* ═══════════════════════════════════════════════════════════════
            BATTLE FIELD
          ═══════════════════════════════════════════════════════════════ */}
-      <div className="relative flex-1 flex items-stretch px-4 lg:px-12 pt-20 lg:pt-32 pb-16 lg:pb-24 overflow-hidden">
+      <div className="relative flex-1 flex items-stretch px-4 lg:px-12 pt-32 pb-24 overflow-hidden">
 
         {/* ── Allies (Left Column) ── */}
         <div className="w-1/2 flex flex-col justify-around items-center pr-4">
@@ -1070,7 +1070,7 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
 
             return (
               <div key={ally.id} className="relative flex flex-col items-center w-full">
-                <div className={`relative flex items-center justify-center ${ally.id === 'nagisa' ? '' : 'top-2 left-2 lg:top-0 lg:left-0'}`}>
+                <div className="relative flex items-center justify-center">
                   {!ally.isDead && activeFragments.length > 0 && (
                     <motion.div
                       className="absolute inset-0 flex items-center justify-center pointer-events-none z-[45] -top-8 lg:-top-0 pb-0 lg:pb-10 opacity-80 mix-blend-screen"
@@ -1278,7 +1278,7 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
             const hpRatio = enemy.hp / enemy.maxHp;
 
             return (
-              <div key={enemy.id} className="relative flex flex-col items-center w-full">
+              <div key={enemy.id} className="relative flex flex-col items-center w-full -top-12 lg:top-0">
                 <div className="w-28 lg:w-52 mb-2 lg:mb-4 z-20 relative -translate-x-12 lg:translate-x-0">
                   <div className="flex flex-col items-center">
                     <div className="flex items-center justify-between w-full mb-0.5 px-1 lg:mb-1 lg:px-2">
@@ -1567,15 +1567,15 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
             {/* Tech grid bg */}
             <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPjxwYXRoIGQ9Ik0wLDggTDgsMCBMMCwwIFoiIGZpbGw9InJnYmEoMCwgMCwgMCwgMC4yKSIvPjwvc3ZnPg==')] pointer-events-none mix-blend-overlay" />
 
-            <div className="flex items-center gap-0.5 lg:gap-2 skew-x-[15deg] z-10">
-              <span className={`font-noto font-black text-[12px] lg:text-base tracking-[0.1em] lg:tracking-[0.2em] ${healCooldown <= 0 ? 'text-emerald-400 drop-shadow-[0_0_8px_rgba(16,185,129,0.8)]' : 'text-slate-600'}`}>回復</span>
+            <div className="flex items-center gap-2 skew-x-[15deg] z-10">
+              <span className={`font-noto font-black text-sm lg:text-base tracking-[0.2em] ${healCooldown <= 0 ? 'text-emerald-400 drop-shadow-[0_0_8px_rgba(16,185,129,0.8)]' : 'text-slate-600'}`}>回復</span>
               {healCooldown > 0 ? (
-                <span className="font-orbitron font-bold text-[6px] lg:text-[12px] text-emerald-700">CD:{(healCooldown / 1000).toFixed(1)}</span>
+                <span className="font-orbitron font-bold text-[10px] lg:text-[12px] text-emerald-700">CD:{(healCooldown / 1000).toFixed(1)}</span>
               ) : (
-                <div className="flex gap-[1px] lg:gap-0.5">
-                  <div className="w-0.5 h-1.5 lg:w-1.5 lg:h-3 bg-emerald-400 skew-x-[-15deg] shadow-[0_0_8px_#10b981]" />
-                  <div className="w-0.5 h-1.5 lg:w-1.5 lg:h-3 bg-emerald-400 skew-x-[-15deg] shadow-[0_0_8px_#10b981] opacity-70" />
-                  <div className="w-0.5 h-1.5 lg:w-1.5 lg:h-3 bg-emerald-400 skew-x-[-15deg] shadow-[0_0_8px_#10b981] opacity-40" />
+                <div className="flex gap-0.5">
+                  <div className="w-1.5 h-3 bg-emerald-400 skew-x-[-15deg] shadow-[0_0_8px_#10b981]" />
+                  <div className="w-1.5 h-3 bg-emerald-400 skew-x-[-15deg] shadow-[0_0_8px_#10b981] opacity-70" />
+                  <div className="w-1.5 h-3 bg-emerald-400 skew-x-[-15deg] shadow-[0_0_8px_#10b981] opacity-40" />
                 </div>
               )}
             </div>
@@ -1585,7 +1585,7 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
           <motion.button
             onClick={handleMutsunoriUltimate}
             disabled={syncRate < SYNC_COST_ULTIMATE || battlePhase !== 'fighting'}
-            className={`relative w-[108px] h-[108px] lg:w-32 lg:h-32 rounded-full border-2 flex flex-col items-center justify-center transition-all duration-300 -translate-y-1 lg:-translate-y-4 shadow-[0_0_30px_rgba(0,0,0,0.8)] backdrop-blur-md hover:scale-105 active:scale-95 ${syncRate < SYNC_COST_ULTIMATE || battlePhase !== 'fighting'
+            className={`relative w-[108px] h-[108px] lg:w-32 lg:h-32 rounded-full border-2 flex flex-col items-center justify-center transition-all duration-300 -translate-y-4 shadow-[0_0_30px_rgba(0,0,0,0.8)] backdrop-blur-md hover:scale-105 active:scale-95 ${syncRate < SYNC_COST_ULTIMATE || battlePhase !== 'fighting'
               ? 'bg-[#0a0a0a]/90 border-amber-900/30 cursor-not-allowed grayscale'
               : 'bg-[#1a0a03]/80 border-amber-500 hover:bg-[#2a1005]/90 hover:shadow-[0_0_40px_rgba(251,191,36,0.6)] cursor-pointer'
               }`}
@@ -1600,20 +1600,20 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
             />
 
             {/* Spinning Rings */}
-            <div className={`absolute inset-0.5 lg:inset-2 rounded-full border-2 border-amber-500/20 ${syncRate >= SYNC_COST_ULTIMATE ? 'animate-[spin_3s_linear_infinite]' : ''}`} />
-            <div className={`absolute inset-1.5 lg:inset-4 rounded-full border border-amber-400/10 border-dashed ${syncRate >= SYNC_COST_ULTIMATE ? 'animate-[spin_4s_linear_infinite_reverse]' : ''}`} />
+            <div className={`absolute inset-2 rounded-full border-2 border-amber-500/20 ${syncRate >= SYNC_COST_ULTIMATE ? 'animate-[spin_3s_linear_infinite]' : ''}`} />
+            <div className={`absolute inset-4 rounded-full border border-amber-400/10 border-dashed ${syncRate >= SYNC_COST_ULTIMATE ? 'animate-[spin_4s_linear_infinite_reverse]' : ''}`} />
 
             <div className="relative z-10 flex flex-col items-center">
-              <div className="font-rajdhani font-black text-sm lg:text-5xl text-amber-400 drop-shadow-[0_0_12px_rgba(251,191,36,1)] leading-none mb-0 lg:mb-1">
-                {Math.floor(syncRate)}<span className="text-[8px] lg:text-xl opacity-80">%</span>
+              <div className="font-rajdhani font-black text-3xl lg:text-5xl text-amber-400 drop-shadow-[0_0_12px_rgba(251,191,36,1)] leading-none mb-1">
+                {Math.floor(syncRate)}<span className="text-lg lg:text-xl opacity-80">%</span>
               </div>
-              <div className="font-noto font-black text-[10px] lg:text-xs text-amber-200 tracking-[0.15em] lg:tracking-[0.3em] drop-shadow-[0_0_8px_rgba(251,191,36,0.8)]">
+              <div className="font-noto font-black text-[10px] lg:text-xs text-amber-200 tracking-[0.3em] drop-shadow-[0_0_8px_rgba(251,191,36,0.8)]">
                 必殺技
               </div>
             </div>
 
             {/* Cost Indicator / Tech UI */}
-            <div className="absolute -bottom-0.5 lg:bottom-1 -right-0.5 lg:right-2 bg-amber-950/80 border border-amber-500 text-amber-400 font-orbitron font-bold text-[5px] lg:text-[10px] px-0.5 py-0 lg:px-2 lg:py-0.5 shadow-[0_0_10px_rgba(251,191,36,0.5)] skew-x-[-15deg]">
+            <div className="absolute bottom-1 right-2 bg-amber-950/80 border border-amber-500 text-amber-400 font-orbitron font-bold text-[9px] lg:text-[10px] px-2 py-0.5 shadow-[0_0_10px_rgba(251,191,36,0.5)] skew-x-[-15deg]">
               <span className="block skew-x-[15deg]">COST {SYNC_COST_ULTIMATE}</span>
             </div>
 
@@ -1639,15 +1639,15 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
             {/* Tech grid bg */}
             <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPjxwYXRoIGQ9Ik0wLDggTDgsMCBMMCwwIFoiIGZpbGw9InJnYmEoMCwgMCwgMCwgMC4yKSIvPjwvc3ZnPg==')] pointer-events-none mix-blend-overlay" />
 
-            <div className="flex items-center gap-0.5 lg:gap-2 skew-x-[-15deg] z-10">
-              <span className={`font-noto font-black text-[12px] lg:text-base tracking-[0.1em] lg:tracking-[0.2em] ${absorbCooldown <= 0 && activeFragments.length < MAX_ANOMALY_SLOTS ? 'text-indigo-400 drop-shadow-[0_0_8px_rgba(99,102,241,0.8)]' : 'text-slate-600'}`}>吸収</span>
+            <div className="flex items-center gap-2 skew-x-[-15deg] z-10">
+              <span className={`font-noto font-black text-sm lg:text-base tracking-[0.2em] ${absorbCooldown <= 0 && activeFragments.length < MAX_ANOMALY_SLOTS ? 'text-indigo-400 drop-shadow-[0_0_8px_rgba(99,102,241,0.8)]' : 'text-slate-600'}`}>吸収</span>
               {absorbCooldown > 0 ? (
-                <span className="font-orbitron font-bold text-[6px] lg:text-[12px] text-indigo-700">CD:{absorbCooldown}</span>
+                <span className="font-orbitron font-bold text-[10px] lg:text-[12px] text-indigo-700">CD:{absorbCooldown}</span>
               ) : (
-                <div className="flex gap-[1px] lg:gap-0.5">
-                  <div className="w-0.5 h-1.5 lg:w-1.5 lg:h-3 bg-indigo-400 skew-x-[15deg] shadow-[0_0_8px_#6366f1] opacity-40" />
-                  <div className="w-0.5 h-1.5 lg:w-1.5 lg:h-3 bg-indigo-400 skew-x-[15deg] shadow-[0_0_8px_#6366f1] opacity-70" />
-                  <div className="w-0.5 h-1.5 lg:w-1.5 lg:h-3 bg-indigo-400 skew-x-[15deg] shadow-[0_0_8px_#6366f1]" />
+                <div className="flex gap-0.5">
+                  <div className="w-1.5 h-3 bg-indigo-400 skew-x-[15deg] shadow-[0_0_8px_#6366f1] opacity-40" />
+                  <div className="w-1.5 h-3 bg-indigo-400 skew-x-[15deg] shadow-[0_0_8px_#6366f1] opacity-70" />
+                  <div className="w-1.5 h-3 bg-indigo-400 skew-x-[15deg] shadow-[0_0_8px_#6366f1]" />
                 </div>
               )}
             </div>
