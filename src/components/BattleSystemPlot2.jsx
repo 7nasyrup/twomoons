@@ -1130,7 +1130,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
 
             return (
               <div key={ally.id} className="relative flex flex-col items-center w-full">
-                <div className={`relative flex items-center justify-center ${ally.id === 'nagisa' ? '' : 'top-8 lg:-top-4'}`}>
+                <div className={`relative flex items-center justify-center ${ally.id === 'nagisa' ? '' : 'top-2 left-2 lg:-top-4 lg:left-0'}`}>
                   {!ally.isDead && activeFragments.length > 0 && (
                     <motion.div
                       className="absolute inset-0 flex items-center justify-center pointer-events-none z-[45] pb-0 lg:pb-10 opacity-80 mix-blend-screen"
@@ -1367,7 +1367,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
                   </div>
                 </div>
 
-                <div className="relative flex items-center justify-center -top-8 lg:top-0">
+                <div className="relative flex items-center justify-center -top-2 -left-6 lg:top-0 lg:left-0">
 
                   {!enemy.isDead && activeFragments.length === 0 && (
                     <motion.div
