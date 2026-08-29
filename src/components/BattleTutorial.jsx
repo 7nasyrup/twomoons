@@ -1070,7 +1070,7 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
 
             return (
               <div key={ally.id} className="relative flex flex-col items-center w-full">
-                <div className="relative flex items-center justify-center">
+                <div className={`relative flex items-center justify-center ${ally.id === 'nagisa' ? '' : 'top-2 left-2 lg:top-0 lg:left-0'}`}>
                   {!ally.isDead && activeFragments.length > 0 && (
                     <motion.div
                       className="absolute inset-0 flex items-center justify-center pointer-events-none z-[45] -top-8 lg:-top-0 pb-0 lg:pb-10 opacity-80 mix-blend-screen"
@@ -1279,7 +1279,7 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
 
             return (
               <div key={enemy.id} className="relative flex flex-col items-center w-full">
-                <div className="w-28 lg:w-52 mb-2 lg:mb-4 z-20 relative -translate-x-6 lg:translate-x-0">
+                <div className="w-28 lg:w-52 mb-2 lg:mb-4 z-20 relative -translate-x-12 lg:translate-x-0">
                   <div className="flex flex-col items-center">
                     <div className="flex items-center justify-between w-full mb-0.5 px-1 lg:mb-1 lg:px-2">
                       <div className="flex items-center gap-2">
