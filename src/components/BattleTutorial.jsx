@@ -1073,22 +1073,23 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
                 <div className="relative flex items-center justify-center">
                   {!ally.isDead && activeFragments.length > 0 && (
                     <motion.div
-                      className="absolute inset-0 flex items-center justify-center pointer-events-none z-[45] pb-0 lg:pb-10 opacity-80"
-                      style={{ mixBlendMode: 'screen' }}
+                      className="absolute inset-0 flex items-center justify-center pointer-events-none z-[45] -top-8 lg:-top-0 pb-0 lg:pb-10 opacity-80 mix-blend-screen"
                       animate={{ x: isCounterDashing ? 150 : (isCurrentTurn ? 30 : 0) }}
                       transition={{ duration: isCounterDashing ? 0.05 : 0.1, ease: 'easeOut' }}
                     >
-                      <SpriteAnimator
-                        src="/battle/戦闘エフェクトアニメ８/320×240/pipo-btleffect071.png"
-                        frameWidth={120}
-                        frameHeight={120}
-                        columns={10}
-                        totalFrames={10}
-                        fps={15}
-                        loop={true}
-                        scale={1.8}
-                        blendMode="screen"
-                      />
+                      <div className="scale-[0.8] lg:scale-100 flex items-center justify-center w-full h-full">
+                        <SpriteAnimator
+                          src="/battle/戦闘エフェクトアニメ８/320×240/pipo-btleffect071.png"
+                          frameWidth={120}
+                          frameHeight={120}
+                          columns={10}
+                          totalFrames={10}
+                          fps={15}
+                          loop={true}
+                          scale={1.8}
+                          blendMode="normal"
+                        />
+                      </div>
                     </motion.div>
                   )}
 
@@ -1278,21 +1279,21 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
 
             return (
               <div key={enemy.id} className="relative flex flex-col items-center w-full">
-                <div className="w-40 lg:w-52 mb-4 z-20 relative">
+                <div className="w-28 lg:w-52 mb-2 lg:mb-4 z-20 relative -translate-x-6 lg:translate-x-0">
                   <div className="flex flex-col items-center">
-                    <div className="flex items-center justify-between w-full mb-1 px-2">
+                    <div className="flex items-center justify-between w-full mb-0.5 px-1 lg:mb-1 lg:px-2">
                       <div className="flex items-center gap-2">
                         <div className="w-1 h-1 bg-amber-400 shadow-[0_0_8px_#fbbf24] rotate-45" />
-                        <span className="font-orbitron font-bold text-[10px] lg:text-[12px] text-amber-300 tracking-[0.2em] drop-shadow-[0_0_5px_rgba(251,191,36,0.5)]">
+                        <span className="font-orbitron font-bold text-[8px] lg:text-[12px] text-amber-300 tracking-[0.2em] drop-shadow-[0_0_5px_rgba(251,191,36,0.5)]">
                           {enemy.name.toUpperCase()}
                         </span>
                       </div>
-                      <span className="font-orbitron font-bold text-[10px] text-amber-100/90 tabular-nums">
+                      <span className="font-orbitron font-bold text-[8px] lg:text-[10px] text-amber-100/90 tabular-nums">
                         {Math.ceil(hpRatio * 100)}%
                       </span>
                     </div>
 
-                    <div className="w-full h-1.5 lg:h-2 bg-black/80 border border-amber-500/30 skew-x-[-20deg] relative overflow-hidden shadow-[0_0_15px_rgba(251,191,36,0.2)] backdrop-blur-sm">
+                    <div className="w-full h-1 lg:h-2 bg-black/80 border border-amber-500/30 skew-x-[-20deg] relative overflow-hidden shadow-[0_0_15px_rgba(251,191,36,0.2)] backdrop-blur-sm">
                       <motion.div
                         className="h-full relative"
                         style={{
@@ -1308,12 +1309,11 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
                   </div>
                 </div>
 
-                <div className="relative flex items-center justify-center">
+                <div className="relative flex items-center justify-center -top-6 -left-8 lg:top-0 lg:left-0">
 
                   {!enemy.isDead && activeFragments.length === 0 && (
                     <motion.div
-                      className="absolute inset-0 flex items-center justify-center pointer-events-none z-[45] pb-0 lg:pb-10 opacity-80"
-                      style={{ mixBlendMode: 'screen' }}
+                      className="absolute inset-0 flex items-center justify-center pointer-events-none z-[45] -top-20 lg:-top-0 pb-0 lg:pb-10 opacity-80 mix-blend-screen"
                       animate={{
                         x: isAttacking ? -30 : (isCurrentTurn && turnPhase === 'enemy_resolve' ? -30 : 0),
                         scale: isAttacking ? 1.05 : 1
@@ -1323,17 +1323,19 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
                         ease: isAttacking ? 'easeOut' : 'easeInOut'
                       }}
                     >
-                      <SpriteAnimator
-                        src="/battle/戦闘エフェクトアニメ８/320×240/pipo-btleffect071.png"
-                        frameWidth={120}
-                        frameHeight={120}
-                        columns={10}
-                        totalFrames={10}
-                        fps={15}
-                        loop={true}
-                        scale={1.8}
-                        blendMode="screen"
-                      />
+                      <div className="scale-[0.8] lg:scale-100 flex items-center justify-center w-full h-full">
+                        <SpriteAnimator
+                          src="/battle/戦闘エフェクトアニメ８/320×240/pipo-btleffect071.png"
+                          frameWidth={120}
+                          frameHeight={120}
+                          columns={10}
+                          totalFrames={10}
+                          fps={15}
+                          loop={true}
+                          scale={1.8}
+                          blendMode="normal"
+                        />
+                      </div>
                     </motion.div>
                   )}
 
@@ -1363,9 +1365,9 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
 
                     <AnimatePresence>
                       {showDamageNumbers.filter(d => d.targetId === enemy.id && (d.type === 'damage' || d.type === 'critical')).map(d => (
-                        <motion.div
-                          key={`fx-${d.id}`}
-                          className="absolute inset-0 flex items-center justify-center pointer-events-none z-[60]"
+                        <div
+                          key={`fx-wrap-${d.id}`}
+                          className="absolute inset-0 flex items-center justify-center pointer-events-none z-[60] -top-20 lg:top-0 mix-blend-screen scale-[0.8] lg:scale-100"
                         >
                           <SpriteAnimator
                             src="/battle/戦闘エフェクトアニメ12/320×240/pipo-btleffect084.png"
@@ -1376,9 +1378,9 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
                             fps={15}
                             loop={false}
                             scale={1.8}
-                            blendMode="screen"
+                            blendMode="normal"
                           />
-                        </motion.div>
+                        </div>
                       ))}
                     </AnimatePresence>
                   </motion.div>
@@ -1418,22 +1420,22 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
       <div className="absolute inset-0 z-40 pointer-events-none">
 
         {/* ── Bottom Right: Character Portrait (Sakura) ── */}
-        <div className="absolute bottom-10 left-1/2 ml-[165px] lg:bottom-12 lg:left-auto lg:ml-0 lg:right-12 pointer-events-auto flex items-end">
+        <div className="absolute bottom-6 left-[calc(50%+168px)] right-0 lg:bottom-12 lg:left-auto lg:right-12 pointer-events-auto flex items-end justify-center lg:justify-end">
           <div className="flex flex-col items-end z-30">
             {/* Tech Panel for Sakura */}
-            <div className="relative bg-[#060a12]/80 backdrop-blur-md border-r-4 border-cyan-500 shadow-[0_0_20px_rgba(34,211,238,0.2)] pl-8 pr-3 py-3 w-64 lg:w-72 flex flex-col clip-path-sakura-panel skew-x-[-10deg]">
+            <div className="relative bg-[#060a12]/80 backdrop-blur-md border-r-4 border-cyan-500 shadow-[0_0_20px_rgba(34,211,238,0.2)] pl-8 pr-3 py-3 w-40 lg:w-72 flex flex-col clip-path-sakura-panel skew-x-[-10deg] -translate-x-4 lg:translate-x-0">
 
               <div className="flex items-center justify-between w-full mb-2 z-10 skew-x-[10deg]">
-                <span className="font-orbitron font-black text-cyan-400 text-sm lg:text-base tracking-[0.2em] drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]">
+                <span className="font-orbitron font-black text-cyan-400 text-[7px] lg:text-base tracking-[0.2em] drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]">
                   SAKURA
                 </span>
-                <span className={`font-orbitron font-bold text-[9px] lg:text-[10px] tracking-widest ${corruption >= 80 ? 'text-red-400 animate-pulse' : 'text-cyan-100/70'}`}>
+                <span className={`font-orbitron font-bold text-[6px] lg:text-[10px] tracking-widest ${corruption >= 80 ? 'text-red-400 animate-pulse' : 'text-cyan-100/70'}`}>
                   CRPT {corruption}%
                 </span>
               </div>
 
               {/* Corruption Bar (Hazard Style) */}
-              <div className="w-full h-2 lg:h-3 bg-black/90 border border-slate-700/50 relative overflow-hidden skew-x-[10deg] shadow-[inset_0_0_8px_rgba(0,0,0,1)]">
+              <div className="w-full h-1.5 lg:h-3 bg-black/90 border border-slate-700/50 relative overflow-hidden skew-x-[10deg] shadow-[inset_0_0_8px_rgba(0,0,0,1)]">
                 <motion.div
                   className="h-full bg-gradient-to-r from-red-600 via-red-500 to-red-400"
                   style={{ width: `${corruption}%` }}
@@ -1445,14 +1447,14 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
             </div>
 
             {/* Portrait floating outside the panel */}
-            <div className="absolute bottom-0 right-2 w-28 lg:w-32 pointer-events-none z-20">
+            <div className="absolute bottom-0 right-2 w-20 lg:w-32 pointer-events-none z-20 translate-x-4 lg:translate-x-0">
               <div className="relative w-full">
                 {/* Glowing aura behind portrait */}
                 <div className="absolute inset-0 bg-cyan-500/20 rounded-full blur-xl mix-blend-screen" />
                 <img
                   src="/character/Sakura/Sakura.png"
                   alt="Sakura"
-                  className="relative w-full h-auto drop-shadow-[0_0_15px_rgba(6,182,212,0.6)] object-cover object-top scale-[1.6] lg:scale-[1.8] translate-y-[-10%]"
+                  className="relative w-full h-auto drop-shadow-[0_0_15px_rgba(6,182,212,0.6)] object-cover object-top scale-[1.6] lg:scale-[1.8] translate-y-[-20%] lg:translate-y-[-10%]"
                   style={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' }}
                   onError={(e) => {
                     e.target.onerror = null;
@@ -1547,13 +1549,13 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
         })()}
 
         {/* ── Bottom Center: Action Buttons (Diamond Grid) ── */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 lg:bottom-12 pointer-events-auto flex items-end justify-center gap-4 lg:gap-8 drop-shadow-[0_0_20px_rgba(34,211,238,0.2)]">
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 lg:bottom-12 pointer-events-auto flex items-end justify-center gap-1.5 lg:gap-8 drop-shadow-[0_0_20px_rgba(34,211,238,0.2)]">
 
           {/* Left Button - HEAL */}
           <motion.button
             onClick={handleHeal}
             disabled={healCooldown > 0 || battlePhase !== 'fighting'}
-            className={`w-24 h-12 lg:w-32 lg:h-16 skew-x-[-15deg] flex items-center justify-center overflow-hidden group transition-all duration-300 relative border-b-2 border-r-2 backdrop-blur-md hover:scale-105 active:scale-95 ${healCooldown > 0 || battlePhase !== 'fighting'
+            className={`w-[108px] h-[54px] lg:w-32 lg:h-16 skew-x-[-15deg] flex items-center justify-center overflow-hidden group transition-all duration-300 relative border-b-2 border-r-2 backdrop-blur-md hover:scale-105 active:scale-95 ${healCooldown > 0 || battlePhase !== 'fighting'
               ? 'bg-[#090e17]/90 border-slate-700/50 cursor-not-allowed'
               : 'bg-emerald-950/60 border-emerald-500/80 hover:bg-emerald-900/80 hover:border-emerald-400 hover:shadow-[0_0_20px_rgba(16,185,129,0.6)] cursor-pointer'
               }`}
@@ -1579,7 +1581,7 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
           <motion.button
             onClick={handleMutsunoriUltimate}
             disabled={syncRate < SYNC_COST_ULTIMATE || battlePhase !== 'fighting'}
-            className={`relative w-24 h-24 lg:w-32 lg:h-32 rounded-full border-2 flex flex-col items-center justify-center transition-all duration-300 -translate-y-4 shadow-[0_0_30px_rgba(0,0,0,0.8)] backdrop-blur-md hover:scale-105 active:scale-95 ${syncRate < SYNC_COST_ULTIMATE || battlePhase !== 'fighting'
+            className={`relative w-[108px] h-[108px] lg:w-32 lg:h-32 rounded-full border-2 flex flex-col items-center justify-center transition-all duration-300 -translate-y-4 shadow-[0_0_30px_rgba(0,0,0,0.8)] backdrop-blur-md hover:scale-105 active:scale-95 ${syncRate < SYNC_COST_ULTIMATE || battlePhase !== 'fighting'
               ? 'bg-[#0a0a0a]/90 border-amber-900/30 cursor-not-allowed grayscale'
               : 'bg-[#1a0a03]/80 border-amber-500 hover:bg-[#2a1005]/90 hover:shadow-[0_0_40px_rgba(251,191,36,0.6)] cursor-pointer'
               }`}
@@ -1625,7 +1627,7 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
           <motion.button
             onClick={handleAbsorb}
             disabled={battlePhase !== 'fighting' || absorbCooldown > 0 || activeFragments.length >= MAX_ANOMALY_SLOTS}
-            className={`w-24 h-12 lg:w-32 lg:h-16 skew-x-[15deg] flex items-center justify-center overflow-hidden group transition-all duration-300 relative border-b-2 border-l-2 backdrop-blur-md hover:scale-105 active:scale-95 ${battlePhase !== 'fighting' || absorbCooldown > 0 || activeFragments.length >= MAX_ANOMALY_SLOTS
+            className={`w-[108px] h-[54px] lg:w-32 lg:h-16 skew-x-[15deg] flex items-center justify-center overflow-hidden group transition-all duration-300 relative border-b-2 border-l-2 backdrop-blur-md hover:scale-105 active:scale-95 ${battlePhase !== 'fighting' || absorbCooldown > 0 || activeFragments.length >= MAX_ANOMALY_SLOTS
               ? 'bg-[#090e17]/90 border-slate-700/50 cursor-not-allowed'
               : 'bg-indigo-950/60 border-indigo-500/80 hover:bg-indigo-900/80 hover:border-indigo-400 hover:shadow-[0_0_20px_rgba(99,102,241,0.6)] cursor-pointer'
               }`}
