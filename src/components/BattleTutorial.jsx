@@ -1418,10 +1418,10 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
       <div className="absolute inset-0 z-40 pointer-events-none">
 
         {/* ── Bottom Right: Character Portrait (Sakura) ── */}
-        <div className="absolute bottom-10 right-8 lg:bottom-12 lg:right-12 pointer-events-auto flex items-end">
+        <div className="absolute bottom-10 left-1/2 ml-[165px] lg:bottom-12 lg:left-auto lg:ml-0 lg:right-12 pointer-events-auto flex items-end">
           <div className="flex flex-col items-end z-30">
             {/* Tech Panel for Sakura */}
-            <div className="relative bg-[#060a12]/80 backdrop-blur-md border-r-4 border-cyan-500 shadow-[0_0_20px_rgba(34,211,238,0.2)] pl-8 pr-3 py-3 w-56 lg:w-72 flex flex-col clip-path-sakura-panel skew-x-[-10deg]">
+            <div className="relative bg-[#060a12]/80 backdrop-blur-md border-r-4 border-cyan-500 shadow-[0_0_20px_rgba(34,211,238,0.2)] pl-8 pr-3 py-3 w-64 lg:w-72 flex flex-col clip-path-sakura-panel skew-x-[-10deg]">
 
               <div className="flex items-center justify-between w-full mb-2 z-10 skew-x-[10deg]">
                 <span className="font-orbitron font-black text-cyan-400 text-sm lg:text-base tracking-[0.2em] drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]">
@@ -1445,14 +1445,14 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
             </div>
 
             {/* Portrait floating outside the panel */}
-            <div className="absolute bottom-0 right-2 w-24 lg:w-32 pointer-events-none z-20">
+            <div className="absolute bottom-0 right-2 w-28 lg:w-32 pointer-events-none z-20">
               <div className="relative w-full">
                 {/* Glowing aura behind portrait */}
                 <div className="absolute inset-0 bg-cyan-500/20 rounded-full blur-xl mix-blend-screen" />
                 <img
                   src="/character/Sakura/Sakura.png"
                   alt="Sakura"
-                  className="relative w-full h-auto drop-shadow-[0_0_15px_rgba(6,182,212,0.6)] object-cover object-top scale-[1.5] lg:scale-[1.8] translate-y-[-10%]"
+                  className="relative w-full h-auto drop-shadow-[0_0_15px_rgba(6,182,212,0.6)] object-cover object-top scale-[1.6] lg:scale-[1.8] translate-y-[-10%]"
                   style={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' }}
                   onError={(e) => {
                     e.target.onerror = null;
