@@ -1235,19 +1235,19 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
                           className="absolute inset-0 flex items-center justify-center z-50 pointer-events-none"
                         >
                           <motion.div
-                            className="absolute w-32 h-32 lg:w-40 lg:h-40 rounded-full border-[3px] border-amber-400 border-dashed shadow-[0_0_15px_rgba(251,191,36,0.7)]"
+                            className="absolute w-20 h-20 lg:w-40 lg:h-40 rounded-full border-[3px] border-amber-400 border-dashed shadow-[0_0_15px_rgba(251,191,36,0.7)]"
                             initial={{ scale: 2.5, opacity: 0, rotate: 0 }}
                             animate={{ scale: 0.15, opacity: [0, 1, 1, 0], rotate: 180 }}
                             transition={{ duration: 0.6, ease: "linear" }}
                           />
                           <motion.div
-                            className="absolute w-28 h-28 lg:w-36 lg:h-36 rounded-full border-2 border-amber-300 shadow-[0_0_10px_rgba(252,211,77,0.5)]"
+                            className="absolute w-16 h-16 lg:w-36 lg:h-36 rounded-full border-2 border-amber-300 shadow-[0_0_10px_rgba(252,211,77,0.5)]"
                             initial={{ scale: 3, opacity: 0 }}
                             animate={{ scale: 0.15, opacity: [0, 0.8, 0.8, 0] }}
                             transition={{ duration: 0.6, ease: "linear" }}
                           />
                           <motion.div
-                            className="absolute w-12 h-12 bg-white rounded-sm shadow-[0_0_30px_#fff]"
+                            className="absolute w-8 h-8 lg:w-12 lg:h-12 bg-white rounded-sm shadow-[0_0_30px_#fff]"
                             initial={{ opacity: 0, scale: 0, rotate: 45 }}
                             animate={{ opacity: [0, 1, 0], scale: [0, 2.5, 0], rotate: 90 }}
                             transition={{ duration: 0.3, delay: 0.6, ease: "easeOut" }}
@@ -1260,7 +1260,7 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
 
                 <AnimatePresence>
                   {showDamageNumbers.filter(d => d.targetId === ally.id).map(d => (
-                    <motion.div key={d.id} className={`absolute top-0 z-30 font-noto font-black text-xl lg:text-3xl italic ${d.type === 'heal' ? 'text-emerald-300 drop-shadow-[0_0_8px_rgba(52,211,153,0.6)]' : 'text-red-400 drop-shadow-[0_0_8px_rgba(239,68,68,0.6)]'}`} initial={{ opacity: 1, y: 0, scale: 0.8 }} animate={{ opacity: 0, y: -40, scale: 1.2 }} exit={{ opacity: 0 }} transition={{ duration: 1 }}>
+                    <motion.div key={d.id} className={`absolute top-0 z-30 font-noto font-black text-lg lg:text-3xl italic ${d.type === 'heal' ? 'text-emerald-300 drop-shadow-[0_0_8px_rgba(52,211,153,0.6)]' : 'text-red-400 drop-shadow-[0_0_8px_rgba(239,68,68,0.6)]'}`} initial={{ opacity: 1, y: 0, scale: 0.8 }} animate={{ opacity: 0, y: -40, scale: 1.2 }} exit={{ opacity: 0 }} transition={{ duration: 1 }}>
                       {d.type === 'heal' ? `+${d.amount}` : `-${d.amount}`}
                     </motion.div>
                   ))}
@@ -1420,47 +1420,51 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
       <div className="absolute inset-0 z-40 pointer-events-none">
 
         {/* ── Bottom Right: Character Portrait (Sakura) ── */}
-        <div className="absolute bottom-6 left-[calc(50%+168px)] right-0 lg:bottom-12 lg:left-auto lg:right-12 pointer-events-auto flex items-end justify-center lg:justify-end">
-          <div className="flex flex-col items-end z-30">
-            {/* Tech Panel for Sakura */}
-            <div className="relative bg-[#060a12]/80 backdrop-blur-md border-r-4 border-cyan-500 shadow-[0_0_20px_rgba(34,211,238,0.2)] pl-8 pr-3 py-3 w-40 lg:w-72 flex flex-col clip-path-sakura-panel skew-x-[-10deg] -translate-x-4 lg:translate-x-0">
+        <div className="absolute bottom-6 left-[calc(50%+168px)] right-0 lg:bottom-10 lg:left-auto lg:right-10 pointer-events-auto flex items-end justify-center lg:justify-end">
+          {/* Glassmorphic Panel */}
+          <div className="relative flex flex-col items-end w-40 lg:w-64 bg-[#0a1120]/60 backdrop-blur-md border-t border-l border-cyan-500/30 rounded-tl-2xl lg:rounded-tl-3xl rounded-br-md p-1.5 pb-2 lg:p-3 lg:pb-4 shadow-[0_8px_32px_rgba(0,0,0,0.5)] -translate-x-4 lg:translate-x-0">
+            {/* Tech accents */}
+            <div className="absolute top-0 left-6 w-12 h-[2px] bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.8)]" />
+            <div className="absolute bottom-2 right-0 w-[2px] h-8 bg-cyan-500/50" />
 
-              <div className="flex items-center justify-between w-full mb-2 z-10 skew-x-[10deg]">
-                <span className="font-orbitron font-black text-cyan-400 text-[7px] lg:text-base tracking-[0.2em] drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]">
-                  SAKURA
-                </span>
-                <span className={`font-orbitron font-bold text-[6px] lg:text-[10px] tracking-widest ${corruption >= 80 ? 'text-red-400 animate-pulse' : 'text-cyan-100/70'}`}>
-                  CRPT {corruption}%
-                </span>
+            <div className="flex items-end w-full justify-between">
+              {/* Text Info */}
+              <div className="flex flex-col z-10 w-full pr-8 lg:pr-20">
+                <div className="flex justify-between items-end mb-1 lg:mb-2">
+                  <span className="font-orbitron font-bold text-[7px] lg:text-xs text-cyan-300 tracking-[0.15em] lg:tracking-[0.2em] drop-shadow-[0_0_5px_rgba(34,211,238,0.5)]">SAKURA</span>
+                  <span className={`font-orbitron font-bold text-[6px] lg:text-[10px] tracking-widest ${corruption >= 80 ? 'text-red-400 animate-pulse' : 'text-cyan-100/70'}`}>
+                    CRPT {corruption}%
+                  </span>
+                </div>
+
+                {/* Corruption Bar (Slanted) */}
+                <div className="w-full h-1.5 lg:h-2.5 bg-black/80 border border-slate-700/50 skew-x-[-15deg] overflow-hidden relative shadow-[inset_0_0_5px_rgba(0,0,0,1)]">
+                  <motion.div
+                    className="h-full bg-gradient-to-r from-red-600 via-red-500 to-red-400"
+                    style={{ width: `${corruption}%` }}
+                    animate={{ boxShadow: corruption >= 80 ? '0 0 10px rgba(239,68,68,0.8)' : 'none' }}
+                  />
+                  {/* Grid overlay */}
+                  <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPjxyZWN0IHdpZHRoPSIyIiBoZWlnaHQ9IjQiIGZpbGw9InJnYmEoMjU1LCAyNTUsIDI1NSwgMC4xKSIvPjwvc3ZnPg==')] pointer-events-none mix-blend-overlay" />
+                </div>
               </div>
 
-              {/* Corruption Bar (Hazard Style) */}
-              <div className="w-full h-1.5 lg:h-3 bg-black/90 border border-slate-700/50 relative overflow-hidden skew-x-[10deg] shadow-[inset_0_0_8px_rgba(0,0,0,1)]">
-                <motion.div
-                  className="h-full bg-gradient-to-r from-red-600 via-red-500 to-red-400"
-                  style={{ width: `${corruption}%` }}
-                  animate={{ boxShadow: corruption >= 80 ? '0 0 10px rgba(239,68,68,0.8)' : 'none' }}
-                />
-                {/* Grid overlay */}
-                <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPjxyZWN0IHdpZHRoPSIyIiBoZWlnaHQ9IjQiIGZpbGw9InJnYmEoMjU1LCAyNTUsIDI1NSwgMC4xKSIvPjwvc3ZnPg==')] pointer-events-none mix-blend-overlay" />
-              </div>
-            </div>
-
-            {/* Portrait floating outside the panel */}
-            <div className="absolute bottom-0 right-2 w-20 lg:w-32 pointer-events-none z-20 translate-x-4 lg:translate-x-0">
-              <div className="relative w-full">
-                {/* Glowing aura behind portrait */}
-                <div className="absolute inset-0 bg-cyan-500/20 rounded-full blur-xl mix-blend-screen" />
-                <img
-                  src="/character/Sakura/Sakura.png"
-                  alt="Sakura"
-                  className="relative w-full h-auto drop-shadow-[0_0_15px_rgba(6,182,212,0.6)] object-cover object-top scale-[1.6] lg:scale-[1.8] translate-y-[-20%] lg:translate-y-[-10%]"
-                  style={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' }}
-                  onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.src = "/battle/sakura.png";
-                  }}
-                />
+              {/* Portrait floating outside the panel */}
+              <div className="absolute bottom-0 right-0.5 lg:right-2 w-20 lg:w-32 pointer-events-none z-20 translate-x-4 lg:translate-x-0">
+                <div className="relative w-full">
+                  {/* Glowing aura behind portrait */}
+                  <div className="absolute inset-0 bg-cyan-500/20 rounded-full blur-xl mix-blend-screen" />
+                  <img
+                    src="/character/Sakura/Sakura.png"
+                    alt="Sakura"
+                    className="relative w-full h-auto drop-shadow-[0_0_15px_rgba(6,182,212,0.6)] object-cover object-top scale-[1.6] lg:scale-[1.8] translate-y-[-20%] lg:translate-y-[-10%]"
+                    style={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' }}
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = "/battle/sakura.png";
+                    }}
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -1472,10 +1476,10 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
           if (!ally) return null;
           const hpPercent = (ally.hp / ally.maxHp) * 100;
           return (
-            <div className="absolute top-6 left-6 lg:top-8 lg:left-10 pointer-events-auto flex items-center gap-4 drop-shadow-[0_0_15px_rgba(0,0,0,0.8)]">
+            <div className="absolute top-3 left-3 lg:top-8 lg:left-10 pointer-events-auto flex items-center gap-1.5 lg:gap-4 drop-shadow-[0_0_15px_rgba(0,0,0,0.8)]">
 
               {/* Portrait (Diamond shape) */}
-              <div className="relative w-16 h-16 lg:w-20 lg:h-20 flex-shrink-0 z-20">
+              <div className="relative w-12 h-12 lg:w-20 lg:h-20 flex-shrink-0 z-20">
                 {/* Background diamond */}
                 <div className="absolute inset-0 bg-slate-900 border-[2px] border-red-500/80 rotate-45 overflow-hidden shadow-[0_0_20px_rgba(239,68,68,0.4)]">
                   <div className="absolute inset-0 -rotate-45 scale-[1.4] w-full h-full">
@@ -1507,25 +1511,25 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
               </div>
 
               {/* Status Info (Tech Panel) */}
-              <div className="flex flex-col justify-center h-16 lg:h-20 w-48 lg:w-64 bg-gradient-to-r from-[#0a1120]/90 via-[#0a1120]/60 to-transparent pl-4 py-2 border-l-2 border-red-500/50 backdrop-blur-sm">
+              <div className="flex flex-col justify-center h-10 lg:h-20 w-32 lg:w-64 bg-gradient-to-r from-[#0a1120]/90 via-[#0a1120]/60 to-transparent pl-1.5 lg:pl-4 py-0.5 lg:py-2 border-l-2 border-red-500/50 backdrop-blur-sm">
                 <div className="flex justify-between items-end mb-0.5 lg:mb-1">
-                  <span className="font-noto font-black text-white text-base lg:text-xl tracking-[0.2em] drop-shadow-[0_0_8px_rgba(239,68,68,0.9)] leading-none italic">
+                  <span className="font-noto font-black text-white text-[12px] lg:text-xl tracking-[0.1em] lg:tracking-[0.2em] drop-shadow-[0_0_8px_rgba(239,68,68,0.9)] leading-none italic">
                     睦典
                   </span>
-                  <div className="flex items-baseline gap-1 mr-4">
-                    <span className="font-orbitron font-bold text-[14px] lg:text-[18px] text-white tabular-nums leading-none drop-shadow-[0_0_5px_rgba(255,255,255,0.8)]">
+                  <div className="flex items-baseline gap-0.5 lg:gap-1 mr-1 lg:mr-4">
+                    <span className="font-orbitron font-bold text-[10px] lg:text-[18px] text-white tabular-nums leading-none drop-shadow-[0_0_5px_rgba(255,255,255,0.8)]">
                       {ally.hp}
                     </span>
-                    <span className="font-orbitron text-[9px] lg:text-[11px] text-red-400 leading-none">
+                    <span className="font-orbitron text-[8px] lg:text-[11px] text-red-400 leading-none">
                       /{ally.maxHp}
                     </span>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2 mt-2 pr-4">
-                  <span className="font-orbitron font-black text-red-500 text-[10px] lg:text-xs leading-none tracking-widest">HP</span>
+                <div className="flex items-center gap-1 lg:gap-2 mt-0.5 lg:mt-2 pr-1 lg:pr-4">
+                  <span className="font-orbitron font-black text-red-500 text-[8px] lg:text-xs leading-none tracking-widest">HP</span>
                   {/* Segmented bar */}
-                  <div className="flex-1 h-2.5 lg:h-3 bg-black/80 border border-red-900/50 p-[1px] relative overflow-hidden skew-x-[-20deg] shadow-[inset_0_0_5px_rgba(0,0,0,1)]">
+                  <div className="flex-1 h-1 lg:h-3 bg-black/80 border border-red-900/50 p-[1px] relative overflow-hidden skew-x-[-20deg] shadow-[inset_0_0_5px_rgba(0,0,0,1)]">
                     <motion.div
                       className="h-full relative"
                       style={{
