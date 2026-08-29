@@ -1367,7 +1367,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
                   </div>
                 </div>
 
-                <div className="relative flex items-center justify-center -top-2 -left-6 lg:top-0 lg:left-0">
+                <div className="relative flex items-center justify-center -top-4 -left-8 lg:top-0 lg:left-0">
 
                   {!enemy.isDead && activeFragments.length === 0 && (
                     <motion.div
