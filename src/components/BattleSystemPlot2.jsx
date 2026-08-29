@@ -1473,9 +1473,9 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
       <div className="absolute inset-0 z-40 pointer-events-none">
 
         {/* ── Bottom Right: Character Portrait (Sakura) ── */}
-        <div className="absolute bottom-3 right-3 lg:bottom-10 lg:right-10 pointer-events-auto flex items-end justify-end">
+        <div className="absolute bottom-3 left-1/2 ml-[175px] lg:bottom-10 lg:left-auto lg:ml-0 lg:right-10 pointer-events-auto flex items-end justify-start lg:justify-end">
           {/* Glassmorphic Panel */}
-          <div className="relative flex flex-col items-end w-24 lg:w-64 bg-[#0a1120]/60 backdrop-blur-md border-t border-l border-cyan-500/30 rounded-tl-2xl lg:rounded-tl-3xl rounded-br-md p-1.5 pb-2 lg:p-3 lg:pb-4 shadow-[0_8px_32px_rgba(0,0,0,0.5)]">
+          <div className="relative flex flex-col items-end w-32 lg:w-64 bg-[#0a1120]/60 backdrop-blur-md border-t border-l border-cyan-500/30 rounded-tl-2xl lg:rounded-tl-3xl rounded-br-md p-1.5 pb-2 lg:p-3 lg:pb-4 shadow-[0_8px_32px_rgba(0,0,0,0.5)]">
             {/* Tech accents */}
             <div className="absolute top-0 left-6 w-12 h-[2px] bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.8)]" />
             <div className="absolute bottom-2 right-0 w-[2px] h-8 bg-cyan-500/50" />
@@ -1503,7 +1503,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
               </div>
 
               {/* Portrait floating outside the panel */}
-              <div className="absolute bottom-0 right-0.5 lg:right-2 w-10 lg:w-32 pointer-events-none z-20">
+              <div className="absolute bottom-0 right-0.5 lg:right-2 w-16 lg:w-32 pointer-events-none z-20">
                 <div className="relative w-full">
                   {/* Glowing aura behind portrait */}
                   <div className="absolute inset-0 bg-cyan-500/20 rounded-full blur-xl mix-blend-screen" />
