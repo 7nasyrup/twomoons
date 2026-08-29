@@ -1133,7 +1133,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
                 <div className={`relative flex items-center justify-center ${ally.id === 'nagisa' ? '' : 'top-2 left-2 lg:top-0 lg:left-0'}`}>
                   {!ally.isDead && activeFragments.length > 0 && (
                     <motion.div
-                      className="absolute inset-0 flex items-center justify-center pointer-events-none z-[45] -top-20 lg:-top-0 pb-0 lg:pb-10 opacity-80 mix-blend-screen"
+                      className="absolute inset-0 flex items-center justify-center pointer-events-none z-[45] -top-12 lg:-top-0 pb-0 lg:pb-10 opacity-80 mix-blend-screen"
                       animate={{ x: isCounterDashing ? 150 : (isCurrentTurn ? 30 : 0) }}
                       transition={{ duration: isCounterDashing ? 0.05 : 0.1, ease: 'easeOut' }}
                     >
