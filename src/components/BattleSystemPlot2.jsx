@@ -1130,7 +1130,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
 
             return (
               <div key={ally.id} className="relative flex flex-col items-center w-full">
-                <div className={`relative flex items-center justify-center ${ally.id === 'nagisa' ? '' : 'translate-y-12 lg:-translate-y-4'}`}>
+                <div className={`relative flex items-center justify-center ${ally.id === 'nagisa' ? '' : 'top-8 lg:-top-4'}`}>
                   {!ally.isDead && activeFragments.length > 0 && (
                     <motion.div
                       className="absolute inset-0 flex items-center justify-center pointer-events-none z-[45] pb-0 lg:pb-10 opacity-80 mix-blend-screen"
@@ -1367,7 +1367,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
                   </div>
                 </div>
 
-                <div className="relative flex items-center justify-center -translate-y-12 lg:translate-y-0">
+                <div className="relative flex items-center justify-center -top-8 lg:top-0">
 
                   {!enemy.isDead && activeFragments.length === 0 && (
                     <motion.div
@@ -1418,28 +1418,28 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
                         スタン
                       </motion.div>
                     )}
-
-                    <AnimatePresence>
-                      {showDamageNumbers.filter(d => d.targetId === enemy.id && (d.type === 'damage' || d.type === 'critical')).map(d => (
-                        <motion.div
-                          key={`fx-${d.id}`}
-                          className="absolute inset-0 flex items-center justify-center pointer-events-none z-[60] mix-blend-screen"
-                        >
-                          <SpriteAnimator
-                            src="/battle/戦闘エフェクトアニメ12/320×240/pipo-btleffect084.png"
-                            frameWidth={120}
-                            frameHeight={120}
-                            columns={10}
-                            totalFrames={10}
-                            fps={15}
-                            loop={false}
-                            scale={1.8}
-                            blendMode="screen"
-                          />
-                        </motion.div>
-                      ))}
-                    </AnimatePresence>
                   </motion.div>
+
+                  <AnimatePresence>
+                    {showDamageNumbers.filter(d => d.targetId === enemy.id && (d.type === 'damage' || d.type === 'critical')).map(d => (
+                      <motion.div
+                        key={`fx-${d.id}`}
+                        className="absolute inset-0 flex items-center justify-center pointer-events-none z-[60] mix-blend-screen"
+                      >
+                        <SpriteAnimator
+                          src="/battle/戦闘エフェクトアニメ12/320×240/pipo-btleffect084.png"
+                          frameWidth={120}
+                          frameHeight={120}
+                          columns={10}
+                          totalFrames={10}
+                          fps={15}
+                          loop={false}
+                          scale={1.8}
+                          blendMode="screen"
+                        />
+                      </motion.div>
+                    ))}
+                  </AnimatePresence>
                 </div>
 
                 <AnimatePresence>
