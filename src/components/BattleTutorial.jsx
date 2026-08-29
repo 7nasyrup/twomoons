@@ -1069,7 +1069,7 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
             const isCounterDashing = counterAnim && counterAnim.allyId === ally.id;
 
             return (
-              <div key={ally.id} className="relative flex flex-col items-center w-full">
+              <div key={ally.id} className="relative flex flex-col items-center w-full top-4 lg:top-0">
                 <div className="relative flex items-center justify-center">
                   {!ally.isDead && activeFragments.length > 0 && (
                     <motion.div
