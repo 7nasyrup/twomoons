@@ -1371,7 +1371,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
 
                   {!enemy.isDead && activeFragments.length === 0 && (
                     <motion.div
-                      className="absolute inset-0 flex items-center justify-center pointer-events-none z-[45] -top-24 lg:-top-0 pb-0 lg:pb-10 opacity-80 mix-blend-screen"
+                      className="absolute inset-0 flex items-center justify-center pointer-events-none z-[45] -top-20 lg:-top-0 pb-0 lg:pb-10 opacity-80 mix-blend-screen"
                       animate={{
                         x: isAttacking ? -30 : (isCurrentTurn && turnPhase === 'enemy_resolve' ? -30 : 0),
                         scale: isAttacking ? 1.05 : 1
@@ -1424,7 +1424,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
 
                   <AnimatePresence>
                     {showDamageNumbers.filter(d => d.targetId === enemy.id && (d.type === 'damage' || d.type === 'critical')).map(d => (
-                      <div key={`fx-wrap-${d.id}`} className="absolute inset-0 flex items-center justify-center pointer-events-none -top-24 lg:top-0 mix-blend-screen scale-[0.8] lg:scale-100">
+                      <div key={`fx-wrap-${d.id}`} className="absolute inset-0 flex items-center justify-center pointer-events-none -top-20 lg:top-0 mix-blend-screen scale-[0.8] lg:scale-100">
                         <SpriteAnimator
                           src="/battle/戦闘エフェクトアニメ12/320×240/pipo-btleffect084.png"
                           frameWidth={120}
@@ -1475,9 +1475,9 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
       <div className="absolute inset-0 z-40 pointer-events-none">
 
         {/* ── Bottom Right: Character Portrait (Sakura) ── */}
-        <div className="absolute bottom-3 left-1/2 ml-[155px] lg:bottom-10 lg:left-auto lg:ml-0 lg:right-10 pointer-events-auto flex items-end justify-start lg:justify-end">
+        <div className="absolute bottom-3 left-[calc(50%+168px)] right-0 lg:bottom-10 lg:left-auto lg:right-10 pointer-events-auto flex items-end justify-center lg:justify-end">
           {/* Glassmorphic Panel */}
-          <div className="relative flex flex-col items-end w-36 lg:w-64 bg-[#0a1120]/60 backdrop-blur-md border-t border-l border-cyan-500/30 rounded-tl-2xl lg:rounded-tl-3xl rounded-br-md p-1.5 pb-2 lg:p-3 lg:pb-4 shadow-[0_8px_32px_rgba(0,0,0,0.5)]">
+          <div className="relative flex flex-col items-end w-32 lg:w-64 bg-[#0a1120]/60 backdrop-blur-md border-t border-l border-cyan-500/30 rounded-tl-2xl lg:rounded-tl-3xl rounded-br-md p-1.5 pb-2 lg:p-3 lg:pb-4 shadow-[0_8px_32px_rgba(0,0,0,0.5)]">
             {/* Tech accents */}
             <div className="absolute top-0 left-6 w-12 h-[2px] bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.8)]" />
             <div className="absolute bottom-2 right-0 w-[2px] h-8 bg-cyan-500/50" />
@@ -1505,14 +1505,14 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
               </div>
 
               {/* Portrait floating outside the panel */}
-              <div className="absolute bottom-0 right-0.5 lg:right-2 w-24 lg:w-32 pointer-events-none z-20">
+              <div className="absolute bottom-0 right-0.5 lg:right-2 w-16 lg:w-32 pointer-events-none z-20">
                 <div className="relative w-full">
                   {/* Glowing aura behind portrait */}
                   <div className="absolute inset-0 bg-cyan-500/20 rounded-full blur-xl mix-blend-screen" />
                   <img
                     src="/character/Sakura/Sakura.png"
                     alt="Sakura"
-                    className="relative w-full h-auto drop-shadow-[0_0_15px_rgba(6,182,212,0.6)] object-cover object-top scale-[1.8] lg:scale-[1.8] translate-y-[-10%]"
+                    className="relative w-full h-auto drop-shadow-[0_0_15px_rgba(6,182,212,0.6)] object-cover object-top scale-[1.5] lg:scale-[1.8] translate-y-[-20%] lg:translate-y-[-10%]"
                     style={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' }}
                     onError={(e) => {
                       e.target.onerror = null;
