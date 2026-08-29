@@ -1057,7 +1057,7 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
       {/* ═══════════════════════════════════════════════════════════════
            BATTLE FIELD
          ═══════════════════════════════════════════════════════════════ */}
-      <div className="relative flex-1 flex items-stretch px-4 lg:px-12 pt-32 pb-24 overflow-hidden">
+      <div className="relative flex-1 flex items-stretch px-4 lg:px-12 pt-20 lg:pt-32 pb-16 lg:pb-24 overflow-hidden">
 
         {/* ── Allies (Left Column) ── */}
         <div className="w-1/2 flex flex-col justify-around items-center pr-4">
