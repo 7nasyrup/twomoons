@@ -991,10 +991,10 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
             <motion.div className="text-center relative" initial={{ opacity: 0, scale: 0.9, y: 10 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: 0.8, ease: 'easeOut' }}>
               <div className="flex items-center justify-center gap-4 mb-2">
                 <div className="h-[1px] w-12 bg-cyan-500/50" />
-                <div className="font-orbitron font-bold text-[10px] md:text-xs tracking-[0.4em] text-cyan-400 uppercase drop-shadow-[0_0_5px_rgba(34,211,238,0.8)]">System Engaged</div>
+                <div className="font-orbitron font-bold text-[10px] lg:text-[18px] tracking-[0.4em] text-cyan-400 uppercase drop-shadow-[0_0_5px_rgba(34,211,238,0.8)]">System Engaged</div>
                 <div className="h-[1px] w-12 bg-cyan-500/50" />
               </div>
-              <h2 className="font-orbitron text-5xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white via-cyan-100 to-cyan-500 tracking-[0.2em] drop-shadow-[0_0_15px_rgba(34,211,238,0.5)] py-2">
+              <h2 className="font-orbitron text-5xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white via-cyan-100 to-cyan-500 tracking-[0.2em] drop-shadow-[0_0_15px_rgba(34,211,238,0.5)] py-2">
                 BATTLE START
               </h2>
               <motion.div className="mt-4 h-[2px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent shadow-[0_0_10px_rgba(34,211,238,0.8)]" initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ delay: 0.4, duration: 0.8, ease: 'easeInOut' }} />
@@ -1006,13 +1006,13 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
       {/* ── TUTORIAL MODAL ── */}
       <AnimatePresence>
         {showTutorial && (
-          <motion.div className="absolute inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 md:p-8" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <div className="bg-[#0f172a] border border-cyan-500/50 rounded-xl shadow-[0_0_30px_rgba(34,211,238,0.2)] max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 md:p-10 relative">
-              <h2 className="text-2xl md:text-3xl font-black text-cyan-300 mb-6 border-b border-cyan-500/30 pb-4 text-center tracking-widest">
+          <motion.div className="absolute inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 lg:p-8" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+            <div className="bg-[#0f172a] border border-cyan-500/50 rounded-xl shadow-[0_0_30px_rgba(34,211,238,0.2)] max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 lg:p-10 relative">
+              <h2 className="text-2xl lg:text-3xl font-black text-cyan-300 mb-6 border-b border-cyan-500/30 pb-4 text-center tracking-widest">
                 戦闘マニュアル
               </h2>
 
-              <div className="space-y-6 text-sm md:text-base text-slate-300 leading-relaxed text-left">
+              <div className="space-y-6 text-sm lg:text-base text-slate-300 leading-relaxed text-left">
                 {/* 1. 防御 */}
                 <section>
                   <h3 className="text-lg font-bold text-cyan-200 mb-2 flex items-center gap-2">
@@ -1068,7 +1068,7 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
         {parryFlash && (
           <motion.div className="absolute inset-0 z-[65] pointer-events-none flex items-center justify-center" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.15 }}>
             <div className="absolute inset-0 bg-cyan-100/25" />
-            <motion.div initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: 1.2, opacity: 1 }} exit={{ scale: 2, opacity: 0 }} transition={{ duration: 0.4 }} className="font-noto text-5xl md:text-7xl font-black text-cyan-100 drop-shadow-[0_0_30px_rgba(255,255,255,1)] z-10 italic tracking-wider">
+            <motion.div initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: 1.2, opacity: 1 }} exit={{ scale: 2, opacity: 0 }} transition={{ duration: 0.4 }} className="font-noto text-5xl lg:text-7xl font-black text-cyan-100 drop-shadow-[0_0_30px_rgba(255,255,255,1)] z-10 italic tracking-wider">
               JUST PARRY!!
             </motion.div>
           </motion.div>
@@ -1112,7 +1112,7 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
             <motion.img src={duetCutin.image} alt={duetCutin.name} className="absolute h-[80%] object-contain z-10 drop-shadow-[0_0_40px_rgba(255,255,255,0.4)]" initial={{ x: '-100%', opacity: 0 }} animate={{ x: '0%', opacity: 1 }} exit={{ x: '100%', opacity: 0 }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} />
             <motion.div className="absolute bottom-[15%] z-20 text-center" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.5 }}>
               <div className="font-noto text-xs tracking-[0.5em] text-cyan-100/80 mb-2">ULTIMATE ART</div>
-              <div className="font-noto text-3xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-100 via-violet-100 to-cyan-100 tracking-wider">必殺技</div>
+              <div className="font-noto text-3xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-100 via-violet-100 to-cyan-100 tracking-wider">必殺技</div>
             </motion.div>
           </motion.div>
         )}
@@ -1121,7 +1121,7 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
       {/* ═══════════════════════════════════════════════════════════════
            BATTLE FIELD
          ═══════════════════════════════════════════════════════════════ */}
-      <div className="relative flex-1 flex items-stretch px-4 md:px-12 pt-32 pb-24 overflow-hidden">
+      <div className="relative flex-1 flex items-stretch px-4 lg:px-12 pt-32 pb-24 overflow-hidden">
 
         {/* ── Allies (Left Column) ── */}
         <div className="w-1/2 relative h-full">
@@ -1133,22 +1133,22 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
             const isCounterDashing = counterAnim && counterAnim.allyId === ally.id;
 
             let positionClass = "";
-            if (ally.id === 'mutsunori') positionClass = "top-[30%] right-[10%] md:right-[3%]";
-            else if (ally.id === 'nagisa') positionClass = "bottom-[8%] right-[10%] md:right-[20%]";
-            else if (ally.id === 'mika') positionClass = "top-[calc(55%-93.5px)] md:top-[calc(55%-125px)] left-[5%] md:left-[25%]";
+            if (ally.id === 'mutsunori') positionClass = "top-[20%] right-[10%] lg:top-[30%] lg:right-[3%]";
+            else if (ally.id === 'nagisa') positionClass = "bottom-[-45%] right-[25%] lg:bottom-[8%] lg:right-[20%]";
+            else if (ally.id === 'mika') positionClass = "bottom-[-38%] lg:bottom-auto lg:top-[calc(55%-125px)] left-[15%] lg:left-[25%]";
 
             let sizeClass = "";
-            if (ally.id === 'nagisa') sizeClass = "w-[144px] h-[192px] md:w-[192px] md:h-[252px]";
-            else if (ally.id === 'mika') sizeClass = "w-[145px] h-[187px] md:w-[187px] md:h-[250px] -translate-y-2 md:-translate-y-4";
-            else if (ally.id === 'mutsunori') sizeClass = "w-[123px] h-[158px] md:w-[158px] md:h-[211px] -translate-y-2 md:-translate-y-4";
-            else sizeClass = "w-28 h-36 md:w-36 md:h-48 -translate-y-2 md:-translate-y-4";
+            if (ally.id === 'nagisa') sizeClass = "w-[144px] h-[192px] lg:w-[192px] lg:h-[252px]";
+            else if (ally.id === 'mika') sizeClass = "w-[145px] h-[187px] lg:w-[187px] lg:h-[250px] -translate-y-2 lg:-translate-y-4";
+            else if (ally.id === 'mutsunori') sizeClass = "w-[125px] h-[187px] lg:w-[158px] lg:h-[211px] -translate-y-2 lg:-translate-y-4";
+            else sizeClass = "w-28 h-36 lg:w-36 lg:h-48 -translate-y-2 lg:-translate-y-4";
 
             return (
               <div key={ally.id} className={`absolute flex flex-col items-center ${positionClass}`}>
                 <div className="relative flex items-center justify-center">
                   {!ally.isDead && activeFragments.length > 0 && (
                     <motion.div
-                      className="absolute inset-0 flex items-center justify-center pointer-events-none z-[45] pb-0 md:pb-4 opacity-80"
+                      className="absolute inset-0 flex items-center justify-center pointer-events-none z-[45] pb-0 lg:pb-4 opacity-80"
                       style={{ mixBlendMode: 'screen' }}
                       animate={{ x: isCounterDashing ? 150 : (isCurrentTurn ? 30 : 0) }}
                       transition={{ duration: isCounterDashing ? 0.05 : 0.1, ease: 'easeOut' }}
@@ -1184,18 +1184,18 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
                     {isTargeted && !ally.isDead && (
                       <div className="absolute inset-0 pointer-events-none flex items-center justify-center z-40">
                         <motion.div
-                          className="absolute w-[120px] h-[120px] md:w-[150px] md:h-[150px] border-[2px] border-amber-500/80 rotate-45 shadow-[0_0_15px_rgba(245,158,11,0.5)]"
+                          className="absolute w-[120px] h-[120px] lg:w-[150px] lg:h-[150px] border-[2px] border-amber-500/80 rotate-45 shadow-[0_0_15px_rgba(245,158,11,0.5)]"
                           animate={{ scale: [1.2, 1, 1.2], opacity: [0.5, 1, 0.5] }}
                           transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
                         />
-                        <div className="absolute w-[140px] h-[140px] md:w-[170px] md:h-[170px] border border-amber-400/30 rotate-45" />
+                        <div className="absolute w-[140px] h-[140px] lg:w-[170px] lg:h-[170px] border border-amber-400/30 rotate-45" />
 
                         {/* Target Crosshairs */}
-                        <div className="absolute w-[160px] md:w-[200px] h-[1px] bg-gradient-to-r from-transparent via-amber-500/50 to-transparent" />
-                        <div className="absolute h-[160px] md:h-[200px] w-[1px] bg-gradient-to-b from-transparent via-amber-500/50 to-transparent" />
+                        <div className="absolute w-[160px] lg:w-[200px] h-[1px] bg-gradient-to-r from-transparent via-amber-500/50 to-transparent" />
+                        <div className="absolute h-[160px] lg:h-[200px] w-[1px] bg-gradient-to-b from-transparent via-amber-500/50 to-transparent" />
 
                         <div className="absolute -bottom-12 bg-amber-950/80 border border-amber-500 px-3 py-1 shadow-[0_0_10px_rgba(245,158,11,0.5)] backdrop-blur-sm skew-x-[-15deg]">
-                          <span className="block font-orbitron text-[9px] md:text-[10px] font-bold text-amber-400 tracking-widest animate-pulse skew-x-[15deg]">TARGET LOCK</span>
+                          <span className="block font-orbitron text-[9px] lg:text-[10px] font-bold text-amber-400 tracking-widest animate-pulse skew-x-[15deg]">TARGET LOCK</span>
                         </div>
                       </div>
                     )}
@@ -1208,7 +1208,7 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
                         <div className="absolute inset-[-50px] bg-cyan-900/10 rounded-full blur-xl mix-blend-screen" />
 
                         {/* High-tech Timing Bar */}
-                        <div className="relative w-[90%] max-w-[300px] h-6 md:h-8 bg-[#060a12]/80 backdrop-blur-sm border border-cyan-500/50 skew-x-[-15deg] overflow-hidden shadow-[0_0_20px_rgba(34,211,238,0.3)]">
+                        <div className="relative w-[90%] max-w-[300px] h-6 lg:h-8 bg-[#060a12]/80 backdrop-blur-sm border border-cyan-500/50 skew-x-[-15deg] overflow-hidden shadow-[0_0_20px_rgba(34,211,238,0.3)]">
                           {/* Grid background */}
                           <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPjxyZWN0IHdpZHRoPSIyIiBoZWlnaHQ9IjQiIGZpbGw9InJnYmEoMzQsIDIxMSwgMjM4LCAwLjIpIi8+PC9zdmc+')] mix-blend-screen" />
 
@@ -1233,7 +1233,7 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
                         </div>
 
                         <div className="mt-6 bg-cyan-950/80 border border-cyan-400 px-4 py-1.5 shadow-[0_0_15px_rgba(34,211,238,0.6)] backdrop-blur-sm skew-x-[15deg]">
-                          <span className="block font-orbitron font-bold text-[10px] md:text-xs text-cyan-300 tracking-[0.3em] skew-x-[-15deg] animate-pulse">ENGAGE</span>
+                          <span className="block font-orbitron font-bold text-[10px] lg:text-[18px] text-cyan-300 tracking-[0.3em] skew-x-[-15deg] animate-pulse">ENGAGE</span>
                         </div>
 
                         <AnimatePresence>
@@ -1242,7 +1242,7 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
                               initial={{ scale: 0.5, opacity: 0, y: 0 }}
                               animate={{ scale: 1.5, opacity: 1, y: -40 }}
                               exit={{ opacity: 0, scale: 2 }}
-                              className={`absolute font-orbitron font-black text-[20px] md:text-[28px] tracking-[0.2em] z-50 italic ${allyQTEState === 'perfect' ? 'text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 to-amber-500 drop-shadow-[0_0_15px_rgba(245,158,11,1)]' : 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-100 to-cyan-500 drop-shadow-[0_0_15px_rgba(34,211,238,1)]'}`}
+                              className={`absolute font-orbitron font-black text-[20px] lg:text-[28px] tracking-[0.2em] z-50 italic ${allyQTEState === 'perfect' ? 'text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 to-amber-500 drop-shadow-[0_0_15px_rgba(245,158,11,1)]' : 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-100 to-cyan-500 drop-shadow-[0_0_15px_rgba(34,211,238,1)]'}`}
                             >
                               {allyQTEState === 'perfect' ? 'EXCELLENT' : 'GOOD'}
                             </motion.div>
@@ -1309,13 +1309,13 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
                           className="absolute inset-0 flex items-center justify-center z-50 pointer-events-none"
                         >
                           <motion.div
-                            className="absolute w-32 h-32 md:w-40 md:h-40 rounded-full border-[3px] border-amber-400 border-dashed shadow-[0_0_15px_rgba(251,191,36,0.7)]"
+                            className="absolute w-32 h-32 lg:w-40 lg:h-40 rounded-full border-[3px] border-amber-400 border-dashed shadow-[0_0_15px_rgba(251,191,36,0.7)]"
                             initial={{ scale: 2.5, opacity: 0, rotate: 0 }}
                             animate={{ scale: 0.15, opacity: [0, 1, 1, 0], rotate: 180 }}
                             transition={{ duration: 0.6, ease: "linear" }}
                           />
                           <motion.div
-                            className="absolute w-28 h-28 md:w-36 md:h-36 rounded-full border-2 border-amber-300 shadow-[0_0_10px_rgba(252,211,77,0.5)]"
+                            className="absolute w-28 h-28 lg:w-36 lg:h-36 rounded-full border-2 border-amber-300 shadow-[0_0_10px_rgba(252,211,77,0.5)]"
                             initial={{ scale: 3, opacity: 0 }}
                             animate={{ scale: 0.15, opacity: [0, 0.8, 0.8, 0] }}
                             transition={{ duration: 0.6, ease: "linear" }}
@@ -1334,7 +1334,7 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
 
                 <AnimatePresence>
                   {showDamageNumbers.filter(d => d.targetId === ally.id).map(d => (
-                    <motion.div key={d.id} className={`absolute top-0 z-30 font-noto font-black text-xl md:text-3xl italic ${d.type === 'heal' ? 'text-emerald-300 drop-shadow-[0_0_8px_rgba(52,211,153,0.6)]' : 'text-red-400 drop-shadow-[0_0_8px_rgba(239,68,68,0.6)]'}`} initial={{ opacity: 1, y: 0, scale: 0.8 }} animate={{ opacity: 0, y: -40, scale: 1.2 }} exit={{ opacity: 0 }} transition={{ duration: 1 }}>
+                    <motion.div key={d.id} className={`absolute top-0 z-30 font-noto font-black text-xl lg:text-3xl italic ${d.type === 'heal' ? 'text-emerald-300 drop-shadow-[0_0_8px_rgba(52,211,153,0.6)]' : 'text-red-400 drop-shadow-[0_0_8px_rgba(239,68,68,0.6)]'}`} initial={{ opacity: 1, y: 0, scale: 0.8 }} animate={{ opacity: 0, y: -40, scale: 1.2 }} exit={{ opacity: 0 }} transition={{ duration: 1 }}>
                       {d.type === 'heal' ? `+${d.amount}` : `-${d.amount}`}
                     </motion.div>
                   ))}
@@ -1353,12 +1353,12 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
 
             return (
               <div key={enemy.id} className="relative flex flex-col items-center w-full">
-                <div className="w-40 md:w-52 mb-4 z-20 relative">
+                <div className="w-40 lg:w-52 mb-4 z-20 relative">
                   <div className="flex flex-col items-center">
                     <div className="flex items-center justify-between w-full mb-1 px-2">
                       <div className="flex items-center gap-2">
                         <div className="w-1 h-1 bg-amber-400 shadow-[0_0_8px_#fbbf24] rotate-45" />
-                        <span className="font-orbitron font-bold text-[10px] md:text-[12px] text-amber-300 tracking-[0.2em] drop-shadow-[0_0_5px_rgba(251,191,36,0.5)]">
+                        <span className="font-orbitron font-bold text-[10px] lg:text-[12px] text-amber-300 tracking-[0.2em] drop-shadow-[0_0_5px_rgba(251,191,36,0.5)]">
                           {enemy.name.toUpperCase()}
                         </span>
                       </div>
@@ -1367,7 +1367,7 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
                       </span>
                     </div>
 
-                    <div className="w-full h-1.5 md:h-2 bg-black/80 border border-amber-500/30 skew-x-[-20deg] relative overflow-hidden shadow-[0_0_15px_rgba(251,191,36,0.2)] backdrop-blur-sm">
+                    <div className="w-full h-1.5 lg:h-2 bg-black/80 border border-amber-500/30 skew-x-[-20deg] relative overflow-hidden shadow-[0_0_15px_rgba(251,191,36,0.2)] backdrop-blur-sm">
                       <motion.div
                         className="h-full relative"
                         style={{
@@ -1387,7 +1387,7 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
 
                   {!enemy.isDead && activeFragments.length === 0 && (
                     <motion.div
-                      className="absolute inset-0 flex items-center justify-center pointer-events-none z-[45] pb-0 md:pb-10 opacity-80"
+                      className="absolute inset-0 flex items-center justify-center pointer-events-none z-[45] -mt-[150px] lg:mt-0 pb-0 lg:pb-10 opacity-80"
                       style={{ mixBlendMode: 'screen' }}
                       animate={{
                         x: isAttacking ? -30 : (isCurrentTurn && turnPhase === 'enemy_resolve' ? -30 : 0),
@@ -1415,7 +1415,7 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
 
                   <motion.div
                     id={`char-${enemy.id}`}
-                    className={`relative w-48 h-60 md:w-80 md:h-96 flex items-center justify-center z-40 ${enemy.isDead ? 'opacity-30 grayscale'
+                    className={`relative w-48 h-60 lg:w-80 lg:h-96 flex items-center justify-center z-40 ${enemy.isDead ? 'opacity-30 grayscale'
                       : enemy.flashTimer > 0 ? 'animate-battle-hit-flash'
                         : ''
                       }`}
@@ -1428,10 +1428,10 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
                       ease: isAttacking ? 'easeOut' : 'easeInOut'
                     }}
                   >
-                    <img src={enemy.image} alt={enemy.name} className={`w-full h-full object-contain object-bottom origin-bottom scale-[2.0] -translate-y-8 md:-translate-y-12 drop-shadow-[0_0_15px_rgba(244,63,94,0.3)] ${enemy.isStunned ? 'opacity-70 grayscale-[50%]' : ''}`} />
+                    <img src={enemy.image} alt={enemy.name} className={`w-full h-full object-contain object-bottom origin-bottom scale-[2.0] translate-y-[-100px] lg:-translate-y-12 drop-shadow-[0_0_15px_rgba(244,63,94,0.3)] ${enemy.isStunned ? 'opacity-70 grayscale-[50%]' : ''}`} />
 
                     {enemy.isStunned && !enemy.isDead && (
-                      <motion.div className="absolute -top-3 font-noto text-[9px] md:text-[10px] text-amber-200/90 font-bold bg-amber-950/70 backdrop-blur-sm px-3 py-0.5 rounded border border-amber-500/30" animate={{ y: [0, -2, 0] }} transition={{ duration: 0.5, repeat: Infinity }}>
+                      <motion.div className="absolute -top-3 font-noto text-[9px] lg:text-[10px] text-amber-200/90 font-bold bg-amber-950/70 backdrop-blur-sm px-3 py-0.5 rounded border border-amber-500/30" animate={{ y: [0, -2, 0] }} transition={{ duration: 0.5, repeat: Infinity }}>
                         スタン
                       </motion.div>
                     )}
@@ -1440,7 +1440,7 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
                       {showDamageNumbers.filter(d => d.targetId === enemy.id && (d.type === 'damage' || d.type === 'critical')).map(d => (
                         <motion.div
                           key={`fx-${d.id}`}
-                          className="absolute inset-0 flex items-center justify-center pointer-events-none z-[60]"
+                          className="absolute inset-0 flex items-center justify-center pointer-events-none z-[60] -mt-[150px] lg:mt-0"
                         >
                           <SpriteAnimator
                             src="/battle/戦闘エフェクトアニメ12/320×240/pipo-btleffect084.png"
@@ -1461,7 +1461,7 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
 
                 <AnimatePresence>
                   {showDamageNumbers.filter(d => d.targetId === enemy.id).map(d => (
-                    <motion.div key={d.id} className={`absolute top-0 z-30 font-noto font-black text-2xl md:text-4xl italic ${d.type === 'ultimate' ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 to-violet-300' : 'text-white'} drop-shadow-[0_0_12px_rgba(0,0,0,0.8)]`} initial={{ opacity: 1, y: 0, scale: 1.5 }} animate={{ opacity: 0, y: -50, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1 }}>
+                    <motion.div key={d.id} className={`absolute top-0 z-30 font-noto font-black text-2xl lg:text-4xl italic -mt-[150px] lg:mt-0 ${d.type === 'ultimate' ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 to-violet-300' : 'text-white'} drop-shadow-[0_0_12px_rgba(0,0,0,0.8)]`} initial={{ opacity: 1, y: 0, scale: 1.5 }} animate={{ opacity: 0, y: -50, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1 }}>
                       {d.amount}
                     </motion.div>
                   ))}
@@ -1472,7 +1472,7 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
         </div>
 
         {/* Top Right Controls */}
-        <div className="absolute top-3 right-3 md:top-5 md:right-5 flex gap-2 z-50">
+        <div className="absolute top-3 right-3 lg:top-5 lg:right-5 flex gap-2 z-50">
           <button onClick={() => setIsPaused(!isPaused)} className={`px-3 py-1.5 bg-[#0a1628]/60 backdrop-blur-sm border ${isPaused ? 'border-amber-400 text-amber-300 shadow-[0_0_10px_rgba(251,191,36,0.3)]' : 'border-slate-600/30 text-slate-400'} font-noto text-[10px] tracking-[0.2em] rounded hover:border-slate-400/50 hover:text-slate-200 transition-all`}>
             {isPaused ? '再開 (RESUME)' : '一時停止 (PAUSE)'}
           </button>
@@ -1493,25 +1493,25 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
       <div className="absolute inset-0 z-40 pointer-events-none">
 
         {/* ── Bottom Right: Character Portrait (Sakura) ── */}
-        <div className="absolute bottom-6 right-6 md:bottom-10 md:right-10 pointer-events-auto flex items-end justify-end">
+        <div className="absolute bottom-6 left-[calc(50%+168px)] right-0 lg:bottom-10 lg:left-auto lg:right-10 pointer-events-auto flex items-end justify-center lg:justify-end">
           {/* Glassmorphic Panel */}
-          <div className="relative flex flex-col items-end w-48 md:w-64 bg-[#0a1120]/60 backdrop-blur-md border-t border-l border-cyan-500/30 rounded-tl-3xl rounded-br-md p-3 pb-4 shadow-[0_8px_32px_rgba(0,0,0,0.5)]">
+          <div className="relative flex flex-col items-end w-40 lg:w-64 bg-[#0a1120]/60 backdrop-blur-md border-t border-l border-cyan-500/30 rounded-tl-2xl lg:rounded-tl-3xl rounded-br-md p-1.5 pb-2 lg:p-3 lg:pb-4 shadow-[0_8px_32px_rgba(0,0,0,0.5)] -translate-x-4 lg:translate-x-0">
             {/* Tech accents */}
             <div className="absolute top-0 left-6 w-12 h-[2px] bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.8)]" />
             <div className="absolute bottom-2 right-0 w-[2px] h-8 bg-cyan-500/50" />
 
             <div className="flex items-end w-full justify-between">
               {/* Text Info */}
-              <div className="flex flex-col z-10 w-full pr-14 md:pr-20">
+              <div className="flex flex-col z-10 w-full pr-8 lg:pr-20">
                 <div className="flex justify-between items-end mb-2">
-                  <span className="font-orbitron font-bold text-[10px] md:text-xs text-cyan-300 tracking-[0.2em] drop-shadow-[0_0_5px_rgba(34,211,238,0.5)]">SAKURA</span>
-                  <span className={`font-orbitron font-bold text-[9px] md:text-[10px] tracking-widest ${corruption >= 80 ? 'text-red-400 animate-pulse' : 'text-cyan-100/70'}`}>
+                  <span className="font-orbitron font-bold text-[7px] lg:text-xs text-cyan-300 tracking-[0.15em] lg:tracking-[0.2em] drop-shadow-[0_0_5px_rgba(34,211,238,0.5)]">SAKURA</span>
+                  <span className={`font-orbitron font-bold text-[6px] lg:text-[10px] tracking-widest ${corruption >= 80 ? 'text-red-400 animate-pulse' : 'text-cyan-100/70'}`}>
                     CRPT {corruption}%
                   </span>
                 </div>
 
                 {/* Corruption Bar (Slanted) */}
-                <div className="w-full h-2 md:h-2.5 bg-black/80 border border-slate-700/50 skew-x-[-15deg] overflow-hidden relative shadow-[inset_0_0_5px_rgba(0,0,0,1)]">
+                <div className="w-full h-2 lg:h-2.5 bg-black/80 border border-slate-700/50 skew-x-[-15deg] overflow-hidden relative shadow-[inset_0_0_5px_rgba(0,0,0,1)]">
                   <motion.div
                     className="h-full bg-gradient-to-r from-red-600 via-red-500 to-red-400"
                     style={{ width: `${corruption}%` }}
@@ -1523,7 +1523,7 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
               </div>
 
               {/* Portrait floating outside the panel */}
-              <div className="absolute bottom-0 right-2 w-24 md:w-32 pointer-events-none z-20">
+              <div className="absolute bottom-0 right-2 w-24 lg:w-32 pointer-events-none z-20">
                 <div className="relative w-full">
                   {/* Glowing aura behind portrait */}
                   <div className="absolute inset-0 bg-cyan-500/20 rounded-full blur-xl mix-blend-screen" />
@@ -1544,15 +1544,15 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
         </div>
 
         {/* ── Top Left: Character Status (Allies) ── */}
-        <div className="absolute top-4 left-4 md:top-6 md:left-6 pointer-events-auto flex flex-col gap-3 md:gap-4 z-30">
+        <div className="absolute top-4 left-4 lg:top-6 lg:left-6 pointer-events-auto flex flex-col gap-3 lg:gap-4 z-30">
           {allies.map((ally) => {
             if (!ally) return null;
             const hpPercent = (ally.hp / ally.maxHp) * 100;
             return (
-              <div key={ally.id} className="flex items-center gap-2 md:gap-3 drop-shadow-[0_0_10px_rgba(0,0,0,0.8)]">
+              <div key={ally.id} className="flex items-center gap-2 lg:gap-3 drop-shadow-[0_0_10px_rgba(0,0,0,0.8)]">
 
                 {/* Portrait (Diamond shape) */}
-                <div className="relative w-12 h-12 md:w-16 md:h-16 flex-shrink-0 z-20">
+                <div className="relative w-12 h-12 lg:w-20 lg:h-20 flex-shrink-0 z-20">
                   {/* Background diamond */}
                   <div className={`absolute inset-0 bg-slate-900 border-[2px] rotate-45 overflow-hidden shadow-[0_0_15px_rgba(239,68,68,0.3)] ${ally.id === 'nagisa' ? 'border-blue-500/80 shadow-[0_0_15px_rgba(59,130,246,0.3)]' : ally.id === 'mika' ? 'border-pink-500/80 shadow-[0_0_15px_rgba(236,72,153,0.3)]' : 'border-emerald-500/80 shadow-[0_0_15px_rgba(16,185,129,0.3)]'}`}>
                     <div className="absolute inset-0 -rotate-45 scale-[1.4] w-full h-full">
@@ -1575,8 +1575,8 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
                     <div className="absolute inset-0 shadow-[inset_0_0_15px_rgba(0,0,0,0.9)] pointer-events-none" />
                   </div>
                   {/* Accent corners */}
-                  <div className={`absolute -top-1 -left-1 w-1.5 h-1.5 border-t-2 border-l-2 ${ally.id === 'nagisa' ? 'border-blue-400' : ally.id === 'mika' ? 'border-pink-400' : 'border-emerald-400'}`} />
-                  <div className={`absolute -bottom-1 -right-1 w-1.5 h-1.5 border-b-2 border-r-2 ${ally.id === 'nagisa' ? 'border-blue-400' : ally.id === 'mika' ? 'border-pink-400' : 'border-emerald-400'}`} />
+                  <div className={`absolute -top-1 -left-1 w-2 h-2 border-t-2 border-l-2 ${ally.id === 'nagisa' ? 'border-blue-400' : ally.id === 'mika' ? 'border-pink-400' : 'border-emerald-400'}`} />
+                  <div className={`absolute -bottom-1 -right-1 w-2 h-2 border-b-2 border-r-2 ${ally.id === 'nagisa' ? 'border-blue-400' : ally.id === 'mika' ? 'border-pink-400' : 'border-emerald-400'}`} />
 
                   {/* Flashing effect when hit */}
                   <motion.div
@@ -1588,25 +1588,25 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
                 </div>
 
                 {/* Status Info (Tech Panel) */}
-                <div className={`flex flex-col justify-center h-12 md:h-14 w-40 md:w-48 bg-gradient-to-r from-[#0a1120]/90 via-[#0a1120]/60 to-transparent pl-3 py-1 border-l-2 backdrop-blur-sm ${ally.id === 'nagisa' ? 'border-blue-500/50' : ally.id === 'mika' ? 'border-pink-500/50' : 'border-emerald-500/50'}`}>
+                <div className={`flex flex-col justify-center h-10 lg:h-20 w-32 lg:w-64  pl-1.5 lg:pl-4 py-0.5 lg:py-2 border-l-2 backdrop-blur-sm ${ally.id === 'nagisa' ? 'border-blue-500/50' : ally.id === 'mika' ? 'border-pink-500/50' : 'border-emerald-500/50'}`}>
                   <div className="flex justify-between items-end mb-1">
-                    <span className="font-noto font-black text-white text-xs md:text-sm tracking-[0.2em] drop-shadow-[0_0_5px_rgba(255,255,255,0.5)] leading-none italic">
+                    <span className="font-noto font-black text-white text-xs lg:text-sm tracking-[0.2em] drop-shadow-[0_0_5px_rgba(255,255,255,0.5)] leading-none italic">
                       {ally.name}
                     </span>
                     <div className="flex items-baseline gap-1 mr-3">
-                      <span className="font-orbitron font-bold text-[11px] md:text-[14px] text-white tabular-nums leading-none drop-shadow-[0_0_5px_rgba(255,255,255,0.8)]">
+                      <span className="font-orbitron font-bold text-[11px] lg:text-[14px] text-white tabular-nums leading-none drop-shadow-[0_0_5px_rgba(255,255,255,0.8)]">
                         {ally.hp}
                       </span>
-                      <span className={`font-orbitron text-[8px] md:text-[10px] leading-none ${ally.id === 'nagisa' ? 'text-blue-400' : ally.id === 'mika' ? 'text-pink-400' : 'text-emerald-400'}`}>
+                      <span className={`font-orbitron text-[8px] lg:text-[10px] leading-none ${ally.id === 'nagisa' ? 'text-blue-400' : ally.id === 'mika' ? 'text-pink-400' : 'text-emerald-400'}`}>
                         /{ally.maxHp}
                       </span>
                     </div>
                   </div>
 
                   <div className="flex items-center gap-2 mt-1 pr-3">
-                    <span className={`font-orbitron font-black text-[9px] md:text-[10px] leading-none tracking-widest ${ally.id === 'nagisa' ? 'text-blue-500' : ally.id === 'mika' ? 'text-pink-500' : 'text-emerald-500'}`}>HP</span>
+                    <span className={`font-orbitron font-black text-[9px] lg:text-[10px] leading-none tracking-widest ${ally.id === 'nagisa' ? 'text-blue-500' : ally.id === 'mika' ? 'text-pink-500' : 'text-emerald-500'}`}>HP</span>
                     {/* Segmented bar */}
-                    <div className={`flex-1 h-2 md:h-2 bg-black/80 border p-[1px] relative overflow-hidden skew-x-[-20deg] shadow-[inset_0_0_5px_rgba(0,0,0,1)] ${ally.id === 'nagisa' ? 'border-blue-900/50' : ally.id === 'mika' ? 'border-pink-900/50' : 'border-emerald-900/50'}`}>
+                    <div className={`flex-1 h-2 lg:h-2 bg-black/80 border p-[1px] relative overflow-hidden skew-x-[-20deg] shadow-[inset_0_0_5px_rgba(0,0,0,1)] ${ally.id === 'nagisa' ? 'border-blue-900/50' : ally.id === 'mika' ? 'border-pink-900/50' : 'border-emerald-900/50'}`}>
                       <motion.div
                         className="h-full relative"
                         style={{
@@ -1631,13 +1631,13 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
         </div>
 
         {/* ── Bottom Center: Action Buttons (Diamond Grid) ── */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 md:bottom-12 pointer-events-auto flex items-end justify-center gap-4 md:gap-8 drop-shadow-[0_0_20px_rgba(34,211,238,0.2)]">
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 lg:bottom-12 pointer-events-auto flex items-end justify-center gap-1.5 lg:gap-8 drop-shadow-[0_0_20px_rgba(34,211,238,0.2)]">
 
           {/* Left Button - HEAL */}
           <motion.button
             onClick={handleHeal}
             disabled={healCooldown > 0 || battlePhase !== 'fighting'}
-            className={`w-24 h-12 md:w-32 md:h-16 skew-x-[-15deg] flex items-center justify-center overflow-hidden group transition-all duration-300 relative border-b-2 border-r-2 backdrop-blur-md hover:scale-105 active:scale-95 ${healCooldown > 0 || battlePhase !== 'fighting'
+            className={`w-[108px] h-[54px] lg:w-32 lg:h-16 skew-x-[-15deg] flex items-center justify-center overflow-hidden group transition-all duration-300 relative border-b-2 border-r-2 backdrop-blur-md hover:scale-105 active:scale-95 ${healCooldown > 0 || battlePhase !== 'fighting'
               ? 'bg-[#090e17]/90 border-slate-700/50 cursor-not-allowed'
               : 'bg-emerald-950/60 border-emerald-500/80 hover:bg-emerald-900/80 hover:border-emerald-400 hover:shadow-[0_0_20px_rgba(16,185,129,0.6)] cursor-pointer'
               }`}
@@ -1646,9 +1646,9 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
             <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPjxwYXRoIGQ9Ik0wLDggTDgsMCBMMCwwIFoiIGZpbGw9InJnYmEoMCwgMCwgMCwgMC4yKSIvPjwvc3ZnPg==')] pointer-events-none mix-blend-overlay" />
 
             <div className="flex items-center gap-2 skew-x-[15deg] z-10">
-              <span className={`font-noto font-black text-sm md:text-base tracking-[0.2em] ${healCooldown <= 0 ? 'text-emerald-400 drop-shadow-[0_0_8px_rgba(16,185,129,0.8)]' : 'text-slate-600'}`}>回復</span>
+              <span className={`font-noto font-black text-[12px] lg:text-xl tracking-[0.1em] lg:tracking-[0.2em] ${healCooldown <= 0 ? 'text-emerald-400 drop-shadow-[0_0_8px_rgba(16,185,129,0.8)]' : 'text-slate-600'}`}>回復</span>
               {healCooldown > 0 ? (
-                <span className="font-orbitron font-bold text-[10px] md:text-[12px] text-emerald-700">CD:{(healCooldown / 1000).toFixed(1)}</span>
+                <span className="font-orbitron font-bold text-[10px] lg:text-[12px] text-emerald-700">CD:{(healCooldown / 1000).toFixed(1)}</span>
               ) : (
                 <div className="flex gap-0.5">
                   <div className="w-1.5 h-3 bg-emerald-400 skew-x-[-15deg] shadow-[0_0_8px_#10b981]" />
@@ -1663,7 +1663,7 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
           <motion.button
             onClick={handleMutsunoriUltimate}
             disabled={syncRate < SYNC_COST_ULTIMATE || battlePhase !== 'fighting'}
-            className={`relative w-24 h-24 md:w-32 md:h-32 rounded-full border-2 flex flex-col items-center justify-center transition-all duration-300 -translate-y-4 shadow-[0_0_30px_rgba(0,0,0,0.8)] backdrop-blur-md hover:scale-105 active:scale-95 ${syncRate < SYNC_COST_ULTIMATE || battlePhase !== 'fighting'
+            className={`relative w-[108px] h-[108px] lg:w-32 lg:h-32 rounded-full border-2 flex flex-col items-center justify-center transition-all duration-300 -translate-y-4 shadow-[0_0_30px_rgba(0,0,0,0.8)] backdrop-blur-md hover:scale-105 active:scale-95 ${syncRate < SYNC_COST_ULTIMATE || battlePhase !== 'fighting'
               ? 'bg-[#0a0a0a]/90 border-amber-900/30 cursor-not-allowed grayscale'
               : 'bg-[#1a0a03]/80 border-amber-500 hover:bg-[#2a1005]/90 hover:shadow-[0_0_40px_rgba(251,191,36,0.6)] cursor-pointer'
               }`}
@@ -1682,16 +1682,16 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
             <div className={`absolute inset-4 rounded-full border border-amber-400/10 border-dashed ${syncRate >= SYNC_COST_ULTIMATE ? 'animate-[spin_4s_linear_infinite_reverse]' : ''}`} />
 
             <div className="relative z-10 flex flex-col items-center">
-              <div className="font-rajdhani font-black text-3xl md:text-5xl text-amber-400 drop-shadow-[0_0_12px_rgba(251,191,36,1)] leading-none mb-1">
-                {Math.floor(syncRate)}<span className="text-lg md:text-xl opacity-80">%</span>
+              <div className="font-rajdhani font-black text-3xl lg:text-5xl text-amber-400 drop-shadow-[0_0_12px_rgba(251,191,36,1)] leading-none mb-1">
+                {Math.floor(syncRate)}<span className="text-lg lg:text-xl opacity-80">%</span>
               </div>
-              <div className="font-noto font-black text-[10px] md:text-xs text-amber-200 tracking-[0.3em] drop-shadow-[0_0_8px_rgba(251,191,36,0.8)]">
+              <div className="font-noto font-black text-[10px] lg:text-[18px] text-amber-200 tracking-[0.3em] drop-shadow-[0_0_8px_rgba(251,191,36,0.8)]">
                 必殺技
               </div>
             </div>
 
             {/* Cost Indicator / Tech UI */}
-            <div className="absolute bottom-1 right-2 bg-amber-950/80 border border-amber-500 text-amber-400 font-orbitron font-bold text-[9px] md:text-[10px] px-2 py-0.5 shadow-[0_0_10px_rgba(251,191,36,0.5)] skew-x-[-15deg]">
+            <div className="absolute bottom-1 right-2 bg-amber-950/80 border border-amber-500 text-amber-400 font-orbitron font-bold text-[9px] lg:text-[10px] px-2 py-0.5 shadow-[0_0_10px_rgba(251,191,36,0.5)] skew-x-[-15deg]">
               <span className="block skew-x-[15deg]">COST {SYNC_COST_ULTIMATE}</span>
             </div>
 
@@ -1709,7 +1709,7 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
           <motion.button
             onClick={handleAbsorb}
             disabled={battlePhase !== 'fighting' || absorbCooldown > 0 || activeFragments.length >= MAX_ANOMALY_SLOTS}
-            className={`w-24 h-12 md:w-32 md:h-16 skew-x-[15deg] flex items-center justify-center overflow-hidden group transition-all duration-300 relative border-b-2 border-l-2 backdrop-blur-md hover:scale-105 active:scale-95 ${battlePhase !== 'fighting' || absorbCooldown > 0 || activeFragments.length >= MAX_ANOMALY_SLOTS
+            className={`w-[108px] h-[54px] lg:w-32 lg:h-16 skew-x-[15deg] flex items-center justify-center overflow-hidden group transition-all duration-300 relative border-b-2 border-l-2 backdrop-blur-md hover:scale-105 active:scale-95 ${battlePhase !== 'fighting' || absorbCooldown > 0 || activeFragments.length >= MAX_ANOMALY_SLOTS
               ? 'bg-[#090e17]/90 border-slate-700/50 cursor-not-allowed'
               : 'bg-indigo-950/60 border-indigo-500/80 hover:bg-indigo-900/80 hover:border-indigo-400 hover:shadow-[0_0_20px_rgba(99,102,241,0.6)] cursor-pointer'
               }`}
@@ -1718,9 +1718,9 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
             <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPjxwYXRoIGQ9Ik0wLDggTDgsMCBMMCwwIFoiIGZpbGw9InJnYmEoMCwgMCwgMCwgMC4yKSIvPjwvc3ZnPg==')] pointer-events-none mix-blend-overlay" />
 
             <div className="flex items-center gap-2 skew-x-[-15deg] z-10">
-              <span className={`font-noto font-black text-sm md:text-base tracking-[0.2em] ${absorbCooldown <= 0 && activeFragments.length < MAX_ANOMALY_SLOTS ? 'text-indigo-400 drop-shadow-[0_0_8px_rgba(99,102,241,0.8)]' : 'text-slate-600'}`}>吸収</span>
+              <span className={`font-noto font-black text-[12px] lg:text-xl tracking-[0.1em] lg:tracking-[0.2em] ${absorbCooldown <= 0 && activeFragments.length < MAX_ANOMALY_SLOTS ? 'text-indigo-400 drop-shadow-[0_0_8px_rgba(99,102,241,0.8)]' : 'text-slate-600'}`}>吸収</span>
               {absorbCooldown > 0 ? (
-                <span className="font-orbitron font-bold text-[10px] md:text-[12px] text-indigo-700">CD:{absorbCooldown}</span>
+                <span className="font-orbitron font-bold text-[10px] lg:text-[12px] text-indigo-700">CD:{absorbCooldown}</span>
               ) : (
                 <div className="flex gap-0.5">
                   <div className="w-1.5 h-3 bg-indigo-400 skew-x-[15deg] shadow-[0_0_8px_#6366f1] opacity-40" />
@@ -1760,7 +1760,7 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
                 <div className={`h-[1px] w-16 ${battlePhase === 'victory' ? 'bg-cyan-500/50' : 'bg-red-500/50'}`} />
               </div>
 
-              <h2 className={`font-noto text-5xl md:text-7xl font-black tracking-[0.2em] py-2 drop-shadow-[0_0_15px_rgba(0,0,0,0.8)] ${battlePhase === 'victory' ? 'text-transparent bg-clip-text bg-gradient-to-b from-white via-cyan-100 to-cyan-500' : 'text-transparent bg-clip-text bg-gradient-to-b from-white via-red-100 to-red-600'}`}>
+              <h2 className={`font-noto text-5xl lg:text-7xl font-black tracking-[0.2em] py-2 drop-shadow-[0_0_15px_rgba(0,0,0,0.8)] ${battlePhase === 'victory' ? 'text-transparent bg-clip-text bg-gradient-to-b from-white via-cyan-100 to-cyan-500' : 'text-transparent bg-clip-text bg-gradient-to-b from-white via-red-100 to-red-600'}`}>
                 {battlePhase === 'victory' ? '作戦成功' : '作戦失敗'}
               </h2>
 

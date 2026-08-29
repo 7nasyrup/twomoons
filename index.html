@@ -15,6 +15,20 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;500;700&family=Orbitron:wght@500;800&family=Rajdhani:wght@500;600;700&family=DotGothic16&display=swap"
     rel="stylesheet">
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(function(registrations) {
+        let unregistered = false;
+        for(let registration of registrations) {
+          registration.unregister();
+          unregistered = true;
+        }
+        if (unregistered) {
+          window.location.reload(true);
+        }
+      });
+    }
+  </script>
 </head>
 
 <body class="bg-black select-none">
