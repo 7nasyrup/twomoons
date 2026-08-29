@@ -1096,7 +1096,7 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
                   <motion.div
                     id={`char-${ally.id}`}
                     className={`relative cursor-pointer touch-none flex items-center justify-center
-                    ${ally.id === 'nagisa' ? 'w-[140px] h-[186px] lg:w-[180px] lg:h-[230px]' : 'w-36 h-48 lg:w-48 lg:h-64 -translate-y-4'}
+                    ${ally.id === 'nagisa' ? 'w-[90px] h-[120px] lg:w-[180px] lg:h-[230px]' : 'w-[125px] h-[187px] lg:w-48 lg:h-64'}
                     ${ally.isDead ? 'opacity-40 grayscale' : ''}
                   `}
                     animate={{ x: isCounterDashing ? 150 : (isCurrentTurn ? 30 : 0) }}
@@ -1342,7 +1342,7 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
 
                   <motion.div
                     id={`char-${enemy.id}`}
-                    className={`relative w-48 h-60 lg:w-80 lg:h-96 flex items-center justify-center z-40 ${enemy.isDead ? 'opacity-30 grayscale'
+                    className={`relative w-[230px] h-[307px] lg:w-80 lg:h-96 flex items-center justify-center z-40 ${enemy.isDead ? 'opacity-30 grayscale'
                       : enemy.flashTimer > 0 ? 'animate-battle-hit-flash'
                         : ''
                       }`}
@@ -1358,7 +1358,7 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
                     <img src={enemy.image} alt={enemy.name} className={`w-full h-full object-contain drop-shadow-[0_0_15px_rgba(244,63,94,0.3)] ${enemy.isStunned ? 'opacity-70 grayscale-[50%]' : ''}`} />
 
                     {enemy.isStunned && !enemy.isDead && (
-                      <motion.div className="absolute -top-3 font-noto text-[9px] lg:text-[10px] text-amber-200/90 font-bold bg-amber-950/70 backdrop-blur-sm px-3 py-0.5 rounded border border-amber-500/30" animate={{ y: [0, -2, 0] }} transition={{ duration: 0.5, repeat: Infinity }}>
+                      <motion.div className="absolute -top-2 lg:-top-3 font-noto text-[7px] lg:text-[10px] text-amber-200/90 font-bold bg-amber-950/70 backdrop-blur-sm px-1.5 py-0.5 lg:px-3 rounded border border-amber-500/30" animate={{ y: [0, -2, 0] }} transition={{ duration: 0.5, repeat: Infinity }}>
                         スタン
                       </motion.div>
                     )}
@@ -1388,7 +1388,7 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
 
                 <AnimatePresence>
                   {showDamageNumbers.filter(d => d.targetId === enemy.id).map(d => (
-                    <motion.div key={d.id} className={`absolute top-0 z-30 font-noto font-black text-2xl lg:text-4xl italic ${d.type === 'ultimate' ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 to-violet-300' : 'text-white'} drop-shadow-[0_0_12px_rgba(0,0,0,0.8)]`} initial={{ opacity: 1, y: 0, scale: 1.5 }} animate={{ opacity: 0, y: -50, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1 }}>
+                    <motion.div key={d.id} className={`absolute top-0 z-30 font-noto font-black text-xl lg:text-4xl italic ${d.type === 'ultimate' ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 to-violet-300' : 'text-white'} drop-shadow-[0_0_12px_rgba(0,0,0,0.8)]`} initial={{ opacity: 1, y: 0, scale: 1.5 }} animate={{ opacity: 0, y: -50, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1 }}>
                       {d.amount}
                     </motion.div>
                   ))}
@@ -1400,10 +1400,10 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
 
         {/* Top Right Controls */}
         <div className="absolute top-3 right-3 lg:top-5 lg:right-5 flex gap-2 z-50">
-          <button onClick={() => setIsPaused(!isPaused)} className={`px-3 py-1.5 bg-[#0a1628]/60 backdrop-blur-sm border ${isPaused ? 'border-amber-400 text-amber-300 shadow-[0_0_10px_rgba(251,191,36,0.3)]' : 'border-slate-600/30 text-slate-400'} font-noto text-[10px] tracking-[0.2em] rounded hover:border-slate-400/50 hover:text-slate-200 transition-all`}>
+          <button onClick={() => setIsPaused(!isPaused)} className={`px-2 py-1 lg:px-3 lg:py-1.5 bg-[#0a1628]/60 backdrop-blur-sm border ${isPaused ? 'border-amber-400 text-amber-300 shadow-[0_0_10px_rgba(251,191,36,0.3)]' : 'border-slate-600/30 text-slate-400'} font-noto text-[8px] lg:text-[10px] tracking-[0.2em] rounded hover:border-slate-400/50 hover:text-slate-200 transition-all`}>
             {isPaused ? '再開 (RESUME)' : '一時停止 (PAUSE)'}
           </button>
-          <button onClick={handleResultClose} className="px-3 py-1.5 bg-[#0a1628]/60 backdrop-blur-sm border border-slate-600/30 text-slate-400 font-noto text-[10px] tracking-[0.2em] rounded hover:border-slate-400/50 hover:text-slate-200 transition-all">
+          <button onClick={handleResultClose} className="px-2 py-1 lg:px-3 lg:py-1.5 bg-[#0a1628]/60 backdrop-blur-sm border border-slate-600/30 text-slate-400 font-noto text-[8px] lg:text-[10px] tracking-[0.2em] rounded hover:border-slate-400/50 hover:text-slate-200 transition-all">
             EXIT
           </button>
         </div>
