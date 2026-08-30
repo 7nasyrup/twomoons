@@ -1148,7 +1148,7 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
                 <div className="relative flex items-center justify-center">
                   {!ally.isDead && activeFragments.length > 0 && (
                     <motion.div
-                      className="absolute inset-0 flex items-center justify-center pointer-events-none z-[45] pb-0 lg:pb-4 opacity-80"
+                      className="absolute inset-0 flex items-center justify-center pointer-events-none z-[45] translate-y-[40px] lg:translate-y-[60px] opacity-80"
                       style={{ mixBlendMode: 'screen' }}
                       animate={{ x: isCounterDashing ? 150 : (isCurrentTurn ? 30 : 0) }}
                       transition={{ duration: isCounterDashing ? 0.05 : 0.1, ease: 'easeOut' }}

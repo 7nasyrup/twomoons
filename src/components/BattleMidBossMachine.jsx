@@ -944,7 +944,7 @@ export default function BattleMidBossMachine({ onComplete, playBGM, stopBGM, pla
           x1: eRect.left + eRect.width / 2 - sRect.left,
           y1: eRect.top + eRect.height / 2 - sRect.top,
           x2: aRect.left + aRect.width / 2 - sRect.left,
-          y2: aRect.top + aRect.height / 2 - sRect.top,
+          y2: aRect.top + aRect.height / 2 - sRect.top + (window.innerWidth < 1024 ? 50 : 80),
           enemyId: attack.enemyId,
           targetId: attack.targetId
         });
@@ -1064,9 +1064,12 @@ export default function BattleMidBossMachine({ onComplete, playBGM, stopBGM, pla
                 <div className="relative flex items-center justify-center">
                   {!ally.isDead && activeFragments.length > 0 && (
                     <motion.div
-                      className="absolute inset-0 flex items-center justify-center pointer-events-none z-[45] pb-0 lg:pb-10 opacity-80"
+                      className="absolute inset-0 flex items-center justify-center pointer-events-none z-[45] opacity-80"
                       style={{ mixBlendMode: 'screen' }}
-                      animate={{ x: isCounterDashing ? 150 : (isCurrentTurn ? 30 : 0) }}
+                      animate={{ 
+                        x: isCounterDashing ? 150 : (isCurrentTurn ? 30 : 0),
+                        y: 80
+                      }}
                       transition={{ duration: isCounterDashing ? 0.05 : 0.1, ease: 'easeOut' }}
                     >
                       <SpriteAnimator
@@ -1101,7 +1104,7 @@ export default function BattleMidBossMachine({ onComplete, playBGM, stopBGM, pla
                   >
 
                     {isTargeted && !ally.isDead && (
-                      <div className="absolute inset-0 pointer-events-none flex items-center justify-center z-40">
+                      <div className="absolute inset-0 pointer-events-none flex items-center justify-center z-40 translate-y-[80px]">
                         <div className="absolute w-[120px] h-[120px] lg:w-[140px] lg:h-[140px]">
                           <svg viewBox="0 0 100 100" className="w-full h-full stroke-amber-400 opacity-80 drop-shadow-[0_0_8px_rgba(251,191,36,0.8)]">
                             <path d="M 25 10 L 10 10 L 10 25" fill="none" strokeWidth="3" />
@@ -1143,7 +1146,7 @@ export default function BattleMidBossMachine({ onComplete, playBGM, stopBGM, pla
 
                     {turnPhase === 'ally_windup' && TURN_ORDER[currentTurnIndex % TURN_ORDER.length] === ally.id && !ally.isDead && (
                       <div
-                        className="absolute inset-0 flex flex-col items-center justify-center z-40 pointer-events-auto cursor-pointer"
+                        className="absolute inset-0 flex flex-col items-center justify-center z-40 pointer-events-auto cursor-pointer translate-y-[80px]"
                         onPointerDown={handleAllyAttack}
                       >
                         <div className="absolute inset-[-50px] bg-cyan-900/10 rounded-full blur-xl mix-blend-screen" />
@@ -1180,8 +1183,8 @@ export default function BattleMidBossMachine({ onComplete, playBGM, stopBGM, pla
                         <AnimatePresence>
                           {(allyQTEState === 'perfect' || allyQTEState === 'good') && (
                             <motion.div
-                              initial={{ scale: 0.5, opacity: 0, y: 0 }}
-                              animate={{ scale: 1.5, opacity: 1, y: -40 }}
+                              initial={{ scale: 0.5, opacity: 0, y: 80 }}
+                              animate={{ scale: 1.5, opacity: 1, y: 40 }}
                               exit={{ opacity: 0, scale: 2 }}
                               className={`absolute font-orbitron font-black text-[16px] lg:text-[28px] tracking-[0.2em] z-50 italic ${allyQTEState === 'perfect' ? 'text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 to-amber-500 drop-shadow-[0_0_15px_rgba(245,158,11,1)]' : 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-100 to-cyan-500 drop-shadow-[0_0_15px_rgba(34,211,238,1)]'}`}
                             >
@@ -1193,7 +1196,7 @@ export default function BattleMidBossMachine({ onComplete, playBGM, stopBGM, pla
                     )}
 
                     {isGuarding && !ally.isDead && (
-                      <div className={`absolute inset-0 flex items-center justify-center pointer-events-none z-50 ${ally.id === 'nagisa' ? '-translate-y-4' : ''}`}>
+                      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-50 translate-y-[80px]">
                         <SpriteAnimator
                           src="/battle/pipo-btleffect111f.png"
                           frameWidth={192}
@@ -1211,7 +1214,7 @@ export default function BattleMidBossMachine({ onComplete, playBGM, stopBGM, pla
 
                     {buffTurnsLeft > 0 && !ally.isDead && (
                       <motion.div
-                        className="absolute inset-[-10px] rounded-2xl border border-pink-300/40 pointer-events-none z-10"
+                        className="absolute inset-[-10px] rounded-2xl border border-pink-300/40 pointer-events-none z-10 translate-y-[80px]"
                         animate={{ opacity: [0.3, 0.7, 0.3], boxShadow: ['0 0 8px rgba(244,114,182,0.15)', '0 0 20px rgba(244,114,182,0.4)', '0 0 8px rgba(244,114,182,0.15)'] }}
                         transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
                       />
