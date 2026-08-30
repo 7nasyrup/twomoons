@@ -1143,41 +1143,49 @@ export default function BattleMidBossMachine({ onComplete, playBGM, stopBGM, pla
 
                     {turnPhase === 'ally_windup' && TURN_ORDER[currentTurnIndex % TURN_ORDER.length] === ally.id && !ally.isDead && (
                       <div
-                        className="absolute inset-0 flex flex-col items-center justify-center z-40"
-                        onClick={handleAllyAttack}
+                        className="absolute inset-0 flex flex-col items-center justify-center z-40 pointer-events-auto cursor-pointer"
+                        onPointerDown={handleAllyAttack}
                       >
-                        <div className="relative w-[80%] max-w-[400px] h-8 bg-slate-900/80 border border-slate-700 rounded-full overflow-hidden shadow-[0_0_20px_rgba(0,0,0,0.8)] pointer-events-none">
-                          <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[20%] bg-amber-500/40" />
-                          <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[4px] bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,1)] z-10" />
+                        <div className="absolute inset-[-50px] bg-cyan-900/10 rounded-full blur-xl mix-blend-screen" />
 
+                        {/* High-tech Timing Bar */}
+                        <div className="relative w-[100%] max-w-[200px] lg:max-w-[300px] h-4 lg:h-8 bg-[#060a12]/80 backdrop-blur-sm border border-cyan-500/50 skew-x-[-15deg] overflow-hidden shadow-[0_0_20px_rgba(34,211,238,0.3)]">
+                          {/* Grid background */}
+                          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPjxyZWN0IHdpZHRoPSIyIiBoZWlnaHQ9IjQiIGZpbGw9InJnYmEoMzQsIDIxMSwgMjM4LCAwLjIpIi8+PC9zdmc+')] mix-blend-screen" />
+
+                          {/* Success Zone */}
+                          <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[20%] bg-cyan-500/40 shadow-[inset_0_0_10px_rgba(34,211,238,0.8)]" />
+                          <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[2px] bg-cyan-300 shadow-[0_0_10px_rgba(34,211,238,1)] z-10" />
+
+                          {/* Moving Indicator */}
                           {allyQTEState === 'waiting' ? (
                             <motion.div
-                              className="absolute top-0 bottom-0 w-[4px] bg-white shadow-[0_0_10px_rgba(255,255,255,1)] z-20"
+                              className="absolute top-0 bottom-0 w-[4px] bg-white shadow-[0_0_12px_rgba(255,255,255,1)] z-20"
                               initial={{ left: '0%' }}
                               animate={{ left: '100%' }}
                               transition={{ duration: 0.8, ease: "linear" }}
                             />
                           ) : (
                             <div
-                              className="absolute top-0 bottom-0 w-[4px] bg-white shadow-[0_0_10px_rgba(255,255,255,1)] z-20"
+                              className="absolute top-0 bottom-0 w-[4px] bg-white shadow-[0_0_12px_rgba(255,255,255,1)] z-20"
                               style={{ left: `${hitPosition}%` }}
                             />
                           )}
                         </div>
 
-                        <div className="mt-4 bg-[#090e17]/80 border border-red-500/50 px-3 py-1 animate-pulse">
-                          <span className="font-orbitron font-bold text-[10px] text-red-400 tracking-widest">TAP / CLICK</span>
+                        <div className="mt-4 lg:mt-6 bg-cyan-950/80 border border-cyan-400 px-2 py-1 lg:px-4 lg:py-1.5 shadow-[0_0_15px_rgba(34,211,238,0.6)] backdrop-blur-sm skew-x-[15deg]">
+                          <span className="block font-orbitron font-bold text-[8px] lg:text-xs text-cyan-300 tracking-[0.3em] skew-x-[-15deg] animate-pulse">ENGAGE</span>
                         </div>
 
                         <AnimatePresence>
                           {(allyQTEState === 'perfect' || allyQTEState === 'good') && (
                             <motion.div
-                              initial={{ scale: 0, opacity: 0, y: 0 }}
+                              initial={{ scale: 0.5, opacity: 0, y: 0 }}
                               animate={{ scale: 1.5, opacity: 1, y: -40 }}
-                              exit={{ opacity: 0 }}
-                              className={`absolute font-orbitron font-black text-[18px] lg:text-[24px] tracking-widest z-50 ${allyQTEState === 'perfect' ? 'text-yellow-300 drop-shadow-[0_0_10px_rgba(253,224,71,1)]' : 'text-cyan-300 drop-shadow-[0_0_10px_rgba(34,211,238,1)]'}`}
+                              exit={{ opacity: 0, scale: 2 }}
+                              className={`absolute font-orbitron font-black text-[16px] lg:text-[28px] tracking-[0.2em] z-50 italic ${allyQTEState === 'perfect' ? 'text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 to-amber-500 drop-shadow-[0_0_15px_rgba(245,158,11,1)]' : 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-100 to-cyan-500 drop-shadow-[0_0_15px_rgba(34,211,238,1)]'}`}
                             >
-                              {allyQTEState === 'perfect' ? 'PERFECT!' : 'GOOD!'}
+                              {allyQTEState === 'perfect' ? 'EXCELLENT' : 'GOOD'}
                             </motion.div>
                           )}
                         </AnimatePresence>
