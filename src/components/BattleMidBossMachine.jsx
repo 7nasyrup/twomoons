@@ -1286,32 +1286,32 @@ export default function BattleMidBossMachine({ onComplete, playBGM, stopBGM, pla
 
             return (
               <div key={enemy.id} className="relative flex flex-col items-center w-full">
-                <div className="w-40 lg:w-52 mb-2 z-20 relative -translate-y-8">
-                  <div className="bg-[#090e17]/80 backdrop-blur-sm border border-amber-500/40 fui-clip-basic p-1.5 relative overflow-hidden">
-                    <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPjxyZWN0IHdpZHRoPSIyIiBoZWlnaHQ9IjQiIGZpbGw9InJnYmEoMjUxLCAxOTEsIDM2LCAwLjA1KSIvPjwvc3ZnPg==')] z-0 pointer-events-none" />
-
-                    <div className="flex items-center justify-between mb-1 px-1 relative z-10">
-                      <div className="flex items-center gap-1.5">
-                        <div className="w-1.5 h-1.5 bg-amber-400 shadow-[0_0_5px_rgba(251,191,36,0.8)]" />
-                        <span className="font-orbitron font-bold text-[10px] lg:text-[11px] text-amber-400 tracking-widest leading-none drop-shadow-[0_0_5px_rgba(251,191,36,0.5)]">
+                <div className="w-28 lg:w-52 mb-2 lg:mb-4 z-20 relative -translate-x-6 lg:translate-x-0">
+                  <div className="flex flex-col items-center">
+                    <div className="flex items-center justify-between w-full mb-0.5 px-1 lg:mb-1 lg:px-2">
+                      <div className="flex items-center gap-2">
+                        <div className="w-1 h-1 bg-amber-400 shadow-[0_0_8px_#fbbf24] rotate-45" />
+                        <span className="font-orbitron font-bold text-[8px] lg:text-[12px] text-amber-300 tracking-[0.2em] drop-shadow-[0_0_5px_rgba(251,191,36,0.5)]">
                           {enemy.name.toUpperCase()}
                         </span>
                       </div>
-                      <span className="font-orbitron text-[9px] lg:text-[10px] text-amber-100/90 tabular-nums leading-none">
+                      <span className="font-orbitron font-bold text-[8px] lg:text-[10px] text-amber-100/90 tabular-nums">
                         {Math.ceil(hpRatio * 100)}%
                       </span>
                     </div>
 
-                    <div className="w-full h-[12px] bg-[#000] border border-amber-900/50 relative z-10 overflow-hidden fui-clip-basic">
+                    <div className="w-full h-1 lg:h-2 bg-black/80 border border-amber-500/30 skew-x-[-20deg] relative overflow-hidden shadow-[0_0_15px_rgba(251,191,36,0.2)] backdrop-blur-sm">
                       <motion.div
                         className="h-full relative"
                         style={{
                           width: `${hpRatio * 100}%`,
-                          background: 'linear-gradient(90deg, rgba(245,158,11,0.5), #fbbf24)',
-                          boxShadow: '0 0 8px rgba(251,191,36,0.6)'
+                          background: 'linear-gradient(90deg, #b45309, #fbbf24)',
+                          boxShadow: '0 0 10px rgba(251,191,36,0.8)'
                         }}
-                        transition={{ duration: 0.4 }}
+                        transition={{ duration: 0.3 }}
                       />
+                      {/* Grid / segmented look */}
+                      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2IiBoZWlnaHQ9IjYiPjxwYXRoIGQ9Ik0wLDYgTDYsMCBMMCwwIFoiIGZpbGw9InJnYmEoMCwgMCwgMCwgMC41KSIvPjwvc3ZnPg==')] mix-blend-overlay pointer-events-none" />
                     </div>
                   </div>
                 </div>
@@ -1407,10 +1407,10 @@ export default function BattleMidBossMachine({ onComplete, playBGM, stopBGM, pla
 
         {/* Top Right Controls */}
         <div className="absolute top-3 right-3 lg:top-5 lg:right-5 flex gap-2 z-50">
-          <button onClick={() => setIsPaused(!isPaused)} className={`px-3 py-1.5 bg-[#0a1628]/60 backdrop-blur-sm border ${isPaused ? 'border-amber-400 text-amber-300 shadow-[0_0_10px_rgba(251,191,36,0.3)]' : 'border-slate-600/30 text-slate-400'} font-noto text-[10px] tracking-[0.2em] rounded hover:border-slate-400/50 hover:text-slate-200 transition-all`}>
+          <button onClick={() => setIsPaused(!isPaused)} className={`px-2 py-1 lg:px-3 lg:py-1.5 bg-[#0a1628]/60 backdrop-blur-sm border ${isPaused ? 'border-amber-400 text-amber-300 shadow-[0_0_10px_rgba(251,191,36,0.3)]' : 'border-slate-600/30 text-slate-400'} font-noto text-[8px] lg:text-[10px] tracking-[0.2em] rounded hover:border-slate-400/50 hover:text-slate-200 transition-all`}>
             {isPaused ? '再開 (RESUME)' : '一時停止 (PAUSE)'}
           </button>
-          <button onClick={handleResultClose} className="px-3 py-1.5 bg-[#0a1628]/60 backdrop-blur-sm border border-slate-600/30 text-slate-400 font-noto text-[10px] tracking-[0.2em] rounded hover:border-slate-400/50 hover:text-slate-200 transition-all">
+          <button onClick={handleResultClose} className="px-2 py-1 lg:px-3 lg:py-1.5 bg-[#0a1628]/60 backdrop-blur-sm border border-slate-600/30 text-slate-400 font-noto text-[8px] lg:text-[10px] tracking-[0.2em] rounded hover:border-slate-400/50 hover:text-slate-200 transition-all">
             EXIT
           </button>
         </div>
@@ -1427,37 +1427,52 @@ export default function BattleMidBossMachine({ onComplete, playBGM, stopBGM, pla
       <div className="absolute inset-0 z-40 pointer-events-none">
 
         {/* ── Bottom Right: Character Portrait (Sakura) ── */}
-        <div className="absolute bottom-12 right-12 lg:bottom-16 lg:right-16 pointer-events-auto flex flex-col items-end">
-          {/* Portrait Container (Shoulders up, no round frame) */}
-          <div className="relative w-32 h-24 lg:w-44 lg:h-36 overflow-hidden">
-            <img
-              src="/character/Sakura/Sakura.png"
-              alt="Sakura"
-              className="absolute left-1/2 -translate-x-1/2 w-[300%] max-w-none h-auto pointer-events-none drop-shadow-[0_0_15px_rgba(6,182,212,0.4)]"
-              style={{ top: '5%' }}
-              onError={(e) => {
-                e.target.onerror = null;
-                e.target.src = "/battle/sakura.png";
-              }}
-            />
-          </div>
+        <div className="absolute bottom-6 left-[calc(50%+168px)] right-0 lg:bottom-10 lg:left-auto lg:right-10 pointer-events-auto flex items-end justify-center lg:justify-end">
+          {/* Glassmorphic Panel */}
+          <div className="relative flex flex-col items-end w-40 lg:w-64 bg-[#0a1120]/60 backdrop-blur-md border-t border-l border-cyan-500/30 rounded-tl-2xl lg:rounded-tl-3xl rounded-br-md p-1.5 pb-2 lg:p-3 lg:pb-4 shadow-[0_8px_32px_rgba(0,0,0,0.5)] -translate-x-4 lg:translate-x-0">
+            {/* Tech accents */}
+            <div className="absolute top-0 left-6 w-12 h-[2px] bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.8)]" />
+            <div className="absolute bottom-2 right-0 w-[2px] h-8 bg-cyan-500/50" />
 
+            <div className="flex items-end w-full justify-between">
+              {/* Text Info */}
+              <div className="flex flex-col z-10 w-full pr-8 lg:pr-20">
+                <div className="flex justify-between items-end mb-1 lg:mb-2">
+                  <span className="font-orbitron font-bold text-[7px] lg:text-xs text-cyan-300 tracking-[0.15em] lg:tracking-[0.2em] drop-shadow-[0_0_5px_rgba(34,211,238,0.5)]">SAKURA</span>
+                  <span className={`font-orbitron font-bold text-[6px] lg:text-[10px] tracking-widest ${corruption >= 80 ? 'text-red-400 animate-pulse' : 'text-cyan-100/70'}`}>
+                    CRPT {corruption}%
+                  </span>
+                </div>
 
+                {/* Corruption Bar (Slanted) */}
+                <div className="w-full h-1.5 lg:h-2.5 bg-black/80 border border-slate-700/50 skew-x-[-15deg] overflow-hidden relative shadow-[inset_0_0_5px_rgba(0,0,0,1)]">
+                  <motion.div
+                    className="h-full bg-gradient-to-r from-red-600 via-red-500 to-red-400"
+                    style={{ width: `${corruption}%` }}
+                    animate={{ boxShadow: corruption >= 80 ? '0 0 10px rgba(239,68,68,0.8)' : 'none' }}
+                  />
+                  {/* Grid overlay */}
+                  <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPjxyZWN0IHdpZHRoPSIyIiBoZWlnaHQ9IjQiIGZpbGw9InJnYmEoMjU1LCAyNTUsIDI1NSwgMC4xKSIvPjwvc3ZnPg==')] pointer-events-none mix-blend-overlay" />
+                </div>
+              </div>
 
-          {/* Text underneath the slots */}
-          <div className="flex flex-col mt-1.5 px-1 w-full">
-            <div className="flex items-end justify-end w-full pr-2">
-              <span className={`font-orbitron text-[9px] ${corruption >= 80 ? 'text-red-400 animate-pulse' : 'text-slate-400'}`}>
-                CRPT: {corruption}%
-              </span>
-            </div>
-            {/* Corruption Bar */}
-            <div className="w-full h-[2px] bg-black border border-slate-800 mt-1 relative overflow-hidden">
-              <motion.div
-                className="h-full bg-gradient-to-r from-red-600 to-red-400"
-                style={{ width: `${corruption}%` }}
-                animate={{ boxShadow: corruption >= 80 ? '0 0 10px rgba(239,68,68,0.8)' : 'none' }}
-              />
+              {/* Portrait floating outside the panel */}
+              <div className="absolute bottom-0 right-0.5 lg:right-2 w-20 lg:w-32 pointer-events-none z-20 translate-x-4 lg:translate-x-0">
+                <div className="relative w-full">
+                  {/* Glowing aura behind portrait */}
+                  <div className="absolute inset-0 bg-cyan-500/20 rounded-full blur-xl mix-blend-screen" />
+                  <img
+                    src="/character/Sakura/Sakura.png"
+                    alt="Sakura"
+                    className="relative w-full h-auto drop-shadow-[0_0_15px_rgba(6,182,212,0.6)] object-cover object-top scale-[1.6] lg:scale-[1.8] translate-y-[-20%] lg:translate-y-[-10%]"
+                    style={{ clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' }}
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = "/battle/sakura.png";
+                    }}
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1466,50 +1481,77 @@ export default function BattleMidBossMachine({ onComplete, playBGM, stopBGM, pla
         {(() => {
           const ally = allies[0]; // Active ally
           if (!ally) return null;
+          const hpPercent = (ally.hp / ally.maxHp) * 100;
           return (
-            <div className="absolute top-4 left-4 lg:top-6 lg:left-6 pointer-events-auto flex items-end gap-3 lg:gap-4">
-              {/* Portrait */}
-              <div className="w-14 h-14 lg:w-16 lg:h-16 bg-slate-900 border-2 border-red-500/80 relative overflow-hidden flex-shrink-0 shadow-[0_0_15px_rgba(239,68,68,0.3)]">
-                <img
-                  src="/character/Mutsunori/Mutsunori_serious.png"
-                  alt="Mutsunori"
-                  className="absolute w-[400%] max-w-none object-top"
-                  style={{ top: '0%', left: '50%', transform: 'translateX(-48%)' }}
-                  onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.src = "/battle/mutsunori.png";
-                  }}
+            <div className="absolute top-3 left-3 lg:top-8 lg:left-10 pointer-events-auto flex items-center gap-1.5 lg:gap-4 drop-shadow-[0_0_15px_rgba(0,0,0,0.8)]">
+
+              {/* Portrait (Diamond shape) */}
+              <div className="relative w-12 h-12 lg:w-20 lg:h-20 flex-shrink-0 z-20">
+                {/* Background diamond */}
+                <div className="absolute inset-0 bg-slate-900 border-[2px] border-red-500/80 rotate-45 overflow-hidden shadow-[0_0_20px_rgba(239,68,68,0.4)]">
+                  <div className="absolute inset-0 -rotate-45 scale-[1.4] w-full h-full">
+                    <img
+                      src="/character/Mutsunori/Mutsunori_serious.png"
+                      alt="Mutsunori"
+                      className="absolute w-[300%] max-w-none object-top"
+                      style={{ top: '10%', left: '50%', transform: 'translateX(-50%)' }}
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = "/battle/mutsunori.png";
+                      }}
+                    />
+                  </div>
+                  {/* Inner glow */}
+                  <div className="absolute inset-0 shadow-[inset_0_0_20px_rgba(0,0,0,0.9)] pointer-events-none" />
+                </div>
+                {/* Accent corners */}
+                <div className="absolute -top-1 -left-1 w-2 h-2 border-t-2 border-l-2 border-red-400" />
+                <div className="absolute -bottom-1 -right-1 w-2 h-2 border-b-2 border-r-2 border-red-400" />
+
+                {/* Flashing effect when hit */}
+                <motion.div
+                  className="absolute inset-0 border-2 border-white rotate-45 pointer-events-none"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: ally.flashTimer > 0 ? [0, 1, 0] : 0, scale: ally.flashTimer > 0 ? 1.2 : 1 }}
+                  transition={{ duration: 0.3 }}
                 />
-                <div className="absolute inset-0 shadow-[inset_0_0_10px_rgba(0,0,0,0.9)] pointer-events-none" />
               </div>
 
-              {/* Status Info */}
-              <div className="flex flex-col justify-end w-32 lg:w-48 pb-0.5">
+              {/* Status Info (Tech Panel) */}
+              <div className="flex flex-col justify-center h-10 lg:h-20 w-32 lg:w-64 bg-gradient-to-r from-[#0a1120]/90 via-[#0a1120]/60 to-transparent pl-1.5 lg:pl-4 py-0.5 lg:py-2 border-l-2 border-red-500/50 backdrop-blur-sm">
                 <div className="flex justify-between items-end mb-0.5 lg:mb-1">
-                  <span className="font-noto font-bold text-red-50 text-sm lg:text-base tracking-widest drop-shadow-[0_0_5px_rgba(239,68,68,0.8)] leading-none">
+                  <span className="font-noto font-black text-white text-[12px] lg:text-xl tracking-[0.1em] lg:tracking-[0.2em] drop-shadow-[0_0_8px_rgba(239,68,68,0.9)] leading-none italic">
                     睦典
                   </span>
-                  <span className="font-orbitron text-[9px] lg:text-[10px] text-red-100 tabular-nums leading-none">
-                    {ally.hp}<span className="text-red-500/80 text-[7px] lg:text-[8px]">/{ally.maxHp}</span>
-                  </span>
+                  <div className="flex items-baseline gap-0.5 lg:gap-1 mr-1 lg:mr-4">
+                    <span className="font-orbitron font-bold text-[10px] lg:text-[18px] text-white tabular-nums leading-none drop-shadow-[0_0_5px_rgba(255,255,255,0.8)]">
+                      {ally.hp}
+                    </span>
+                    <span className="font-orbitron text-[8px] lg:text-[11px] text-red-400 leading-none">
+                      /{ally.maxHp}
+                    </span>
+                  </div>
                 </div>
 
-                <div className="flex items-center gap-1.5">
-                  <span className="font-orbitron font-bold text-red-400 text-[9px] lg:text-[11px] leading-none">HP</span>
-                  <div className="flex-1 h-[10px] lg:h-[12px] bg-black border border-red-900/50 p-[1px] relative overflow-hidden">
+                <div className="flex items-center gap-1 lg:gap-2 mt-0.5 lg:mt-2 pr-1 lg:pr-4">
+                  <span className="font-orbitron font-black text-red-500 text-[8px] lg:text-xs leading-none tracking-widest">HP</span>
+                  {/* Segmented bar */}
+                  <div className="flex-1 h-1 lg:h-3 bg-black/80 border border-red-900/50 p-[1px] relative overflow-hidden skew-x-[-20deg] shadow-[inset_0_0_5px_rgba(0,0,0,1)]">
                     <motion.div
                       className="h-full relative"
                       style={{
-                        width: `${(ally.hp / ally.maxHp) * 100}%`,
-                        background: ally.hp / ally.maxHp > 0.5
-                          ? 'linear-gradient(90deg, rgba(239,68,68,0.6), #ef4444)'
-                          : ally.hp / ally.maxHp > 0.25
-                            ? '#f97316'
-                            : '#b91c1c',
-                        boxShadow: ally.hp / ally.maxHp > 0.5 ? '0 0 8px rgba(239,68,68,0.8)' : 'none'
+                        width: `${hpPercent}%`,
+                        background: hpPercent > 50
+                          ? 'linear-gradient(90deg, rgba(239,68,68,0.8), #ff4d4d)'
+                          : hpPercent > 25
+                            ? 'linear-gradient(90deg, #ea580c, #fb923c)'
+                            : 'linear-gradient(90deg, #7f1d1d, #ef4444)',
+                        boxShadow: hpPercent > 50 ? '0 0 12px rgba(239,68,68,1)' : 'none'
                       }}
                       transition={{ duration: 0.3 }}
                     />
+                    {/* Segmentation mask */}
+                    <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPjxwYXRoIGQ9Ik0wLDggTDgsMCBMMCwwIFoiIGZpbGw9InJnYmEoMCwgMCwgMCwgMC40KSIvPjwvc3ZnPg==')] pointer-events-none mix-blend-overlay" />
                   </div>
                 </div>
               </div>
@@ -1517,82 +1559,107 @@ export default function BattleMidBossMachine({ onComplete, playBGM, stopBGM, pla
           );
         })()}
 
-        {/* ── Bottom Left: Action Buttons (Diamond Grid) ── */}
-        <div className="absolute bottom-10 left-12 lg:bottom-16 lg:left-20 pointer-events-auto flex items-center justify-center gap-6 lg:gap-8 drop-shadow-[0_0_15px_rgba(34,211,238,0.2)]">
+        {/* ── Bottom Center: Action Buttons (Diamond Grid) ── */}
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 lg:bottom-12 pointer-events-auto flex items-end justify-center gap-1.5 lg:gap-8 drop-shadow-[0_0_20px_rgba(34,211,238,0.2)]">
 
           {/* Left Button - HEAL */}
           <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
             onClick={handleHeal}
             disabled={healCooldown > 0 || battlePhase !== 'fighting'}
-            className={`w-20 h-16 lg:w-28 lg:h-20 rounded-lg flex flex-col items-center justify-center overflow-hidden group transition-all duration-200 relative shadow-[inset_0_0_15px_rgba(0,0,0,0.8)] ${healCooldown > 0 || battlePhase !== 'fighting'
-              ? 'bg-[#090e17]/90 border border-slate-700/50 cursor-not-allowed'
-              : 'bg-emerald-950/80 border border-emerald-500/50 hover:bg-emerald-900 hover:border-emerald-400 hover:shadow-[0_0_20px_rgba(16,185,129,0.6)] cursor-pointer'
+            className={`w-[108px] h-[54px] lg:w-32 lg:h-16 skew-x-[-15deg] flex items-center justify-center overflow-hidden group transition-all duration-300 relative border-b-2 border-r-2 backdrop-blur-md hover:scale-105 active:scale-95 ${healCooldown > 0 || battlePhase !== 'fighting'
+              ? 'bg-[#090e17]/90 border-slate-700/50 cursor-not-allowed'
+              : 'bg-emerald-950/60 border-emerald-500/80 hover:bg-emerald-900/80 hover:border-emerald-400 hover:shadow-[0_0_20px_rgba(16,185,129,0.6)] cursor-pointer'
               }`}
           >
-            <div className="flex flex-col items-center z-10">
-              <span className={`font-noto font-bold text-xs lg:text-sm tracking-widest ${healCooldown <= 0 ? 'text-emerald-400 drop-shadow-[0_0_5px_rgba(16,185,129,0.8)]' : 'text-slate-600'}`}>回復</span>
+            {/* Tech grid bg */}
+            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPjxwYXRoIGQ9Ik0wLDggTDgsMCBMMCwwIFoiIGZpbGw9InJnYmEoMCwgMCwgMCwgMC4yKSIvPjwvc3ZnPg==')] pointer-events-none mix-blend-overlay" />
+
+            <div className="flex items-center gap-0.5 lg:gap-2 skew-x-[15deg] z-10">
+              <span className={`font-noto font-black text-[12px] lg:text-base tracking-[0.1em] lg:tracking-[0.2em] ${healCooldown <= 0 ? 'text-emerald-400 drop-shadow-[0_0_8px_rgba(16,185,129,0.8)]' : 'text-slate-600'}`}>回復</span>
               {healCooldown > 0 ? (
-                <span className="font-orbitron font-bold text-[9px] lg:text-[10px] text-emerald-600 mt-1">CD: {healCooldown}</span>
+                <span className="font-orbitron font-bold text-[6px] lg:text-[12px] text-emerald-700">CD:{(healCooldown / 1000).toFixed(1)}</span>
               ) : (
-                <div className="flex gap-1 mt-1.5">
-                  <div className="w-1 h-1 bg-emerald-400 shadow-[0_0_5px_#10b981] rotate-45" />
-                  <div className="w-1 h-1 bg-emerald-400 shadow-[0_0_5px_#10b981] rotate-45" />
-                  <div className="w-1 h-1 bg-emerald-400 shadow-[0_0_5px_#10b981] rotate-45" />
+                <div className="flex gap-[1px] lg:gap-0.5">
+                  <div className="w-0.5 h-1.5 lg:w-1.5 lg:h-3 bg-emerald-400 skew-x-[-15deg] shadow-[0_0_8px_#10b981]" />
+                  <div className="w-0.5 h-1.5 lg:w-1.5 lg:h-3 bg-emerald-400 skew-x-[-15deg] shadow-[0_0_8px_#10b981] opacity-70" />
+                  <div className="w-0.5 h-1.5 lg:w-1.5 lg:h-3 bg-emerald-400 skew-x-[-15deg] shadow-[0_0_8px_#10b981] opacity-40" />
                 </div>
               )}
             </div>
           </motion.button>
 
-          {/* Right Button - ABSORB */}
+          {/* Center Button - ULTIMATE (Reactor Core) */}
           <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={handleAbsorb}
-            disabled={battlePhase !== 'fighting' || absorbCooldown > 0 || activeFragments.length >= MAX_ANOMALY_SLOTS}
-            className={`w-20 h-16 lg:w-28 lg:h-20 rounded-lg flex flex-col items-center justify-center overflow-hidden group transition-all duration-200 shadow-[inset_0_0_15px_rgba(0,0,0,0.8)] ${battlePhase !== 'fighting' || absorbCooldown > 0 || activeFragments.length >= MAX_ANOMALY_SLOTS
-              ? 'bg-[#090e17]/90 border border-slate-700/50 cursor-not-allowed'
-              : 'bg-indigo-950/80 border border-indigo-500/50 hover:bg-indigo-900 hover:border-indigo-400 hover:shadow-[0_0_20px_rgba(99,102,241,0.6)] cursor-pointer'
+            onClick={handleMutsunoriUltimate}
+            disabled={syncRate < SYNC_COST_ULTIMATE || battlePhase !== 'fighting'}
+            className={`relative w-[108px] h-[108px] lg:w-32 lg:h-32 rounded-full border-2 flex flex-col items-center justify-center transition-all duration-300 -translate-y-1 lg:-translate-y-4 shadow-[0_0_30px_rgba(0,0,0,0.8)] backdrop-blur-md hover:scale-105 active:scale-95 ${syncRate < SYNC_COST_ULTIMATE || battlePhase !== 'fighting'
+              ? 'bg-[#0a0a0a]/90 border-amber-900/30 cursor-not-allowed grayscale'
+              : 'bg-[#1a0a03]/80 border-amber-500 hover:bg-[#2a1005]/90 hover:shadow-[0_0_40px_rgba(251,191,36,0.6)] cursor-pointer'
               }`}
           >
-            <div className="flex flex-col items-center z-10">
-              <span className={`font-noto font-bold text-xs lg:text-sm tracking-widest ${absorbCooldown <= 0 && activeFragments.length < MAX_ANOMALY_SLOTS ? 'text-indigo-400 drop-shadow-[0_0_5px_rgba(99,102,241,0.8)]' : 'text-slate-600'}`}>吸収</span>
+            {/* Sync Rate Glow */}
+            <div
+              className="absolute inset-0 rounded-full blur-xl mix-blend-screen transition-opacity duration-300"
+              style={{
+                background: syncRate >= SYNC_COST_ULTIMATE ? 'radial-gradient(circle, rgba(251,191,36,0.5) 0%, transparent 70%)' : 'none',
+                opacity: syncRate / 100
+              }}
+            />
+
+            {/* Spinning Rings */}
+            <div className={`absolute inset-0.5 lg:inset-2 rounded-full border-2 border-amber-500/20 ${syncRate >= SYNC_COST_ULTIMATE ? 'animate-[spin_3s_linear_infinite]' : ''}`} />
+            <div className={`absolute inset-1.5 lg:inset-4 rounded-full border border-amber-400/10 border-dashed ${syncRate >= SYNC_COST_ULTIMATE ? 'animate-[spin_4s_linear_infinite_reverse]' : ''}`} />
+
+            <div className="relative z-10 flex flex-col items-center">
+              <div className="font-rajdhani font-black text-sm lg:text-5xl text-amber-400 drop-shadow-[0_0_12px_rgba(251,191,36,1)] leading-none mb-0 lg:mb-1">
+                {Math.floor(syncRate)}<span className="text-[8px] lg:text-xl opacity-80">%</span>
+              </div>
+              <div className="font-noto font-black text-[10px] lg:text-xs text-amber-200 tracking-[0.15em] lg:tracking-[0.3em] drop-shadow-[0_0_8px_rgba(251,191,36,0.8)]">
+                必殺技
+              </div>
+            </div>
+
+            {/* Cost Indicator / Tech UI */}
+            <div className="absolute -bottom-0.5 lg:bottom-1 -right-0.5 lg:right-2 bg-amber-950/80 border border-amber-500 text-amber-400 font-orbitron font-bold text-[5px] lg:text-[10px] px-0.5 py-0 lg:px-2 lg:py-0.5 shadow-[0_0_10px_rgba(251,191,36,0.5)] skew-x-[-15deg]">
+              <span className="block skew-x-[15deg]">COST {SYNC_COST_ULTIMATE}</span>
+            </div>
+
+            {/* Fill Level visualization */}
+            {syncRate >= SYNC_COST_ULTIMATE && (
+              <motion.div
+                className="absolute inset-[-10px] rounded-full border border-amber-300/40 pointer-events-none"
+                animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0, 0.3] }}
+                transition={{ duration: 2, repeat: Infinity, ease: 'easeOut' }}
+              />
+            )}
+          </motion.button>
+
+          {/* Right Button - ABSORB */}
+          <motion.button
+            onClick={handleAbsorb}
+            disabled={battlePhase !== 'fighting' || absorbCooldown > 0 || activeFragments.length >= MAX_ANOMALY_SLOTS}
+            className={`w-[108px] h-[54px] lg:w-32 lg:h-16 skew-x-[15deg] flex items-center justify-center overflow-hidden group transition-all duration-300 relative border-b-2 border-l-2 backdrop-blur-md hover:scale-105 active:scale-95 ${battlePhase !== 'fighting' || absorbCooldown > 0 || activeFragments.length >= MAX_ANOMALY_SLOTS
+              ? 'bg-[#090e17]/90 border-slate-700/50 cursor-not-allowed'
+              : 'bg-indigo-950/60 border-indigo-500/80 hover:bg-indigo-900/80 hover:border-indigo-400 hover:shadow-[0_0_20px_rgba(99,102,241,0.6)] cursor-pointer'
+              }`}
+          >
+            {/* Tech grid bg */}
+            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPjxwYXRoIGQ9Ik0wLDggTDgsMCBMMCwwIFoiIGZpbGw9InJnYmEoMCwgMCwgMCwgMC4yKSIvPjwvc3ZnPg==')] pointer-events-none mix-blend-overlay" />
+
+            <div className="flex items-center gap-0.5 lg:gap-2 skew-x-[-15deg] z-10">
+              <span className={`font-noto font-black text-[12px] lg:text-base tracking-[0.1em] lg:tracking-[0.2em] ${absorbCooldown <= 0 && activeFragments.length < MAX_ANOMALY_SLOTS ? 'text-indigo-400 drop-shadow-[0_0_8px_rgba(99,102,241,0.8)]' : 'text-slate-600'}`}>吸収</span>
               {absorbCooldown > 0 ? (
-                <span className="font-orbitron font-bold text-[9px] lg:text-[10px] text-indigo-600 mt-1">CD: {absorbCooldown}</span>
+                <span className="font-orbitron font-bold text-[6px] lg:text-[12px] text-indigo-700">CD:{absorbCooldown}</span>
               ) : (
-                <span className={`font-orbitron font-bold text-[8px] lg:text-[9px] mt-1 ${activeFragments.length < MAX_ANOMALY_SLOTS ? 'text-indigo-300/80' : 'text-slate-700'}`}>ABSORB</span>
+                <div className="flex gap-[1px] lg:gap-0.5">
+                  <div className="w-0.5 h-1.5 lg:w-1.5 lg:h-3 bg-indigo-400 skew-x-[15deg] shadow-[0_0_8px_#6366f1] opacity-40" />
+                  <div className="w-0.5 h-1.5 lg:w-1.5 lg:h-3 bg-indigo-400 skew-x-[15deg] shadow-[0_0_8px_#6366f1] opacity-70" />
+                  <div className="w-0.5 h-1.5 lg:w-1.5 lg:h-3 bg-indigo-400 skew-x-[15deg] shadow-[0_0_8px_#6366f1]" />
+                </div>
               )}
             </div>
           </motion.button>
 
-          {/* ── ULTIMATE BUTTON (Right) ── */}
-          <motion.button
-            onClick={handleMutsunoriUltimate}
-            disabled={syncRate < SYNC_COST_ULTIMATE || battlePhase !== 'fighting'}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className={`relative w-20 h-20 lg:w-24 lg:h-24 rounded-full border-4 flex flex-col items-center justify-center transition-all shadow-[0_0_15px_rgba(245,158,11,0.5),inset_0_0_10px_rgba(245,158,11,0.5)] ${syncRate < SYNC_COST_ULTIMATE || battlePhase !== 'fighting'
-              ? 'bg-[#171717]/90 border-amber-900/50 cursor-not-allowed opacity-50 grayscale'
-              : 'bg-[#451a03]/90 border-amber-500 hover:bg-amber-900 hover:shadow-[0_0_20px_rgba(251,191,36,0.8)] cursor-pointer'
-              }`}
-          >
-            {/* Spinning Ring */}
-            <div className="absolute inset-1 rounded-full border border-amber-400/20 animate-[spin_4s_linear_infinite]" />
-            <div className="absolute inset-2 rounded-full border border-amber-400/10 animate-[spin_3s_linear_infinite_reverse]" />
-
-            <div className="font-rajdhani font-black text-2xl lg:text-3xl text-amber-400 drop-shadow-[0_0_8px_rgba(251,191,36,1)] z-10 leading-none">
-              {Math.floor(syncRate)}<span className="text-sm lg:text-base opacity-80">%</span>
-            </div>
-            <div className="font-noto font-bold text-[10px] lg:text-xs text-amber-200 mt-1 tracking-widest z-10 drop-shadow-[0_0_5px_rgba(251,191,36,0.8)]">
-              必殺技
-            </div>
-
-            {/* Cost Indicator */}
-            <div className="absolute -top-2 -right-2 bg-white text-black font-rajdhani font-bold text-[10px] lg:text-xs rounded-full w-5 h-5 lg:w-6 lg:h-6 flex items-center justify-center shadow-[0_2px_4px_rgba(0,0,0,0.5)] border border-slate-200">
-              {SYNC_COST_ULTIMATE}
-            </div>
-          </motion.button>
 
         </div>
       </div>
