@@ -68,6 +68,7 @@ function BackgroundRenderer({ bgPath, bgAnimationClass }) {
     <div className="absolute inset-0 w-full h-full select-none z-0">
       {!imageError ? (
         <img
+          key={bgPath}
           src={assetPath(bgPath)}
           alt="background"
           className={`w-full h-full object-cover transition-all duration-700 transform-gpu will-change-transform ${bgAnimationClass || ''}`}
@@ -461,6 +462,11 @@ export default function App() {
   }, []);
 
   const handleStartGame = () => {
+    import('howler').then(({ Howler }) => {
+      if (Howler.ctx && Howler.ctx.state === 'suspended') {
+        Howler.ctx.resume();
+      }
+    });
     clearBacklog();
     setShowTitle(false);
     setFlags({});
@@ -468,6 +474,11 @@ export default function App() {
   };
 
   const handleStartBattle = () => {
+    import('howler').then(({ Howler }) => {
+      if (Howler.ctx && Howler.ctx.state === 'suspended') {
+        Howler.ctx.resume();
+      }
+    });
     setBattleMode('select');
     setShowTitle(false);
   };
