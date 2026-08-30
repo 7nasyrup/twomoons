@@ -1294,7 +1294,7 @@ export default function BattleMidBossMachine({ onComplete, playBGM, stopBGM, pla
 
             return (
               <div key={enemy.id} className="relative flex flex-col items-center w-full">
-                <div className="w-28 lg:w-52 mb-2 lg:mb-4 z-20 relative -translate-x-6 lg:translate-x-0">
+                <div className="w-28 lg:w-52 mb-2 lg:mb-4 z-20 relative -translate-x-6 lg:translate-x-0 -translate-y-4 lg:-translate-y-8">
                   <div className="flex flex-col items-center">
                     <div className="flex items-center justify-between w-full mb-0.5 px-1 lg:mb-1 lg:px-2">
                       <div className="flex items-center gap-2">
