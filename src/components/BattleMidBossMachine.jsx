@@ -967,7 +967,7 @@ export default function BattleMidBossMachine({ onComplete, playBGM, stopBGM, pla
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         {/* Full color bright image */}
-        <img src="/battle/rouka.jpg" alt="Background" className="absolute inset-0 w-full h-full object-cover scale-[1.05] -translate-y-[2.5%]" />
+        <img src="/battle/rouka.jpg" alt="Background" className="absolute inset-0 w-full h-full object-cover scale-[1.08] -translate-y-[5%]" />
 
         {/* Very subtle cyber tech overlays so UI is still readable */}
         <div className="absolute inset-0 bg-[#090e17]/20" />
