@@ -1252,7 +1252,7 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
                     )}
 
                     {isGuarding && !ally.isDead && (
-                      <div className={`absolute inset-0 flex items-center justify-center pointer-events-none z-50 ${ally.id === 'nagisa' ? '-translate-y-4' : ''}`}>
+                      <div className={`absolute inset-0 flex items-center justify-center pointer-events-none z-50 -mt-[100px] lg:mt-0 ${ally.id === 'nagisa' ? '-translate-y-4' : ''}`}>
                         <SpriteAnimator
                           src="/battle/pipo-btleffect111f.png"
                           frameWidth={192}
@@ -1306,7 +1306,7 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
                       {glintEffects.filter(g => g.targetId === ally.id).map(g => (
                         <motion.div
                           key={g.id}
-                          className="absolute inset-0 flex items-center justify-center z-50 pointer-events-none"
+                          className="absolute inset-0 flex items-center justify-center z-50 pointer-events-none -mt-[100px] lg:mt-0"
                         >
                           <motion.div
                             className="absolute w-32 h-32 lg:w-40 lg:h-40 rounded-full border-[3px] border-amber-400 border-dashed shadow-[0_0_15px_rgba(251,191,36,0.7)]"
@@ -1334,7 +1334,7 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
 
                 <AnimatePresence>
                   {showDamageNumbers.filter(d => d.targetId === ally.id).map(d => (
-                    <motion.div key={d.id} className={`absolute top-0 z-30 font-noto font-black text-xl lg:text-3xl italic ${d.type === 'heal' ? 'text-emerald-300 drop-shadow-[0_0_8px_rgba(52,211,153,0.6)]' : 'text-red-400 drop-shadow-[0_0_8px_rgba(239,68,68,0.6)]'}`} initial={{ opacity: 1, y: 0, scale: 0.8 }} animate={{ opacity: 0, y: -40, scale: 1.2 }} exit={{ opacity: 0 }} transition={{ duration: 1 }}>
+                    <motion.div key={d.id} className={`absolute top-0 z-30 font-noto font-black text-xl lg:text-3xl italic -mt-[100px] lg:mt-0 ${d.type === 'heal' ? 'text-emerald-300 drop-shadow-[0_0_8px_rgba(52,211,153,0.6)]' : 'text-red-400 drop-shadow-[0_0_8px_rgba(239,68,68,0.6)]'}`} initial={{ opacity: 1, y: 0, scale: 0.8 }} animate={{ opacity: 0, y: -40, scale: 1.2 }} exit={{ opacity: 0 }} transition={{ duration: 1 }}>
                       {d.type === 'heal' ? `+${d.amount}` : `-${d.amount}`}
                     </motion.div>
                   ))}
