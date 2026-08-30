@@ -971,7 +971,7 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         {/* Full color bright image */}
-        <img src="/battle/houkai.png" alt="Background" className="absolute inset-0 w-full h-full object-cover object-top -translate-y-[15%]" />
+        <img src="/battle/houkai.png" alt="Background" className="absolute inset-0 w-full h-full object-cover object-[50%_15%] transform-gpu will-change-transform" />
 
         {/* Very subtle cyber tech overlays so UI is still readable */}
         <div className="absolute inset-0 bg-[#090e17]/20" />

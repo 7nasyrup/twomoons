@@ -70,7 +70,7 @@ function BackgroundRenderer({ bgPath, bgAnimationClass }) {
         <img
           src={assetPath(bgPath)}
           alt="background"
-          className={`w-full h-full object-cover transition-all duration-700 ${bgAnimationClass || ''}`}
+          className={`w-full h-full object-cover transition-all duration-700 transform-gpu will-change-transform ${bgAnimationClass || ''}`}
           onError={() => setImageError(true)}
         />
       ) : (
