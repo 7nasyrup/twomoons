@@ -61,14 +61,14 @@ const ANOMALY_FRAGMENTS = {
 const MAX_ANOMALY_SLOTS = 5;
 
 // Turn order
-const TURN_ORDER = ['mutsunori', 'enemy1'];
+const TURN_ORDER = ['nagisa', 'enemy1'];
 const TIMELINE_DISPLAY_COUNT = 10;    // How many turns to show in the timeline
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // INITIAL DATA
 // ═══════════════════════════════════════════════════════════════════════════════
 const createAllies = () => [
-  { id: 'mutsunori', name: '睦典', image: '/battle/mutsunori.png', cutinImage: '/character/Mutsunori/Mutsunori_serious.png', hp: 300, maxHp: 300, color: '#34d399', isDead: false, flashTimer: 0, lastDamage: 0 },
+  { id: 'nagisa', name: '凪砂', image: '/battle/nagisa.png', cutinImage: '/character/Nagisa/Nagisa_serious.png', hp: 300, maxHp: 300, color: '#34d399', isDead: false, flashTimer: 0, lastDamage: 0 },
 ];
 
 const createEnemies = () => [
@@ -89,7 +89,7 @@ const getCharInfo = (id) => {
 // ═══════════════════════════════════════════════════════════════════════════════
 // COMPONENT
 // ═══════════════════════════════════════════════════════════════════════════════
-export default function BattleMidBossMachine({ onComplete, playBGM, stopBGM, playSE }) {
+export default function BattleMidBossNagisa({ onComplete, playBGM, stopBGM, playSE }) {
   // ─── Core State ───
   const [allies, setAllies] = useState(createAllies);
   const [enemies, setEnemies] = useState(createEnemies);
@@ -801,7 +801,7 @@ export default function BattleMidBossMachine({ onComplete, playBGM, stopBGM, pla
         setTimeout(() => setShakeActive(false), 800);
 
         setAllies(allyPrev => allyPrev.map(a => {
-          if (a.id === 'mutsunori') {
+          if (a.id === 'nagisa') {
             const dmg = 150; // Heavy damage
             const newHp = Math.max(0, a.hp - dmg);
             spawnDamageNumber(a.id, dmg, 'critical');
@@ -861,14 +861,14 @@ export default function BattleMidBossMachine({ onComplete, playBGM, stopBGM, pla
     addLog(`🎵 朔良が強化の歌を歌った！ 味方の攻防力UP (2ターン)`);
   }, [syncRate, addLog, triggerSakuraNote]);
 
-  const handleMutsunoriUltimate = useCallback(() => {
+  const handleNagisaUltimate = useCallback(() => {
     if (syncRate < SYNC_COST_ULTIMATE || stateRef.current.battlePhase !== 'fighting') return;
 
-    const mutsunori = allies.find(a => a.id === 'mutsunori');
-    if (!mutsunori || mutsunori.isDead) return;
+    const nagisaAlly = allies.find(a => a.id === 'nagisa');
+    if (!nagisaAlly || nagisaAlly.isDead) return;
 
     setSyncRate(0);
-    setDuetCutin({ allyId: mutsunori.id, name: mutsunori.name, image: mutsunori.cutinImage });
+    setDuetCutin({ allyId: nagisaAlly.id, name: nagisaAlly.name, image: nagisaAlly.cutinImage });
 
     setUltimateFlash(true);
     triggerSakuraNote();
@@ -1093,8 +1093,8 @@ export default function BattleMidBossMachine({ onComplete, playBGM, stopBGM, pla
                   `}
                     animate={{ 
                       x: isCounterDashing ? 150 : (isCurrentTurn ? 30 : 0),
-                      y: 80, // 睦典を下に移動
-                      scale: 1.15 // 睦典のサイズを一回り大きく調整
+                      y: 90, // 凪砂を少し下に移動 (微調整)
+                      scale: 1.4 // 凪砂のサイズを1.4倍に拡大
                     }}
                     transition={{ duration: isCounterDashing ? 0.05 : 0.1, ease: 'easeOut' }}
                     onPointerDown={() => handlePointerDown(ally.id)}
@@ -1488,7 +1488,7 @@ export default function BattleMidBossMachine({ onComplete, playBGM, stopBGM, pla
           </div>
         </div>
 
-        {/* ── Top Left: Character Status (Mutsunori) ── */}
+        {/* ── Top Left: Character Status (Nagisa) ── */}
         {(() => {
           const ally = allies[0]; // Active ally
           if (!ally) return null;
@@ -1502,13 +1502,13 @@ export default function BattleMidBossMachine({ onComplete, playBGM, stopBGM, pla
                 <div className="absolute inset-0 bg-slate-900 border-[2px] border-red-500/80 rotate-45 overflow-hidden shadow-[0_0_20px_rgba(239,68,68,0.4)]">
                   <div className="absolute inset-0 -rotate-45 scale-[1.4] w-full h-full">
                     <img
-                      src="/character/Mutsunori/Mutsunori_serious.png"
-                      alt="Mutsunori"
+                      src="/character/Nagisa/Nagisa_serious.png"
+                      alt="Nagisa"
                       className="absolute w-[300%] max-w-none object-top"
                       style={{ top: '10%', left: '50%', transform: 'translateX(-50%)' }}
                       onError={(e) => {
                         e.target.onerror = null;
-                        e.target.src = "/battle/mutsunori.png";
+                        e.target.src = "/battle/nagisa.png";
                       }}
                     />
                   </div>
@@ -1532,7 +1532,7 @@ export default function BattleMidBossMachine({ onComplete, playBGM, stopBGM, pla
               <div className="flex flex-col justify-center h-10 lg:h-20 w-32 lg:w-64 bg-gradient-to-r from-[#0a1120]/90 via-[#0a1120]/60 to-transparent pl-1.5 lg:pl-4 py-0.5 lg:py-2 border-l-2 border-red-500/50 backdrop-blur-sm">
                 <div className="flex justify-between items-end mb-0.5 lg:mb-1">
                   <span className="font-noto font-black text-white text-[12px] lg:text-xl tracking-[0.1em] lg:tracking-[0.2em] drop-shadow-[0_0_8px_rgba(239,68,68,0.9)] leading-none italic">
-                    睦典
+                    凪砂
                   </span>
                   <div className="flex items-baseline gap-0.5 lg:gap-1 mr-1 lg:mr-4">
                     <span className="font-orbitron font-bold text-[10px] lg:text-[18px] text-white tabular-nums leading-none drop-shadow-[0_0_5px_rgba(255,255,255,0.8)]">
@@ -1601,7 +1601,7 @@ export default function BattleMidBossMachine({ onComplete, playBGM, stopBGM, pla
 
           {/* Center Button - ULTIMATE (Reactor Core) */}
           <motion.button
-            onClick={handleMutsunoriUltimate}
+            onClick={handleNagisaUltimate}
             disabled={syncRate < SYNC_COST_ULTIMATE || battlePhase !== 'fighting'}
             className={`relative w-[108px] h-[108px] lg:w-32 lg:h-32 rounded-full border-2 flex flex-col items-center justify-center transition-all duration-300 -translate-y-1 lg:-translate-y-4 shadow-[0_0_30px_rgba(0,0,0,0.8)] backdrop-blur-md hover:scale-105 active:scale-95 ${syncRate < SYNC_COST_ULTIMATE || battlePhase !== 'fighting'
               ? 'bg-[#0a0a0a]/90 border-amber-900/30 cursor-not-allowed grayscale'

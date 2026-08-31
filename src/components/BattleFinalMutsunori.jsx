@@ -132,7 +132,7 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
   const [duetCutin, setDuetCutin] = useState(null);
   const [glintEffects, setGlintEffects] = useState([]); // { id, enemyId }
   const [isPaused, setIsPaused] = useState(false);
-  const [showTutorial, setShowTutorial] = useState(true);
+  const [showTutorial, setShowTutorial] = useState(false);
 
 
   const isPausedRef = useRef(isPaused);

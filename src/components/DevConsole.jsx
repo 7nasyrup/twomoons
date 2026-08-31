@@ -22,6 +22,7 @@ export default function DevConsole({
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [jumpInput, setJumpInput] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
 
   // 隠しコマンド（左上5回タップ）の管理
   const [isUnlocked, setIsUnlocked] = useState(false); // ★最初は非表示（テスト用）
@@ -173,9 +174,39 @@ export default function DevConsole({
             </div>
 
             {/* Scene quick jump */}
-            <div className="text-cyan-500/40 text-[10px] font-orbitron tracking-wider mb-2">SCENES</div>
+            <div className="flex items-center justify-between mb-2">
+              <div className="text-cyan-500/40 text-[10px] font-orbitron tracking-wider">SCENES</div>
+              <input 
+                type="text" 
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search..."
+                className="bg-black/50 border border-cyan-500/30 text-cyan-400 text-xs px-2 py-1 rounded w-32 focus:outline-none focus:border-cyan-400"
+              />
+            </div>
+            <div className="flex gap-1 mb-2 overflow-x-auto scrollbar-none pb-1">
+              {['mutsunori', 'nagisa', 'mika', 'akane', 'mitsuru'].map(route => (
+                <button 
+                  key={route}
+                  onClick={() => {
+                     const routeLabel = `${route}_route_start`;
+                     const stepIdx = scenarioData?.findIndex(i => i.label === routeLabel);
+                     if (stepIdx !== -1) {
+                       const targetScene = sceneBreaks.find(sb => sb.step >= stepIdx);
+                       if (targetScene) {
+                         const el = document.getElementById(`scene-btn-${targetScene.step}`);
+                         if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                       }
+                     }
+                  }}
+                  className="whitespace-nowrap px-2 py-1 bg-cyan-900/40 text-cyan-400 text-[10px] rounded hover:bg-cyan-700/50 flex-1"
+                >
+                  {route === 'mutsunori' ? '睦典' : route === 'nagisa' ? '凪砂' : route === 'mika' ? 'ミカ' : route === 'akane' ? 'アカネ' : '満'}
+                </button>
+              ))}
+            </div>
             <div className="flex flex-col gap-1 max-h-64 overflow-y-auto scrollbar-thin pr-1">
-              {sceneBreaks.map((sb) => (
+              {sceneBreaks.filter(sb => sb.scene.toLowerCase().includes(searchQuery.toLowerCase())).map((sb) => (
                 <button
                   key={sb.step}
                   id={`scene-btn-${sb.step}`}

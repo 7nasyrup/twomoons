@@ -9955,6 +9955,10 @@ export const scenarioData = [
   },
   //=============== 戦闘開始(凪砂中ボス) ===============
   {
+    "scene": "中ボス(凪砂)",
+    "action": "TRIGGER_BATTLE_MIDBOSS_NAGISA"
+  },
+  {
     "scene": "廊下",
     "speaker": "朔良",
     "role": "SAKURA",
@@ -10686,6 +10690,10 @@ export const scenarioData = [
     ]
   },
   //=============== 戦闘開始(凪砂ラスボス) ===============
+  {
+    "scene": "ラスボス(凪砂)",
+    "action": "TRIGGER_BATTLE_FINAL_NAGISA"
+  },
   {
     "scene": "研究所の最奥",
     "text": "勝負は決した──そう思った、次の瞬間。"
@@ -12191,6 +12199,10 @@ export const scenarioData = [
   },
   //=============== 戦闘開始(ミカ中ボス) ===============
   {
+    "scene": "中ボス(ミカ)",
+    "action": "TRIGGER_BATTLE_MIDBOSS_MIKA"
+  },
+  {
     "scene": "廊下",
     "bgm": "stop",
     "text": "戦いが終わると、ミカくんはその場に立ち尽くしたまま、肩を大きく上下させていた。",
@@ -12699,7 +12711,11 @@ export const scenarioData = [
     "scene": "研究所の最奥",
     "text": "私は息を呑み、ミカくんと並んで立ち上がる。すべての因縁を断ち切るための最後の戦いが、始まろうとしていた。"
   },
-  //=============== 戦闘開始(ミカラスボス) ===============
+    //=============== 戦闘開始(ミカラスボス) ===============
+  {
+    "scene": "ラスボス(ミカ)",
+    "action": "TRIGGER_BATTLE_FINAL_MIKA"
+  },
   {
     "scene": "研究所の最奥",
     "bgm": "stop",
