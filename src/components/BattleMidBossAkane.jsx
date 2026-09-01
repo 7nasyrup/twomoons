@@ -61,27 +61,27 @@ const ANOMALY_FRAGMENTS = {
 const MAX_ANOMALY_SLOTS = 5;
 
 // Turn order
-const TURN_ORDER = ['mika', 'enemy1'];
+const TURN_ORDER = ['akane', 'enemy1'];
 const TIMELINE_DISPLAY_COUNT = 10;    // How many turns to show in the timeline
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // INITIAL DATA
 // ═══════════════════════════════════════════════════════════════════════════════
 const createAllies = () => [
-  { id: 'mika', name: 'ミカ', image: '/battle/mika.png', cutinImage: '/character/Mika/Mika_serious.png', hp: 300, maxHp: 300, color: '#34d399', isDead: false, flashTimer: 0, lastDamage: 0 },
+  { id: 'akane', name: 'アカネ', image: '/battle/akane.png', cutinImage: '/character/Akane/Akane_serious.png', hp: 300, maxHp: 300, color: '#34d399', isDead: false, flashTimer: 0, lastDamage: 0 },
 ];
 
 const createEnemies = () => [
-  { id: 'enemy1', name: '黒騎士', image: '/battle/blackknight.png', hp: 600, maxHp: 600, color: '#ef4444', isStunned: false, isDead: false, flashTimer: 0 },
+  { id: 'enemy1', name: '機兵', image: '/character/machine.png', hp: 600, maxHp: 600, color: '#ef4444', isStunned: false, isDead: false, flashTimer: 0 },
 ];
 
 // Helper to get character info for timeline
 const getCharInfo = (id) => {
   const map = {
-    mika: { name: 'ミカ', image: '/battle/mika.png', isAlly: true },
+    akane: { name: 'アカネ', image: '/battle/akane.png', isAlly: true },
     nagisa: { name: '凪砂', image: '/battle/nagisa.png', isAlly: true },
-    enemy1: { name: '黒騎士', image: '/battle/blackknight.png', isAlly: false },
-    enemy2: { name: 'キメラβ', image: '/character/kimera1.png', isAlly: false },
+    enemy1: { name: '機兵', image: '/character/machine.png', isAlly: false },
+    enemy2: { name: 'キメラβ', image: '/character/machine.png', isAlly: false },
   };
   return map[id] || { name: '？', image: '', isAlly: false };
 };
@@ -89,7 +89,7 @@ const getCharInfo = (id) => {
 // ═══════════════════════════════════════════════════════════════════════════════
 // COMPONENT
 // ═══════════════════════════════════════════════════════════════════════════════
-export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }) {
+export default function BattleMidBossAkane({ onComplete, playBGM, stopBGM, playSE }) {
   // ─── Core State ───
   const [allies, setAllies] = useState(createAllies);
   const [enemies, setEnemies] = useState(createEnemies);
@@ -112,7 +112,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
   const [guardingAllies, setGuardingAllies] = useState(new Set());
   const [healCooldown, setHealCooldown] = useState(0);
   const [buffTurnsLeft, setBuffTurnsLeft] = useState(0);
-  const [guardCooldownTrigger, setGuardCooldownTrigger] = useState({ mika: 0, nagisa: 0 });
+  const [guardCooldownTrigger, setGuardCooldownTrigger] = useState({ akane: 0, nagisa: 0 });
 
   // ─── Anomaly State ───
   const [activeFragments, setActiveFragments] = useState([]); // [{ id, turnsLeft }]
@@ -132,7 +132,6 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
   const [duetCutin, setDuetCutin] = useState(null);
   const [glintEffects, setGlintEffects] = useState([]); // { id, enemyId }
   const [isPaused, setIsPaused] = useState(false);
-  const [showTutorial, setShowTutorial] = useState(false);
 
 
   const isPausedRef = useRef(isPaused);
@@ -141,7 +140,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
   const gameLoopRef = useRef(null);
   const lastTickRef = useRef(0);
   const hitStopRef = useRef(0);
-  const guardCooldownsRef = useRef({ mika: 0, nagisa: 0 });
+  const guardCooldownsRef = useRef({ akane: 0, nagisa: 0 });
   const stateRef = useRef({ allies, enemies, activeAttacks, guardingAllies, syncRate, battlePhase, turnPhase, currentTurnIndex, counterAttack, buffTurnsLeft, activeFragments, absorbCooldown, corruption });
 
   useEffect(() => {
@@ -276,7 +275,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
   }, [currentTurnIndex]);
 
   const isAllyTurn = useCallback((id) => {
-    return id === 'mika' || id === 'nagisa';
+    return id === 'akane' || id === 'nagisa';
   }, []);
 
   const advanceTurn = useCallback(() => {
@@ -295,15 +294,15 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
 
   // ─── Intro -> Fighting ───
   useEffect(() => {
-    if (battlePhase === 'intro' && !showTutorial) {
+    if (battlePhase === 'intro') {
       const timer = setTimeout(() => {
         setBattlePhase('fighting');
         setTurnPhase('turn_delay');
-        setTurnTimer(2500);
+        setTurnTimer(500); // Brief initial delay
       }, 2200);
       return () => clearTimeout(timer);
     }
-  }, [battlePhase, showTutorial]);
+  }, [battlePhase]);
 
   // ═══════════════════════════════════════════════════════════════════════════════
   // MAIN GAME LOOP (Turn-Based)
@@ -358,7 +357,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
             const allEnemies = stateRef.current.enemies;
 
             // Skip dead characters
-            const isAlly = turnId === 'mika' || turnId === 'nagisa';
+            const isAlly = turnId === 'akane' || turnId === 'nagisa';
             if (isAlly) {
               const ally = allAllies.find(a => a.id === turnId);
               if (!ally || ally.isDead) {
@@ -796,13 +795,13 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
       const next = prev + 30;
       if (next >= 100) {
         // Rampage!
-        addLog(`⚠️ 異能が暴走した！ ミカはダメージを受け、全能力を失った！`);
+        addLog(`⚠️ 異能が暴走した！ アカネはダメージを受け、全能力を失った！`);
         setActiveFragments([]);
         setShakeActive(true);
         setTimeout(() => setShakeActive(false), 800);
 
         setAllies(allyPrev => allyPrev.map(a => {
-          if (a.id === 'mika') {
+          if (a.id === 'akane') {
             const dmg = 150; // Heavy damage
             const newHp = Math.max(0, a.hp - dmg);
             spawnDamageNumber(a.id, dmg, 'critical');
@@ -862,14 +861,14 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
     addLog(`🎵 朔良が強化の歌を歌った！ 味方の攻防力UP (2ターン)`);
   }, [syncRate, addLog, triggerSakuraNote]);
 
-  const handleMikaUltimate = useCallback(() => {
+  const handleAkaneUltimate = useCallback(() => {
     if (syncRate < SYNC_COST_ULTIMATE || stateRef.current.battlePhase !== 'fighting') return;
 
-    const mika = allies.find(a => a.id === 'mika');
-    if (!mika || mika.isDead) return;
+    const akane = allies.find(a => a.id === 'akane');
+    if (!akane || akane.isDead) return;
 
     setSyncRate(0);
-    setDuetCutin({ allyId: mika.id, name: mika.name, image: mika.cutinImage });
+    setDuetCutin({ allyId: akane.id, name: akane.name, image: akane.cutinImage });
 
     setUltimateFlash(true);
     triggerSakuraNote();
@@ -897,7 +896,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
         });
       });
       setActiveAttacks([]);
-      addLog(`★★ ミカの必殺技！ 渾身の一撃が炸裂！ ★★`);
+      addLog(`★★ アカネの必殺技！ 渾身の一撃が炸裂！ ★★`);
     }, 1500);
 
     setTimeout(() => { setDuetCutin(null); setUltimateFlash(false); setShakeActive(false); }, 2500);
@@ -945,7 +944,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
           x1: eRect.left + eRect.width / 2 - sRect.left,
           y1: eRect.top + eRect.height / 2 - sRect.top,
           x2: aRect.left + aRect.width / 2 - sRect.left,
-          y2: aRect.top + aRect.height / 2 - sRect.top,
+          y2: aRect.top + aRect.height / 2 - sRect.top + (window.innerWidth < 1024 ? 50 : 80),
           enemyId: attack.enemyId,
           targetId: attack.targetId
         });
@@ -965,98 +964,28 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
   // ═══════════════════════════════════════════════════════════════════════════════
   return (
     <div className={`absolute inset-0 w-full h-full bg-[#090e17] overflow-hidden select-none z-50 flex flex-col font-orbitron ${shakeActive ? 'animate-battle-shake' : ''}`}>
-      {/* Background Image — kept from original */}
+      {/* Background Image */}
       <div className="absolute inset-0 z-0">
-        <img src="/battle/core_houkai.jpg" alt="Background" className="absolute inset-0 w-full h-full object-cover -translate-y-[15%]" />
+        {/* Full color bright image */}
+        <img src="/battle/rouka.jpg" alt="Background" className="absolute inset-0 w-full h-full object-cover -translate-y-[10%]" />
+
+        {/* Very subtle cyber tech overlays so UI is still readable */}
         <div className="absolute inset-0 bg-[#090e17]/20" />
         <div className="absolute inset-0 fui-grid-bg opacity-[0.2] mix-blend-overlay" />
         <div className="absolute bottom-[-10%] left-[-10%] w-[80vh] h-[80vh] rounded-full border border-emerald-500/10 shadow-[0_0_150px_rgba(16,185,129,0.05)] pointer-events-none" />
       </div>
 
-      {/* ── CINEMATIC LETTERBOXING ── */}
-      <motion.div className="absolute top-0 inset-x-0 bg-black z-10 pointer-events-none" initial={{ height: '15vh' }} animate={{ height: battlePhase === 'intro' ? '50vh' : '0vh' }} transition={{ duration: 0.8, ease: 'easeInOut', delay: battlePhase === 'intro' ? 0 : 0.5 }} />
-      <motion.div className="absolute bottom-0 inset-x-0 bg-black z-10 pointer-events-none" initial={{ height: '15vh' }} animate={{ height: battlePhase === 'intro' ? '50vh' : '0vh' }} transition={{ duration: 0.8, ease: 'easeInOut', delay: battlePhase === 'intro' ? 0 : 0.5 }} />
-
-      {/* ── CINEMATIC LETTERBOXING ── */}
-      <motion.div className="absolute top-0 inset-x-0 bg-black z-10 pointer-events-none" initial={{ height: '15vh' }} animate={{ height: battlePhase === 'intro' ? '50vh' : '0vh' }} transition={{ duration: 0.8, ease: 'easeInOut', delay: battlePhase === 'intro' ? 0 : 0.5 }} />
-      <motion.div className="absolute bottom-0 inset-x-0 bg-black z-10 pointer-events-none" initial={{ height: '15vh' }} animate={{ height: battlePhase === 'intro' ? '50vh' : '0vh' }} transition={{ duration: 0.8, ease: 'easeInOut', delay: battlePhase === 'intro' ? 0 : 0.5 }} />
-
       {/* ── INTRO ── */}
       <AnimatePresence>
         {battlePhase === 'intro' && (
-          <motion.div className="absolute inset-0 z-[60] flex items-center justify-center pointer-events-none" initial={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.8, delay: 0.2 }}>
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(8,145,178,0.15)_0%,_transparent_60%)] mix-blend-screen" />
-            <motion.div className="text-center relative" initial={{ opacity: 0, scale: 0.9, y: 10 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: 0.8, ease: 'easeOut' }}>
-              <div className="flex items-center justify-center gap-4 mb-2">
-                <div className="h-[1px] w-12 bg-cyan-500/50" />
-                <div className="font-orbitron font-bold text-[10px] lg:text-xs tracking-[0.4em] text-cyan-400 uppercase drop-shadow-[0_0_5px_rgba(34,211,238,0.8)]">System Engaged</div>
-                <div className="h-[1px] w-12 bg-cyan-500/50" />
-              </div>
-              <h2 className="font-orbitron text-3xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white via-cyan-100 to-cyan-500 tracking-[0.2em] drop-shadow-[0_0_15px_rgba(34,211,238,0.5)] py-2">
+          <motion.div className="absolute inset-0 z-[60] flex items-center justify-center bg-black" initial={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.8 }}>
+            <motion.div className="text-center" initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6 }}>
+              <div className="font-noto text-[10px] tracking-[0.5em] text-cyan-300/60 mb-4 uppercase">Synchronic Vocal Battle</div>
+              <h2 className="font-noto text-3xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 via-sky-100 to-indigo-200 tracking-[0.15em]">
                 BATTLE START
               </h2>
-              <motion.div className="mt-4 h-[2px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent shadow-[0_0_10px_rgba(34,211,238,0.8)]" initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ delay: 0.4, duration: 0.8, ease: 'easeInOut' }} />
+              <motion.div className="mt-4 h-[1px] bg-gradient-to-r from-transparent via-cyan-300/60 to-transparent" initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ delay: 0.3, duration: 0.8 }} />
             </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* ── TUTORIAL MODAL ── */}
-      <AnimatePresence>
-        {showTutorial && (
-          <motion.div className="absolute inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 lg:p-8" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <div className="bg-[#0f172a] border border-cyan-500/50 rounded-xl shadow-[0_0_30px_rgba(34,211,238,0.2)] max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 lg:p-10 relative">
-              <h2 className="text-2xl lg:text-3xl font-black text-cyan-300 mb-6 border-b border-cyan-500/30 pb-4 text-center tracking-widest">
-                戦闘マニュアル
-              </h2>
-
-              <div className="space-y-6 text-sm lg:text-base text-slate-300 leading-relaxed text-left">
-                {/* 1. 防御 */}
-                <section>
-                  <h3 className="text-lg font-bold text-cyan-200 mb-2 flex items-center gap-2">
-                    <span className="bg-cyan-900/50 px-2 py-0.5 rounded text-cyan-300 border border-cyan-500/30 text-sm">1</span>
-                    防御（ガード＆パリィ）
-                  </h3>
-                  <p>
-                    敵の攻撃に合わせて<strong>「スペースキー」</strong>、<strong>「エンターキー」</strong>、または<strong>「味方の立ち絵をクリック（長押し）」</strong>すると防御ができます。<br />
-                    敵の攻撃が当たる直前に合わせると<strong>パーフェクト・パリィ</strong>となり、ダメージを無効化しつつ敵に反撃ダメージを与えます。
-                  </p>
-                </section>
-
-                {/* 2. 攻撃タイミング */}
-                <section>
-                  <h3 className="text-lg font-bold text-emerald-200 mb-2 flex items-center gap-2">
-                    <span className="bg-emerald-900/50 px-2 py-0.5 rounded text-emerald-300 border border-emerald-500/30 text-sm">2</span>
-                    ジャスト攻撃
-                  </h3>
-                  <p>
-                    味方の攻撃時、画面に表示される丸いタイミングマーカーに合わせて攻撃ボタン（またはキー）を押してください。<br />
-                    タイミングが完璧（ジャスト）だと、<strong>与えるダメージが1.5倍</strong>に増加します。
-                  </p>
-                </section>
-
-                {/* 3. シンクロ率と吸収・回復 */}
-                <section>
-                  <h3 className="text-lg font-bold text-amber-200 mb-2 flex items-center gap-2">
-                    <span className="bg-amber-900/50 px-2 py-0.5 rounded text-amber-300 border border-amber-500/30 text-sm">3</span>
-                    シンクロ率ゲージと特殊アクション
-                  </h3>
-                  <p>
-                    攻撃を当てたりパリィを成功させると右下の<strong>シンクロ率</strong>が溜まります。このゲージを消費して必殺技や強化などの強力なアクションが可能です。<br />
-                    また、ターンとターンの間の猶予時間（1.5秒）を活用して、<strong>「吸収」</strong>ボタンなどを押すことで戦況を有利に進められます。
-                  </p>
-                </section>
-              </div>
-
-              <div className="mt-10 flex justify-center">
-                <button
-                  onClick={() => setShowTutorial(false)}
-                  className="px-8 py-3 bg-cyan-600 hover:bg-cyan-500 text-white font-bold rounded-full transition-all shadow-[0_0_15px_rgba(8,145,178,0.5)] hover:shadow-[0_0_25px_rgba(34,211,238,0.7)] hover:scale-105 active:scale-95"
-                >
-                  作戦開始
-                </button>
-              </div>
-            </div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -1066,7 +995,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
         {parryFlash && (
           <motion.div className="absolute inset-0 z-[65] pointer-events-none flex items-center justify-center" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.15 }}>
             <div className="absolute inset-0 bg-cyan-100/25" />
-            <motion.div initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: 1.2, opacity: 1 }} exit={{ scale: 2, opacity: 0 }} transition={{ duration: 0.4 }} className="font-noto text-5xl md:text-7xl font-black text-cyan-100 drop-shadow-[0_0_30px_rgba(255,255,255,1)] z-10 italic tracking-wider">
+            <motion.div initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: 1.2, opacity: 1 }} exit={{ scale: 2, opacity: 0 }} transition={{ duration: 0.4 }} className="font-noto text-5xl lg:text-7xl font-black text-cyan-100 drop-shadow-[0_0_30px_rgba(255,255,255,1)] z-10 italic tracking-wider">
               JUST PARRY!!
             </motion.div>
           </motion.div>
@@ -1110,7 +1039,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
             <motion.img src={duetCutin.image} alt={duetCutin.name} className="absolute h-[80%] object-contain z-10 drop-shadow-[0_0_40px_rgba(255,255,255,0.4)]" initial={{ x: '-100%', opacity: 0 }} animate={{ x: '0%', opacity: 1 }} exit={{ x: '100%', opacity: 0 }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} />
             <motion.div className="absolute bottom-[15%] z-20 text-center" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.5 }}>
               <div className="font-noto text-xs tracking-[0.5em] text-cyan-100/80 mb-2">ULTIMATE ART</div>
-              <div className="font-noto text-3xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-100 via-violet-100 to-cyan-100 tracking-wider">必殺技</div>
+              <div className="font-noto text-3xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-100 via-violet-100 to-cyan-100 tracking-wider">必殺技</div>
             </motion.div>
           </motion.div>
         )}
@@ -1119,7 +1048,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
       {/* ═══════════════════════════════════════════════════════════════
            BATTLE FIELD
          ═══════════════════════════════════════════════════════════════ */}
-      <div className="relative flex-1 flex items-stretch px-4 lg:px-12 pt-20 lg:pt-32 pb-16 lg:pb-24 overflow-hidden">
+      <div className="relative flex-1 flex items-stretch px-4 lg:px-12 pt-32 pb-24 overflow-hidden">
 
         {/* ── Allies (Left Column) ── */}
         <div className="w-1/2 flex flex-col justify-around items-center pr-4">
@@ -1135,9 +1064,12 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
                 <div className="relative flex items-center justify-center">
                   {!ally.isDead && activeFragments.length > 0 && (
                     <motion.div
-                      className="absolute inset-0 flex items-center justify-center pointer-events-none z-[45] pb-0 md:pb-10 opacity-80"
+                      className="absolute inset-0 flex items-center justify-center pointer-events-none z-[45] opacity-80"
                       style={{ mixBlendMode: 'screen' }}
-                      animate={{ x: isCounterDashing ? 150 : (isCurrentTurn ? 30 : 0) }}
+                      animate={{ 
+                        x: isCounterDashing ? 150 : (isCurrentTurn ? 30 : 0),
+                        y: 80
+                      }}
                       transition={{ duration: isCounterDashing ? 0.05 : 0.1, ease: 'easeOut' }}
                     >
                       <SpriteAnimator
@@ -1156,11 +1088,14 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
 
                   <motion.div
                     id={`char-${ally.id}`}
-                    className={`relative cursor-pointer touch-none flex items-center justify-center
-                    ${ally.id === 'nagisa' ? 'w-[140px] h-[186px] md:w-[180px] md:h-[230px]' : 'w-36 h-48 md:w-48 md:h-64 -translate-y-4'}
+                    className={`relative cursor-pointer touch-none flex items-center justify-center w-28 h-36 lg:w-40 lg:h-56 translate-y-20
                     ${ally.isDead ? 'opacity-40 grayscale' : ''}
                   `}
-                    animate={{ x: isCounterDashing ? 150 : (isCurrentTurn ? 30 : 0) }}
+                    animate={{ 
+                      x: isCounterDashing ? 150 : (isCurrentTurn ? 30 : 0),
+                      y: 80, // アカネを下に移動
+                      scale: 1.15 // アカネのサイズを一回り大きく調整
+                    }}
                     transition={{ duration: isCounterDashing ? 0.05 : 0.1, ease: 'easeOut' }}
                     onPointerDown={() => handlePointerDown(ally.id)}
                     onPointerUp={() => handlePointerUp(ally.id)}
@@ -1170,7 +1105,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
 
                     {isTargeted && !ally.isDead && (
                       <div className="absolute inset-0 pointer-events-none flex items-center justify-center z-40">
-                        <div className="absolute w-[120px] h-[120px] md:w-[140px] md:h-[140px]">
+                        <div className="absolute w-[120px] h-[120px] lg:w-[140px] lg:h-[140px]">
                           <svg viewBox="0 0 100 100" className="w-full h-full stroke-amber-400 opacity-80 drop-shadow-[0_0_8px_rgba(251,191,36,0.8)]">
                             <path d="M 25 10 L 10 10 L 10 25" fill="none" strokeWidth="3" />
                             <path d="M 75 10 L 90 10 L 90 25" fill="none" strokeWidth="3" />
@@ -1179,12 +1114,12 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
                           </svg>
                         </div>
                         <motion.div
-                          className="absolute w-[100px] h-[100px] md:w-[120px] md:h-[120px] rounded-full border border-dashed border-amber-500/50"
+                          className="absolute w-[100px] h-[100px] lg:w-[120px] lg:h-[120px] rounded-full border border-dashed border-amber-500/50"
                           animate={{ rotate: 360 }}
                           transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
                         />
                         <motion.div
-                          className="absolute w-[80px] h-[80px] md:w-[90px] md:h-[90px]"
+                          className="absolute w-[80px] h-[80px] lg:w-[90px] lg:h-[90px]"
                           animate={{ rotate: -360 }}
                           transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
                         >
@@ -1193,7 +1128,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
                             <circle cx="50" cy="50" r="40" fill="none" stroke="#f59e0b" strokeWidth="6" strokeDasharray="40 60" />
                           </svg>
                         </motion.div>
-                        <div className="absolute w-[40px] h-[40px] md:w-[50px] md:h-[50px]">
+                        <div className="absolute w-[40px] h-[40px] lg:w-[50px] lg:h-[50px]">
                           <svg viewBox="0 0 60 60" className="w-full h-full drop-shadow-[0_0_5px_rgba(251,191,36,1)]">
                             <line x1="30" y1="0" x2="30" y2="15" stroke="#f59e0b" strokeWidth="1.5" />
                             <line x1="30" y1="45" x2="30" y2="60" stroke="#f59e0b" strokeWidth="1.5" />
@@ -1248,9 +1183,9 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
                         <AnimatePresence>
                           {(allyQTEState === 'perfect' || allyQTEState === 'good') && (
                             <motion.div
-                              initial={{ scale: ally.id === 'mika' ? 0.7 : 0.5, opacity: 0, y: 0 }}
-                              animate={{ scale: ally.id === 'mika' ? 2.1 : 1.5, opacity: 1, y: -40 }}
-                              exit={{ opacity: 0, scale: ally.id === 'mika' ? 2.8 : 2 }}
+                              initial={{ scale: 0.5, opacity: 0, y: 80 }}
+                              animate={{ scale: 1.5, opacity: 1, y: 40 }}
+                              exit={{ opacity: 0, scale: 2 }}
                               className={`absolute font-orbitron font-black text-[16px] lg:text-[28px] tracking-[0.2em] z-50 italic ${allyQTEState === 'perfect' ? 'text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 to-amber-500 drop-shadow-[0_0_15px_rgba(245,158,11,1)]' : 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-100 to-cyan-500 drop-shadow-[0_0_15px_rgba(34,211,238,1)]'}`}
                             >
                               {allyQTEState === 'perfect' ? 'EXCELLENT' : 'GOOD'}
@@ -1261,7 +1196,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
                     )}
 
                     {isGuarding && !ally.isDead && (
-                      <div className={`absolute inset-0 flex items-center justify-center pointer-events-none z-50 ${ally.id === 'nagisa' ? '-translate-y-4' : ''}`}>
+                      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-50 translate-y-[80px]">
                         <SpriteAnimator
                           src="/battle/pipo-btleffect111f.png"
                           frameWidth={192}
@@ -1279,7 +1214,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
 
                     {buffTurnsLeft > 0 && !ally.isDead && (
                       <motion.div
-                        className="absolute inset-[-10px] rounded-2xl border border-pink-300/40 pointer-events-none z-10"
+                        className="absolute inset-[-10px] rounded-2xl border border-pink-300/40 pointer-events-none z-10 translate-y-[80px]"
                         animate={{ opacity: [0.3, 0.7, 0.3], boxShadow: ['0 0 8px rgba(244,114,182,0.15)', '0 0 20px rgba(244,114,182,0.4)', '0 0 8px rgba(244,114,182,0.15)'] }}
                         transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
                       />
@@ -1298,7 +1233,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
                     </AnimatePresence>
 
                     {ally.image ? (
-                      <img src={ally.image} alt={ally.name} className={`w-full h-full object-contain relative z-10 -translate-y-6 ${ally.id === 'mika' ? 'scale-[1.35]' : ''} ${ally.flashTimer > 0 ? 'animate-battle-hit-flash drop-shadow-[0_0_20px_rgba(248,113,113,0.8)]' : 'drop-shadow-lg'}`} />
+                      <img src={ally.image} alt={ally.name} className={`w-full h-full object-contain relative z-10 -translate-y-6 ${ally.flashTimer > 0 ? 'animate-battle-hit-flash drop-shadow-[0_0_20px_rgba(248,113,113,0.8)]' : 'drop-shadow-lg'}`} />
                     ) : (
                       <div className="w-full h-full bg-slate-800/80 border border-slate-600 rounded-2xl flex items-center justify-center">
                         <span className="font-noto font-bold text-slate-300">{ally.name}</span>
@@ -1318,13 +1253,13 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
                           className="absolute inset-0 flex items-center justify-center z-50 pointer-events-none"
                         >
                           <motion.div
-                            className="absolute w-32 h-32 md:w-40 md:h-40 rounded-full border-[3px] border-amber-400 border-dashed shadow-[0_0_15px_rgba(251,191,36,0.7)]"
+                            className="absolute w-32 h-32 lg:w-40 lg:h-40 rounded-full border-[3px] border-amber-400 border-dashed shadow-[0_0_15px_rgba(251,191,36,0.7)]"
                             initial={{ scale: 2.5, opacity: 0, rotate: 0 }}
                             animate={{ scale: 0.15, opacity: [0, 1, 1, 0], rotate: 180 }}
                             transition={{ duration: 0.6, ease: "linear" }}
                           />
                           <motion.div
-                            className="absolute w-28 h-28 md:w-36 md:h-36 rounded-full border-2 border-amber-300 shadow-[0_0_10px_rgba(252,211,77,0.5)]"
+                            className="absolute w-28 h-28 lg:w-36 lg:h-36 rounded-full border-2 border-amber-300 shadow-[0_0_10px_rgba(252,211,77,0.5)]"
                             initial={{ scale: 3, opacity: 0 }}
                             animate={{ scale: 0.15, opacity: [0, 0.8, 0.8, 0] }}
                             transition={{ duration: 0.6, ease: "linear" }}
@@ -1343,7 +1278,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
 
                 <AnimatePresence>
                   {showDamageNumbers.filter(d => d.targetId === ally.id).map(d => (
-                    <motion.div key={d.id} className={`absolute top-0 z-30 font-noto font-black text-xl md:text-3xl italic ${d.type === 'heal' ? 'text-emerald-300 drop-shadow-[0_0_8px_rgba(52,211,153,0.6)]' : 'text-red-400 drop-shadow-[0_0_8px_rgba(239,68,68,0.6)]'}`} initial={{ opacity: 1, y: 0, scale: 0.8 }} animate={{ opacity: 0, y: -40, scale: 1.2 }} exit={{ opacity: 0 }} transition={{ duration: 1 }}>
+                    <motion.div key={d.id} className={`absolute top-0 z-30 font-noto font-black text-xl lg:text-3xl italic ${d.type === 'heal' ? 'text-emerald-300 drop-shadow-[0_0_8px_rgba(52,211,153,0.6)]' : 'text-red-400 drop-shadow-[0_0_8px_rgba(239,68,68,0.6)]'}`} initial={{ opacity: 1, y: 0, scale: 0.8 }} animate={{ opacity: 0, y: -40, scale: 1.2 }} exit={{ opacity: 0 }} transition={{ duration: 1 }}>
                       {d.type === 'heal' ? `+${d.amount}` : `-${d.amount}`}
                     </motion.div>
                   ))}
@@ -1362,7 +1297,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
 
             return (
               <div key={enemy.id} className="relative flex flex-col items-center w-full">
-                <div className="w-28 lg:w-52 mb-2 lg:mb-4 z-20 relative -translate-x-6 lg:translate-x-0">
+                <div className="w-28 lg:w-52 mb-2 lg:mb-4 z-20 relative -translate-x-6 lg:translate-x-0 -translate-y-4 lg:-translate-y-8">
                   <div className="flex flex-col items-center">
                     <div className="flex items-center justify-between w-full mb-0.5 px-1 lg:mb-1 lg:px-2">
                       <div className="flex items-center gap-2">
@@ -1396,7 +1331,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
 
                   {!enemy.isDead && activeFragments.length === 0 && (
                     <motion.div
-                      className="absolute inset-0 flex items-center justify-center pointer-events-none z-[45] pb-0 md:pb-10 opacity-80"
+                      className="absolute inset-0 flex items-center justify-center pointer-events-none z-[45] pb-0 lg:pb-10 opacity-80"
                       style={{ mixBlendMode: 'screen' }}
                       animate={{
                         x: isAttacking ? -30 : (isCurrentTurn && turnPhase === 'enemy_resolve' ? -30 : 0),
@@ -1424,23 +1359,24 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
 
                   <motion.div
                     id={`char-${enemy.id}`}
-                    className={`relative w-48 h-60 md:w-80 md:h-96 flex items-center justify-center z-40 ${enemy.isDead ? 'opacity-30 grayscale'
+                    className={`relative w-64 h-80 lg:w-96 lg:h-[30rem] flex items-center justify-center z-40 -translate-y-32 ${enemy.isDead ? 'opacity-30 grayscale'
                       : enemy.flashTimer > 0 ? 'animate-battle-hit-flash'
                         : ''
                       }`}
                     animate={{
                       x: isAttacking ? -30 : (isCurrentTurn && turnPhase === 'enemy_resolve' ? -30 : 0),
-                      scale: isAttacking ? 1.05 : 1
+                      y: -100, // 機兵を上に移動
+                      scale: isAttacking ? 1.45 : 1.4 // 機兵を大きく拡大
                     }}
                     transition={{
                       duration: isAttacking ? 0.3 : 0.2,
                       ease: isAttacking ? 'easeOut' : 'easeInOut'
                     }}
                   >
-                    <img src={enemy.image} alt={enemy.name} className={`w-full h-full object-contain scale-[0.85] -translate-y-12 drop-shadow-[0_0_15px_rgba(244,63,94,0.3)] ${enemy.isStunned ? 'opacity-70 grayscale-[50%]' : ''}`} />
+                    <img src={enemy.image} alt={enemy.name} className={`w-full h-full object-contain drop-shadow-[0_0_15px_rgba(244,63,94,0.3)] ${enemy.isStunned ? 'opacity-70 grayscale-[50%]' : ''}`} />
 
                     {enemy.isStunned && !enemy.isDead && (
-                      <motion.div className="absolute -top-3 font-noto text-[9px] md:text-[10px] text-amber-200/90 font-bold bg-amber-950/70 backdrop-blur-sm px-3 py-0.5 rounded border border-amber-500/30" animate={{ y: [0, -2, 0] }} transition={{ duration: 0.5, repeat: Infinity }}>
+                      <motion.div className="absolute -top-3 font-noto text-[9px] lg:text-[10px] text-amber-200/90 font-bold bg-amber-950/70 backdrop-blur-sm px-3 py-0.5 rounded border border-amber-500/30" animate={{ y: [0, -2, 0] }} transition={{ duration: 0.5, repeat: Infinity }}>
                         スタン
                       </motion.div>
                     )}
@@ -1470,7 +1406,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
 
                 <AnimatePresence>
                   {showDamageNumbers.filter(d => d.targetId === enemy.id).map(d => (
-                    <motion.div key={d.id} className={`absolute top-0 z-30 font-noto font-black text-2xl md:text-4xl italic ${d.type === 'ultimate' ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 to-violet-300' : 'text-white'} drop-shadow-[0_0_12px_rgba(0,0,0,0.8)]`} initial={{ opacity: 1, y: 0, scale: 1.5 }} animate={{ opacity: 0, y: -50, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1 }}>
+                    <motion.div key={d.id} className={`absolute top-0 z-30 font-noto font-black text-2xl lg:text-4xl italic ${d.type === 'ultimate' ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 to-violet-300' : 'text-white'} drop-shadow-[0_0_12px_rgba(0,0,0,0.8)]`} initial={{ opacity: 1, y: 0, scale: 1.5 }} animate={{ opacity: 0, y: -50, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1 }}>
                       {d.amount}
                     </motion.div>
                   ))}
@@ -1552,7 +1488,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
           </div>
         </div>
 
-        {/* ── Top Left: Character Status (Mika) ── */}
+        {/* ── Top Left: Character Status (Akane) ── */}
         {(() => {
           const ally = allies[0]; // Active ally
           if (!ally) return null;
@@ -1566,13 +1502,13 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
                 <div className="absolute inset-0 bg-slate-900 border-[2px] border-red-500/80 rotate-45 overflow-hidden shadow-[0_0_20px_rgba(239,68,68,0.4)]">
                   <div className="absolute inset-0 -rotate-45 scale-[1.4] w-full h-full">
                     <img
-                      src="/character/Mika/Mika_serious.png"
-                      alt="Mika"
+                      src="/character/Akane/Akane_serious.png"
+                      alt="Akane"
                       className="absolute w-[300%] max-w-none object-top"
                       style={{ top: '10%', left: '50%', transform: 'translateX(-50%)' }}
                       onError={(e) => {
                         e.target.onerror = null;
-                        e.target.src = "/battle/mika.png";
+                        e.target.src = "/battle/akane.png";
                       }}
                     />
                   </div>
@@ -1596,7 +1532,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
               <div className="flex flex-col justify-center h-10 lg:h-20 w-32 lg:w-64 bg-gradient-to-r from-[#0a1120]/90 via-[#0a1120]/60 to-transparent pl-1.5 lg:pl-4 py-0.5 lg:py-2 border-l-2 border-red-500/50 backdrop-blur-sm">
                 <div className="flex justify-between items-end mb-0.5 lg:mb-1">
                   <span className="font-noto font-black text-white text-[12px] lg:text-xl tracking-[0.1em] lg:tracking-[0.2em] drop-shadow-[0_0_8px_rgba(239,68,68,0.9)] leading-none italic">
-                    ミカ
+                    アカネ
                   </span>
                   <div className="flex items-baseline gap-0.5 lg:gap-1 mr-1 lg:mr-4">
                     <span className="font-orbitron font-bold text-[10px] lg:text-[18px] text-white tabular-nums leading-none drop-shadow-[0_0_5px_rgba(255,255,255,0.8)]">
@@ -1665,7 +1601,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
 
           {/* Center Button - ULTIMATE (Reactor Core) */}
           <motion.button
-            onClick={handleMikaUltimate}
+            onClick={handleAkaneUltimate}
             disabled={syncRate < SYNC_COST_ULTIMATE || battlePhase !== 'fighting'}
             className={`relative w-[108px] h-[108px] lg:w-32 lg:h-32 rounded-full border-2 flex flex-col items-center justify-center transition-all duration-300 -translate-y-1 lg:-translate-y-4 shadow-[0_0_30px_rgba(0,0,0,0.8)] backdrop-blur-md hover:scale-105 active:scale-95 ${syncRate < SYNC_COST_ULTIMATE || battlePhase !== 'fighting'
               ? 'bg-[#0a0a0a]/90 border-amber-900/30 cursor-not-allowed grayscale'
@@ -1750,7 +1686,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
               {battlePhase === 'victory' && (
                 <motion.div className="mb-6 h-[1px] w-48 mx-auto bg-gradient-to-r from-transparent via-cyan-300/40 to-transparent" initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ delay: 0.8, duration: 0.6 }} />
               )}
-              <h2 className={`font-noto text-4xl md:text-6xl font-black tracking-[0.3em] ${battlePhase === 'victory' ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 via-sky-100 to-indigo-200' : 'text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-red-300 to-orange-300'}`}>
+              <h2 className={`font-noto text-4xl lg:text-6xl font-black tracking-[0.3em] ${battlePhase === 'victory' ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 via-sky-100 to-indigo-200' : 'text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-red-300 to-orange-300'}`}>
                 {battlePhase === 'victory' ? '作戦成功' : '作戦失敗'}
               </h2>
               {battlePhase === 'victory' && (

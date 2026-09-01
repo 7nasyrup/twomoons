@@ -61,14 +61,14 @@ const ANOMALY_FRAGMENTS = {
 const MAX_ANOMALY_SLOTS = 5;
 
 // Turn order
-const TURN_ORDER = ['mika', 'enemy1'];
+const TURN_ORDER = ['akane', 'enemy1'];
 const TIMELINE_DISPLAY_COUNT = 10;    // How many turns to show in the timeline
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // INITIAL DATA
 // ═══════════════════════════════════════════════════════════════════════════════
 const createAllies = () => [
-  { id: 'mika', name: 'ミカ', image: '/battle/mika.png', cutinImage: '/character/Mika/Mika_serious.png', hp: 300, maxHp: 300, color: '#34d399', isDead: false, flashTimer: 0, lastDamage: 0 },
+  { id: 'akane', name: 'アカネ', image: '/battle/akane.png', cutinImage: '/character/Akane/Akane_serious.png', hp: 300, maxHp: 300, color: '#34d399', isDead: false, flashTimer: 0, lastDamage: 0 },
 ];
 
 const createEnemies = () => [
@@ -78,7 +78,7 @@ const createEnemies = () => [
 // Helper to get character info for timeline
 const getCharInfo = (id) => {
   const map = {
-    mika: { name: 'ミカ', image: '/battle/mika.png', isAlly: true },
+    akane: { name: 'アカネ', image: '/battle/akane.png', isAlly: true },
     nagisa: { name: '凪砂', image: '/battle/nagisa.png', isAlly: true },
     enemy1: { name: '黒騎士', image: '/battle/blackknight.png', isAlly: false },
     enemy2: { name: 'キメラβ', image: '/character/kimera1.png', isAlly: false },
@@ -89,7 +89,7 @@ const getCharInfo = (id) => {
 // ═══════════════════════════════════════════════════════════════════════════════
 // COMPONENT
 // ═══════════════════════════════════════════════════════════════════════════════
-export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }) {
+export default function BattleFinalAkane({ onComplete, playBGM, stopBGM, playSE }) {
   // ─── Core State ───
   const [allies, setAllies] = useState(createAllies);
   const [enemies, setEnemies] = useState(createEnemies);
@@ -112,7 +112,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
   const [guardingAllies, setGuardingAllies] = useState(new Set());
   const [healCooldown, setHealCooldown] = useState(0);
   const [buffTurnsLeft, setBuffTurnsLeft] = useState(0);
-  const [guardCooldownTrigger, setGuardCooldownTrigger] = useState({ mika: 0, nagisa: 0 });
+  const [guardCooldownTrigger, setGuardCooldownTrigger] = useState({ akane: 0, nagisa: 0 });
 
   // ─── Anomaly State ───
   const [activeFragments, setActiveFragments] = useState([]); // [{ id, turnsLeft }]
@@ -141,7 +141,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
   const gameLoopRef = useRef(null);
   const lastTickRef = useRef(0);
   const hitStopRef = useRef(0);
-  const guardCooldownsRef = useRef({ mika: 0, nagisa: 0 });
+  const guardCooldownsRef = useRef({ akane: 0, nagisa: 0 });
   const stateRef = useRef({ allies, enemies, activeAttacks, guardingAllies, syncRate, battlePhase, turnPhase, currentTurnIndex, counterAttack, buffTurnsLeft, activeFragments, absorbCooldown, corruption });
 
   useEffect(() => {
@@ -276,7 +276,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
   }, [currentTurnIndex]);
 
   const isAllyTurn = useCallback((id) => {
-    return id === 'mika' || id === 'nagisa';
+    return id === 'akane' || id === 'nagisa';
   }, []);
 
   const advanceTurn = useCallback(() => {
@@ -358,7 +358,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
             const allEnemies = stateRef.current.enemies;
 
             // Skip dead characters
-            const isAlly = turnId === 'mika' || turnId === 'nagisa';
+            const isAlly = turnId === 'akane' || turnId === 'nagisa';
             if (isAlly) {
               const ally = allAllies.find(a => a.id === turnId);
               if (!ally || ally.isDead) {
@@ -796,13 +796,13 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
       const next = prev + 30;
       if (next >= 100) {
         // Rampage!
-        addLog(`⚠️ 異能が暴走した！ ミカはダメージを受け、全能力を失った！`);
+        addLog(`⚠️ 異能が暴走した！ アカネはダメージを受け、全能力を失った！`);
         setActiveFragments([]);
         setShakeActive(true);
         setTimeout(() => setShakeActive(false), 800);
 
         setAllies(allyPrev => allyPrev.map(a => {
-          if (a.id === 'mika') {
+          if (a.id === 'akane') {
             const dmg = 150; // Heavy damage
             const newHp = Math.max(0, a.hp - dmg);
             spawnDamageNumber(a.id, dmg, 'critical');
@@ -862,14 +862,14 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
     addLog(`🎵 朔良が強化の歌を歌った！ 味方の攻防力UP (2ターン)`);
   }, [syncRate, addLog, triggerSakuraNote]);
 
-  const handleMikaUltimate = useCallback(() => {
+  const handleAkaneUltimate = useCallback(() => {
     if (syncRate < SYNC_COST_ULTIMATE || stateRef.current.battlePhase !== 'fighting') return;
 
-    const mika = allies.find(a => a.id === 'mika');
-    if (!mika || mika.isDead) return;
+    const akane = allies.find(a => a.id === 'akane');
+    if (!akane || akane.isDead) return;
 
     setSyncRate(0);
-    setDuetCutin({ allyId: mika.id, name: mika.name, image: mika.cutinImage });
+    setDuetCutin({ allyId: akane.id, name: akane.name, image: akane.cutinImage });
 
     setUltimateFlash(true);
     triggerSakuraNote();
@@ -897,7 +897,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
         });
       });
       setActiveAttacks([]);
-      addLog(`★★ ミカの必殺技！ 渾身の一撃が炸裂！ ★★`);
+      addLog(`★★ アカネの必殺技！ 渾身の一撃が炸裂！ ★★`);
     }, 1500);
 
     setTimeout(() => { setDuetCutin(null); setUltimateFlash(false); setShakeActive(false); }, 2500);
@@ -1248,9 +1248,9 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
                         <AnimatePresence>
                           {(allyQTEState === 'perfect' || allyQTEState === 'good') && (
                             <motion.div
-                              initial={{ scale: ally.id === 'mika' ? 0.7 : 0.5, opacity: 0, y: 0 }}
-                              animate={{ scale: ally.id === 'mika' ? 2.1 : 1.5, opacity: 1, y: -40 }}
-                              exit={{ opacity: 0, scale: ally.id === 'mika' ? 2.8 : 2 }}
+                              initial={{ scale: 0.5, opacity: 0, y: 0 }}
+                              animate={{ scale: 1.5, opacity: 1, y: -40 }}
+                              exit={{ opacity: 0, scale: 2 }}
                               className={`absolute font-orbitron font-black text-[16px] lg:text-[28px] tracking-[0.2em] z-50 italic ${allyQTEState === 'perfect' ? 'text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 to-amber-500 drop-shadow-[0_0_15px_rgba(245,158,11,1)]' : 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-100 to-cyan-500 drop-shadow-[0_0_15px_rgba(34,211,238,1)]'}`}
                             >
                               {allyQTEState === 'perfect' ? 'EXCELLENT' : 'GOOD'}
@@ -1298,7 +1298,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
                     </AnimatePresence>
 
                     {ally.image ? (
-                      <img src={ally.image} alt={ally.name} className={`w-full h-full object-contain relative z-10 -translate-y-6 ${ally.id === 'mika' ? 'scale-[1.35]' : ''} ${ally.flashTimer > 0 ? 'animate-battle-hit-flash drop-shadow-[0_0_20px_rgba(248,113,113,0.8)]' : 'drop-shadow-lg'}`} />
+                      <img src={ally.image} alt={ally.name} className={`w-full h-full object-contain relative z-10 -translate-y-6 ${ally.flashTimer > 0 ? 'animate-battle-hit-flash drop-shadow-[0_0_20px_rgba(248,113,113,0.8)]' : 'drop-shadow-lg'}`} />
                     ) : (
                       <div className="w-full h-full bg-slate-800/80 border border-slate-600 rounded-2xl flex items-center justify-center">
                         <span className="font-noto font-bold text-slate-300">{ally.name}</span>
@@ -1552,7 +1552,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
           </div>
         </div>
 
-        {/* ── Top Left: Character Status (Mika) ── */}
+        {/* ── Top Left: Character Status (Akane) ── */}
         {(() => {
           const ally = allies[0]; // Active ally
           if (!ally) return null;
@@ -1566,13 +1566,13 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
                 <div className="absolute inset-0 bg-slate-900 border-[2px] border-red-500/80 rotate-45 overflow-hidden shadow-[0_0_20px_rgba(239,68,68,0.4)]">
                   <div className="absolute inset-0 -rotate-45 scale-[1.4] w-full h-full">
                     <img
-                      src="/character/Mika/Mika_serious.png"
-                      alt="Mika"
+                      src="/character/Akane/Akane_serious.png"
+                      alt="Akane"
                       className="absolute w-[300%] max-w-none object-top"
                       style={{ top: '10%', left: '50%', transform: 'translateX(-50%)' }}
                       onError={(e) => {
                         e.target.onerror = null;
-                        e.target.src = "/battle/mika.png";
+                        e.target.src = "/battle/akane.png";
                       }}
                     />
                   </div>
@@ -1596,7 +1596,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
               <div className="flex flex-col justify-center h-10 lg:h-20 w-32 lg:w-64 bg-gradient-to-r from-[#0a1120]/90 via-[#0a1120]/60 to-transparent pl-1.5 lg:pl-4 py-0.5 lg:py-2 border-l-2 border-red-500/50 backdrop-blur-sm">
                 <div className="flex justify-between items-end mb-0.5 lg:mb-1">
                   <span className="font-noto font-black text-white text-[12px] lg:text-xl tracking-[0.1em] lg:tracking-[0.2em] drop-shadow-[0_0_8px_rgba(239,68,68,0.9)] leading-none italic">
-                    ミカ
+                    アカネ
                   </span>
                   <div className="flex items-baseline gap-0.5 lg:gap-1 mr-1 lg:mr-4">
                     <span className="font-orbitron font-bold text-[10px] lg:text-[18px] text-white tabular-nums leading-none drop-shadow-[0_0_5px_rgba(255,255,255,0.8)]">
@@ -1665,7 +1665,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
 
           {/* Center Button - ULTIMATE (Reactor Core) */}
           <motion.button
-            onClick={handleMikaUltimate}
+            onClick={handleAkaneUltimate}
             disabled={syncRate < SYNC_COST_ULTIMATE || battlePhase !== 'fighting'}
             className={`relative w-[108px] h-[108px] lg:w-32 lg:h-32 rounded-full border-2 flex flex-col items-center justify-center transition-all duration-300 -translate-y-1 lg:-translate-y-4 shadow-[0_0_30px_rgba(0,0,0,0.8)] backdrop-blur-md hover:scale-105 active:scale-95 ${syncRate < SYNC_COST_ULTIMATE || battlePhase !== 'fighting'
               ? 'bg-[#0a0a0a]/90 border-amber-900/30 cursor-not-allowed grayscale'
