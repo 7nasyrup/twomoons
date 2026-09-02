@@ -253,8 +253,8 @@ export default function BattleSystemPlot5({ onComplete, playBGM, stopBGM, playSE
     }
 
     setSakuraNotes(prev => {
-      if (prev.length >= 15) return prev;
-      return [...prev, ...newNotes].slice(-15);
+      if (prev.length >= 10) return prev;
+      return [...prev, ...newNotes].slice(-10);
     });
 
     setTimeout(() => {
