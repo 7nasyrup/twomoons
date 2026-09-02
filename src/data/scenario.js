@@ -260,7 +260,7 @@ export const scenarioData = [
   },
   {
     "scene": "街（朝）",
-    "text": "目の前に現れたのは、同じ大学に通う友人の睦典だった。彼にとっても、キメラを目の前にするのは初めてのはずだ。\nそれなのに、襲われている私を見るなり、迷わず飛び込んできてくれた。\n睦典は私を庇うように立ち、キメラから目を離さない。"
+    "text": "目の前に現れたのは、同じ大学に通う友人の睦典だった。彼にとっても、キメラを目の前にするのは初めてのはずだ。それなのに、襲われている私を見るなり、迷わず飛び込んできてくれた。"
   },
   {
     "scene": "街（朝）",
@@ -322,7 +322,8 @@ export const scenarioData = [
   },
   {
     "scene": "街（朝）",
-    "text": "歌おうなんて考えたわけじゃないけれど、幼い頃から何度も口ずさんできたあの歌が、気づけば自然と唇からこぼれていた。私の歌声が静かに響き始める。最初は小さかった歌声が、不思議と辺り一帯へ広がっていく。"
+    "text": "歌おうなんて考えたわけじゃないけれど、幼い頃から何度も口ずさんできたあの歌が、気づけば自然と唇からこぼれていた。私の歌声が静かに響き始める。最初は小さかった歌声が、不思議と辺り一帯へ広がっていく。",
+    "bgm": "TheSong.mp3"
   },
   {
     "scene": "街（朝）",
@@ -962,7 +963,7 @@ export const scenarioData = [
   },
   {
     "scene": "朔良の部屋(夜)",
-    "text": "誰も返事をしない部屋へ帰る。静まり返ったワンルームに明かりをつけ、私は疲れた身体をベッドへ預けた。",
+    "text": "誰も返事をしない部屋へ帰る。静まり返った自室に明かりをつけ、私は疲れた身体をベッドへ預けた。",
     "bgm": "Room_Night.mp3",
     "bgmVolume": 0.03
   },
@@ -2558,7 +2559,7 @@ export const scenarioData = [
   {
     "scene": "キャンパスの裏手",
     "speaker": "メール",
-    "text": "『お前の父親と、お前の無能力について話したいことがある。今夜20時、三丁通り西路地裏へ一人で来い。通報すれば、その瞬間に周囲へ危害を加える』"
+    "text": "『お前の父親と、お前の能力について話したいことがある。今夜20時、三丁通り西路地裏へ一人で来い。通報すれば、その瞬間に周囲へ危害を加える』"
   },
   {
     "scene": "キャンパスの裏手",
@@ -2568,11 +2569,11 @@ export const scenarioData = [
   },
   {
     "scene": "キャンパスの裏手",
-    "text": "指先が震える。父の研究も、私が無能力者であることも、本来ほとんど知られていないはずだ。"
+    "text": "指先が震える。父のこと、…そして、私の能力のこと。"
   },
   {
     "scene": "キャンパスの裏手",
-    "text": "もしその事実が悪意ある能力者に知られれば、私は抵抗する術もなく狙われる。悪戯かもしれない。罠かもしれない。それでも、周りの人に危害が及ぶかもしれないと思うと、警察へ通報することすらできなかった。"
+    "text": "こんなの、ただの悪質な迷惑メールだ。だけど、なぜかとても胸騒ぎがした。それに、無視することで周りの人に危害が及ぶかもしれないと思うと、警察へ通報することすらできなかった。"
   },
   {
     "scene": "キャンパスの裏手",
@@ -2737,7 +2738,7 @@ export const scenarioData = [
   {
     "scene": "廃倉庫",
     "speaker": "大男",
-    "text": "「お前の血縁者──'弟'について知っていることを話せ」"
+    "text": '「お前の血縁者──"弟"について知っていることを話せ」'
   },
   {
     "scene": "廃倉庫",
@@ -2747,7 +2748,7 @@ export const scenarioData = [
   },
   {
     "scene": "廃倉庫",
-    "text": "思考が止まる。弟？そんな人、いるはずがない。私にはお父さんしかいないはず…。"
+    "text": "思考が止まる。弟？そんなのいるはずがない。私にはお父さんしかいないはず…。"
   },
   {
     "scene": "廃倉庫",
@@ -2794,7 +2795,9 @@ export const scenarioData = [
   {
     "scene": "廃倉庫",
     "text": "──ビーッ！！ ビーッ！！",
-    "bgm": "+alert.mp3"
+    "bgm": "+alert.mp3",
+    "bgmFade": 2,
+    "bgmVolume": 0.5,
   },
   {
     "scene": "廃倉庫",
@@ -2841,20 +2844,22 @@ export const scenarioData = [
   },
   {
     "scene": "廃倉庫",
-    "text": "大男の一言で男たちは慌ただしく倉庫を飛び出していく。"
+    "text": "大男の一言で男たちは慌ただしく倉庫を飛び出していく。",
+    "se": "run_many.mp3"
   },
   {
     "scene": "廃倉庫",
     "speaker": "大男",
-    "text": "「こいつは後回しだ。逃げられる状態じゃない」",
-    "bgm": "stop"
+    "text": "「こいつは後回しだ。逃げられる状態じゃない」"
   },
   {
     "scene": "廃倉庫",
     "text": "最後に眼帯の男も私を一瞥すると、そのまま外へ消えた。\nやがて倉庫は静まり返る。",
     "hideIllust": [
       "Akane"
-    ]
+    ],
+    "bgm": "stop",
+    "se": "stop"
   },
   {
     "scene": "廃倉庫",
@@ -3118,7 +3123,7 @@ export const scenarioData = [
     "scene": "崩壊した街",
     "speaker": "ミカ",
     "role": "MIKA",
-    "text": "「アンタ……朔良先輩とどういう関係だ」"
+    "text": "「アンタ…何者だ。それに、朔良先輩とどういう関係だ」"
   },
   {
     "scene": "崩壊した街",
@@ -3590,9 +3595,9 @@ export const scenarioData = [
   },
   {
     "scene": "崩壊した街",
-    "text": "──ドンッ！！ ",
     "action": "SHAKE_SCREEN_VERY_LARGE",
-    "se": "rock_attack.mp3"
+    "se": "rock_attack.mp3",
+    "hideWindow": true
   },
   {
     "scene": "崩壊した街",
@@ -4268,10 +4273,10 @@ export const scenarioData = [
     "scene": "ロケット内部",
     "action": "RED_ALERT_FLASH",
     "bgm": "+alert_Rocket.mp3",
-    "text": "ピピピピピッ！！",
     "showIllust": [
       "Mutsunori_happy"
-    ]
+    ],
+    "hideWindow": true
   },
   {
     "scene": "ロケット内部",
@@ -4755,8 +4760,8 @@ export const scenarioData = [
   {
     "scene": "廊下",
     "se": "+jishin.mp3",
-    "action": "SHAKE_SCREEN",
-    "text": "──ゴゴゴゴ……。"
+    "action": "SHAKE_SCREEN_CONTINUOUS_SMALL",
+    "hideWindow": true
   },
   {
     "scene": "廊下",
@@ -4766,7 +4771,8 @@ export const scenarioData = [
     "scene": "廊下",
     "speaker": "システム",
     "role": "SYSTEM",
-    "text": "『警告。侵入者排除システムを起動します』"
+    "text": "『警告。侵入者排除システムを起動します』",
+    "action": "clear"
   },
   {
     "scene": "廊下",
@@ -4780,7 +4786,8 @@ export const scenarioData = [
     "text": "閉ざされていた隔壁が開き、その奥から巨大な防衛個体が姿を現した。",
     "showIllust": [
       "machine4"
-    ]
+    ],
+    "se": "+robot.mp3"
   },
   {
     "scene": "廊下",
@@ -4916,10 +4923,6 @@ export const scenarioData = [
   },
   {
     "scene": "コア部屋",
-    "text": "その横顔は、もう隠しきれないほど青ざめていた。"
-  },
-  {
-    "scene": "コア部屋",
     "text": "私は教授の手記に書かれていた言葉を思い出す。"
   },
   {
@@ -5035,10 +5038,10 @@ export const scenarioData = [
     "scene": "コア部屋",
     "action": "SHAKE_SCREEN",
     "se": "+bakuhatsu.mp3",
-    "text": "──ドォォォンッ！！",
     "hideIllust": [
       "Mutsunori"
-    ]
+    ],
+    "hideWindow": true
   },
   {
     "scene": "コア部屋",
@@ -5337,6 +5340,12 @@ export const scenarioData = [
   },
   {
     "scene": "瓦礫裏",
+    "speaker": "朔良",
+    "role": "SAKURA",
+    "text": "「うどんの味も、大学で過ごした時間も、全部私が覚えてる！ だから……自分のことも、私のことも、勝手に諦めないでよ……！」"
+  },
+  {
+    "scene": "瓦礫裏",
     "text": "彼の胸に顔を埋め、涙をこらえながら叫ぶ。"
   },
   {
@@ -5357,12 +5366,6 @@ export const scenarioData = [
   {
     "scene": "瓦礫裏",
     "text": "温かな光は睦典を包み込み、彼を蝕んでいた霧と、失われかけていた精神の摩耗を静かに消し去っていく。"
-  },
-  {
-    "scene": "瓦礫裏",
-    "speaker": "睦典",
-    "role": "MUTSUNORI",
-    "text": "「……あ……朔良……？」"
   },
   {
     "scene": "瓦礫裏",
@@ -5420,7 +5423,7 @@ export const scenarioData = [
     "scene": "コア部屋_崩壊①",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「朔良、俺の目になってくれ」",
+    "text": "「朔良、俺の目になってくれ。——二人で、あいつを倒そう」",
     "showIllust": [
       "Mutsunori_smile2"
     ]
@@ -5574,17 +5577,13 @@ export const scenarioData = [
   },
   {
     "scene": "コア部屋_崩壊①",
-    "text": "ブゥゥゥンッ──！！",
     "action": "WHITE_PULSE_START",
-    "se": "+CoreCharge_Sound.mp3"
+    "se": "+CoreCharge_Sound.mp3",
+    "hideWindow": true
   },
   {
     "scene": "コア部屋_崩壊①",
     "text": "触れた瞬間、眩い光と共に、莫大なエネルギーがコアへ流れ込む。"
-  },
-  {
-    "scene": "コア部屋_崩壊①",
-    "text": "しかし──。"
   },
   {
     "scene": "コア部屋_崩壊①",
@@ -5660,7 +5659,7 @@ export const scenarioData = [
   },
   {
     "scene": "コア部屋_崩壊①",
-    "text": "一番怖かった問い。"
+    "text": "一番怖かった問い。もし、この戦いの代償で私のことまで忘れていたら──。"
   },
   {
     "scene": "コア部屋_崩壊①",
@@ -5687,7 +5686,7 @@ export const scenarioData = [
   },
   {
     "scene": "コア部屋_崩壊①",
-    "text": "その言葉に、張り詰めていたものが一気に溢れ出す。"
+    "text": "その言葉に、張り詰めていたものが一気に溢れ出す。涙を拭う私に、睦典は優しく空を指差した。"
   },
   {
     "scene": "コア部屋_崩壊①",
@@ -5701,15 +5700,11 @@ export const scenarioData = [
   },
   {
     "scene": "コア部屋_崩壊①",
-    "text": "見上げた先には、隔離領域を覆っていた光が消え、本来の姿を取り戻した宇宙が広がっていた。",
+    "text": "見上げた先には、隔離領域を覆っていた光が消え、本来の姿を取り戻した宇宙が広がっていた。──そして一際輝く、本当の月。",
     "hideIllust": [
       "Mutsunori"
     ],
     "bg": "/scene/Moon_Lab.png"
-  },
-  {
-    "scene": "コア部屋_崩壊①",
-    "text": "そこには、青く輝く地球と──柔らかな光を放つ、本当の月。"
   },
   {
     "scene": "コア部屋_崩壊①",
@@ -5788,10 +5783,6 @@ export const scenarioData = [
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「ふふ……絶対、おかわりするからね」"
-  },
-  {
-    "scene": "脱出ロケット",
-    "text": "行きのロケットでは感じなかった、温かな静寂。"
   },
   {
     "scene": "脱出ロケット",
@@ -6029,11 +6020,7 @@ export const scenarioData = [
   },
   {
     "scene": "大学内（崩壊）",
-    "text": "その途中、見えない影の向こうに、一瞬だけ人影が見えた気がした。"
-  },
-  {
-    "scene": "大学内（崩壊）",
-    "text": "私の目の前で、剣に貫かれたはずの青年。"
+    "text": "その途中、見えない影の向こうに、一瞬だけ人影が見えた気がした。\n私の目の前で、剣に貫かれたはずの青年。"
   },
   {
     "scene": "大学内（崩壊）",
@@ -6064,11 +6051,7 @@ export const scenarioData = [
   },
   {
     "scene": "研究室",
-    "text": "誰もいない。"
-  },
-  {
-    "scene": "研究室",
-    "text": "あれほどの速度についてこられるはずもなく、冷たい床に私の荒い呼吸だけが響いている。"
+    "text": "誰もいない。あれほどの速度についてこられるはずもなく、冷たい床に私の荒い呼吸だけが響いている。"
   },
   {
     "scene": "研究室",
@@ -6189,7 +6172,7 @@ export const scenarioData = [
   },
   {
     "scene": "研究室",
-    "text": "【黒騎士】が、すぐそこまで迫っている。──迷っている暇はない。"
+    "text": "【黒騎士】が、すぐそこまで迫っている。──迷っている暇はない。\n私は資料を握りしめ、促されるままロケットへと駆け出した。"
   },
   {
     "scene": "研究室",
@@ -6279,10 +6262,6 @@ export const scenarioData = [
     "text": "「………………私？」",
     "action": "RED_ALERT_FLASH",
     "bgm": "alert_Rocket.mp3"
-  },
-  {
-    "scene": "ロケット内部",
-    "text": "ピピピピピッ！！"
   },
   {
     "scene": "ロケット内部",
@@ -6563,14 +6542,6 @@ export const scenarioData = [
   {
     "scene": "廊下",
     "text": "薄暗い制御室の端末から最後のチップを抜き取り、私は息を吐いた。これで最奥のゲートを開くためのフラグメントはすべて揃った。"
-  },
-  {
-    "scene": "廊下",
-    "text": "けれど、さっき端末に表示された実験データが、どうしても頭から離れない。"
-  },
-  {
-    "scene": "廊下",
-    "text": "（近づく適応者の異能を、その身に『吸収』する能力者……そんな人、本当にいるのかな）"
   },
   {
     "scene": "廊下",
@@ -7875,11 +7846,6 @@ export const scenarioData = [
   },
   {
     "scene": "公園",
-    "speaker": "いじめっ子B",
-    "text": "「な、なんだよこいつ、強いぞ！？」"
-  },
-  {
-    "scene": "公園",
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「これ以上いじめるなら、絶対に許さないんだから！」"
@@ -8094,7 +8060,7 @@ export const scenarioData = [
     "scene": "校門",
     "speaker": "満",
     "role": "MICHIRU",
-    "text": "「……あ、そういえば朔良、体つくり運動のペアの時――って、朔良？ 顔色、すごく悪いよ……？」"
+    "text": "「……あ、そういえば朔良、修学旅行のコース――って、朔良？ 顔色、すごく悪いよ……？」"
   },
   {
     "scene": "校門",
@@ -8190,7 +8156,7 @@ export const scenarioData = [
   },
   {
     "scene": "自室（散乱）",
-    "text": "隣の家から漂う、かすかな治癒の力。\n遠くの路地裏で生まれた、小さな威圧の波動。学校の理科室に残った、微かな熱の残響。\n街中に存在する『異能』が、まるで引き寄せられるように私の中へ流れ込んでくる。"
+    "text": "その時、街中に存在する『異能』が、まるで引き寄せられるように私の中へ流れ込んでくるような感覚を覚えた。"
   },
   {
     "scene": "自室（散乱）",
@@ -9036,7 +9002,7 @@ export const scenarioData = [
     "scene": "街（夜）",
     "text": "そこに立っていたのは、一人の青年だった。",
     "bgm": "TheSong.mp3",
-    "bg": "/scene/michiru_cg.png"
+    "bg": "/scene/Michiru_CG5.png"
   },
   {
     "scene": "街（夜）",
@@ -9385,7 +9351,7 @@ export const scenarioData = [
     "scene": "ロケット内部",
     "action": "RED_ALERT_START",
     "bgm": "+alert_Rocket.mp3",
-    "text": "ピピピピピッ！！"
+    "hideWindow": true
   },
   {
     "scene": "ロケット内部",
@@ -9423,12 +9389,8 @@ export const scenarioData = [
   {
     "scene": "ロケット内部",
     "action": "SHAKE_SCREEN_EXTREME",
-    "text": "ガガガガガッ！！",
+    "text": "激しく揺れる機体の中、私は迫る死の恐怖に息を呑むことしかできなかった。",
     "se": "Rocket_Shock.mp3"
-  },
-  {
-    "scene": "ロケット内部",
-    "text": "激しく揺れる機体の中、私は迫る死の恐怖に息を呑むことしかできなかった。"
   },
   {
     "action": "FADE_TO_BLACK",
@@ -9707,11 +9669,7 @@ export const scenarioData = [
   },
   {
     "scene": "月面",
-    "text": "反論したいのに、言葉が出ない。\n確かに、私たちは墜落事故に遭い、右も左も分からない場所へ放り出された。"
-  },
-  {
-    "scene": "月面",
-    "text": "それでも。"
+    "text": "反論したいのに、言葉が出ない。\n確かに、私たちは墜落事故に遭い、右も左も分からない場所へ放り出された。…それでも。"
   },
   {
     "scene": "月面",
@@ -9896,7 +9854,6 @@ export const scenarioData = [
   },
   {
     "scene": "廊下",
-    "text": "──ゴゴゴゴ……。",
     "se": "+jishin.mp3",
     "action": "SHAKE_SCREEN_CONTINUOUS_SMALL"
   },
@@ -9979,7 +9936,7 @@ export const scenarioData = [
   },
   {
     "scene": "廊下",
-    "text": "――けれど。その表情が、どこか不自然だった。"
+    "text": "——けれど。その表情が、どこか不自然だった。"
   },
   {
     "scene": "廊下",
@@ -10080,7 +10037,7 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "呆然と立ち尽くす私の隣で、凪砂さんは静かにその光を見つめていた。恐ろしいほどのエネルギーを放つ存在を前にしても、彼の表情は変わらない。まるで、最初からこうなることを分かっていたかのようだった。"
+    "text": "呆然と立ち尽くす私の隣で、凪砂さんは静かにその光を見つめていた。恐ろしいほどのエネルギーを放つ存在を前にしても、彼の表情は変わらない。"
   },
   {
     "scene": "研究所の最奥",
@@ -11656,10 +11613,10 @@ export const scenarioData = [
       "RED_ALERT_FLASH"
     ],
     "bgm": "+alert_Rocket.mp3",
-    "text": "ピピピピピッ！！",
     "showIllust": [
       "Mika_surprise"
-    ]
+    ],
+    "hideWindow": true
   },
   {
     "scene": "ロケット内部",
@@ -12711,7 +12668,7 @@ export const scenarioData = [
     "scene": "研究所の最奥",
     "text": "私は息を呑み、ミカくんと並んで立ち上がる。すべての因縁を断ち切るための最後の戦いが、始まろうとしていた。"
   },
-    //=============== 戦闘開始(ミカラスボス) ===============
+  //=============== 戦闘開始(ミカラスボス) ===============
   {
     "scene": "ラスボス(ミカ)",
     "action": "TRIGGER_BATTLE_FINAL_MIKA"
@@ -13566,8 +13523,9 @@ export const scenarioData = [
   },
   {
     "scene": "ロケット内部",
-    "text": "ピピピピピッ！！！",
-    "bgm": "+alert_Rocket.mp3"
+    "action": "RED_ALERT_START",
+    "bgm": "+alert_Rocket.mp3",
+    "hideWindow": true
   },
   {
     "scene": "ロケット内部",
@@ -13946,7 +13904,7 @@ export const scenarioData = [
     "scene": "廊下",
     "text": "私は静かに息を吸い込み、歌声を響かせた。"
   },
-    //=============== 戦闘開始(アカネ中ボス) ===============
+  //=============== 戦闘開始(アカネ中ボス) ===============
   {
     "scene": "中ボス(アカネ)",
     "action": "TRIGGER_BATTLE_MIDBOSS_AKANE"
@@ -14211,7 +14169,7 @@ export const scenarioData = [
   {
     "scene": "コア部屋",
     "speaker": "少年",
-    "text": "「はは……必死だねぇ」",
+    "text": "「はは……必死だねぇ。これを破壊するためだけに異能を自分の身体に植え付けるなんて、馬鹿この上ないね」",
     "bgm": "serious_4.mp3"
   },
   {
@@ -14538,7 +14496,7 @@ export const scenarioData = [
     "text": "次の瞬間、研究所全体を揺るがす咆哮と共に、残されたキメラたちが一斉に襲いかかってきた",
     "action": "SHAKE_SCREEN_CONTINUOUS_MEDIUM"
   },
-    //=============== 戦闘開始(アカネラスボス) ===============
+  //=============== 戦闘開始(アカネラスボス) ===============
   {
     "scene": "ラスボス(アカネ)",
     "action": "TRIGGER_BATTLE_FINAL_AKANE"

@@ -40,6 +40,7 @@ import BattleFinalMika from './components/BattleFinalMika';
 import BattleSystem from './components/BattleSystem';
 import BattleSystemPlot4 from './components/BattleSystemPlot4';
 import BattleSystemPlot2 from './components/BattleSystemPlot2';
+import BattleSystemPlot5 from './components/BattleSystemPlot5';
 import BattleStaffRhythm from './components/BattleStaffRhythm';
 import BattleSelectScreen from './components/BattleSelectScreen';
 import SaveSlotModal, { SAVE_KEY_PREFIX, loadAllSlots } from './components/SaveSlotModal';
@@ -493,6 +494,20 @@ export default function App() {
     setBattleMode(null);
     setShowTitle(true);
   };
+
+  const handleTypingGameComplete = nextStep;
+  const handleSearchAndLearningComplete = nextStep;
+  const handleStruggleComplete = nextStep;
+  const handleWarehouseComplete = nextStep;
+  const handleTapCommunicationComplete = nextStep;
+  const handleEyeOfProfilerComplete = nextStep;
+  const handleFragmentCollectComplete = nextStep;
+  const handleFragmentCollectNagisaComplete = nextStep;
+  const handleFragmentCollectMikaComplete = nextStep;
+  const handleFragmentCollectAkaneComplete = nextStep;
+  const handleFragmentCollectSoloComplete = nextStep;
+  const handleSilentScoreComplete = nextStep;
+  const handleStealthGameComplete = nextStep;
 
   const handleExitToTitle = () => {
     setConfirmModal({
@@ -1246,15 +1261,17 @@ export default function App() {
     touchStartY.current = e.touches[0].clientY;
   };
 
-  const handleTouchEnd = (e) => {
+  const handleTouchEnd = (e, isMouse = false) => {
     if (showTitle || battleMode) return;
 
     // If the touch target is a button or inside a button/link, don't advance the scenario.
     // Let the button's own click handler handle it instead.
     const target = e.target;
     if (target && (target.closest('button') || target.closest('a') || target.closest('[role="button"]'))) {
-      touchHandledRef.current = true;
-      setTimeout(() => { touchHandledRef.current = false; }, 300);
+      if (!isMouse) {
+        touchHandledRef.current = true;
+        setTimeout(() => { touchHandledRef.current = false; }, 300);
+      }
       return;
     }
 
@@ -1262,26 +1279,12 @@ export default function App() {
     const diffY = e.changedTouches[0].clientY - touchStartY.current;
 
     if (Math.abs(diffX) > 50 || Math.abs(diffY) > 50) {
-      // Swipe gesture detected - Disabled to prevent accidental triggers 
-      // when players are just tapping the screen to advance text.
-      // (The user explicitly requested that Auto, etc., only trigger via HUD buttons)
-      /*
-      if (Math.abs(diffX) > Math.abs(diffY)) {
-        if (diffX > 50) {
-          toggleAuto();
-        }
-      } else {
-        if (diffY < -50) {
-          setBacklogOpen(true);
-        } else if (diffY > 50) {
-          toggleHud();
-        }
+      // Swipe gesture detected
+      if (!isMouse) {
+        // We still mark it as handled so the swipe doesn't accidentally trigger a tap (onClick)
+        touchHandledRef.current = true;
+        setTimeout(() => { touchHandledRef.current = false; }, 500);
       }
-      */
-      
-      // We still mark it as handled so the swipe doesn't accidentally trigger a tap (onClick)
-      touchHandledRef.current = true;
-      setTimeout(() => { touchHandledRef.current = false; }, 1000);
     } else {
       // Tap detected (not a swipe)
       if (currentLine?.action === 'TRIGGER_MINIGAME' || currentLine?.action === 'TRIGGER_TYPING_GAME') return;
@@ -1299,9 +1302,11 @@ export default function App() {
         }
       }
       
-      // Mark as handled so onClick doesn't double-fire
-      touchHandledRef.current = true;
-      setTimeout(() => { touchHandledRef.current = false; }, 1000);
+      if (!isMouse) {
+        // Mark as handled so onClick doesn't double-fire
+        touchHandledRef.current = true;
+        setTimeout(() => { touchHandledRef.current = false; }, 500);
+      }
     }
   };
 
@@ -1414,152 +1419,72 @@ export default function App() {
   const isBattleFinalNagisaActive = currentLine?.action === 'TRIGGER_BATTLE_FINAL_NAGISA';
   const isBattleFinalMutsunoriActive = currentLine?.action === 'TRIGGER_BATTLE_FINAL_MUTSUNORI';
   const isBattleFinalMikaActive = currentLine?.action === 'TRIGGER_BATTLE_FINAL_MIKA';
-    const isBattleFinalAkaneActive = currentLine?.action === 'TRIGGER_BATTLE_FINAL_AKANE';
-  const handleEyeOfProfilerComplete = (success) => {
-    setEyeOfProfilerSuccess(success);
-    nextStep();
-  };
+  const isBattleFinalAkaneActive = currentLine?.action === 'TRIGGER_BATTLE_FINAL_AKANE';
 
-  const handleFragmentCollectComplete = (result) => {
-    setFragmentCollectResult(result);
-    nextStep();
-  };
-
-  const handleFragmentCollectNagisaComplete = (result) => {
-    setFragmentCollectResult(result);
-    nextStep();
-  };
-
-  const handleFragmentCollectMikaComplete = (result) => {
-    setFragmentCollectResult(result);
-    nextStep();
-  };
-
-  const handleFragmentCollectAkaneComplete = (result) => {
-    setFragmentCollectResult(result);
-    nextStep();
-  };
-
-  const handleFragmentCollectSoloComplete = (result) => {
-    setFragmentCollectResult(result);
-    nextStep();
-  };
-
-  const handleStealthGameComplete = (result) => {
-    setStealthGameResult(result);
-    nextStep();
-  };
-
-  const handleTapCommunicationComplete = (scores) => {
-    setTapCommunicationScores(scores);
-    nextStep();
-  };
-
-  const handleSearchAndLearningComplete = (score) => {
-    setLearningScore(score);
-    nextStep();
-  };
-
-  const handleStruggleComplete = () => {
-    nextStep();
-  };
-
-  const handleWarehouseComplete = () => {
-    nextStep();
-  };
-
-  const handleSilentScoreComplete = (scoreData) => {
-    setSilentScoreResult(scoreData);
-    nextStep();
-  };
-
-  const handleTypingGameComplete = (success) => {
-    if (success) {
-      // 成功ルートにジャンプ
-      const targetIdx = scenarioData.findIndex(line => line.label === 'typing_success_start');
-      if (targetIdx !== -1) {
-        jumpToStep(targetIdx);
-      } else {
-        nextStep();
+  // Filter choices based on route unlock conditions
+  const processedChoices = (() => {
+    if (!currentLine?.choices) return currentLine?.choices;
+    return currentLine.choices.filter(choice => {
+      if (!choice.condition) return true;
+      if (choice.condition === 'akane_route_enabled') {
+        return clearedMutsunori && clearedNagisa && clearedMika;
       }
-    } else {
-      // 失敗ルートにジャンプ
-      const targetIdx = scenarioData.findIndex(line => line.label === 'typing_fail_start');
-      if (targetIdx !== -1) {
-        jumpToStep(targetIdx);
-      } else {
-        nextStep();
+      if (choice.condition === 'mitsuru_route_enabled') {
+        return clearedMutsunori && clearedNagisa && clearedMika && clearedAkane;
       }
-    }
-  };
+      return true;
+    });
+  })();
 
-  const processedChoices = currentLine?.choices?.map(choice => {
-    let isLocked = false;
-    if (choice.condition === 'learning_max') {
-      isLocked = learningScore !== 3;
-    } else if (choice.condition === 'akane_route_enabled') {
-      isLocked = !(clearedMutsunori && clearedMika && clearedNagisa);
-    } else if (choice.condition === 'mitsuru_route_enabled') {
-      isLocked = !(clearedMutsunori && clearedMika && clearedNagisa && clearedAkane);
-    } else if (choice.condition) {
-      isLocked = !flags[choice.condition];
-    }
-
-    if (isLocked) {
-      return { ...choice, text: '？？？', isLocked: true };
-    }
-    return choice;
-  }) || [];
-
-  const handleSelectChoice = (choiceIndex) => {
-    const choice = processedChoices[choiceIndex];
-    if (choice && choice.isLocked) return; // Prevent selecting locked choices
-    if (choice && choice.setFlag) {
-      setFlags(prev => ({
-        ...prev,
-        [choice.setFlag]: true
-      }));
-    }
-    const originalIndex = currentLine?.choices?.indexOf(choice);
-    if (originalIndex !== -1 && originalIndex !== undefined) {
+  // Map filtered choice index back to original index and call selectChoice
+  const handleSelectChoice = (filteredIndex) => {
+    if (!currentLine?.choices || !processedChoices) return;
+    const selectedChoice = processedChoices[filteredIndex];
+    const originalIndex = currentLine.choices.indexOf(selectedChoice);
+    if (originalIndex !== -1) {
       selectChoice(originalIndex);
-    } else {
-      selectChoice(choiceIndex);
     }
+  };
+
+  const handleMouseClick = (e) => {
+    // If the click target is a button or inside a button/link, let it handle its own click
+    const target = e.target;
+    if (target && (target.closest('button') || target.closest('a') || target.closest('[role="button"]'))) {
+      return;
+    }
+    
+    if (touchHandledRef.current) return;
+    
+    // Simulate touch structure for handleTouchEnd
+    const simulatedEvent = {
+      ...e,
+      target: e.target,
+      changedTouches: [{ clientX: e.clientX, clientY: e.clientY }]
+    };
+    
+    // Set start coords to same as end for a tap
+    touchStartX.current = e.clientX;
+    touchStartY.current = e.clientY;
+    
+    handleTouchEnd(simulatedEvent, true);
   };
 
   return (
-    <div
-      className="w-full h-full select-none touch-none cursor-pointer"
+    <div 
+      className="w-full h-full relative"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
-      onClick={() => {
-        // On mobile, onTouchEnd already handled the tap — skip onClick to prevent double-fire
-        if (touchHandledRef.current) return;
-        const isMinigameActive = isTypingGameActive || isSearchAndLearningActive || isSilentScoreActive || isTapCommunicationActive || isEyeOfProfilerActive || isFragmentCollectActive || isFragmentCollectNagisaActive || isFragmentCollectMikaActive || isFragmentCollectAkaneActive || isFragmentCollectSoloActive || isStealthGameActive || isExplorationPhaseActive || isStruggleGameActive || isWarehouseExplorationActive || isBattleTutorialActive || isBattleAkaneVsKimera2Active || isBattleTeamVsKimeraActive || isBattleMidBossMachineActive || isBattleMidBossNagisaActive || isBattleMidBossMikaActive || isBattleMidBossAkaneActive || isBattleFinalMutsunoriActive || isBattleFinalNagisaActive || isBattleFinalMikaActive || isBattleFinalAkaneActive;
-
-        if (skipMode && !isMinigameActive) {
-          setSkipMode(false);
-          return;
-        }
-        const isTransition = currentLine?.action === 'FADE_TO_BLACK' || currentLine?.action === 'SLOW_FADE_TO_BLACK' || currentLine?.action === 'WAIT_FADE' || isBgTransitioning || isBgFadingOut;
-
-        if (!showTitle && !battleMode && !isWaitingForChoice && !alertActive && !backlogOpen && !isMinigameActive && !isAnyEnd && !isEndScreen && !isTransition && !isPopup) {
-          nextStep();
-        } else if (isMinigameActive) {
-          window.dispatchEvent(new Event('minigame-tap'));
-        }
-      }}
+      onClick={handleMouseClick}
     >
       <GameFrame>
         <ShakeLayer shakeEffect={shakeEffect}>
         {battleMode === 'select' ? (
-          <BattleSelectScreen 
-            onSelect={(id) => setBattleMode(id)} 
+          <BattleSelectScreen
+            onSelect={(id) => setBattleMode(id)}
             onCancel={() => {
               setBattleMode(null);
               setShowTitle(true);
-            }} 
+            }}
           />
         ) : battleMode === 'proto1' ? (
           <BattleSystem
@@ -1584,6 +1509,13 @@ export default function App() {
           />
         ) : battleMode === 'proto4' ? (
           <BattleSystemPlot4
+            onComplete={handleBattleComplete}
+            playBGM={playBGM}
+            stopBGM={stopBGM}
+            playSE={playSE}
+          />
+        ) : battleMode === 'proto5' ? (
+          <BattleSystemPlot5
             onComplete={handleBattleComplete}
             playBGM={playBGM}
             stopBGM={stopBGM}

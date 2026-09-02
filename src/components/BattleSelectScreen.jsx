@@ -6,6 +6,7 @@ export default function BattleSelectScreen({ onSelect, onCancel }) {
     { id: 'proto2', name: 'Proto 02: レゾナンス・チューニング', description: '味方の攻撃タイミングに波形を合わせてダメージを増幅' },
     { id: 'proto3', name: 'Proto 03: 五線譜リズムバトル', description: '五線譜を流れる音符に合わせて方向キーを押して敵の攻撃を弾き返す' },
     { id: 'proto4', name: 'Proto 04: 新規プロット用（プロット4）', description: 'プロット1をベースにした新しいバトルシステム用' },
+    { id: 'proto5', name: 'Proto 05: レゾナンス・チューニング（プロット5）', description: 'プロット2と同じバトルシステム' },
   ];
 
   return (
