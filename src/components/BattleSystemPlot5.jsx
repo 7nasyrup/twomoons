@@ -237,14 +237,14 @@ export default function BattleSystemPlot5({ onComplete, playBGM, stopBGM, playSE
         : ['text-blue-300', 'text-blue-400', 'text-blue-300', 'text-cyan-300', 'text-cyan-400', 'text-sky-300', 'text-sky-400', 'text-indigo-300', 'text-violet-300'];
 
     for (let i = 0; i < count; i++) {
-      const startX = (Math.random() * 160) - 80;
-      const startY = (Math.random() * 140) - 70;
+      const startX = (Math.random() * 340) - 80;
+      const startY = (Math.random() * 200) - 100;
       newNotes.push({
         id: Date.now() + Math.random(),
         startX,
         startY,
-        endX: startX + (Math.random() * 40 - 20),
-        endY: startY - (Math.random() * 100 + 50),
+        endX: startX + (Math.random() * 100 - 50),
+        endY: startY - (Math.random() * 150 + 50),
         symbol: symbols[Math.floor(Math.random() * symbols.length)],
         color: colors[Math.floor(Math.random() * colors.length)],
         scale: Math.random() * 0.8 + 0.8 // 0.8x to 1.6x size
@@ -270,14 +270,14 @@ export default function BattleSystemPlot5({ onComplete, playBGM, stopBGM, playSE
       intervalId = setInterval(() => {
         const symbols = ['♪', '♬', '♫', '♩', '🎶', '🎵'];
         const colors = ['text-blue-300', 'text-blue-400', 'text-blue-300', 'text-cyan-300', 'text-cyan-400', 'text-sky-300', 'text-sky-400', 'text-indigo-300', 'text-violet-300'];
-        const startX = (Math.random() * 160) - 80;
-        const startY = (Math.random() * 140) - 70;
+        const startX = (Math.random() * 340) - 80;
+        const startY = (Math.random() * 200) - 100;
         const newNote = {
           id: Date.now() + Math.random(),
           startX,
           startY,
-          endX: startX + (Math.random() * 40 - 20),
-          endY: startY - (Math.random() * 100 + 50),
+          endX: startX + (Math.random() * 100 - 50),
+          endY: startY - (Math.random() * 150 + 50),
           symbol: symbols[Math.floor(Math.random() * symbols.length)],
           color: colors[Math.floor(Math.random() * colors.length)],
           scale: Math.random() * 0.8 + 0.8
