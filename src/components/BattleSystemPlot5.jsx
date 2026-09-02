@@ -263,40 +263,36 @@ export default function BattleSystemPlot5({ onComplete, playBGM, stopBGM, playSE
     }, 1200);
   }, []);
 
-  // Continuous notes while guarding
+  // Continuous notes always floating
   useEffect(() => {
-    let intervalId;
-    if (guardingAllies.has('mutsunori')) {
-      intervalId = setInterval(() => {
-        const symbols = ['♪', '♬', '♫', '♩', '🎶', '🎵'];
-        const colors = ['text-blue-300', 'text-blue-400', 'text-blue-300', 'text-cyan-300', 'text-cyan-400', 'text-sky-300', 'text-sky-400', 'text-indigo-300', 'text-violet-300'];
-        const startX = (Math.random() * 340) - 80;
-        const startY = (Math.random() * 200) - 100;
-        const newNote = {
-          id: Date.now() + Math.random(),
-          startX,
-          startY,
-          endX: startX + (Math.random() * 100 - 50),
-          endY: startY - (Math.random() * 150 + 50),
-          symbol: symbols[Math.floor(Math.random() * symbols.length)],
-          color: colors[Math.floor(Math.random() * colors.length)],
-          scale: Math.random() * 0.8 + 0.8
-        };
+    const intervalId = setInterval(() => {
+      const symbols = ['♪', '♬', '♫', '♩', '🎶', '🎵'];
+      const colors = ['text-blue-300', 'text-blue-400', 'text-blue-300', 'text-cyan-300', 'text-cyan-400', 'text-sky-300', 'text-sky-400', 'text-indigo-300', 'text-violet-300'];
+      const startX = (Math.random() * 340) - 80;
+      const startY = (Math.random() * 200) - 100;
+      const newNote = {
+        id: Date.now() + Math.random(),
+        startX,
+        startY,
+        endX: startX + (Math.random() * 100 - 50),
+        endY: startY - (Math.random() * 150 + 50),
+        symbol: symbols[Math.floor(Math.random() * symbols.length)],
+        color: colors[Math.floor(Math.random() * colors.length)],
+        scale: Math.random() * 0.8 + 0.8
+      };
 
-        setSakuraNotes(prev => {
-          if (prev.length >= 15) return prev;
-          return [...prev, newNote].slice(-15);
-        });
+      setSakuraNotes(prev => {
+        if (prev.length >= 20) return prev; // Slightly increased limit for constant flow
+        return [...prev, newNote].slice(-20);
+      });
 
-        setTimeout(() => {
-          setSakuraNotes(prev => prev.filter(n => n.id !== newNote.id));
-        }, 1200);
-      }, 100);
-    }
-    return () => {
-      if (intervalId) clearInterval(intervalId);
-    };
-  }, [guardingAllies]);
+      setTimeout(() => {
+        setSakuraNotes(prev => prev.filter(n => n.id !== newNote.id));
+      }, 1500); // slightly longer lifetime
+    }, 150); // spawn slightly slower to maintain 10-20 notes on screen
+
+    return () => clearInterval(intervalId);
+  }, []);
 
   const spawnGlint = useCallback((enemyId, targetId) => {
     const id = Date.now() + Math.random();
