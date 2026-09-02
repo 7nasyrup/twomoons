@@ -224,6 +224,7 @@ export default function BattleSystemPlot5({ onComplete, playBGM, stopBGM, playSE
   }, [addLog, spawnDamageNumber, addSync, playSE]);
 
   const triggerSakuraNote = useCallback((type = 'default') => {
+    return; // TODO: Temporarily disabled per user request
     setSakuraSinging(true);
 
     // Generate 5-8 cyber notes/data particles
