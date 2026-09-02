@@ -1255,33 +1255,29 @@ export default function BattleSystemPlot5({ onComplete, playBGM, stopBGM, playSE
                       >
                         <div className="absolute inset-[-50px] bg-cyan-900/10 rounded-full blur-xl mix-blend-screen" />
 
-                        {/* High-tech Timing Bar */}
-                        <div className="relative w-[100%] max-w-[200px] lg:max-w-[300px] h-4 lg:h-8 bg-[#060a12]/80 backdrop-blur-sm border border-cyan-500/50 skew-x-[-15deg] overflow-hidden shadow-[0_0_20px_rgba(34,211,238,0.3)]">
-                          {/* Grid background */}
-                          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPjxyZWN0IHdpZHRoPSIyIiBoZWlnaHQ9IjQiIGZpbGw9InJnYmEoMzQsIDIxMSwgMjM4LCAwLjIpIi8+PC9zdmc+')] mix-blend-screen" />
-
+                        {/* Simple Timing Bar */}
+                        <div className="relative w-[100%] max-w-[150px] lg:max-w-[200px] h-3 lg:h-4 bg-black/60 backdrop-blur-sm border border-white/20 rounded-full overflow-hidden shadow-lg">
                           {/* Success Zone */}
-                          <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[20%] bg-cyan-500/40 shadow-[inset_0_0_10px_rgba(34,211,238,0.8)]" />
-                          <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[2px] bg-cyan-300 shadow-[0_0_10px_rgba(34,211,238,1)] z-10" />
+                          <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[20%] bg-cyan-400/50" />
 
                           {/* Moving Indicator */}
                           {allyQTEState === 'waiting' ? (
                             <motion.div
-                              className="absolute top-0 bottom-0 w-[4px] bg-white shadow-[0_0_12px_rgba(255,255,255,1)] z-20"
+                              className="absolute top-0 bottom-0 w-[3px] bg-white z-20"
                               initial={{ left: '0%' }}
                               animate={{ left: '100%' }}
                               transition={{ duration: 0.8, ease: "linear" }}
                             />
                           ) : (
                             <div
-                              className="absolute top-0 bottom-0 w-[4px] bg-white shadow-[0_0_12px_rgba(255,255,255,1)] z-20"
+                              className="absolute top-0 bottom-0 w-[3px] bg-white z-20"
                               style={{ left: `${hitPosition}%` }}
                             />
                           )}
                         </div>
 
-                        <div className="mt-4 lg:mt-6 bg-cyan-950/80 border border-cyan-400 px-2 py-1 lg:px-4 lg:py-1.5 shadow-[0_0_15px_rgba(34,211,238,0.6)] backdrop-blur-sm skew-x-[15deg]">
-                          <span className="block font-orbitron font-bold text-[8px] lg:text-xs text-cyan-300 tracking-[0.3em] skew-x-[-15deg] animate-pulse">ENGAGE</span>
+                        <div className="mt-2 text-center">
+                          <span className="block font-orbitron font-bold text-[10px] lg:text-xs text-white/80 tracking-[0.2em] animate-pulse">TAP!</span>
                         </div>
 
                         <AnimatePresence>
