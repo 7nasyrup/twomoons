@@ -1525,7 +1525,7 @@ export default function BattleSystemPlot5({ onComplete, playBGM, stopBGM, playSE
 
 
         {/* ── Action Buttons (Moved below allies) ── */}
-        <div className="absolute bottom-4 left-4 lg:bottom-12 lg:left-32 w-1/2 pointer-events-auto flex items-end justify-center gap-2 lg:gap-8 drop-shadow-[0_0_20px_rgba(34,211,238,0.2)] translate-x-8 lg:translate-x-10">
+        <div className="absolute bottom-4 left-0 lg:bottom-12 lg:left-8 w-1/2 pointer-events-auto flex items-end justify-center gap-2 lg:gap-8 drop-shadow-[0_0_20px_rgba(34,211,238,0.2)] -translate-x-8 lg:-translate-x-20">
 
           {/* Left Button - ULTIMATE (Reactor Core) */}
           <motion.button
