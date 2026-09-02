@@ -267,6 +267,7 @@ export default function BattleSystemPlot5({ onComplete, playBGM, stopBGM, playSE
 
   // Continuous notes while guarding
   useEffect(() => {
+    return; // TODO: Temporarily disabled per user request
     let intervalId;
     if (guardingAllies.has('mutsunori')) {
       intervalId = setInterval(() => {
