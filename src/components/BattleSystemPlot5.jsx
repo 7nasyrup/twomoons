@@ -1242,9 +1242,7 @@ export default function BattleSystemPlot5({ onComplete, playBGM, stopBGM, playSE
                         <div className="absolute w-[120px] lg:w-[200px] h-[1px] bg-gradient-to-r from-transparent via-amber-500/50 to-transparent" />
                         <div className="absolute h-[120px] lg:h-[200px] w-[1px] bg-gradient-to-b from-transparent via-amber-500/50 to-transparent" />
 
-                        <div className="absolute -bottom-8 lg:-bottom-12 bg-amber-950/80 border border-amber-500 px-2 py-0.5 lg:px-3 lg:py-1 shadow-[0_0_10px_rgba(245,158,11,0.5)] backdrop-blur-sm skew-x-[-15deg]">
-                          <span className="block font-orbitron text-[8px] lg:text-[10px] font-bold text-amber-400 tracking-widest animate-pulse skew-x-[15deg]">TARGET LOCK</span>
-                        </div>
+                        {/* TARGET LOCK label removed per user request */}
                       </div>
                     )}
 
@@ -1463,11 +1461,7 @@ export default function BattleSystemPlot5({ onComplete, playBGM, stopBGM, playSE
                       )}
                     </AnimatePresence>
 
-                    {enemy.isStunned && !enemy.isDead && (
-                      <motion.div className="absolute -top-2 lg:-top-3 font-noto text-[7px] lg:text-[10px] text-amber-200/90 font-bold bg-amber-950/70 backdrop-blur-sm px-1.5 py-0.5 lg:px-3 rounded border border-amber-500/30" animate={{ y: [0, -2, 0] }} transition={{ duration: 0.5, repeat: Infinity }}>
-                        スタン
-                      </motion.div>
-                    )}
+                    {/* スタン text removed per user request */}
                   </motion.div>
 
                   <AnimatePresence>
