@@ -237,17 +237,18 @@ export default function BattleSystemPlot5({ onComplete, playBGM, stopBGM, playSE
         : ['text-blue-300', 'text-blue-400', 'text-blue-300', 'text-cyan-300', 'text-cyan-400', 'text-sky-300', 'text-sky-400', 'text-indigo-300', 'text-violet-300'];
 
     for (let i = 0; i < count; i++) {
-      const startX = (Math.random() * 340) - 80;
-      const startY = (Math.random() * 200) - 100;
+      const startX = (Math.random() * 400) - 100;
+      const startY = (Math.random() * 300) - 150;
       newNotes.push({
         id: Date.now() + Math.random(),
         startX,
         startY,
-        endX: startX + (Math.random() * 100 - 50),
-        endY: startY - (Math.random() * 150 + 50),
+        endX: startX + (Math.random() * 80 - 40),
+        endY: startY + (Math.random() * 80 - 40),
         symbol: symbols[Math.floor(Math.random() * symbols.length)],
         color: colors[Math.floor(Math.random() * colors.length)],
-        scale: Math.random() * 0.8 + 0.8 // 0.8x to 1.6x size
+        scale: Math.random() * 0.8 + 0.8, // 0.8x to 1.6x size
+        duration: 1.5
       });
     }
 
@@ -260,39 +261,45 @@ export default function BattleSystemPlot5({ onComplete, playBGM, stopBGM, playSE
       const noteIds = newNotes.map(n => n.id);
       setSakuraNotes(prev => prev.filter(n => !noteIds.includes(n.id)));
       setSakuraSinging(false);
-    }, 1200);
+    }, 1500);
   }, []);
 
-  // Continuous notes always floating
+  // Continuous notes while guarding
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      const symbols = ['♪', '♬', '♫', '♩', '🎶', '🎵'];
-      const colors = ['text-blue-300', 'text-blue-400', 'text-blue-300', 'text-cyan-300', 'text-cyan-400', 'text-sky-300', 'text-sky-400', 'text-indigo-300', 'text-violet-300'];
-      const startX = (Math.random() * 340) - 80;
-      const startY = (Math.random() * 200) - 100;
-      const newNote = {
-        id: Date.now() + Math.random(),
-        startX,
-        startY,
-        endX: startX + (Math.random() * 100 - 50),
-        endY: startY - (Math.random() * 150 + 50),
-        symbol: symbols[Math.floor(Math.random() * symbols.length)],
-        color: colors[Math.floor(Math.random() * colors.length)],
-        scale: Math.random() * 0.8 + 0.8
-      };
+    let intervalId;
+    if (guardingAllies.has('mutsunori')) {
+      intervalId = setInterval(() => {
+        const symbols = ['♪', '♬', '♫', '♩', '🎶', '🎵'];
+        const colors = ['text-blue-300', 'text-blue-400', 'text-blue-300', 'text-cyan-300', 'text-cyan-400', 'text-sky-300', 'text-sky-400', 'text-indigo-300', 'text-violet-300'];
+        const startX = (Math.random() * 500) - 150; // Much wider horizontal range
+        const startY = (Math.random() * 400) - 200; // Much wider vertical range
+        const newNote = {
+          id: Date.now() + Math.random(),
+          startX,
+          startY,
+          endX: startX + (Math.random() * 100 - 50), // Drift gently in any direction
+          endY: startY + (Math.random() * 100 - 50),
+          symbol: symbols[Math.floor(Math.random() * symbols.length)],
+          color: colors[Math.floor(Math.random() * colors.length)],
+          scale: Math.random() * 0.8 + 0.8,
+          duration: 2.5 // Last longer for a slow float
+        };
 
-      setSakuraNotes(prev => {
-        if (prev.length >= 20) return prev; // Slightly increased limit for constant flow
-        return [...prev, newNote].slice(-20);
-      });
+        setSakuraNotes(prev => {
+          if (prev.length >= 10) return prev; // Limit quantity to 10 for less clutter
+          return [...prev, newNote];
+        });
 
-      setTimeout(() => {
-        setSakuraNotes(prev => prev.filter(n => n.id !== newNote.id));
-      }, 1500); // slightly longer lifetime
-    }, 150); // spawn slightly slower to maintain 10-20 notes on screen
+        setTimeout(() => {
+          setSakuraNotes(prev => prev.filter(n => n.id !== newNote.id));
+        }, 2500); // 2.5 second lifetime
+      }, 400); // Spawn much slower (every 400ms instead of 150ms)
+    }
 
-    return () => clearInterval(intervalId);
-  }, []);
+    return () => {
+      if (intervalId) clearInterval(intervalId);
+    };
+  }, [guardingAllies]);
 
   const spawnGlint = useCallback((enemyId, targetId) => {
     const id = Date.now() + Math.random();
@@ -1194,7 +1201,7 @@ export default function BattleSystemPlot5({ onComplete, playBGM, stopBGM, playSE
                               initial={{ opacity: 0, x: `calc(-50% + ${note.startX || 0}px)`, y: `calc(-50% + ${note.startY || 0}px)`, scale: 0.5 }}
                               animate={{ opacity: [0, 1, 0], x: `calc(-50% + ${note.endX || note.x}px)`, y: `calc(-50% + ${note.endY || note.y}px)`, scale: note.scale, rotate: ((note.endX || note.x) % 30) }}
                               exit={{ opacity: 0 }}
-                              transition={{ duration: 1.5, ease: "easeOut" }}
+                              transition={{ duration: note.duration || 1.5, ease: "easeOut" }}
                             >
                               {note.symbol}
                             </motion.div>
