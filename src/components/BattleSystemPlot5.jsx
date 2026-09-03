@@ -141,6 +141,7 @@ export default function BattleSystemPlot5({ onComplete, playBGM, stopBGM, playSE
   const lastTickRef = useRef(0);
   const hitStopRef = useRef(0);
   const guardCooldownsRef = useRef({ mutsunori: 0, nagisa: 0 });
+  const pendingGuardTimeoutsRef = useRef({});
   const stateRef = useRef({ allies, enemies, activeAttacks, guardingAllies, syncRate, battlePhase, turnPhase, currentTurnIndex, counterAttack, buffTurnsLeft, activeFragments, absorbCooldown, corruption });
 
   useEffect(() => {
@@ -659,7 +660,8 @@ export default function BattleSystemPlot5({ onComplete, playBGM, stopBGM, playSE
 
   const handlePointerDown = useCallback((allyId) => {
     const nowTime = Date.now();
-    if (nowTime - guardCooldownsRef.current[allyId] < 800) {
+    // Reduce cooldown penalty from 800ms to 400ms to make missing a parry less punishing
+    if (nowTime - guardCooldownsRef.current[allyId] < 400) {
       return;
     }
 
@@ -671,8 +673,9 @@ export default function BattleSystemPlot5({ onComplete, playBGM, stopBGM, playSE
       const parryableIndex = activeAttacks.findIndex(attack => {
         if (attack.targetId !== allyId || attack.resolved) return false;
         const elapsed = Date.now() - attack.startTime;
-        const parryStart = attack.delay + attack.duration - 300;
-        const parryEnd = attack.delay + attack.duration + 100;
+        // Loosen parry window: from -450ms to +200ms
+        const parryStart = attack.delay + attack.duration - 450;
+        const parryEnd = attack.delay + attack.duration + 200;
         return elapsed >= parryStart && elapsed <= parryEnd;
       });
 
@@ -718,8 +721,19 @@ export default function BattleSystemPlot5({ onComplete, playBGM, stopBGM, playSE
       }
     }
 
-    if (!parrySuccess) {
-      // Normal Guard
+    if (parrySuccess) {
+      // If it was a parry, we delay the guard state.
+      // If the user taps quickly, they never enter guard (and don't get the cooldown).
+      // If they hold the button, they will transition into guard after 300ms.
+      pendingGuardTimeoutsRef.current[allyId] = setTimeout(() => {
+        setGuardingAllies(prev => {
+          const next = new Set(prev);
+          next.add(allyId);
+          return next;
+        });
+      }, 300);
+    } else {
+      // Normal guard enters immediately
       setGuardingAllies(prev => {
         const next = new Set(prev);
         next.add(allyId);
@@ -730,10 +744,17 @@ export default function BattleSystemPlot5({ onComplete, playBGM, stopBGM, playSE
   }, [addLog, addSync, triggerSakuraNote, playSE]);
 
   const handlePointerUp = useCallback((allyId) => {
+    if (pendingGuardTimeoutsRef.current[allyId]) {
+      clearTimeout(pendingGuardTimeoutsRef.current[allyId]);
+      delete pendingGuardTimeoutsRef.current[allyId];
+    }
+
     setGuardingAllies(prev => {
       const next = new Set(prev);
       if (next.has(allyId)) {
         next.delete(allyId);
+        
+        // Normal guard, apply cooldown to prevent spamming
         guardCooldownsRef.current[allyId] = Date.now();
         setGuardCooldownTrigger(prev => ({ ...prev, [allyId]: Date.now() }));
       }
@@ -988,8 +1009,8 @@ export default function BattleSystemPlot5({ onComplete, playBGM, stopBGM, playSE
       </div>
 
       {/* ── CINEMATIC LETTERBOXING ── */}
-      <motion.div className="absolute top-0 inset-x-0 bg-black z-10 pointer-events-none" initial={{ height: '15vh' }} animate={{ height: battlePhase === 'intro' ? '50vh' : '0vh' }} transition={{ duration: 0.8, ease: 'easeInOut', delay: battlePhase === 'intro' ? 0 : 0.5 }} />
-      <motion.div className="absolute bottom-0 inset-x-0 bg-black z-10 pointer-events-none" initial={{ height: '15vh' }} animate={{ height: battlePhase === 'intro' ? '50vh' : '0vh' }} transition={{ duration: 0.8, ease: 'easeInOut', delay: battlePhase === 'intro' ? 0 : 0.5 }} />
+      <motion.div className="absolute top-0 inset-x-0 bg-black z-10 pointer-events-none" initial={{ height: '50vh' }} animate={{ height: battlePhase === 'intro' ? '50vh' : '0vh' }} transition={{ duration: 0.8, ease: 'easeInOut', delay: battlePhase === 'intro' ? 0 : 0.5 }} />
+      <motion.div className="absolute bottom-0 inset-x-0 bg-black z-10 pointer-events-none" initial={{ height: '50vh' }} animate={{ height: battlePhase === 'intro' ? '50vh' : '0vh' }} transition={{ duration: 0.8, ease: 'easeInOut', delay: battlePhase === 'intro' ? 0 : 0.5 }} />
 
       {/* ── INTRO ── */}
       <AnimatePresence>
@@ -1281,10 +1302,10 @@ export default function BattleSystemPlot5({ onComplete, playBGM, stopBGM, playSE
                         <AnimatePresence>
                           {(allyQTEState === 'perfect' || allyQTEState === 'good') && (
                             <motion.div
-                              initial={{ scale: 0.5, opacity: 0, y: 0 }}
-                              animate={{ scale: 1.5, opacity: 1, y: -40 }}
-                              exit={{ opacity: 0, scale: 2 }}
-                              className={`absolute font-orbitron font-black text-[16px] lg:text-[28px] tracking-[0.2em] z-50 italic ${allyQTEState === 'perfect' ? 'text-transparent bg-clip-text bg-gradient-to-r from-yellow-200 to-amber-500 drop-shadow-[0_0_15px_rgba(245,158,11,1)]' : 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-100 to-cyan-500 drop-shadow-[0_0_15px_rgba(34,211,238,1)]'}`}
+                              initial={{ scale: 0.8, opacity: 0, y: 0 }}
+                              animate={{ scale: 1.3, opacity: 1, y: -30 }}
+                              exit={{ opacity: 0, scale: 1.5 }}
+                              className={`absolute font-orbitron font-bold text-[16px] lg:text-[24px] tracking-[0.1em] z-50 italic ${allyQTEState === 'perfect' ? 'text-transparent bg-clip-text bg-gradient-to-b from-amber-100 to-amber-400 drop-shadow-[0_0_10px_rgba(251,191,36,0.6)]' : 'text-transparent bg-clip-text bg-gradient-to-b from-cyan-100 to-cyan-400 drop-shadow-[0_0_10px_rgba(34,211,238,0.6)]'}`}
                             >
                               {allyQTEState === 'perfect' ? 'EXCELLENT' : 'GOOD'}
                             </motion.div>
@@ -1526,29 +1547,46 @@ export default function BattleSystemPlot5({ onComplete, playBGM, stopBGM, playSE
           <motion.button
             onClick={handleMutsunoriUltimate}
             disabled={syncRate < SYNC_COST_ULTIMATE || battlePhase !== 'fighting'}
-            className={`relative w-[108px] h-[108px] lg:w-32 lg:h-32 rounded-full border-2 flex flex-col items-center justify-center transition-all duration-300 shadow-[0_0_30px_rgba(0,0,0,0.8)] backdrop-blur-md hover:scale-105 active:scale-95 ${syncRate < SYNC_COST_ULTIMATE || battlePhase !== 'fighting'
-              ? 'bg-[#0a0a0a]/90 border-amber-900/30 cursor-not-allowed grayscale'
-              : 'bg-[#1a0a03]/80 border-amber-500 hover:bg-[#2a1005]/90 hover:shadow-[0_0_40px_rgba(251,191,36,0.6)] cursor-pointer'
+            className={`relative w-[108px] h-[108px] lg:w-32 lg:h-32 rounded-full flex flex-col items-center justify-center transition-all duration-300 shadow-[0_0_30px_rgba(0,0,0,0.8)] backdrop-blur-md hover:scale-105 active:scale-95 ${syncRate < SYNC_COST_ULTIMATE || battlePhase !== 'fighting'
+              ? 'bg-[#0a0a0a]/90 cursor-not-allowed grayscale'
+              : 'bg-[#1a0a03]/80 hover:bg-[#2a1005]/90 hover:shadow-[0_0_30px_rgba(251,191,36,0.5)] cursor-pointer'
               }`}
           >
+            {/* Circular Progress Gauge */}
+            <svg className="absolute inset-0 w-full h-full -rotate-90 pointer-events-none" viewBox="0 0 100 100" style={{ overflow: 'visible' }}>
+              <circle cx="50" cy="50" r="48" fill="none" className="stroke-amber-900/40" strokeWidth="3" />
+              <circle 
+                cx="50" 
+                cy="50" 
+                r="48" 
+                fill="none" 
+                className="stroke-amber-400 drop-shadow-[0_0_5px_rgba(251,191,36,0.8)]" 
+                strokeWidth="3" 
+                strokeDasharray="301.59"
+                strokeDashoffset={301.59 - (301.59 * Math.min(syncRate, SYNC_COST_ULTIMATE) / SYNC_COST_ULTIMATE)}
+                strokeLinecap="round"
+                style={{ transition: 'stroke-dashoffset 0.3s ease-out' }}
+              />
+            </svg>
+
             {/* Sync Rate Glow */}
             <div
-              className="absolute inset-0 rounded-full blur-xl mix-blend-screen transition-opacity duration-300"
+              className="absolute inset-0 rounded-full blur-xl mix-blend-screen transition-opacity duration-300 pointer-events-none"
               style={{
-                background: syncRate >= SYNC_COST_ULTIMATE ? 'radial-gradient(circle, rgba(251,191,36,0.5) 0%, transparent 70%)' : 'none',
+                background: syncRate >= SYNC_COST_ULTIMATE ? 'radial-gradient(circle, rgba(251,191,36,0.4) 0%, transparent 70%)' : 'none',
                 opacity: syncRate / 100
               }}
             />
 
             {/* Spinning Rings */}
-            <div className={`absolute inset-0.5 lg:inset-2 rounded-full border-2 border-amber-500/20 ${syncRate >= SYNC_COST_ULTIMATE ? 'animate-[spin_3s_linear_infinite]' : ''}`} />
-            <div className={`absolute inset-1.5 lg:inset-4 rounded-full border border-amber-400/10 border-dashed ${syncRate >= SYNC_COST_ULTIMATE ? 'animate-[spin_4s_linear_infinite_reverse]' : ''}`} />
+            <div className={`absolute inset-0.5 lg:inset-2 rounded-full border border-amber-400/15 ${syncRate >= SYNC_COST_ULTIMATE ? 'animate-[spin_3s_linear_infinite]' : ''}`} />
+            <div className={`absolute inset-1.5 lg:inset-4 rounded-full border border-amber-300/10 border-dashed ${syncRate >= SYNC_COST_ULTIMATE ? 'animate-[spin_4s_linear_infinite_reverse]' : ''}`} />
 
             <div className="relative z-10 flex flex-col items-center">
-              <div className="font-rajdhani font-black text-sm lg:text-5xl text-amber-400 drop-shadow-[0_0_12px_rgba(251,191,36,1)] leading-none mb-0 lg:mb-1">
+              <div className="font-rajdhani font-bold text-sm lg:text-5xl text-amber-400 drop-shadow-[0_0_8px_rgba(251,191,36,0.7)] leading-none mb-0 lg:mb-1">
                 {Math.floor(syncRate)}<span className="text-[8px] lg:text-xl opacity-80">%</span>
               </div>
-              <div className="font-noto font-black text-[10px] lg:text-xs text-amber-200 tracking-[0.15em] lg:tracking-[0.3em] drop-shadow-[0_0_8px_rgba(251,191,36,0.8)]">
+              <div className="font-noto font-bold text-[10px] lg:text-xs text-amber-200 tracking-[0.15em] lg:tracking-[0.3em] drop-shadow-[0_0_5px_rgba(251,191,36,0.5)]">
                 必殺技
               </div>
             </div>
@@ -1558,9 +1596,9 @@ export default function BattleSystemPlot5({ onComplete, playBGM, stopBGM, playSE
             {/* Fill Level visualization */}
             {syncRate >= SYNC_COST_ULTIMATE && (
               <motion.div
-                className="absolute inset-[-10px] rounded-full border border-amber-300/40 pointer-events-none"
-                animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0, 0.3] }}
-                transition={{ duration: 2, repeat: Infinity, ease: 'easeOut' }}
+                className="absolute inset-[-10px] rounded-full border border-amber-300/30 pointer-events-none"
+                animate={{ scale: [1, 1.15, 1], opacity: [0.2, 0, 0.2] }}
+                transition={{ duration: 2.5, repeat: Infinity, ease: 'easeOut' }}
               />
             )}
           </motion.button>
@@ -1571,21 +1609,21 @@ export default function BattleSystemPlot5({ onComplete, playBGM, stopBGM, playSE
             disabled={healCooldown > 0 || battlePhase !== 'fighting'}
             className={`w-20 h-20 lg:w-24 lg:h-24 mb-2 lg:mb-4 rounded-full flex flex-col items-center justify-center overflow-hidden group transition-all duration-300 relative border-2 backdrop-blur-md hover:scale-105 active:scale-95 ${healCooldown > 0 || battlePhase !== 'fighting'
               ? 'bg-[#090e17]/90 border-slate-700/50 cursor-not-allowed'
-              : 'bg-emerald-950/60 border-emerald-500/80 hover:bg-emerald-900/80 hover:border-emerald-400 hover:shadow-[0_0_20px_rgba(16,185,129,0.6)] cursor-pointer'
+              : 'bg-emerald-950/60 border-emerald-400/60 hover:bg-emerald-900/80 hover:border-emerald-300/80 hover:shadow-[0_0_20px_rgba(16,185,129,0.5)] cursor-pointer'
               }`}
           >
             {/* Tech grid bg */}
-            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPjxwYXRoIGQ9Ik0wLDggTDgsMCBMMCwwIFoiIGZpbGw9InJnYmEoMCwgMCwgMCwgMC4yKSIvPjwvc3ZnPg==')] pointer-events-none mix-blend-overlay" />
+            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPjxwYXRoIGQ9Ik0wLDggTDgsMCBMMCwwIFoiIGZpbGw9InJnYmEoMCwgMCwgMCwgMC4xNSkiLz48L3N2Zz4=')] pointer-events-none mix-blend-overlay" />
 
             <div className="flex flex-col items-center gap-1 z-10">
-              <span className={`font-noto font-black text-[12px] lg:text-base tracking-[0.1em] lg:tracking-[0.2em] ${healCooldown <= 0 ? 'text-emerald-400 drop-shadow-[0_0_8px_rgba(16,185,129,0.8)]' : 'text-slate-600'}`}>回復</span>
+              <span className={`font-noto font-bold text-[12px] lg:text-base tracking-[0.1em] lg:tracking-[0.2em] ${healCooldown <= 0 ? 'text-emerald-300 drop-shadow-[0_0_5px_rgba(16,185,129,0.6)]' : 'text-slate-600'}`}>回復</span>
               {healCooldown > 0 ? (
                 <span className="font-orbitron font-bold text-[8px] lg:text-[12px] text-emerald-700">CD:{(healCooldown / 1000).toFixed(1)}</span>
               ) : (
                 <div className="flex gap-[2px]">
-                  <div className="w-1 h-1 lg:w-1.5 lg:h-1.5 bg-emerald-400 rounded-full shadow-[0_0_8px_#10b981]" />
-                  <div className="w-1 h-1 lg:w-1.5 lg:h-1.5 bg-emerald-400 rounded-full shadow-[0_0_8px_#10b981] opacity-70" />
-                  <div className="w-1 h-1 lg:w-1.5 lg:h-1.5 bg-emerald-400 rounded-full shadow-[0_0_8px_#10b981] opacity-40" />
+                  <div className="w-1 h-1 lg:w-1.5 lg:h-1.5 bg-emerald-300 rounded-full shadow-[0_0_5px_rgba(16,185,129,0.6)]" />
+                  <div className="w-1 h-1 lg:w-1.5 lg:h-1.5 bg-emerald-300 rounded-full shadow-[0_0_5px_rgba(16,185,129,0.6)] opacity-70" />
+                  <div className="w-1 h-1 lg:w-1.5 lg:h-1.5 bg-emerald-300 rounded-full shadow-[0_0_5px_rgba(16,185,129,0.6)] opacity-40" />
                 </div>
               )}
             </div>
