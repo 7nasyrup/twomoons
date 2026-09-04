@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import SpriteAnimator from './SpriteAnimator';
-
+import DialogueBox from './DialogueBox';
 // ═══════════════════════════════════════════════════════════════════════════════
 // CONSTANTS & TUNING
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -75,6 +75,19 @@ const createEnemies = () => [
   { id: 'enemy1', name: 'キメラ', image: '/character/kimera1.png', hp: 600, maxHp: 600, color: '#ef4444', isStunned: false, isDead: false, flashTimer: 0 },
 ];
 
+const PRE_BATTLE_DIALOGUE = [
+  { speaker: '朔良', role: 'SAKURA', text: 'ムッちゃんをサポートしないと…！', illust: '/character/Sakura/Sakura.png' }
+];
+
+const POST_ATTACK_DIALOGUE = [
+  { speaker: '睦典', role: 'MUTSUNORI', text: 'うわっ！', illustMutsunori: '/character/Mutsunori/Mutsunori_serious.png', illustSakura: '/character/Sakura/Sakura.png' },
+  { speaker: '朔良', role: 'SAKURA', text: 'ムッちゃん！回復しないと…！', illustMutsunori: '/character/Mutsunori/Mutsunori_serious.png', illustSakura: '/character/Sakura/Sakura.png' }
+];
+
+const PRE_DEFEND_DIALOGUE = [
+  { speaker: '朔良', role: 'SAKURA', text: 'また来る！私の歌で守るから、攻撃に備えて！', illust: '/character/Sakura/Sakura.png' }
+];
+
 // Helper to get character info for timeline
 const getCharInfo = (id) => {
   const map = {
@@ -96,6 +109,21 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
   const [syncRate, setSyncRate] = useState(0);          // 0-100
   const [battlePhase, setBattlePhase] = useState('intro');
   const [battleLog, setBattleLog] = useState([]);
+
+  // ─── Dialogue State ───
+  const [currentMessage, setCurrentMessage] = useState(null);
+  const [displayedText, setDisplayedText] = useState('');
+  const [isTyping, setIsTyping] = useState(false);
+  const [messageQueue, setMessageQueue] = useState([]);
+  const typingTimer = useRef(null);
+
+  // ─── Attack Tutorial State ───
+  const [hasShownAttackTutorial, setHasShownAttackTutorial] = useState(false);
+  const [hasShownDefendTutorial, setHasShownDefendTutorial] = useState(false); // Used for first attack
+  const [hasShownGuardDialogue, setHasShownGuardDialogue] = useState(false); // Used for second attack dialogue
+  const [hasShownHealTutorial, setHasShownHealTutorial] = useState(false);
+  const [hasCompletedHealTutorial, setHasCompletedHealTutorial] = useState(false);
+  const [isHealTutorialActive, setIsHealTutorialActive] = useState(false);
 
   // ─── Turn State ───
   const [currentTurnIndex, setCurrentTurnIndex] = useState(0);  // index in TURN_ORDER
@@ -141,11 +169,11 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
   const hitStopRef = useRef(0);
   const guardCooldownsRef = useRef({ mutsunori: 0, nagisa: 0 });
   const pendingGuardTimeoutsRef = useRef({});
-  const stateRef = useRef({ allies, enemies, activeAttacks, guardingAllies, syncRate, battlePhase, turnPhase, currentTurnIndex, counterAttack, buffTurnsLeft, activeFragments, absorbCooldown, corruption });
+  const stateRef = useRef({ allies, enemies, activeAttacks, guardingAllies, syncRate, battlePhase, turnPhase, currentTurnIndex, counterAttack, buffTurnsLeft, activeFragments, absorbCooldown, corruption, turnTimer, hasShownAttackTutorial, hasShownDefendTutorial, hasShownGuardDialogue, hasShownHealTutorial, isHealTutorialActive, hasCompletedHealTutorial });
 
   useEffect(() => {
-    stateRef.current = { allies, enemies, activeAttacks, guardingAllies, syncRate, battlePhase, turnPhase, currentTurnIndex, counterAttack, buffTurnsLeft, activeFragments, absorbCooldown, corruption };
-  }, [allies, enemies, activeAttacks, guardingAllies, syncRate, battlePhase, turnPhase, currentTurnIndex, counterAttack, buffTurnsLeft, activeFragments, absorbCooldown, corruption]);
+    stateRef.current = { allies, enemies, activeAttacks, guardingAllies, syncRate, battlePhase, turnPhase, currentTurnIndex, counterAttack, buffTurnsLeft, activeFragments, absorbCooldown, corruption, turnTimer, hasShownAttackTutorial, hasShownDefendTutorial, hasShownGuardDialogue, hasShownHealTutorial, isHealTutorialActive, hasCompletedHealTutorial };
+  }, [allies, enemies, activeAttacks, guardingAllies, syncRate, battlePhase, turnPhase, currentTurnIndex, counterAttack, buffTurnsLeft, activeFragments, absorbCooldown, corruption, turnTimer, hasShownAttackTutorial, hasShownDefendTutorial, hasShownGuardDialogue, hasShownHealTutorial, isHealTutorialActive, hasCompletedHealTutorial]);
 
   // ─── Helpers ───
   const addLog = useCallback((msg) => {
@@ -163,64 +191,92 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
   }, []);
 
   const executeAllyAttack = useCallback((qteResult) => {
-    const allAllies = stateRef.current.allies;
-    const allEnemies = stateRef.current.enemies;
-    const turnId = TURN_ORDER[stateRef.current.currentTurnIndex % TURN_ORDER.length];
+    console.log('[DEBUG] executeAllyAttack STARTED with qteResult:', qteResult);
+    try {
+      const allAllies = stateRef.current.allies;
+      const allEnemies = stateRef.current.enemies;
+      const turnId = TURN_ORDER[stateRef.current.currentTurnIndex % TURN_ORDER.length];
 
-    const aliveEnemies = allEnemies.filter(e => !e.isDead);
-    if (aliveEnemies.length > 0) {
-      const hasBuff = stateRef.current.buffTurnsLeft > 0;
+      console.log('[DEBUG] executeAllyAttack: Turn ID:', turnId, 'Allies:', allAllies.length, 'Enemies:', allEnemies.length);
 
-      if (hasBuff) {
-        setBuffTurnsLeft(prev => {
-          const next = Math.max(0, prev - 1);
-          if (next === 0) {
-            addLog("🎵 強化の歌の効果が切れた");
-            setSakuraSinging(false);
-          }
-          return next;
-        });
-      }
+      const aliveEnemies = allEnemies.filter(e => !e.isDead);
+      console.log('[DEBUG] executeAllyAttack: Alive Enemies:', aliveEnemies.length);
 
-      setAbsorbCooldown(prev => Math.max(0, prev - 1));
+      if (aliveEnemies.length > 0) {
+        const hasBuff = stateRef.current.buffTurnsLeft > 0;
+        console.log('[DEBUG] executeAllyAttack: hasBuff:', hasBuff);
 
-      const hasExpiringFragment = stateRef.current.activeFragments.some(f => f.turnsLeft <= 1);
-      if (hasExpiringFragment) {
-        addLog(`⚡ 吸収能力の効果が切れた`);
-      }
-      setActiveFragments(prev => prev.map(f => f.turnsLeft > 1 ? { ...f, turnsLeft: f.turnsLeft - 1 } : null).filter(Boolean));
-
-      const target = aliveEnemies.reduce((min, e) => e.hp < min.hp ? e : min, aliveEnemies[0]);
-      const atkMult = stateRef.current.activeFragments.some(f => f.id === 'ATK_UP') ? 1.5 : 1.0;
-      const baseDmg = ALLY_BASE_DAMAGE + Math.floor(Math.random() * 8);
-      let dmg = hasBuff ? Math.floor(baseDmg * 1.5) : baseDmg;
-      dmg = Math.floor(dmg * atkMult);
-
-      if (qteResult === 'perfect') {
-        dmg = Math.floor(dmg * 1.5);
-      } else if (qteResult === 'good') {
-        dmg = Math.floor(dmg * 1.2);
-      }
-
-      setEnemies(prev => prev.map(e => {
-        if (e.id === target.id) {
-          const newHp = Math.max(0, e.hp - dmg);
-          return { ...e, hp: newHp, flashTimer: 500, isDead: newHp <= 0 };
+        if (hasBuff) {
+          setBuffTurnsLeft(prev => {
+            const next = Math.max(0, prev - 1);
+            if (next === 0) {
+              addLog("🎵 強化の歌の効果が切れた");
+              setSakuraSinging(false);
+            }
+            return next;
+          });
         }
-        return e;
-      }));
-      spawnDamageNumber(target.id, dmg, qteResult === 'perfect' ? 'critical' : 'damage');
-      addSync(SYNC_PER_HIT);
-      const ally = allAllies.find(a => a.id === turnId);
-      if (ally) {
-        if (qteResult === 'perfect') addLog(`⚡ジャスト攻撃！ ${ally.name} が ${target.name} に大ダメージ！`);
-        else addLog(`⚔ ${ally.name} が ${target.name} に攻撃！`);
+
+        setAbsorbCooldown(prev => Math.max(0, prev - 1));
+
+        const hasExpiringFragment = stateRef.current.activeFragments.some(f => f.turnsLeft <= 1);
+        if (hasExpiringFragment) {
+          addLog(`⚡ 吸収能力の効果が切れた`);
+        }
+        setActiveFragments(prev => prev.map(f => f.turnsLeft > 1 ? { ...f, turnsLeft: f.turnsLeft - 1 } : null).filter(Boolean));
+
+        const target = aliveEnemies.reduce((min, e) => e.hp < min.hp ? e : min, aliveEnemies[0]);
+        console.log('[DEBUG] executeAllyAttack: Target selected:', target.id);
+
+        const atkMult = stateRef.current.activeFragments.some(f => f.id === 'ATK_UP') ? 1.5 : 1.0;
+        const baseDmg = ALLY_BASE_DAMAGE + Math.floor(Math.random() * 8);
+        let dmg = hasBuff ? Math.floor(baseDmg * 1.5) : baseDmg;
+        dmg = Math.floor(dmg * atkMult);
+
+        if (qteResult === 'perfect') {
+          dmg = Math.floor(dmg * 1.5);
+        } else if (qteResult === 'good') {
+          dmg = Math.floor(dmg * 1.2);
+        }
+
+        console.log('[DEBUG] executeAllyAttack: Calculated damage:', dmg);
+
+        setEnemies(prev => prev.map(e => {
+          if (e.id === target.id) {
+            const newHp = Math.max(0, e.hp - dmg);
+            return { ...e, hp: newHp, flashTimer: 500, isDead: newHp <= 0 };
+          }
+          return e;
+        }));
+        
+        console.log('[DEBUG] executeAllyAttack: Enemies state update queued.');
+        
+        spawnDamageNumber(target.id, dmg, qteResult === 'perfect' ? 'critical' : 'damage');
+        addSync(SYNC_PER_HIT);
+        
+        const ally = allAllies.find(a => a.id === turnId);
+        if (ally) {
+          if (qteResult === 'perfect') addLog(`⚡ジャスト攻撃！ ${ally.name} が ${target.name} に大ダメージ！`);
+          else addLog(`⚔ ${ally.name} が ${target.name} に攻撃！`);
+        } else {
+          console.warn('[DEBUG] executeAllyAttack: Ally not found for turnId:', turnId);
+        }
+        
+        console.log('[DEBUG] executeAllyAttack: Playing SE...');
+        if (playSE) playSE('/assets/audio/bgm/+game_sword.mp3');
+      } else {
+        console.log('[DEBUG] executeAllyAttack: No alive enemies found!');
       }
-      if (playSE) playSE('/assets/audio/bgm/+game_sword.mp3');
+
+      console.log('[DEBUG] executeAllyAttack: Setting turnPhase to ally_attack...');
+      setTurnPhase('ally_attack');
+      stateRef.current.turnPhase = 'ally_attack';
+      setTurnTimer(150);
+      stateRef.current.turnTimer = 150;
+      console.log('[DEBUG] executeAllyAttack COMPLETED successfully.');
+    } catch (err) {
+      console.error('[DEBUG] executeAllyAttack ERROR:', err);
     }
-    setTurnPhase('ally_attack');
-    stateRef.current.turnPhase = 'ally_attack';
-    setTurnTimer(150);
   }, [addLog, spawnDamageNumber, addSync, playSE]);
 
   const triggerSakuraNote = useCallback((type = 'default') => {
@@ -343,17 +399,88 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
     return () => { if (stopBGM) stopBGM(); };
   }, []);
 
-  // ─── Intro -> Fighting ───
+  // ─── Intro -> Opening -> Dialogue -> Fighting ───
   useEffect(() => {
     if (battlePhase === 'intro') {
       const timer = setTimeout(() => {
-        setBattlePhase('fighting');
-        setTurnPhase('turn_delay');
-        setTurnTimer(2500); // Wait for black screen to open (1.3s) + brief pause (1.2s)
+        setBattlePhase('opening');
       }, 2200);
       return () => clearTimeout(timer);
     }
   }, [battlePhase]);
+
+  useEffect(() => {
+    if (battlePhase === 'opening') {
+      const timer = setTimeout(() => {
+        setBattlePhase('dialogue');
+        setMessageQueue([...PRE_BATTLE_DIALOGUE]);
+      }, 2300); // Wait for curtains (1.3s) + 1s pause
+      return () => clearTimeout(timer);
+    }
+  }, [battlePhase]);
+
+  // Handle Dialogue Typing Effect
+  useEffect(() => {
+    if (battlePhase === 'dialogue' && messageQueue.length > 0 && !currentMessage) {
+      setCurrentMessage(messageQueue[0]);
+      setMessageQueue(prev => prev.slice(1));
+      setDisplayedText('');
+      setIsTyping(true);
+    }
+  }, [battlePhase, messageQueue, currentMessage]);
+
+  useEffect(() => {
+    if (!currentMessage) {
+      setDisplayedText('');
+      setIsTyping(false);
+      return;
+    }
+    setDisplayedText('');
+    setIsTyping(true);
+
+    typingTimer.current = setInterval(() => {
+      setDisplayedText(prev => {
+        if (prev.length < currentMessage.text.length) {
+          return currentMessage.text.substring(0, prev.length + 1);
+        } else {
+          clearInterval(typingTimer.current);
+          setIsTyping(false);
+          return prev;
+        }
+      });
+    }, 40);
+
+    return () => clearInterval(typingTimer.current);
+  }, [currentMessage]);
+
+  const handleNextMessage = useCallback(() => {
+    if (battlePhase !== 'dialogue') return;
+    
+    if (isTyping) {
+      clearInterval(typingTimer.current);
+      setDisplayedText(currentMessage?.text || '');
+      setIsTyping(false);
+    } else {
+      if (messageQueue.length > 0) {
+        setCurrentMessage(messageQueue[0]);
+        setMessageQueue(prev => prev.slice(1));
+        setDisplayedText('');
+        setIsTyping(true);
+      } else {
+        setCurrentMessage(null);
+        setBattlePhase('fighting');
+        if (stateRef.current.hasShownHealTutorial && !stateRef.current.hasCompletedHealTutorial) {
+          setIsHealTutorialActive(true);
+          stateRef.current.isHealTutorialActive = true;
+        } else if (stateRef.current.turnPhase === 'waiting') {
+          setTurnPhase('turn_delay');
+          stateRef.current.turnPhase = 'turn_delay';
+          setTurnTimer(500);
+          stateRef.current.turnTimer = 500;
+        }
+      }
+    }
+  }, [battlePhase, isTyping, currentMessage, messageQueue]);
 
   // ═══════════════════════════════════════════════════════════════════════════════
   // MAIN GAME LOOP (Turn-Based)
@@ -369,7 +496,7 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
       if (rawDt > 200) { gameLoopRef.current = requestAnimationFrame(tick); return; }
 
       let dt = rawDt;
-      if (isPausedRef.current) {
+      if (isPausedRef.current || stateRef.current.isHealTutorialActive) {
         dt = 0;
       } else if (hitStopRef.current > 0) {
         hitStopRef.current -= rawDt;
@@ -399,85 +526,100 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
 
       // ── TURN DELAY: wait between turns ──
       if (phase === 'turn_delay') {
-        setTurnTimer(prev => {
-          const next = prev - dt;
-          if (next <= 0) {
-            // Start next turn
-            const turnId = TURN_ORDER[stateRef.current.currentTurnIndex % TURN_ORDER.length];
-            const allAllies = stateRef.current.allies;
-            const allEnemies = stateRef.current.enemies;
+        stateRef.current.turnTimer -= dt;
+        if (stateRef.current.turnTimer <= 0) {
+          // Start next turn
+          const turnId = TURN_ORDER[stateRef.current.currentTurnIndex % TURN_ORDER.length];
+          const allAllies = stateRef.current.allies;
+          const allEnemies = stateRef.current.enemies;
 
-            // Skip dead characters
-            const isAlly = turnId === 'mutsunori' || turnId === 'nagisa';
-            if (isAlly) {
-              const ally = allAllies.find(a => a.id === turnId);
-              if (!ally || ally.isDead) {
-                setCurrentTurnIndex(p => p + 1);
-                setTurnTimer(100);
-                return 100;
-              }
+          // Skip dead characters
+          const isAlly = turnId === 'mutsunori' || turnId === 'nagisa';
+          if (isAlly) {
+            const ally = allAllies.find(a => a.id === turnId);
+            if (!ally || ally.isDead) {
+              setCurrentTurnIndex(p => p + 1);
+              stateRef.current.currentTurnIndex++;
+              stateRef.current.turnTimer = 100;
+              setTurnTimer(100);
             } else {
-              const enemy = allEnemies.find(e => e.id === turnId);
-              if (!enemy || enemy.isDead) {
-                setCurrentTurnIndex(p => p + 1);
-                setTurnTimer(100);
-                return 100;
-              }
-            }
-
-            if (isAlly) {
               setTurnPhase('ally_windup');
               stateRef.current.turnPhase = 'ally_windup';
-              setTurnTimer(800); // UI animation gives 800ms to hit (down from 1500ms since the bar is fast)
+              stateRef.current.turnTimer = 800; // UI animation gives 800ms to hit
+              setTurnTimer(800);
               setAllyQTEState('waiting');
               setHitPosition(null);
               qteStartTimeRef.current = Date.now();
               qteSuccessRef.current = false;
               qteResultRef.current = 'miss';
+            }
+          } else {
+            const enemy = allEnemies.find(e => e.id === turnId);
+            if (!enemy || enemy.isDead) {
+              setCurrentTurnIndex(p => p + 1);
+              stateRef.current.currentTurnIndex++;
+              stateRef.current.turnTimer = 100;
+              setTurnTimer(100);
             } else {
-              // Check if enemy is stunned (from parry)
-              const enemy = allEnemies.find(e => e.id === turnId);
               if (enemy && enemy.isStunned) {
-                // Skip turn and clear stun
                 addLog(`💫 ${enemy.name} はスタンしているため行動不能！`);
                 setEnemies(prev => prev.map(e => e.id === turnId ? { ...e, isStunned: false } : e));
                 setCurrentTurnIndex(p => p + 1);
+                stateRef.current.currentTurnIndex++;
+                stateRef.current.turnTimer = 100;
                 setTurnTimer(100);
-                return 100;
+              } else {
+                setTurnPhase('enemy_windup');
+                stateRef.current.turnPhase = 'enemy_windup';
+                setTurnTimer(0);
+                stateRef.current.turnTimer = 0;
               }
-              setTurnPhase('enemy_windup');
             }
-            return 0;
           }
-          return next;
-        });
+        } else {
+          setTurnTimer(stateRef.current.turnTimer);
+        }
       }
 
       // ── ALLY WINDUP (QTE Window) ──
-      if (phase === 'ally_windup') {
-        setTurnTimer(prev => {
-          const next = prev - dt;
-          if (next <= 0) {
-            setAllyQTEState('none');
-            executeAllyAttack(qteResultRef.current);
-            return 0;
+      else if (phase === 'ally_windup') {
+        let windupDt = dt;
+        // チュートリアル: 青い判定エリア(40%〜60%、turnTimer <= 480)に差し掛かったら超スローモーション (0.5% speed)
+        if (!stateRef.current.hasShownAttackTutorial) {
+          if (stateRef.current.turnTimer <= 480) {
+            windupDt = dt * 0.005;
+          } else {
+            windupDt = dt; // 最初は等速
           }
-          return next;
-        });
+        }
+
+        stateRef.current.turnTimer -= windupDt;
+        if (stateRef.current.turnTimer <= 0) {
+          if (!stateRef.current.hasShownAttackTutorial) {
+            setHasShownAttackTutorial(true);
+            stateRef.current.hasShownAttackTutorial = true;
+          }
+          console.log('[DEBUG] ally_windup timer <= 0, executing attack! qteResult:', qteResultRef.current);
+          setAllyQTEState('none');
+          executeAllyAttack(qteResultRef.current);
+        } else {
+          setTurnTimer(stateRef.current.turnTimer);
+        }
       }
 
       // ── ALLY ATTACK (Animation Hold) ──
-      if (phase === 'ally_attack') {
-        setTurnTimer(prev => {
-          const next = prev - dt;
-          if (next <= 0) {
-            setCurrentTurnIndex(p => p + 1);
-            setTurnPhase('turn_delay');
-            setTurnTimer(TURN_DELAY);
-            return 0;
-          }
-          return next;
-        });
+      else if (phase === 'ally_attack') {
+        stateRef.current.turnTimer -= dt;
+        if (stateRef.current.turnTimer <= 0) {
+          setCurrentTurnIndex(p => p + 1);
+          stateRef.current.currentTurnIndex++;
+          setTurnPhase('turn_delay');
+          stateRef.current.turnPhase = 'turn_delay';
+          stateRef.current.turnTimer = TURN_DELAY;
+          setTurnTimer(TURN_DELAY);
+        } else {
+          setTurnTimer(stateRef.current.turnTimer);
+        }
       }
 
       // ── ENEMY WINDUP ──
@@ -490,7 +632,14 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
           const target = aliveAllies[Math.floor(Math.random() * aliveAllies.length)];
           const enemy = stateRef.current.enemies.find(e => e.id === turnId);
 
-          const pattern = ATTACK_PATTERNS[Math.floor(Math.random() * ATTACK_PATTERNS.length)];
+          let pattern;
+          if (!stateRef.current.hasShownDefendTutorial) {
+            pattern = ATTACK_PATTERNS[0]; // Guaranteed 1 hit for tutorial
+            setHasShownDefendTutorial(true);
+            stateRef.current.hasShownDefendTutorial = true;
+          } else {
+            pattern = ATTACK_PATTERNS[Math.floor(Math.random() * ATTACK_PATTERNS.length)];
+          }
 
           const attacks = [];
           let totalHits = pattern.sequence.reduce((sum, seq) => sum + seq.hits, 0);
@@ -513,12 +662,16 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
             }
           });
           setActiveAttacks(attacks);
+          stateRef.current.activeAttacks = attacks;
           if (enemy) addLog(`⚠ ${enemy.name} が ${target.name} を狙っている！ [${pattern.label}]`);
         } else {
           // No alive allies, skip
           setCurrentTurnIndex(p => p + 1);
+          stateRef.current.currentTurnIndex++;
           setTurnPhase('turn_delay');
+          stateRef.current.turnPhase = 'turn_delay';
           setTurnTimer(TURN_DELAY);
+          stateRef.current.turnTimer = TURN_DELAY;
         }
       }
 
@@ -540,6 +693,14 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
             attack.glintFired = true;
             modified = true;
             spawnGlint(attack.enemyId, attack.targetId);
+
+            if (stateRef.current.hasCompletedHealTutorial && !stateRef.current.hasShownGuardDialogue) {
+              setHasShownGuardDialogue(true);
+              stateRef.current.hasShownGuardDialogue = true;
+              setBattlePhase('dialogue');
+              stateRef.current.battlePhase = 'dialogue';
+              setMessageQueue([...PRE_DEFEND_DIALOGUE]);
+            }
           }
 
           // Attack resolves
@@ -591,22 +752,33 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
           setActiveAttacks([]);
           stateRef.current.activeAttacks = [];
           setTurnPhase('enemy_resolve');
-          setTurnTimer(150); // Visual step forward duration (snappy!)
+          stateRef.current.turnPhase = 'enemy_resolve';
+          setTurnTimer(150);
+          stateRef.current.turnTimer = 150;
         }
       }
 
       // ── ENEMY RESOLVE (Animation Hold) ──
       if (phase === 'enemy_resolve') {
-        setTurnTimer(prev => {
-          const next = prev - dt;
-          if (next <= 0) {
-            setCurrentTurnIndex(p => p + 1);
-            setTurnPhase('turn_delay');
-            setTurnTimer(TURN_DELAY);
-            return 0;
+        stateRef.current.turnTimer -= dt;
+        if (stateRef.current.turnTimer <= 0) {
+          setCurrentTurnIndex(p => p + 1);
+          stateRef.current.currentTurnIndex++;
+          setTurnPhase('turn_delay');
+          stateRef.current.turnPhase = 'turn_delay';
+          setTurnTimer(TURN_DELAY);
+          stateRef.current.turnTimer = TURN_DELAY;
+
+          if (!stateRef.current.hasShownHealTutorial) {
+            setHasShownHealTutorial(true);
+            stateRef.current.hasShownHealTutorial = true;
+            setBattlePhase('dialogue');
+            stateRef.current.battlePhase = 'dialogue';
+            setMessageQueue([...POST_ATTACK_DIALOGUE]);
           }
-          return next;
-        });
+        } else {
+          setTurnTimer(stateRef.current.turnTimer);
+        }
       }
 
       // ── COUNTER ATTACK (after parry) ──
@@ -641,8 +813,19 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
         stateRef.current.counterAttack = null;
         // Advance turn
         setCurrentTurnIndex(p => p + 1);
+        stateRef.current.currentTurnIndex++;
         setTurnPhase('turn_delay');
+        stateRef.current.turnPhase = 'turn_delay';
         setTurnTimer(800);
+        stateRef.current.turnTimer = 800;
+
+        if (!stateRef.current.hasShownHealTutorial) {
+          setHasShownHealTutorial(true);
+          stateRef.current.hasShownHealTutorial = true;
+          setBattlePhase('dialogue');
+          stateRef.current.battlePhase = 'dialogue';
+          setMessageQueue([...POST_ATTACK_DIALOGUE]);
+        }
       }
 
       gameLoopRef.current = requestAnimationFrame(tick);
@@ -830,10 +1013,19 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
 
   const handleAllyAttack = useCallback((e) => {
     if (e && e.stopPropagation) e.stopPropagation();
-    if (stateRef.current.turnPhase !== 'ally_windup') return;
+
+    if (stateRef.current.turnPhase !== 'ally_windup') {
+      return;
+    }
+
     if (qteSuccessRef.current) return;
 
-    const elapsed = Date.now() - qteStartTimeRef.current;
+    if (!stateRef.current.hasShownAttackTutorial) {
+      setHasShownAttackTutorial(true);
+      stateRef.current.hasShownAttackTutorial = true;
+    }
+
+    const elapsed = 800 - stateRef.current.turnTimer;
 
     // The bar duration is 800ms. The center is hit at 400ms.
     // perfect: 320ms - 480ms
@@ -845,6 +1037,7 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
       result = 'good';
     }
 
+    console.log('[DEBUG] QTE Result:', result, 'Elapsed:', elapsed);
     setHitPosition(Math.min((elapsed / 800) * 100, 100));
 
     qteResultRef.current = result;
@@ -859,11 +1052,27 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
       if (playSE) playSE('/assets/audio/bgm/+parry.mp3');
       triggerSakuraNote('attack');
     }
-  }, [playSE, triggerSakuraNote]);
+  }, [playSE, triggerSakuraNote, executeAllyAttack]);
 
 
   const handleHeal = useCallback(() => {
-    if (healCooldown > 0 || stateRef.current.battlePhase !== 'fighting') return;
+    if ((healCooldown > 0 || stateRef.current.battlePhase !== 'fighting') && !stateRef.current.isHealTutorialActive) return;
+
+    if (stateRef.current.isHealTutorialActive) {
+      setIsHealTutorialActive(false);
+      stateRef.current.isHealTutorialActive = false;
+      setHasCompletedHealTutorial(true);
+      stateRef.current.hasCompletedHealTutorial = true;
+      
+      // Skip Mutsunori's turn to force the enemy to attack immediately
+      setCurrentTurnIndex(3);
+      stateRef.current.currentTurnIndex = 3;
+
+      setTurnPhase('turn_delay');
+      stateRef.current.turnPhase = 'turn_delay';
+      setTurnTimer(500);
+      stateRef.current.turnTimer = 500;
+    }
 
     setHealCooldown(HEAL_COOLDOWN);
     setHealFlash(true);
@@ -943,6 +1152,8 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
   // ═══════════════════════════════════════════════════════════════════════════════
   // RENDER COMPUTATIONS
   // ═══════════════════════════════════════════════════════════════════════════════
+
+  const isBulletTime = !hasShownAttackTutorial && turnPhase === 'ally_windup' && turnTimer <= 550;
 
   const targetedAllies = useMemo(() => {
     const set = new Set();
@@ -1027,6 +1238,90 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
       </AnimatePresence>
 
 
+      {/* ── DIALOGUE PHASE ── */}
+      <AnimatePresence>
+        {battlePhase === 'dialogue' && (
+          <motion.div 
+            className="absolute inset-0 z-[100] flex flex-col justify-end"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onPointerDown={handleNextMessage}
+          >
+            {/* Dark background overlay */}
+            <div className="absolute inset-0 z-10 cursor-pointer bg-black/60 backdrop-blur-[2px] transition-opacity duration-300" />
+
+            {/* Left Sprite (Mutsunori) */}
+            {currentMessage?.illustMutsunori && (
+              <motion.img 
+                src={currentMessage.illustMutsunori} 
+                alt="mutsunori" 
+                className={`absolute object-contain object-bottom drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)] z-20 pointer-events-none transition-all duration-300 ${currentMessage.role === 'MUTSUNORI' ? 'brightness-100 z-20' : 'brightness-[0.4] z-10'}`}
+                style={{
+                  width: '45%',
+                  height: '95%',
+                  bottom: '-50px',
+                  left: '5%'
+                }}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+              />
+            )}
+
+            {/* Right Sprite (Sakura) */}
+            {currentMessage?.illustSakura && (
+              <motion.img 
+                src={currentMessage.illustSakura} 
+                alt="sakura" 
+                className={`absolute object-contain object-bottom drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)] z-20 pointer-events-none transition-all duration-300 ${currentMessage.role === 'SAKURA' ? 'brightness-100 z-20' : 'brightness-[0.4] z-10'}`}
+                style={{
+                  width: '45%',
+                  height: '95%',
+                  bottom: '-50px',
+                  right: '5%',
+                  transform: 'scaleX(-1)'
+                }}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 20 }}
+              />
+            )}
+
+            {/* Fallback for single illust */}
+            {!currentMessage?.illustMutsunori && !currentMessage?.illustSakura && currentMessage?.illust && (
+              <motion.img 
+                src={currentMessage.illust} 
+                alt="character" 
+                className="absolute object-contain object-bottom drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)] z-20 pointer-events-none"
+                style={{
+                  width: '45%',
+                  height: '95%',
+                  bottom: '-50px',
+                  left: '10%'
+                }}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+              />
+            )}
+
+            <div className="relative z-30 pointer-events-none">
+              <DialogueBox 
+                speaker={currentMessage?.speaker}
+                role={currentMessage?.role}
+                text={displayedText}
+                isTyping={isTyping}
+                isVisible={true}
+                isPopup={false}
+                autoMode={false}
+                skipMode={false}
+              />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* ── VISUAL FLASHES ── */}
       <AnimatePresence>
         {parryFlash && (
@@ -1087,8 +1382,22 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
          ═══════════════════════════════════════════════════════════════ */}
       <div className="relative flex-1 flex items-stretch px-4 lg:px-12 pt-20 lg:pt-32 pb-16 lg:pb-24 overflow-hidden">
 
+        {/* Tutorial Highlight Overlay */}
+        <AnimatePresence>
+          {!hasShownAttackTutorial && battlePhase === 'fighting' && (
+            <motion.div
+              className="absolute inset-0 bg-black/70 z-50 pointer-events-auto cursor-pointer"
+              onPointerDown={handleAllyAttack}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+            />
+          )}
+        </AnimatePresence>
+
         {/* ── Allies (Left Column) ── */}
-        <div className="w-1/2 flex flex-col justify-around items-center pr-4 translate-x-4 lg:translate-x-8">
+        <div className={`w-1/2 flex flex-col justify-around items-center pr-4 translate-x-4 lg:translate-x-8 ${(!hasShownAttackTutorial && battlePhase === 'fighting') ? 'relative z-[60]' : ''}`}>
           {allies.map(ally => {
             const isTargeted = targetedAllies.has(ally.id);
             const attackInfo = activeAttacksCompat.find(a => a.targetId === ally.id);
@@ -1097,7 +1406,10 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
             const isCounterDashing = counterAnim && counterAnim.allyId === ally.id;
 
             return (
-              <div key={ally.id} className="relative flex flex-col items-center w-full">
+              <div 
+                key={ally.id} 
+                className={`relative flex flex-col items-center w-full ${(!hasShownAttackTutorial && battlePhase === 'fighting' && ally.id === 'mutsunori') ? 'z-[60]' : ''}`}
+              >
 
                 {/* ── Ally HP Bar (Chimera-A style) ── */}
                 <div className="w-20 lg:w-36 mb-1 lg:mb-2 z-20 relative">
@@ -1154,7 +1466,7 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
                         <img
                           src="/battle/sakura.png"
                           alt="sakura"
-                          className="w-full h-full object-contain drop-shadow-lg opacity-90"
+                          className={`w-full h-full object-contain drop-shadow-lg transition-all duration-500 ${(!hasShownAttackTutorial && battlePhase === 'fighting') ? 'brightness-[0.3] opacity-60' : 'opacity-90'}`}
                         />
                         <AnimatePresence>
                           {sakuraNotes.map(note => (
@@ -1214,30 +1526,69 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
                       >
                         <div className="absolute inset-[-50px] bg-cyan-900/10 rounded-full blur-xl mix-blend-screen" />
 
-                        {/* Simple Timing Bar */}
-                        <div className="relative w-[100%] max-w-[150px] lg:max-w-[200px] h-3 lg:h-4 bg-black/60 backdrop-blur-sm border border-white/20 rounded-full overflow-hidden shadow-lg">
-                          {/* Success Zone */}
-                          <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[20%] bg-cyan-400/50" />
+                        <motion.div
+                          className="relative w-full flex flex-col items-center"
+                        >
+                          {/* Simple Timing Bar */}
+                          <div className="relative w-[100%] max-w-[150px] lg:max-w-[200px] h-3 lg:h-4 bg-black/60 backdrop-blur-sm border border-white/20 rounded-full overflow-hidden shadow-lg">
+                            {/* Success Zone */}
+                            <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[20%] bg-cyan-400/50" />
 
-                          {/* Moving Indicator */}
-                          {allyQTEState === 'waiting' ? (
+                            {/* Moving Indicator */}
+                            {allyQTEState === 'waiting' ? (
+                              <div
+                                className="absolute top-0 bottom-0 w-[3px] bg-white z-20 shadow-[0_0_8px_rgba(255,255,255,0.8)]"
+                                style={{ left: `${Math.min(100, Math.max(0, ((800 - turnTimer) / 800) * 100))}%` }}
+                              />
+                            ) : (
+                              <div
+                                className="absolute top-0 bottom-0 w-[3px] bg-white z-20"
+                                style={{ left: `${hitPosition}%` }}
+                              />
+                            )}
+                          </div>
+
+                          <div className="mt-2 text-center relative">
+                            <span className="block font-orbitron font-bold text-[10px] lg:text-xs text-white/80 tracking-[0.2em] animate-pulse">TAP!</span>
+                          </div>
+                        </motion.div>
+
+                        <AnimatePresence>
+                          {!hasShownAttackTutorial && (
                             <motion.div
-                              className="absolute top-0 bottom-0 w-[3px] bg-white z-20"
-                              initial={{ left: '0%' }}
-                              animate={{ left: '100%' }}
-                              transition={{ duration: 0.8, ease: "linear" }}
-                            />
-                          ) : (
-                            <div
-                              className="absolute top-0 bottom-0 w-[3px] bg-white z-20"
-                              style={{ left: `${hitPosition}%` }}
-                            />
-                          )}
-                        </div>
+                              className="absolute left-[90%] lg:left-[110%] top-[25%] lg:top-[15%] -translate-y-1/2 w-[260px] lg:w-[320px] pointer-events-none"
+                              initial={{ opacity: 0, x: -10 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              exit={{ opacity: 0, x: -10 }}
+                            >
+                              <div className="relative p-3 lg:p-4 text-center">
+                                {/* Wireframe Crosshair Border */}
+                                <div className="absolute top-0 left-[-6px] right-[-6px] h-[1px] bg-cyan-400/70" />
+                                <div className="absolute bottom-0 left-[-6px] right-[-6px] h-[1px] bg-cyan-400/70" />
+                                <div className="absolute left-0 top-[-6px] bottom-[-6px] w-[1px] bg-cyan-400/70" />
+                                <div className="absolute right-0 top-[-6px] bottom-[-6px] w-[1px] bg-cyan-400/70" />
 
-                        <div className="mt-2 text-center">
-                          <span className="block font-orbitron font-bold text-[10px] lg:text-xs text-white/80 tracking-[0.2em] animate-pulse">TAP!</span>
-                        </div>
+                                <p className="font-noto text-[13px] lg:text-[15px] text-white/90 leading-relaxed relative z-10">
+                                  バーが真ん中に来たときに<br/>
+                                  <span className="relative inline-block my-1 mx-1 z-0">
+                                    <span className="relative z-10 text-white font-bold">[Space] / [Enter]</span>
+                                    <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[8px] lg:h-[10px] bg-cyan-400/70 -rotate-[2deg] rounded-sm -z-10" />
+                                  </span>
+                                  または
+                                  <span className="relative inline-block mx-1 z-0">
+                                    <span className="relative z-10 text-white font-bold">クリック</span>
+                                    <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[8px] lg:h-[10px] bg-cyan-400/70 -rotate-[2deg] rounded-sm -z-10" />
+                                  </span><br/>
+                                  で
+                                  <span className="relative inline-block mx-1 z-0">
+                                    <span className="relative z-10 text-white font-bold">攻撃力UP</span>
+                                    <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[8px] lg:h-[10px] bg-red-400/70 -rotate-[2deg] rounded-sm -z-10" />
+                                  </span>
+                                </p>
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
 
                         <AnimatePresence>
                           {(allyQTEState === 'perfect' || allyQTEState === 'good') && (
@@ -1475,19 +1826,26 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
       {/* Dark gradient film at the bottom to make the UI pop */}
       <div className="absolute bottom-0 inset-x-0 h-[40vh] bg-gradient-to-t from-black via-black/80 to-transparent pointer-events-none z-30" />
 
-      <div className="absolute inset-0 z-40 pointer-events-none">
-
-
-
+      <div className={`absolute inset-0 pointer-events-none ${isHealTutorialActive ? 'z-[100]' : 'z-40'}`}>
+        <AnimatePresence>
+          {isHealTutorialActive && (
+            <motion.div
+              className="absolute inset-0 bg-black/80 pointer-events-auto"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            />
+          )}
+        </AnimatePresence>
 
         {/* ── Action Buttons (Moved below allies) ── */}
-        <div className="absolute bottom-4 left-0 lg:bottom-12 lg:left-8 w-1/2 pointer-events-auto flex items-end justify-center gap-2 lg:gap-8 drop-shadow-[0_0_20px_rgba(34,211,238,0.2)] -translate-x-8 lg:-translate-x-20">
+        <div className={`absolute bottom-4 left-0 lg:bottom-12 lg:left-8 w-1/2 pointer-events-auto flex items-end justify-center gap-2 lg:gap-8 drop-shadow-[0_0_20px_rgba(34,211,238,0.2)] -translate-x-8 lg:-translate-x-20 ${isHealTutorialActive ? 'z-10' : ''}`}>
 
           {/* Left Button - ULTIMATE (Reactor Core) */}
           <motion.button
             onClick={handleMutsunoriUltimate}
-            disabled={syncRate < SYNC_COST_ULTIMATE || battlePhase !== 'fighting'}
-            className={`relative w-[108px] h-[108px] lg:w-32 lg:h-32 rounded-full flex flex-col items-center justify-center transition-all duration-300 shadow-[0_0_30px_rgba(0,0,0,0.8)] backdrop-blur-md hover:scale-105 active:scale-95 ${syncRate < SYNC_COST_ULTIMATE || battlePhase !== 'fighting'
+            disabled={syncRate < SYNC_COST_ULTIMATE || battlePhase !== 'fighting' || isHealTutorialActive}
+            className={`relative w-[108px] h-[108px] lg:w-32 lg:h-32 rounded-full flex flex-col items-center justify-center transition-all duration-300 shadow-[0_0_30px_rgba(0,0,0,0.8)] backdrop-blur-md ${isHealTutorialActive ? 'opacity-20 pointer-events-none' : 'hover:scale-105 active:scale-95'} ${syncRate < SYNC_COST_ULTIMATE || battlePhase !== 'fighting'
               ? 'bg-[#0a0a0a]/90 cursor-not-allowed grayscale'
               : 'bg-[#1a0a03]/80 hover:bg-[#2a1005]/90 hover:shadow-[0_0_30px_rgba(251,191,36,0.5)] cursor-pointer'
               }`}
@@ -1546,12 +1904,22 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
           {/* Right Button - HEAL */}
           <motion.button
             onClick={handleHeal}
-            disabled={healCooldown > 0 || battlePhase !== 'fighting'}
-            className={`w-20 h-20 lg:w-24 lg:h-24 mb-2 lg:mb-4 rounded-full flex flex-col items-center justify-center overflow-hidden group transition-all duration-300 relative border-2 backdrop-blur-md hover:scale-105 active:scale-95 ${healCooldown > 0 || battlePhase !== 'fighting'
+            disabled={(healCooldown > 0 || battlePhase !== 'fighting') && !isHealTutorialActive}
+            className={`w-20 h-20 lg:w-24 lg:h-24 mb-2 lg:mb-4 rounded-full flex flex-col items-center justify-center overflow-hidden group transition-all duration-300 relative border-2 backdrop-blur-md hover:scale-105 active:scale-95 ${isHealTutorialActive ? 'ring-4 ring-emerald-400 ring-offset-4 ring-offset-[#090e17] shadow-[0_0_50px_rgba(16,185,129,0.8)]' : ''} ${healCooldown > 0 || (battlePhase !== 'fighting' && !isHealTutorialActive)
               ? 'bg-[#090e17]/90 border-slate-700/50 cursor-not-allowed'
               : 'bg-emerald-950/60 border-emerald-400/60 hover:bg-emerald-900/80 hover:border-emerald-300/80 hover:shadow-[0_0_20px_rgba(16,185,129,0.5)] cursor-pointer'
               }`}
           >
+            {isHealTutorialActive && (
+              <motion.div
+                className="absolute -top-12 left-1/2 -translate-x-1/2 whitespace-nowrap text-emerald-300 font-noto font-bold text-sm bg-black/60 px-3 py-1 rounded-full border border-emerald-500/50"
+                initial={{ y: -10, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.5, yoyo: Infinity }}
+              >
+                ここをタップ！ ▼
+              </motion.div>
+            )}
             {/* Tech grid bg */}
             <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPjxwYXRoIGQ9Ik0wLDggTDgsMCBMMCwwIFoiIGZpbGw9InJnYmEoMCwgMCwgMCwgMC4xNSkiLz48L3N2Zz4=')] pointer-events-none mix-blend-overlay" />
 
