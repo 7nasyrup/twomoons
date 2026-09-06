@@ -1288,7 +1288,7 @@ export default function App() {
     } else {
       // Tap detected (not a swipe)
       if (currentLine?.action === 'TRIGGER_MINIGAME' || currentLine?.action === 'TRIGGER_TYPING_GAME') return;
-      const isMinigameActive = isTypingGameActive || isSearchAndLearningActive || isSilentScoreActive || isTapCommunicationActive || isEyeOfProfilerActive || isFragmentCollectActive || isFragmentCollectNagisaActive || isFragmentCollectMikaActive || isFragmentCollectAkaneActive || isFragmentCollectSoloActive || isStealthGameActive || isExplorationPhaseActive || isStruggleGameActive || isWarehouseExplorationActive || currentLine?.action === 'TRIGGER_BATTLE_TUTORIAL' || currentLine?.action === 'TRIGGER_BATTLE_AKANE_VS_KIMERA2' || currentLine?.action === 'TRIGGER_BATTLE_TEAM_VS_KIMERA' || currentLine?.action === 'TRIGGER_BATTLE_MIDBOSS_MACHINE' || currentLine?.action === 'TRIGGER_BATTLE_MIDBOSS_NAGISA' || currentLine?.action === 'TRIGGER_BATTLE_MIDBOSS_MIKA' || currentLine?.action === 'TRIGGER_BATTLE_MIDBOSS_AKANE' || currentLine?.action === 'TRIGGER_BATTLE_FINAL_NAGISA' || currentLine?.action === 'TRIGGER_BATTLE_FINAL_MIKA' || currentLine?.action === 'TRIGGER_BATTLE_FINAL_AKANE';
+      const isMinigameActive = isTypingGameActive || isSearchAndLearningActive || isSilentScoreActive || isTapCommunicationActive || isEyeOfProfilerActive || isFragmentCollectActive || isFragmentCollectNagisaActive || isFragmentCollectMikaActive || isFragmentCollectAkaneActive || isFragmentCollectSoloActive || isStealthGameActive || isExplorationPhaseActive || isStruggleGameActive || isWarehouseExplorationActive || currentLine?.action === 'TRIGGER_BATTLE_TUTORIAL' || currentLine?.action === 'TRIGGER_BATTLE_AKANE_VS_KIMERA2' || currentLine?.action === 'TRIGGER_BATTLE_TEAM_VS_KIMERA' || currentLine?.action === 'TRIGGER_BATTLE_MIDBOSS_MACHINE' || currentLine?.action === 'TRIGGER_BATTLE_MIDBOSS_NAGISA' || currentLine?.action === 'TRIGGER_BATTLE_MIDBOSS_MIKA' || currentLine?.action === 'TRIGGER_BATTLE_MIDBOSS_AKANE' || currentLine?.action === 'TRIGGER_BATTLE_FINAL_MUTSUNORI' || currentLine?.action === 'TRIGGER_BATTLE_FINAL_NAGISA' || currentLine?.action === 'TRIGGER_BATTLE_FINAL_MIKA' || currentLine?.action === 'TRIGGER_BATTLE_FINAL_AKANE';
 
       if (skipMode && !isMinigameActive) {
         setSkipMode(false);
@@ -1620,7 +1620,9 @@ export default function App() {
                   onComplete={nextStep}
                   playBGM={playBGM}
                   stopBGM={stopBGM}
+                  playSE={playSE}
                 />
+
               )}
 
               {isBattleFinalAkaneActive && (
@@ -1662,6 +1664,8 @@ export default function App() {
                   onComplete={nextStep}
                   playBGM={playBGM}
                   stopBGM={stopBGM}
+                  playSE={playSE}
+
                 />
               )}
 

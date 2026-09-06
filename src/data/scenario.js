@@ -3754,7 +3754,8 @@ export const scenarioData = [
   },
   {
     "scene": "崩壊後-大学の敷地内",
-    "text": "そこにいたのは──満だった。"
+    "text": "そこにいたのは──満だった。",
+    "bg": "/character/Michiru/Michiru_CG3.png"
   },
   {
     "scene": "崩壊後-大学の敷地内",
@@ -3784,7 +3785,8 @@ export const scenarioData = [
     "scene": "崩壊後-大学の敷地内",
     "text": "──グサッ。",
     "se": "Slash.mp3",
-    "action": "BLOOD_SCREEN"
+    "action": "BLOOD_SCREEN",
+    "bg": "/character/Michiru/Michiru_CG4.png"
   },
   {
     "scene": "崩壊後-大学の敷地内",

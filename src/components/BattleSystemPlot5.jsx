@@ -997,6 +997,25 @@ export default function BattleSystemPlot5({ onComplete, playBGM, stopBGM, playSE
   // ═══════════════════════════════════════════════════════════════════════════════
   return (
     <div className={`absolute inset-0 w-full h-full bg-[#090e17] overflow-hidden select-none z-50 flex flex-col font-orbitron ${shakeActive ? 'animate-battle-shake' : ''}`}>
+      <style>{`
+        @keyframes glint-shrink-anim {
+          0% { transform: scale(2.5) rotate(0deg); opacity: 0; }
+          10% { opacity: 1; }
+          90% { opacity: 1; }
+          100% { transform: scale(0.15) rotate(180deg); opacity: 0; }
+        }
+        @keyframes glint-shrink-solid {
+          0% { transform: scale(3); opacity: 0; }
+          10% { opacity: 0.8; }
+          90% { opacity: 0.8; }
+          100% { transform: scale(0.15); opacity: 0; }
+        }
+        @keyframes glint-pop {
+          0% { opacity: 0; transform: scale(0) rotate(45deg); }
+          30% { opacity: 1; transform: scale(2.5) rotate(90deg); }
+          100% { opacity: 0; transform: scale(0) rotate(90deg); }
+        }
+      `}</style>
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         {/* Full color bright image */}
@@ -1252,12 +1271,8 @@ export default function BattleSystemPlot5({ onComplete, playBGM, stopBGM, playSE
 
                     {isTargeted && !ally.isDead && (
                       <div className="absolute inset-0 pointer-events-none flex items-center justify-center z-40">
-                        <motion.div
-                          className="absolute w-[80px] h-[80px] lg:w-[150px] lg:h-[150px] border-[2px] border-amber-500/80 rotate-45 shadow-[0_0_15px_rgba(245,158,11,0.5)]"
-                          animate={{ scale: [1.2, 1, 1.2], opacity: [0.5, 1, 0.5] }}
-                          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                        />
-                        <div className="absolute w-[100px] h-[100px] lg:w-[170px] lg:h-[170px] border border-amber-400/30 rotate-45" />
+                        {/* Static Target Circle */}
+                        <div className="absolute w-[75px] h-[75px] lg:w-[130px] lg:h-[130px] border-[2.5px] border-amber-400/80 rounded-full shadow-[0_0_15px_rgba(251,191,36,0.5)]" />
 
                         {/* Target Crosshairs */}
                         <div className="absolute w-[120px] lg:w-[200px] h-[1px] bg-gradient-to-r from-transparent via-amber-500/50 to-transparent" />
@@ -1371,23 +1386,28 @@ export default function BattleSystemPlot5({ onComplete, playBGM, stopBGM, playSE
                           key={g.id}
                           className="absolute inset-0 flex items-center justify-center z-50 pointer-events-none"
                         >
-                          <motion.div
-                            className="absolute w-20 h-20 lg:w-40 lg:h-40 rounded-full border-[3px] border-amber-400 border-dashed shadow-[0_0_15px_rgba(251,191,36,0.7)]"
-                            initial={{ scale: 2.5, opacity: 0, rotate: 0 }}
-                            animate={{ scale: 0.15, opacity: [0, 1, 1, 0], rotate: 180 }}
-                            transition={{ duration: 0.6, ease: "linear" }}
+                          <div
+                            className="absolute w-20 h-20 lg:w-40 lg:h-40 rounded-full border-[3px] border-red-500 border-dashed shadow-[0_0_15px_rgba(239,68,68,0.7)]"
+                            style={{
+                              animation: `glint-shrink-anim 0.6s linear forwards`,
+                              animationPlayState: 'running'
+                            }}
                           />
-                          <motion.div
-                            className="absolute w-16 h-16 lg:w-36 lg:h-36 rounded-full border-2 border-amber-300 shadow-[0_0_10px_rgba(252,211,77,0.5)]"
-                            initial={{ scale: 3, opacity: 0 }}
-                            animate={{ scale: 0.15, opacity: [0, 0.8, 0.8, 0] }}
-                            transition={{ duration: 0.6, ease: "linear" }}
+                          <div
+                            className="absolute w-16 h-16 lg:w-36 lg:h-36 rounded-full border-2 border-red-400 shadow-[0_0_10px_rgba(248,113,113,0.5)]"
+                            style={{
+                              animation: `glint-shrink-solid 0.6s linear forwards`,
+                              animationPlayState: 'running'
+                            }}
                           />
-                          <motion.div
+                          <div
                             className="absolute w-8 h-8 lg:w-12 lg:h-12 bg-white rounded-sm shadow-[0_0_30px_#fff]"
-                            initial={{ opacity: 0, scale: 0, rotate: 45 }}
-                            animate={{ opacity: [0, 1, 0], scale: [0, 2.5, 0], rotate: 90 }}
-                            transition={{ duration: 0.3, delay: 0.6, ease: "easeOut" }}
+                            style={{
+                              animation: `glint-pop 0.3s ease-out forwards`,
+                              animationDelay: '0.6s',
+                              animationPlayState: 'running',
+                              opacity: 0
+                            }}
                           />
                         </motion.div>
                       ))}
