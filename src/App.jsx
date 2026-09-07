@@ -1612,6 +1612,7 @@ export default function App() {
                   onComplete={nextStep}
                   playBGM={playBGM}
                   stopBGM={stopBGM}
+                  playSE={playSE}
                 />
               )}
 
@@ -1630,6 +1631,7 @@ export default function App() {
                   onComplete={nextStep}
                   playBGM={playBGM}
                   stopBGM={stopBGM}
+                  playSE={playSE}
                 />
               )}
 
@@ -1638,6 +1640,7 @@ export default function App() {
                   onComplete={nextStep}
                   playBGM={playBGM}
                   stopBGM={stopBGM}
+                  playSE={playSE}
                 />
               )}
 
@@ -1674,6 +1677,7 @@ export default function App() {
                   onComplete={nextStep}
                   playBGM={playBGM}
                   stopBGM={stopBGM}
+                  playSE={playSE}
                 />
               )}
 
@@ -1682,6 +1686,8 @@ export default function App() {
                   onComplete={nextStep}
                   playBGM={playBGM}
                   stopBGM={stopBGM}
+                  playSE={playSE}
+
                 />
               )}
 
@@ -1690,6 +1696,7 @@ export default function App() {
                   onComplete={nextStep}
                   playBGM={playBGM}
                   stopBGM={stopBGM}
+                  playSE={playSE}
                 />
               )}
 

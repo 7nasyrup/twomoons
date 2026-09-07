@@ -14495,13 +14495,12 @@ export const scenarioData = [
   },
   {
     "scene": "コア部屋",
-    "text": "次の瞬間、研究所全体を揺るがす咆哮と共に、残されたキメラたちが一斉に襲いかかってきた",
-    "action": "SHAKE_SCREEN_CONTINUOUS_MEDIUM"
+    "text": "次の瞬間、研究所全体を揺るがす咆哮と共に、残されたキメラたちが一斉に襲いかかってきた"
   },
   //=============== 戦闘開始(アカネラスボス) ===============
   {
     "scene": "ラスボス(アカネ)",
-    "action": "TRIGGER_BATTLE_FINAL_AKANE"
+    "action": "TRIGGER_BATTLE_FINAL_AKANE",
   },
   {
     "scene": "コア部屋",
