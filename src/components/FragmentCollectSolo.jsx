@@ -16,15 +16,15 @@ const ROOMS = [
 const SOLO_CHIP = [
   [
     { speaker: null, role: 'SYSTEM', text: 'セキュリティコードの断片を入手した。' },
-    { speaker: '朔良', role: 'SAKURA', text: '「（これって……いったいどういうことなんだろう）」' },
+    { speaker: '朔良', role: 'SAKURA', text: '（これって……いったいどういうことなんだろう）' },
   ],
   [
     { speaker: null, role: 'SYSTEM', text: 'セキュリティコードの断片を入手した。' },
-    { speaker: '朔良', role: 'SAKURA', text: '「（……集めるしかない。何かがわかるかもしれないから）」' },
+    { speaker: '朔良', role: 'SAKURA', text: '（……集めるしかない。何かがわかるかもしれないから）' },
   ],
   [
     { speaker: null, role: 'SYSTEM', text: 'セキュリティコードの断片を入手した。' },
-    { speaker: '朔良', role: 'SAKURA', text: '「（あと少し……）」' },
+    { speaker: '朔良', role: 'SAKURA', text: '（あと少し……）' },
   ],
   [
     { speaker: null, role: 'SYSTEM', text: 'セキュリティコードの断片を入手した。' },
@@ -63,12 +63,14 @@ const ROOM_ITEMS = {
           {
             speaker: null, role: null,
             text: '特筆すべきは、能力の影響が単なる強化に留まらない点である。\n歌唱者と対象者の間に、極めて強い精神的・生体的な共鳴反応が発生する。\nこの反応が一定値を超えた場合、歌唱者側に対象者の能力因子が移行する可能性がある。'
-          },
+          }
+        ],
+        postMessage: [
           {
             speaker: '朔良', role: 'SAKURA',
             text: '「歌声…私が持っている力のことかな…」'
           }
-        ],
+        ]
       },
     ],
   },
@@ -135,7 +137,27 @@ const ROOM_ITEMS = {
     chips: [
       { id: 'chip_4', pos: { top: '50%', left: '35%' }, label: 'コード断片④' },
     ],
-    files: [],
+    files: [
+      {
+        id: 'file_4',
+        pos: { top: '40%', left: '60%' },
+        label: '異能反応・発生記録',
+        messages: [
+          {
+            speaker: 'システム', role: 'SYSTEM',
+            text: '④【異能反応・発生記録】\n██市街地にて、極めて強い異能反応を観測。'
+          },
+          {
+            speaker: null, role: null,
+            text: '発生源を追跡したところ、対象は──██と一致した。\nこれまで存在を確認できなかった██が、なぜ今になって異能を発現させたのかは不明。'
+          },
+          {
+            speaker: null, role: null,
+            text: 'そして、その直後から██の内部に、本来存在し得ない異能反応が定着している。\n──██が、██の異能を取り込んだ可能性が高い。'
+          }
+        ],
+      }
+    ],
   },
 };
 
@@ -194,33 +216,33 @@ function FCFileModal({ file, onClose }) {
           className="relative w-full max-h-full bg-[#080c14]/95 border border-green-500/30 rounded shadow-[0_0_30px_rgba(74,222,128,0.1)] overflow-hidden flex flex-col pointer-events-auto"
           initial={{ scale: 0.95, y: 20 }} animate={{ scale: isMobile ? 0.85 : 1, y: 0 }} exit={{ scale: 0.95, y: 20 }}
         >
-        <div className="bg-green-950/40 border-b border-green-500/20 px-6 py-4 flex items-center gap-3 shrink-0">
-          <FileText className="w-5 h-5 text-green-400" />
-          <span className="text-green-100 font-orbitron tracking-widest text-sm">CONFIDENTIAL DATA</span>
-        </div>
-        <div className="p-8 overflow-y-auto grow custom-scrollbar">
-          {file.messages.map((m, idx) => (
-            <div key={idx} className="mb-6 last:mb-0">
-              {m.speaker === 'システム' ? (
-                <h3 className="text-green-300 font-bold tracking-widest mb-4 border-b border-green-500/30 pb-2 text-base md:text-lg">
-                  {m.text.replace('【', '').replace('】', '')}
-                </h3>
-              ) : (
-                <p className="text-gray-300 leading-loose font-noto tracking-wide whitespace-pre-line text-sm md:text-base">
-                  {m.text}
-                </p>
-              )}
-            </div>
-          ))}
-        </div>
-        <div className="bg-black/40 border-t border-green-500/20 p-4 flex justify-end shrink-0">
-          <button
-            onClick={onClose}
-            className="px-8 py-2.5 bg-green-900/50 hover:bg-green-800/60 border border-green-400/30 hover:border-green-400 text-green-200 text-sm font-orbitron tracking-widest transition-all rounded shadow-[0_0_10px_rgba(74,222,128,0.2)]"
-          >
-            CLOSE
-          </button>
-        </div>
+          <div className="bg-green-950/40 border-b border-green-500/20 px-6 py-4 flex items-center gap-3 shrink-0">
+            <FileText className="w-5 h-5 text-green-400" />
+            <span className="text-green-100 font-orbitron tracking-widest text-sm">CONFIDENTIAL DATA</span>
+          </div>
+          <div className="p-8 overflow-y-auto grow custom-scrollbar">
+            {file.messages.map((m, idx) => (
+              <div key={idx} className="mb-6 last:mb-0">
+                {m.speaker === 'システム' ? (
+                  <h3 className="text-green-300 font-bold tracking-widest mb-4 border-b border-green-500/30 pb-2 text-base md:text-lg">
+                    {m.text.replace('【', '').replace('】', '')}
+                  </h3>
+                ) : (
+                  <p className="text-gray-300 leading-loose font-noto tracking-wide whitespace-pre-line text-sm md:text-base">
+                    {m.text}
+                  </p>
+                )}
+              </div>
+            ))}
+          </div>
+          <div className="bg-black/40 border-t border-green-500/20 p-4 flex justify-end shrink-0">
+            <button
+              onClick={onClose}
+              className="px-8 py-2.5 bg-green-900/50 hover:bg-green-800/60 border border-green-400/30 hover:border-green-400 text-green-200 text-sm font-orbitron tracking-widest transition-all rounded shadow-[0_0_10px_rgba(74,222,128,0.2)]"
+            >
+              CLOSE
+            </button>
+          </div>
         </motion.div>
       </div>
     </motion.div>
@@ -407,7 +429,11 @@ export default function FragmentCollectSolo({ onComplete, onSave, onLoad, onTogg
 
   // ─── ファイルモーダルを閉じる ─────────────────────────────────────────────────────
   const closeActiveFile = () => {
+    const closedFile = activeFile;
     setActiveFile(null);
+    if (closedFile && closedFile.postMessage) {
+      showMessages(closedFile.postMessage);
+    }
   };
 
   const handleParticleComplete = useCallback((id) => {

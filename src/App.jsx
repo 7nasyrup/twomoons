@@ -1253,7 +1253,7 @@ export default function App() {
         else nextStep();
       }
     } else if (currentLine.action === 'EVALUATE_FRAGMENT_COLLECT_SOLO_BRANCH') {
-      if (fragmentCollectResult && fragmentCollectResult.files >= 3) {
+      if (fragmentCollectResult && fragmentCollectResult.files >= 4) {
         const targetIdx = scenarioData.findIndex(line => line.label === 'solo_fragment_happy_end');
         if (targetIdx !== -1) jumpToStep(targetIdx);
         else nextStep();
