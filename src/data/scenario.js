@@ -6751,6 +6751,7 @@ export const scenarioData = [
     "text": "何が待っているのかは分からない。それでも、自分にできることを確かめるために。私は遠くに見える白い建物を目指し、重い足を一歩ずつ前へ踏み出した。"
   },
   {
+    "label": "checkpoint_solo_lab",
     "scene": "研究所入口",
     "text": "やがて、白い砂丘の向こうに、巨大な研究所のシルエットが姿を現した。",
     "bg": "/scene/lab_entrance.png"
@@ -8658,6 +8659,9 @@ export const scenarioData = [
     "scene": "最奥部屋（コア無い感じの別室）",
     "text": "消え入りそうな、けれど必死な満の声が私の耳に届く。"
   },
+  {
+    "action": "EVALUATE_FRAGMENT_COLLECT_SOLO_BRANCH"
+  },
   //満バッドエンド
   {
     "label": "solo_fragment_bad_end",
@@ -8672,7 +8676,6 @@ export const scenarioData = [
   },
   {
     "scene": "最奥部屋（コア無い感じの別室）",
-    "action": "DIZZY_EFFECT",
     "text": "胸の奥が焼けるように痛い。私はただ、自分の胸を押さえながら、その場に膝をついた。"
   },
   {
@@ -8690,9 +8693,12 @@ export const scenarioData = [
     "speaker": "ルキ",
     "role": "RUKI",
     "showIllust": [
-      "Ruki_neutral4"
+      "Ruki3"
     ],
-    "text": "「これで分かった？　姉さんは——立派な人殺しなのさ！」"
+    "hideIllust": [
+      "Michiru"
+    ],
+    "text": "「これで分かった？姉さんは——立派な人殺しなのさ！」"
   },
   {
     "scene": "最奥部屋（コア無い感じの別室）",
@@ -8703,12 +8709,18 @@ export const scenarioData = [
   {
     "scene": "最奥部屋（コア無い感じの別室）",
     "se": "BrokenArmor.mp3",
-    "text": "それを聞いた瞬間…私の中の何かが壊れた音が、聞こえた気がした。"
+    "text": "それを聞いた瞬間…私の中の何かが壊れた音が、聞こえた気がした。",
+    "hideIllust": [
+      "Ruki"
+    ]
   },
   {
     "scene": "最奥部屋（コア無い感じの別室）",
     "action": "BLACK_AURA_START",
-    "text": "目の前で、朔良が動かない。"
+    "text": "目の前で、朔良が動かない。",
+    "showIllust": [
+      "Sakura_yami13" //朔良闇1
+    ]
   },
   {
     "scene": "最奥部屋（コア無い感じの別室）",
@@ -8718,9 +8730,6 @@ export const scenarioData = [
     "scene": "最奥部屋（コア無い感じの別室）",
     "speaker": "満",
     "role": "MICHIRU",
-    "showIllust": [
-      "Michiru_serious3"
-    ],
     "text": "「朔良……！ 聞いて、くれ……っ！」"
   },
   {
@@ -8742,11 +8751,14 @@ export const scenarioData = [
       "SHAKE_SCREEN",
       "BLOOD_SCREEN"
     ],
-    "text": "「僕はここにいる。だから、どうか——\n\n—————っ！」"
+    "text": "「僕はここにいる。だから、どうか———————っ！」"
   },
   {
     "scene": "最奥部屋（コア無い感じの別室）",
-    "text": "朔良の身体から、凄まじい力が迸った。避ける暇もなく、僕の身体を鋭い衝撃が貫く。"
+    "text": "朔良の身体から、凄まじい力が迸った。避ける暇もなく、僕の身体を鋭い衝撃が貫く。",
+    "showIllust": [
+      "Sakura_yami2" //朔良闇2
+    ]
   },
   {
     "scene": "最奥部屋（コア無い感じの別室）",
@@ -8772,13 +8784,22 @@ export const scenarioData = [
     "scene": "最奥部屋（コア無い感じの別室）",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「————朔良！！」"
+    "text": "「————朔良！！」",
+    "showIllust": [
+      "Mutsunori_serious4"
+    ],
+    "hideIllust": [
+      "Sakura" //朔良消す
+    ]
   },
   {
     "scene": "最奥部屋（コア無い感じの別室）",
     "speaker": "ミカ",
     "role": "MIKA",
-    "text": "「先輩ッ！！」"
+    "text": "「先輩ッ！！」",
+    "showIllust": [
+      "Mika_serious2"
+    ]
   },
   {
     "scene": "最奥部屋（コア無い感じの別室）",
@@ -8789,7 +8810,14 @@ export const scenarioData = [
     "scene": "最奥部屋（コア無い感じの別室）",
     "speaker": "アカネ",
     "role": "AKANE",
-    "text": "「アイツから離れろ！　今のあいつは危険だ！」"
+    "text": "「アイツから離れろ！今のあいつは危険だ！」",
+    "hideIllust": [
+      "Mutsunori",
+      "Mika"
+    ],
+    "showIllust": [
+      "Akane_serious3"
+    ]
   },
   {
     "scene": "最奥部屋（コア無い感じの別室）",
@@ -8797,7 +8825,13 @@ export const scenarioData = [
   },
   {
     "scene": "最奥部屋（コア無い感じの別室）",
-    "text": "けれど———もう遅かった。朔良がゆっくりと顔を上げる。"
+    "text": "けれど———もう遅かった。朔良がゆっくりと顔を上げる。",
+    "hideIllust": [
+      "Akane"
+    ],
+    "showIllust": [
+      "Sakura_yami23" //朔良闇2
+    ]
   },
   {
     "scene": "最奥部屋（コア無い感じの別室）",
@@ -8813,18 +8847,31 @@ export const scenarioData = [
     "scene": "最奥部屋（コア無い感じの別室）",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「うわっ……！？」"
+    "text": "「うわっ……！？」",
+    "showIllust": [
+      "Mutsunori_suffering4"
+    ],
+    "hideIllust": [
+      "Sakura" //朔良消す
+    ]
   },
   {
     "scene": "最奥部屋（コア無い感じの別室）",
-    "speaker": "凪砂",
-    "role": "NAGISA",
-    "text": "「皆さん、下がって———ぐぅ…ッ！」"
+    "speaker": "ミカ",
+    "role": "MIKA",
+    "text": "「皆さん、下がって———ぐぅ…ッ！」",
+    "showIllust": [
+      "Mika_serious2"
+    ]
   },
   {
     "scene": "最奥部屋（コア無い感じの別室）",
     "action": "SHAKE_SCREEN",
-    "text": "けれど、逃げる間もなかった。押し寄せる異能が床も壁も飲み込み、仲間たちの身体を次々と弾き飛ばしていく。"
+    "text": "けれど、逃げる間もなかった。押し寄せる異能が床も壁も飲み込み、仲間たちの身体を次々と弾き飛ばしていく。",
+    "hideIllust": [
+      "Mutsunori",
+      "Mika",
+    ]
   },
   {
     "scene": "最奥部屋（コア無い感じの別室）",
@@ -8838,7 +8885,10 @@ export const scenarioData = [
   },
   {
     "scene": "最奥部屋（コア無い感じの別室）",
-    "text": "僕は震える身体を引きずりながら、なおも彼女へ手を伸ばす。けれど、朔良の瞳に僕の姿は映っていない。"
+    "text": "僕は震える身体を引きずりながら、なおも彼女へ手を伸ばす。けれど、朔良の瞳に僕の姿は映っていない。",
+    "showIllust": [
+      "Sakura_yami2" //朔良闇2
+    ]
   },
   {
     "scene": "最奥部屋（コア無い感じの別室）",
@@ -8856,9 +8906,6 @@ export const scenarioData = [
     "bg": "black",
     "bgm": "stop",
     "action": "clear",
-    "hideIllust": [
-      "Michiru"
-    ],
     "text": "最後に彼女の姿を目に焼き付けながら、僕の意識は暗闇へと沈んでいった。"
   },
   {
@@ -8899,14 +8946,12 @@ export const scenarioData = [
   {
     "scene": "最奥部屋（コア無い感じの別室）",
     "bg": "black",
-    "action": [
-      "clear",
-      "FADE_TO_BAD_END"
-    ]
+    "action": "FADE_TO_BAD_END"
   },
 
   //満グッド
   {
+    "label": "solo_fragment_happy_end",
     "scene": "最奥部屋（コア無い感じの別室）",
     "speaker": "朔良",
     "role": "SAKURA",
@@ -15327,7 +15372,6 @@ export const scenarioData = [
   },
   {
     "scene": "白い部屋",
-    "bg": "/scene/DetentionCenter.png",
     "text": "どれほどの時間が経ったのだろう。"
   },
   {
@@ -15343,7 +15387,8 @@ export const scenarioData = [
   {
     "scene": "白い部屋",
     "action": "WAKE_UP",
-    "text": "目を開けると、そこは先ほどの部屋ではなかった。"
+    "text": "目を開けると、そこは先ほどの部屋ではなかった。",
+    "bg": "/scene/rougoku.png",
   },
   {
     "scene": "白い部屋",
@@ -15377,9 +15422,6 @@ export const scenarioData = [
   },
   {
     "scene": "白い部屋",
-    "showIllust": [
-      "Akane_serious"
-    ],
     "text": "そこにいたのは──。部屋の隅で、頑丈な鎖に繋がれたアカネさん。あれほど怒りに燃えていた彼は、今や力なく冷たい床に座り込んでいた。"
   },
   {
@@ -15394,10 +15436,7 @@ export const scenarioData = [
   },
   {
     "scene": "白い部屋",
-    "action": [
-      "SHAKE_SCREEN_SMALL",
-      "TEAR_BLUR_START"
-    ],
+    "action": "SHAKE_SCREEN_SMALL",
     "text": "よそ見していた私を責めるように、首元の拘束具が引かれ身体をベッドへ引き戻される。涙で滲む視界の中、少年がリードを手にして私を見下ろしていた。",
     "showIllust": [
       "Ruki3"
@@ -15411,7 +15450,6 @@ export const scenarioData = [
   },
   {
     "scene": "白い部屋",
-    "se": "+pi.mp3",
     "text": "無機質な電子音と、時折響く鎖の音だけが部屋に残る。"
   },
   {
@@ -15421,10 +15459,7 @@ export const scenarioData = [
   {
     "scene": "白い部屋",
     "bg": "black",
-    "action": [
-      "clear",
-      "FADE_TO_BAD_END"
-    ]
+    "action": "FADE_TO_BAD_END"
   },
 
   //アカネハッピーエンド
