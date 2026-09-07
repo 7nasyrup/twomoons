@@ -100,7 +100,7 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
   if (Array.isArray(currentLine?.showIllust)) {
     currentLine.showIllust.forEach(charRaw => {
       let c = charRaw;
-      const match = charRaw.match(/^(.+?)([1-6])$/);
+      const match = charRaw.match(/^(.+?_bake\d)([1-6])$/) || charRaw.match(/^((?!.*_bake\d$).+?)([1-6])$/);
       if (match) {
         c = match[1];
       }
@@ -132,7 +132,7 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
           let expression = config.defaultExpression;
           if (charState && charState.includes('_')) {
             expression = charState.split('_').slice(1).join('_');
-            if (expression.match(/^[a-zA-Z]+[0-9]+$/)) {
+            if (expression.match(/^[a-zA-Z]+[0-9]+$/) && !expression.startsWith('bake')) {
               const match = expression.match(/^([a-zA-Z]+)([0-9]+)$/);
               if (match) {
                 expression = match[1];
@@ -143,14 +143,14 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
           let posIndex = null;
 
           const getForcedPos = (charRaw) => {
-            const match = charRaw.match(/^(.+?)([1-6])$/);
+            const match = charRaw.match(/^(.+?_bake\d)([1-6])$/) || charRaw.match(/^((?!.*_bake\d$).+?)([1-6])$/);
             if (match) return parseInt(match[2], 10);
             return null;
           };
 
           const getBaseName = (charRaw) => {
             let c = charRaw;
-            const match = charRaw.match(/^(.+?)([1-6])$/);
+            const match = charRaw.match(/^(.+?_bake\d)([1-6])$/) || charRaw.match(/^((?!.*_bake\d$).+?)([1-6])$/);
             if (match) c = match[1];
             const rawBase = c.split('_')[0];
             return SPEAKER_TO_ROMAJI[rawBase] || rawBase;

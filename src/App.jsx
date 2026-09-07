@@ -501,11 +501,26 @@ export default function App() {
   const handleWarehouseComplete = nextStep;
   const handleTapCommunicationComplete = nextStep;
   const handleEyeOfProfilerComplete = nextStep;
-  const handleFragmentCollectComplete = nextStep;
-  const handleFragmentCollectNagisaComplete = nextStep;
-  const handleFragmentCollectMikaComplete = nextStep;
-  const handleFragmentCollectAkaneComplete = nextStep;
-  const handleFragmentCollectSoloComplete = nextStep;
+  const handleFragmentCollectComplete = (result) => {
+    setFragmentCollectResult(result);
+    nextStep();
+  };
+  const handleFragmentCollectNagisaComplete = (result) => {
+    setFragmentCollectResult(result);
+    nextStep();
+  };
+  const handleFragmentCollectMikaComplete = (result) => {
+    setFragmentCollectResult(result);
+    nextStep();
+  };
+  const handleFragmentCollectAkaneComplete = (result) => {
+    setFragmentCollectResult(result);
+    nextStep();
+  };
+  const handleFragmentCollectSoloComplete = (result) => {
+    setFragmentCollectResult(result);
+    nextStep();
+  };
   const handleSilentScoreComplete = nextStep;
   const handleStealthGameComplete = nextStep;
 
@@ -740,7 +755,7 @@ export default function App() {
     if (Array.isArray(visualLine.showIllust)) {
       visualLine.showIllust.forEach(charRaw => {
         let char = charRaw;
-        const match = charRaw.match(/^(.+?)([1-6])$/);
+        const match = charRaw.match(/^(.+?_bake\d)([1-6])$/) || charRaw.match(/^((?!.*_bake\d$).+?)([1-6])$/);
         if (match) {
           char = match[1];
         }
@@ -1180,9 +1195,15 @@ export default function App() {
     if (!currentLine) return;
 
     if (currentLine.action === 'EVALUATE_FRAGMENT_COLLECT_BRANCH') {
-      // 常にハッピーエンドルートへ進むように変更（バッドエンドは後で使用するために保持）
-      const targetIdx = scenarioData.findIndex(line => line.label === 'happy_end_start');
-      if (targetIdx !== -1) jumpToStep(targetIdx);
+      if (fragmentCollectResult && fragmentCollectResult.files >= 3) {
+        const targetIdx = scenarioData.findIndex(line => line.label === 'mutsunori_fragment_happy_end');
+        if (targetIdx !== -1) jumpToStep(targetIdx);
+        else nextStep();
+      } else {
+        const targetIdx = scenarioData.findIndex(line => line.label === 'mutsunori_fragment_bad_end');
+        if (targetIdx !== -1) jumpToStep(targetIdx);
+        else nextStep();
+      }
     } else if (currentLine.action === 'FADE_TO_HAPPY_END') {
       setEndType('happy');
     } else if (currentLine.action === 'FADE_TO_BAD_END') {
@@ -1202,7 +1223,7 @@ export default function App() {
         nextStep();
       }
     } else if (currentLine.action === 'EVALUATE_FRAGMENT_COLLECT_NAGISA_BRANCH') {
-      if (fragmentCollectResult && fragmentCollectResult.files >= 4) {
+      if (fragmentCollectResult && fragmentCollectResult.files >= 3) {
         const targetIdx = scenarioData.findIndex(line => line.label === 'nagisa_fragment_happy_end');
         if (targetIdx !== -1) jumpToStep(targetIdx);
         else nextStep();
@@ -1212,7 +1233,7 @@ export default function App() {
         else nextStep();
       }
     } else if (currentLine.action === 'EVALUATE_FRAGMENT_COLLECT_MIKA_BRANCH') {
-      if (fragmentCollectResult && fragmentCollectResult.files >= 4) {
+      if (fragmentCollectResult && fragmentCollectResult.files >= 3) {
         const targetIdx = scenarioData.findIndex(line => line.label === 'mika_fragment_happy_end');
         if (targetIdx !== -1) jumpToStep(targetIdx);
         else nextStep();
@@ -1222,7 +1243,7 @@ export default function App() {
         else nextStep();
       }
     } else if (currentLine.action === 'EVALUATE_FRAGMENT_COLLECT_AKANE_BRANCH') {
-      if (fragmentCollectResult && fragmentCollectResult.files >= 4) {
+      if (fragmentCollectResult && fragmentCollectResult.files >= 3) {
         const targetIdx = scenarioData.findIndex(line => line.label === 'akane_fragment_happy_end');
         if (targetIdx !== -1) jumpToStep(targetIdx);
         else nextStep();
@@ -1232,7 +1253,7 @@ export default function App() {
         else nextStep();
       }
     } else if (currentLine.action === 'EVALUATE_FRAGMENT_COLLECT_SOLO_BRANCH') {
-      if (fragmentCollectResult && fragmentCollectResult.files >= 4) {
+      if (fragmentCollectResult && fragmentCollectResult.files >= 3) {
         const targetIdx = scenarioData.findIndex(line => line.label === 'solo_fragment_happy_end');
         if (targetIdx !== -1) jumpToStep(targetIdx);
         else nextStep();
@@ -2489,20 +2510,47 @@ export default function App() {
                 <p className="text-gray-400 font-noto tracking-widest text-sm md:text-base mb-12">
                   青い月の裏側で - Behind the Blue Moon
                 </p>
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setEndType(null);
-                    setShowTitle(true);
-                    jumpToStep(0);
-                  }}
-                  className={`px-12 py-3.5 border font-orbitron text-sm tracking-[0.2em] rounded transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 active:scale-95 ${endType === 'bad'
-                      ? 'bg-red-950/30 border-red-500/30 text-red-300 hover:bg-red-500/20 hover:border-red-400 hover:text-white hover:shadow-[0_0_20px_rgba(239,68,68,0.3)]'
-                      : 'bg-amber-950/30 border-amber-500/30 text-amber-300 hover:bg-amber-500/20 hover:border-amber-400 hover:text-white hover:shadow-[0_0_20px_rgba(245,158,11,0.3)]'
-                    }`}
-                >
-                  RETURN TO TITLE
-                </button>
+                <div className="flex gap-4">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setEndType(null);
+                      setShowTitle(true);
+                      jumpToStep(0);
+                    }}
+                    className={`px-8 py-3.5 border font-orbitron text-sm tracking-[0.2em] rounded transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 active:scale-95 ${endType === 'bad'
+                        ? 'bg-red-950/30 border-red-500/30 text-red-300 hover:bg-red-500/20 hover:border-red-400 hover:text-white hover:shadow-[0_0_20px_rgba(239,68,68,0.3)]'
+                        : 'bg-amber-950/30 border-amber-500/30 text-amber-300 hover:bg-amber-500/20 hover:border-amber-400 hover:text-white hover:shadow-[0_0_20px_rgba(245,158,11,0.3)]'
+                      }`}
+                  >
+                    タイトルに戻る
+                  </button>
+                  {endType === 'bad' && (
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        let targetIdx = -1;
+                        for (let i = currentStep; i >= 0; i--) {
+                          if (scenarioData[i]?.label?.startsWith('checkpoint_')) {
+                            targetIdx = i;
+                            break;
+                          }
+                        }
+                        if (targetIdx !== -1) {
+                          setEndType(null);
+                          jumpToStep(targetIdx);
+                        } else {
+                          setEndType(null);
+                          setShowTitle(true);
+                          jumpToStep(0);
+                        }
+                      }}
+                      className="px-8 py-3.5 border font-orbitron text-sm tracking-[0.2em] rounded transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 active:scale-95 bg-red-950/30 border-red-500/30 text-red-300 hover:bg-red-500/20 hover:border-red-400 hover:text-white hover:shadow-[0_0_20px_rgba(239,68,68,0.3)]"
+                    >
+                      途中からやり直す
+                    </button>
+                  )}
+                </div>
               </div>
             )}
 
