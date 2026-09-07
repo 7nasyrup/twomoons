@@ -4661,6 +4661,7 @@ export const scenarioData = [
     "text": "私たちは手記をしまい、不気味な静寂に包まれた研究所へ歩みを進めた。"
   },
   {
+    "label": "checkpoint_lab_entrance",
     "scene": "研究所入口",
     "text": "研究所の入り口へ辿り着いた私たちは、目の前に広がる巨大な施設を見上げた。不気味な静寂に包まれ、警告灯だけが赤く明滅している。",
     "bg": "/scene/lab_entrance.png",
@@ -5256,6 +5257,247 @@ export const scenarioData = [
     ]
   },
   {
+    "action": "EVALUATE_FRAGMENT_COLLECT_BRANCH"
+  },
+  //睦典バッド
+  {
+    "label": "mutsunori_fragment_bad_end",
+    "scene": "瓦礫裏",
+    "speaker": "朔良",
+    "role": "SAKURA",
+    "text": "「そんな……っ！ 嘘、嘘だよムッちゃん……！」"
+  },
+  {
+    "scene": "瓦礫裏",
+    "text": "彼が私を守るたびに、記憶も、自我も削られていた。その事実に、私は言葉を失う。"
+  },
+  {
+    "scene": "瓦礫裏",
+    "speaker": "睦典",
+    "role": "MUTSUNORI",
+    "text": "「あ、はは……」",
+    "showIllust": [
+      "Mutsunori_smile3"
+    ]
+  },
+  {
+    "scene": "瓦礫裏",
+    "text": "睦典の乾いた笑いが響く。"
+  },
+  {
+    "scene": "瓦礫裏",
+    "speaker": "睦典",
+    "role": "MUTSUNORI",
+    "text": "「そっか。俺、もうダメなんだ。……何も、思い出せないや」"
+  },
+  {
+    "scene": "瓦礫裏",
+    "action": "BLACK_AURA_START",
+    "text": "その瞬間、彼の身体から紫黒色の異能が噴き出した。"
+  },
+  {
+    "scene": "瓦礫裏",
+    "speaker": "朔良",
+    "role": "SAKURA",
+    "text": "「ムッちゃん……？」"
+  },
+  {
+    "scene": "瓦礫裏",
+    "text": "これ以上の摩耗を防ぐように、彼の異能が暴走する。"
+  },
+  {
+    "scene": "瓦礫裏",
+    "speaker": "睦典",
+    "role": "MUTSUNORI",
+    "action": "SHAKE_SCREEN",
+    "bgm": "stop",
+    "text": "「が、あ……あああああッ！！」",
+    "showIllust": [
+      "Mutsunori_suffering"
+    ]
+  },
+  {
+    "scene": "瓦礫裏",
+    "text": "睦典は頭を抱え、苦しげに身体を震わせる。"
+  },
+  {
+    "scene": "瓦礫裏",
+    "speaker": "朔良",
+    "role": "SAKURA",
+    "text": "「ムッちゃん！ やめて！！」"
+  },
+  {
+    "scene": "瓦礫裏",
+    "speaker": "睦典",
+    "role": "MUTSUNORI",
+    "text": "「来るなァッ！！」"
+  },
+  {
+    "scene": "瓦礫裏",
+    "text": "伸ばした手を、睦典が振り払う。"
+  },
+  {
+    "scene": "瓦礫裏",
+    "speaker": "睦典",
+    "role": "MUTSUNORI",
+    "text": "「逃げて、朔良……！ 俺が、君を傷つける前に……早く……！」"
+  },
+  {
+    "scene": "瓦礫裏",
+    "text": "涙を流しながら叫ぶ彼の瞳から、みるみる光が消えていく。"
+  },
+  {
+    "scene": "瓦礫裏",
+    "speaker": "睦典",
+    "role": "MUTSUNORI",
+    "action": "SHAKE_SCREEN_VERY_LARGE",
+    "text": "「ガアアアアアアアッ！！」"
+  },
+  {
+    "scene": "瓦礫裏",
+    "text": "次の瞬間、睦典は人間とは思えない咆哮を上げ、サーバーラックの影から飛び出した。",
+    "hideIllust": [
+      "Mutsunori"
+    ]
+  },
+  {
+    "scene": "コア部屋_崩壊①",
+    "bg": "/scene/core_hakai1.png",
+    "action": "BLACK_AURA_STOP",
+    "text": "その先にいたのは、私たちを探していた黒騎士。黒騎士が振り返るより早く、睦典は生身の拳を振り上げた。",
+    "showIllust": [
+      "BlackKnight4",
+      "Mutsunori_bake12"
+    ]
+  },
+  {
+    "scene": "コア部屋_崩壊①",
+    "se": "Shock_1.mp3",
+    "action": "SHAKE_SCREEN",
+    "text": "凄まじい衝撃音と共に、黒騎士の巨体が壁まで吹き飛ぶ。しかし、黒騎士もすぐに立て直し、大剣を振り下ろした。",
+    "hideIllust": [
+      "Mutsunori_bake1",
+      "BlackKnight"
+    ]
+  },
+  {
+    "scene": "コア部屋_崩壊①",
+    "se": "Slash_Sound.mp3",
+    "text": "睦典の腕が斬り落とされる。"
+  },
+  {
+    "scene": "コア部屋_崩壊①",
+    "speaker": "朔良",
+    "role": "SAKURA",
+    "text": "「いやあああああっ！！」"
+  },
+  {
+    "scene": "コア部屋_崩壊①",
+    "text": "けれど、睦典は痛みすら感じていないかのように、その場に立ち尽くしていた。",
+    "showIllust": [
+      "Mutsunori_bake33"
+    ]
+  },
+  {
+    "scene": "コア部屋_崩壊①",
+    "action": "BLACK_ENERGY",
+    "text": "切断面から黒い霧が噴き出し、失われた腕が瞬く間に再生する。そして再生した腕は、元の形を失い、鋭い爪を持つ異形へと変貌していた。"
+  },
+  {
+    "scene": "コア部屋_崩壊①",
+    "speaker": "睦典",
+    "role": "MUTSUNORI",
+    "action": "SHAKE_SCREEN",
+    "text": "「オオオオオオオッ！！」"
+  },
+  {
+    "scene": "コア部屋_崩壊①",
+    "text": "攻撃を受けるたび、睦典の身体はさらに異形へと変わっていく。",
+    "showIllust": [
+      "Mutsunori_bake42",
+      "BlackKnight_attack4"
+    ]
+  },
+  {
+    "scene": "コア部屋_崩壊①",
+    "se": "BrokenArmor.mp3",
+    "action": [
+      "clear",
+      "SHAKE_SCREEN"
+    ],
+    "bgm": "stop",
+    "text": "やがて黒騎士の大剣すら叩き折られ、形勢不利と判断した黒騎士は壁を破壊して、その場から逃走した。",
+    "hideIllust": [
+      "Mutsunori_bake4",
+      "BlackKnight"
+    ]
+  },
+  {
+    "scene": "コア部屋_崩壊①",
+    "text": "その光景を、私はガレキの陰ですくみ上がったまま見つめていた。"
+  },
+  {
+    "scene": "コア部屋_崩壊①",
+    "text": "黒騎士は去った。けれど、少しも嬉しくない。そこにいるのは、私の大切な友人ではなく、ただの「ナニカ」だった。"
+  },
+  {
+    "scene": "コア部屋_崩壊①",
+    "text": "やがて怪物──睦典だったものが、ゆっくりとこちらを振り返る。",
+    "showIllust": [
+      "Mutsunori_bake53"
+    ]
+  },
+  {
+    "scene": "コア部屋_崩壊①",
+    "speaker": "朔良",
+    "role": "SAKURA",
+    "text": "「ムッ……ちゃん……？」"
+  },
+  {
+    "scene": "コア部屋_崩壊①",
+    "text": "私の声に反応し、四足にも似た不気味な足取りで近づいてくる。その瞳には、もう知性も、私を知っている光もない。"
+  },
+  {
+    "scene": "コア部屋_崩壊①",
+    "action": "SHAKE_SCREEN_SMALL",
+    "text": "それでも、彼は私の前で立ち止まると、巨大な腕を伸ばした。そして、驚くほど優しく、私を抱きしめる。"
+  },
+  {
+    "scene": "コア部屋_崩壊①",
+    "speaker": "朔良",
+    "role": "SAKURA",
+    "text": "「……っ」",
+    "hideIllust": [
+      "Mutsunori_bake"
+    ]
+  },
+  {
+    "scene": "コア部屋_崩壊①",
+    "text": "冷たい身体。もう、人間だった頃の温もりは残っていなかった。"
+  },
+  {
+    "scene": "コア部屋_崩壊①",
+    "speaker": "朔良",
+    "role": "SAKURA",
+    "text": "「いいよ、ムッちゃん。もう、頑張らなくていいよ……全部忘れちゃってもいい。……私が、ずっとここにいるから」"
+  },
+  {
+    "scene": "コア部屋_崩壊①",
+    "text": "私は震える手でその硬い背中にそっと触れると、怪物は答えるように、小さく喉を鳴らした。"
+  },
+  {
+    "scene": "コア部屋_崩壊①",
+    "text": "――地球へ帰る約束は、もう果たされない。"
+  },
+  {
+    "scene": "コア部屋_崩壊①",
+    "text": "白く輝くコアの前で、私はこの怪物になった友人に寄り添うことしかできなかった。",
+    "action": "FADE_TO_BAD_END"
+  },
+
+  //睦典グッド
+  {
+    "label": "mutsunori_fragment_happy_end",
     "scene": "瓦礫裏",
     "speaker": "朔良",
     "role": "SAKURA",
@@ -9740,6 +9982,7 @@ export const scenarioData = [
     "text": "地球を背に、私たちは誰もいない廃墟を抜け、その先にある研究所へと歩き始めた。"
   },
   {
+    "label": "checkpoint_nagisa_lab",
     "scene": "研究所入口",
     "bg": "/scene/lab_entrance.png",
     "text": "研究所の入口へ辿り着いた私たちは、目の前にそびえる巨大な施設を見上げた。辺りは不気味な静寂に包まれ、赤い警告灯だけが規則的に明滅している。"
@@ -9766,7 +10009,7 @@ export const scenarioData = [
     "duration": 2000
   },
   {
-    "scene": "凪砂フラグメントコレクト",
+    "scene": "フラグメントコレクト(凪砂)",
     "action": "TRIGGER_FRAGMENT_COLLECT_NAGISA",
     "bgm": "Lab.mp3"
   },
@@ -9777,7 +10020,6 @@ export const scenarioData = [
     "text": "「──よしっ、これで最後のデータチップ、回収完了！」",
     "bg": "/scene/Lab_corridor.png",
     "bgm": "Lab.mp3",
-    "label": "nagisa_fragment_happy_end"
   },
   {
     "scene": "廊下",
@@ -10226,9 +10468,8 @@ export const scenarioData = [
     "hideIllust": [
       "Nagisa"
     ],
-    "action": [
-      "clear"
-    ]
+    "action": ["clear"],
+    "bg": "/scene/core_hakai1.png"
   },
   {
     "scene": "研究所の最奥",
@@ -10453,6 +10694,215 @@ export const scenarioData = [
     "text": "凪砂さんにとって、私の隣だけが──何も聞こえない、唯一の場所だったのだ。"
   },
   {
+    "action": "EVALUATE_FRAGMENT_COLLECT_NAGISA_BRANCH"
+  },
+
+  //凪砂バッドエンド
+  {
+    "label": "nagisa_fragment_bad_end",
+    "scene": "瓦礫裏",
+    "action": "SHAKE_SCREEN",
+    "se": "Shock_1.mp3",
+    "text": "その時、すぐ近くまで迫っていた黒騎士の足音が、サーバーラックを激しく揺らす。\nその瞬間、凪砂さんの「静寂」を守っていた私の力が押し切られた。"
+  },
+  {
+    "scene": "瓦礫裏",
+    "speaker": "凪砂",
+    "role": "NAGISA",
+    "showIllust": [
+      "Nagisa_serious"
+    ],
+    "text": "「……ッ、ぁ……」"
+  },
+  {
+    "scene": "瓦礫裏",
+    "text": "凪砂さんの顔から、一瞬で血の気が引いていく。"
+  },
+  {
+    "scene": "瓦礫裏",
+    "speaker": "凪砂",
+    "role": "NAGISA",
+    "text": "「……聞こえる」"
+  },
+  {
+    "scene": "瓦礫裏",
+    "text": "掠れた声が震える。"
+  },
+  {
+    "scene": "瓦礫裏",
+    "speaker": "凪砂",
+    "role": "NAGISA",
+    "text": "「聞こえる…、聞こえる……っ。あいつの殺意が……頭の中に……！」"
+  },
+  {
+    "scene": "瓦礫裏",
+    "speaker": "朔良",
+    "role": "SAKURA",
+    "text": "「凪砂さん……！ 私を見て……！」"
+  },
+  {
+    "scene": "瓦礫裏",
+    "text": "必死に呼びかけるけれど、彼の瞳はもう私を捉えていなかった。"
+  },
+  {
+    "scene": "瓦礫裏",
+    "speaker": "凪砂",
+    "role": "NAGISA",
+    "text": "「うるさい……うるさいんだよ……ッ！！もう……嫌だ……。静かにしてくれ……」"
+  },
+  {
+    "scene": "瓦礫裏",
+    "text": "凪砂さんは頭を抱え、苦しそうに身体を震わせる。"
+  },
+  {
+    "scene": "瓦礫裏",
+    "speaker": "朔良",
+    "role": "SAKURA",
+    "text": "「凪砂さん、お願い……！」"
+  },
+  {
+    "scene": "瓦礫裏",
+    "text": "けれど、私の声さえ彼には届いていない。"
+  },
+  {
+    "scene": "瓦礫裏",
+    "se": "Slash.mp3",
+    "action": [
+      "SHAKE_SCREEN_SMALL",
+      "BLOOD_SCREEN"
+    ],
+    "text": "凪砂さんは、躊躇いもなくその鋭利な瓦礫の先端を──自分の耳の奥へと、思いっきり突き立てた。"
+  },
+  {
+    "scene": "瓦礫裏",
+    "speaker": "朔良",
+    "role": "SAKURA",
+    "text": "「いやぁぁぁぁぁあああああッッ！！」"
+  },
+  {
+    "scene": "瓦礫裏",
+    "text": "私の悲鳴が狭いラックの隙間に木霊する。"
+  },
+  {
+    "scene": "瓦礫裏",
+    "text": "彼の耳から、どっと鮮血が溢れ出し、端正な顔の半分を瞬く間に赤く染めていく。"
+  },
+  {
+    "scene": "瓦礫裏",
+    "showIllust": [
+      "Nagisa_smile"
+    ],
+    "text": "私が止めようと手を伸ばそうとしたところで…彼は力なく笑った。子供みたいな、無邪気な笑み。"
+  },
+  {
+    "scene": "瓦礫裏",
+    "speaker": "凪砂",
+    "role": "NAGISA",
+    "text": "「あははははっ…！！！……これで、ようやく……静かになる……」"
+  },
+  {
+    "scene": "瓦礫裏",
+    "speaker": "凪砂",
+    "role": "NAGISA",
+    "showIllust": [
+      "Nagisa_serious"
+    ],
+    "text": "「……なんで……？」"
+  },
+  {
+    "scene": "瓦礫裏",
+    "text": "すぐに笑顔が消える。"
+  },
+  {
+    "scene": "瓦礫裏",
+    "speaker": "凪砂",
+    "role": "NAGISA",
+    "text": "「なんで、まだ聞こえるんだよ……ッ！！」"
+  },
+  {
+    "scene": "瓦礫裏",
+    "text": "彼は頭を抱え、苦しそうにその場へうずくまった。"
+  },
+  {
+    "scene": "瓦礫裏",
+    "text": "凪砂さんの異能は、耳で音を拾っているわけではない。他者の感情や思考を、脳で直接受け取る力なのだから。"
+  },
+  {
+    "scene": "瓦礫裏",
+    "text": "どれだけ自分の感覚を断とうとしても、黒騎士の殺意も、崩壊する研究所の恐怖も、すべてが彼の中へ流れ込み続ける。"
+  },
+  {
+    "scene": "瓦礫裏",
+    "speaker": "凪砂",
+    "role": "NAGISA",
+    "text": "「あああああっ……！ うるさい……うるさい、うるさい……！！」"
+  },
+  {
+    "scene": "瓦礫裏",
+    "speaker": "朔良",
+    "role": "SAKURA",
+    "text": "「凪砂さん……！」"
+  },
+  {
+    "scene": "瓦礫裏",
+    "text": "私が手を伸ばした、その時だった。"
+  },
+  {
+    "scene": "研究所の最奥",
+    "bg": "/scene/core_hakai1.png",
+    "se": "Shock_1.mp3",
+    "action": "SHAKE_SCREEN",
+    "hideIllust": [
+      "Nagisa"
+    ],
+    "text": "黒騎士の一撃によって、隠れていたサーバーラックがついに崩れ落ちる。"
+  },
+  {
+    "scene": "研究所の最奥",
+    "showIllust": [
+      "BlackKnight4"
+    ],
+    "text": "目の前に現れた漆黒の姿。けれど、凪砂さんにはもう逃げる力すら残っていなかった。"
+  },
+  {
+    "scene": "研究所の最奥",
+    "speaker": "朔良",
+    "role": "SAKURA",
+    "text": "「凪砂さん………………」"
+  },
+  {
+    "scene": "研究所の最奥",
+    "text": "私は彼の手を強く握る。けれど、その声はもう彼には届かない。"
+  },
+  {
+    "scene": "研究所の最奥",
+    "showIllust": [
+      "BlackKnight_attack"
+    ],
+    "text": "黒騎士が大剣を振り上げる。"
+  },
+  {
+    "scene": "研究所の最奥",
+    "text": "私はただ、壊れてしまった彼を抱きしめることしかできなかった。"
+  },
+  {
+    "scene": "研究所の最奥",
+    "bg": "black",
+    "bgm": "stop",
+    "action": "clear",
+    "hideIllust": [
+      "BlackKnight"
+    ],
+    "text": "──そして、すべてが暗転した。"
+  },
+  {
+    "scene": "研究所の最奥",
+    "action": "FADE_TO_BAD_END"
+  },
+
+  //凪砂ハッピーエンド
+  {
+    "label": "nagisa_fragment_happy_end",
     "scene": "瓦礫裏",
     "text": "ガレキを踏み砕く黒騎士の足音が、すぐそこまで迫っている。"
   },
@@ -12016,6 +12466,7 @@ export const scenarioData = [
     "text": "紙の内容を考えている余裕はない。私は彼の手をしっかり握り、二人で白い砂の上を踏み出した。"
   },
   {
+    "label": "checkpoint_mika_lab",
     "scene": "研究所入口",
     "bg": "/scene/lab_entrance.png",
     "text": "やがて、白い砂丘の向こうに、巨大な研究所のシルエットが姿を現した。"
@@ -12441,6 +12892,139 @@ export const scenarioData = [
     "text": "私は震える手を握り締めた。"
   },
   {
+    "action": "EVALUATE_FRAGMENT_COLLECT_MIKA_BRANCH"
+  },
+  //ミカバッドエンド
+  {
+    "label": "mika_fragment_bad_end",
+    "scene": "研究所の最奥",
+    "speaker": "朔良",
+    "role": "SAKURA",
+    "text": "「待って……！ 言う通りにするわ。だから……お願い、ミカくんを助けて……！」"
+  },
+  {
+    "scene": "研究所の最奥",
+    "text": "張り詰めた空気の中、私の悲痛な叫びが最奥のドームに響き渡った。"
+  },
+  {
+    "scene": "研究所の最奥",
+    "text": "背後で, ミカくんがハッと息を呑む。"
+  },
+  {
+    "scene": "研究所の最奥",
+    "speaker": "ミカ",
+    "role": "MIKA",
+    "text": "「先輩……何、言って……だめ, です……。俺に、構わず……コアを……っ！」",
+    "showIllust": [
+      "Mika_serious_injured3"
+    ]
+  },
+  {
+    "scene": "研究所の最奥",
+    "speaker": "朔良",
+    "role": "SAKURA",
+    "text": "「嫌だよ、ミカくん！ 君が死んじゃったら、世界が元に戻ったって意味がない……！」"
+  },
+  {
+    "scene": "研究所の最奥",
+    "action": "TEAR_BLUR_START",
+    "text": "涙で視界が歪む。地球の危機なんかよりも、今は目の前で苦しんでいる彼を犠牲にすることなんて、どうしてもできなかった。"
+  },
+  {
+    "scene": "研究所の最奥",
+    "speaker": "ヒルミ教授",
+    "role": "PROFESSOR",
+    "text": "『──アハハハ！ 賢い選択だね。やっぱり君は、そう言ってくれると思ったよ』"
+  },
+  {
+    "scene": "研究所の最奥",
+    "se": "+dengen.mp3",
+    "text": "カチリ、と機械的な音が響く。"
+  },
+  {
+    "scene": "研究所の最奥",
+    "action": "TEAR_BLUR_STOP",
+    "text": "天井から緑色の抑制レーザーがミカくんへ照射されると、首元の黒いアザが嘘のように動きを止め、徐々に縮んでいく。"
+  },
+  {
+    "scene": "研究所の最奥",
+    "speaker": "ミカ",
+    "role": "MIKA",
+    "text": "「あ……、が……っ……」"
+  },
+  {
+    "scene": "研究所の最奥",
+    "text": "アザの痛みから解放されたものの、限界を超えていたミカくんの身体から力が抜け、そのまま床へ倒れ込んだ。",
+    "hideIllust": [
+      "Mika"
+    ]
+  },
+  {
+    "scene": "研究所の最奥",
+    "speaker": "朔良",
+    "role": "SAKURA",
+    "text": "「ミカくん……！ よかった、ひとまずは……」"
+  },
+  {
+    "scene": "研究所の最奥",
+    "text": "胸が小さく上下しているのを確認し、私は安堵した──その時。"
+  },
+  {
+    "scene": "研究所の最奥",
+    "se": "Shoes_Sound.mp3",
+    "showIllust": [
+      "BlackKnight4"
+    ],
+    "text": "背後の自動扉が開き、現れたのは、私たちを追い詰めてきた黒い鎧の騎士──【黒騎士】の姿だった。",
+    "showIllust": [
+      "BlackKnight3"
+    ]
+  },
+  {
+    "scene": "研究所の最奥",
+    "se": "Crush.mp3",
+    "text": "彼は抵抗する私の両手首に、冷たい拘束具を嵌めていく。"
+  },
+  {
+    "scene": "研究所の最奥",
+    "speaker": "ルキ",
+    "role": "RUKI",
+    "text": "『約束は守るよ。そのノラ犬の命は繋ぎ止めておいてあげる。だけど……君にはこれから、その特別な身体のすべてを捧げてもらう』"
+  },
+  {
+    "scene": "研究所の最奥",
+    "text": "結局、私はコアを止めることも、ミカくんのお父さんの真実を知ることもできないまま、この狂った人工月の最奥で囚われの身となった。"
+  },
+  {
+    "scene": "研究所の最奥",
+    "text": "連行される視界の隅で、冷たいカプセルへ移されていくミカくんの姿が見える。彼は一命を取り留めたものの、深い眠りに落ちたまま、研究室の奥へと消えていった。"
+  },
+  {
+    "scene": "研究所の最奥",
+    "text": "見上げれば、天窓の向こうで禍々しく輝く青い人工月。",
+    "hideIllust": [
+      "Mika",
+      "BlackKnight"
+    ],
+  },
+  {
+    "scene": "研究所の最奥",
+    "bg": "black",
+    "bgm": "stop",
+    "action": [
+      "clear",
+      "CLOSE_EYES"
+    ],
+    "text": "私は冷たい絶望の中で、目覚めない彼の姿を最後に、静かに瞳を閉じた。"
+  },
+  {
+    "scene": "研究所の最奥",
+    "action": "FADE_TO_BAD_END"
+  },
+
+  //ミカハッピーエンド
+  {
+    "label": "mika_fragment_happy_end",
     "scene": "研究所の最奥",
     "bgm": "stop",
     "text": "その時、ふと頭に浮かんだのは、研究所で見つけた資料の一文だった。",
