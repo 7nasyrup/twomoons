@@ -1309,7 +1309,7 @@ export default function App() {
     } else {
       // Tap detected (not a swipe)
       if (currentLine?.action === 'TRIGGER_MINIGAME' || currentLine?.action === 'TRIGGER_TYPING_GAME') return;
-      const isMinigameActive = isTypingGameActive || isSearchAndLearningActive || isSilentScoreActive || isTapCommunicationActive || isEyeOfProfilerActive || isFragmentCollectActive || isFragmentCollectNagisaActive || isFragmentCollectMikaActive || isFragmentCollectAkaneActive || isFragmentCollectSoloActive || isStealthGameActive || isExplorationPhaseActive || isStruggleGameActive || isWarehouseExplorationActive || currentLine?.action === 'TRIGGER_BATTLE_TUTORIAL' || currentLine?.action === 'TRIGGER_BATTLE_AKANE_VS_KIMERA2' || currentLine?.action === 'TRIGGER_BATTLE_TEAM_VS_KIMERA' || currentLine?.action === 'TRIGGER_BATTLE_MIDBOSS_MACHINE' || currentLine?.action === 'TRIGGER_BATTLE_MIDBOSS_NAGISA' || currentLine?.action === 'TRIGGER_BATTLE_MIDBOSS_MIKA' || currentLine?.action === 'TRIGGER_BATTLE_MIDBOSS_AKANE' || currentLine?.action === 'TRIGGER_BATTLE_FINAL_MUTSUNORI' || currentLine?.action === 'TRIGGER_BATTLE_FINAL_NAGISA' || currentLine?.action === 'TRIGGER_BATTLE_FINAL_MIKA' || currentLine?.action === 'TRIGGER_BATTLE_FINAL_AKANE';
+      const isMinigameActive = isTypingGameActive || isSearchAndLearningActive || isSilentScoreActive || isTapCommunicationActive || isEyeOfProfilerActive || isFragmentCollectActive || isFragmentCollectNagisaActive || isFragmentCollectMikaActive || isFragmentCollectAkaneActive || isFragmentCollectSoloActive || isStealthGameActive || isExplorationPhaseActive || isStruggleGameActive || isWarehouseExplorationActive || currentLine?.action === 'TRIGGER_BATTLE_TUTORIAL' || currentLine?.action === 'TRIGGER_BATTLE_AKANE_VS_KIMERA2' || currentLine?.action === 'TRIGGER_BATTLE_TEAM_VS_KIMERA' || currentLine?.action === 'TRIGGER_BATTLE_MIDBOSS_MACHINE' || currentLine?.action === 'TRIGGER_BATTLE_MIDBOSS_NAGISA' || currentLine?.action === 'TRIGGER_BATTLE_MIDBOSS_MIKA' || currentLine?.action === 'TRIGGER_BATTLE_MIDBOSS_AKANE' || currentLine?.action === 'TRIGGER_BATTLE_FINAL_MUTSUNORI' || currentLine?.action === 'TRIGGER_BATTLE_FINAL_NAGISA' || currentLine?.action === 'TRIGGER_BATTLE_FINAL_MIKA' || currentLine?.action === 'TRIGGER_BATTLE_FINAL_AKANE' || currentLine?.action === 'TRIGGER_BATTLE_FINAL_BOSS_MICHIRU';
 
       if (skipMode && !isMinigameActive) {
         setSkipMode(false);
@@ -1389,7 +1389,8 @@ export default function App() {
             'TRIGGER_BATTLE_FINAL_MUTSUNORI',
             'TRIGGER_BATTLE_FINAL_NAGISA',
             'TRIGGER_BATTLE_FINAL_MIKA',
-            'TRIGGER_BATTLE_FINAL_AKANE'
+            'TRIGGER_BATTLE_FINAL_AKANE',
+            'TRIGGER_BATTLE_FINAL_BOSS_MICHIRU'
           ].includes(currentLine?.action);
 
         const isTransition = currentLine?.action === 'FADE_TO_BLACK' || currentLine?.action === 'SLOW_FADE_TO_BLACK' || currentLine?.action === 'WAIT_FADE' || isBgTransitioning || isBgFadingOut;
@@ -1439,6 +1440,7 @@ export default function App() {
     const isBattleMidBossAkaneActive = currentLine?.action === 'TRIGGER_BATTLE_MIDBOSS_AKANE';
   const isBattleFinalNagisaActive = currentLine?.action === 'TRIGGER_BATTLE_FINAL_NAGISA';
   const isBattleFinalMutsunoriActive = currentLine?.action === 'TRIGGER_BATTLE_FINAL_MUTSUNORI';
+  const isBattleFinalBossMichiruActive = currentLine?.action === 'TRIGGER_BATTLE_FINAL_BOSS_MICHIRU';
   const isBattleFinalMikaActive = currentLine?.action === 'TRIGGER_BATTLE_FINAL_MIKA';
   const isBattleFinalAkaneActive = currentLine?.action === 'TRIGGER_BATTLE_FINAL_AKANE';
 
@@ -1647,6 +1649,16 @@ export default function App() {
 
               )}
 
+              {isBattleFinalBossMichiruActive && (
+                <BattleFinalMutsunori
+                  isMichiruRoute={true}
+                  onComplete={nextStep}
+                  playBGM={playBGM}
+                  stopBGM={stopBGM}
+                  playSE={playSE}
+                />
+              )}
+
               {isBattleFinalAkaneActive && (
                 <BattleFinalAkane
                   onComplete={nextStep}
@@ -1832,7 +1844,7 @@ export default function App() {
             {/* Cinematic Black Letterbox Overlay */}
             <CinemaLayer
               text={currentLine?.text}
-              isActive={isCinema && !isAnyEnd && !isTypingGameActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isFragmentCollectActive && !isFragmentCollectMikaActive && !isFragmentCollectAkaneActive && !isFragmentCollectSoloActive && !isStealthGameActive && !isExplorationPhaseActive && !isStruggleGameActive && !isWarehouseExplorationActive && !isBattleTutorialActive && !isBattleAkaneVsKimera2Active && !isBattleTeamVsKimeraActive && !isBattleMidBossMachineActive && !isBattleMidBossNagisaActive && !isBattleMidBossMikaActive && !isBattleMidBossAkaneActive && !isBattleMidBossAkaneActive && !isBattleMidBossMikaActive && !isBattleMidBossAkaneActive && !isBattleMidBossAkaneActive && !isBattleFinalMutsunoriActive && !isBattleFinalNagisaActive && !isBattleFinalMikaActive && !isBattleFinalAkaneActive && !isBattleFinalAkaneActive && !isBattleFinalMikaActive && !isBattleFinalAkaneActive && !isBattleFinalAkaneActive}
+              isActive={isCinema && !isAnyEnd && !isTypingGameActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isFragmentCollectActive && !isFragmentCollectMikaActive && !isFragmentCollectAkaneActive && !isFragmentCollectSoloActive && !isStealthGameActive && !isExplorationPhaseActive && !isStruggleGameActive && !isWarehouseExplorationActive && !isBattleTutorialActive && !isBattleAkaneVsKimera2Active && !isBattleTeamVsKimeraActive && !isBattleMidBossMachineActive && !isBattleMidBossNagisaActive && !isBattleMidBossMikaActive && !isBattleMidBossAkaneActive && !isBattleMidBossAkaneActive && !isBattleMidBossMikaActive && !isBattleMidBossAkaneActive && !isBattleMidBossAkaneActive && !isBattleFinalMutsunoriActive && !isBattleFinalNagisaActive && !isBattleFinalMikaActive && !isBattleFinalAkaneActive && !isBattleFinalAkaneActive && !isBattleFinalMikaActive && !isBattleFinalAkaneActive && !isBattleFinalAkaneActive && !isBattleFinalBossMichiruActive}
               isTyping={isTyping}
               onNext={nextStep}
             />
@@ -2408,7 +2420,7 @@ export default function App() {
         {!showTitle && (
           <>
             {/* Subtitles & Normal Dialogue Boxes */}
-            {!isCinema && !isTransition && !isAnyEnd && !alertActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isTypingGameActive && !isFragmentCollectActive && !isFragmentCollectNagisaActive && !isFragmentCollectMikaActive && !isFragmentCollectAkaneActive && !isFragmentCollectSoloActive && !isStealthGameActive && !isExplorationPhaseActive && !isStruggleGameActive && !isWarehouseExplorationActive && !isBattleTutorialActive && !isBattleAkaneVsKimera2Active && !isBattleTeamVsKimeraActive && !isBattleMidBossNagisaActive && !isBattleMidBossMikaActive && !isBattleMidBossAkaneActive && !isBattleMidBossAkaneActive && !isBattleMidBossMikaActive && !isBattleMidBossAkaneActive && !isBattleMidBossAkaneActive && !isBattleFinalMutsunoriActive && !isBattleFinalNagisaActive && !isBattleFinalMikaActive && !isBattleFinalAkaneActive && !isBattleFinalAkaneActive && !isBattleFinalMikaActive && !isBattleFinalAkaneActive && !isBattleFinalAkaneActive && !currentLine?.hideWindow && currentLine?.text && (
+            {!isCinema && !isTransition && !isAnyEnd && !alertActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isTypingGameActive && !isFragmentCollectActive && !isFragmentCollectNagisaActive && !isFragmentCollectMikaActive && !isFragmentCollectAkaneActive && !isFragmentCollectSoloActive && !isStealthGameActive && !isExplorationPhaseActive && !isStruggleGameActive && !isWarehouseExplorationActive && !isBattleTutorialActive && !isBattleAkaneVsKimera2Active && !isBattleTeamVsKimeraActive && !isBattleMidBossNagisaActive && !isBattleMidBossMikaActive && !isBattleMidBossAkaneActive && !isBattleMidBossAkaneActive && !isBattleMidBossMikaActive && !isBattleMidBossAkaneActive && !isBattleMidBossAkaneActive && !isBattleFinalMutsunoriActive && !isBattleFinalNagisaActive && !isBattleFinalMikaActive && !isBattleFinalAkaneActive && !isBattleFinalAkaneActive && !isBattleFinalMikaActive && !isBattleFinalAkaneActive && !isBattleFinalAkaneActive && !isBattleFinalBossMichiruActive && !currentLine?.hideWindow && currentLine?.text && (
               <DialogueBox
                 isPopup={isPopup}
                 speaker={currentLine?.speaker}

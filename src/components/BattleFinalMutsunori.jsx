@@ -61,39 +61,54 @@ const ANOMALY_FRAGMENTS = {
 };
 const MAX_ANOMALY_SLOTS = 5;
 
-// Turn order
-const TURN_ORDER = ['mutsunori', 'enemy1'];
 const TIMELINE_DISPLAY_COUNT = 10;    // How many turns to show in the timeline
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // INITIAL DATA
 // ═══════════════════════════════════════════════════════════════════════════════
-const createAllies = () => [
-  { id: 'mutsunori', name: '睦典', image: '/battle/mutsunori.png', cutinImage: '/character/Mutsunori/Mutsunori_serious.png', hp: 300, maxHp: 300, color: '#34d399', isDead: false, flashTimer: 0, lastDamage: 0 },
-];
-
-const createEnemies = () => [
-  { id: 'enemy1', name: '黒騎士', image: '/battle/blackknight.png', hp: 600, maxHp: 600, color: '#ef4444', isStunned: false, isDead: false, flashTimer: 0 },
-];
-
-// Helper to get character info for timeline
-const getCharInfo = (id) => {
-  const map = {
-    mutsunori: { name: '睦典', image: '/battle/mutsunori.png', isAlly: true },
-    nagisa: { name: '凪砂', image: '/battle/nagisa.png', isAlly: true },
-    enemy1: { name: '黒騎士', image: '/battle/blackknight.png', isAlly: false },
-    enemy2: { name: 'キメラβ', image: '/battle/blackknight.png', isAlly: false },
-  };
-  return map[id] || { name: '？', image: '', isAlly: false };
-};
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // COMPONENT
 // ═══════════════════════════════════════════════════════════════════════════════
-export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, playSE }) {
+export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, playSE, isMichiruRoute = false }) {
   // ─── Core State ───
-  const [allies, setAllies] = useState(createAllies);
-  const [enemies, setEnemies] = useState(createEnemies);
+  const [allies, setAllies] = useState(() => {
+    if (isMichiruRoute) {
+      return [
+        { id: 'sakura', name: '朔良', image: '/battle/sakura.png', cutinImage: '/character/Sakura/Sakura.png', hp: 300, maxHp: 300, color: '#34d399', isDead: false, flashTimer: 0, lastDamage: 0 },
+      ];
+    }
+    return [
+      { id: 'mutsunori', name: '睦典', image: '/battle/mutsunori.png', cutinImage: '/character/Mutsunori/Mutsunori_serious.png', hp: 300, maxHp: 300, color: '#34d399', isDead: false, flashTimer: 0, lastDamage: 0 },
+    ];
+  });
+
+  const [enemies, setEnemies] = useState(() => {
+    if (isMichiruRoute) {
+      return [
+        { id: 'enemy1', name: 'ルキ', image: '/battle/ruki.png', hp: 600, maxHp: 600, color: '#ef4444', isStunned: false, isDead: false, flashTimer: 0 },
+      ];
+    }
+    return [
+      { id: 'enemy1', name: '黒騎士', image: '/battle/blackknight.png', hp: 600, maxHp: 600, color: '#ef4444', isStunned: false, isDead: false, flashTimer: 0 },
+    ];
+  });
+
+  const turnOrder = useMemo(() => {
+    return isMichiruRoute ? ['sakura', 'enemy1'] : ['mutsunori', 'enemy1'];
+  }, [isMichiruRoute]);
+
+  const getCharInfo = useCallback((id) => {
+    const map = {
+      sakura: { name: '朔良', image: '/battle/sakura.png', isAlly: true },
+      mutsunori: { name: '睦典', image: '/battle/mutsunori.png', isAlly: true },
+      nagisa: { name: '凪砂', image: '/battle/nagisa.png', isAlly: true },
+      enemy1: { name: isMichiruRoute ? 'ルキ' : '黒騎士', image: isMichiruRoute ? '/battle/ruki.png' : '/battle/blackknight.png', isAlly: false },
+      enemy2: { name: 'キメラβ', image: '/battle/blackknight.png', isAlly: false },
+    };
+    return map[id] || { name: '？', image: '', isAlly: false };
+  }, [isMichiruRoute]);
+
   const [syncRate, setSyncRate] = useState(0);          // 0-100
   const [battlePhase, setBattlePhase] = useState('intro');
   const [battleLog, setBattleLog] = useState([]);
@@ -113,7 +128,9 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
   const [guardingAllies, setGuardingAllies] = useState(new Set());
   const [healCooldown, setHealCooldown] = useState(0);
   const [buffTurnsLeft, setBuffTurnsLeft] = useState(0);
-  const [guardCooldownTrigger, setGuardCooldownTrigger] = useState({ mutsunori: 0, nagisa: 0 });
+  const [guardCooldownTrigger, setGuardCooldownTrigger] = useState(() => {
+    return isMichiruRoute ? { sakura: 0 } : { mutsunori: 0, nagisa: 0 };
+  });
 
   // ─── Anomaly State ───
   const [activeFragments, setActiveFragments] = useState([]); // [{ id, turnsLeft }]
@@ -141,7 +158,9 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
   const gameLoopRef = useRef(null);
   const lastTickRef = useRef(0);
   const hitStopRef = useRef(0);
-  const guardCooldownsRef = useRef({ mutsunori: 0, nagisa: 0 });
+  const guardCooldownsRef = useRef(() => {
+    return isMichiruRoute ? { sakura: 0 } : { mutsunori: 0, nagisa: 0 };
+  });
   const pendingGuardTimeoutsRef = useRef({});
   const stateRef = useRef({ allies, enemies, activeAttacks, guardingAllies, syncRate, battlePhase, turnPhase, currentTurnIndex, counterAttack, buffTurnsLeft, activeFragments, absorbCooldown, corruption });
 
@@ -167,7 +186,7 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
   const executeAllyAttack = useCallback((qteResult) => {
     const allAllies = stateRef.current.allies;
     const allEnemies = stateRef.current.enemies;
-    const turnId = TURN_ORDER[stateRef.current.currentTurnIndex % TURN_ORDER.length];
+    const turnId = turnOrder[stateRef.current.currentTurnIndex % turnOrder.length];
 
     const aliveEnemies = allEnemies.filter(e => !e.isDead);
     if (aliveEnemies.length > 0) {
@@ -223,7 +242,7 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
     setTurnPhase('ally_attack');
     stateRef.current.turnPhase = 'ally_attack';
     setTurnTimer(150);
-  }, [addLog, spawnDamageNumber, addSync, playSE]);
+  }, [addLog, spawnDamageNumber, addSync, playSE, turnOrder]);
 
   const triggerSakuraNote = useCallback((type = 'default') => {
     return; // TODO: Temporarily disabled per user request
@@ -271,7 +290,7 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
   useEffect(() => {
     return; // TODO: Temporarily disabled per user request
     let intervalId;
-    if (guardingAllies.has('mutsunori')) {
+    if (guardingAllies.has(isMichiruRoute ? 'sakura' : 'mutsunori')) {
       intervalId = setInterval(() => {
         const symbols = ['♪', '♬', '♫', '♩', '🎶', '🎵'];
         const colors = ['text-blue-300', 'text-blue-400', 'text-blue-300', 'text-cyan-300', 'text-cyan-400', 'text-sky-300', 'text-sky-400', 'text-indigo-300', 'text-violet-300'];
@@ -316,20 +335,20 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
     const queue = [];
     let idx = currentTurnIndex;
     for (let i = 0; i < TIMELINE_DISPLAY_COUNT; i++) {
-      queue.push({ id: TURN_ORDER[idx % TURN_ORDER.length], turnIndex: idx });
+      queue.push({ id: turnOrder[idx % turnOrder.length], turnIndex: idx });
       idx++;
     }
     return queue;
-  }, [currentTurnIndex]);
+  }, [currentTurnIndex, turnOrder]);
 
   // ─── Turn helpers ───
   const getCurrentTurnId = useCallback(() => {
-    return TURN_ORDER[currentTurnIndex % TURN_ORDER.length];
-  }, [currentTurnIndex]);
+    return turnOrder[currentTurnIndex % turnOrder.length];
+  }, [currentTurnIndex, turnOrder]);
 
   const isAllyTurn = useCallback((id) => {
-    return id === 'mutsunori' || id === 'nagisa';
-  }, []);
+    return id === (isMichiruRoute ? 'sakura' : 'mutsunori') || id === 'nagisa';
+  }, [isMichiruRoute]);
 
   const advanceTurn = useCallback(() => {
     setCurrentTurnIndex(prev => prev + 1);
@@ -412,12 +431,12 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
           const next = prev - dt;
           if (next <= 0) {
             // Start next turn
-            const turnId = TURN_ORDER[stateRef.current.currentTurnIndex % TURN_ORDER.length];
+            const turnId = turnOrder[stateRef.current.currentTurnIndex % turnOrder.length];
             const allAllies = stateRef.current.allies;
             const allEnemies = stateRef.current.enemies;
 
             // Skip dead characters
-            const isAlly = turnId === 'mutsunori' || turnId === 'nagisa';
+            const isAlly = turnId === (isMichiruRoute ? 'sakura' : 'mutsunori') || turnId === 'nagisa';
             if (isAlly) {
               const ally = allAllies.find(a => a.id === turnId);
               if (!ally || ally.isDead) {
@@ -491,7 +510,7 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
 
       // ── ENEMY WINDUP ──
       if (phase === 'enemy_windup' && stateRef.current.activeAttacks.length === 0) {
-        const turnId = TURN_ORDER[stateRef.current.currentTurnIndex % TURN_ORDER.length];
+        const turnId = turnOrder[stateRef.current.currentTurnIndex % turnOrder.length];
         const allAllies = stateRef.current.allies;
         const aliveAllies = allAllies.filter(a => !a.isDead);
 
@@ -895,8 +914,8 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
       spawnDamageNumber(a.id, amount, 'heal');
       return { ...a, hp: Math.min(a.maxHp, a.hp + amount), flashTimer: 0 };
     }));
-    addLog(`💖 朔良の歌でパーティ全体が回復！`);
-  }, [healCooldown, addLog, triggerSakuraNote, spawnDamageNumber]);
+    addLog(isMichiruRoute ? `💖 睦典の応援でサクラの体力が回復！ (+${amount} HP)` : `💖 朔良の歌でパーティ全体が回復！`);
+  }, [healCooldown, isMichiruRoute, addLog, triggerSakuraNote, spawnDamageNumber]);
 
   const handleBuff = useCallback(() => {
     if (syncRate < SYNC_COST_BUFF || stateRef.current.battlePhase !== 'fighting') return;
@@ -907,17 +926,17 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
     setTimeout(() => setHealFlash(false), 300);
     triggerSakuraNote();
 
-    addLog(`🎵 朔良が強化の歌を歌った！ 味方の攻防力UP (2ターン)`);
+    addLog(isMichiruRoute ? `🎵 睦典がサクラを奮い立たせた！ 味方の攻防力UP (2ターン)` : `🎵 朔良が強化の歌を歌った！ 味方の攻防力UP (2ターン)`);
   }, [syncRate, addLog, triggerSakuraNote]);
 
   const handleMutsunoriUltimate = useCallback(() => {
     if (syncRate < SYNC_COST_ULTIMATE || stateRef.current.battlePhase !== 'fighting') return;
 
-    const mutsunori = allies.find(a => a.id === 'mutsunori');
-    if (!mutsunori || mutsunori.isDead) return;
+    const mainAllyChar = allies.find(a => a.id === (isMichiruRoute ? 'sakura' : 'mutsunori'));
+    if (!mainAllyChar || mainAllyChar.isDead) return;
 
     setSyncRate(0);
-    setDuetCutin({ allyId: mutsunori.id, name: mutsunori.name, image: mutsunori.cutinImage });
+    setDuetCutin({ allyId: mainAllyChar.id, name: mainAllyChar.name, image: mainAllyChar.cutinImage });
 
     setUltimateFlash(true);
     triggerSakuraNote();
@@ -945,7 +964,7 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
         });
       });
       setActiveAttacks([]);
-      addLog(`★★ 睦典の必殺技！ 渾身の一撃が炸裂！ ★★`);
+      addLog(isMichiruRoute ? `★★ サクラの共鳴アーツ！ 美しい歌声と熱い想いが奇跡を紡ぐ！ ★★` : `★★ 睦典の必殺技！ 渾身の一撃が炸裂！ ★★`);
     }, 1500);
 
     setTimeout(() => { setDuetCutin(null); setUltimateFlash(false); setShakeActive(false); }, 2500);
@@ -1035,7 +1054,7 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         {/* Full color bright image */}
-        <img src="/battle/core_houkai.jpg" alt="Background" className="absolute inset-0 w-full h-full object-cover -translate-y-[15%]" />
+        <img src={isMichiruRoute ? "/battle/room_ruki.png" : "/battle/core_houkai.jpg"} alt="Background" className="absolute inset-0 w-full h-full object-cover -translate-y-[15%]" />
 
         {/* Very subtle cyber tech overlays so UI is still readable */}
         <div className="absolute inset-0 bg-[#090e17]/20" />
@@ -1188,14 +1207,14 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
             const isTargeted = targetedAllies.has(ally.id);
             const attackInfo = activeAttacksCompat.find(a => a.targetId === ally.id);
             const isGuarding = guardingAllies.has(ally.id);
-            const isCurrentTurn = TURN_ORDER[currentTurnIndex % TURN_ORDER.length] === ally.id && turnPhase === 'ally_attack';
+            const isCurrentTurn = turnOrder[currentTurnIndex % turnOrder.length] === ally.id && turnPhase === 'ally_attack';
             const isCounterDashing = counterAnim && counterAnim.allyId === ally.id;
 
             return (
               <div key={ally.id} className="relative flex flex-col items-center w-full">
 
                 {/* ── Ally HP Bar (Chimera-A style) ── */}
-                <div className="w-20 lg:w-36 mb-1 lg:mb-2 z-20 relative">
+                <div className={`w-20 lg:w-36 mb-1 lg:mb-2 z-20 relative ${isMichiruRoute ? '-translate-y-8 lg:-translate-y-12' : ''}`}>
                   <div className="flex flex-col items-center">
                     <div className="flex items-center justify-between w-full mb-0.5 px-1">
                       <div className="flex items-center gap-1.5">
@@ -1243,12 +1262,12 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
                     </motion.div>
                   )}
 
-                  {ally.id === 'mutsunori' && (
+                  {ally.id === (isMichiruRoute ? 'sakura' : 'mutsunori') && (
                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
                       <div className="relative w-[125px] h-[187px] lg:w-48 lg:h-64 lg:-translate-y-3.5 -translate-x-24 lg:-translate-x-40">
                         <img
-                          src="/battle/sakura.png"
-                          alt="sakura"
+                          src={isMichiruRoute ? "/battle/mutsunori.png" : "/battle/sakura.png"}
+                          alt={isMichiruRoute ? "mutsunori" : "sakura"}
                           className="w-full h-full object-contain drop-shadow-lg opacity-90"
                         />
                         <AnimatePresence>
@@ -1272,7 +1291,7 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
                   <motion.div
                     id={`char-${ally.id}`}
                     className={`relative cursor-pointer touch-none flex items-center justify-center
-                    ${ally.id === 'nagisa' ? 'w-[90px] h-[120px] lg:w-[180px] lg:h-[230px]' : 'w-[125px] h-[187px] lg:w-48 lg:h-64'}
+                    ${ally.id === 'nagisa' ? 'w-[90px] h-[120px] lg:w-[180px] lg:h-[230px]' : isMichiruRoute ? 'w-[150px] h-[224px] lg:w-56 lg:h-76' : 'w-[125px] h-[187px] lg:w-48 lg:h-64'}
                     ${ally.isDead ? 'opacity-40 grayscale' : ''}
                   `}
                     animate={{ x: isCounterDashing ? 150 : (isCurrentTurn ? 30 : 0) }}
@@ -1298,7 +1317,7 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
                       </div>
                     )}
 
-                    {turnPhase === 'ally_windup' && TURN_ORDER[currentTurnIndex % TURN_ORDER.length] === ally.id && !ally.isDead && (
+                    {turnPhase === 'ally_windup' && turnOrder[currentTurnIndex % turnOrder.length] === ally.id && !ally.isDead && (
                       <div
                         className="absolute inset-0 flex flex-col items-center justify-center z-40 pointer-events-auto cursor-pointer"
                         onPointerDown={handleAllyAttack}
@@ -1447,7 +1466,7 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
         <div className="w-1/2 flex flex-col justify-around items-center pl-4 -translate-x-4 lg:-translate-x-8">
           {enemies.map(enemy => {
             const isAttacking = activeAttacksCompat.some(a => a.enemyId === enemy.id);
-            const isCurrentTurn = TURN_ORDER[currentTurnIndex % TURN_ORDER.length] === enemy.id && turnPhase !== 'turn_delay';
+            const isCurrentTurn = turnOrder[currentTurnIndex % turnOrder.length] === enemy.id && turnPhase !== 'turn_delay';
             const hpRatio = enemy.hp / enemy.maxHp;
 
             return (
@@ -1507,7 +1526,7 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
                       ease: isAttacking ? 'easeOut' : 'easeInOut'
                     }}
                   >
-                    <img src={enemy.image} alt={enemy.name} className={`w-full h-full object-contain scale-[0.85] -translate-y-12 drop-shadow-[0_0_15px_rgba(244,63,94,0.3)] ${enemy.isStunned ? 'opacity-70 grayscale-[50%]' : ''}`} />
+                    <img src={enemy.image} alt={enemy.name} className={`w-full h-full object-contain ${isMichiruRoute ? 'scale-[0.7]' : 'scale-[0.85]'} -translate-y-12 drop-shadow-[0_0_15px_rgba(244,63,94,0.3)] ${enemy.isStunned ? 'opacity-70 grayscale-[50%]' : ''}`} />
 
                     {/* スタン text removed per user request */}
                   </motion.div>

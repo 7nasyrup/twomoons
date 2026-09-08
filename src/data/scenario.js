@@ -8952,7 +8952,7 @@ export const scenarioData = [
   //満グッド
   {
     "label": "solo_fragment_happy_end",
-    "scene": "最奥部屋（コア無い感じの別室）",
+    "scene": "グッド最奥部屋（コア無い感じの別室）",
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「……う、あ……っ……」"
@@ -9052,6 +9052,11 @@ export const scenarioData = [
     "text": "満が隣に並ぶ。私はその手を、今度は自分から強く握りしめた。"
   },
   //============== 戦闘開始(ルキ) ===============
+  {
+    "scene": "ラスボス(満)",
+    "action": "TRIGGER_BATTLE_FINAL_BOSS_MICHIRU"
+  },
+
   {
     "scene": "最奥部屋（コア無い感じの別室）",
     "text": "激しい戦いの後、静まり返った部屋の中央で、ルキが床にうずくまっていた。",
