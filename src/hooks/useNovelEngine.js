@@ -20,13 +20,24 @@ export function useNovelEngine(scenarioData, options = {}) {
   const fullTextRef = useRef('');
   const isAdvancingRef = useRef(false);
 
+  // Skip Mode States declared early to prevent TDZ errors
+  const [skipMode, setSkipMode] = useState(false);
+  const skipTimer = useRef(null);
+
   const currentLine = scenarioData?.[currentStep] || null;
 
   const triggerTypewriter = useCallback((text, speed = 35) => {
     clearInterval(typingTimer.current);
-    setIsTyping(true);
     fullTextRef.current = text;
 
+    if (skipMode) {
+      // SKIPモードの時は、Enter長押しと同様にタイピングを完全にスキップして一瞬で全文表示にする！
+      setDisplayedText(text);
+      setIsTyping(false);
+      return;
+    }
+
+    setIsTyping(true);
     let currentString = '';
     setDisplayedText('');
 
@@ -40,7 +51,7 @@ export function useNovelEngine(scenarioData, options = {}) {
         setIsTyping(false);
       }
     }, speed);
-  }, []);
+  }, [skipMode]);
 
   const completeTypewriter = useCallback(() => {
     clearInterval(typingTimer.current);
@@ -145,8 +156,6 @@ export function useNovelEngine(scenarioData, options = {}) {
     }
   }, [isBgFadingOut, currentLine]);
 
-  const [skipMode, setSkipMode] = useState(false);
-  const skipTimer = useRef(null);
   const toggleSkip = useCallback(() => setSkipMode(prev => !prev), []);
 
   const advanceStep = useCallback(() => {
@@ -255,8 +264,6 @@ export function useNovelEngine(scenarioData, options = {}) {
             advanceStep();
           }
         }, 50);
-      } else if (isTyping && !isBgTransitioning && !isBgFadingOut && !isMinigame) {
-        completeTypewriter();
       }
     }
     return () => clearTimeout(skipTimer.current);

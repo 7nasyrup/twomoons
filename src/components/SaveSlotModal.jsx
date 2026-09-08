@@ -9,14 +9,14 @@ export const SAVE_KEY_PREFIX = 'twomoons_save_slot_';
 
 // キャラクター設定（SpriteSlot.jsx と同じ定義）
 const SPEAKER_CONFIGS = {
-  "睦典":     { folder: "/character/Mutsunori", baseFileName: "Mutsunori", defaultExpression: "smile",        posX: "5%",  width: "45%" },
-  "ヒルミ教授": { folder: "/character/Hirumi",   baseFileName: "Hirumi",    defaultExpression: "smile",        posX: "50%", width: "45%" },
-  "ミカ":     { folder: "/character/Mika",      baseFileName: "Mika",      defaultExpression: "neutral",      posX: "50%", width: "45%" },
-  "凪砂":     { folder: "/character/Nagisa",    baseFileName: "Nagisa",    defaultExpression: "neutral",      posX: "22%", width: "45%" },
-  "大男":     { folder: "/character/Akane",     baseFileName: "Akane",     defaultExpression: "neutral",      posX: "22%", width: "45%" },
-  "アカネ":   { folder: "/character/Akane",     baseFileName: "Akane",     defaultExpression: "neutral",      posX: "22%", width: "45%" },
-  "満":       { folder: "/character/Michiru",   baseFileName: "Michiru",   defaultExpression: "smile",        posX: "15%", width: "45%" },
-  "黒騎士":   { folder: "/character/Hirumi",    baseFileName: "Hirumi",    defaultExpression: "black_knight", posX: "15%", width: "45%" },
+  "睦典": { folder: "/character/Mutsunori", baseFileName: "Mutsunori", defaultExpression: "smile", posX: "5%", width: "45%" },
+  "ヒルミ教授": { folder: "/character/Hirumi", baseFileName: "Hirumi", defaultExpression: "smile", posX: "50%", width: "45%" },
+  "ミカ": { folder: "/character/Mika", baseFileName: "Mika", defaultExpression: "neutral", posX: "50%", width: "45%" },
+  "凪砂": { folder: "/character/Nagisa", baseFileName: "Nagisa", defaultExpression: "neutral", posX: "22%", width: "45%" },
+  "大男": { folder: "/character/Akane", baseFileName: "Akane", defaultExpression: "neutral", posX: "22%", width: "45%" },
+  "アカネ": { folder: "/character/Akane", baseFileName: "Akane", defaultExpression: "neutral", posX: "22%", width: "45%" },
+  "満": { folder: "/character/Michiru", baseFileName: "Michiru", defaultExpression: "smile", posX: "15%", width: "45%" },
+  "黒騎士": { folder: "/character/Hirumi", baseFileName: "Hirumi", defaultExpression: "black_knight", posX: "15%", width: "45%" },
 };
 
 // ─── 全スロット読み込み ───────────────────────────────────────────────────────
@@ -123,9 +123,9 @@ export default function SaveSlotModal({ mode, onClose, onSelectSlot, slots }) {
         exit={{ opacity: 0 }}
         onClick={onClose}
       >
-        {/* パネル本体：ゲーム本編と同じ白いフロストガラス */}
+        {/* パネル本体：ゲーム本編と同じ白いフロストガラス (モバイル時は一回り小さく、PC大画面(lg)時は元のmax-w-2xl) */}
         <motion.div
-          className="relative w-full max-w-2xl mx-4"
+          className="relative w-full max-w-[90%] sm:max-w-[85%] md:max-w-[75%] lg:max-w-2xl mx-auto"
           style={{
             background: 'rgba(255,255,255,0.92)',
             backdropFilter: 'blur(20px)',
@@ -139,7 +139,7 @@ export default function SaveSlotModal({ mode, onClose, onSelectSlot, slots }) {
           onClick={(e) => e.stopPropagation()}
         >
           {/* ── ヘッダー（スピーカー名プレートと同じデザイン） ── */}
-          <div className="flex items-center justify-between px-8 pt-8 pb-4">
+          <div className="flex items-center justify-between px-5 pt-5 pb-3 lg:px-8 lg:pt-8 lg:pb-4">
             <div className="inline-flex items-center gap-2.5 bg-white border border-slate-200 text-slate-800 text-sm font-bold tracking-[0.15em] px-6 py-2.5 rounded-xl shadow-sm font-noto">
               {isSave
                 ? <><Save size={15} className="text-sky-400" /> セーブデータ</>
@@ -155,10 +155,10 @@ export default function SaveSlotModal({ mode, onClose, onSelectSlot, slots }) {
           </div>
 
           {/* 区切り線 */}
-          <div className="mx-8 h-px bg-slate-100" />
+          <div className="mx-5 lg:mx-8 h-px bg-slate-100" />
 
           {/* スロット一覧（スクロール対応） */}
-          <div className="px-8 py-5 space-y-3 max-h-[60cqh] overflow-y-auto scrollbar-thin scrollbar-thumb-slate-300 scrollbar-track-transparent">
+          <div className="px-5 py-3 lg:px-8 lg:py-5 space-y-3 max-h-[46cqh] lg:max-h-[60cqh] overflow-y-auto scrollbar-thin scrollbar-thumb-slate-300 scrollbar-track-transparent">
             {slots.map((slot, i) => (
               <SlotCard
                 key={i}
@@ -174,7 +174,7 @@ export default function SaveSlotModal({ mode, onClose, onSelectSlot, slots }) {
           </div>
 
           {/* フッター */}
-          <div className="px-8 pb-6 pt-2 flex justify-end">
+          <div className="px-5 pb-5 pt-1 lg:px-8 lg:pb-6 lg:pt-2 flex justify-end">
             <button
               onClick={onClose}
               className="px-6 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-900 text-sm font-noto font-bold tracking-wide transition-all duration-200 shadow-sm"
@@ -196,9 +196,8 @@ function SlotCard({ index, data, mode, isHovered, onHover, onLeave, onSelect }) 
 
   return (
     <motion.button
-      className="w-full text-left rounded-xl overflow-hidden flex items-stretch focus:outline-none"
+      className="w-full text-left rounded-xl overflow-hidden flex items-stretch focus:outline-none h-[70px] lg:h-[110px]"
       style={{
-        height: 110,
         border: isHovered && !isDisabled
           ? `1.5px solid ${isSave ? 'rgba(56,189,248,0.5)' : 'rgba(99,102,241,0.4)'}`
           : '1.5px solid rgba(0,0,0,0.07)',
@@ -219,8 +218,8 @@ function SlotCard({ index, data, mode, isHovered, onHover, onLeave, onSelect }) 
     >
       {/* ── サムネイル（背景＋立ち絵＋アイテムの合成表示） ── */}
       <div
-        className="shrink-0 relative overflow-hidden rounded-l-xl"
-        style={{ width: 176, minHeight: 99, background: '#dde3ed' }}
+        className="shrink-0 relative overflow-hidden rounded-l-xl w-[110px] lg:w-[176px]"
+        style={{ background: '#dde3ed' }}
       >
         {data ? (
           <SceneThumbnail data={data} />
@@ -228,12 +227,12 @@ function SlotCard({ index, data, mode, isHovered, onHover, onLeave, onSelect }) 
           // 空スロットのプレースホルダー
           <div className="w-full h-full flex items-center justify-center">
             <div
-              className="w-10 h-10 rounded-full flex items-center justify-center"
+              className="w-7 h-7 lg:w-10 lg:h-10 rounded-full flex items-center justify-center"
               style={{ background: isSave ? 'rgba(56,189,248,0.1)' : 'rgba(148,163,184,0.1)' }}
             >
               {isSave
-                ? <Save size={18} className="text-sky-300" />
-                : <span className="text-slate-300 text-lg">—</span>
+                ? <Save size={14} className="text-sky-300 lg:size-[18px]" />
+                : <span className="text-slate-300 text-xs lg:text-lg">—</span>
               }
             </div>
           </div>
@@ -241,7 +240,7 @@ function SlotCard({ index, data, mode, isHovered, onHover, onLeave, onSelect }) 
 
         {/* スロット番号バッジ */}
         <div
-          className="absolute top-2 left-2 w-6 h-6 rounded-full flex items-center justify-center font-orbitron font-bold text-[11px] z-10"
+          className="absolute top-1 left-1 lg:top-2 lg:left-2 w-4.5 h-4.5 lg:w-6 lg:h-6 rounded-full flex items-center justify-center font-orbitron font-bold text-[8px] lg:text-[11px] z-10"
           style={{
             background: isEmpty
               ? 'rgba(100,116,139,0.5)'
@@ -255,14 +254,14 @@ function SlotCard({ index, data, mode, isHovered, onHover, onLeave, onSelect }) 
       </div>
 
       {/* ── テキスト情報 ── */}
-      <div className="flex-1 flex flex-col justify-center px-5 py-3 min-w-0">
+      <div className="flex-1 flex flex-col justify-center px-3 py-1 lg:px-5 lg:py-3 min-w-0">
         {isEmpty ? (
           <div>
-            <p className="font-noto text-sm text-slate-400">
+            <p className="font-noto text-xs lg:text-sm text-slate-400">
               {isSave ? '── 空きスロット ──' : '── データなし ──'}
             </p>
             {isSave && (
-              <p className="text-[11px] text-slate-400 font-noto mt-1">
+              <p className="text-[9px] lg:text-[11px] text-slate-400 font-noto mt-0.5 lg:mt-1">
                 ここに新しくセーブできます
               </p>
             )}
@@ -270,46 +269,37 @@ function SlotCard({ index, data, mode, isHovered, onHover, onLeave, onSelect }) 
         ) : (
           <>
             {/* シーン名 */}
-            <div className="flex items-center gap-1.5 mb-1.5">
-              <MapPin size={11} className="text-slate-400 shrink-0" />
-              <p className="text-slate-800 text-sm font-noto font-bold truncate">
+            <div className="flex items-center gap-1 mb-0.5 lg:mb-1.5">
+              <MapPin size={9} className="text-slate-400 shrink-0 lg:size-[11px]" />
+              <p className="text-slate-800 text-[11px] lg:text-sm font-noto font-bold truncate">
                 {data.sceneName || `ステップ ${data.step}`}
               </p>
             </div>
             {/* 日時 */}
-            <div className="flex items-center gap-1.5 mb-2">
-              <Clock size={10} className="text-slate-400 shrink-0" />
-              <p className="text-slate-500 text-[11px] font-orbitron tracking-wider">
+            <div className="flex items-center gap-1 mb-0.5 lg:mb-2">
+              <Clock size={8} className="text-slate-400 shrink-0 lg:size-[10px]" />
+              <p className="text-slate-500 text-[9px] lg:text-[11px] font-orbitron tracking-wider">
                 {formatDate(data.savedAt)}
               </p>
             </div>
             {/* セリフテキスト */}
             {data.currentText && (
-              <div className="mt-1">
+              <div className="mt-0.5 lg:mt-1">
                 {data.currentSpeaker && (
-                  <span className="inline-block text-[10px] text-slate-500 font-noto font-bold mb-0.5">
+                  <span className="inline-block text-[8px] lg:text-[10px] text-slate-500 font-noto font-bold mb-px lg:mb-0.5">
                     {data.currentSpeaker}
                   </span>
                 )}
-                <p
-                  className="font-noto text-slate-600 leading-snug"
-                  style={{
-                    fontSize: 10.5,
-                    display: '-webkit-box',
-                    WebkitLineClamp: 2,
-                    WebkitBoxOrient: 'vertical',
-                    overflow: 'hidden',
-                  }}
-                >
+                <p className="font-noto text-slate-600 leading-snug text-[9px] lg:text-[10.5px] line-clamp-1 lg:line-clamp-2">
                   {data.currentText}
                 </p>
               </div>
             )}
             {/* 上書きバッジ（SAVEモードのみ） */}
             {isSave && (
-              <div className="mt-2">
+              <div className="mt-0.5 lg:mt-2">
                 <span
-                  className="inline-block text-[10px] font-noto px-2 py-0.5 rounded-full"
+                  className="inline-block text-[8px] lg:text-[10px] font-noto px-1 py-0 lg:px-2 lg:py-0.5 rounded-full"
                   style={{
                     background: 'rgba(251,191,36,0.12)',
                     color: '#d97706',
@@ -326,14 +316,14 @@ function SlotCard({ index, data, mode, isHovered, onHover, onLeave, onSelect }) 
 
       {/* ── 右矢印インジケーター ── */}
       {!isDisabled && (
-        <div className="shrink-0 flex items-center pr-4">
+        <div className="shrink-0 flex items-center pr-2 lg:pr-4">
           <motion.div
             animate={{ x: isHovered ? 2 : 0, opacity: isHovered ? 1 : 0.25 }}
             transition={{ duration: 0.15 }}
           >
             <ChevronRight
-              size={18}
-              className={isSave ? 'text-sky-400' : 'text-indigo-400'}
+              size={14}
+              className={isSave ? 'text-sky-400 lg:size-[18px]' : 'text-indigo-400 lg:size-[18px]'}
             />
           </motion.div>
         </div>

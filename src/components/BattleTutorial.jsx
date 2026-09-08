@@ -662,7 +662,6 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
           const enemy = allEnemies[0];
           if (enemy && !enemy.isDead && (enemy.hp / enemy.maxHp) <= 0.30 && stateRef.current.hasShownPostParryDialogue && !stateRef.current.hasShownUltimateDialogue) {
             setSyncRate(100);
-            stateRef.current.syncRate = 100;
             setHasShownUltimateDialogue(true);
             stateRef.current.hasShownUltimateDialogue = true;
             setBattlePhase('dialogue');
@@ -1657,27 +1656,41 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
               exit={{ opacity: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <div className="absolute top-[30%] lg:top-[35%] flex flex-col items-center">
-                <div className="relative p-3 lg:p-4 text-center">
+              <div className="absolute top-[45%] left-[40%] lg:top-[35%] lg:left-auto flex flex-col items-center">
+                <div className="relative p-2 lg:p-4 text-center">
                   <div className="absolute top-0 left-[-6px] right-[-6px] h-[1px] bg-cyan-400/70" />
                   <div className="absolute bottom-0 left-[-6px] right-[-6px] h-[1px] bg-cyan-400/70" />
                   <div className="absolute left-0 top-[-6px] bottom-[-6px] w-[1px] bg-cyan-400/70" />
                   <div className="absolute right-0 top-[-6px] bottom-[-6px] w-[1px] bg-cyan-400/70" />
 
-                  <p className="font-noto text-[13px] lg:text-[15px] text-white/90 leading-relaxed relative z-10">
+                  {/* パソコン用説明文 (1024px以上のみ表示、PC側のデザイン・余白・サイズを100%完全保護) */}
+                  <p className="hidden lg:block font-noto text-[15px] text-white/90 leading-relaxed relative z-10">
                     <span className="relative inline-block my-1 mx-1 z-0">
                       <span className="relative z-10 text-white font-bold">[Space]/クリック</span>
-                      <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[8px] lg:h-[10px] bg-cyan-400/70 -rotate-[2deg] rounded-sm -z-10" />
+                      <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[10px] bg-cyan-400/70 -rotate-[2deg] rounded-sm -z-10" />
                     </span>
                     を
                     <span className="relative inline-block mx-1 z-0">
                       <span className="relative z-10 text-white font-bold">長押し</span>
-                      <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[8px] lg:h-[10px] bg-cyan-400/70 -rotate-[2deg] rounded-sm -z-10" />
+                      <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[10px] bg-cyan-400/70 -rotate-[2deg] rounded-sm -z-10" />
                     </span><br />
                     で攻撃を
                     <span className="relative inline-block mx-1 z-0">
                       <span className="relative z-10 text-white font-bold">軽減しよう</span>
-                      <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[8px] lg:h-[10px] bg-red-400/70 -rotate-[2deg] rounded-sm -z-10" />
+                      <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[10px] bg-red-400/70 -rotate-[2deg] rounded-sm -z-10" />
+                    </span>
+                  </p>
+
+                  {/* スマートフォン用説明文 (1024px未満でのみ表示、スマホに最適化された表現) */}
+                  <p className="block lg:hidden font-noto text-[11px] text-white/90 leading-relaxed relative z-10">
+                    <span className="relative inline-block my-0.5 mx-0.5 z-0">
+                      <span className="relative z-10 text-white font-bold">画面を長押し</span>
+                      <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[6px] bg-cyan-400/70 -rotate-[2deg] rounded-sm -z-10" />
+                    </span>
+                    して攻撃を<br />
+                    <span className="relative inline-block mx-0.5 z-0">
+                      <span className="relative z-10 text-white font-bold">軽減しよう</span>
+                      <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[6px] bg-red-400/70 -rotate-[2deg] rounded-sm -z-10" />
                     </span>
                   </p>
                 </div>
@@ -1713,45 +1726,45 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
               }}
             >
               <div className="absolute top-[30%] lg:top-[35%] flex flex-col items-center">
-                <div className="relative p-3 lg:p-4 text-center">
+                <div className="relative p-2 lg:p-4 text-center">
                   <div className="absolute top-0 left-[-6px] right-[-6px] h-[1px] bg-cyan-400/70" />
                   <div className="absolute bottom-0 left-[-6px] right-[-6px] h-[1px] bg-cyan-400/70" />
                   <div className="absolute left-0 top-[-6px] bottom-[-6px] w-[1px] bg-cyan-400/70" />
                   <div className="absolute right-0 top-[-6px] bottom-[-6px] w-[1px] bg-cyan-400/70" />
 
-                  <p className="font-noto text-[13px] lg:text-[15px] text-white/90 leading-relaxed relative z-10">
+                  <p className="font-noto text-[11px] lg:text-[15px] text-white/90 leading-relaxed relative z-10">
                     {parryTutorialPage === 1 ? (
                       <>
-                        <span className="relative inline-block my-1 mx-1 z-0">
+                        <span className="relative inline-block my-0.5 mx-0.5 z-0">
                           <span className="relative z-10 text-white font-bold">タイミングよく防御</span>
-                          <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[8px] lg:h-[10px] bg-cyan-400/70 -rotate-[2deg] rounded-sm -z-10" />
+                          <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[6px] lg:h-[10px] bg-cyan-400/70 -rotate-[2deg] rounded-sm -z-10" />
                         </span>
                         をして<br />
-                        <span className="relative inline-block mx-1 z-0">
+                        <span className="relative inline-block mx-0.5 z-0">
                           <span className="relative z-10 text-white font-bold">敵の攻撃を弾き返そう</span>
-                          <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[8px] lg:h-[10px] bg-red-400/70 -rotate-[2deg] rounded-sm -z-10" />
+                          <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[6px] lg:h-[10px] bg-red-400/70 -rotate-[2deg] rounded-sm -z-10" />
                         </span>
                       </>
                     ) : (
                       <>
-                        <span className="relative inline-block my-1 mx-1 z-0">
+                        <span className="relative inline-block my-0.5 mx-0.5 z-0">
                           <span className="relative z-10 text-white font-bold">黄色い円</span>
-                          <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[8px] lg:h-[10px] bg-cyan-400/70 -rotate-[2deg] rounded-sm -z-10" />
+                          <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[6px] lg:h-[10px] bg-cyan-400/70 -rotate-[2deg] rounded-sm -z-10" />
                         </span>
                         と
-                        <span className="relative inline-block my-1 mx-1 z-0">
+                        <span className="relative inline-block my-0.5 mx-0.5 z-0">
                           <span className="relative z-10 text-white font-bold">赤い円</span>
-                          <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[8px] lg:h-[10px] bg-cyan-400/70 -rotate-[2deg] rounded-sm -z-10" />
+                          <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[6px] lg:h-[10px] bg-cyan-400/70 -rotate-[2deg] rounded-sm -z-10" />
                         </span>
                         が重なるタイミングで<br />
-                        <span className="relative inline-block mx-1 z-0">
+                        <span className="relative inline-block mx-0.5 z-0">
                           <span className="relative z-10 text-white font-bold">[Space]/クリック</span>
-                          <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[8px] lg:h-[10px] bg-cyan-400/70 -rotate-[2deg] rounded-sm -z-10" />
+                          <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[6px] lg:h-[10px] bg-cyan-400/70 -rotate-[2deg] rounded-sm -z-10" />
                         </span>
                         を押すと
-                        <span className="relative inline-block mx-1 z-0">
+                        <span className="relative inline-block mx-0.5 z-0">
                           <span className="relative z-10 text-white font-bold">成功</span>
-                          <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[8px] lg:h-[10px] bg-red-400/70 -rotate-[2deg] rounded-sm -z-10" />
+                          <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[6px] lg:h-[10px] bg-red-400/70 -rotate-[2deg] rounded-sm -z-10" />
                         </span>
                         するよ
                       </>
@@ -1932,33 +1945,49 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
                         <AnimatePresence>
                           {!hasShownAttackTutorial && (
                             <motion.div
-                              className="absolute left-[90%] lg:left-[110%] top-[25%] lg:top-[15%] -translate-y-1/2 w-[260px] lg:w-[320px] pointer-events-none"
+                              className="absolute left-[85%] lg:left-[110%] top-[25%] lg:top-[15%] -translate-y-1/2 w-[210px] lg:w-[320px] pointer-events-none"
                               initial={{ opacity: 0, x: -10 }}
                               animate={{ opacity: 1, x: 0 }}
                               exit={{ opacity: 0, x: -10 }}
                             >
-                              <div className="relative p-3 lg:p-4 text-center">
+                              <div className="relative p-2 lg:p-4 text-center">
                                 {/* Wireframe Crosshair Border */}
                                 <div className="absolute top-0 left-[-6px] right-[-6px] h-[1px] bg-cyan-400/70" />
                                 <div className="absolute bottom-0 left-[-6px] right-[-6px] h-[1px] bg-cyan-400/70" />
                                 <div className="absolute left-0 top-[-6px] bottom-[-6px] w-[1px] bg-cyan-400/70" />
                                 <div className="absolute right-0 top-[-6px] bottom-[-6px] w-[1px] bg-cyan-400/70" />
 
-                                <p className="font-noto text-[13px] lg:text-[15px] text-white/90 leading-relaxed relative z-10">
+                                {/* パソコン用説明文 (1024px以上のみ表示、PC側のデザイン・余白・サイズを100%完全保護) */}
+                                <p className="hidden lg:block font-noto text-[15px] text-white/90 leading-relaxed relative z-10">
                                   バーが真ん中に来たときに<br />
                                   <span className="relative inline-block my-1 mx-1 z-0">
                                     <span className="relative z-10 text-white font-bold">[Space]</span>
-                                    <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[8px] lg:h-[10px] bg-cyan-400/70 -rotate-[2deg] rounded-sm -z-10" />
+                                    <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[10px] bg-cyan-400/70 -rotate-[2deg] rounded-sm -z-10" />
                                   </span>
                                   または
                                   <span className="relative inline-block mx-1 z-0">
                                     <span className="relative z-10 text-white font-bold">クリック</span>
-                                    <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[8px] lg:h-[10px] bg-cyan-400/70 -rotate-[2deg] rounded-sm -z-10" />
+                                    <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[10px] bg-cyan-400/70 -rotate-[2deg] rounded-sm -z-10" />
                                   </span><br />
                                   すると味方の
                                   <span className="relative inline-block mx-1 z-0">
                                     <span className="relative z-10 text-white font-bold">攻撃力がUP</span>
-                                    <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[8px] lg:h-[10px] bg-red-400/70 -rotate-[2deg] rounded-sm -z-10" />
+                                    <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[10px] bg-red-400/70 -rotate-[2deg] rounded-sm -z-10" />
+                                  </span>
+                                  するよ
+                                </p>
+
+                                {/* スマートフォン用説明文 (1024px未満でのみ表示、スマホに最適化された表現) */}
+                                <p className="block lg:hidden font-noto text-[11px] text-white/90 leading-relaxed relative z-10">
+                                  バーが真ん中に来たときに<br />
+                                  <span className="relative inline-block my-0.5 mx-0.5 z-0">
+                                    <span className="relative z-10 text-white font-bold">画面をタップ</span>
+                                    <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[6px] bg-cyan-400/70 -rotate-[2deg] rounded-sm -z-10" />
+                                  </span>
+                                  すると味方の<br />
+                                  <span className="relative inline-block mx-0.5 z-0">
+                                    <span className="relative z-10 text-white font-bold">攻撃力がUP</span>
+                                    <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[6px] bg-red-400/70 -rotate-[2deg] rounded-sm -z-10" />
                                   </span>
                                   するよ
                                 </p>

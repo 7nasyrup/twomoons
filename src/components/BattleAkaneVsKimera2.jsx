@@ -673,9 +673,9 @@ export default function BattleAkaneVsKimera2({ onComplete, playBGM, stopBGM, pla
       const parryableIndex = activeAttacks.findIndex(attack => {
         if (attack.targetId !== allyId || attack.resolved) return false;
         const elapsed = Date.now() - attack.startTime;
-        // Loosen parry window: from -450ms to +200ms
-        const parryStart = attack.delay + attack.duration - 450;
-        const parryEnd = attack.delay + attack.duration + 200;
+        // Mid-difficulty parry window: tighter than Tutorial but looser than Plot5 (from -300ms to +150ms)
+        const parryStart = attack.delay + attack.duration - 300;
+        const parryEnd = attack.delay + attack.duration + 150;
         return elapsed >= parryStart && elapsed <= parryEnd;
       });
 
@@ -1252,18 +1252,12 @@ export default function BattleAkaneVsKimera2({ onComplete, playBGM, stopBGM, pla
 
                     {isTargeted && !ally.isDead && (
                       <div className="absolute inset-0 pointer-events-none flex items-center justify-center z-40">
-                        <motion.div
-                          className="absolute w-[80px] h-[80px] lg:w-[150px] lg:h-[150px] border-[2px] border-amber-500/80 rotate-45 shadow-[0_0_15px_rgba(245,158,11,0.5)]"
-                          animate={{ scale: [1.2, 1, 1.2], opacity: [0.5, 1, 0.5] }}
-                          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                        />
-                        <div className="absolute w-[100px] h-[100px] lg:w-[170px] lg:h-[170px] border border-amber-400/30 rotate-45" />
+                        {/* Static Target Circle (正円形状) */}
+                        <div className="absolute w-[75px] h-[75px] lg:w-[130px] lg:h-[130px] border-[2.5px] border-amber-400/80 rounded-full shadow-[0_0_15px_rgba(251,191,36,0.5)]" />
 
                         {/* Target Crosshairs */}
                         <div className="absolute w-[120px] lg:w-[200px] h-[1px] bg-gradient-to-r from-transparent via-amber-500/50 to-transparent" />
                         <div className="absolute h-[120px] lg:h-[200px] w-[1px] bg-gradient-to-b from-transparent via-amber-500/50 to-transparent" />
-
-                        {/* TARGET LOCK label removed per user request */}
                       </div>
                     )}
 
@@ -1372,13 +1366,13 @@ export default function BattleAkaneVsKimera2({ onComplete, playBGM, stopBGM, pla
                           className="absolute inset-0 flex items-center justify-center z-50 pointer-events-none"
                         >
                           <motion.div
-                            className="absolute w-20 h-20 lg:w-40 lg:h-40 rounded-full border-[3px] border-amber-400 border-dashed shadow-[0_0_15px_rgba(251,191,36,0.7)]"
+                            className="absolute w-20 h-20 lg:w-40 lg:h-40 rounded-full border-[3px] border-red-500 border-dashed shadow-[0_0_15px_rgba(239,68,68,0.7)]"
                             initial={{ scale: 2.5, opacity: 0, rotate: 0 }}
                             animate={{ scale: 0.15, opacity: [0, 1, 1, 0], rotate: 180 }}
                             transition={{ duration: 0.6, ease: "linear" }}
                           />
                           <motion.div
-                            className="absolute w-16 h-16 lg:w-36 lg:h-36 rounded-full border-2 border-amber-300 shadow-[0_0_10px_rgba(252,211,77,0.5)]"
+                            className="absolute w-16 h-16 lg:w-36 lg:h-36 rounded-full border-2 border-red-400 shadow-[0_0_10px_rgba(248,113,113,0.5)]"
                             initial={{ scale: 3, opacity: 0 }}
                             animate={{ scale: 0.15, opacity: [0, 0.8, 0.8, 0] }}
                             transition={{ duration: 0.6, ease: "linear" }}
@@ -1413,6 +1407,7 @@ export default function BattleAkaneVsKimera2({ onComplete, playBGM, stopBGM, pla
             const isAttacking = activeAttacksCompat.some(a => a.enemyId === enemy.id);
             const isCurrentTurn = TURN_ORDER[currentTurnIndex % TURN_ORDER.length] === enemy.id && turnPhase !== 'turn_delay';
             const hpRatio = enemy.hp / enemy.maxHp;
+            const enemyScale = typeof window !== 'undefined' && window.innerWidth >= 1024 ? 2.5 : 2.0;
 
             return (
               <div key={enemy.id} className="relative w-full h-[420px] lg:h-[520px] flex flex-col justify-end items-center translate-y-12 lg:translate-y-20">
@@ -1424,7 +1419,7 @@ export default function BattleAkaneVsKimera2({ onComplete, playBGM, stopBGM, pla
                      * ここで数値を変更すると、自由にHPバーを上下に移動できます。
                      * マイナスの数値を大きくすると上に、小さくすると下に移動します。
                      */
-                    top: window.innerWidth >= 1024 ? '-180px' : '0px'
+                    top: window.innerWidth >= 1024 ? '-20px' : '-30px'
                   }}
                 >
                   <div className="flex flex-col items-center">
@@ -1462,7 +1457,7 @@ export default function BattleAkaneVsKimera2({ onComplete, playBGM, stopBGM, pla
                       }`}
                     animate={{
                       x: isAttacking ? -30 : (isCurrentTurn && turnPhase === 'enemy_resolve' ? -30 : 0),
-                      y: window.innerWidth >= 1024 ? 230 : 230,
+                      y: window.innerWidth >= 1024 ? -70 : -10, // パソコン・スマホの双方をさらに上にあげる (PC: -70, スマホ: -10)
                       scale: isAttacking ? 1.05 : 1
                     }}
                     transition={{
@@ -1475,7 +1470,7 @@ export default function BattleAkaneVsKimera2({ onComplete, playBGM, stopBGM, pla
                       alt={enemy.name}
                       className={`absolute bottom-0 w-full h-full object-contain object-bottom origin-bottom drop-shadow-[0_0_15px_rgba(244,63,94,0.3)] transition-all duration-150 ${enemy.isStunned ? 'opacity-70 grayscale-[50%]' : ''}`}
                       style={{
-                        transform: 'scale(2.5)',
+                        transform: `scale(${enemyScale})`,
                         transformOrigin: 'bottom center'
                       }}
                     />
@@ -1492,7 +1487,7 @@ export default function BattleAkaneVsKimera2({ onComplete, playBGM, stopBGM, pla
                             WebkitMaskSize: 'contain',
                             WebkitMaskPosition: 'bottom center',
                             WebkitMaskRepeat: 'no-repeat',
-                            transform: 'scale(2.5)',
+                            transform: `scale(${enemyScale})`,
                             transformOrigin: 'bottom center'
                           }}
                         />
@@ -1512,7 +1507,7 @@ export default function BattleAkaneVsKimera2({ onComplete, playBGM, stopBGM, pla
                            * 【斬撃エフェクトの上下位置調整】
                            * マイナスの数値を大きくすると上に、小さくすると下に移動します。
                            */
-                          top: window.innerWidth >= 1024 ? '150px' : '-100px'
+                          top: window.innerWidth >= 1024 ? '-90px' : '-30px'
                         }}
                       >
                         <SpriteAnimator
