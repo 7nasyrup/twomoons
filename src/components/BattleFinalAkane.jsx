@@ -1242,7 +1242,7 @@ export default function BattleFinalAkane({ onComplete, playBGM, stopBGM, playSE 
       <div className="relative flex-1 flex items-stretch px-4 lg:px-12 pt-20 lg:pt-32 pb-16 lg:pb-24 overflow-hidden">
 
         {/* ── Allies (Left Column) ── */}
-        <div className="w-1/2 flex flex-col justify-around items-center pr-4 translate-x-4 lg:translate-x-8">
+        <div className="w-1/2 flex flex-col justify-around items-center pr-4 translate-x-16 lg:translate-x-8">
           {allies.map(ally => {
             const isTargeted = targetedAllies.has(ally.id);
             const attackInfo = activeAttacksCompat.find(a => a.targetId === ally.id);
@@ -1254,7 +1254,7 @@ export default function BattleFinalAkane({ onComplete, playBGM, stopBGM, playSE 
               <div key={ally.id} className="relative flex flex-col items-center w-full">
 
                 {/* ── Ally HP Bar (Chimera-A style) ── */}
-                <div className="w-20 lg:w-36 mb-1 lg:mb-2 z-20 relative -translate-y-3 lg:-translate-y-5">
+                <div className="w-20 lg:w-36 mb-1 lg:mb-2 z-20 relative translate-y-0 lg:-translate-y-5">
                   <div className="flex flex-col items-center">
                     <div className="flex items-center justify-between w-full mb-0.5 px-1">
                       <div className="flex items-center gap-1.5">
@@ -1303,8 +1303,8 @@ export default function BattleFinalAkane({ onComplete, playBGM, stopBGM, playSE 
                   )}
 
                   {ally.id === 'akane' && (
-                    <div className="absolute w-[115px] h-[172px] lg:w-44 lg:h-62 flex items-center justify-center pointer-events-none z-0">
-                      <div className="relative w-full h-full -translate-y-6 lg:-translate-y-10 -translate-x-20 lg:-translate-x-32">
+                    <div className="absolute w-32 h-48 lg:w-44 lg:h-62 flex items-center justify-center pointer-events-none z-0">
+                      <div className="relative w-full h-full -translate-y-8 lg:-translate-y-10 -translate-x-24 lg:-translate-x-32">
                         <img
                           src="/battle/sakura.png"
                           alt="sakura"
@@ -1441,7 +1441,7 @@ export default function BattleFinalAkane({ onComplete, playBGM, stopBGM, playSE 
                     </AnimatePresence>
 
                     {ally.image ? (
-                      <img src={ally.image} alt={ally.name} className={`w-full h-full object-contain relative z-10 -translate-y-4 lg:-translate-y-12 ${ally.flashTimer > 0 ? 'animate-battle-hit-flash drop-shadow-[0_0_20px_rgba(248,113,113,0.8)]' : 'drop-shadow-lg'}`} />
+                      <img src={ally.image} alt={ally.name} className={`w-full h-full object-contain relative z-10 -translate-y-16 lg:-translate-y-12 scale-75 lg:scale-100 origin-bottom lg:origin-center ${ally.flashTimer > 0 ? 'animate-battle-hit-flash drop-shadow-[0_0_20px_rgba(248,113,113,0.8)]' : 'drop-shadow-lg'}`} />
                     ) : (
                       <div className="w-full h-full bg-slate-800/80 border border-slate-600 rounded-2xl flex items-center justify-center">
                         <span className="font-noto font-bold text-slate-300">{ally.name}</span>
@@ -1515,7 +1515,7 @@ export default function BattleFinalAkane({ onComplete, playBGM, stopBGM, playSE 
               return (
                 <motion.div
                   id={`char-${enemy2.id}`}
-                  className="absolute w-[420px] h-[360px] md:w-[500px] md:h-[620px] flex items-center justify-center z-20 pointer-events-none"
+                  className="absolute w-64 h-56 lg:w-[500px] lg:h-[620px] flex items-center justify-center z-20 pointer-events-none"
                   animate={{
                     x: isAttacking ? 30 : (isCurrentTurn && turnPhase === 'enemy_resolve' ? 30 : 0) + 110, // 右列縦並び(+110px)、攻撃時は前進距離を短縮(+30px)
                     y: -10, // 下段から少し上に移動！
@@ -1527,7 +1527,7 @@ export default function BattleFinalAkane({ onComplete, playBGM, stopBGM, playSE 
                 >
                   {/* 個別HPバー (立ち絵の上部に固定) */}
                   {!enemy2.isDead && (
-                    <div className="absolute top-36 md:top-52 left-1/2 -translate-x-1/2 w-20 lg:w-32 z-50 flex flex-col pointer-events-auto">
+                    <div className="absolute top-20 lg:top-52 left-1/2 -translate-x-1/2 w-20 lg:w-32 z-50 flex flex-col pointer-events-auto">
                       <div className="flex items-center justify-between w-full mb-0.5 px-1">
                         <div className="flex items-center gap-1">
                           <div className="w-1 h-1 bg-red-400 shadow-[0_0_8px_#f87171] rotate-45" />
@@ -1599,7 +1599,7 @@ export default function BattleFinalAkane({ onComplete, playBGM, stopBGM, playSE 
               return (
                 <motion.div
                   id={`char-${enemy3.id}`}
-                  className="absolute w-[420px] h-[360px] md:w-[500px] md:h-[620px] flex items-center justify-center z-10 pointer-events-none"
+                  className="absolute top-24 lg:top-0 w-64 h-56 lg:w-[500px] lg:h-[620px] flex items-center justify-center z-10 pointer-events-none"
                   animate={{
                     x: isAttacking ? 30 : (isCurrentTurn && turnPhase === 'enemy_resolve' ? 30 : 0) + 110, // 右列縦並び(+110px)、攻撃時は前進距離を短縮(+30px)
                     y: -180, // さらに上に移動！
@@ -1611,7 +1611,7 @@ export default function BattleFinalAkane({ onComplete, playBGM, stopBGM, playSE 
                 >
                   {/* 個別HPバー (立ち絵の上部に固定) */}
                   {!enemy3.isDead && (
-                    <div className="absolute top-22 md:top-32 left-1/2 -translate-x-1/2 w-20 lg:w-32 z-50 flex flex-col pointer-events-auto">
+                    <div className="absolute top-8 lg:top-32 left-1/2 -translate-x-1/2 w-20 lg:w-32 z-50 flex flex-col pointer-events-auto">
                       <div className="flex items-center justify-between w-full mb-0.5 px-1">
                         <div className="flex items-center gap-1">
                           <div className="w-1 h-1 bg-red-400 shadow-[0_0_8px_#f87171] rotate-45" />
@@ -1683,7 +1683,7 @@ export default function BattleFinalAkane({ onComplete, playBGM, stopBGM, playSE 
               return (
                 <motion.div
                   id={`char-${enemy1.id}`}
-                  className={`absolute w-44 h-56 md:w-64 md:h-80 flex items-center justify-center z-40 ${!enemy1.isDead && enemy1.flashTimer > 0 ? 'animate-battle-hit-flash' : ''}`}
+                  className={`absolute ml-40 lg:ml-0 top-16 lg:top-0 w-40 h-52 lg:w-64 lg:h-80 flex items-center justify-center z-40 ${!enemy1.isDead && enemy1.flashTimer > 0 ? 'animate-battle-hit-flash' : ''}`}
                   animate={{
                     x: isAttacking ? -150 : (isCurrentTurn && turnPhase === 'enemy_resolve' ? -150 : -120), // 攻撃時はさらに左へ踏み込む(-150px)
                     scale: isAttacking ? 1.05 : (enemy1.isDead ? 0.95 : 1),
