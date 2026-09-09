@@ -1569,7 +1569,7 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
 
                   <motion.div
                     id={`char-${enemy.id}`}
-                    className={`relative w-48 h-60 md:w-80 md:h-96 flex items-center justify-center z-40 ${enemy.isDead ? 'opacity-30 grayscale'
+                    className={`relative top-16 lg:top-0 w-44 h-56 lg:w-80 lg:h-96 flex items-center justify-center z-40 ${enemy.isDead ? 'opacity-30 grayscale'
                       : enemy.flashTimer > 0 ? 'animate-battle-hit-flash'
                         : ''
                       }`}

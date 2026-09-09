@@ -1300,7 +1300,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
                   )}
 
                   {ally.id === 'mika' && (
-                    <div className="absolute w-[125px] h-[187px] lg:w-48 lg:h-64 flex items-center justify-center pointer-events-none z-0">
+                    <div className="absolute w-36 h-52 lg:w-48 lg:h-64 flex items-center justify-center pointer-events-none z-0">
                       <div className="relative w-full h-full lg:-translate-y-3.5 -translate-x-24 lg:-translate-x-40">
                         <img
                           src="/battle/sakura.png"
@@ -1438,7 +1438,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
                     </AnimatePresence>
 
                     {ally.image ? (
-                      <img src={ally.image} alt={ally.name} className={`w-full h-full object-contain relative z-10 -translate-y-6 scale-[1.35] ${ally.flashTimer > 0 ? 'animate-battle-hit-flash drop-shadow-[0_0_20px_rgba(248,113,113,0.8)]' : 'drop-shadow-lg'}`} />
+                      <img src={ally.image} alt={ally.name} className={`w-full h-full object-contain relative z-10 -translate-y-6 scale-90 lg:scale-[1.35] origin-bottom lg:origin-center ${ally.flashTimer > 0 ? 'animate-battle-hit-flash drop-shadow-[0_0_20px_rgba(248,113,113,0.8)]' : 'drop-shadow-lg'}`} />
                     ) : (
                       <div className="w-full h-full bg-slate-800/80 border border-slate-600 rounded-2xl flex items-center justify-center">
                         <span className="font-noto font-bold text-slate-300">{ally.name}</span>
@@ -1549,7 +1549,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
 
                   <motion.div
                     id={`char-${enemy.id}`}
-                    className={`relative w-48 h-60 md:w-80 md:h-96 flex items-center justify-center z-40 ${enemy.isDead ? 'opacity-30 grayscale'
+                    className={`relative top-16 lg:top-0 w-44 h-56 lg:w-80 lg:h-96 flex items-center justify-center z-40 ${enemy.isDead ? 'opacity-30 grayscale'
                       : enemy.flashTimer > 0 ? 'animate-battle-hit-flash'
                         : ''
                       }`}

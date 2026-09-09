@@ -115,7 +115,7 @@ const createAllies = () => [
 ];
 
 const createEnemies = () => [
-  { id: 'enemy1', name: 'キメラα', image: '/character/kimera3.png', hp: 2880, maxHp: 2880, color: '#ef4444', isStunned: false, isDead: false, flashTimer: 0 },
+  { id: 'enemy1', name: 'キメラα', image: '/character/kimera3.png', hp: 1800, maxHp: 1800, color: '#ef4444', isStunned: false, isDead: false, flashTimer: 0 },
 ];
 
 // Helper to get character info for timeline
@@ -722,9 +722,9 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
       const parryableIndex = activeAttacks.findIndex(attack => {
         if (attack.targetId !== allyId || attack.resolved) return false;
         const elapsed = Date.now() - attack.startTime;
-        // Strict parry window: closer to the allies' red circle (-180ms to +100ms)
-        const parryStart = attack.delay + attack.duration - 180;
-        const parryEnd = attack.delay + attack.duration + 100;
+        // Lenient parry window: widened for easier timing (-300ms to +150ms)
+        const parryStart = attack.delay + attack.duration - 300;
+        const parryEnd = attack.delay + attack.duration + 150;
         return elapsed >= parryStart && elapsed <= parryEnd;
       });
 
@@ -972,14 +972,15 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
     addLog(`🎵 朔良が強化の歌を歌った！ 味方の攻防力UP (2ターン)`);
   }, [syncRate, addLog, triggerSakuraNote]);
 
-  const handleMutsunoriUltimate = useCallback(() => {
+  const handleUltimate = useCallback(() => {
     if (syncRate < SYNC_COST_ULTIMATE || stateRef.current.battlePhase !== 'fighting') return;
 
-    const mutsunori = allies.find(a => a.id === 'mutsunori');
-    if (!mutsunori || mutsunori.isDead) return;
+    const aliveAllies = allies.filter(a => !a.isDead);
+    if (aliveAllies.length === 0) return;
+    const attacker = aliveAllies[Math.floor(Math.random() * aliveAllies.length)];
 
     setSyncRate(0);
-    setDuetCutin({ allyId: mutsunori.id, name: mutsunori.name, image: mutsunori.cutinImage });
+    setDuetCutin({ allyId: attacker.id, name: attacker.name, image: attacker.cutinImage });
 
     setUltimateFlash(true);
     triggerSakuraNote();
@@ -1007,7 +1008,7 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
         });
       });
       setActiveAttacks([]);
-      addLog(`★★ 睦典の必殺技！ 渾身の一撃が炸裂！ ★★`);
+      addLog(`★★ ${attacker.name}の必殺技！ 渾身の一撃が炸裂！ ★★`);
     }, 1500);
 
     setTimeout(() => { setDuetCutin(null); setUltimateFlash(false); setShakeActive(false); }, 2500);
@@ -1285,13 +1286,13 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
             const isCounterDashing = counterAnim && counterAnim.allyId === ally.id;
 
             return (
-              <div key={ally.id} className={`relative flex flex-col items-center ${ally.id === 'mutsunori' ? '-translate-x-2 -translate-y-20 lg:-translate-x-4 lg:-translate-y-32' :
-                ally.id === 'nagisa' ? 'translate-x-2 -translate-y-12 lg:translate-x-4 lg:-translate-y-18' :
-                  ally.id === 'mika' ? 'translate-x-12 -translate-y-16 lg:translate-x-20 lg:-translate-y-24' : ''
+              <div key={ally.id} className={`relative flex flex-col items-center ${ally.id === 'mutsunori' ? '-translate-x-2 -translate-y-12 lg:-translate-x-4 lg:-translate-y-32' :
+                ally.id === 'nagisa' ? 'translate-x-2 -translate-y-4 lg:translate-x-4 lg:-translate-y-18' :
+                  ally.id === 'mika' ? 'translate-x-12 -translate-y-8 lg:translate-x-20 lg:-translate-y-24' : ''
                 }`}>
 
                 {/* ── Ally HP Bar (Chimera-A style) ── */}
-                <div className="w-20 lg:w-36 mb-1 lg:mb-2 z-20 relative">
+                <div className="w-20 lg:w-36 mb-1 lg:mb-2 z-20 relative translate-y-4 lg:translate-y-0">
                   <div className="flex flex-col items-center">
                     <div className="flex items-center justify-between w-full mb-0.5 px-1">
                       <div className="flex items-center gap-1.5">
@@ -1368,7 +1369,7 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
                   <motion.div
                     id={`char-${ally.id}`}
                     className={`relative cursor-pointer touch-none flex items-center justify-center
-                    ${ally.id === 'nagisa' ? 'w-[100px] h-[132px] lg:w-[198px] lg:h-[253px]' :
+                    ${ally.id === 'nagisa' ? 'w-[130px] h-[172px] lg:w-[198px] lg:h-[253px]' :
                         ally.id === 'mika' ? 'w-[132px] h-[198px] lg:w-[192px] lg:h-[264px]' :
                           ally.id === 'mutsunori' ? 'w-[113px] h-[168px] lg:w-[173px] lg:h-[230px]' :
                             'w-[125px] h-[187px] lg:w-48 lg:h-64'}
@@ -1586,10 +1587,10 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
                   </AnimatePresence>
                 </div>
 
-                <div className="relative flex items-center justify-center -top-2 -left-8 lg:top-5 lg:left-0">
+                <div className="relative flex items-center justify-center -top-28 -left-8 lg:top-5 lg:left-0">
                   <motion.div
                     id={`char-${enemy.id}`}
-                    className={`relative w-[518px] h-[690px] lg:w-[720px] lg:h-[864px] flex items-center justify-center z-40 ${enemy.isDead ? 'opacity-30 grayscale'
+                    className={`relative w-[480px] h-[640px] lg:w-[720px] lg:h-[864px] flex items-center justify-center z-40 ${enemy.isDead ? 'opacity-30 grayscale'
                       : enemy.flashTimer > 0 ? 'animate-battle-hit-flash'
                         : ''
                       }`}
@@ -1676,7 +1677,7 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
 
           {/* Left Button - ULTIMATE (Reactor Core) */}
           <motion.button
-            onClick={handleMutsunoriUltimate}
+            onClick={handleUltimate}
             disabled={syncRate < SYNC_COST_ULTIMATE || battlePhase !== 'fighting'}
             className={`relative w-[108px] h-[108px] lg:w-32 lg:h-32 rounded-full flex flex-col items-center justify-center transition-all duration-300 shadow-[0_0_30px_rgba(0,0,0,0.8)] backdrop-blur-md hover:scale-105 active:scale-95 ${syncRate < SYNC_COST_ULTIMATE || battlePhase !== 'fighting'
               ? 'bg-[#0a0a0a]/90 cursor-not-allowed grayscale'

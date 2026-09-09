@@ -1514,10 +1514,10 @@ export default function BattleMidBossMika({ onComplete, playBGM, stopBGM, playSE
 
             return (
               <div key={enemy.id} className="relative flex flex-col items-center w-full">
-                <div className="relative flex items-center justify-center -top-2 -left-8 lg:top-5 lg:left-0">
+                <div className="relative flex items-center justify-center top-12 -left-8 lg:top-5 lg:left-0">
                   <motion.div
                     id={`char-${enemy.id}`}
-                    className={`relative w-64 h-80 lg:w-96 lg:h-[30rem] flex items-center justify-center z-40 -translate-y-32 ${enemy.isDead ? 'opacity-30 grayscale'
+                    className={`relative w-48 h-64 lg:w-96 lg:h-[30rem] flex items-center justify-center z-40 -translate-y-16 lg:-translate-y-32 ${enemy.isDead ? 'opacity-30 grayscale'
                       : enemy.flashTimer > 0 ? 'animate-battle-hit-flash'
                         : ''
                       }`}
@@ -1534,7 +1534,7 @@ export default function BattleMidBossMika({ onComplete, playBGM, stopBGM, playSE
                     <img src={enemy.image} alt={enemy.name} className={`w-full h-full object-contain drop-shadow-[0_0_15px_rgba(244,63,94,0.3)]`} />
 
                     {/* Enemy HP Bar placed directly as an absolute overlay above her head! */}
-                    <div className="absolute top-8 lg:top-16 left-1/2 -translate-x-1/2 w-16 lg:w-28 z-50 pointer-events-auto">
+                    <div className="absolute top-10 lg:top-16 left-1/2 -translate-x-1/2 w-16 lg:w-28 z-50 pointer-events-auto">
                       <div className="flex flex-col items-center">
                         <div className="flex items-center justify-between w-full mb-0.5 px-1 lg:mb-0.5 lg:px-1">
                           <div className="flex items-center gap-2">

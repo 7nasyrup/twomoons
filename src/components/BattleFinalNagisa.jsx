@@ -1251,7 +1251,7 @@ export default function BattleFinalNagisa({ onComplete, playBGM, stopBGM, playSE
               <div key={ally.id} className="relative flex flex-col items-center w-full">
 
                 {/* ── Ally HP Bar (Chimera-A style) ── */}
-                <div className="w-20 lg:w-36 mb-1 lg:mb-2 z-20 relative">
+                <div className={`w-20 lg:w-36 mb-1 lg:mb-2 z-20 relative ${ally.id === 'nagisa' ? 'translate-y-4 lg:translate-y-0' : ''}`}>
                   <div className="flex flex-col items-center">
                     <div className="flex items-center justify-between w-full mb-0.5 px-1">
                       <div className="flex items-center gap-1.5">
@@ -1300,7 +1300,7 @@ export default function BattleFinalNagisa({ onComplete, playBGM, stopBGM, playSE
                   )}
 
                   {ally.id === 'nagisa' && (
-                    <div className="absolute w-[125px] h-[187px] lg:w-48 lg:h-64 flex items-center justify-center pointer-events-none z-0">
+                    <div className="absolute w-40 h-56 lg:w-48 lg:h-64 flex items-center justify-center pointer-events-none z-0">
                       <div className="relative w-full h-full lg:-translate-y-3.5 -translate-x-24 lg:-translate-x-40">
                         <img
                           src="/battle/sakura.png"
@@ -1327,7 +1327,7 @@ export default function BattleFinalNagisa({ onComplete, playBGM, stopBGM, playSE
 
                   <motion.div
                     id={`char-${ally.id}`}
-                    className={`relative cursor-pointer touch-none flex items-center justify-center w-[188px] h-[250px] md:w-[250px] md:h-[333px] translate-y-6 md:translate-y-12
+                    className={`relative cursor-pointer touch-none flex items-center justify-center w-[188px] h-[250px] lg:w-[250px] lg:h-[333px] translate-y-6 lg:translate-y-12
                     ${ally.isDead ? 'opacity-40 grayscale' : ''}
                   `}
                     animate={{ x: isCounterDashing ? 150 : (isCurrentTurn ? 30 : 0) }}
@@ -1439,7 +1439,7 @@ export default function BattleFinalNagisa({ onComplete, playBGM, stopBGM, playSE
                     </AnimatePresence>
 
                     {ally.image ? (
-                      <img src={ally.image} alt={ally.name} className={`w-full h-full object-contain relative z-10 lg:-translate-y-6 ${ally.flashTimer > 0 ? 'animate-battle-hit-flash drop-shadow-[0_0_20px_rgba(248,113,113,0.8)]' : 'drop-shadow-lg'}`} />
+                      <img src={ally.image} alt={ally.name} className={`w-full h-full object-contain relative z-10 lg:-translate-y-6 ${ally.id === 'nagisa' ? 'scale-90 lg:scale-100 origin-bottom -translate-y-4' : ''} ${ally.flashTimer > 0 ? 'animate-battle-hit-flash drop-shadow-[0_0_20px_rgba(248,113,113,0.8)]' : 'drop-shadow-lg'}`} />
                     ) : (
                       <div className="w-full h-full bg-slate-800/80 border border-slate-600 rounded-2xl flex items-center justify-center">
                         <span className="font-noto font-bold text-slate-300">{ally.name}</span>
@@ -1552,7 +1552,7 @@ export default function BattleFinalNagisa({ onComplete, playBGM, stopBGM, playSE
 
                   <motion.div
                     id={`char-${enemy.id}`}
-                    className={`relative w-48 h-60 md:w-80 md:h-96 flex items-center justify-center z-40 ${enemy.isDead ? 'opacity-30 grayscale'
+                    className={`relative top-16 lg:top-0 w-44 h-56 lg:w-80 lg:h-96 flex items-center justify-center z-40 ${enemy.isDead ? 'opacity-30 grayscale'
                       : enemy.flashTimer > 0 ? 'animate-battle-hit-flash'
                         : ''
                       }`}
