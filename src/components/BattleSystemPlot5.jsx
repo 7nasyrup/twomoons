@@ -825,6 +825,41 @@ export default function BattleSystemPlot5({ onComplete, playBGM, stopBGM, playSE
     });
   }, []);
 
+  const handleAllyAttack = useCallback((e) => {
+    if (e && e.stopPropagation) e.stopPropagation();
+    if (stateRef.current.turnPhase !== 'ally_windup') return;
+    if (qteSuccessRef.current) return;
+
+    const elapsed = Date.now() - qteStartTimeRef.current;
+
+    // The bar duration is 800ms. The center is hit at 400ms.
+    // perfect: 320ms - 480ms
+    // good: 200ms - 600ms
+    let result = 'miss';
+    if (elapsed >= 320 && elapsed <= 480) {
+      result = 'perfect';
+    } else if (elapsed >= 200 && elapsed <= 600) {
+      result = 'good';
+    }
+
+    setHitPosition(Math.min((elapsed / 800) * 100, 100));
+
+    qteResultRef.current = result;
+    qteSuccessRef.current = true;
+
+    if (result === 'perfect' || result === 'good') {
+      setAllyQTEState(result);
+      if (playSE) playSE('/assets/audio/bgm/+parry.mp3');
+      triggerSakuraNote('attack');
+      triggerSakuraSpeech('attack');
+    } else {
+      setAllyQTEState('fail');
+      if (playSE) playSE('/assets/audio/bgm/+parry.mp3');
+      triggerSakuraNote('attack');
+      triggerSakuraSpeech('attack');
+    }
+  }, [playSE, triggerSakuraNote, triggerSakuraSpeech]);
+
   // ─── Keyboard Controls (Enter to Guard/Parry) ───
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -929,42 +964,6 @@ export default function BattleSystemPlot5({ onComplete, playBGM, stopBGM, playSE
   // ABILITIES
   // ═══════════════════════════════════════════════════════════════════════════════
 
-  const handleAllyAttack = useCallback((e) => {
-    if (e && e.stopPropagation) e.stopPropagation();
-    if (stateRef.current.turnPhase !== 'ally_windup') return;
-    if (qteSuccessRef.current) return;
-
-    const elapsed = Date.now() - qteStartTimeRef.current;
-
-    // The bar duration is 800ms. The center is hit at 400ms.
-    // perfect: 320ms - 480ms
-    // good: 200ms - 600ms
-    let result = 'miss';
-    if (elapsed >= 320 && elapsed <= 480) {
-      result = 'perfect';
-    } else if (elapsed >= 200 && elapsed <= 600) {
-      result = 'good';
-    }
-
-    setHitPosition(Math.min((elapsed / 800) * 100, 100));
-
-    qteResultRef.current = result;
-    qteSuccessRef.current = true;
-
-    if (result === 'perfect' || result === 'good') {
-      setAllyQTEState(result);
-      if (playSE) playSE('/assets/audio/bgm/+parry.mp3');
-      triggerSakuraNote('attack');
-      triggerSakuraSpeech('attack');
-    } else {
-      setAllyQTEState('fail');
-      if (playSE) playSE('/assets/audio/bgm/+parry.mp3');
-      triggerSakuraNote('attack');
-      triggerSakuraSpeech('attack');
-    }
-  }, [playSE, triggerSakuraNote, triggerSakuraSpeech]);
-
-
   const handleHeal = useCallback(() => {
     if (healCooldown > 0 || stateRef.current.battlePhase !== 'fighting') return;
 
@@ -1039,9 +1038,40 @@ export default function BattleSystemPlot5({ onComplete, playBGM, stopBGM, playSE
   }, [syncRate, allies, addLog, triggerSakuraNote, spawnDamageNumber]);
 
   const handleResultClose = useCallback(() => {
+    if (battlePhase === 'defeat') {
+      setAllies(createAllies());
+      setEnemies(createEnemies());
+      setSyncRate(0);
+      setBattlePhase('intro');
+      setTurnPhase('waiting');
+      setCurrentTurnIndex(0);
+      setActiveAttacks([]);
+      setBattleLog([]);
+      setGuardingAllies(new Set());
+      setHealCooldown(0);
+      setBuffTurnsLeft(0);
+      setCorruption(0);
+      setActiveFragments([]);
+      setAbsorbCooldown(0);
+      setDuetCutin(null);
+      setUltimateFlash(false);
+      setParryFlash(false);
+      setHealFlash(false);
+      setShakeActive(false);
+      setCounterAnim(null);
+      setCounterAttack(null);
+      setSakuraSinging(false);
+      setSakuraNotes([]);
+      setShowDamageNumbers([]);
+      setIsCommandMenuOpen(false);
+      setAllyQTEState('none');
+      setHitPosition(null);
+      if (playBGM) playBGM();
+      return;
+    }
     if (stopBGM) stopBGM();
     onComplete(battlePhase === 'victory' ? 'win' : 'lose');
-  }, [battlePhase, onComplete, stopBGM]);
+  }, [battlePhase, onComplete, stopBGM, playBGM]);
 
 
   // ═══════════════════════════════════════════════════════════════════════════════
@@ -1811,7 +1841,7 @@ export default function BattleSystemPlot5({ onComplete, playBGM, stopBGM, playSE
                 whileTap={{ scale: 0.95 }}
               >
                 <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-r from-transparent ${battlePhase === 'victory' ? 'via-cyan-400/20' : 'via-red-400/20'} to-transparent translate-x-[-100%] group-hover:translate-x-[100%]`} style={{ transitionDuration: '1s' }} />
-                <span className="relative z-10">{battlePhase === 'victory' ? '次へ進む' : '撤退する'}</span>
+                <span className="relative z-10">{battlePhase === 'victory' ? '次へ進む' : 'もう一度戦う'}</span>
               </motion.button>
             </motion.div>
           </motion.div>

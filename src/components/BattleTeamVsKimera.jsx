@@ -25,28 +25,68 @@ const SYNC_COST_ULTIMATE = 100;       // Cost to use ultimate
 const SYNC_COST_BUFF = 30;            // Cost to use buff song
 
 const ATTACK_PATTERNS = [
-  { label: '通常攻撃', sequence: [{ hits: 1, duration: 1200, interval: 0, delayStart: 0 }] },
-  { label: '高速攻撃', sequence: [{ hits: 1, duration: 800, interval: 0, delayStart: 0 }] },
-  { label: '二連撃', sequence: [{ hits: 2, duration: 1000, interval: 250, delayStart: 0 }] },
   {
-    label: 'ディレイ連撃', sequence: [
+    label: '連爪壊撃', sequence: [
       { hits: 1, duration: 1000, interval: 0, delayStart: 0 },
-      { hits: 2, duration: 800, interval: 200, delayStart: 1000 }
+      { hits: 1, duration: 180, interval: 0, delayStart: 1000 }
     ]
   },
   {
-    label: '変拍子連撃', sequence: [
-      { hits: 2, duration: 900, interval: 200, delayStart: 0 },
-      { hits: 1, duration: 900, interval: 0, delayStart: 1200 }
+    label: '遅滞と神速', sequence: [
+      { hits: 1, duration: 1300, interval: 0, delayStart: 0 },
+      { hits: 1, duration: 220, interval: 0, delayStart: 1300 }
     ]
   },
-  { label: '三連撃', sequence: [{ hits: 3, duration: 900, interval: 250, delayStart: 0 }] },
   {
-    label: '乱舞', sequence: [
-      { hits: 2, duration: 800, interval: 150, delayStart: 0 },
-      { hits: 2, duration: 800, interval: 150, delayStart: 900 }
+    label: '三位一体の暴風', sequence: [
+      { hits: 1, duration: 1000, interval: 0, delayStart: 0 },
+      { hits: 1, duration: 650, interval: 0, delayStart: 1000 },
+      { hits: 1, duration: 200, interval: 0, delayStart: 1650 }
     ]
   },
+  {
+    label: 'シンコペーション・デス', sequence: [
+      { hits: 1, duration: 800, interval: 0, delayStart: 0 },
+      { hits: 1, duration: 200, interval: 0, delayStart: 800 },
+      { hits: 1, duration: 800, interval: 0, delayStart: 1000 },
+      { hits: 1, duration: 200, interval: 0, delayStart: 1800 }
+    ]
+  },
+  {
+    label: '五連続・裂空斬', sequence: [
+      { hits: 1, duration: 900, interval: 0, delayStart: 0 },
+      { hits: 1, duration: 220, interval: 0, delayStart: 900 },
+      { hits: 1, duration: 220, interval: 0, delayStart: 1120 },
+      { hits: 1, duration: 220, interval: 0, delayStart: 1340 },
+      { hits: 1, duration: 220, interval: 0, delayStart: 1560 }
+    ]
+  },
+  {
+    label: '終焉のメトロノーム', sequence: [
+      { hits: 1, duration: 900, interval: 0, delayStart: 0 },
+      { hits: 1, duration: 650, interval: 0, delayStart: 900 },
+      { hits: 1, duration: 650, interval: 0, delayStart: 1550 },
+      { hits: 1, duration: 650, interval: 0, delayStart: 2200 }
+    ]
+  },
+  {
+    label: '虚実の多段牙', sequence: [
+      { hits: 1, duration: 1100, interval: 0, delayStart: 0 },
+      { hits: 1, duration: 700, interval: 0, delayStart: 1100 },
+      { hits: 1, duration: 200, interval: 0, delayStart: 1800 },
+      { hits: 1, duration: 200, interval: 0, delayStart: 2000 },
+      { hits: 1, duration: 200, interval: 0, delayStart: 2200 }
+    ]
+  },
+  {
+    label: '崩壊のクレッシェンド', sequence: [
+      { hits: 1, duration: 1000, interval: 0, delayStart: 0 },
+      { hits: 1, duration: 750, interval: 0, delayStart: 1000 },
+      { hits: 1, duration: 600, interval: 0, delayStart: 1750 },
+      { hits: 1, duration: 450, interval: 0, delayStart: 2350 },
+      { hits: 1, duration: 300, interval: 0, delayStart: 2800 }
+    ]
+  }
 ];
 
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -75,7 +115,7 @@ const createAllies = () => [
 ];
 
 const createEnemies = () => [
-  { id: 'enemy1', name: 'キメラα', image: '/character/kimera3.png', hp: 1800, maxHp: 1800, color: '#ef4444', isStunned: false, isDead: false, flashTimer: 0 },
+  { id: 'enemy1', name: 'キメラα', image: '/character/kimera3.png', hp: 2880, maxHp: 2880, color: '#ef4444', isStunned: false, isDead: false, flashTimer: 0 },
 ];
 
 // Helper to get character info for timeline
@@ -447,16 +487,6 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
               qteSuccessRef.current = false;
               qteResultRef.current = 'miss';
             } else {
-              // Check if enemy is stunned (from parry)
-              const enemy = allEnemies.find(e => e.id === turnId);
-              if (enemy && enemy.isStunned) {
-                // Skip turn and clear stun
-                addLog(`💫 ${enemy.name} はスタンしているため行動不能！`);
-                setEnemies(prev => prev.map(e => e.id === turnId ? { ...e, isStunned: false } : e));
-                setCurrentTurnIndex(p => p + 1);
-                setTurnTimer(100);
-                return 100;
-              }
               setTurnPhase('enemy_windup');
             }
             return 0;
@@ -692,9 +722,9 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
       const parryableIndex = activeAttacks.findIndex(attack => {
         if (attack.targetId !== allyId || attack.resolved) return false;
         const elapsed = Date.now() - attack.startTime;
-        // Loosen parry window: from -450ms to +200ms
-        const parryStart = attack.delay + attack.duration - 450;
-        const parryEnd = attack.delay + attack.duration + 200;
+        // Strict parry window: closer to the allies' red circle (-180ms to +100ms)
+        const parryStart = attack.delay + attack.duration - 180;
+        const parryEnd = attack.delay + attack.duration + 100;
         return elapsed >= parryStart && elapsed <= parryEnd;
       });
 
@@ -726,13 +756,21 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
         if (!attack.isLast) {
           addLog(`✨ ${ally?.name} が弾いた！ さらに追撃が来る！`);
         } else {
-          addLog(`✨ パリィ成功！ ${ally?.name} が敵の攻撃を弾き返した！`);
+          // Check if player got hit by any of the previous attacks in this turn
+          const gotHitByAny = activeAttacks.some(a => a.resolved);
 
-          setEnemies(prev => prev.map(e => e.id === attack.enemyId ? { ...e, isStunned: true } : e));
-          setCounterAttack({ allyId, enemyId: attack.enemyId });
-          stateRef.current.counterAttack = { allyId, enemyId: attack.enemyId };
-          setTurnPhase('counter_attack');
-          stateRef.current.turnPhase = 'counter_attack';
+          if (gotHitByAny) {
+            addLog(`✨ パリィ！ ${ally?.name} が敵の最後の攻撃を凌ぎきった！`);
+            setCurrentTurnIndex(p => p + 1);
+            setTurnPhase('turn_delay');
+            setTurnTimer(TURN_DELAY);
+          } else {
+            addLog(`✨ パリィ成功！ ${ally?.name} が敵の攻撃を弾き返した！`);
+            setCounterAttack({ allyId, enemyId: attack.enemyId });
+            stateRef.current.counterAttack = { allyId, enemyId: attack.enemyId };
+            setTurnPhase('counter_attack');
+            stateRef.current.turnPhase = 'counter_attack';
+          }
 
           setActiveAttacks([]);
           stateRef.current.activeAttacks = [];
@@ -781,6 +819,40 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
     });
   }, []);
 
+  const handleAllyAttack = useCallback((e) => {
+    if (e && e.stopPropagation) e.stopPropagation();
+    if (stateRef.current.turnPhase !== 'ally_windup') return;
+    if (qteSuccessRef.current) return;
+
+    const elapsed = Date.now() - qteStartTimeRef.current;
+
+    // The bar duration is 800ms. The center is hit at 400ms.
+    // perfect: 340ms - 460ms
+    // good: 200ms - 600ms
+    let result = 'miss';
+    if (elapsed >= 340 && elapsed <= 460) {
+      result = 'perfect';
+    } else if (elapsed >= 200 && elapsed <= 600) {
+      result = 'good';
+    }
+
+    setHitPosition(Math.min((elapsed / 800) * 100, 100));
+
+    qteResultRef.current = result;
+    qteSuccessRef.current = true;
+
+    if (result === 'perfect' || result === 'good') {
+      setAllyQTEState(result);
+      if (playSE) playSE(assetPath('/assets/audio/bgm/+parry.mp3'));
+      triggerSakuraNote('attack');
+    } else {
+      setAllyQTEState('fail');
+      if (playSE) playSE(assetPath('/assets/audio/bgm/+parry.mp3'));
+      triggerSakuraNote('attack');
+    }
+  }, [playSE, triggerSakuraNote]);
+
+
   // ─── Keyboard Controls (Enter to Guard/Parry) ───
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -805,13 +877,7 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
     const handleKeyUp = (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        const attacks = stateRef.current.activeAttacks || [];
-        const attack = attacks[0];
-        const targetId = (attack && stateRef.current.turnPhase === 'enemy_windup')
-          ? attack.targetId
-          : stateRef.current.allies[0]?.id;
-
-        if (targetId) handlePointerUp(targetId);
+        stateRef.current.allies.forEach(ally => handlePointerUp(ally.id));
       }
     };
 
@@ -837,13 +903,7 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
       if (e.pointerType !== 'touch') return;
       if (e.target.closest('button') || e.target.closest('a') || e.target.closest('.interactive-btn') || e.target.closest('.cursor-pointer')) return;
 
-      const attacks = stateRef.current.activeAttacks || [];
-      const attack = attacks[0];
-      const targetId = (attack && stateRef.current.turnPhase === 'enemy_windup')
-        ? attack.targetId
-        : stateRef.current.allies[0]?.id;
-
-      if (targetId) handlePointerUp(targetId);
+      stateRef.current.allies.forEach(ally => handlePointerUp(ally.id));
     };
 
     window.addEventListener('keydown', handleKeyDown);
@@ -872,51 +932,13 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
   }, [handlePointerDown]);
 
   const handleDefendButtonUp = useCallback(() => {
-    const attacks = stateRef.current.activeAttacks || [];
-    const attack = attacks[0];
-    const targetId = (attack && stateRef.current.turnPhase === 'enemy_windup')
-      ? attack.targetId
-      : stateRef.current.allies[0]?.id;
-
-    if (targetId) handlePointerUp(targetId);
+    stateRef.current.allies.forEach(ally => handlePointerUp(ally.id));
   }, [handlePointerUp]);
 
   // ═══════════════════════════════════════════════════════════════════════════════
   // ABILITIES
   // ═══════════════════════════════════════════════════════════════════════════════
 
-  const handleAllyAttack = useCallback((e) => {
-    if (e && e.stopPropagation) e.stopPropagation();
-    if (stateRef.current.turnPhase !== 'ally_windup') return;
-    if (qteSuccessRef.current) return;
-
-    const elapsed = Date.now() - qteStartTimeRef.current;
-
-    // The bar duration is 800ms. The center is hit at 400ms.
-    // perfect: 320ms - 480ms
-    // good: 200ms - 600ms
-    let result = 'miss';
-    if (elapsed >= 320 && elapsed <= 480) {
-      result = 'perfect';
-    } else if (elapsed >= 200 && elapsed <= 600) {
-      result = 'good';
-    }
-
-    setHitPosition(Math.min((elapsed / 800) * 100, 100));
-
-    qteResultRef.current = result;
-    qteSuccessRef.current = true;
-
-    if (result === 'perfect' || result === 'good') {
-      setAllyQTEState(result);
-      if (playSE) playSE(assetPath('/assets/audio/bgm/+parry.mp3'));
-      triggerSakuraNote('attack');
-    } else {
-      setAllyQTEState('fail');
-      if (playSE) playSE(assetPath('/assets/audio/bgm/+parry.mp3'));
-      triggerSakuraNote('attack');
-    }
-  }, [playSE, triggerSakuraNote]);
 
 
   const handleHeal = useCallback(() => {
@@ -992,9 +1014,40 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
   }, [syncRate, allies, addLog, triggerSakuraNote, spawnDamageNumber]);
 
   const handleResultClose = useCallback(() => {
+    if (battlePhase === 'defeat') {
+      setAllies(createAllies());
+      setEnemies(createEnemies());
+      setSyncRate(0);
+      setBattlePhase('intro');
+      setTurnPhase('waiting');
+      setCurrentTurnIndex(0);
+      setActiveAttacks([]);
+      setBattleLog([]);
+      setGuardingAllies(new Set());
+      setHealCooldown(0);
+      setBuffTurnsLeft(0);
+      setCorruption(0);
+      setActiveFragments([]);
+      setAbsorbCooldown(0);
+      setDuetCutin(null);
+      setUltimateFlash(false);
+      setParryFlash(false);
+      setHealFlash(false);
+      setShakeActive(false);
+      setCounterAnim(null);
+      setCounterAttack(null);
+      setSakuraSinging(false);
+      setSakuraNotes([]);
+      setShowDamageNumbers([]);
+      setIsCommandMenuOpen(false);
+      setAllyQTEState('none');
+      setHitPosition(null);
+      if (playBGM) playBGM();
+      return;
+    }
     if (stopBGM) stopBGM();
     onComplete(battlePhase === 'victory' ? 'win' : 'lose');
-  }, [battlePhase, onComplete, stopBGM]);
+  }, [battlePhase, onComplete, stopBGM, playBGM]);
 
 
   // ═══════════════════════════════════════════════════════════════════════════════
@@ -1232,9 +1285,9 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
             const isCounterDashing = counterAnim && counterAnim.allyId === ally.id;
 
             return (
-              <div key={ally.id} className={`relative flex flex-col items-center ${ally.id === 'mutsunori' ? 'translate-x-2 -translate-y-14 lg:translate-x-4 lg:-translate-y-24' :
-                ally.id === 'nagisa' ? 'translate-x-2 -translate-y-6 lg:translate-x-4 lg:-translate-y-10' :
-                  ally.id === 'mika' ? 'translate-x-8 -translate-y-10 lg:translate-x-12 lg:-translate-y-16' : ''
+              <div key={ally.id} className={`relative flex flex-col items-center ${ally.id === 'mutsunori' ? '-translate-x-2 -translate-y-20 lg:-translate-x-4 lg:-translate-y-32' :
+                ally.id === 'nagisa' ? 'translate-x-2 -translate-y-12 lg:translate-x-4 lg:-translate-y-18' :
+                  ally.id === 'mika' ? 'translate-x-12 -translate-y-16 lg:translate-x-20 lg:-translate-y-24' : ''
                 }`}>
 
                 {/* ── Ally HP Bar (Chimera-A style) ── */}
@@ -1288,7 +1341,7 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
 
                   {ally.id === 'mika' && (
                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
-                      <div className="relative w-[125px] h-[187px] lg:w-48 lg:h-64 lg:-translate-y-3.5 -translate-x-20 lg:-translate-x-32">
+                      <div className="relative w-[125px] h-[187px] lg:w-48 lg:h-64 -translate-y-6 lg:-translate-y-12 -translate-x-20 lg:-translate-x-32">
                         <img
                           src="/battle/sakura.png"
                           alt="sakura"
@@ -1354,7 +1407,7 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
                         {/* Simple Timing Bar */}
                         <div className="relative w-[100%] max-w-[150px] lg:max-w-[200px] h-3 lg:h-4 bg-black/60 backdrop-blur-sm border border-white/20 rounded-full overflow-hidden shadow-lg">
                           {/* Success Zone */}
-                          <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[20%] bg-cyan-400/50" />
+                          <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 bg-cyan-400/50" style={{ width: '15%' }} />
 
                           {/* Moving Indicator */}
                           {allyQTEState === 'waiting' ? (
@@ -1549,7 +1602,7 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
                       ease: isAttacking ? 'easeOut' : 'easeInOut'
                     }}
                   >
-                    <img src={enemy.image} alt={enemy.name} className={`w-full h-full object-contain drop-shadow-[0_0_15px_rgba(244,63,94,0.3)] transition-all duration-150 ${enemy.isStunned ? 'opacity-70 grayscale-[50%]' : ''}`} />
+                    <img src={enemy.image} alt={enemy.name} className="w-full h-full object-contain drop-shadow-[0_0_15px_rgba(244,63,94,0.3)] transition-all duration-150" />
                     <AnimatePresence>
                       {enemy.flashTimer > 0 && (
                         <motion.div
@@ -1740,7 +1793,7 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
                 whileTap={{ scale: 0.95 }}
               >
                 <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-r from-transparent ${battlePhase === 'victory' ? 'via-cyan-400/20' : 'via-red-400/20'} to-transparent translate-x-[-100%] group-hover:translate-x-[100%]`} style={{ transitionDuration: '1s' }} />
-                <span className="relative z-10">{battlePhase === 'victory' ? '次へ進む' : '撤退する'}</span>
+                <span className="relative z-10">{battlePhase === 'victory' ? '次へ進む' : 'もう一度戦う'}</span>
               </motion.button>
             </motion.div>
           </motion.div>

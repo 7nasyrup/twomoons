@@ -752,9 +752,35 @@ export default function BattleSystemPlot4({ onComplete, playBGM, stopBGM, playSE
   }, [syncRate, allies, addLog, triggerSakuraNote, spawnDamageNumber]);
 
   const handleResultClose = useCallback(() => {
+    if (battlePhase === 'defeat') {
+      setAllies(createAllies());
+      setEnemies(createEnemies());
+      setSyncRate(0);
+      setBattlePhase('intro');
+      setTurnPhase('waiting');
+      setCurrentTurnIndex(0);
+      setActiveAttacks([]);
+      setBattleLog([]);
+      setGuardingAllies(new Set());
+      setHealCooldown(0);
+      setBuffTurnsLeft(0);
+      setDuetCutin(null);
+      setUltimateFlash(false);
+      setParryFlash(false);
+      setHealFlash(false);
+      setShakeActive(false);
+      setCounterAnim(null);
+      setCounterAttack(null);
+      setSakuraSinging(false);
+      setSakuraNotes([]);
+      setShowDamageNumbers([]);
+      setIsCommandMenuOpen(false);
+      if (playBGM) playBGM();
+      return;
+    }
     if (stopBGM) stopBGM();
     onComplete(battlePhase === 'victory' ? 'win' : 'lose');
-  }, [battlePhase, onComplete, stopBGM]);
+  }, [battlePhase, onComplete, stopBGM, playBGM]);
 
 
   // ═══════════════════════════════════════════════════════════════════════════════
@@ -1355,7 +1381,7 @@ export default function BattleSystemPlot4({ onComplete, playBGM, stopBGM, playSE
                 <motion.div className="mt-4 h-[1px] w-48 mx-auto bg-gradient-to-r from-transparent via-cyan-300/40 to-transparent" initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ delay: 1, duration: 0.6 }} />
               )}
               <button onClick={handleResultClose} className={`mt-10 px-10 py-3 font-noto font-bold text-xs tracking-[0.3em] rounded border transition-all duration-300 hover:-translate-y-1 ${battlePhase === 'victory' ? 'bg-cyan-950/50 border-cyan-400/30 text-cyan-100 hover:bg-cyan-900/50 hover:border-cyan-300/50 hover:shadow-[0_0_20px_rgba(103,232,249,0.3)]' : 'bg-red-950/50 border-red-400/30 text-red-100 hover:bg-red-900/50 hover:border-red-300/50 hover:shadow-[0_0_20px_rgba(248,113,113,0.3)]'}`}>
-                {battlePhase === 'victory' ? '次へ進む' : '撤退する'}
+                {battlePhase === 'victory' ? '次へ進む' : 'もう一度戦う'}
               </button>
             </motion.div>
           </motion.div>
