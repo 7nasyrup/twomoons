@@ -815,13 +815,50 @@ export default function BattleFinalAkane({ onComplete, playBGM, stopBGM, playSE 
       }
     };
 
+    const handleWindowPointerDown = (e) => {
+      if (e.pointerType !== 'touch') return;
+      if (e.target.closest('button') || e.target.closest('a') || e.target.closest('.interactive-btn') || e.target.closest('.cursor-pointer')) return;
+
+      if (stateRef.current.turnPhase === 'ally_windup') {
+        handleAllyAttack();
+        return;
+      }
+
+      const attacks = stateRef.current.activeAttacks || [];
+      const attack = attacks[0];
+      const targetId = (attack && stateRef.current.turnPhase === 'enemy_windup')
+        ? attack.targetId
+        : stateRef.current.allies[0]?.id;
+
+      if (targetId) handlePointerDown(targetId);
+    };
+
+    const handleWindowPointerUp = (e) => {
+      if (e.pointerType !== 'touch') return;
+      if (e.target.closest('button') || e.target.closest('a') || e.target.closest('.interactive-btn') || e.target.closest('.cursor-pointer')) return;
+
+      const attacks = stateRef.current.activeAttacks || [];
+      const attack = attacks[0];
+      const targetId = (attack && stateRef.current.turnPhase === 'enemy_windup')
+        ? attack.targetId
+        : stateRef.current.allies[0]?.id;
+
+      if (targetId) handlePointerUp(targetId);
+    };
+
     window.addEventListener('keydown', handleKeyDown);
     window.addEventListener('keyup', handleKeyUp);
+    window.addEventListener('pointerdown', handleWindowPointerDown);
+    window.addEventListener('pointerup', handleWindowPointerUp);
+    window.addEventListener('pointercancel', handleWindowPointerUp);
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('keyup', handleKeyUp);
+      window.removeEventListener('pointerdown', handleWindowPointerDown);
+      window.removeEventListener('pointerup', handleWindowPointerUp);
+      window.removeEventListener('pointercancel', handleWindowPointerUp);
     };
-  }, [handlePointerDown, handlePointerUp]);
+  }, [handlePointerDown, handlePointerUp, handleAllyAttack]);
 
   // ─── UI Button Controls (Defend) ───
   const handleDefendButtonDown = useCallback(() => {
@@ -1460,12 +1497,14 @@ export default function BattleFinalAkane({ onComplete, playBGM, stopBGM, playSE 
                 <motion.div
                   id={`char-${enemy2.id}`}
                   className="absolute w-[420px] h-[360px] md:w-[500px] md:h-[620px] flex items-center justify-center z-20 pointer-events-none"
-                  style={{ display: enemy2.isDead ? 'none' : 'block' }}
                   animate={{
                     x: isAttacking ? 30 : (isCurrentTurn && turnPhase === 'enemy_resolve' ? 30 : 0) + 110, // 右列縦並び(+110px)、攻撃時は前進距離を短縮(+30px)
                     y: -10, // 下段から少し上に移動！
+                    opacity: enemy2.isDead ? 0 : 1,
+                    scale: enemy2.isDead ? 0.95 : 1,
+                    filter: enemy2.isDead ? "blur(4px) grayscale(100%)" : "blur(0px) grayscale(0%)"
                   }}
-                  transition={{ duration: 0.2 }}
+                  transition={{ duration: enemy2.isDead ? 1.5 : 0.2, ease: "easeOut" }}
                 >
                   {/* 個別HPバー (立ち絵の上部に固定) */}
                   {!enemy2.isDead && (
@@ -1542,12 +1581,14 @@ export default function BattleFinalAkane({ onComplete, playBGM, stopBGM, playSE 
                 <motion.div
                   id={`char-${enemy3.id}`}
                   className="absolute w-[420px] h-[360px] md:w-[500px] md:h-[620px] flex items-center justify-center z-10 pointer-events-none"
-                  style={{ display: enemy3.isDead ? 'none' : 'block' }}
                   animate={{
                     x: isAttacking ? 30 : (isCurrentTurn && turnPhase === 'enemy_resolve' ? 30 : 0) + 110, // 右列縦並び(+110px)、攻撃時は前進距離を短縮(+30px)
                     y: -180, // さらに上に移動！
+                    opacity: enemy3.isDead ? 0 : 1,
+                    scale: enemy3.isDead ? 0.95 : 1,
+                    filter: enemy3.isDead ? "blur(4px) grayscale(100%)" : "blur(0px) grayscale(0%)"
                   }}
-                  transition={{ duration: 0.2 }}
+                  transition={{ duration: enemy3.isDead ? 1.5 : 0.2, ease: "easeOut" }}
                 >
                   {/* 個別HPバー (立ち絵の上部に固定) */}
                   {!enemy3.isDead && (
@@ -1623,12 +1664,14 @@ export default function BattleFinalAkane({ onComplete, playBGM, stopBGM, playSE 
               return (
                 <motion.div
                   id={`char-${enemy1.id}`}
-                  className={`absolute w-44 h-56 md:w-64 md:h-80 flex items-center justify-center z-40 ${enemy1.isDead ? 'opacity-30 grayscale' : enemy1.flashTimer > 0 ? 'animate-battle-hit-flash' : ''}`}
+                  className={`absolute w-44 h-56 md:w-64 md:h-80 flex items-center justify-center z-40 ${!enemy1.isDead && enemy1.flashTimer > 0 ? 'animate-battle-hit-flash' : ''}`}
                   animate={{
                     x: isAttacking ? -150 : (isCurrentTurn && turnPhase === 'enemy_resolve' ? -150 : -120), // 攻撃時はさらに左へ踏み込む(-150px)
-                    scale: isAttacking ? 1.05 : 1
+                    scale: isAttacking ? 1.05 : (enemy1.isDead ? 0.95 : 1),
+                    opacity: enemy1.isDead ? 0 : 1,
+                    filter: enemy1.isDead ? "blur(4px) grayscale(100%)" : "blur(0px) grayscale(0%)"
                   }}
-                  transition={{ duration: 0.2 }}
+                  transition={{ duration: enemy1.isDead ? 1.5 : 0.2, ease: "easeOut" }}
                 >
                   {/* 個別HPバー (立ち絵の上部に固定) */}
                   {!enemy1.isDead && (

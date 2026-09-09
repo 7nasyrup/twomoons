@@ -703,11 +703,43 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
       }
     };
 
+    const handleWindowPointerDown = (e) => {
+      if (e.pointerType !== 'touch') return;
+      if (e.target.closest('button') || e.target.closest('a') || e.target.closest('.interactive-btn') || e.target.closest('.cursor-pointer')) return;
+
+      const attacks = stateRef.current.activeAttacks || [];
+      const attack = attacks[0];
+      const targetId = (attack && stateRef.current.turnPhase === 'enemy_windup')
+        ? attack.targetId
+        : stateRef.current.allies[0]?.id;
+
+      if (targetId) handlePointerDown(targetId);
+    };
+
+    const handleWindowPointerUp = (e) => {
+      if (e.pointerType !== 'touch') return;
+      if (e.target.closest('button') || e.target.closest('a') || e.target.closest('.interactive-btn') || e.target.closest('.cursor-pointer')) return;
+
+      const attacks = stateRef.current.activeAttacks || [];
+      const attack = attacks[0];
+      const targetId = (attack && stateRef.current.turnPhase === 'enemy_windup')
+        ? attack.targetId
+        : stateRef.current.allies[0]?.id;
+
+      if (targetId) handlePointerUp(targetId);
+    };
+
     window.addEventListener('keydown', handleKeyDown);
     window.addEventListener('keyup', handleKeyUp);
+    window.addEventListener('pointerdown', handleWindowPointerDown);
+    window.addEventListener('pointerup', handleWindowPointerUp);
+    window.addEventListener('pointercancel', handleWindowPointerUp);
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('keyup', handleKeyUp);
+      window.removeEventListener('pointerdown', handleWindowPointerDown);
+      window.removeEventListener('pointerup', handleWindowPointerUp);
+      window.removeEventListener('pointercancel', handleWindowPointerUp);
     };
   }, [handlePointerDown, handlePointerUp]);
 

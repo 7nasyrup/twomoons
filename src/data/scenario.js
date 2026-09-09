@@ -8924,9 +8924,6 @@ export const scenarioData = [
   },
   {
     "scene": "最奥部屋（コア無い感じの別室）",
-    "showIllust": [
-      "Ruki_neutral4"
-    ],
     "text": "やがて、ルキがゆっくりと朔良へ歩み寄る。"
   },
   {
@@ -15570,7 +15567,9 @@ export const scenarioData = [
     "scene": "コア部屋",
     "text": "少年がそう呟いた瞬間、黒騎士がゆっくりとこちらへ向き直る。",
     "showIllust": [
-      "BlackKnight3"
+      "BlackKnight3",
+      "kimera41",
+      "kimera54"
     ],
     "hideIllust": [
       "Ruki"

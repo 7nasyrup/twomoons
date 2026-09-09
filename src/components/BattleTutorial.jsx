@@ -1191,13 +1191,50 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
       }
     };
 
+    const handleWindowPointerDown = (e) => {
+      if (e.pointerType !== 'touch') return;
+      if (e.target.closest('button') || e.target.closest('a') || e.target.closest('.interactive-btn') || e.target.closest('.cursor-pointer')) return;
+
+      if (stateRef.current.turnPhase === 'ally_windup') {
+        handleAllyAttack();
+        return;
+      }
+
+      const attacks = stateRef.current.activeAttacks || [];
+      const attack = attacks[0];
+      const targetId = (attack && stateRef.current.turnPhase === 'enemy_windup')
+        ? attack.targetId
+        : stateRef.current.allies[0]?.id;
+
+      if (targetId) handlePointerDown(targetId);
+    };
+
+    const handleWindowPointerUp = (e) => {
+      if (e.pointerType !== 'touch') return;
+      if (e.target.closest('button') || e.target.closest('a') || e.target.closest('.interactive-btn') || e.target.closest('.cursor-pointer')) return;
+
+      const attacks = stateRef.current.activeAttacks || [];
+      const attack = attacks[0];
+      const targetId = (attack && stateRef.current.turnPhase === 'enemy_windup')
+        ? attack.targetId
+        : stateRef.current.allies[0]?.id;
+
+      if (targetId) handlePointerUp(targetId);
+    };
+
     window.addEventListener('keydown', handleKeyDown);
     window.addEventListener('keyup', handleKeyUp);
+    window.addEventListener('pointerdown', handleWindowPointerDown);
+    window.addEventListener('pointerup', handleWindowPointerUp);
+    window.addEventListener('pointercancel', handleWindowPointerUp);
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('keyup', handleKeyUp);
+      window.removeEventListener('pointerdown', handleWindowPointerDown);
+      window.removeEventListener('pointerup', handleWindowPointerUp);
+      window.removeEventListener('pointercancel', handleWindowPointerUp);
     };
-  }, [handlePointerDown, handlePointerUp]);
+  }, [handlePointerDown, handlePointerUp, handleAllyAttack]);
 
   // ─── UI Button Controls (Defend) ───
   const handleDefendButtonDown = useCallback(() => {
@@ -1770,6 +1807,12 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
                       </>
                     )}
                   </p>
+
+                  {parryTutorialPage === 1 && (
+                    <span className="absolute bottom-1 right-2 lg:bottom-1.5 lg:right-3 text-[10px] lg:text-[14px] text-cyan-400 font-bold select-none animate-pulse z-20">
+                      ▶
+                    </span>
+                  )}
                 </div>
               </div>
             </motion.div>
@@ -2261,16 +2304,6 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
               : 'bg-[#1a0a03]/80 hover:bg-[#2a1005]/90 hover:shadow-[0_0_30px_rgba(251,191,36,0.5)] cursor-pointer'
               }`}
           >
-            {isUltimateTutorialActive && (
-              <motion.div
-                className="absolute -top-12 left-1/2 -translate-x-1/2 whitespace-nowrap text-amber-300 font-noto font-bold text-sm bg-black/60 px-3 py-1 rounded-full border border-amber-500/50"
-                initial={{ y: -10, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.5, yoyo: Infinity }}
-              >
-                ここをタップ！ ▼
-              </motion.div>
-            )}
             {/* Circular Progress Gauge */}
             <svg className="absolute inset-0 w-full h-full -rotate-90 pointer-events-none" viewBox="0 0 100 100" style={{ overflow: 'visible' }}>
               <circle cx="50" cy="50" r="48" fill="none" className="stroke-amber-900/40" strokeWidth="3" />

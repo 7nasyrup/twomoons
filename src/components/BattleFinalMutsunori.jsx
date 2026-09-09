@@ -831,13 +831,50 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
       }
     };
 
+    const handleWindowPointerDown = (e) => {
+      if (e.pointerType !== 'touch') return;
+      if (e.target.closest('button') || e.target.closest('a') || e.target.closest('.interactive-btn') || e.target.closest('.cursor-pointer')) return;
+
+      if (stateRef.current.turnPhase === 'ally_windup') {
+        handleAllyAttack();
+        return;
+      }
+
+      const attacks = stateRef.current.activeAttacks || [];
+      const attack = attacks[0];
+      const targetId = (attack && stateRef.current.turnPhase === 'enemy_windup')
+        ? attack.targetId
+        : stateRef.current.allies[0]?.id;
+
+      if (targetId) handlePointerDown(targetId);
+    };
+
+    const handleWindowPointerUp = (e) => {
+      if (e.pointerType !== 'touch') return;
+      if (e.target.closest('button') || e.target.closest('a') || e.target.closest('.interactive-btn') || e.target.closest('.cursor-pointer')) return;
+
+      const attacks = stateRef.current.activeAttacks || [];
+      const attack = attacks[0];
+      const targetId = (attack && stateRef.current.turnPhase === 'enemy_windup')
+        ? attack.targetId
+        : stateRef.current.allies[0]?.id;
+
+      if (targetId) handlePointerUp(targetId);
+    };
+
     window.addEventListener('keydown', handleKeyDown);
     window.addEventListener('keyup', handleKeyUp);
+    window.addEventListener('pointerdown', handleWindowPointerDown);
+    window.addEventListener('pointerup', handleWindowPointerUp);
+    window.addEventListener('pointercancel', handleWindowPointerUp);
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('keyup', handleKeyUp);
+      window.removeEventListener('pointerdown', handleWindowPointerDown);
+      window.removeEventListener('pointerup', handleWindowPointerUp);
+      window.removeEventListener('pointercancel', handleWindowPointerUp);
     };
-  }, [handlePointerDown, handlePointerUp]);
+  }, [handlePointerDown, handlePointerUp, handleAllyAttack]);
 
   // ─── UI Button Controls (Defend) ───
   const handleDefendButtonDown = useCallback(() => {
@@ -914,7 +951,7 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
       spawnDamageNumber(a.id, amount, 'heal');
       return { ...a, hp: Math.min(a.maxHp, a.hp + amount), flashTimer: 0 };
     }));
-    addLog(isMichiruRoute ? `💖 睦典の応援でサクラの体力が回復！ (+${amount} HP)` : `💖 朔良の歌でパーティ全体が回復！`);
+    addLog(isMichiruRoute ? `💖 満の応援でサクラの体力が回復！ (+${amount} HP)` : `💖 朔良の歌でパーティ全体が回復！`);
   }, [healCooldown, isMichiruRoute, addLog, triggerSakuraNote, spawnDamageNumber]);
 
   const handleBuff = useCallback(() => {
@@ -926,7 +963,7 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
     setTimeout(() => setHealFlash(false), 300);
     triggerSakuraNote();
 
-    addLog(isMichiruRoute ? `🎵 睦典がサクラを奮い立たせた！ 味方の攻防力UP (2ターン)` : `🎵 朔良が強化の歌を歌った！ 味方の攻防力UP (2ターン)`);
+    addLog(isMichiruRoute ? `🎵 満がサクラを奮い立たせた！ 味方の攻防力UP (2ターン)` : `🎵 朔良が強化の歌を歌った！ 味方の攻防力UP (2ターン)`);
   }, [syncRate, addLog, triggerSakuraNote]);
 
   const handleMutsunoriUltimate = useCallback(() => {
@@ -1266,9 +1303,9 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
                       <div className="relative w-[125px] h-[187px] lg:w-48 lg:h-64 lg:-translate-y-3.5 -translate-x-24 lg:-translate-x-40">
                         <img
-                          src={isMichiruRoute ? "/battle/mutsunori.png" : "/battle/sakura.png"}
-                          alt={isMichiruRoute ? "mutsunori" : "sakura"}
-                          className="w-full h-full object-contain drop-shadow-lg opacity-90"
+                          src={isMichiruRoute ? "/battle/michiru.png" : "/battle/sakura.png"}
+                          alt={isMichiruRoute ? "michiru" : "sakura"}
+                          className={`w-full h-full object-contain drop-shadow-lg opacity-90 ${isMichiruRoute ? 'scale-110 origin-bottom' : ''}`}
                         />
                         <AnimatePresence>
                           {sakuraNotes.map(note => (
