@@ -1352,11 +1352,11 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
             return (
               <div key={ally.id} className={`relative flex flex-col items-center ${ally.id === 'mutsunori' ? '-translate-x-2 -translate-y-12 lg:-translate-x-4 lg:-translate-y-32' :
                 ally.id === 'nagisa' ? 'translate-x-2 -translate-y-4 lg:translate-x-4 lg:-translate-y-18' :
-                  ally.id === 'mika' ? 'translate-x-12 -translate-y-8 lg:translate-x-20 lg:-translate-y-24' : ''
+                  ally.id === 'mika' ? 'translate-x-20 -translate-y-8 lg:translate-x-20 lg:-translate-y-24' : ''
                 }`}>
 
                 {/* ── Ally HP Bar (Chimera-A style) ── */}
-                <div className="w-20 lg:w-36 mb-1 lg:mb-2 z-20 relative translate-y-4 lg:translate-y-0">
+                <div className={`w-20 lg:w-36 mb-1 lg:mb-2 z-20 relative translate-y-4 lg:translate-y-0 ${ally.id === 'nagisa' ? 'translate-x-4 lg:translate-x-0' : ''}`}>
                   <div className="flex flex-col items-center">
                     <div className="flex items-center justify-between w-full mb-0.5 px-1">
                       <div className="flex items-center gap-1.5">
@@ -1406,7 +1406,7 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
 
                   {ally.id === 'mika' && (
                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
-                      <div className="relative w-[125px] h-[187px] lg:w-48 lg:h-64 -translate-y-6 lg:-translate-y-12 -translate-x-20 lg:-translate-x-32">
+                      <div className="relative w-[125px] h-[187px] lg:w-48 lg:h-64 -translate-y-6 lg:-translate-y-12 -translate-x-12 lg:-translate-x-32">
                         <img
                           src="/battle/sakura.png"
                           alt="sakura"
