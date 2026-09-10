@@ -129,6 +129,10 @@ export default function TitleScreen({ onStart, onContinue, onBattle, hasSave, pl
                                             <span className="w-36 shrink-0">しんさんわーくす様</span>
                                             <span className="text-gray-400 leading-relaxed">「碧い回路の夜明け」</span>
                                         </div>
+                                        <div className="flex items-start">
+                                            <span className="w-36 shrink-0">FLASH☆BEAT様</span>
+                                            <span className="text-gray-400 leading-relaxed">「Incredible Power」</span>
+                                        </div>
                                     </div>
 
                                     <p className="text-white text-sm mt-8 mb-3 pl-2 border-l-2 border-luna-gold/30">BGMer　様</p>
@@ -138,12 +142,6 @@ export default function TitleScreen({ onStart, onContinue, onBattle, hasSave, pl
                                         </div>
                                     </div>
 
-                                    <p className="text-white text-sm mt-8 mb-3 pl-2 border-l-2 border-luna-gold/30">PeriTune　様</p>
-                                    <div className="flex flex-col gap-2 text-[11px] text-gray-300 pl-3">
-                                        <div className="flex items-start">
-                                            <span className="text-gray-400 leading-relaxed">「Glistening Ripples」</span>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
 
@@ -156,7 +154,6 @@ export default function TitleScreen({ onStart, onContinue, onBattle, hasSave, pl
                             </div>
 
                             <div className="border-t border-luna-gold/10 pt-3 text-center text-xs text-gray-400">
-                                <p>この作品はデモ版です。</p>
                                 <p className="mt-1">青い月と金色に光る本物の月が紡ぐ、</p>
                                 <p>近未来SFノベルアドベンチャー。</p>
                             </div>
