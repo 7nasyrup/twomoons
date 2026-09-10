@@ -1406,7 +1406,7 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
 
                   {ally.id === 'mika' && (
                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
-                      <div className="relative w-[125px] h-[187px] lg:w-48 lg:h-64 -translate-y-2 lg:-translate-y-12 -translate-x-24 lg:-translate-x-32">
+                      <div className="relative w-[125px] h-[187px] lg:w-48 lg:h-64 translate-y-2 lg:-translate-y-12 -translate-x-24 lg:-translate-x-32">
                         <img
                           src="/battle/sakura.png"
                           alt="sakura"
