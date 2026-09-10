@@ -492,7 +492,7 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
   // ─── BGM ───
   useEffect(() => {
     if (playBGM) {
-      playBGM('/assets/audio/bgm/RPG_Battle_01.mp3');
+      playBGM('/assets/audio/bgm/TheSong.mp3');
     }
     return () => { if (stopBGM) stopBGM(); };
   }, []);

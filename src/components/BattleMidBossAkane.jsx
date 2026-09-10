@@ -333,7 +333,7 @@ export default function BattleMidBossAkane({ onComplete, playBGM, stopBGM, playS
   // ─── BGM ───
   useEffect(() => {
     if (playBGM) {
-      playBGM(assetPath('/assets/audio/bgm/RPG_Battle_01.mp3'));
+      playBGM(assetPath('/assets/audio/bgm/serious_2.mp3'));
     }
     return () => { if (stopBGM) stopBGM(); };
   }, []);

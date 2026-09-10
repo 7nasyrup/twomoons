@@ -352,7 +352,7 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
   // ─── BGM ───
   useEffect(() => {
     if (playBGM) {
-      playBGM(assetPath('/assets/audio/bgm/RPG_Battle_01.mp3'));
+      playBGM(assetPath('/assets/audio/bgm/Battle2.mp3'));
     }
     return () => { if (stopBGM) stopBGM(); };
   }, []);
@@ -1270,7 +1270,7 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
               <div key={ally.id} className="relative flex flex-col items-center w-full">
 
                 {/* ── Ally HP Bar (Chimera-A style) ── */}
-                <div className={`w-20 lg:w-36 mb-1 lg:mb-2 z-20 relative ${isMichiruRoute ? '-translate-y-8 lg:-translate-y-12' : ''}`}>
+                <div className={`w-20 lg:w-36 mb-1 lg:mb-2 z-20 relative ${isMichiruRoute ? 'translate-y-10 lg:-translate-y-12' : ''}`}>
                   <div className="flex flex-col items-center">
                     <div className="flex items-center justify-between w-full mb-0.5 px-1">
                       <div className="flex items-center gap-1.5">
@@ -1527,7 +1527,7 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
 
             return (
               <div key={enemy.id} className="relative flex flex-col items-center w-full">
-                <div className="w-20 lg:w-36 z-20 relative -translate-x-6 lg:translate-x-0 translate-y-2 lg:translate-y-6">
+                <div className="w-20 lg:w-36 z-20 relative -translate-x-6 lg:translate-x-0 translate-y-8 lg:translate-y-6">
                   <div className="flex flex-col items-center">
                     <div className="flex items-center justify-between w-full mb-0.5 px-1 lg:mb-1 lg:px-2">
                       <div className="flex items-center gap-2">
@@ -1582,7 +1582,7 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
                       ease: isAttacking ? 'easeOut' : 'easeInOut'
                     }}
                   >
-                    <img src={enemy.image} alt={enemy.name} className={`w-full h-full object-contain ${isMichiruRoute ? 'scale-[0.7]' : 'scale-[0.85]'} -translate-y-12 drop-shadow-[0_0_15px_rgba(244,63,94,0.3)]`} />
+                    <img src={enemy.image} alt={enemy.name} className={`w-full h-full object-contain ${isMichiruRoute ? 'scale-[0.77] lg:scale-[0.7]' : 'scale-[0.85]'} -translate-y-12 drop-shadow-[0_0_15px_rgba(244,63,94,0.3)]`} />
 
                     {/* スタン text removed per user request */}
                   </motion.div>

@@ -333,7 +333,7 @@ export default function BattleMidBossMika({ onComplete, playBGM, stopBGM, playSE
   // ─── BGM ───
   useEffect(() => {
     if (playBGM) {
-      playBGM(assetPath('/assets/audio/bgm/RPG_Battle_01.mp3'));
+      playBGM(assetPath('/assets/audio/bgm/serious_2.mp3'));
     }
     return () => { if (stopBGM) stopBGM(); };
   }, []);
@@ -430,7 +430,7 @@ export default function BattleMidBossMika({ onComplete, playBGM, stopBGM, playSE
               qteSuccessRef.current = false;
               qteResultRef.current = 'miss';
             } else {
-              
+
               setTurnPhase('enemy_windup');
             }
             return 0;
@@ -755,7 +755,7 @@ export default function BattleMidBossMika({ onComplete, playBGM, stopBGM, playSE
       const next = new Set(prev);
       if (next.has(allyId)) {
         next.delete(allyId);
-        
+
         // Normal guard, apply cooldown to prevent spamming
         guardCooldownsRef.current[allyId] = Date.now();
         setGuardCooldownTrigger(prev => ({ ...prev, [allyId]: Date.now() }));
@@ -1327,10 +1327,10 @@ export default function BattleMidBossMika({ onComplete, playBGM, stopBGM, playSE
 
                   <motion.div
                     id={`char-${ally.id}`}
-                    className={`relative cursor-pointer touch-none flex items-center justify-center w-28 h-36 lg:w-40 lg:h-56 -translate-y-5
+                    className={`relative cursor-pointer touch-none flex items-center justify-center w-24 h-32 lg:w-40 lg:h-56 translate-y-0 lg:-translate-y-5
                     ${ally.isDead ? 'opacity-40 grayscale' : ''}
                   `}
-                    animate={{ 
+                    animate={{
                       x: isCounterDashing ? 150 : (isCurrentTurn ? 30 : 0),
                       y: 10,
                       scale: 1.15
@@ -1443,7 +1443,7 @@ export default function BattleMidBossMika({ onComplete, playBGM, stopBGM, playSE
                     </AnimatePresence>
 
                     {ally.image ? (
-                      <img src={ally.image} alt={ally.name} className={`w-full h-full object-contain relative z-10 -translate-y-6 scale-[1.25] ${ally.flashTimer > 0 ? 'animate-battle-hit-flash drop-shadow-[0_0_20px_rgba(248,113,113,0.8)]' : 'drop-shadow-lg'}`} />
+                      <img src={ally.image} alt={ally.name} className={`w-full h-full object-contain relative z-10 -translate-y-3 lg:-translate-y-6 scale-[1.25] ${ally.flashTimer > 0 ? 'animate-battle-hit-flash drop-shadow-[0_0_20px_rgba(248,113,113,0.8)]' : 'drop-shadow-lg'}`} />
                     ) : (
                       <div className="w-full h-full bg-slate-800/80 border border-slate-600 rounded-2xl flex items-center justify-center">
                         <span className="font-noto font-bold text-slate-300">{ally.name}</span>
@@ -1652,13 +1652,13 @@ export default function BattleMidBossMika({ onComplete, playBGM, stopBGM, playSE
             {/* Circular Progress Gauge */}
             <svg className="absolute inset-0 w-full h-full -rotate-90 pointer-events-none" viewBox="0 0 100 100" style={{ overflow: 'visible' }}>
               <circle cx="50" cy="50" r="48" fill="none" className="stroke-amber-900/40" strokeWidth="3" />
-              <circle 
-                cx="50" 
-                cy="50" 
-                r="48" 
-                fill="none" 
-                className="stroke-amber-400 drop-shadow-[0_0_5px_rgba(251,191,36,0.8)]" 
-                strokeWidth="3" 
+              <circle
+                cx="50"
+                cy="50"
+                r="48"
+                fill="none"
+                className="stroke-amber-400 drop-shadow-[0_0_5px_rgba(251,191,36,0.8)]"
+                strokeWidth="3"
                 strokeDasharray="301.59"
                 strokeDashoffset={301.59 - (301.59 * Math.min(syncRate, SYNC_COST_ULTIMATE) / SYNC_COST_ULTIMATE)}
                 strokeLinecap="round"

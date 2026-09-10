@@ -333,7 +333,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
   // ─── BGM ───
   useEffect(() => {
     if (playBGM) {
-      playBGM(assetPath('/assets/audio/bgm/RPG_Battle_01.mp3'));
+      playBGM(assetPath('/assets/audio/bgm/Battle2.mp3'));
     }
     return () => { if (stopBGM) stopBGM(); };
   }, []);
@@ -1251,7 +1251,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
               <div key={ally.id} className="relative flex flex-col items-center w-full">
 
                 {/* ── Ally HP Bar (Chimera-A style) ── */}
-                <div className="w-20 lg:w-36 mb-1 lg:mb-2 z-20 relative">
+                <div className="w-20 lg:w-36 mb-1 lg:mb-2 z-20 relative translate-y-10 lg:translate-y-0">
                   <div className="flex flex-col items-center">
                     <div className="flex items-center justify-between w-full mb-0.5 px-1">
                       <div className="flex items-center gap-1.5">
@@ -1305,7 +1305,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
                         <img
                           src="/battle/sakura.png"
                           alt="sakura"
-                          className="w-full h-full object-contain drop-shadow-lg opacity-90"
+                          className="w-full h-full object-contain drop-shadow-lg opacity-90 lg:scale-115 lg:origin-bottom"
                         />
                         <AnimatePresence>
                           {sakuraNotes.map(note => (
@@ -1507,7 +1507,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
 
             return (
               <div key={enemy.id} className="relative flex flex-col items-center w-full">
-                <div className="w-20 lg:w-36 z-20 relative -translate-x-6 lg:translate-x-0 translate-y-2 lg:translate-y-6">
+                <div className="w-20 lg:w-36 z-20 relative -translate-x-6 lg:translate-x-0 translate-y-6 lg:translate-y-6">
                   <div className="flex flex-col items-center">
                     <div className="flex items-center justify-between w-full mb-0.5 px-1 lg:mb-1 lg:px-2">
                       <div className="flex items-center gap-2">

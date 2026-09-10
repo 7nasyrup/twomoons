@@ -133,7 +133,7 @@ export default function BattleSystemPlot5({ onComplete, playBGM, stopBGM, playSE
   const [glintEffects, setGlintEffects] = useState([]); // { id, enemyId }
   const [isPaused, setIsPaused] = useState(false);
   const [showTutorial, setShowTutorial] = useState(true); // New tutorial state
-  
+
   // Sakura Speech Bubble State
   const [sakuraSpeech, setSakuraSpeech] = useState(null); // { text, icon, id }
   const speechTimeoutRef = useRef(null);
@@ -278,7 +278,7 @@ export default function BattleSystemPlot5({ onComplete, playBGM, stopBGM, playSE
 
     const speechMap = {
       attack: [
-        { text: 'ムッちゃん、攻めて！', icon: '⚔️' },
+        { text: '今のうち！攻めて！', icon: '⚔️' },
         { text: '今だよ、仕掛けて！', icon: '⚔️' },
         { text: '押し込もう！', icon: '🔥' },
         { text: '一気に畳み掛けて！', icon: '⚔️' }
@@ -286,7 +286,7 @@ export default function BattleSystemPlot5({ onComplete, playBGM, stopBGM, playSE
       guard: [
         { text: '私に任せて、大丈夫！', icon: '🛡️' },
         { text: 'ここは私が守るから！', icon: '🛡️' },
-        { text: 'ムッちゃん、下がって！', icon: '🛡️' }
+        { text: '下がって！', icon: '🛡️' }
       ],
       parry: [
         { text: '完璧！今がチャンス！', icon: '⚡' },
@@ -816,7 +816,7 @@ export default function BattleSystemPlot5({ onComplete, playBGM, stopBGM, playSE
       const next = new Set(prev);
       if (next.has(allyId)) {
         next.delete(allyId);
-        
+
         // Normal guard, apply cooldown to prevent spamming
         guardCooldownsRef.current[allyId] = Date.now();
         setGuardCooldownTrigger(prev => ({ ...prev, [allyId]: Date.now() }));
@@ -1383,10 +1383,10 @@ export default function BattleSystemPlot5({ onComplete, playBGM, stopBGM, playSE
                               <div className="relative bg-white border-2 border-cyan-400 text-slate-900 font-bold px-3 py-1.5 rounded-2xl shadow-[0_4px_15px_rgba(6,182,212,0.35)] text-[10px] lg:text-xs whitespace-nowrap flex items-center gap-1.5 font-sans">
                                 <span className="text-sm lg:text-base">{sakuraSpeech.icon}</span>
                                 <span>{sakuraSpeech.text}</span>
-                                
+
                                 {/* 右側基準で完全に位置が固定されたしっぽ (right-4) */}
                                 <div className="absolute -bottom-1.5 right-4 -translate-x-1/2 w-2.5 h-2.5 bg-white border-r-2 border-b-2 border-cyan-400 rotate-45 z-10" />
-                                
+
                                 {/* つなぎ目の線を完全にカバーするマスク (同じく right-4 に固定) */}
                                 <div className="absolute -bottom-[1px] right-4 -translate-x-1/2 w-3.5 h-[3px] bg-white z-20" />
                               </div>
@@ -1734,13 +1734,13 @@ export default function BattleSystemPlot5({ onComplete, playBGM, stopBGM, playSE
             {/* Circular Progress Gauge */}
             <svg className="absolute inset-0 w-full h-full -rotate-90 pointer-events-none" viewBox="0 0 100 100" style={{ overflow: 'visible' }}>
               <circle cx="50" cy="50" r="48" fill="none" className="stroke-amber-900/40" strokeWidth="3" />
-              <circle 
-                cx="50" 
-                cy="50" 
-                r="48" 
-                fill="none" 
-                className="stroke-amber-400 drop-shadow-[0_0_5px_rgba(251,191,36,0.8)]" 
-                strokeWidth="3" 
+              <circle
+                cx="50"
+                cy="50"
+                r="48"
+                fill="none"
+                className="stroke-amber-400 drop-shadow-[0_0_5px_rgba(251,191,36,0.8)]"
+                strokeWidth="3"
                 strokeDasharray="301.59"
                 strokeDashoffset={301.59 - (301.59 * Math.min(syncRate, SYNC_COST_ULTIMATE) / SYNC_COST_ULTIMATE)}
                 strokeLinecap="round"

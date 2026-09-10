@@ -333,7 +333,7 @@ export default function BattleMidBossNagisa({ onComplete, playBGM, stopBGM, play
   // ─── BGM ───
   useEffect(() => {
     if (playBGM) {
-      playBGM(assetPath('/assets/audio/bgm/RPG_Battle_01.mp3'));
+      playBGM(assetPath('/assets/audio/bgm/serious_2.mp3'));
     }
     return () => { if (stopBGM) stopBGM(); };
   }, []);
@@ -1443,7 +1443,7 @@ export default function BattleMidBossNagisa({ onComplete, playBGM, stopBGM, play
                     </AnimatePresence>
 
                     {ally.image ? (
-                      <img src={ally.image} alt={ally.name} className={`w-full h-full object-contain relative z-10 -translate-y-6 ${ally.flashTimer > 0 ? 'animate-battle-hit-flash drop-shadow-[0_0_20px_rgba(248,113,113,0.8)]' : 'drop-shadow-lg'}`} />
+                      <img src={ally.image} alt={ally.name} className={`w-full h-full object-contain relative z-10 -translate-y-4 lg:-translate-y-6 ${ally.flashTimer > 0 ? 'animate-battle-hit-flash drop-shadow-[0_0_20px_rgba(248,113,113,0.8)]' : 'drop-shadow-lg'}`} />
                     ) : (
                       <div className="w-full h-full bg-slate-800/80 border border-slate-600 rounded-2xl flex items-center justify-center">
                         <span className="font-noto font-bold text-slate-300">{ally.name}</span>
@@ -1534,7 +1534,7 @@ export default function BattleMidBossNagisa({ onComplete, playBGM, stopBGM, play
                     <img src={enemy.image} alt={enemy.name} className={`w-full h-full object-contain drop-shadow-[0_0_15px_rgba(244,63,94,0.3)]`} />
 
                     {/* Enemy HP Bar placed directly as an absolute overlay above her head! */}
-                    <div className="absolute top-10 lg:top-16 left-1/2 -translate-x-1/2 w-16 lg:w-28 z-50 pointer-events-auto">
+                    <div className="absolute top-4 lg:top-16 left-1/2 -translate-x-1/2 w-16 lg:w-28 z-50 pointer-events-auto">
                       <div className="flex flex-col items-center">
                         <div className="flex items-center justify-between w-full mb-0.5 px-1 lg:mb-0.5 lg:px-1">
                           <div className="flex items-center gap-2">

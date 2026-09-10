@@ -336,7 +336,7 @@ export default function BattleFinalAkane({ onComplete, playBGM, stopBGM, playSE 
   // ─── BGM ───
   useEffect(() => {
     if (playBGM) {
-      playBGM(assetPath('/assets/audio/bgm/RPG_Battle_01.mp3'));
+      playBGM(assetPath('/assets/audio/bgm/Battle2.mp3'));
     }
     return () => { if (stopBGM) stopBGM(); };
   }, []);
@@ -1254,7 +1254,7 @@ export default function BattleFinalAkane({ onComplete, playBGM, stopBGM, playSE 
               <div key={ally.id} className="relative flex flex-col items-center w-full">
 
                 {/* ── Ally HP Bar (Chimera-A style) ── */}
-                <div className="w-20 lg:w-36 mb-1 lg:mb-2 z-20 relative translate-y-0 lg:-translate-y-5">
+                <div className="w-20 lg:w-36 mb-1 lg:mb-2 z-20 relative translate-y-4 lg:-translate-y-5">
                   <div className="flex flex-col items-center">
                     <div className="flex items-center justify-between w-full mb-0.5 px-1">
                       <div className="flex items-center gap-1.5">
@@ -1515,7 +1515,7 @@ export default function BattleFinalAkane({ onComplete, playBGM, stopBGM, playSE 
               return (
                 <motion.div
                   id={`char-${enemy2.id}`}
-                  className="absolute w-64 h-56 lg:w-[500px] lg:h-[620px] flex items-center justify-center z-20 pointer-events-none"
+                  className="absolute top-8 lg:top-0 w-64 h-56 lg:w-[500px] lg:h-[620px] flex items-center justify-center z-20 pointer-events-none"
                   animate={{
                     x: isAttacking ? 30 : (isCurrentTurn && turnPhase === 'enemy_resolve' ? 30 : 0) + 110, // 右列縦並び(+110px)、攻撃時は前進距離を短縮(+30px)
                     y: -10, // 下段から少し上に移動！
@@ -1527,7 +1527,7 @@ export default function BattleFinalAkane({ onComplete, playBGM, stopBGM, playSE 
                 >
                   {/* 個別HPバー (立ち絵の上部に固定) */}
                   {!enemy2.isDead && (
-                    <div className="absolute top-20 lg:top-52 left-1/2 -translate-x-1/2 w-20 lg:w-32 z-50 flex flex-col pointer-events-auto">
+                    <div className="absolute top-14 lg:top-52 left-1/2 -translate-x-1/2 w-20 lg:w-32 z-50 flex flex-col pointer-events-auto">
                       <div className="flex items-center justify-between w-full mb-0.5 px-1">
                         <div className="flex items-center gap-1">
                           <div className="w-1 h-1 bg-red-400 shadow-[0_0_8px_#f87171] rotate-45" />
@@ -1599,7 +1599,7 @@ export default function BattleFinalAkane({ onComplete, playBGM, stopBGM, playSE 
               return (
                 <motion.div
                   id={`char-${enemy3.id}`}
-                  className="absolute top-24 lg:top-0 w-64 h-56 lg:w-[500px] lg:h-[620px] flex items-center justify-center z-10 pointer-events-none"
+                  className="absolute top-32 lg:top-0 w-64 h-56 lg:w-[500px] lg:h-[620px] flex items-center justify-center z-10 pointer-events-none"
                   animate={{
                     x: isAttacking ? 30 : (isCurrentTurn && turnPhase === 'enemy_resolve' ? 30 : 0) + 110, // 右列縦並び(+110px)、攻撃時は前進距離を短縮(+30px)
                     y: -180, // さらに上に移動！
@@ -1611,7 +1611,7 @@ export default function BattleFinalAkane({ onComplete, playBGM, stopBGM, playSE 
                 >
                   {/* 個別HPバー (立ち絵の上部に固定) */}
                   {!enemy3.isDead && (
-                    <div className="absolute top-8 lg:top-32 left-1/2 -translate-x-1/2 w-20 lg:w-32 z-50 flex flex-col pointer-events-auto">
+                    <div className="absolute top-2 lg:top-32 left-1/2 -translate-x-1/2 w-20 lg:w-32 z-50 flex flex-col pointer-events-auto">
                       <div className="flex items-center justify-between w-full mb-0.5 px-1">
                         <div className="flex items-center gap-1">
                           <div className="w-1 h-1 bg-red-400 shadow-[0_0_8px_#f87171] rotate-45" />
@@ -1694,7 +1694,7 @@ export default function BattleFinalAkane({ onComplete, playBGM, stopBGM, playSE 
                 >
                   {/* 個別HPバー (立ち絵の上部に固定) */}
                   {!enemy1.isDead && (
-                    <div className="absolute -top-4 lg:-top-4 left-1/2 -translate-x-1/2 w-20 lg:w-32 z-50 flex flex-col pointer-events-auto">
+                    <div className="absolute -top-10 lg:-top-4 left-1/2 -translate-x-1/2 w-20 lg:w-32 z-50 flex flex-col pointer-events-auto">
                       <div className="flex items-center justify-between w-full mb-0.5 px-1">
                         <div className="flex items-center gap-1">
                           <div className="w-1 h-1 bg-red-400 shadow-[0_0_8px_#f87171] rotate-45" />
