@@ -1356,7 +1356,10 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
                 }`}>
 
                 {/* ── Ally HP Bar (Chimera-A style) ── */}
-                <div className={`w-20 lg:w-36 mb-1 lg:mb-2 z-20 relative translate-y-4 lg:translate-y-0 ${ally.id === 'nagisa' ? 'translate-x-4 lg:translate-x-0' : ''}`}>
+                <div className={`w-20 lg:w-36 mb-1 lg:mb-2 z-20 relative lg:translate-y-0 ${
+                  ally.id === 'nagisa' ? 'translate-y-4 translate-x-4 lg:translate-y-0 lg:translate-x-0' :
+                  ally.id === 'mika' ? 'translate-y-6 translate-x-2 lg:translate-y-0 lg:translate-x-0' : 'translate-y-4 lg:translate-y-0'
+                }`}>
                   <div className="flex flex-col items-center">
                     <div className="flex items-center justify-between w-full mb-0.5 px-1">
                       <div className="flex items-center gap-1.5">
