@@ -154,6 +154,11 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
   const [isParryTutorialActive, setIsParryTutorialActive] = useState(false);
   const [hasCompletedParryTutorial, setHasCompletedParryTutorial] = useState(false);
   const [parryTutorialPage, setParryTutorialPage] = useState(1);
+
+  // Sakura Speech Bubble State
+  const [sakuraSpeech, setSakuraSpeech] = useState(null); // { text, icon, id }
+  const speechTimeoutRef = useRef(null);
+  const [hasParried, setHasParried] = useState(false); // Track first parry in the battle
   const [isParryTutorial, setIsParryTutorial] = useState(false);
   const parryTutorialTimersRef = useRef({});
 
@@ -362,6 +367,58 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
       setSakuraNotes(prev => prev.filter(n => !noteIds.includes(n.id)));
       setSakuraSinging(false);
     }, 1500);
+  }, []);
+
+  const triggerSakuraSpeech = useCallback((type) => {
+    if (!stateRef.current.hasCompletedParryTutorial) return; // Skip if tutorial is not completed
+    if (speechTimeoutRef.current) {
+      clearTimeout(speechTimeoutRef.current);
+    }
+
+    const speechMap = {
+      attack: [
+        { text: '今のうち！攻めて！', icon: '⚔️' },
+        { text: '今だよ、仕掛けて！', icon: '⚔️' },
+        { text: '押し込もう！', icon: '🔥' },
+        { text: '一気に畳み掛けて！', icon: '⚔️' }
+      ],
+      guard: [
+        { text: '私に任せて、大丈夫！', icon: '🛡️' },
+        { text: 'ここは私が守るから！', icon: '🛡️' },
+        { text: '下がって！', icon: '🛡️' }
+      ],
+      parry: [
+        { text: '完璧！今がチャンス！', icon: '⚡' },
+        { text: '弾いたよ！叩き込んで！', icon: '✨' },
+        { text: '今だよっ！いって！', icon: '🌀' }
+      ],
+      heal: [
+        { text: '私の歌を聴いて！', icon: '💖' },
+        { text: '癒えて……っ！', icon: '❇️' },
+        { text: '歌うよ、元気を出して！', icon: '🎵' }
+      ]
+    };
+
+    const candidates = speechMap[type] || [{ text: 'いこう！', icon: '✨' }];
+    const selected = candidates[Math.floor(Math.random() * candidates.length)];
+
+    setSakuraSpeech({
+      text: selected.text,
+      icon: selected.icon,
+      id: Date.now()
+    });
+
+    speechTimeoutRef.current = setTimeout(() => {
+      setSakuraSpeech(null);
+    }, 1500); // 1.5 seconds lifespan
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (speechTimeoutRef.current) {
+        clearTimeout(speechTimeoutRef.current);
+      }
+    };
   }, []);
 
   // Continuous notes while guarding
@@ -1081,6 +1138,10 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
         setParryFlash(true);
         setTimeout(() => setParryFlash(false), 500);
         triggerSakuraNote();
+        if (!hasParried) {
+          triggerSakuraSpeech('parry');
+          setHasParried(true);
+        }
 
         // パリィ成功時に暴走ゲージを軽減
         setCorruption(prev => Math.max(0, prev - 20));
@@ -1135,6 +1196,7 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
         return next;
       });
       triggerSakuraNote();
+      triggerSakuraSpeech('guard');
     }
   }, [addLog, addSync, triggerSakuraNote, playSE]);
 
@@ -1193,10 +1255,12 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
       setAllyQTEState(result);
       if (playSE) playSE('/assets/audio/bgm/+parry.mp3');
       triggerSakuraNote('attack');
+      triggerSakuraSpeech('attack');
     } else {
       setAllyQTEState('fail');
       if (playSE) playSE('/assets/audio/bgm/+parry.mp3');
       triggerSakuraNote('attack');
+      triggerSakuraSpeech('attack');
     }
   }, [playSE, triggerSakuraNote, executeAllyAttack]);
 
@@ -1336,6 +1400,7 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
     setHealFlash(true);
     setTimeout(() => setHealFlash(false), 500);
     triggerSakuraNote('heal');
+    triggerSakuraSpeech('heal');
 
     const healMult = stateRef.current.activeFragments.some(f => f.id === 'HEAL_BOOST') ? 2.0 : 1.0;
     const amount = Math.floor(HEAL_AMOUNT * healMult);
@@ -1934,6 +1999,31 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
                           alt="sakura"
                           className={`w-full h-full object-contain drop-shadow-lg transition-all duration-500 ${((!hasShownAttackTutorial || isGuardTutorialActive || isParryTutorialActive || isParryTutorial) && battlePhase === 'fighting') ? 'brightness-[0.3] opacity-60' : 'opacity-90'}`}
                         />
+                        {/* 朔良の指示吹き出し */}
+                        <AnimatePresence>
+                          {hasCompletedParryTutorial && sakuraSpeech && (
+                            <motion.div
+                              key={sakuraSpeech.id}
+                              initial={{ opacity: 0, scale: 0.7, y: 15 }}
+                              animate={{ opacity: 1, scale: 1, y: 0 }}
+                              exit={{ opacity: 0, scale: 0.8, y: -15 }}
+                              transition={{ type: "spring", stiffness: 350, damping: 18 }}
+                              className="absolute z-[60] -top-2 right-[25px] lg:-top-4 lg:right-[60px] pointer-events-none"
+                            >
+                              {/* 美しい白基調 of セリフ付き吹き出し (右側固定、左へ自動伸縮) */}
+                              <div className="relative bg-white border-2 border-cyan-400 text-slate-900 font-bold px-3 py-1.5 rounded-2xl shadow-[0_4px_15px_rgba(6,182,212,0.35)] text-[10px] lg:text-xs whitespace-nowrap flex items-center gap-1.5 font-sans">
+                                <span className="text-sm lg:text-base">{sakuraSpeech.icon}</span>
+                                <span>{sakuraSpeech.text}</span>
+
+                                {/* 右側基準で完全に位置が固定されたしっぽ (right-4) */}
+                                <div className="absolute -bottom-1.5 right-4 -translate-x-1/2 w-2.5 h-2.5 bg-white border-r-2 border-b-2 border-cyan-400 rotate-45 z-10" />
+
+                                {/* つなぎ目の線を完全にカバーするマスク (同じく right-4 に固定) */}
+                                <div className="absolute -bottom-[1px] right-4 -translate-x-1/2 w-3.5 h-[3px] bg-white z-20" />
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
                         <AnimatePresence>
                           {sakuraNotes.map(note => (
                             <motion.div
