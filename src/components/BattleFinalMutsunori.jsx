@@ -69,6 +69,11 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
     ];
   });
 
+  // Sakura Speech Bubble State
+  const [sakuraSpeech, setSakuraSpeech] = useState(null); // { text, icon, id }
+  const speechTimeoutRef = useRef(null);
+  const [hasParried, setHasParried] = useState(false); // Track first parry in the battle
+
   const [enemies, setEnemies] = useState(() => {
     if (isMichiruRoute) {
       return [
