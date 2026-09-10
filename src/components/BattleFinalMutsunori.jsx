@@ -768,8 +768,8 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
         const elapsed = Date.now() - attack.startTime;
         // Loosen parry window: from -450ms to +200ms
         // Strict parry window: closer to the allies' red circle (-180ms to +100ms)
-        const parryStart = attack.delay + attack.duration - 180;
-        const parryEnd = attack.delay + attack.duration + 100;
+        const parryStart = attack.delay + attack.duration - 120;
+        const parryEnd = attack.delay + attack.duration + 50;
         return elapsed >= parryStart && elapsed <= parryEnd;
       });
 
