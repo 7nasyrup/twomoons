@@ -629,9 +629,14 @@ export default function App() {
           };
 
           let simulatedPresentCharacters = [];
+          let tempSceneForChars = scenarioData[0]?.scene;
           for (let i = 0; i <= slotData.step; i++) {
             const line = scenarioData[i];
             if (!line) continue;
+            if (line.scene && line.scene !== tempSceneForChars) {
+              tempSceneForChars = line.scene;
+              simulatedPresentCharacters = [];
+            }
             if (line.clearIllust) {
               simulatedPresentCharacters = [];
             }
@@ -801,26 +806,51 @@ export default function App() {
 
               if (action === 'FADE_IN_SMOKE') simEffects.isSmokeActive = true;
               if (action === 'CLEAR_SMOKE') simEffects.isSmokeActive = false;
-              if (action === 'WHITE_OUT_START') simEffects.isWhiteOut = true;
+              if (action === 'WHITE_OUT_START') {
+                simEffects.isWhiteOut = true;
+                simEffects.whitePulseLevel = 0;
+                simEffects.shakeEffect = false;
+              }
+              if (action === 'AWAKEN_MICHIRU') {
+                simEffects.isBlackAuraActive = false;
+                simEffects.isEnergyAuraActive = true;
+                simEffects.isWhiteOut = true;
+                simEffects.whitePulseLevel = 0;
+                simEffects.shakeEffect = false;
+              }
+              if (action === 'WHITE_OUT_END' || action === 'WHITE_OUT_END_SLOW' || action === 'WHITE_OUT_END_VERY_SLOW') simEffects.isWhiteOut = false;
+              if (action === 'EXPLOSION_WHITEOUT') simEffects.isWhiteOut = true;
+
+              if (action === 'WHITE_PULSE_START') simEffects.whitePulseLevel = 0.2;
+              if (action === 'WHITE_PULSE_MID') simEffects.whitePulseLevel = 0.5;
+              if (action === 'WHITE_PULSE_HIGH') simEffects.whitePulseLevel = 0.8;
+              if (action === 'WHITE_PULSE_STOP') simEffects.whitePulseLevel = 0;
+
+              if (action === 'CLEAR_SHAKE') simEffects.shakeEffect = false;
+              if (action === 'BLUR_EFFECT') simEffects.shakeEffect = 'blurOnly';
+              if (action === 'DIZZY_EFFECT') simEffects.shakeEffect = 'dizzy';
+              if (action === 'SHAKE_SCREEN_EXTREME') simEffects.shakeEffect = 'extreme';
+              if (action === 'SHAKE_SCREEN_CONTINUOUS_MEDIUM') simEffects.shakeEffect = 'medium_continuous';
+              if (action === 'SHAKE_SCREEN_CONTINUOUS_SMALL') simEffects.shakeEffect = 'small_continuous';
+
               if (action === 'ENERGY_AURA_START') simEffects.isEnergyAuraActive = true;
               if (action === 'BLACK_AURA_START') simEffects.isBlackAuraActive = true;
               if (action === 'DARK_ENERGY_START') simEffects.isDarkEnergyActive = true;
               if (action === 'BLACK_ENERGY_EDGE_START') simEffects.isBlackEnergyEdgeActive = true;
               if (action === 'CLOSE_EYES') simEffects.isEyesClosed = true;
-              if (action === 'OPEN_EYES') simEffects.isEyesClosed = false;
+              if (action === 'OPEN_EYES' || action === 'WAKE_UP') simEffects.isEyesClosed = false;
               if (action === 'TEAR_BLUR_START') simEffects.isTearBlurActive = true;
-              if (action === 'TEAR_BLUR_END') simEffects.isTearBlurActive = false;
-              if (action === 'LIGHT_WAVE_START') simEffects.isLightWaveActive = true;
-              if (action === 'LIGHT_WAVE_END') simEffects.isLightWaveActive = false;
-              if (action === 'SPEED_EFFECT_START') simEffects.isSpeedEffectActive = true;
-              if (action === 'SPEED_EFFECT_END') simEffects.isSpeedEffectActive = false;
-              if (action === 'BLACK_DISTORT_START') simEffects.isBlackDistortActive = true;
+              if (action === 'TEAR_BLUR_END' || action === 'TEAR_BLUR_STOP') simEffects.isTearBlurActive = false;
+              if (action === 'LIGHT_WAVE_START' || action === 'LIGHT_WAVE_BURST') simEffects.isLightWaveActive = true;
+              if (action === 'LIGHT_WAVE_END' || action === 'CLEAR_LIGHT_WAVE') simEffects.isLightWaveActive = false;
+              if (action === 'SPEED_EFFECT_START' || action === 'SPEED_EFFECT') simEffects.isSpeedEffectActive = true;
+              if (action === 'SPEED_EFFECT_END' || action === 'SPEED_EFFECT_STOP' || action === 'CLEAR_SPEED_EFFECT') simEffects.isSpeedEffectActive = false;
+              if (action === 'BLACK_DISTORT_START' || action === 'BLACK_DISTORTION' || action === 'BLACK_DISTORT') simEffects.isBlackDistortActive = true;
               if (action === 'BLACK_DISTORT_END') simEffects.isBlackDistortActive = false;
               if (action === 'WHITE_FLASH_70_START') simEffects.isWhiteFlash70Active = true;
               if (action === 'WHITE_FLASH_70_END') simEffects.isWhiteFlash70Active = false;
-              if (action === 'WHITE_PULSE_START') simEffects.whitePulseLevel = 1;
               if (action === 'GRAY_OUT_START') simEffects.isGrayOut = true;
-              if (action === 'GRAY_OUT_END') simEffects.isGrayOut = false;
+              if (action === 'GRAY_OUT_END' || action === 'GRAY_OUT_END_SLOW') simEffects.isGrayOut = false;
               if (action === 'START_PHONE_CALL_RIGHT') simEffects.isPhoneCallRight = true;
             });
 
