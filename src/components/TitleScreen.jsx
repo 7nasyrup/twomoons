@@ -41,8 +41,8 @@ export default function TitleScreen({ onStart, onContinue, onBattle, hasSave, pl
                         {/* Start Button */}
                         <button
                             onClick={onStart}
-                            className="w-full bg-[#0c101d]/95 border-2 border-luna-gold/80 text-luna-gold font-bold font-serif rounded
-                           hover:bg-luna-gold hover:text-slate-950 hover:border-luna-gold hover:shadow-[0_0_25px_rgba(255,228,158,0.4)]
+                            className="w-full bg-[#0c101d]/95 border-2 border-blue-400/80 text-blue-400 font-bold font-serif rounded
+                           hover:bg-blue-400 hover:text-slate-950 hover:border-blue-300 hover:shadow-[0_0_25px_rgba(96,165,250,0.5)]
                            transition-all duration-300 transform hover:-translate-y-[2%] active:translate-y-0 active:scale-98"
                             style={{ padding: '2.5cqh 0', fontSize: '1.4cqw', letterSpacing: '0.3em' }}
                         >

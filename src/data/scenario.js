@@ -47,7 +47,8 @@ export const scenarioData = [
     "text": "「ん……っ……」",
     "bg": "black",
     "style": "novel",
-    "se": "+alarm.mp3"
+    "se": "+alarm.mp3",
+    "seVolume": 0.2
   },
   {
     "scene": "朔良の部屋",
@@ -136,7 +137,8 @@ export const scenarioData = [
     "scene": "街（朝）",
     "text": "通学路を歩く最中、持ってきたイヤホンをつけると小さな音楽が流れる。子供の頃、父と一緒に歌った曲だ。気付けば、私は無意識に口ずさんでいた。",
     "bg": "/scene/shopping_street.png",
-    "bgm": "TheSong.mp3"
+    "bgm": "TheSong.mp3",
+    "bgmDelay": 2000
   },
   {
     "scene": "街（朝）",
@@ -187,7 +189,8 @@ export const scenarioData = [
   {
     "scene": "街（朝）",
     "text": "獣。……と呼ぶには、あまりにも異質だった。本来あるはずの形を失った身体。不自然に発達した四肢。歪んだ輪郭。青白い月波を浴び、変貌した生物。",
-    "bgm": "serious_2.mp3"
+    "bgm": "serious_2.mp3",
+    "bgmVolume": 0.1
   },
   {
     "scene": "街（朝）",
@@ -203,7 +206,7 @@ export const scenarioData = [
     "scene": "街（朝）",
     "text": "キメラがこちらへ顔を向けた。",
     "bgm": "serious_2.mp3",
-    "bgmVolume": 0.5
+    "bgmVolume": 0.3
   },
   {
     "scene": "街（朝）",
@@ -386,7 +389,8 @@ export const scenarioData = [
     "scene": "街（朝）",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「朔良、大丈夫？怪我してない？」"
+    "text": "「朔良、大丈夫？怪我してない？」",
+
   },
   {
     "scene": "街（朝）",
@@ -444,7 +448,10 @@ export const scenarioData = [
   },
   {
     "scene": "街（朝）",
-    "text": "そう言うと、睦典は少し驚いたように目を丸くした。けれど、すぐにいつもの笑顔に戻る。"
+    "text": "そう言うと、睦典は少し驚いたように目を丸くした。けれど、すぐにいつもの笑顔に戻る。",
+    "showIllust": [
+      "Mutsunori_surprise3"
+    ]
   },
   {
     "scene": "街（朝）",
@@ -486,8 +493,6 @@ export const scenarioData = [
   },
   {
     "scene": "街（朝）",
-    "speaker": "朔良",
-    "role": "SAKURA",
     "text": "私は慌てて、その背中を追いかけた。"
   },
   {
@@ -516,7 +521,7 @@ export const scenarioData = [
   },
   {
     "scene": "講義室出口",
-    "text": "聞き慣れた声に振り返ると、同じ学部の友人・睦典が、大きく手を振りながら駆け寄ってきた。"
+    "text": "聞き慣れた声に振り返ると、睦典が大きく手を振りながら駆け寄ってきた。"
   },
   {
     "scene": "講義室出口",
@@ -706,7 +711,10 @@ export const scenarioData = [
     "scene": "大学の廊下",
     "speaker": "ヒルミ教授",
     "role": "PROFESSOR",
-    "text": "「それじゃあ、二人とも。レポートの締め切りは忘れないように」"
+    "text": "「それじゃあ、二人とも。レポートの締め切りは忘れないように」",
+    "showIllust": [
+      "Hirumi_smile4"
+    ],
   },
   {
     "scene": "大学の廊下",
@@ -805,7 +813,9 @@ export const scenarioData = [
   },
   {
     "scene": "夜の帰り道",
-    "text": "背筋が凍りつく。ゆっくりと視線を向けると、青白い光を纏った異形の影がゆっくりと姿を現した。"
+    "text": "背筋が凍りつく。ゆっくりと視線を向けると、青白い光を纏った異形の影がゆっくりと姿を現した。",
+    "bgm": "serious_2.mp3",
+    "bgmVolume": 0.3
   },
   {
     "scene": "夜の帰り道",
@@ -879,6 +889,7 @@ export const scenarioData = [
   {
     "scene": "夜の帰り道",
     "se": "+sword.mp3",
+    "action": ["WHITE_FLASH", "SHAKE_SCREEN"],
     "text": "鋭い一撃がキメラを弾き飛ばす。",
     "hideIllust": [
       "kimera2"
@@ -942,7 +953,10 @@ export const scenarioData = [
   },
   {
     "scene": "夜の帰り道",
-    "text": "私は息を整えながら、目の前に立つ男を見る。見上げるほどに高い身長と、岩のようにがっしりとした分厚い体格。右目に黒い眼帯を嵌めていた。彼は何も言わず、ただ私を見つめていた。まるで、何かを確かめるように。"
+    "text": "私は息を整えながら、目の前に立つ男を見る。見上げるほどに高い身長と、岩のようにがっしりとした分厚い体格。右目に黒い眼帯を嵌めていた。彼は何も言わず、ただ私を見つめていた。まるで、何かを確かめるように。",
+    "showIllust": [
+      "Akane_neutral3"
+    ]
   },
   {
     "scene": "夜の帰り道",
@@ -952,7 +966,10 @@ export const scenarioData = [
   },
   {
     "scene": "夜の帰り道",
-    "text": "問いかけても、返事はない。男は興味を失ったように視線を逸らすと、お礼を言う暇もなくそのまま夜の闇へと消えていった。"
+    "text": "問いかけても、返事はない。男は興味を失ったように視線を逸らすと、お礼を言う暇もなくそのまま夜の闇へと消えていった。",
+    "hideIllust": [
+      "Akane"
+    ]
   },
   {
     "scene": "朔良の部屋(夜)",
@@ -965,7 +982,7 @@ export const scenarioData = [
     "scene": "朔良の部屋(夜)",
     "text": "誰も返事をしない部屋へ帰る。静まり返った自室に明かりをつけ、私は疲れた身体をベッドへ預けた。",
     "bgm": "Room_Night.mp3",
-    "bgmVolume": 0.03
+    "bgmVolume": 0.3
   },
   {
     "scene": "朔良の部屋(夜)",
@@ -1252,7 +1269,10 @@ export const scenarioData = [
   {
     "scene": "ショッピングモール",
     "speaker": "睦典",
-    "text": "「やっぱり朔良だ！ 偶然だな！」"
+    "text": "「やっぱり朔良だ！ 偶然だな！」",
+    "showIllust": [
+      "Mutsunori_happy3"
+    ]
   },
   {
     "scene": "ショッピングモール",
@@ -1272,7 +1292,10 @@ export const scenarioData = [
   {
     "scene": "ショッピングモール",
     "speaker": "睦典",
-    "text": "「実は新メニューの改良をしててさ！」"
+    "text": "「実は新メニューの改良をしててさ！」",
+    "showIllust": [
+      "Mutsunori_smile3"
+    ]
   },
   {
     "scene": "ショッピングモール",
@@ -1298,7 +1321,10 @@ export const scenarioData = [
   {
     "scene": "ショッピングモール",
     "speaker": "睦典",
-    "text": "「え？ 急にどうした？」"
+    "text": "「え？ 急にどうした？」",
+    "showIllust": [
+      "Mutsunori_surprise3"
+    ]
   },
   {
     "scene": "ショッピングモール",
@@ -1396,7 +1422,7 @@ export const scenarioData = [
   },
   {
     "scene": "夜の街",
-    "text": "今日撮った写真や、大切な連絡先。失くしたことへの焦りが一気に押し寄せる。もしかしたら、さっき立ち寄った場所からここまでの道のどこかで落としたのかもしれない。私は慌てて来た道を戻り、足元を確認しながら探し始めた。"
+    "text": "生活必需品を失くしたことへの焦りが一気に押し寄せる。もしかしたら、さっき立ち寄った場所からここまでの道のどこかで落としたのかもしれない。私は慌てて来た道を戻り、足元を確認しながら探し始めた。"
   },
   {
     "scene": "路地裏(夜)",
@@ -1537,7 +1563,8 @@ export const scenarioData = [
   },
   {
     "scene": "路地裏(夜)",
-    "text": "駆け寄って手を伸ばす。しかし、彼はすぐには渡さなかった。スマホを持った手をゆっくりと引き、私から距離を取る。"
+    "text": "駆け寄って手を伸ばす。しかし、彼はすぐには渡さなかった。スマホを持った手をゆっくりと引き、私から距離を取る。",
+    "bgm": "stop"
   },
   {
     "scene": "路地裏(夜)",
@@ -1556,7 +1583,9 @@ export const scenarioData = [
   },
   {
     "scene": "路地裏(夜)",
-    "text": "彼は口元だけで笑う。その表情に背筋が凍った。次の瞬間、彼は私の腕を掴んだ。"
+    "text": "彼は口元だけで笑う。その表情に背筋が凍った。次の瞬間、彼は私の腕を掴んだ。",
+    "action": "SHAKE_SCREEN",
+    "bgm": "serious_1.mp3"
   },
   {
     "scene": "路地裏(夜)",
@@ -1607,7 +1636,8 @@ export const scenarioData = [
   },
   {
     "scene": "路地裏(夜)",
-    "text": "怖い。けれど、このまま怯えているわけにはいかない。私は力を振り絞り、彼の腕を振りほどいた。"
+    "text": "怖い。けれど、このまま怯えているわけにはいかない。私は力を振り絞り、彼の腕を振りほどいた。",
+    "action": "SHAKE_SCREEN",
   },
   {
     "scene": "路地裏(夜)",
@@ -1687,7 +1717,8 @@ export const scenarioData = [
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「……疲れた……」",
-    "bgm": "Room_Night.mp3"
+    "bgm": "Room_Night.mp3",
+    "bgmVolume": 0.3
   },
   {
     "scene": "朔良の部屋",
@@ -1770,6 +1801,10 @@ export const scenarioData = [
     "bgmFade": 3
   },
   {
+    "scene": "朔良の部屋",
+    "action": "FADE_TO_BLACK"
+  },
+  {
     "scene": "大学の正門前",
     "text": "午前の講義を終え、私は睦典と学食へ向かっていた。",
     "bg": "/scene/university_gate.png"
@@ -1820,7 +1855,7 @@ export const scenarioData = [
     "showIllust": [
       "Nagisa_smile4"
     ],
-    "bgm": "serious_2.mp3"
+    "bgm": "serious_1.mp3"
   },
   {
     "scene": "大学の正門前",
@@ -1966,7 +2001,7 @@ export const scenarioData = [
     "role": "MUTSUNORI",
     "text": "「っうわ！？ 教授！？」",
     "showIllust": [
-      "Mutsunori_pout",
+      "Mutsunori_surprise2",
       "Hirumi_smile3",
       "Nagisa_neutral"
     ]
@@ -2149,7 +2184,8 @@ export const scenarioData = [
   {
     "scene": "夜の裏路地",
     "bg": "/scene/rojiura.png",
-    "text": "講義を終え、時計台へ向かうため薄暗い路地を急ぐ。\n街灯の青い光も届かない、ゴミ箱が並ぶビルの隙間を通りかかった、その時。"
+    "text": "講義を終え、時計台へ向かうため薄暗い路地を急ぐ。\n街灯の青い光も届かない、ゴミ箱が並ぶビルの隙間を通りかかった、その時。",
+    "bgm": "Night"
   },
   {
     "scene": "夜の裏路地",
@@ -2174,7 +2210,7 @@ export const scenarioData = [
     "scene": "夜の裏路地",
     "text": "そこには、地面に膝をつき、お腹を押さえて倒れ込む一人の少年がいた。私と同じくらいの年頃だろうか。夜を溶かしたような黒髪の隙間から覗く端正な顔は、苦痛に歪んでいる。",
     "bg": "/character/Mika/Mika_CG1.png",
-    "bgm": "serious_2.mp3"
+    "bgm": "serious_3.mp3"
   },
   {
     "scene": "夜の裏路地",
@@ -2223,7 +2259,7 @@ export const scenarioData = [
   },
   {
     "scene": "夜の裏路地",
-    "text": "「少年は黙ったまま受け取り、濡らしたハンカチを傷口へ強く押し当てた。"
+    "text": "少年は黙ったまま受け取り、濡らしたハンカチを傷口へ強く押し当てた。"
   },
   {
     "scene": "夜の裏路地",
@@ -2307,7 +2343,8 @@ export const scenarioData = [
     "scene": "時計塔前",
     "text": "息を切らせて広場を見渡すと、時計塔の真下、深い影が落ちる街灯のそばに、一人の青年が立っているのが見えた。",
     "bg": "/character/Michiru/Michiru_CG1.png",
-    "bgm": "Room_Night.mp3"
+    "bgm": "Room_Night.mp3",
+    "bgmVolume": 0.3
   },
   {
     "scene": "時計塔前",
@@ -2321,8 +2358,9 @@ export const scenarioData = [
   },
   {
     "scene": "時計塔前",
-    "text": "声を掛けると、彼はゆっくり振り返り、穏やかな笑みを浮かべる。",
-    "bg": "/character/Michiru/Michiru_CG2.png"
+    "text": "声を掛けると、彼は顔を上げ、穏やかな笑みを浮かべる。",
+    "bg": "/character/Michiru/Michiru_CG2.png",
+    "bgCrossfade": true
   },
   {
     "scene": "時計塔前",
@@ -2635,21 +2673,15 @@ export const scenarioData = [
   },
   {
     "scene": "裏路地",
-    "text": "人工月の青い光だけが、意識を失った私を冷たく照らしていた。",
-    "hideIllust": [
-      "Akane"
-    ]
-  },
-  {
-    "scene": "裏路地",
-    "action": "CLEAR_SHAKE"
+    "action": "FADE_TO_BLACK",
+    "duration": 2000
   },
   {
     "scene": "廃倉庫",
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「……っ、……ぅ……」",
-    "action": "WAKE_UP",
+    "action": ["CLEAR_SHAKE", "WAKE_UP"],
     "bg": "/scene/warehouse.png",
     "bgTransitionDuration": 3500
   },
@@ -2668,7 +2700,8 @@ export const scenarioData = [
     "bgm": "serious_2.mp3",
     "bgmFade": 2,
     "bgmVolume": 0.2,
-    "bg": "/character/Akane/Akane_CG1.png"
+    "bg": "/character/Akane/Akane_CG1.png",
+    "bgCrossfade": true
   },
   {
     "scene": "廃倉庫",
@@ -2712,6 +2745,7 @@ export const scenarioData = [
     "speaker": "大男",
     "text": "「質問に答えろ」",
     "bg": "/scene/warehouse.png",
+    "bgCrossfade": true,
     "showIllust": [
       "Akane_serious3"
     ]
@@ -2794,14 +2828,10 @@ export const scenarioData = [
   },
   {
     "scene": "廃倉庫",
-    "text": "──ビーッ！！ ビーッ！！",
+    "text": "けたたましい警報音が廃倉庫中に鳴り響いた。",
     "bgm": "+alert.mp3",
     "bgmFade": 2,
     "bgmVolume": 0.5,
-  },
-  {
-    "scene": "廃倉庫",
-    "text": "けたたましい警報音が廃倉庫中に鳴り響いた。"
   },
   {
     "scene": "廃倉庫",
@@ -2887,7 +2917,8 @@ export const scenarioData = [
     "scene": "廃倉庫",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "（今しかない……！）"
+    "text": "（今しかない……！）",
+    "bgm": "serious_1.mp3"
   },
   {
     "scene": "廃倉庫",
@@ -2900,13 +2931,29 @@ export const scenarioData = [
     "action": "TRIGGER_STRUGGLE_GAME"
   },
   {
+    "scene": "廃倉庫",
+    "speaker": "朔良",
+    "role": "SAKURA",
+    "text": "「…よし！ほどけた！」"
+  },
+  {
+    "scene": "廃倉庫",
+    "text": "手首がすれて痛むが、今は気にしている場合じゃない。周りを探索して脱出の手がかりを探そう。"
+  },
+  {
+    "scene": "廃倉庫探索",
+    "action": "FADE_TO_BLACK",
+    "duration": 800
+  },
+  {
     "scene": "廃倉庫探索",
     "action": "TRIGGER_WAREHOUSE_EXPLORATION"
   },
   {
     "scene": "廃倉庫",
     "text": "ある程度部屋を探索した私は、息を整える。とにかくここから脱出しないと。",
-    "bg": "/scene/warehouse2.png"
+    "bg": "/scene/warehouse2.png",
+    "bgm": "stop"
   },
   {
     "scene": "廃倉庫",
@@ -2941,7 +2988,9 @@ export const scenarioData = [
     "scene": "廃倉庫",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「ミ、ミカくん……！？」"
+    "text": "「ミ、ミカくん……！？」",
+    "bgm": "serious_2.mp3",
+    "bgmVolume": 0.08
   },
   {
     "scene": "廃倉庫",
@@ -2967,7 +3016,8 @@ export const scenarioData = [
   },
   {
     "scene": "廃倉庫",
-    "text": "そう言うと、私の手を引いて走り出した。"
+    "text": "そう言うと、私の手を引いて走り出した。",
+    "bgAnimation": "run_light"
   },
   {
     "scene": "崩壊した街",
@@ -2976,7 +3026,8 @@ export const scenarioData = [
     "hideIllust": [
       "Mika"
     ],
-    "bgm": "serious_2.mp3"
+    "bgmVolume": 0.3,
+    "bgAnimation": "run_light"
   },
   {
     "scene": "崩壊した街",
@@ -3002,7 +3053,8 @@ export const scenarioData = [
   },
   {
     "scene": "崩壊した街",
-    "text": "ミカくんに促され、私は必死に走る。"
+    "text": "ミカくんに促され、私は必死に走る。",
+    "bgAnimation": "run_light"
   },
   {
     "scene": "崩壊した街",
@@ -3018,7 +3070,7 @@ export const scenarioData = [
   },
   {
     "scene": "崩壊した街",
-    "text": "巨大な【キメラ】が、目の前に姿を現した。複数の生物が歪に融合したような異形の姿。\nその巨体が、私たちの進路を完全に塞ぐ。"
+    "text": "巨大な【キメラ】が、目の前に姿を現した。その巨体が、私たちの進路を完全に塞ぐ。"
   },
   {
     "scene": "崩壊した街",
@@ -3042,6 +3094,7 @@ export const scenarioData = [
   {
     "scene": "崩壊した街",
     "text": "ミカくんの指示で、私たちはキメラの横をすり抜けようと走り出す。",
+    "bgAnimation": "run_light",
     "hideIllust": [
       "Mika_serious"
     ]
@@ -3052,27 +3105,32 @@ export const scenarioData = [
   },
   {
     "scene": "崩壊した街",
-    "text": "キメラの巨大な尾が、凄まじい勢いで振り下ろされた。",
-    "se": "+wind.mp3"
+    "text": "キメラの巨大な尾が、凄まじい勢いで振り下ろされる。周囲の空気が震えるほどの勢い。",
+    "se": "+wind.mp3",
+    "bgAnimation": "rumble_light"
   },
   {
     "scene": "崩壊した街",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "（避けられない……！）"
+    "text": "（避けられない……！）",
+    "bgAnimation": "rumble_light"
   },
   {
     "scene": "崩壊した街",
-    "text": "そう思った瞬間。"
+    "text": "そう思った瞬間。",
+    "bgAnimation": "rumble_light"
   },
   {
     "scene": "崩壊した街",
     "speaker": "？？？",
-    "text": "「──右だ」"
+    "text": "「──右だ」",
+    "bgAnimation": "rumble_light"
   },
   {
     "scene": "崩壊した街",
     "text": "聞き覚えのある声と共に、身体が強く引き寄せられる。",
+    "action": "SHAKE_SCREEN",
     "hideIllust": [
       "kimera2"
     ]
@@ -3178,6 +3236,7 @@ export const scenarioData = [
   {
     "scene": "崩壊した街",
     "text": "走り出す私たちの後ろから、凪砂さんもついてくる。",
+    "bgAnimation": "run_light",
     "hideIllust": [
       "Mika",
       "Nagisa"
@@ -3188,6 +3247,7 @@ export const scenarioData = [
     "speaker": "ミカ",
     "role": "MIKA",
     "text": "「おい、ついてくるな…！」",
+    "bgAnimation": "run_light",
     "showIllust": [
       "Mika_serious2",
       "Nagisa_smile4"
@@ -3197,11 +3257,13 @@ export const scenarioData = [
     "scene": "崩壊した街",
     "speaker": "凪砂",
     "role": "NAGISA",
-    "text": "「そう邪険にしないでくれよ。一応、命の恩人だろ？それに、こんな危険な街だ。男手は多い方が安心じゃないか」"
+    "text": "「そう邪険にしないでくれよ。一応、命の恩人だろ？それに、こんな危険な街だ。男手は多い方が安心じゃないか」",
+    "bgAnimation": "run_light",
   },
   {
     "scene": "崩壊した街",
-    "text": "こうして私は、ミカくんと、何を考えているのか分からない凪砂さん。\n二人の能力者と共に、崩壊した街を進むことになった。"
+    "text": "こうして私は、ミカくんと、何を考えているのか分からない凪砂さん。\n二人の能力者と共に、崩壊した街を進むことになった。",
+    "bgAnimation": "run_light",
   },
   {
     "scene": "廃ビルへの階段",
@@ -3222,7 +3284,7 @@ export const scenarioData = [
     "text": "「──っ、朔良！！」",
     "bg": "/scene/ajito.png",
     "showIllust": [
-      "Mutsunori_pout3"
+      "Mutsunori_surprise3"
     ]
   },
   {
@@ -3426,7 +3488,7 @@ export const scenarioData = [
   },
   {
     "scene": "廃ビルの一室",
-    "text": "凪砂さんが静かに告げる。戻れると思っていた日常は、もうそこにはなかった。重苦しい沈黙が部屋を包む。その時。 "
+    "text": "凪砂さんが静かに告げる。戻れると思っていた日常は、もうそこにはなかった。重苦しい沈黙が部屋を包む。/n———その時。 "
   },
   {
     "scene": "廃ビルの一室",
@@ -3461,7 +3523,7 @@ export const scenarioData = [
     "role": "PROFESSOR",
     "text": "『ミカ、朔良は救出できたか？』",
     "bgm": "serious_2.mp3",
-    "bgmVolume": 0.15
+    "bgmVolume": 0.05
   },
   {
     "scene": "廃ビルの一室",
@@ -3494,7 +3556,7 @@ export const scenarioData = [
     "scene": "廃ビルの一室",
     "text": "それだけ告げると、通話は切れた。",
     "se": "CallOut.mp3",
-    "bgmVolume": 0.5
+    "bgmVolume": 0.1
   },
   {
     "scene": "廃ビルの一室",
@@ -3591,7 +3653,8 @@ export const scenarioData = [
     "scene": "崩壊した街",
     "text": "廃ビルを出た私たちを待っていたのは、炎と瓦礫に包まれた街だった。人工月の青白い光の下、あちこちから不気味な咆哮が響いている。",
     "bg": "/scene/town_collapse.png",
-    "bgm": "serious_2.mp3"
+    "bgm": "serious_2.mp3",
+    "bgmVolume": 0.5
   },
   {
     "scene": "崩壊した街",
@@ -3641,7 +3704,7 @@ export const scenarioData = [
     "scene": "崩壊した街",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「みんな……！！ どうか私の歌に耳を貸してほしいの！！」"
+    "text": "「みんな……！！ どうか私の歌に耳を貸してほしいの！！」",
   },
   {
     "scene": "崩壊した街",
@@ -3684,7 +3747,8 @@ export const scenarioData = [
   {
     "scene": "崩壊した街",
     "text": "（何、これ……身体が、熱い……？）",
-    "action": "BLACK_DISTORTION"
+    "action": "BLACK_DISTORTION",
+    "bgmVolume": 0.1
   },
   {
     "scene": "崩壊した街",
@@ -3722,13 +3786,19 @@ export const scenarioData = [
   },
   {
     "scene": "崩壊した街",
-    "text": "聞こえた声に手を伸ばすけれど、目眩で足元が崩れ、私は瓦礫に躓いて倒れ込んでしまう。"
+    "text": "聞こえた声に手を伸ばすけれど、炎の煙が一斉に私の視界を覆いで足元が崩れ、私は瓦礫に躓いて倒れ込んでしまう。",
+    "action": "FADE_IN_SMOKE",
+    "bgAnimation": "stumble_zoom",
+    "se": "attack_1.mp3",
+    "seVolume": 0.8
   },
   {
     "scene": "崩壊後-大学の敷地内",
     "text": "そして、煙が晴れた時。そこに三人の姿はなかった。",
+    "action": "CLEAR_SMOKE",
     "bgm": "stop",
     "bg": "/scene/university_collapse.png",
+    "bgCrossfade": true,
     "hideIllust": [
       "Mutsunori",
       "Mika"
@@ -3755,7 +3825,9 @@ export const scenarioData = [
   {
     "scene": "崩壊後-大学の敷地内",
     "text": "そこにいたのは──満だった。",
-    "bg": "/character/Michiru/Michiru_CG3.png"
+    "bg": "/character/Michiru/Michiru_CG3.png",
+    "bgm": "Room_Night.mp3",
+    "bgmVolume": 0.3
   },
   {
     "scene": "崩壊後-大学の敷地内",
@@ -3779,14 +3851,10 @@ export const scenarioData = [
   },
   {
     "scene": "崩壊後-大学の敷地内",
-    "text": "あと数歩で、その温かい胸の中に飛び込める──まさに、その瞬間だった。"
-  },
-  {
-    "scene": "崩壊後-大学の敷地内",
-    "text": "──グサッ。",
-    "se": "Slash.mp3",
+    "se": "Slash_Sound.mp3",
     "action": "BLOOD_SCREEN",
-    "bg": "/character/Michiru/Michiru_CG4.png"
+    "bg": "/character/Michiru/Michiru_CG4.png",
+    "bgm": "stop",
   },
   {
     "scene": "崩壊後-大学の敷地内",
@@ -3800,12 +3868,7 @@ export const scenarioData = [
   },
   {
     "scene": "崩壊後-大学の敷地内",
-    "text": "目の前の光景を理解できない。満の胸元から、禍々しい黒い剣が突き出していた。"
-  },
-  {
-    "scene": "崩壊後-大学の敷地内",
-    "text": "その背後に立っていたのは、漆黒の鎧に身を包んだ異様な存在──【黒騎士】。",
-    "bgm": "serious_4.mp3"
+    "text": "目の前の光景を理解できない。満の胸元から、禍々しい大剣が突き出していた。"
   },
   {
     "scene": "崩壊後-大学の敷地内",
@@ -3823,11 +3886,14 @@ export const scenarioData = [
     "scene": "崩壊後-大学の敷地内",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「いやあああああっ！！」"
+    "text": "「いやあああああっ！！」",
+    "bgm": "serious_4.mp3",
+    "bgmVolume": 0.4
   },
   {
     "scene": "崩壊後-大学の敷地内",
-    "text": "駆け寄ろうとした私の身体は、背後から強い力で止められた。"
+    "text": "駆け寄ろうとした私の身体は、背後から強い力で止められた。",
+    "action": "SHAKE_SCREEN"
   },
   {
     "scene": "崩壊後-大学の敷地内",
@@ -3841,10 +3907,6 @@ export const scenarioData = [
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「離して……！！ 満が……！！」"
-  },
-  {
-    "scene": "崩壊後-大学の敷地内",
-    "text": "必死に抵抗する私をよそに、大男はただ【黒騎士】を睨みつけている。"
   },
   {
     "scene": "崩壊後-大学の敷地内",
@@ -3878,7 +3940,7 @@ export const scenarioData = [
   },
   {
     "scene": "崩壊後-大学の敷地内",
-    "text": "その視線の先にいる【黒騎士】。",
+    "text": "その視線の先にいる———満を殺した、【黒騎士】。",
     "bgm": "stop ",
     "showIllust": [
       "BlackKnight3"
@@ -3894,6 +3956,7 @@ export const scenarioData = [
     "scene": "崩壊後-大学の敷地内",
     "text": "その圧倒的な存在感に、ミカくんも凪砂さんも警戒を露わにする。満が目の前で奪われた現実を、私は受け止めきれずにいた。"
   },
+
   {
     "scene": "崩壊後-大学の敷地内",
     "text": "そんな時、ポケットのスマートフォンが鳴る。\n画面に表示された名前は──ヒルミ教授。",
@@ -3922,7 +3985,10 @@ export const scenarioData = [
   },
   {
     "scene": "崩壊後-大学の敷地内",
-    "text": "その瞬間、【黒騎士】がゆっくりと大剣をこちらへ向ける。兜の奥の赤い瞳が、私たちを捉えた。"
+    "text": "その瞬間、【黒騎士】がゆっくりと大剣をこちらへ向ける。兜の奥の赤い瞳が、私たちを捉えた。",
+    "showIllust": [
+      "BlackKnight_attack3"
+    ]
   },
   {
     "scene": "崩壊後-大学の敷地内",
@@ -3933,9 +3999,7 @@ export const scenarioData = [
   {
     "scene": "崩壊後-大学の敷地内",
     "text": "教授の冷静な声がスピーカーから漏れた瞬間、【黒騎士】の姿がブレた。",
-    "showIllust": [
-      "BlackKnight_attack3"
-    ]
+
   },
   {
     "scene": "崩壊後-大学の敷地内",
@@ -3973,7 +4037,7 @@ export const scenarioData = [
     "scene": "崩壊後-大学の敷地内",
     "text": "大男の声に押され、私たちは満を残したまま、大学構内を全力で駆け出した。背後から響く、鎧の擦れる音。そして、ゆっくりと、けれど確実に迫る【黒騎士】の足音。",
     "bgAnimation": "dash",
-    "bgm": "+dash.mp3"
+    "se": "+dash.mp3"
   },
   {
     "scene": "崩壊後-大学の敷地内",
@@ -3985,16 +4049,16 @@ export const scenarioData = [
     "role": "SAKURA",
     "text": "「ッ……きゃっ……！！」",
     "action": "SHAKE_SCREEN",
-    "bgAnimation": "stumble_zoom",
-    "bgm": "stop"
+    "bgAnimation": "stumble_zoom"
   },
   {
     "scene": "崩壊後-大学の敷地内",
     "type": "choice",
+    "bgAnimation": "stumble_zoom",
     "text": "満のあの光景を思い出して、力が抜けてしまったのかどこかに足を取られてしまい、咄嗟に私は……。",
     "choices": [
       {
-        "text": "見知ったを掴んだ",
+        "text": "見知った服の袖を掴んだ",
         "targetLabel": "mutsunori_route_start"
       },
       {
@@ -4019,15 +4083,11 @@ export const scenarioData = [
   },
   {
     "scene": "崩壊後-大学の敷地内",
-    "text": "見知った服の袖を掴んだ。",
-    "label": "mutsunori_route_start",
-    "bg": "/scene/university_collapse.png"
-  },
-  {
-    "scene": "崩壊後-大学の敷地内",
     "speaker": "睦典",
     "role": "MUTSUNORI",
     "text": "「──朔良！！」",
+    "label": "mutsunori_route_start",
+    "bg": "/scene/university_collapse.png",
     "showIllust": [
       "Mutsunori_serious3"
     ]
@@ -4109,7 +4169,7 @@ export const scenarioData = [
     "role": "MUTSUNORI",
     "text": "「……は？」",
     "showIllust": [
-      "Mutsunori_smile"
+      "Mutsunori_surprise"
     ]
   },
   {
@@ -4258,7 +4318,7 @@ export const scenarioData = [
     "role": "MUTSUNORI",
     "text": "「帰ったら特製うどん作ってやるよ。だから、ちゃんと帰ろう」",
     "showIllust": [
-      "Mutsunori_smile"
+      "Mutsunori_happy"
     ]
   },
   {
@@ -4273,12 +4333,12 @@ export const scenarioData = [
   },
   {
     "scene": "ロケット内部",
-    "action": "RED_ALERT_FLASH",
+    "action": "RED_ALERT_START",
     "bgm": "+alert_Rocket.mp3",
+    "hideWindow": true,
     "showIllust": [
-      "Mutsunori_happy"
-    ],
-    "hideWindow": true
+      "Mutsunori_surprise"
+    ]
   },
   {
     "scene": "ロケット内部",
@@ -4318,16 +4378,23 @@ export const scenarioData = [
   },
   {
     "scene": "ロケット内部",
+    "action": [
+      "CLEAR_ALL_ALERTS_AND_SHAKES",
+      "FADE_TO_BLACK"
+    ],
+    "duration": 4000,
+    "se": "stop",
+    "bgm": "stop"
+  },
+  {
+    "scene": "ロケット内部",
     "speaker": "睦典",
     "role": "MUTSUNORI",
     "text": "「……朔良！」",
+    "bg": "black",
     "hideIllust": [
       "Mutsunori"
-    ],
-    "se": "stop",
-    "bgm": "stop",
-    "action": "CLEAR_SHAKE",
-    "bg": "black"
+    ]
   },
   {
     "scene": "ロケット内部",
@@ -4422,7 +4489,7 @@ export const scenarioData = [
     "role": "MUTSUNORI",
     "text": "「……本当に、月まで来たのか？」",
     "showIllust": [
-      "Mutsunori_happy3"
+      "Mutsunori_surprise"
     ]
   },
   {
@@ -4548,29 +4615,14 @@ export const scenarioData = [
     "text": "二人で紙を広げる。"
   },
   {
-    "scene": "月面",
-    "type": "choice",
-    "text": "手記の内容を確認しますか？",
-    "choices": [
-      {
-        "text": "確認する",
-        "targetLabel": "read_professors_note1"
-      },
-      {
-        "text": "スキップする",
-        "targetLabel": "skip_professors_note1"
-      }
-    ],
-    "hideIllust": [
-      "Mutsunori"
-    ]
-  },
-  {
     "label": "read_professors_note1",
     "scene": "月面",
     "text": "教授の手記には、研究所の最奥にある『コア』が【キメラ】の発生源であること、そしてそこへ辿り着くには、研究所各地に散らばる《セキュリティ解除コードの断片（フラグメント）》をすべて回収する必要があると書かれていた。",
     "showItem": "/item/Message.png",
-    "se": "+paper.mp3"
+    "se": "+paper.mp3",
+    "hideIllust": [
+      "Mutsunori"
+    ]
   },
   {
     "scene": "月面",
@@ -4673,12 +4725,23 @@ export const scenarioData = [
     "role": "MUTSUNORI",
     "text": "「行こう、朔良。コアを止めて、この世界を元に戻すんだ」",
     "showIllust": [
-      "Mutsunori_serious3"
+      "Mutsunori_serious"
     ]
   },
   {
     "scene": "研究所入口",
     "text": "睦典の言葉に頷き、私たちはフラグメントが眠る研究所内部へと足を踏み入れた。"
+  },
+  {
+    "scene": "フラグメントコレクト",
+    "action": "FADE_TO_BLACK",
+    "duration": 1000
+  },
+  {
+    "scene": "フラグメントコレクト",
+    "bg": "black",
+    "style": "popup",
+    "text": "研究所の隅々に散らばった【フラグメント】を回収し、\nコアが保管されている部屋のゲートを開けましょう。\n\n…【フラグメント】だけではなく、とある”重大な情報”が、\n隠されているかもしれません。\n\n＜操作方法＞\nドラックで移動\n探索したいところをクリックまたはタップ"
   },
   {
     "scene": "フラグメントコレクト",
@@ -4786,6 +4849,7 @@ export const scenarioData = [
   {
     "scene": "廊下",
     "bgm": "serious_2.mp3",
+    "bgmVolume": 0.4,
     "text": "閉ざされていた隔壁が開き、その奥から巨大な防衛個体が姿を現した。",
     "showIllust": [
       "machine4"
@@ -4863,6 +4927,7 @@ export const scenarioData = [
   {
     "scene": "ゲート前",
     "text": "巨大なゲートの前にたどり着く。\n中央には、集めたフラグメントを差し込むためのスロットがあった。",
+    "bg": "/scene/gate.png",
     "hideIllust": [
       "Mutsunori"
     ]
@@ -4895,7 +4960,7 @@ export const scenarioData = [
   },
   {
     "scene": "コア部屋",
-    "text": "壁面がガラス張りになっており、そこから差し込む「本当の月の光」を浴びて、それは宙に浮かんでいた。"
+    "text": "壁面がガラス張りになっており、そこから差し込む「本当の月の光」を浴びていた。/n心臓のように脈打つそれからは、周囲を震わせるほどの莫大なエネルギーが放たれている。"
   },
   {
     "scene": "コア部屋",
@@ -4998,6 +5063,7 @@ export const scenarioData = [
   {
     "scene": "コア部屋",
     "bgm": "stop",
+    "action": "MONOCHROME_FLASH",
     "text": "──しかし。"
   },
   {
@@ -5005,8 +5071,9 @@ export const scenarioData = [
     "speaker": "睦典",
     "role": "MUTSUNORI",
     "text": "「……っ、あれ……？」",
+    "action": "MONOCHROME_FLASH",
     "showIllust": [
-      "Mutsunori_pout3"
+      "Mutsunori_surprise3"
     ]
   },
   {
@@ -5015,27 +5082,33 @@ export const scenarioData = [
   },
   {
     "scene": "コア部屋",
-    "action": "BLACK_ENERGY",
+    "action": "BLACK_ENERGY_EDGE",
     "text": "コアに注ぎ込んだはずのエネルギーが、まるで拒絶反応を起こしたかのように暴走し、逆に睦則の体内へとなだれ込んでいく。"
   },
   {
     "scene": "コア部屋",
     "speaker": "睦典",
     "role": "MUTSUNORI",
+    "action": "BLACK_ENERGY_EDGE",
     "text": "「が……あああああっ！！」",
     "showIllust": [
-      "Mutsunori_serious3"
+      "Mutsunori_serious"
     ]
   },
   {
     "scene": "コア部屋",
     "speaker": "朔良",
+    "action": "BLACK_ENERGY_EDGE",
     "role": "SAKURA",
     "text": "「ムッちゃん！！」"
   },
   {
     "scene": "コア部屋",
-    "text": "睦典の身体が崩れ落ちる。今まで彼を蝕んできた負荷が、限界を超える速度で彼自身を削っていく。"
+    "text": "睦典の身体が崩れ落ちる。今まで彼を蝕んできた負荷が、限界を超える速度で彼自身を削っていく。",
+    "action": [
+      "BLACK_ENERGY_EDGE",
+      "SHAKE_SCREEN"
+    ]
   },
   {
     "scene": "コア部屋",
@@ -5056,6 +5129,7 @@ export const scenarioData = [
   {
     "scene": "コア部屋",
     "bgm": "Battle1.mp3",
+    "bgmVolume": 0.5,
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「……黒騎士……っ」"
@@ -5098,9 +5172,11 @@ export const scenarioData = [
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「……っ」",
+    "action": "SHOW_BLOOD",
+    "se": "Slash_Sound.mp3",
     "showIllust": [
       "BlackKnight_attack3",
-      "Mutsunori_serious3"
+      "Mutsunori_serious_injured"
     ]
   },
   {
@@ -5115,6 +5191,10 @@ export const scenarioData = [
   },
   {
     "scene": "コア部屋",
+    "action": "CLEAR_BLOOD",
+    "showIllust": [
+      "Mutsunori_serious"
+    ],
     "text": "深い傷は、みるみるうちに塞がっていく。それはもう、「丈夫」なんて言葉では説明できない異常な回復だった。"
   },
   {
@@ -5128,6 +5208,7 @@ export const scenarioData = [
   },
   {
     "scene": "コア部屋",
+    "bgAnimation": "dash",
     "text": "睦典は私の手を掴むと、傷など最初からなかったかのような力で走り出した。"
   },
   {
@@ -5541,6 +5622,8 @@ export const scenarioData = [
   },
   {
     "scene": "瓦礫裏",
+    "speaker": "睦典",
+    "role": "MUTSUNORI",
     "text": "「ガ……アアアアッ！！」",
     "hideIllust": [
       "Mutsunori"
@@ -5582,12 +5665,7 @@ export const scenarioData = [
     "role": "SAKURA",
     "text": "「忘れるなんて、絶対に許さない……！」"
   },
-  {
-    "scene": "瓦礫裏",
-    "speaker": "朔良",
-    "role": "SAKURA",
-    "text": "「うどんの味も、大学で過ごした時間も、全部私が覚えてる！ だから……自分のことも、私のことも、勝手に諦めないでよ……！」"
-  },
+
   {
     "scene": "瓦礫裏",
     "text": "彼の胸に顔を埋め、涙をこらえながら叫ぶ。"
@@ -5603,7 +5681,7 @@ export const scenarioData = [
     "scene": "瓦礫裏",
     "text": "その瞬間──。私の身体の奥から、眩い光が溢れ出した。",
     "showIllust": [
-      "Mutsunori_pout"
+      "Mutsunori_surprise"
     ],
     "action": "BLACK_AURA_STOP"
   },
@@ -5613,20 +5691,27 @@ export const scenarioData = [
   },
   {
     "scene": "瓦礫裏",
-    "text": "睦典の瞳に、いつもの光が戻る。"
+    "speaker": "睦則",
+    "role": "MUTSUNORI",
+    "text": "「あ………、さく、ら…………っ」"
   },
   {
     "scene": "瓦礫裏",
-    "speaker": "睦典",
-    "role": "MUTSUNORI",
-    "text": "「……………お待たせ、朔良。もう、大丈夫」",
+    "text": "睦典の瞳に、いつもの光が戻る。その焦点が、しっかり私を見据えた。"
+  },
+  {
+    "scene": "瓦礫裏",
+    "text": "彼は弱々しく笑いながら、それでも確かな足取りで立ち上がった。",
     "showIllust": [
       "Mutsunori_smile"
     ]
   },
   {
     "scene": "瓦礫裏",
-    "text": "彼は弱々しく笑いながら、それでも確かな足取りで立ち上がった。"
+    "speaker": "睦典",
+    "role": "MUTSUNORI",
+    "text": "「……………お待たせ、朔良。もう、大丈夫」",
+
   },
   {
     "scene": "コア部屋_崩壊①",
@@ -5638,12 +5723,9 @@ export const scenarioData = [
   },
   {
     "scene": "コア部屋_崩壊①",
-    "text": "精神の拠り所である私との同調によって、睦典の異能は完全に制御されている。"
+    "text": "精神の拠り所である私との同調によって、睦典の異能は完全に制御されている。もう、力を使うたびに記憶が削れることはない。"
   },
-  {
-    "scene": "コア部屋_崩壊①",
-    "text": "もう、力を使うたびに記憶が削れることはない。"
-  },
+
   {
     "scene": "コア部屋_崩壊①",
     "speaker": "黒騎士",
@@ -5669,20 +5751,7 @@ export const scenarioData = [
     "role": "MUTSUNORI",
     "text": "「朔良、俺の目になってくれ。——二人で、あいつを倒そう」",
     "showIllust": [
-      "Mutsunori_smile2"
-    ]
-  },
-  {
-    "scene": "コア部屋_崩壊①",
-    "text": "いつものような、少しだけふざけた笑顔。"
-  },
-  {
-    "scene": "コア部屋_崩壊①",
-    "speaker": "睦典",
-    "role": "MUTSUNORI",
-    "text": "「二人で、あいつを倒そう」",
-    "showIllust": [
-      "Mutsunori_happy"
+      "Mutsunori_happy2"
     ]
   },
   {
@@ -5728,7 +5797,7 @@ export const scenarioData = [
     "scene": "コア部屋_崩壊①",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「朔良、大丈夫か！？」"
+    "text": "「ぐ…っ！朔良、大丈夫か！？」"
   },
   {
     "scene": "コア部屋_崩壊①",
@@ -5758,6 +5827,7 @@ export const scenarioData = [
     "speaker": "睦典",
     "role": "MUTSUNORI",
     "text": "「……いよいよ、本番だな」",
+    "bgm": "TheSong.mp3",
     "showIllust": [
       "Mutsunori_smile3"
     ]
@@ -5907,10 +5977,6 @@ export const scenarioData = [
   },
   {
     "scene": "コア部屋_崩壊①",
-    "text": "もし、この戦いの代償で私のことまで忘れていたら──。"
-  },
-  {
-    "scene": "コア部屋_崩壊①",
     "text": "けれど、睦典は少し驚いたように目を瞬かせると、いつもの笑顔を浮かべた。"
   },
   {
@@ -5918,6 +5984,8 @@ export const scenarioData = [
     "speaker": "睦典",
     "role": "MUTSUNORI",
     "text": "「あったり前だろ。朔良を忘れるわけないじゃん。……それよりさ、なんか急に腹減ってきた」",
+    "bgm": "Room_Night.mp3",
+    "bgmVolume": 0.5,
     "showIllust": [
       "Mutsunori_happy3"
     ]
@@ -5974,6 +6042,7 @@ export const scenarioData = [
     "scene": "コア部屋_崩壊①",
     "text": "直後、地面が大きく揺れ始めた。",
     "action": "SHAKE_SCREEN",
+    "bg": "/scene/core_close_Nothing.png",
     "se": "+bakuhatsu.mp3",
     "bgm": "+alert.mp3"
   },
@@ -5989,7 +6058,7 @@ export const scenarioData = [
     "role": "MUTSUNORI",
     "text": "「ああ、任せろ！」",
     "showIllust": [
-      "Mutsunori_serious3"
+      "Mutsunori_serious"
     ],
     "action": "ALL_FADE_OUT"
   },
@@ -6002,16 +6071,23 @@ export const scenarioData = [
     "text": "そこにあったのは、地球へ帰るための最後のロケットだった。",
     "bgm": "stop",
     "bg": "/scene/rocket_back.png",
-    "action": "FADE_IN"
+    "action": "FADE_IN",
+    "hideIllust": [
+      "Mutsunori"
+    ]
   },
   {
     "scene": "脱出ロケット",
     "text": "二人で乗り込み、ハッチを閉じる。",
-    "se": "+rocket_launch.mp3"
+
   },
   {
     "scene": "脱出ロケット",
-    "text": "轟音と共に機体は月面を離れ、遠ざかっていく研究所の向こうで、青い地球がゆっくりと近づいてくる。"
+    "text": "轟音と共に機体は月面を離れ、遠ざかっていく研究所の向こうで、青い地球がゆっくりと近づいてくる。",
+    "se": "+rocket_launch.mp3",
+    "seVolume": 0.8,
+    "seDuration": 0,
+    "seFadeOut": 3000
   },
   {
     "scene": "脱出ロケット",
@@ -6019,7 +6095,7 @@ export const scenarioData = [
     "role": "MUTSUNORI",
     "text": "「地球に帰ったらさ……特製の『ルナ・エネルギーうどん』作ってやるよ」",
     "showIllust": [
-      "Mutsunori_happy3"
+      "Mutsunori_happy"
     ]
   },
   {
@@ -6030,16 +6106,26 @@ export const scenarioData = [
   },
   {
     "scene": "脱出ロケット",
-    "text": "私たちは今度こそ、失った日常へ──青い故郷へと帰っていった。",
+    "text": "私たちは今度こそ、失った日常へ──青い故郷へと帰っていった。"
+  },
+  {
+    "scene": "脱出ロケット",
     "action": "FADE_TO_BLACK",
-    "duration": 4000
+    "duration": 3000,
+    "clearIllust": true,
+    "hideWindow": true
+  },
+  {
+    "scene": "暗転中",
+    "bg": "black",
+    "action": "WAIT_SECONDS",
+    "duration": 1000
   },
   {
     "scene": "空",
     "text": "私たちの日常は、驚くほどあっけなく戻ってきた。",
     "bg": "/scene/sky.png",
-    "bgm": "Normal_Morning2.mp3",
-    "clearIllust": true
+    "bgm": "Normal_Morning2.mp3"
   },
   {
     "scene": "空",
@@ -6071,23 +6157,24 @@ export const scenarioData = [
     "scene": "研究室",
     "text": "でも、その姿を見てようやく実感した。私たちは、本当に帰ってきたのだ。",
     "action": "ALL_FADE_OUT",
-    "bgm": "stop"
   },
   {
-    "scene": "研究室",
+    "scene": "暗転中",
+    "bg": "black",
     "text": "そして、そんな中変わったことと言えば──。",
-    "bg": "/scene/mutsu_inside.png",
-    "bgm": "HappyEnd.mp3",
-    "action": "FADE_IN",
-    "clearIllust": true
+    "bgm": "stop"
   },
   {
     "scene": "店内",
     "speaker": "睦典",
     "role": "MUTSUNORI",
     "text": "「はい、お待ちどうさま！ 当店特製、『ルナ・エネルギーうどん』改め、激ウマ月見うどんです」",
+    "bg": "/scene/mutsu_inside.png",
+    "bgm": "HappyEnd.mp3",
+    "action": "FADE_IN",
+    "clearIllust": true,
     "showIllust": [
-      "Mutsunori_smile3"
+      "Mutsunori_smile"
     ]
   },
   {
@@ -6104,7 +6191,10 @@ export const scenarioData = [
     "scene": "店内",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「だろ？ 記憶を取り戻すために、親父と一緒に何度も試作したんだから」"
+    "text": "「だろ？ 記憶を取り戻すために、親父と一緒に何度も試作したんだから」",
+    "showIllust": [
+      "Mutsunori_happy"
+    ]
   },
   {
     "scene": "店内",
@@ -6817,7 +6907,7 @@ export const scenarioData = [
   },
   {
     "scene": "コア部屋",
-    "text": "壁面がガラス張りになっており、そこから差し込む「本当の月の光」を浴びて、それは宙に浮かんでいた。"
+    "text": "壁面がガラス張りになっており、そこから差し込む「本当の月の光」を浴びていた。/n心臓のように脈打つそれからは、周囲を震わせるほどの莫大なエネルギーが放たれている。"
   },
   {
     "scene": "コア部屋",
@@ -9614,7 +9704,8 @@ export const scenarioData = [
   {
     "scene": "崩壊後-大学の敷地内",
     "shakeEffect": "small",
-    "text": "低く穏やかな声と共に、私は誰かの腕の中へ抱き留められた。"
+    "text": "低く穏やかな声と共に、私は誰かの腕の中へ抱き留められた。",
+    "action": "SHAKE_SCREEN"
   },
   {
     "scene": "崩壊後-大学の敷地内",
@@ -9698,6 +9789,7 @@ export const scenarioData = [
     "scene": "研究室",
     "speaker": "ヒルミ教授",
     "role": "PROFESSOR",
+    "bgm": "serious_1.mp3",
     "text": "「時間がない。君たちにはこれから、このロケットで月へ向かってもらう」"
   },
   {
@@ -9825,7 +9917,7 @@ export const scenarioData = [
   },
   {
     "scene": "ロケット内部",
-    "text": "私たちがシートへ座りベルトを締めた瞬間"
+    "text": "私たちがシートへ座りベルトを締めた瞬間————。"
   },
   {
     "scene": "ロケット内部",
@@ -9835,12 +9927,17 @@ export const scenarioData = [
   },
   {
     "scene": "ロケット内部",
-    "se": "+rocket_launch_Sound.mp3",
+    "se": "+rocket_launch.mp3",
+    "seVolume": 0.8,
+    "seDuration": 0,
+    "seFadeOut": 3000,
+    "action": "SHAKE_SCREEN_CONTINUOUS_SMALL",
     "text": "機械音声と共に機体が激しく震え、ロケットは轟音を上げて人工月へ向かって飛び立った。"
   },
   {
     "scene": "ロケット内部",
     "shakeEffect": "small",
+    "action": "CLEAR_SHAKE",
     "text": "強烈な重力が身体をシートへ押し付ける。窓の外では街の灯りが遠ざかり、青白い人工月だけが大きく迫っていた。"
   },
   {
@@ -10162,8 +10259,8 @@ export const scenarioData = [
   {
     "label": "skip_professors_note2",
     "scene": "月面",
-    "speaker": "朔良",
-    "role": "SAKURA",
+    "speaker": "凪砂",
+    "role": "NAGISA",
     "text": "「……要するに、フラグメントを全部回収してコアを止めて、地下のロケットで帰れってことか」"
   },
   {
@@ -10345,11 +10442,7 @@ export const scenarioData = [
   },
   {
     "scene": "廊下",
-    "text": "ピシャリと言い放たれ、私は言葉を失う。機密ファイルで読んだ、あの恐ろしい文字が脳裏をよぎった。"
-  },
-  {
-    "scene": "廊下",
-    "text": "──過負荷による感覚拒絶。彼は今、私の声すら、脳を焼き尽くす濁流の一部として苦しんでいるのかもしれない。そんな私の気遣いすら、今の彼には煩わしいだけのようだった。"
+    "text": "ピシャリと言い放たれ、私は言葉を失う。\nそれでも私は、いつも通りの辛辣な口調の裏に、彼の疲労を感じ取った。"
   },
   {
     "scene": "廊下",
@@ -10558,7 +10651,7 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "壁面がガラス張りになっており、そこから差し込む「本当の月の光」を浴びて、それは宙に浮かんでいた。"
+    "text": "壁面がガラス張りになっており、そこから差し込む「本当の月の光」を浴びていた。/n心臓のように脈打つそれからは、周囲を震わせるほどの莫大なエネルギーが放たれている。"
   },
   {
     "scene": "研究所の最奥",
@@ -11061,7 +11154,7 @@ export const scenarioData = [
   },
   {
     "scene": "瓦礫裏",
-    "se": "Slash.mp3",
+    "se": "Slash_Sound.mp3",
     "action": [
       "SHAKE_SCREEN_SMALL",
       "BLOOD_SCREEN"
@@ -12981,7 +13074,7 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "壁面がガラス張りになっており、そこから差し込む「本当の月の光」を浴びて、それは宙に浮かんでいた。"
+    "text": "壁面がガラス張りになっており、そこから差し込む「本当の月の光」を浴びていた。/n心臓のように脈打つそれからは、周囲を震わせるほどの莫大なエネルギーが放たれている。"
   },
   {
     "scene": "研究所の最奥",
@@ -14896,7 +14989,7 @@ export const scenarioData = [
   },
   {
     "scene": "コア部屋",
-    "text": "壁面がガラス張りになっており、そこから差し込む「本当の月の光」を浴びて、それは宙に浮かんでいた。"
+    "text": "壁面がガラス張りになっており、そこから差し込む「本当の月の光」を浴びていた。/n心臓のように脈打つそれからは、周囲を震わせるほどの莫大なエネルギーが放たれている。"
   },
   {
     "scene": "コア部屋",

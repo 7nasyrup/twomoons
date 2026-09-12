@@ -98,13 +98,14 @@ export function useNovelEngine(scenarioData, options = {}) {
         'FADE_TO_BLACK', 'SLOW_FADE_TO_BLACK', 'WAKE_UP', 'FADE_OUT',
         'WAIT_SECONDS', 'WAIT_SECONDS_AND_MOVE_MOON', 'ALL_FADE_OUT', 'WAIT_FADE',
         'WHITE_OUT_END', 'WHITE_OUT_START', 'WHITE_OUT_END_SLOW', 'WHITE_OUT_END_VERY_SLOW'
-      ].includes(currentLine.action);
+      ].some(a => [].concat(currentLine.action || []).includes(a));
 
       if (
         !isPrologue &&
         !isSpecialAction &&
         prevBgRef.current !== '' &&
-        prevBgRef.current !== newBg
+        prevBgRef.current !== newBg &&
+        !currentLine.bgNoFade
       ) {
         // Bg changed: trigger blackout and delay typing
         setIsBgTransitioning(true);
@@ -207,10 +208,17 @@ export function useNovelEngine(scenarioData, options = {}) {
     advanceStep();
   }, [currentLine, scenarioData, advanceStep]);
 
-  const jumpToStep = useCallback((stepIndex) => {
+  const jumpToStep = useCallback((stepIndex, bgPath) => {
     if (stepIndex >= 0 && stepIndex < scenarioData.length) {
       setCurrentStep(stepIndex);
       setIsWaitingForChoice(false);
+      if (bgPath !== undefined) {
+        setCurrentBg(bgPath);
+        prevBgRef.current = bgPath;
+        nextBgRef.current = bgPath;
+        setIsBgTransitioning(false);
+        setIsBgFadingOut(false);
+      }
     }
   }, [scenarioData.length]);
 

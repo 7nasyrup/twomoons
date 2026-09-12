@@ -387,12 +387,7 @@ export default function BattleMidBossMachine({ onComplete, playBGM, stopBGM, pla
   }, []);
 
   // ─── BGM ───
-  useEffect(() => {
-    if (playBGM) {
-      playBGM(assetPath('/assets/audio/bgm/serious_2.mp3'));
-    }
-    return () => { if (stopBGM) stopBGM(); };
-  }, []);
+  // BGM is handled by the main scenario engine (scenario.js)
 
   // ─── Intro -> Fighting ───
   useEffect(() => {
@@ -1069,12 +1064,10 @@ export default function BattleMidBossMachine({ onComplete, playBGM, stopBGM, pla
       setIsCommandMenuOpen(false);
       setAllyQTEState('none');
       setHitPosition(null);
-      if (playBGM) playBGM();
       return;
     }
-    if (stopBGM) stopBGM();
     onComplete(battlePhase === 'victory' ? 'win' : 'lose');
-  }, [battlePhase, onComplete, stopBGM, playBGM]);
+  }, [battlePhase, onComplete]);
 
 
   // ═══════════════════════════════════════════════════════════════════════════════

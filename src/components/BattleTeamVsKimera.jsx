@@ -443,13 +443,7 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
     pendingGuardTimeoutsRef.current = {};
   }, []);
 
-  // ─── BGM ───
-  useEffect(() => {
-    if (playBGM) {
-      playBGM(assetPath('/assets/audio/bgm/TheSong.mp3'));
-    }
-    return () => { if (stopBGM) stopBGM(); };
-  }, []);
+
 
   // ─── Intro -> Fighting ───
   useEffect(() => {

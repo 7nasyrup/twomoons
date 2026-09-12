@@ -51,7 +51,7 @@ import { scenarioData } from './data/scenario';
 import { assetPath } from './utils/assetPath';
 
 // Custom CSS-based visual representation of game backgrounds when WebP/PNG images are missing
-function BackgroundRenderer({ bgPath, bgAnimationClass }) {
+function BackgroundRenderer({ bgPath, bgAnimationClass, fadeMode = 'blackout' }) {
   const [imageError, setImageError] = useState(false);
 
   useEffect(() => {
@@ -73,16 +73,28 @@ function BackgroundRenderer({ bgPath, bgAnimationClass }) {
 
   return (
     <div className="absolute inset-0 w-full h-full select-none z-0">
-      {!imageError ? (
-        <img
-          key={bgPath}
-          src={assetPath(bgPath)}
-          alt="background"
-          className={`w-full h-full object-cover transition-all duration-700 transform-gpu will-change-transform ${bgAnimationClass || ''}`}
-          onError={() => setImageError(true)}
-        />
-      ) : (
-        <div className={`w-full h-full relative overflow-hidden transition-all duration-700 ${bgAnimationClass || ''}`}>
+      <AnimatePresence mode={fadeMode === 'crossfade' ? 'sync' : 'wait'}>
+        {!imageError ? (
+          <motion.img
+            key={bgPath}
+            src={assetPath(bgPath)}
+            alt="background"
+            className={`absolute inset-0 w-full h-full object-cover transform-gpu will-change-transform ${bgAnimationClass || ''}`}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={fadeMode === 'crossfade' ? { duration: 1.2, ease: "easeInOut" } : { duration: 0.3, ease: "easeInOut" }}
+            onError={() => setImageError(true)}
+          />
+        ) : (
+          <motion.div 
+            key={bgPath + "-error"}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.2, ease: "easeInOut" }}
+            className={`absolute inset-0 w-full h-full overflow-hidden ${bgAnimationClass || ''}`}
+          >
           {/* Cyberpunk Grid Background */}
           <div className="absolute inset-0 bg-[#030712]" />
 
@@ -160,8 +172,9 @@ function BackgroundRenderer({ bgPath, bgAnimationClass }) {
               <div className="absolute top-[8%] right-[25%] w-24 h-24 rounded-full bg-[#ffe49e]/5 border border-[#ffe49e]/20 shadow-[0_0_40px_rgba(255,228,158,0.15)] animate-pulse" />
             </div>
           )}
-        </div>
+        </motion.div>
       )}
+      </AnimatePresence>
 
       {/* Vignette effect */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/40 pointer-events-none" />
@@ -396,7 +409,13 @@ export default function App() {
     totalSteps,
   } = useNovelEngine(scenarioData, { manualTestMode, endMode: isEndScreen });
 
-  const { playBGM, stopBGM, playSE, stopSE, toggleMute, pauseBGM, resumeBGM } = useAudioSystem();
+  const { playBGM, stopBGM, playSE, stopSE,
+    toggleMute,
+    pauseBGM,
+    resumeBGM,
+    setMasterVol,
+    setBGMVolume
+  } = useAudioSystem();
   const lastSceneRef = useRef(null);
   const bgmOverrideRef = useRef(false);
 
@@ -415,6 +434,7 @@ export default function App() {
   const [isWhiteFlash70Active, setIsWhiteFlash70Active] = useState(false);
   const [shakeEffect, setShakeEffect] = useState(false);
   const [isSmokeActive, setIsSmokeActive] = useState(false);
+  const smokeExitDurationRef = useRef(4.0);
   const [isBlackDistortActive, setIsBlackDistortActive] = useState(false);
   const [isBloodActive, setIsBloodActive] = useState(false);
   const [isRedAlertActive, setIsRedAlertActive] = useState(false);
@@ -602,7 +622,297 @@ export default function App() {
           if (slotData.tapCommunicationScores !== undefined) setTapCommunicationScores(slotData.tapCommunicationScores);
           if (slotData.silentScoreResult !== undefined) setSilentScoreResult(slotData.silentScoreResult);
           if (slotData.flags !== undefined) setFlags(slotData.flags);
-          jumpToStep(slotData.step);
+          const jpToEngBaseLocal = {
+            "睦典": "Mutsunori", "ヒルミ教授": "Hirumi", "ミカ": "Mika", "凪砂": "Nagisa",
+            "大男": "Akane", "アカネ": "Akane", "満": "Michiru", "ミチル": "Michiru",
+            "朔良": "Sakura", "黒騎士": "BlackKnight", "bk": "bk", "bl": "bl", "ルキ": "Ruki", "少年": "Ruki"
+          };
+
+          let simulatedPresentCharacters = [];
+          for (let i = 0; i <= slotData.step; i++) {
+            const line = scenarioData[i];
+            if (!line) continue;
+            if (line.clearIllust) {
+              simulatedPresentCharacters = [];
+            }
+            if (Array.isArray(line.hideIllust)) {
+              line.hideIllust.forEach(char => {
+                const rawBase = char.split('_')[0];
+                const baseName = jpToEngBaseLocal[rawBase] || rawBase;
+                simulatedPresentCharacters = simulatedPresentCharacters.filter(c => {
+                  const cBase = c.split('_')[0];
+                  return (jpToEngBaseLocal[cBase] || cBase) !== baseName;
+                });
+              });
+            }
+            if (Array.isArray(line.showIllust)) {
+              line.showIllust.forEach(charRaw => {
+                let char = charRaw;
+                const match = charRaw.match(/^(.+?_bake\d)([1-6])$/) || charRaw.match(/^((?!.*_bake\d$).+?)([1-6])$/);
+                if (match) char = match[1];
+                const rawBase = char.split('_')[0];
+                const baseName = jpToEngBaseLocal[rawBase] || rawBase;
+                const existingIndex = simulatedPresentCharacters.findIndex(c => {
+                  const cBase = c.split('_')[0];
+                  return (jpToEngBaseLocal[cBase] || cBase) === baseName;
+                });
+                if (existingIndex !== -1) {
+                  simulatedPresentCharacters[existingIndex] = char;
+                } else {
+                  simulatedPresentCharacters.push(char);
+                }
+              });
+            }
+          }
+          setPresentCharacters(simulatedPresentCharacters);
+
+          if (slotData.displayedItem !== undefined) {
+            setDisplayedItem(slotData.displayedItem);
+          } else {
+            setDisplayedItem(null);
+          }
+          // --- BGM & Effects State Restoration ---
+          let simulatedBgm = null;
+          let simulatedVolume = 1.0;
+          let simulatedOverride = false;
+          let currentScene = scenarioData[0]?.scene;
+
+          let simEffects = {
+            isBloodActive: false,
+            isRedAlertActive: false,
+            shakeEffect: false,
+            isMonochromeFlashActive: false,
+            isWhiteOut: false,
+            isEnergyAuraActive: false,
+            isBlackAuraActive: false,
+            isDarkEnergyActive: false,
+            isBlackEnergyEdgeActive: false,
+            isSmokeActive: false,
+            isEyesClosed: false,
+            isTearBlurActive: false,
+            isLightWaveActive: false,
+            isSpeedEffectActive: false,
+            isBlackDistortActive: false,
+            isWhiteFlash70Active: false,
+            whitePulseLevel: 0,
+            isGrayOut: false,
+            leftActive: false,
+            rightActive: false,
+            focusSlot: null,
+            isPhoneCallRight: false
+          };
+          let simulatedLoopingSEs = new Map();
+
+          for (let i = 0; i <= slotData.step; i++) {
+            const line = scenarioData[i];
+            if (!line) continue;
+
+            if (line.scene !== currentScene) {
+              simulatedOverride = false;
+              currentScene = line.scene;
+              
+              // Clear effects on scene change exactly as the useEffect does
+              simEffects.leftActive = false;
+              simEffects.rightActive = false;
+              simEffects.focusSlot = null;
+              simEffects.isBloodActive = false;
+              simEffects.isRedAlertActive = false;
+              simEffects.isMonochromeFlashActive = false;
+              simEffects.isLightWaveActive = false;
+              simEffects.isDarkEnergyActive = false;
+              simEffects.isEyesClosed = false;
+              simEffects.isPhoneCallRight = false;
+              simEffects.isSpeedEffectActive = false;
+            }
+
+            // SE logic
+            if (line.se && line.seLoop) {
+              simulatedLoopingSEs.set(line.se, line);
+            }
+            if (line.stopSe) {
+              simulatedLoopingSEs.delete(line.stopSe);
+            }
+
+            const actions = Array.isArray(line.action) ? line.action : (line.action ? [line.action] : []);
+            actions.forEach(action => {
+              if (action === 'clear') {
+                simEffects.isBloodActive = false;
+                simEffects.isRedAlertActive = false;
+                simEffects.shakeEffect = false;
+                simEffects.isMonochromeFlashActive = false;
+                simEffects.isWhiteOut = false;
+                simEffects.isEnergyAuraActive = false;
+                simEffects.isBlackAuraActive = false;
+                simEffects.isDarkEnergyActive = false;
+                simEffects.isBlackEnergyEdgeActive = false;
+                simEffects.isSmokeActive = false;
+                simEffects.isEyesClosed = false;
+                simEffects.isTearBlurActive = false;
+                simEffects.isLightWaveActive = false;
+                simEffects.isSpeedEffectActive = false;
+                simEffects.isBlackDistortActive = false;
+                simEffects.isWhiteFlash70Active = false;
+                simEffects.whitePulseLevel = 0;
+                simEffects.isGrayOut = false;
+              } else if (action === 'SHOW_BLOOD' || action === 'BLOOD_SCREEN' || action === 'BLOOD_SPLATTING') {
+                simEffects.isBloodActive = true;
+              } else if (action === 'CLEAR_BLOOD' || action === 'MUTSUNORI_HEALING_CUTIN') {
+                simEffects.isBloodActive = false;
+              } else if (action === 'RED_ALERT_FLASH' || action === 'RED_ALERT_START') {
+                simEffects.isRedAlertActive = true;
+              } else if (action === 'CLEAR_RED_ALERT') {
+                simEffects.isRedAlertActive = false;
+              } else if (action === 'RED_ALERT_AND_SMALL_SHAKE') {
+                simEffects.isRedAlertActive = true;
+                simEffects.shakeEffect = 'small_continuous';
+              } else if (action === 'CLEAR_ALL_ALERTS_AND_SHAKES') {
+                simEffects.isRedAlertActive = false;
+                simEffects.shakeEffect = false;
+              } else if (action === 'MONOCHROME_FLASH') {
+                simEffects.isMonochromeFlashActive = true;
+              } else if (action === 'CLEAR_MONOCHROME_FLASH') {
+                simEffects.isMonochromeFlashActive = false;
+              } else if (action === 'CLEAR_WHITE_OUT_AND_FLASHBACK_END') {
+                simEffects.isWhiteOut = false;
+                simEffects.isEnergyAuraActive = false;
+              }
+
+              if (action === 'SHOW_SILHOUETTE_LEFT') {
+                simEffects.leftActive = true;
+              } else if (action === 'SHOW_SILHOUETTE_RIGHT') {
+                simEffects.rightActive = true;
+              } else if (action === 'HIDE_SILHOUETTE_RIGHT') {
+                simEffects.rightActive = false;
+              } else if (action === 'SHOW_BOTH_SILHOUETTES') {
+                simEffects.leftActive = true;
+                simEffects.rightActive = true;
+              } else if (action === 'FOCUS_SILHOUETTE_LEFT') {
+                simEffects.leftActive = true;
+                simEffects.focusSlot = 'left';
+              }
+
+              if (action === 'STOP_ALL_AURAS_AND_SHAKE') {
+                simEffects.isEnergyAuraActive = false;
+                simEffects.isBlackAuraActive = false;
+              }
+              if (action === 'END_PHONE_CALL_AND_SHAKE') {
+                simEffects.isPhoneCallRight = false;
+              }
+
+              if (action === 'FADE_IN_SMOKE') simEffects.isSmokeActive = true;
+              if (action === 'CLEAR_SMOKE') simEffects.isSmokeActive = false;
+              if (action === 'WHITE_OUT_START') simEffects.isWhiteOut = true;
+              if (action === 'ENERGY_AURA_START') simEffects.isEnergyAuraActive = true;
+              if (action === 'BLACK_AURA_START') simEffects.isBlackAuraActive = true;
+              if (action === 'DARK_ENERGY_START') simEffects.isDarkEnergyActive = true;
+              if (action === 'BLACK_ENERGY_EDGE_START') simEffects.isBlackEnergyEdgeActive = true;
+              if (action === 'CLOSE_EYES') simEffects.isEyesClosed = true;
+              if (action === 'OPEN_EYES') simEffects.isEyesClosed = false;
+              if (action === 'TEAR_BLUR_START') simEffects.isTearBlurActive = true;
+              if (action === 'TEAR_BLUR_END') simEffects.isTearBlurActive = false;
+              if (action === 'LIGHT_WAVE_START') simEffects.isLightWaveActive = true;
+              if (action === 'LIGHT_WAVE_END') simEffects.isLightWaveActive = false;
+              if (action === 'SPEED_EFFECT_START') simEffects.isSpeedEffectActive = true;
+              if (action === 'SPEED_EFFECT_END') simEffects.isSpeedEffectActive = false;
+              if (action === 'BLACK_DISTORT_START') simEffects.isBlackDistortActive = true;
+              if (action === 'BLACK_DISTORT_END') simEffects.isBlackDistortActive = false;
+              if (action === 'WHITE_FLASH_70_START') simEffects.isWhiteFlash70Active = true;
+              if (action === 'WHITE_FLASH_70_END') simEffects.isWhiteFlash70Active = false;
+              if (action === 'WHITE_PULSE_START') simEffects.whitePulseLevel = 1;
+              if (action === 'GRAY_OUT_START') simEffects.isGrayOut = true;
+              if (action === 'GRAY_OUT_END') simEffects.isGrayOut = false;
+              if (action === 'START_PHONE_CALL_RIGHT') simEffects.isPhoneCallRight = true;
+            });
+
+            if (line.bgm !== undefined) {
+              simulatedOverride = true;
+              if (line.bgm === "stop" || line.bgm === "none" || line.bgm === "") {
+                simulatedBgm = "stop";
+              } else if (line.bgm === "pause" || line.bgm === "resume") {
+                // ignore
+              } else {
+                simulatedBgm = line.bgm.includes('.') ? line.bgm : `${line.bgm}.mp3`;
+                simulatedVolume = line.bgmVolume !== undefined ? line.bgmVolume : 1.0;
+              }
+            } else {
+              if (!simulatedOverride) {
+                if (line.scene === 'PROLOGUE') {
+                  simulatedBgm = 'deep_blue_moon.mp3';
+                } else if (line.scene === '講義室出口' || line.scene === '大学の廊下') {
+                  simulatedBgm = 'mutsu_theme.mp3';
+                } else if (line.scene === '月科学大講義室') {
+                  simulatedBgm = 'classroom_ambient.mp3';
+                }
+              }
+
+              if (line.bgmVolume !== undefined) {
+                simulatedVolume = line.bgmVolume;
+              }
+            }
+          }
+
+          if (!simEffects.isSmokeActive) {
+            smokeExitDurationRef.current = 0.0;
+          }
+
+          // Apply all visual effects to React state
+          setIsBloodActive(simEffects.isBloodActive);
+          setIsRedAlertActive(simEffects.isRedAlertActive);
+          setShakeEffect(simEffects.shakeEffect);
+          setIsMonochromeFlashActive(simEffects.isMonochromeFlashActive);
+          setIsWhiteOut(simEffects.isWhiteOut);
+          setIsEnergyAuraActive(simEffects.isEnergyAuraActive);
+          setIsBlackAuraActive(simEffects.isBlackAuraActive);
+          setIsDarkEnergyActive(simEffects.isDarkEnergyActive);
+          setIsBlackEnergyEdgeActive(simEffects.isBlackEnergyEdgeActive);
+          setIsSmokeActive(simEffects.isSmokeActive);
+          setIsEyesClosed(simEffects.isEyesClosed);
+          setIsTearBlurActive(simEffects.isTearBlurActive);
+          setIsLightWaveActive(simEffects.isLightWaveActive);
+          setIsSpeedEffectActive(simEffects.isSpeedEffectActive);
+          setIsBlackDistortActive(simEffects.isBlackDistortActive);
+          setIsWhiteFlash70Active(simEffects.isWhiteFlash70Active);
+          setWhitePulseLevel(simEffects.whitePulseLevel);
+          setIsGrayOut(simEffects.isGrayOut);
+          setLeftActive(simEffects.leftActive);
+          setRightActive(simEffects.rightActive);
+          setFocusSlot(simEffects.focusSlot);
+          setIsPhoneCallRight(simEffects.isPhoneCallRight);
+          
+          // Clear transient effects that might be running from before the load
+          setIsFadingBlack(false);
+          setIsWhiteFlashActive(false);
+          setAlertActive(false);
+
+          // Force update visualLine immediately to prevent old line's useEffect from ruining the state
+          setVisualLine(scenarioData[slotData.step]);
+          setVisualStep(slotData.step);
+
+          // 完全なキャッシュ消去：ロード前に鳴っていた音を全て即座に止める
+          stopBGM(0);
+          stopSE(null, 0);
+
+          if (simulatedBgm !== "stop" && simulatedBgm) {
+            playBGM(assetPath(`/assets/audio/bgm/${simulatedBgm}`), { volume: simulatedVolume, fadeDuration: 500 });
+          }
+          
+          // Restart looping SEs
+          simulatedLoopingSEs.forEach((line, seFile) => {
+            playSE(
+              assetPath(`/assets/audio/se/${seFile}`),
+              line.seDuration !== undefined ? line.seDuration : null,
+              line.seLoop || false,
+              line.seVolume !== undefined ? line.seVolume : 1.0,
+              line.seFadeOut !== undefined ? line.seFadeOut : 300
+            );
+          });
+
+          bgmOverrideRef.current = simulatedOverride;
+          lastSceneRef.current = currentScene;
+          setPrevScene(currentScene);
+          // -----------------------------
+
+          jumpToStep(slotData.step, slotData.bgPath);
           setShowTitle(false);
           setSlotModalMode(null);
           setSaveToast('loaded');
@@ -637,14 +947,15 @@ export default function App() {
       'WAIT_SECONDS', 'WAIT_SECONDS_AND_MOVE_MOON', 'ALL_FADE_OUT', 'WAIT_FADE',
       'WHITE_OUT_END', 'WHITE_OUT_START', 'WHITE_OUT_END_SLOW', 'WHITE_OUT_END_VERY_SLOW',
       'AWAKEN_MICHIRU'
-    ].includes(currentLine.action);
+    ].some(a => [].concat(currentLine.action || []).includes(a));
 
     const isAboutToTransition = 
       !isPrologue &&
       !isSpecialAction &&
       currentLine.bg &&
       currentBg !== '' &&
-      currentLine.bg !== currentBg;
+      currentLine.bg !== currentBg &&
+      !currentLine.bgNoFade;
 
     if (!isAboutToTransition) {
       setVisualLine(currentLine);
@@ -677,8 +988,8 @@ export default function App() {
 
   // Clear sprites on scene change
   useEffect(() => {
-    if (visualLine?.scene && visualLine.scene !== prevScene) {
-      setPrevScene(visualLine.scene);
+    if (currentLine?.scene && currentLine.scene !== prevScene) {
+      setPrevScene(currentLine.scene);
       setLeftActive(false);
       setRightActive(false);
       setFocusSlot(null);
@@ -692,7 +1003,7 @@ export default function App() {
       setIsEyesClosed(false);
       setIsPhoneCallRight(false);
     }
-  }, [visualLine?.scene, prevScene]);
+  }, [currentLine?.scene, prevScene]);
 
   // Track present items
   useEffect(() => {
@@ -794,6 +1105,8 @@ export default function App() {
       lastSceneRef.current = currentLine.scene;
     }
 
+    let cleanupFuncs = [];
+
     // Allow explicit bgm override from scenario data
     if (currentLine.bgm !== undefined) {
       bgmOverrideRef.current = true;
@@ -810,20 +1123,39 @@ export default function App() {
         resumeBGM(fadeDuration);
       } else {
         const bgmFile = currentLine.bgm.includes('.') ? currentLine.bgm : `${currentLine.bgm}.mp3`;
-        playBGM(assetPath(`/assets/audio/bgm/${bgmFile}`), {
-          fadeDuration,
-          volume: currentLine.bgmVolume,
-          seek: currentLine.bgmSeek
-        });
+        const playMusic = () => {
+          playBGM(assetPath(`/assets/audio/bgm/${bgmFile}`), {
+            fadeDuration,
+            volume: currentLine.bgmVolume,
+            seek: currentLine.bgmSeek
+          });
+        };
+
+        if (currentLine.bgmDelay) {
+          const delayTimer = setTimeout(playMusic, currentLine.bgmDelay);
+          cleanupFuncs.push(() => clearTimeout(delayTimer));
+        } else {
+          playMusic();
+        }
       }
-    } else if (!bgmOverrideRef.current) {
-      // Fallback: Background music changes based on scenes
-      if (currentLine.scene === 'PROLOGUE') {
-        playBGM(assetPath('/assets/audio/bgm/deep_blue_moon.mp3'));
-      } else if (currentLine.scene === '講義室出口' || currentLine.scene === '大学の廊下') {
-        playBGM(assetPath('/assets/audio/bgm/mutsu_theme.mp3'));
-      } else if (currentLine.scene === '月科学大講義室') {
-        playBGM(assetPath('/assets/audio/bgm/classroom_ambient.mp3'));
+    } else {
+      if (!bgmOverrideRef.current) {
+        // Fallback: Background music changes based on scenes
+        if (currentLine.scene === 'PROLOGUE') {
+          playBGM(assetPath('/assets/audio/bgm/deep_blue_moon.mp3'));
+        } else if (currentLine.scene === '講義室出口' || currentLine.scene === '大学の廊下') {
+          playBGM(assetPath('/assets/audio/bgm/mutsu_theme.mp3'));
+        } else if (currentLine.scene === '月科学大講義室') {
+          playBGM(assetPath('/assets/audio/bgm/classroom_ambient.mp3'));
+        }
+      }
+
+      if (currentLine.bgmVolume !== undefined) {
+        let fadeDuration = 1500;
+        if (currentLine.bgmFade !== undefined) {
+          fadeDuration = currentLine.bgmFade < 100 ? currentLine.bgmFade * 1000 : currentLine.bgmFade;
+        }
+        setBGMVolume(currentLine.bgmVolume, fadeDuration);
       }
     }
 
@@ -832,7 +1164,13 @@ export default function App() {
       if (currentLine.se === "stop") {
         stopSE(null, currentLine.seFade || 2000); // Default to 2 seconds slow fade
       } else {
-        playSE(assetPath(`/assets/audio/bgm/${currentLine.se}`), currentLine.seDuration || null, currentLine.seLoop || false);
+        playSE(
+          assetPath(`/assets/audio/bgm/${currentLine.se}`),
+          currentLine.seDuration !== undefined ? currentLine.seDuration : null,
+          currentLine.seLoop || false,
+          currentLine.seVolume !== undefined ? currentLine.seVolume : 1.0,
+          currentLine.seFadeOut !== undefined ? currentLine.seFadeOut : 300
+        );
       }
     }
     if (currentLine.stopSe) {
@@ -841,7 +1179,6 @@ export default function App() {
 
     const actions = Array.isArray(currentLine.action) ? currentLine.action : (currentLine.action ? [currentLine.action] : []);
     
-    let cleanupFuncs = [];
     actions.forEach(action => {
       if (action === 'clear') {
         setIsBloodActive(false);
@@ -866,7 +1203,7 @@ export default function App() {
         setIsBloodActive(true);
       } else if (action === 'CLEAR_BLOOD' || action === 'MUTSUNORI_HEALING_CUTIN') {
         setIsBloodActive(false);
-      } else if (action === 'RED_ALERT_FLASH') {
+      } else if (action === 'RED_ALERT_FLASH' || action === 'RED_ALERT_START') {
         setIsRedAlertActive(true);
       } else if (action === 'CLEAR_RED_ALERT') {
         setIsRedAlertActive(false);
@@ -969,6 +1306,7 @@ export default function App() {
       if (action === 'FADE_IN_SMOKE') {
         setIsSmokeActive(true);
       } else if (action === 'CLEAR_SMOKE') {
+        smokeExitDurationRef.current = 4.0;
         setIsSmokeActive(false);
       } else if (action === 'ENERGY_AURA_START') {
         setIsEnergyAuraActive(true);
@@ -1143,16 +1481,17 @@ export default function App() {
   // Cinema Mode Autoplay timers
   useEffect(() => {
     if (!currentLine || showTitle || battleMode || manualTestMode) return;
-    if (currentLine.style === 'cinema' || currentLine.action === 'FADE_TO_BLACK' || currentLine.action === 'SLOW_FADE_TO_BLACK' || currentLine.action === 'WAIT_FADE') {
+    const actions = [].concat(currentLine.action || []);
+    if (currentLine.style === 'cinema' || actions.includes('FADE_TO_BLACK') || actions.includes('SLOW_FADE_TO_BLACK') || actions.includes('WAIT_FADE') || actions.includes('WAIT_SECONDS')) {
       let delay = 3000;
-      if (currentLine.action === 'FADE_IN') delay = 2500;
-      if (currentLine.action === 'FADE_OUT') delay = 2000;
-      if (currentLine.action === 'WAIT_SECONDS') delay = 2000;
-      if (currentLine.action === 'SLOW_FADE_IN') delay = 3500;
-      if (currentLine.action === 'WAIT_SECONDS_AND_MOVE_MOON') delay = 4000;
-      if (currentLine.action === 'ALL_FADE_OUT') delay = 3000;
-      if (currentLine.action === 'FADE_TO_BLACK' || currentLine.action === 'SLOW_FADE_TO_BLACK') delay = currentLine.duration || (currentLine.action === 'SLOW_FADE_TO_BLACK' ? 3000 : 2000);
-      if (currentLine.action === 'WAIT_FADE') delay = 1000;
+      if (actions.includes('FADE_IN')) delay = 2500;
+      if (actions.includes('FADE_OUT')) delay = 2000;
+      if (actions.includes('WAIT_SECONDS')) delay = currentLine.duration || 2000;
+      if (actions.includes('SLOW_FADE_IN')) delay = 3500;
+      if (actions.includes('WAIT_SECONDS_AND_MOVE_MOON')) delay = 4000;
+      if (actions.includes('ALL_FADE_OUT')) delay = 3000;
+      if (actions.includes('FADE_TO_BLACK') || actions.includes('SLOW_FADE_TO_BLACK')) delay = currentLine.duration || (actions.includes('SLOW_FADE_TO_BLACK') ? 3000 : 2000);
+      if (actions.includes('WAIT_FADE')) delay = 1000;
 
       const timer = setTimeout(() => {
         nextStep();
@@ -1314,7 +1653,8 @@ export default function App() {
       if (skipMode && !isMinigameActive) {
         setSkipMode(false);
       } else {
-        const isTransition = currentLine?.action === 'FADE_TO_BLACK' || currentLine?.action === 'SLOW_FADE_TO_BLACK' || currentLine?.action === 'WAIT_FADE' || isBgTransitioning || isBgFadingOut;
+        const currentActions = [].concat(currentLine?.action || []);
+        const isTransition = currentActions.includes('FADE_TO_BLACK') || currentActions.includes('SLOW_FADE_TO_BLACK') || currentActions.includes('WAIT_FADE') || isBgTransitioning || isBgFadingOut;
         
         if (!showTitle && !isWaitingForChoice && !alertActive && !backlogOpen && !isMinigameActive && !isAnyEnd && !isEndScreen && !isTransition) {
           nextStep();
@@ -1393,7 +1733,8 @@ export default function App() {
             'TRIGGER_BATTLE_FINAL_BOSS_MICHIRU'
           ].includes(currentLine?.action);
 
-        const isTransition = currentLine?.action === 'FADE_TO_BLACK' || currentLine?.action === 'SLOW_FADE_TO_BLACK' || currentLine?.action === 'WAIT_FADE' || isBgTransitioning || isBgFadingOut;
+        const currentActions = [].concat(currentLine?.action || []);
+        const isTransition = currentActions.includes('FADE_TO_BLACK') || currentActions.includes('SLOW_FADE_TO_BLACK') || currentActions.includes('WAIT_FADE') || isBgTransitioning || isBgFadingOut;
         if (!isWaitingForChoice && !isMinigameActive && !isAnyEnd && !isEndScreen && !isTransition && !isPopup) {
           nextStep();
         }
@@ -1413,7 +1754,8 @@ export default function App() {
   const isPopup = currentLine?.style === 'popup';
   const isHappyEnd = currentLine?.action === 'FADE_TO_HAPPY_END';
   const isBadEnd = currentLine?.action === 'FADE_TO_BAD_END';
-  const isTransition = currentLine?.action === 'FADE_TO_BLACK' || currentLine?.action === 'SLOW_FADE_TO_BLACK' || currentLine?.action === 'WAIT_FADE' || isBgTransitioning || isBgFadingOut;
+  const currentActionsGlobal = [].concat(currentLine?.action || []);
+  const isTransition = currentActionsGlobal.includes('FADE_TO_BLACK') || currentActionsGlobal.includes('SLOW_FADE_TO_BLACK') || currentActionsGlobal.includes('WAIT_FADE') || isBgTransitioning || isBgFadingOut;
   const isDemoEnd = currentLine?.action === 'FADE_TO_DEMO_END';
   const isAnyEnd = isHappyEnd || isBadEnd || isDemoEnd;
   const isFlashbackActive = currentLine?.scene?.startsWith('回想：');
@@ -1557,13 +1899,18 @@ export default function App() {
             {/* Visual Background Fallback & Actual Renderer */}
             <BackgroundRenderer
               bgPath={currentBg}
+              fadeMode={currentLine?.bgCrossfade ? 'crossfade' : 'blackout'}
               bgAnimationClass={
-                currentLine?.action === 'WAKE_UP'
+                [].concat(currentLine?.action || []).includes('WAKE_UP')
                   ? 'animate-bg-wake-up'
                   : currentLine?.bgAnimation === 'search_ground'
                   ? 'animate-search-ground'
                   : currentLine?.bgAnimation === 'dash' || currentLine?.bgAnimation === 'run_dash'
                   ? 'animate-run-dash'
+                  : currentLine?.bgAnimation === 'run_light'
+                  ? 'animate-run-light'
+                  : currentLine?.bgAnimation === 'rumble_light'
+                  ? 'animate-rumble-light'
                   : currentLine?.bgAnimation === 'stumble_zoom' || currentLine?.bgAnimation === 'tilt_zoom'
                   ? 'animate-stumble-zoom'
                   : currentLine?.bgAnimation === 'center_zoom'
@@ -1972,7 +2319,7 @@ export default function App() {
                   className="absolute inset-0 pointer-events-none z-[18] overflow-hidden flex items-center justify-center"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1, transition: { duration: 0.5, ease: 'easeOut' } }}
-                  exit={{ opacity: 0, transition: { duration: 4.0, ease: 'easeIn' } }}
+                  exit={{ opacity: 0, transition: { duration: smokeExitDurationRef.current, ease: 'easeIn' } }}
                 >
                   {/* Base gray background (Removed expensive backdrop-blur) */}
                   <div className="absolute inset-0 bg-gray-300" />
@@ -2307,9 +2654,9 @@ export default function App() {
             <AnimatePresence>
               {isRedAlertActive && !isCinema && !isAnyEnd && (
                 <motion.div
-                  className="absolute inset-0 pointer-events-none z-[19] overflow-hidden bg-red-600/35"
+                  className="absolute inset-0 pointer-events-none z-[19] overflow-hidden bg-red-600 mix-blend-multiply"
                   initial={{ opacity: 0 }}
-                  animate={{ opacity: [0.3, 0.9, 0.3], transition: { duration: 2, repeat: Infinity, ease: "easeInOut" } }}
+                  animate={{ opacity: [0.15, 0.6, 0.15], transition: { duration: 1.0, repeat: Infinity, ease: "easeInOut" } }}
                   exit={{ opacity: 0, transition: { duration: 0.5 } }}
                 />
               )}
@@ -2485,7 +2832,7 @@ export default function App() {
             </AnimatePresence>
 
             {/* Wake Up Blinking Eyelid Overlay */}
-            {currentLine?.action === 'WAKE_UP' && (
+            {[].concat(currentLine?.action || []).includes('WAKE_UP') && (
               <div className="absolute inset-0 pointer-events-none z-[25] overflow-hidden">
                 {/* Top Eyelid */}
                 <div className="absolute top-0 left-0 right-0 bg-black animate-eyelid-top" />

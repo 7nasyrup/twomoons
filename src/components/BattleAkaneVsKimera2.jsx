@@ -431,12 +431,7 @@ export default function BattleAkaneVsKimera2({ onComplete, playBGM, stopBGM, pla
   }, []);
 
   // ─── BGM ───
-  useEffect(() => {
-    if (playBGM) {
-      playBGM('/assets/audio/bgm/TheSong.mp3');
-    }
-    return () => { if (stopBGM) stopBGM(); };
-  }, []);
+  // BGM is stopped only when battle ends (in handleBattleEnd)
 
   // ─── Intro -> Fighting ───
   useEffect(() => {

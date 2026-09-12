@@ -432,11 +432,9 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
 
   // ─── BGM ───
   useEffect(() => {
-    if (playBGM) {
-      playBGM(assetPath('/assets/audio/bgm/Battle2.mp3'));
-    }
+    // イントロでのBGM再生を削除（シナリオからのBGMをそのまま流す）
     return () => { if (stopBGM) stopBGM(); };
-  }, []);
+  }, [stopBGM]);
 
   // ─── Intro -> Fighting ───
   useEffect(() => {
@@ -1113,12 +1111,11 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
       setIsCommandMenuOpen(false);
       setAllyQTEState('none');
       setHitPosition(null);
-      if (playBGM) playBGM();
       return;
     }
     if (stopBGM) stopBGM();
     onComplete(battlePhase === 'victory' ? 'win' : 'lose');
-  }, [battlePhase, onComplete, stopBGM, playBGM]);
+  }, [battlePhase, onComplete, stopBGM]);
 
 
   // ═══════════════════════════════════════════════════════════════════════════════

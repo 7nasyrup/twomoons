@@ -42,12 +42,7 @@ export function useAudioSystem() {
       src: [src],
       loop: true,
       volume: 0,
-      html5: false,
-      onend: function() {
-        if (this.loop()) {
-          this.play();
-        }
-      }
+      html5: false
     });
 
     newBgm.play();
@@ -59,7 +54,7 @@ export function useAudioSystem() {
     currentBgmSrc.current = src;
   }, []);
 
-  const playSE = useCallback((src, duration = null, loop = false) => {
+  const playSE = useCallback((src, duration = null, loop = false, customVolume = 1.0, fadeOutDuration = 300) => {
     if (!src) return;
 
     if (sePool.current[src]) {
@@ -70,22 +65,22 @@ export function useAudioSystem() {
     const sound = new Howl({
       src: [src],
       html5: false,
-      volume: seVolume.current * masterVolume.current,
+      volume: seVolume.current * masterVolume.current * customVolume,
       loop: loop || false,
     });
     sePool.current[src] = sound;
     const soundId = sound.play();
 
-    if (duration) {
+    if (duration !== null && duration !== undefined) {
       setTimeout(() => {
         if (sePool.current[src]) {
           const currentVol = sePool.current[src].volume();
-          sePool.current[src].fade(currentVol, 0, 300, soundId);
+          sePool.current[src].fade(currentVol, 0, fadeOutDuration, soundId);
           setTimeout(() => {
             if (sePool.current[src]) {
               sePool.current[src].stop(soundId);
             }
-          }, 300);
+          }, fadeOutDuration);
         }
       }, duration * 1000);
     }
@@ -147,6 +142,14 @@ export function useAudioSystem() {
     }
   }, []);
 
+  const setBGMVolume = useCallback((volume, fadeDuration = 1000) => {
+    bgmVolume.current = volume;
+    if (bgmRef.current) {
+      const targetVol = volume * masterVolume.current;
+      bgmRef.current.fade(bgmRef.current.volume(), targetVol, fadeDuration);
+    }
+  }, []);
+
   const toggleMute = useCallback(() => {
     isMuted.current = !isMuted.current;
     if (bgmRef.current) {
@@ -179,5 +182,6 @@ export function useAudioSystem() {
     stopBGM,
     toggleMute,
     setMasterVol,
+    setBGMVolume,
   };
 }

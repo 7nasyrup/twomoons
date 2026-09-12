@@ -318,7 +318,11 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
           const { scale: posScale, y: posY, ...layoutStyles } = positionStyles || {};
           let finalScale = posScale !== undefined ? posScale : 1.0;
           if (baseCharName.toLowerCase() === 'kimera2') {
+            finalScale *= 1.8;
+          } else if (baseCharName.toLowerCase() === 'kimera1') {
             finalScale *= 1.2;
+          } else if (!isKimera && !isMachine) {
+            finalScale *= 1.15; // 立ち絵を1.15倍に拡大
           }
 
           return (
@@ -328,7 +332,7 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
               style={{
                 width: isKimera ? '60%' : '45%',
                 height: isKimera ? '75%' : '95%',
-                bottom: isKimera ? '28cqh' : (isMachine ? '20cqh' : '-50px'),
+                bottom: baseCharName.toLowerCase() === 'kimera1' ? '12cqh' : (isKimera ? '28cqh' : (isMachine ? '20cqh' : '-10cqh')),
                 left: isKimera && (!overrideStyle) ? '20%' : undefined,
                 transformOrigin: 'bottom center',
                 ...layoutStyles
