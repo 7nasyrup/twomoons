@@ -13739,12 +13739,11 @@ export const scenarioData = [
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「うるさい……っ！！」",
-    "action": "WHITE_PULSE_HIGH"
   },
   {
     "scene": "研究所の最奥",
     "text": "視界が白く染まっていく。全身の骨が軋み、意識が遠のきそうになる。でも、ここで倒れるわけにはいかない。",
-    "action": "WHITE_PULSE_MAX"
+    "action": "WHITE_OUT_LIGHT_START"
   },
   {
     "scene": "研究所の最奥",
@@ -13774,7 +13773,8 @@ export const scenarioData = [
   {
     "scene": "研究所の最奥",
     "text": "その瞬間、暴れていた力が一つに重なった。\n二人分の想いが、巨大な光となってコアへ突き刺さる。",
-    "se": "+CoreCharge_Sound.mp3"
+    "se": "+CoreCharge_Sound.mp3",
+    "action": "WHITE_PULSE_MAX"
   },
   {
     "scene": "研究所の最奥",

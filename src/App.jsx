@@ -426,6 +426,7 @@ export default function App() {
   const [alertConfig, setAlertConfig] = useState({ title: '', message: '' });
   const [isFadingBlack, setIsFadingBlack] = useState(false);
   const [isWhiteOut, setIsWhiteOut] = useState(false);
+  const [isWhiteOutLight, setIsWhiteOutLight] = useState(false);
   const [whiteOutDuration, setWhiteOutDuration] = useState(0.8);
   const [isGrayOut, setIsGrayOut] = useState(false);
   const [grayOutDuration, setGrayOutDuration] = useState(0.8);
@@ -690,6 +691,7 @@ export default function App() {
             shakeEffect: false,
             isMonochromeFlashActive: false,
             isWhiteOut: false,
+            isWhiteOutLight: false,
             isEnergyAuraActive: false,
             isBlackAuraActive: false,
             isDarkEnergyActive: false,
@@ -750,6 +752,7 @@ export default function App() {
                 simEffects.shakeEffect = false;
                 simEffects.isMonochromeFlashActive = false;
                 simEffects.isWhiteOut = false;
+                simEffects.isWhiteOutLight = false;
                 simEffects.isEnergyAuraActive = false;
                 simEffects.isBlackAuraActive = false;
                 simEffects.isDarkEnergyActive = false;
@@ -787,6 +790,7 @@ export default function App() {
                 simEffects.isMonochromeFlashActive = false;
               } else if (action === 'CLEAR_WHITE_OUT_AND_FLASHBACK_END') {
                 simEffects.isWhiteOut = false;
+                simEffects.isWhiteOutLight = false;
                 simEffects.isEnergyAuraActive = false;
               }
 
@@ -814,6 +818,14 @@ export default function App() {
 
               if (action === 'FADE_IN_SMOKE') simEffects.isSmokeActive = true;
               if (action === 'CLEAR_SMOKE') simEffects.isSmokeActive = false;
+              if (action === 'WHITE_OUT_LIGHT_START') {
+                simEffects.isWhiteOutLight = true;
+                simEffects.whitePulseLevel = 0;
+                simEffects.shakeEffect = false;
+              }
+              if (action === 'WHITE_OUT_LIGHT_END') {
+                simEffects.isWhiteOutLight = false;
+              }
               if (action === 'WHITE_OUT_START') {
                 simEffects.isWhiteOut = true;
                 simEffects.whitePulseLevel = 0;
@@ -901,6 +913,7 @@ export default function App() {
           setShakeEffect(simEffects.shakeEffect);
           setIsMonochromeFlashActive(simEffects.isMonochromeFlashActive);
           setIsWhiteOut(simEffects.isWhiteOut);
+          setIsWhiteOutLight(simEffects.isWhiteOutLight);
           setIsEnergyAuraActive(simEffects.isEnergyAuraActive);
           setIsBlackAuraActive(simEffects.isBlackAuraActive);
           setIsDarkEnergyActive(simEffects.isDarkEnergyActive);
@@ -1228,6 +1241,7 @@ export default function App() {
         setShakeEffect(false);
         setIsMonochromeFlashActive(false);
         setIsWhiteOut(false);
+        setIsWhiteOutLight(false);
         setIsEnergyAuraActive(false);
         setIsBlackAuraActive(false);
         setIsDarkEnergyActive(false);
@@ -1265,6 +1279,7 @@ export default function App() {
         setIsMonochromeFlashActive(false);
       } else if (action === 'CLEAR_WHITE_OUT_AND_FLASHBACK_END') {
         setIsWhiteOut(false);
+        setIsWhiteOutLight(false);
         setIsEnergyAuraActive(false);
       }
 
@@ -1436,7 +1451,15 @@ export default function App() {
         };
       }
 
-      if (action === 'WHITE_OUT_START') {
+      if (action === 'WHITE_OUT_LIGHT_START') {
+        setWhiteOutDuration(0.8);
+        setIsWhiteOutLight(true);
+        setWhitePulseLevel(0);
+        setShakeEffect(false);
+      } else if (action === 'WHITE_OUT_LIGHT_END') {
+        setWhiteOutDuration(0.8);
+        setIsWhiteOutLight(false);
+      } else if (action === 'WHITE_OUT_START') {
         setWhiteOutDuration(0.8);
         setIsWhiteOut(true);
         setWhitePulseLevel(0);
@@ -2815,6 +2838,15 @@ export default function App() {
                   className="absolute inset-0 pointer-events-none z-[19] bg-white"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: whiteOutDuration, ease: 'easeInOut' }}
+                />
+              )}
+              {isWhiteOutLight && !isCinema && !isAnyEnd && (
+                <motion.div
+                  className="absolute inset-0 pointer-events-none z-[19] bg-white"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 0.5 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: whiteOutDuration, ease: 'easeInOut' }}
                 />
