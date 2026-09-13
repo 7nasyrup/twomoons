@@ -13743,7 +13743,7 @@ export const scenarioData = [
   {
     "scene": "研究所の最奥",
     "text": "視界が白く染まっていく。全身の骨が軋み、意識が遠のきそうになる。でも、ここで倒れるわけにはいかない。",
-    "action": "WHITE_OUT_LIGHT_START"
+    "action": "WHITE_PULSE_HIGH"
   },
   {
     "scene": "研究所の最奥",
@@ -13887,11 +13887,16 @@ export const scenarioData = [
     "scene": "脱出ロケット",
     "text": "轟音と共に、ロケットは崩壊する研究所を抜け、宇宙へと飛び立った。窓の外で遠ざかっていく人工月。その先に見えたのは、私たちが帰る場所──青く輝く地球だった。",
     "se": "Rocket launch_Sound.mp3",
-    "action": "SHAKE_SCREEN_SMALL"
+    "action": "SHAKE_SCREEN_SMALL",
+    "seVolume": 0.4,
+    "seDuration": 3,
+    "seFadeOut": 1000,
   },
   {
     "scene": "脱出ロケット",
-    "text": "しばらくの沈黙の後、私はふと口を開いた。"
+    "text": "しばらくの沈黙の後、私はふと口を開いた。",
+    "bgm": "Room_Night.mp3",
+    "bgmVolume": 0.5
   },
   {
     "scene": "脱出ロケット",

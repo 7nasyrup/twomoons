@@ -15,19 +15,19 @@ const ROOMS = [
 // ─── チップ取得時（朔良の内心モノローグ） ────────────────────────────────────────
 const SOLO_CHIP = [
   [
-    { speaker: null, role: 'SYSTEM', text: 'セキュリティコードの断片を入手した。' },
+    { speaker: null, role: 'SYSTEM', text: 'フラグメント回収：1/4' },
     { speaker: '朔良', role: 'SAKURA', text: '（これって……いったいどういうことなんだろう）' },
   ],
   [
-    { speaker: null, role: 'SYSTEM', text: 'セキュリティコードの断片を入手した。' },
+    { speaker: null, role: 'SYSTEM', text: 'フラグメント回収：2/4' },
     { speaker: '朔良', role: 'SAKURA', text: '（……集めるしかない。何かがわかるかもしれないから）' },
   ],
   [
-    { speaker: null, role: 'SYSTEM', text: 'セキュリティコードの断片を入手した。' },
+    { speaker: null, role: 'SYSTEM', text: 'フラグメント回収：3/4' },
     { speaker: '朔良', role: 'SAKURA', text: '（あと少し……）' },
   ],
   [
-    { speaker: null, role: 'SYSTEM', text: 'セキュリティコードの断片を入手した。' },
+    { speaker: null, role: 'SYSTEM', text: 'フラグメント回収：4/4' },
     { speaker: '朔良', role: 'SAKURA', text: '「……よし、これで全部揃った。奥のゲートを開けられる」' },
   ],
 ];

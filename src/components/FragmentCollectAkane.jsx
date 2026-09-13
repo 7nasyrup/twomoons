@@ -441,7 +441,7 @@ export default function FragmentCollectAkane({ onComplete, onSave, onLoad, onTog
     setCollectedChips(p => new Set([...p, chip.id]));
     setPendingParticle({ sx, sy, type: 'chip' });
     const lv = Math.min(chipCount, AKANE_CHIP.length - 1);
-    const sysLine = { speaker: 'システム', role: 'SYSTEM', text: `セキュリティコードの断片を入手：${chip.label}` };
+    const sysLine = { speaker: 'システム', role: 'SYSTEM', text: `フラグメント回収：${nextCount}/${totalChips}` };
     if (nextCount >= totalChips) {
       showMessages([sysLine, ...AKANE_CHIP[lv], ...AKANE_GATE]);
       setTimeout(() => setGateUnlocked(true), 2000);

@@ -665,7 +665,7 @@ export default function FragmentCollect({ onComplete, onSave, onLoad, onToggleSk
     const lv = Math.min(chipCount, MUTSUNORI_CHIP.length - 1);
     const sysLine = {
       speaker: 'システム', role: 'SYSTEM',
-      text: `セキュリティコードの断片を入手：${chip.label}`
+      text: `フラグメント回収：${nextCount}/${totalChips}`
     };
     if (nextCount >= totalChips) {
       showMessages([sysLine, ...MUTSUNORI_CHIP[lv], ...MUTSUNORI_GATE]);
