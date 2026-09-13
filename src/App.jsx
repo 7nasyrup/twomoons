@@ -1582,7 +1582,7 @@ export default function App() {
     }
 
     // 2. Mika Route Happy End
-    if (currentLine.text && currentLine.text.includes("私は彼の大きな手に優しく引かれながら") && currentLine.text.includes("キャンパスの雑踏の中へと歩き出した")) {
+    if (currentLine.text && currentLine.text.includes("ミカルート・ハッピーエンド")) {
       localStorage.setItem('cleared_mika_good_end', 'true');
       setClearedMika(true);
     }
