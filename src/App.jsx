@@ -437,6 +437,7 @@ export default function App() {
   const smokeExitDurationRef = useRef(4.0);
   const [isBlackDistortActive, setIsBlackDistortActive] = useState(false);
   const [isBloodActive, setIsBloodActive] = useState(false);
+  const [isWhiteVignetteActive, setIsWhiteVignetteActive] = useState(false);
   const [isRedAlertActive, setIsRedAlertActive] = useState(false);
   const [isMonochromeFlashActive, setIsMonochromeFlashActive] = useState(false);
   const [isEnergyAuraActive, setIsEnergyAuraActive] = useState(false);
@@ -684,6 +685,7 @@ export default function App() {
 
           let simEffects = {
             isBloodActive: false,
+            isWhiteVignetteActive: false,
             isRedAlertActive: false,
             shakeEffect: false,
             isMonochromeFlashActive: false,
@@ -721,6 +723,7 @@ export default function App() {
               simEffects.rightActive = false;
               simEffects.focusSlot = null;
               simEffects.isBloodActive = false;
+              simEffects.isWhiteVignetteActive = false;
               simEffects.isRedAlertActive = false;
               simEffects.isMonochromeFlashActive = false;
               simEffects.isLightWaveActive = false;
@@ -742,6 +745,7 @@ export default function App() {
             actions.forEach(action => {
               if (action === 'clear') {
                 simEffects.isBloodActive = false;
+                simEffects.isWhiteVignetteActive = false;
                 simEffects.isRedAlertActive = false;
                 simEffects.shakeEffect = false;
                 simEffects.isMonochromeFlashActive = false;
@@ -763,6 +767,10 @@ export default function App() {
                 simEffects.isBloodActive = true;
               } else if (action === 'CLEAR_BLOOD' || action === 'MUTSUNORI_HEALING_CUTIN') {
                 simEffects.isBloodActive = false;
+              } else if (action === 'WHITE_VIGNETTE_START') {
+                simEffects.isWhiteVignetteActive = true;
+              } else if (action === 'WHITE_VIGNETTE_STOP') {
+                simEffects.isWhiteVignetteActive = false;
               } else if (action === 'RED_ALERT_FLASH' || action === 'RED_ALERT_START') {
                 simEffects.isRedAlertActive = true;
               } else if (action === 'CLEAR_RED_ALERT') {
@@ -888,6 +896,7 @@ export default function App() {
 
           // Apply all visual effects to React state
           setIsBloodActive(simEffects.isBloodActive);
+          setIsWhiteVignetteActive(simEffects.isWhiteVignetteActive);
           setIsRedAlertActive(simEffects.isRedAlertActive);
           setShakeEffect(simEffects.shakeEffect);
           setIsMonochromeFlashActive(simEffects.isMonochromeFlashActive);
@@ -1027,6 +1036,7 @@ export default function App() {
       setPresentCharacters([]); // シーン切り替え時に画面内の登場キャラをリセット
       setDisplayedItem(null);
       setIsBloodActive(false);
+      setIsWhiteVignetteActive(false);
       setIsRedAlertActive(false);
       setIsMonochromeFlashActive(false);
       setIsLightWaveActive(false);
@@ -1213,6 +1223,7 @@ export default function App() {
     actions.forEach(action => {
       if (action === 'clear') {
         setIsBloodActive(false);
+        setIsWhiteVignetteActive(false);
         setIsRedAlertActive(false);
         setShakeEffect(false);
         setIsMonochromeFlashActive(false);
@@ -1234,6 +1245,10 @@ export default function App() {
         setIsBloodActive(true);
       } else if (action === 'CLEAR_BLOOD' || action === 'MUTSUNORI_HEALING_CUTIN') {
         setIsBloodActive(false);
+      } else if (action === 'WHITE_VIGNETTE_START') {
+        setIsWhiteVignetteActive(true);
+      } else if (action === 'WHITE_VIGNETTE_STOP') {
+        setIsWhiteVignetteActive(false);
       } else if (action === 'RED_ALERT_FLASH' || action === 'RED_ALERT_START') {
         setIsRedAlertActive(true);
       } else if (action === 'CLEAR_RED_ALERT') {
@@ -2679,6 +2694,27 @@ export default function App() {
                     }}
                   />
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(160,0,0,0.8),transparent_40%),radial-gradient(circle_at_bottom_right,rgba(160,0,0,0.85),transparent_45%)] mix-blend-multiply" />
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {/* White Vignette Overlay */}
+            <AnimatePresence>
+              {isWhiteVignetteActive && !isCinema && !isAnyEnd && (
+                <motion.div
+                  className="absolute inset-0 pointer-events-none z-[19] overflow-hidden"
+                  initial={{ opacity: 0, scale: 1.05 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, transition: { duration: 1 } }}
+                  transition={{ duration: 0.5, ease: 'easeOut' }}
+                >
+                  <div
+                    className="w-full h-full"
+                    style={{
+                      background: 'radial-gradient(ellipse at center, transparent 35%, rgba(255, 255, 255, 0.6) 70%, rgba(255, 255, 255, 1) 100%)',
+                      boxShadow: 'inset 0 0 80px 40px rgba(255, 255, 255, 0.9)',
+                    }}
+                  />
                 </motion.div>
               )}
             </AnimatePresence>
