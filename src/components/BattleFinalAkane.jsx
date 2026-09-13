@@ -1773,7 +1773,7 @@ export default function BattleFinalAkane({ onComplete, playBGM, stopBGM, playSE 
               return (
                 <motion.div
                   id={`char-${enemy1.id}`}
-                  className={`absolute ml-40 lg:ml-0 top-16 lg:top-0 w-40 h-52 lg:w-64 lg:h-80 flex items-center justify-center z-40 ${!enemy1.isDead && enemy1.flashTimer > 0 ? 'animate-battle-hit-flash' : ''}`}
+                  className={`absolute ml-40 lg:ml-0 top-16 lg:top-24 w-40 h-52 lg:w-64 lg:h-80 flex items-center justify-center z-40 ${!enemy1.isDead && enemy1.flashTimer > 0 ? 'animate-battle-hit-flash' : ''}`}
                   animate={{
                     x: isAttacking ? -150 : (isCurrentTurn && turnPhase === 'enemy_resolve' ? -150 : -120), // 攻撃時はさらに左へ踏み込む(-150px)
                     scale: isAttacking ? 1.05 : (enemy1.isDead ? 0.95 : 1),
