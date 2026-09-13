@@ -13744,7 +13744,7 @@ export const scenarioData = [
   {
     "scene": "研究所の最奥",
     "text": "視界が白く染まっていく。全身の骨が軋み、意識が遠のきそうになる。でも、ここで倒れるわけにはいかない。",
-    "action": "WHITE_VIGNETTE_START"
+    "action": "WHITE_PULSE_MAX"
   },
   {
     "scene": "研究所の最奥",
@@ -13782,8 +13782,7 @@ export const scenarioData = [
     "text": "「──いっけえええええ！！」",
     "bgm": "stop",
     "se": "+window_break.mp3",
-    "action": "clear",
-    "action": "EXPLOSION_WHITEOUT"
+    "action": ["clear", "EXPLOSION_WHITEOUT"]
   },
   {
     "scene": "研究所の最奥",

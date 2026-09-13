@@ -2800,7 +2800,7 @@ export default function App() {
             <AnimatePresence>
               {whitePulseLevel > 0 && !isCinema && !isAnyEnd && (
                 <motion.div
-                  className="absolute inset-0 pointer-events-none z-[18] bg-white mix-blend-overlay"
+                  className={`absolute inset-0 pointer-events-none z-[18] bg-white ${whitePulseLevel >= 0.9 ? '' : 'mix-blend-overlay'}`}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: [0, whitePulseLevel, 0] }}
                   transition={{ duration: 1.2 - whitePulseLevel, repeat: Infinity, ease: 'easeInOut' }}
