@@ -13773,8 +13773,7 @@ export const scenarioData = [
   {
     "scene": "研究所の最奥",
     "text": "その瞬間、暴れていた力が一つに重なった。\n二人分の想いが、巨大な光となってコアへ突き刺さる。",
-    "se": "+CoreCharge_Sound.mp3",
-    "action": "WHITE_PULSE_MAX"
+    "se": "+CoreCharge_Sound.mp3"
   },
   {
     "scene": "研究所の最奥",
