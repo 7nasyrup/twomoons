@@ -1192,7 +1192,7 @@ export default function App() {
     // Allow explicit SE play / stop from scenario data
     if (currentLine.se) {
       if (currentLine.se === "stop") {
-        stopSE(null, currentLine.seFade || 2000); // Default to 2 seconds slow fade
+        stopSE(null, currentLine.seFade !== undefined ? currentLine.seFade : 2000); // Default to 2 seconds slow fade
       } else {
         playSE(
           assetPath(`/assets/audio/bgm/${currentLine.se}`),

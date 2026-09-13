@@ -2654,7 +2654,8 @@ export const scenarioData = [
   {
     "scene": "裏路地",
     "text": "必死に暴れて男の腕を振り払おうとするけれど、無能力者の私の力なんて、男の鉄のような腕の前には全く歯が立たない。",
-    "se": "+struggle.mp3"
+    "se": "+struggle.mp3",
+    "seVolume": 0.6
   },
   {
     "scene": "裏路地",
@@ -2675,7 +2676,9 @@ export const scenarioData = [
   {
     "scene": "裏路地",
     "action": "FADE_TO_BLACK",
-    "duration": 2000
+    "duration": 2000,
+    "se": "stop",
+    "seFade": 0
   },
   {
     "scene": "廃倉庫",
