@@ -2598,7 +2598,7 @@ export const scenarioData = [
   {
     "scene": "キャンパスの裏手",
     "speaker": "メール",
-    "text": "『お前の父親と、お前の能力について話したいことがある。今夜20時、三丁通り西路地裏へ一人で来い。通報すれば、その瞬間に周囲へ危害を加える』"
+    "text": "『お前の血縁者と、お前の能力について話したいことがある。今夜20時、三丁通り西路地裏へ一人で来い。通報すれば、その瞬間に周囲へ危害を加える』"
   },
   {
     "scene": "キャンパスの裏手",
@@ -2608,7 +2608,7 @@ export const scenarioData = [
   },
   {
     "scene": "キャンパスの裏手",
-    "text": "指先が震える。父のこと、…そして、私の能力のこと。"
+    "text": "指先が震える。血縁者——おそらく父のこと、…そして、私の能力のこと。"
   },
   {
     "scene": "キャンパスの裏手",
@@ -3858,7 +3858,7 @@ export const scenarioData = [
     "action": "BLOOD_SCREEN",
     "bg": "/character/Michiru/Michiru_CG4.png",
     "bgm": "stop",
-    "bgNoFade": true
+    "bgCrossfade": true
   },
   {
     "scene": "崩壊後-大学の敷地内",
