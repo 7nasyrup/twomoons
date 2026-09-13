@@ -3566,7 +3566,7 @@ export const scenarioData = [
     "scene": "廃ビルの一室",
     "text": "それだけ告げると、通話は切れた。",
     "se": "CallOut.mp3",
-    "seVolume": 0.5,
+    "seVolume": 0.4,
     "bgmVolume": 0.1
   },
   {
@@ -5607,7 +5607,7 @@ export const scenarioData = [
     "role": "MUTSUNORI",
     "text": "「逃げて、朔良……っ！ 俺が……君を傷つける前に……早く……！」",
     "showIllust": [
-      "Mutsunori_serious3"
+      "Mutsunori_suffering3"
     ]
   },
   {
@@ -5637,14 +5637,11 @@ export const scenarioData = [
     "scene": "瓦礫裏",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「ガ……アアアアッ！！」",
-    "hideIllust": [
-      "Mutsunori"
-    ]
+    "text": "「ガ……アアアアッ！！」"
   },
   {
     "scene": "瓦礫裏",
-    "text": "睦典の身体から紫黒色の霧が溢れ、異形へと変わり始める。黒騎士もまた、瓦礫を踏み砕きながらこちらへ迫っていた。それでも、もう怖くなかった。",
+    "text": "苦しそうな顔をした睦典から、紫黒色の霧があふれ出す。黒騎士もまた、瓦礫を踏み砕きながらこちらへ迫っていた。それでも、もう怖くなかった。",
     "bgm": "Battle2.mp3",
     "bgmVolume": 0.3,
     "action": "BLACK_AURA_START"
@@ -5663,10 +5660,7 @@ export const scenarioData = [
     "scene": "瓦礫裏",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「な、にして……っ！ 離れろ、朔良……！」",
-    "showIllust": [
-      "Mutsunori_serious3"
-    ]
+    "text": "「な、にして……っ！ 離れろ、朔良……！」"
   },
   {
     "scene": "瓦礫裏",

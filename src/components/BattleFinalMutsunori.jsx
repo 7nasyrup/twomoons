@@ -432,9 +432,8 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
 
   // ─── BGM ───
   useEffect(() => {
-    // イントロでのBGM再生を削除（シナリオからのBGMをそのまま流す）
-    return () => { if (stopBGM) stopBGM(); };
-  }, [stopBGM]);
+    // シナリオですでにBGMが流れているため、ここでは新しく再生したり止めたりしない
+  }, []);
 
   // ─── Intro -> Fighting ───
   useEffect(() => {
@@ -1113,7 +1112,7 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
       setHitPosition(null);
       return;
     }
-    if (stopBGM) stopBGM();
+    // if (stopBGM) stopBGM();
     onComplete(battlePhase === 'victory' ? 'win' : 'lose');
   }, [battlePhase, onComplete, stopBGM]);
 
