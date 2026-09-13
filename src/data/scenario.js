@@ -66,7 +66,8 @@ export const scenarioData = [
   {
     "scene": "朔良の部屋",
     "text": "まだ眠気の残る頭で時計を見る。午前7時。カーテンの隙間から差し込んでいるのは、凍えるような青白い光だった。 ",
-    "bgm": "Room_Morning.mp3"
+    "bgm": "Room_Morning.mp3",
+    "bgmVolume": 0.5
   },
   {
     "scene": "窓の外",

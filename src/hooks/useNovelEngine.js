@@ -105,7 +105,8 @@ export function useNovelEngine(scenarioData, options = {}) {
         !isSpecialAction &&
         prevBgRef.current !== '' &&
         prevBgRef.current !== newBg &&
-        !currentLine.bgNoFade
+        !currentLine.bgNoFade &&
+        !currentLine.bgCrossfade
       ) {
         // Bg changed: trigger blackout and delay typing
         setIsBgTransitioning(true);
