@@ -824,6 +824,7 @@ export default function App() {
               if (action === 'WHITE_PULSE_START') simEffects.whitePulseLevel = 0.2;
               if (action === 'WHITE_PULSE_MID') simEffects.whitePulseLevel = 0.5;
               if (action === 'WHITE_PULSE_HIGH') simEffects.whitePulseLevel = 0.8;
+              if (action === 'WHITE_PULSE_MAX') simEffects.whitePulseLevel = 0.95;
               if (action === 'WHITE_PULSE_STOP') simEffects.whitePulseLevel = 0;
 
               if (action === 'CLEAR_SHAKE') simEffects.shakeEffect = false;
@@ -1453,6 +1454,8 @@ export default function App() {
         setWhitePulseLevel(0.5);
       } else if (action === 'WHITE_PULSE_HIGH') {
         setWhitePulseLevel(0.8);
+      } else if (action === 'WHITE_PULSE_MAX') {
+        setWhitePulseLevel(0.95);
       } else if (action === 'WHITE_PULSE_STOP') {
         setWhitePulseLevel(0);
       } else if (action === 'EXPLOSION_WHITEOUT') {

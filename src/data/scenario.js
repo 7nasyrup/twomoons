@@ -13744,7 +13744,7 @@ export const scenarioData = [
   {
     "scene": "研究所の最奥",
     "text": "視界が白く染まっていく。全身の骨が軋み、意識が遠のきそうになる。でも、ここで倒れるわけにはいかない。",
-    "action": "WHITE_OUT_START"
+    "action": "WHITE_PULSE_MAX"
   },
   {
     "scene": "研究所の最奥",
