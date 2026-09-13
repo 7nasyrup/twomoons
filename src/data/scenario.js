@@ -2678,7 +2678,7 @@ export const scenarioData = [
     "action": "FADE_TO_BLACK",
     "duration": 2000,
     "se": "stop",
-    "seFade": 0
+    "seFade": 500
   },
   {
     "scene": "廃倉庫",
@@ -2746,10 +2746,15 @@ export const scenarioData = [
   },
   {
     "scene": "廃倉庫",
-    "speaker": "大男",
-    "text": "「質問に答えろ」",
     "bg": "/scene/warehouse.png",
     "bgCrossfade": true,
+    "action": "WAIT_SECONDS",
+    "duration": 1200
+  },
+  {
+    "scene": "廃倉庫",
+    "speaker": "大男",
+    "text": "「質問に答えろ」",
     "showIllust": [
       "Akane_serious3"
     ]
