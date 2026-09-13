@@ -82,10 +82,12 @@ export default function DialogueBox({
               {choices.map((choice, idx) => {
                 const isInteractive = !choice.isLocked;
                 return (
-                  <motion.div
-                    key={idx}
-                    className="relative p-[1px] bg-slate-700 hover:bg-[#00e5ff] transition-colors cursor-pointer group w-[70cqw] rounded-md shadow-lg"
-                    initial={{ opacity: 0, y: 20 }}
+                    <motion.div
+                      key={idx}
+                      className={`relative p-[1px] bg-slate-700 transition-colors group w-[70cqw] rounded-md shadow-lg ${
+                        isInteractive ? 'hover:bg-[#00e5ff] cursor-pointer' : 'opacity-60 cursor-default'
+                      }`}
+                      initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0, transition: { delay: idx * 0.1 } }}
                     whileHover={isInteractive ? { scale: 1.03 } : {}}
                     whileTap={isInteractive ? { scale: 0.97 } : {}}
@@ -115,10 +117,12 @@ export default function DialogueBox({
               {choices.map((choice, idx) => {
                 const isInteractive = !choice.isLocked;
                 return (
-                  <motion.div
-                    key={idx}
-                    className="relative p-[1px] bg-slate-700 hover:bg-[#00e5ff] transition-colors cursor-pointer group w-[37%] rounded-md"
-                    initial={{ opacity: 0, x: 20 }}
+                    <motion.div
+                      key={idx}
+                      className={`relative p-[1px] bg-slate-700 transition-colors group w-[37%] rounded-md ${
+                        isInteractive ? 'hover:bg-[#00e5ff] cursor-pointer' : 'opacity-60 cursor-default'
+                      }`}
+                      initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0, transition: { delay: idx * 0.1 } }}
                     whileHover={isInteractive ? { scale: 1.02 } : {}}
                     whileTap={isInteractive ? { scale: 0.98 } : {}}

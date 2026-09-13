@@ -1857,18 +1857,22 @@ export default function App() {
   const isBattleFinalMikaActive = currentLine?.action === 'TRIGGER_BATTLE_FINAL_MIKA';
   const isBattleFinalAkaneActive = currentLine?.action === 'TRIGGER_BATTLE_FINAL_AKANE';
 
-  // Filter choices based on route unlock conditions
+  // Map choices and mask locked ones
   const processedChoices = (() => {
     if (!currentLine?.choices) return currentLine?.choices;
-    return currentLine.choices.filter(choice => {
-      if (!choice.condition) return true;
+    return currentLine.choices.map(choice => {
+      if (!choice.condition) return choice;
+      let conditionMet = true;
       if (choice.condition === 'akane_route_enabled') {
-        return clearedMutsunori && clearedNagisa && clearedMika;
+        conditionMet = clearedMutsunori && clearedNagisa && clearedMika;
+      } else if (choice.condition === 'mitsuru_route_enabled') {
+        conditionMet = clearedMutsunori && clearedNagisa && clearedMika && clearedAkane;
       }
-      if (choice.condition === 'mitsuru_route_enabled') {
-        return clearedMutsunori && clearedNagisa && clearedMika && clearedAkane;
+      
+      if (!conditionMet) {
+        return { ...choice, text: '？？？', isLocked: true };
       }
-      return true;
+      return choice;
     });
   })();
 
