@@ -4904,7 +4904,8 @@ export const scenarioData = [
   {
     "scene": "廊下",
     "bgm": "stop",
-    "text": "崩れ落ちた防衛個体を見つめながら、私は息を整える。"
+    "text": "崩れ落ちた防衛個体を見つめながら、私は息を整える。",
+    "se": "+robot_down.mp3"
   },
   {
     "scene": "廊下",
@@ -6048,17 +6049,17 @@ export const scenarioData = [
   },
   {
     "scene": "コア部屋_崩壊①",
-    "text": "直後、地面が大きく揺れ始めた。",
-    "action": "SHAKE_SCREEN",
-    "bg": "/scene/core_close_Nothing.png",
     "se": "+bakuhatsu.mp3",
-    "bgm": "+alert.mp3"
+    "text": "直後、地面が大きく揺れ始めた。",
+    "bgm": "+alert.mp3",
+    "action": "SHAKE_SCREEN_EXTREME",
   },
   {
     "scene": "コア部屋_崩壊①",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「ムッちゃん、急ごう！ ロケットで脱出するって！」"
+    "text": "「ムッちゃん、急ごう！ ロケットで脱出するって！」",
+    "bg": "/scene/core_close_Nothing.png",
   },
   {
     "scene": "コア部屋_崩壊①",
@@ -6082,7 +6083,8 @@ export const scenarioData = [
     "action": "FADE_IN",
     "hideIllust": [
       "Mutsunori"
-    ]
+    ],
+    "action": "clear"
   },
   {
     "scene": "脱出ロケット",
@@ -10531,18 +10533,19 @@ export const scenarioData = [
     "role": "SAKURA",
     "text": "（この先に進むためには、こいつを倒すしかない……！）"
   },
+  //=============== 戦闘開始(凪砂中ボス) ===============
+  {
+    "scene": "中ボス(凪砂)",
+    "action": "TRIGGER_BATTLE_MIDBOSS_NAGISA"
+  },
   {
     "scene": "廊下",
     "text": "崩れ落ちた防衛個体を見つめながら、私は荒い呼吸を整える。",
     "bgm": "stop",
     "hideIllust": [
       "machine"
-    ]
-  },
-  //=============== 戦闘開始(凪砂中ボス) ===============
-  {
-    "scene": "中ボス(凪砂)",
-    "action": "TRIGGER_BATTLE_MIDBOSS_NAGISA"
+    ],
+    "se": "+robot_down.mp3"
   },
   {
     "scene": "廊下",
@@ -13186,7 +13189,7 @@ export const scenarioData = [
     "text": "頭上のスピーカーから、歪んだ電子音声が響き渡った。",
     "bgm": "stop",
     "se": "+speaker.mp3",
-    "seVolume": 5.0,
+    "seVolume": 8.0,
     "hideIllust": [
       "Mika"
     ]
@@ -13678,7 +13681,8 @@ export const scenarioData = [
     "text": "「ミカくんの代わりに……私がやる」",
     "showIllust": [
       "Mika_surprise_injured3"
-    ]
+    ],
+    "bgm": "TheSong.mp3"
   },
   {
     "scene": "研究所の最奥",
@@ -13711,7 +13715,8 @@ export const scenarioData = [
     "text": "そして、両手をコアへ向ける。白色の光が溢れ、コアへ流れ込んだ。",
     "hideIllust": [
       "Mika"
-    ]
+    ],
+    "action": "WHITE_PULSE_START"
   },
   {
     "scene": "研究所の最奥",
@@ -13721,7 +13726,8 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "凄まじい力の反発に、身体が悲鳴を上げる。"
+    "text": "凄まじい力の反発に、身体が悲鳴を上げる。",
+    "action": "WHITE_PULSE_MID"
   },
   {
     "scene": "研究所の最奥",
@@ -13732,11 +13738,13 @@ export const scenarioData = [
     "scene": "研究所の最奥",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「うるさい……っ！！」"
+    "text": "「うるさい……っ！！」",
+    "action": "WHITE_PULSE_HIGH"
   },
   {
     "scene": "研究所の最奥",
-    "text": "視界が白く染まっていく。全身の骨が軋み、意識が遠のきそうになる。でも、ここで倒れるわけにはいかない。"
+    "text": "視界が白く染まっていく。全身の骨が軋み、意識が遠のきそうになる。でも、ここで倒れるわけにはいかない。",
+    "action": "WHITE_OUT_START"
   },
   {
     "scene": "研究所の最奥",
