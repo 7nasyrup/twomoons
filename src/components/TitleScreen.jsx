@@ -65,7 +65,7 @@ export default function TitleScreen({ onStart, onContinue, onBattle, hasSave, pl
                         {/* Credits Button */}
                         <button
                             onClick={() => setShowCredits(true)}
-                            className="w-full bg-[#0c101d]/80 border border-stone-700 text-stone-300 hover:text-luna-gold hover:bg-luna-gold/15 hover:border-luna-gold font-serif font-bold rounded transition-all duration-300"
+                            className="w-full bg-[#0c101d]/80 border border-stone-700 text-stone-300 hover:text-blue-400 hover:bg-blue-400/10 hover:border-blue-400 font-serif font-bold rounded transition-all duration-300"
                             style={{ padding: '2cqh 0', fontSize: '1.1cqw', letterSpacing: '0.2em' }}
                         >
                             Credits
@@ -83,8 +83,8 @@ export default function TitleScreen({ onStart, onContinue, onBattle, hasSave, pl
             {/* Credits Modal Overlay */}
             {showCredits && (
                 <div className="absolute inset-0 bg-black/95 flex items-center justify-center z-50 p-6 animate-fadeIn">
-                    <div className="w-full max-w-xl bg-luna-abyss border border-luna-gold/20 rounded-lg p-6 relative shadow-[0_0_30px_rgba(255,228,158,0.05)]">
-                        <h3 className="text-xl font-orbitron text-luna-gold tracking-[0.2em] border-b border-luna-gold/10 pb-2 mb-4 text-center">
+                    <div className="w-full max-w-xl bg-[#0c101d] border border-blue-400/30 rounded-lg p-6 relative shadow-[0_0_30px_rgba(96,165,250,0.15)]">
+                        <h3 className="text-xl font-orbitron text-blue-400 tracking-[0.2em] border-b border-blue-400/20 pb-2 mb-4 text-center">
                             CREDITS
                         </h3>
 
@@ -102,10 +102,10 @@ export default function TitleScreen({ onStart, onContinue, onBattle, hasSave, pl
                             */}
 
                             <div className="text-center w-full">
-                                <p className="text-sm font-orbitron text-luna-gold/80 tracking-widest mb-6">■BGM素材・使用楽曲</p>
+                                <p className="text-sm font-orbitron text-blue-400/80 tracking-widest mb-6">■BGM素材・使用楽曲</p>
 
                                 <div className="max-w-lg mx-auto text-left w-full">
-                                    <p className="text-white text-sm mb-3 pl-2 border-l-2 border-luna-gold/30">DOVA-SYNDROME　様</p>
+                                    <p className="text-white text-sm mb-3 pl-2 border-l-2 border-blue-400/50">DOVA-SYNDROME　様</p>
                                     <div className="flex flex-col gap-2 text-[11px] text-gray-300 pl-3">
                                         {/* ユーザーが追加した楽曲 */}
                                         <div className="flex items-start">
@@ -135,7 +135,7 @@ export default function TitleScreen({ onStart, onContinue, onBattle, hasSave, pl
                                         </div>
                                     </div>
 
-                                    <p className="text-white text-sm mt-8 mb-3 pl-2 border-l-2 border-luna-gold/30">BGMer　様</p>
+                                    <p className="text-white text-sm mt-8 mb-3 pl-2 border-l-2 border-blue-400/50">BGMer　様</p>
                                     <div className="flex flex-col gap-2 text-[11px] text-gray-300 pl-3">
                                         <div className="flex items-start">
                                             <span className="text-gray-400 leading-relaxed">「不安の種」</span>
@@ -146,14 +146,15 @@ export default function TitleScreen({ onStart, onContinue, onBattle, hasSave, pl
                             </div>
 
                             <div className="text-center w-full mt-8">
-                                <p className="text-sm font-orbitron text-luna-gold/80 tracking-widest mb-6">■効果音・SE</p>
+                                <p className="text-sm font-orbitron text-blue-400/80 tracking-widest mb-6">■効果音・SE</p>
 
                                 <div className="max-w-lg mx-auto text-left w-full">
-                                    <p className="text-white text-sm mb-3 pl-2 border-l-2 border-luna-gold/30">OtoLogic　様</p>
+                                    <p className="text-white text-sm mb-3 pl-2 border-l-2 border-blue-400/50">OtoLogic　様</p>
+                                    <p className="text-white text-sm mb-3 pl-2 border-l-2 border-blue-400/50">On-Jin ～音人～　様</p>
                                 </div>
                             </div>
 
-                            <div className="border-t border-luna-gold/10 pt-3 text-center text-xs text-gray-400">
+                            <div className="border-t border-blue-400/20 pt-3 text-center text-xs text-gray-400">
                                 <p className="mt-1">青い月と金色に光る本物の月が紡ぐ、</p>
                                 <p>近未来SFノベルアドベンチャー。</p>
                             </div>
@@ -161,8 +162,8 @@ export default function TitleScreen({ onStart, onContinue, onBattle, hasSave, pl
 
                         <button
                             onClick={() => setShowCredits(false)}
-                            className="mt-6 w-full py-2 bg-luna-gold/5 border border-luna-gold/20 text-luna-gold/80 font-orbitron text-xs tracking-widest rounded
-                         hover:bg-luna-gold/15 hover:border-luna-gold/40 hover:text-white transition-all duration-300"
+                            className="mt-6 w-full py-2 bg-blue-400/10 border border-blue-400/30 text-blue-400/90 font-orbitron text-xs tracking-widest rounded
+                         hover:bg-blue-400/20 hover:border-blue-400/60 hover:text-white transition-all duration-300"
                         >
                             CLOSE
                         </button>

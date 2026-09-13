@@ -236,7 +236,7 @@ function FCSprite({ currentMessage }) {
   const cfg = CFGS[base];
   if (!cfg) return null;
   const imgPath = `${cfg.folder}/${cfg.file}_${expression}.png`;
-  
+
   // 睦典が喋っているかどうか
   const isSpeaking = currentMessage?.role === 'MUTSUNORI' || currentMessage?.speaker === '睦典';
 
@@ -246,10 +246,10 @@ function FCSprite({ currentMessage }) {
         key={base}
         className={`absolute bottom-[-50px] flex flex-col justify-end items-center pointer-events-none z-20 ${cfg.posClass}`}
         initial={{ opacity: 0, y: 20 }}
-        animate={{ 
-          opacity: 1, 
-          y: 0, 
-          filter: isSpeaking ? 'brightness(1) drop-shadow(0 10px 20px rgba(0,0,0,0.5))' : 'brightness(0.5) drop-shadow(0 5px 10px rgba(0,0,0,0.5))' 
+        animate={{
+          opacity: 1,
+          y: 0,
+          filter: isSpeaking ? 'brightness(1) drop-shadow(0 10px 20px rgba(0,0,0,0.5))' : 'brightness(0.5) drop-shadow(0 5px 10px rgba(0,0,0,0.5))'
         }}
         exit={{ opacity: 0, y: 20 }}
         transition={{ duration: 0.3, ease: 'easeOut' }}
@@ -273,38 +273,38 @@ function FCFileModal({ file, onClose }) {
           className="relative w-full max-h-full bg-[#080c14]/95 border border-green-500/30 rounded shadow-[0_0_30px_rgba(74,222,128,0.1)] overflow-hidden flex flex-col pointer-events-auto"
           initial={{ scale: 0.95, y: 20 }} animate={{ scale: isMobile ? 0.85 : 1, y: 0 }} exit={{ scale: 0.95, y: 20 }}
         >
-        {/* Header */}
-        <div className="bg-green-950/40 border-b border-green-500/20 px-6 py-4 flex items-center justify-between shrink-0">
-          <div className="flex items-center gap-3">
-            <FileText className="w-5 h-5 text-green-400" />
-            <span className="text-green-100 font-orbitron tracking-widest text-sm">CONFIDENTIAL DATA</span>
-          </div>
-        </div>
-        {/* Content */}
-        <div className="p-8 overflow-y-auto grow custom-scrollbar">
-          {file.messages.map((m, idx) => (
-            <div key={idx} className="mb-6 last:mb-0">
-              {m.speaker === 'システム' ? (
-                <h3 className="text-green-300 font-bold tracking-widest mb-4 border-b border-green-500/30 pb-2 text-base md:text-lg">
-                  {m.text.replace('【', '').replace('】', '')}
-                </h3>
-              ) : (
-                <p className="text-gray-300 leading-loose font-noto tracking-wide whitespace-pre-line text-sm md:text-base">
-                  {m.text}
-                </p>
-              )}
+          {/* Header */}
+          <div className="bg-green-950/40 border-b border-green-500/20 px-6 py-4 flex items-center justify-between shrink-0">
+            <div className="flex items-center gap-3">
+              <FileText className="w-5 h-5 text-green-400" />
+              <span className="text-green-100 font-orbitron tracking-widest text-sm">CONFIDENTIAL DATA</span>
             </div>
-          ))}
-        </div>
-        {/* Footer */}
-        <div className="bg-black/40 border-t border-green-500/20 p-4 flex justify-end shrink-0">
-          <button
-            onClick={onClose}
-            className="px-8 py-2.5 bg-green-900/50 hover:bg-green-800/60 border border-green-400/30 hover:border-green-400 text-green-200 text-sm font-orbitron tracking-widest transition-all rounded shadow-[0_0_10px_rgba(74,222,128,0.2)]"
-          >
-            CLOSE
-          </button>
-        </div>
+          </div>
+          {/* Content */}
+          <div className="p-8 overflow-y-auto grow custom-scrollbar">
+            {file.messages.map((m, idx) => (
+              <div key={idx} className="mb-6 last:mb-0">
+                {m.speaker === 'システム' ? (
+                  <h3 className="text-green-300 font-bold tracking-widest mb-4 border-b border-green-500/30 pb-2 text-base md:text-lg">
+                    {m.text.replace('【', '').replace('】', '')}
+                  </h3>
+                ) : (
+                  <p className="text-gray-300 leading-loose font-noto tracking-wide whitespace-pre-line text-sm md:text-base">
+                    {m.text}
+                  </p>
+                )}
+              </div>
+            ))}
+          </div>
+          {/* Footer */}
+          <div className="bg-black/40 border-t border-green-500/20 p-4 flex justify-end shrink-0">
+            <button
+              onClick={onClose}
+              className="px-8 py-2.5 bg-green-900/50 hover:bg-green-800/60 border border-green-400/30 hover:border-green-400 text-green-200 text-sm font-orbitron tracking-widest transition-all rounded shadow-[0_0_10px_rgba(74,222,128,0.2)]"
+            >
+              CLOSE
+            </button>
+          </div>
         </motion.div>
       </div>
     </motion.div>
@@ -318,6 +318,7 @@ export default function FragmentCollect({ onComplete, onSave, onLoad, onToggleSk
   const [collectedFiles, setCollectedFiles] = useState(new Set());
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isBlackout, setIsBlackout] = useState(false);
+  const [showStartAnim, setShowStartAnim] = useState(true);
 
   // メッセージキュー
   const [messageQueue, setMessageQueue] = useState([]);
@@ -351,7 +352,7 @@ export default function FragmentCollect({ onComplete, onSave, onLoad, onToggleSk
   const USE_FPS_VIEW = true; // ★ true: FPS（疑似3D視点）、false: スキャナー（既存）
   const xRatio = typeof window !== 'undefined' ? (lightX / window.innerWidth) * 2 - 1 : 0;
   const yRatio = typeof window !== 'undefined' ? (lightY / window.innerHeight) * 2 - 1 : 0;
-  
+
   // FPS視点の移動量（画面サイズの何割移動するか。数値を上げると移動範囲が広がる）
   const maxPanX = typeof window !== 'undefined' ? window.innerWidth * 0.35 : 0;
   const maxPanY = typeof window !== 'undefined' ? window.innerHeight * 0.35 : 0;
@@ -401,9 +402,17 @@ export default function FragmentCollect({ onComplete, onSave, onLoad, onToggleSk
   const triggerDamageRef = useRef(triggerDamage);
   useEffect(() => { triggerDamageRef.current = triggerDamage; }, [triggerDamage]);
 
+  // ─── 探索開始アニメーション ──────────────────────────────────────────────
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowStartAnim(false);
+    }, 2500);
+    return () => clearTimeout(timer);
+  }, []);
+
   // ─── 全体タイマー ──────────────────────────────────────────────
   useEffect(() => {
-    if (gateUnlocked || currentMessage || activeFile || isGameOver || isTransitioning) return;
+    if (gateUnlocked || currentMessage || activeFile || isGameOver || isTransitioning || showStartAnim) return;
     const timer = setInterval(() => {
       setTimeLeft(prev => {
         if (prev <= 1) {
@@ -415,12 +424,12 @@ export default function FragmentCollect({ onComplete, onSave, onLoad, onToggleSk
       });
     }, 1000);
     return () => clearInterval(timer);
-  }, [gateUnlocked, currentMessage, activeFile, isGameOver, isTransitioning]);
+  }, [gateUnlocked, currentMessage, activeFile, isGameOver, isTransitioning, showStartAnim]);
 
   // ─── 敵出現タイマー ──────────────────────────────────────────────
   useEffect(() => {
     if (!ENABLE_STEALTH_MODE) return;
-    if (gateUnlocked || currentMessage || activeFile || isGameOver || isTransitioning || isWarning) return;
+    if (gateUnlocked || currentMessage || activeFile || isGameOver || isTransitioning || isWarning || showStartAnim) return;
 
     // 8〜12秒後に次の敵が出現
     const delay = (Math.floor(Math.random() * 3) + 7) * 1000;
@@ -429,7 +438,7 @@ export default function FragmentCollect({ onComplete, onSave, onLoad, onToggleSk
     }, delay);
 
     return () => clearTimeout(t);
-  }, [gateUnlocked, currentMessage, activeFile, isGameOver, isTransitioning, isWarning]);
+  }, [gateUnlocked, currentMessage, activeFile, isGameOver, isTransitioning, isWarning, showStartAnim]);
 
   // ─── 敵の攻撃猶予（警告から3秒間はセーフ） ──────────────────────────────────
   useEffect(() => {
@@ -514,13 +523,13 @@ export default function FragmentCollect({ onComplete, onSave, onLoad, onToggleSk
 
   const handlePointerMove = (e) => {
     if (currentMessage || activeFile || isTransitioning || isGameOver) return;
-    
+
     if (USE_FPS_VIEW) {
       if (!isDragging) return;
       const deltaX = e.clientX - lastMousePos.current.x;
       const deltaY = e.clientY - lastMousePos.current.y;
       lastMousePos.current = { x: e.clientX, y: e.clientY };
-      
+
       // ドラッグ方向と逆にカメラ（lightX/Y）を移動させることで画像を引っ張る感覚にする
       setLightX(prev => Math.max(0, Math.min(window.innerWidth, prev - deltaX * 1.5)));
       setLightY(prev => Math.max(0, Math.min(window.innerHeight, prev - deltaY * 1.5)));
@@ -726,7 +735,7 @@ export default function FragmentCollect({ onComplete, onSave, onLoad, onToggleSk
       >
         {USE_FPS_VIEW ? (
           <div style={{ perspective: '1000px' }} className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-            <div 
+            <div
               className="absolute w-[180%] h-[180%] -left-[40%] -top-[40%] transition-transform duration-150 ease-out"
               style={{
                 // 酔い対策：rotateを抑えつつ、ドラッグ時のレスポンスを確保するduration設定
@@ -872,21 +881,21 @@ export default function FragmentCollect({ onComplete, onSave, onLoad, onToggleSk
             </div>
             {/* 睦典の記憶（ライフ）ゲージ */}
             {ENABLE_STEALTH_MODE && (
-            <div className="glass-panel px-3 py-1.5 lg:px-6 lg:py-3 rounded-full flex items-center gap-2 lg:gap-3 border border-red-700/30">
-              <Shield className="w-3 h-3 lg:w-4 lg:h-4 text-red-400" />
-              <span className="text-[8px] lg:text-[10px] font-orbitron text-red-500 tracking-widest font-bold">HP</span>
-              <div className="flex gap-1 lg:gap-1.5">
-                {[0, 1, 2].map(i => (
-                  <div
-                    key={i}
-                    className={`w-2 h-3 lg:w-3.5 lg:h-4 rounded-sm transition-all duration-500 ${i < mutsunoriHealth
-                      ? 'bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.4)]'
-                      : 'bg-slate-200 border border-slate-300'
-                      }`}
-                  />
-                ))}
+              <div className="glass-panel px-3 py-1.5 lg:px-6 lg:py-3 rounded-full flex items-center gap-2 lg:gap-3 border border-red-700/30">
+                <Shield className="w-3 h-3 lg:w-4 lg:h-4 text-red-400" />
+                <span className="text-[8px] lg:text-[10px] font-orbitron text-red-500 tracking-widest font-bold">HP</span>
+                <div className="flex gap-1 lg:gap-1.5">
+                  {[0, 1, 2].map(i => (
+                    <div
+                      key={i}
+                      className={`w-2 h-3 lg:w-3.5 lg:h-4 rounded-sm transition-all duration-500 ${i < mutsunoriHealth
+                        ? 'bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.4)]'
+                        : 'bg-slate-200 border border-slate-300'
+                        }`}
+                    />
+                  ))}
+                </div>
               </div>
-            </div>
             )}
           </div>
 
@@ -991,6 +1000,34 @@ export default function FragmentCollect({ onComplete, onSave, onLoad, onToggleSk
           autoMode={autoMode}
         />
       )}
+
+      {/* ─── 探索開始アニメーション ─── */}
+      <AnimatePresence>
+        {showStartAnim && (
+          <motion.div
+            className="absolute inset-0 z-[100] flex items-center justify-center pointer-events-none"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0, scale: 1.1, filter: 'blur(10px)' }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+          >
+            <div className="absolute inset-0 bg-black/60" />
+            <motion.div
+              initial={{ opacity: 0, y: 20, letterSpacing: '0.1em' }}
+              animate={{ opacity: 1, y: 0, letterSpacing: '0.3em' }}
+              transition={{ delay: 0.3, duration: 1, ease: "easeOut" }}
+              className="relative z-10 flex flex-col items-center gap-2"
+            >
+              <div className="text-cyan-400 font-orbitron tracking-[0.5em] text-xl md:text-2xl font-bold drop-shadow-[0_0_10px_rgba(34,211,238,0.8)]">
+                EXPLORATION START
+              </div>
+              <div className="text-white font-bold tracking-widest text-lg md:text-xl drop-shadow-[0_0_8px_rgba(255,255,255,0.8)]">
+                探索開始
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* ─── 機密ファイルモーダル ─── */}
       <AnimatePresence>

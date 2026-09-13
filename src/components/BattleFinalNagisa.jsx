@@ -388,10 +388,10 @@ export default function BattleFinalNagisa({ onComplete, playBGM, stopBGM, playSE
 
   // ─── BGM ───
   useEffect(() => {
-    if (playBGM) {
-      playBGM(assetPath('/assets/audio/bgm/Battle2.mp3'));
-    }
-    return () => { if (stopBGM) stopBGM(); };
+    // シナリオですでにBGMが流れているため、ここでは新しく再生しない
+    // if (playBGM) {
+    //   playBGM(assetPath('/assets/audio/bgm/Battle2.mp3'));
+    // }
   }, []);
 
   // ─── Intro -> Fighting ───
@@ -1072,7 +1072,7 @@ export default function BattleFinalNagisa({ onComplete, playBGM, stopBGM, playSE
       if (playBGM) playBGM();
       return;
     }
-    if (stopBGM) stopBGM();
+    // if (stopBGM) stopBGM();
     onComplete(battlePhase === 'victory' ? 'win' : 'lose');
   }, [battlePhase, onComplete, stopBGM, playBGM]);
 

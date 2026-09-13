@@ -3799,6 +3799,7 @@ export const scenarioData = [
     "bgm": "stop",
     "bg": "/scene/university_collapse.png",
     "bgCrossfade": true,
+    "bgNoFade": true,
     "hideIllust": [
       "Mutsunori",
       "Mika"
@@ -3827,7 +3828,8 @@ export const scenarioData = [
     "text": "そこにいたのは──満だった。",
     "bg": "/character/Michiru/Michiru_CG3.png",
     "bgm": "Room_Night.mp3",
-    "bgmVolume": 0.3
+    "bgmVolume": 0.3,
+    "bgNoFade": true
   },
   {
     "scene": "崩壊後-大学の敷地内",
@@ -3855,6 +3857,7 @@ export const scenarioData = [
     "action": "BLOOD_SCREEN",
     "bg": "/character/Michiru/Michiru_CG4.png",
     "bgm": "stop",
+    "bgNoFade": true
   },
   {
     "scene": "崩壊後-大学の敷地内",
@@ -4142,7 +4145,6 @@ export const scenarioData = [
   },
   {
     "scene": "研究室",
-    "bgm": "serious_1.mp3",
     "speaker": "ヒルミ教授",
     "role": "PROFESSOR",
     "text": "「よく無事で来たね」",
@@ -4152,7 +4154,8 @@ export const scenarioData = [
   },
   {
     "scene": "研究室",
-    "text": "奥から現れたのはヒルミ教授だった。\n安堵する間もなく、教授はハッチを見据えたまま口を開く。"
+    "text": "奥から現れたのはヒルミ教授だった。\n安堵する間もなく、教授はハッチを見据えたまま口を開く。",
+    "bgm": "serious_1.mp3"
   },
   {
     "scene": "研究室",
@@ -4338,7 +4341,8 @@ export const scenarioData = [
     "hideWindow": true,
     "showIllust": [
       "Mutsunori_surprise"
-    ]
+    ],
+    "bgmVolume": 0.5
   },
   {
     "scene": "ロケット内部",
@@ -4369,8 +4373,8 @@ export const scenarioData = [
   {
     "scene": "ロケット内部",
     "action": "SHAKE_SCREEN_EXTREME",
-    "text": "ガガガガガッ！！",
-    "se": "Rocket_Shock.mp3"
+    "se": "Rocket_Shock.mp3",
+    "hideWindow": true
   },
   {
     "scene": "ロケット内部",
@@ -4960,7 +4964,7 @@ export const scenarioData = [
   },
   {
     "scene": "コア部屋",
-    "text": "壁面がガラス張りになっており、そこから差し込む「本当の月の光」を浴びていた。/n心臓のように脈打つそれからは、周囲を震わせるほどの莫大なエネルギーが放たれている。"
+    "text": "壁面がガラス張りになっており、そこから差し込む「本当の月の光」を浴びていた。\n心臓のように脈打つそれからは、周囲を震わせるほどの莫大なエネルギーが放たれている。"
   },
   {
     "scene": "コア部屋",
@@ -5078,11 +5082,7 @@ export const scenarioData = [
   },
   {
     "scene": "コア部屋",
-    "action": "clear"
-  },
-  {
-    "scene": "コア部屋",
-    "action": "BLACK_ENERGY_EDGE",
+    "action": ["clear", "BLACK_ENERGY_EDGE",],
     "text": "コアに注ぎ込んだはずのエネルギーが、まるで拒絶反応を起こしたかのように暴走し、逆に睦則の体内へとなだれ込んでいく。"
   },
   {
@@ -5092,7 +5092,7 @@ export const scenarioData = [
     "action": "BLACK_ENERGY_EDGE",
     "text": "「が……あああああっ！！」",
     "showIllust": [
-      "Mutsunori_serious"
+      "Mutsunori_suffering"
     ]
   },
   {
@@ -5117,7 +5117,9 @@ export const scenarioData = [
     "hideIllust": [
       "Mutsunori"
     ],
-    "hideWindow": true
+    "hideWindow": true,
+    "bg": "/scene/core_hakai1.png",
+    "action": "clear"
   },
   {
     "scene": "コア部屋",
@@ -5343,7 +5345,7 @@ export const scenarioData = [
   //睦典バッド
   {
     "label": "mutsunori_fragment_bad_end",
-    "scene": "瓦礫裏",
+    "scene": "バッド：瓦礫裏",
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「そんな……っ！ 嘘、嘘だよムッちゃん……！」"
@@ -5576,10 +5578,10 @@ export const scenarioData = [
     "action": "FADE_TO_BAD_END"
   },
 
-  //睦典グッド
+  //睦典ハッピーエンド
   {
     "label": "mutsunori_fragment_happy_end",
-    "scene": "瓦礫裏",
+    "scene": "ハッピー：瓦礫裏",
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「そんな……っ！ 嘘だよ、ムッちゃん……！」"
@@ -5807,7 +5809,8 @@ export const scenarioData = [
     "scene": "コア部屋_崩壊①",
     "text": "やがて煙が晴れた時、そこに黒騎士の姿はなかった。残されていたのは、破壊された壁の向こうへ続く不気味な足跡だけ。",
     "bg": "/scene/core_escape.png",
-    "action": "CLEAR_SMOKE"
+    "action": "CLEAR_SMOKE",
+    "bgNoFade": true
   },
   {
     "scene": "コア部屋_崩壊①",
@@ -5949,7 +5952,7 @@ export const scenarioData = [
   {
     "scene": "コア部屋_崩壊①",
     "text": "視界を覆っていた眩い光がゆっくりと収まっていき、私たちの周りには、柔らかな静寂だけが残されていた。",
-    "action": "WHITE_OUT_END_VERY_SLOW",
+    "action": "WHITE_OUT_END_SLOW",
     "bg": "/scene/core_close_Nothing.png"
   },
   {
@@ -6410,7 +6413,7 @@ export const scenarioData = [
     "speaker": "ヒルミ教授",
     "role": "PROFESSOR",
     "text": "「やぁ朔良。ご苦労様だ」",
-    "bgm": "serious_4.mp3",
+    "bgm": "serious_1.mp3",
     "bgmFade": 1.5
   },
   {
@@ -6530,12 +6533,12 @@ export const scenarioData = [
     "speaker": "システム",
     "role": "SYSTEM",
     "text": "『システム起動。カウントダウン、最終シークエンスへ移行』",
-    "se": "Rocket launch_Sound.mp3"
+    "se": "Rocket launch_Sound.mp3",
+    "action": "SHAKE_SCREEN_CONTINUOUS_SMALL"
   },
   {
     "scene": "ロケット内部",
-    "text": "機械音声と共に機体が激しく震え、ロケットは轟音を上げて人工月へ向かって飛び立った。",
-    "action": "SHAKE_SCREEN_CONTINUOUS_SMALL"
+    "text": "機械音声と共に機体が激しく震え、ロケットは轟音を上げて人工月へ向かって飛び立った。"
   },
   {
     "scene": "ロケット内部",
@@ -6594,8 +6597,12 @@ export const scenarioData = [
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「………………私？」",
+  },
+  {
+    "scene": "ロケット内部",
+    "bgm": "alert_Rocket.mp3",
     "action": "RED_ALERT_FLASH",
-    "bgm": "alert_Rocket.mp3"
+    "hideWindow": true
   },
   {
     "scene": "ロケット内部",
@@ -6623,8 +6630,9 @@ export const scenarioData = [
   },
   {
     "scene": "ロケット内部",
-    "text": "ガガガガガッ！！",
-    "action": "SHAKE_SCREEN_EXTREME"
+    "action": "SHAKE_SCREEN_EXTREME",
+    "se": "Rocket_Shock.mp3",
+    "hideWindow": true
   },
   {
     "scene": "ロケット内部",
@@ -6708,7 +6716,7 @@ export const scenarioData = [
   },
   {
     "scene": "夜空（月）",
-    "text": "それに、あの地球の惨劇を止めるのも私の行動次第なのだと思う。\n…でも、怖い。渡り1人の行動で世界の命運が変わってしまうなんて。"
+    "text": "それに、あの地球の惨劇を止めるのも私の行動次第なのだと思う。\n…でも、怖い。私1人の行動で世界の命運が変わってしまうなんて。"
   },
   {
     "scene": "夜空（月）",
@@ -6751,22 +6759,6 @@ export const scenarioData = [
   },
   {
     "scene": "月面",
-    "type": "choice",
-    "text": "手記の内容を確認しますか？",
-    "choices": [
-      {
-        "text": "確認する",
-        "targetLabel": "read_professors_note5"
-      },
-      {
-        "text": "スキップする",
-        "targetLabel": "skip_professors_note5"
-      }
-    ]
-  },
-  {
-    "label": "read_professors_note5",
-    "scene": "月面",
     "text": "私は震える指で、その端正な文字を目で追っていく。",
     "showItem": "/item/Message.png"
   },
@@ -6792,11 +6784,10 @@ export const scenarioData = [
   },
   {
     "scene": "月面",
-    "text": "つまり、まずは研究所内に散らばったフラグメントを集めて最奥への道を開き、『コア』を停止させるしかない。それが、この世界を救い、私たちが地球へ帰るための唯一の方法だった。",
+    "text": "つまり、まずは研究所内に散らばったフラグメントを集めて最奥への道を開き、『コア』を停止させるしかない。それが、この世界を救い、私が地球へ帰るための唯一の方法だった。",
     "hideItem": true
   },
   {
-    "label": "skip_professors_note5",
     "scene": "月面",
     "text": "読み終えた瞬間、私の思考は完全に止まった。白い大地に、紙が風でカサリと音を立てる。"
   },
@@ -6859,13 +6850,11 @@ export const scenarioData = [
   {
     "action": "FADE_TO_BLACK"
   },
+  //=============== フラグメントコレクト ===============
   {
     "scene": "フラグメントコレクト(朔良)",
     "action": "TRIGGER_FRAGMENT_COLLECT_SOLO",
     "bgm": "Lab.mp3"
-  },
-  {
-    "action": "FADE_IN"
   },
   {
     "scene": "廊下",
@@ -6952,12 +6941,14 @@ export const scenarioData = [
   {
     "scene": "コア部屋",
     "text": "絶望に暮れていたその時、ふいに足元からズズズ……と不気味な地鳴りが響いた。",
-    "bgm": "stop"
+    "bgm": "stop",
+    "se": "+jishin.mp3",
+    "seVolume": 1.5,
+    "action": "SHAKE_SCREEN_CONTINUOUS_MEDIUM"
   },
   {
     "scene": "コア部屋",
     "text": "研究所全体が激しく揺れ、私は思わず天井を見上げる。",
-    "action": "SHAKE_SCREEN_CONTINUOUS_MEDIUM",
     "se": "bakuhatsu.mp3"
   },
   {
@@ -6985,7 +6976,7 @@ export const scenarioData = [
   {
     "scene": "コアあり崩壊部屋",
     "text": "黒騎士は一瞬で距離を詰め、私の身体を壁へと叩きつける。",
-    "action": "SHAKE_SCREEN_CONTINUOUS_MEDIUM"
+    "action": "SHAKE_SCREEN"
   },
   {
     "scene": "コアあり崩壊部屋",
@@ -7000,7 +6991,8 @@ export const scenarioData = [
   },
   {
     "scene": "コアあり崩壊部屋",
-    "text": "その時、暴れた指先が壁際の機材ラックに触れた。そこにあったのは、光線銃のような未知の武器だった。"
+    "text": "その時、暴れた指先が壁際の機材ラックに触れた。そこにあったのは、光線銃のような未知の武器だった。",
+    "action": "clear"
   },
   {
     "scene": "コアあり崩壊部屋",
@@ -7028,7 +7020,8 @@ export const scenarioData = [
     "scene": "コアあり崩壊部屋",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「……え？」"
+    "text": "「……え？」",
+    "bgm": "serious_4.mp3"
   },
   {
     "scene": "コアあり崩壊部屋",
@@ -7369,7 +7362,19 @@ export const scenarioData = [
     "scene": "研究所の奧",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「そりゃ、朔良を助けに———ってうわぁ！！」"
+    "text": "「そりゃ、朔良を助けに———」",
+    "showIllust": [
+      "Mutsunori_smile"
+    ]
+  },
+  {
+    "scene": "研究所の奧",
+    "speaker": "睦典",
+    "role": "MUTSUNORI",
+    "text": "「ってうわぁ！！」",
+    "showIllust": [
+      "Mutsunori_surprise"
+    ]
   },
   {
     "scene": "研究所の奧",
@@ -8755,7 +8760,7 @@ export const scenarioData = [
   //満バッドエンド
   {
     "label": "solo_fragment_bad_end",
-    "scene": "最奥部屋（コア無い感じの別室）",
+    "scene": "バッド：最奥部屋（コア無い感じの別室）",
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「…………」"
@@ -9036,10 +9041,10 @@ export const scenarioData = [
     "action": "FADE_TO_BAD_END"
   },
 
-  //満グッド
+  //満ハッピーエンド
   {
     "label": "solo_fragment_happy_end",
-    "scene": "グッド最奥部屋（コア無い感じの別室）",
+    "scene": "ハッピー：最奥部屋（コア無い感じの別室）",
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「……う、あ……っ……」"
@@ -9987,7 +9992,8 @@ export const scenarioData = [
     "scene": "ロケット内部",
     "action": "RED_ALERT_START",
     "bgm": "+alert_Rocket.mp3",
-    "hideWindow": true
+    "hideWindow": true,
+    "bgmVolume": 0.5
   },
   {
     "scene": "ロケット内部",
@@ -10214,25 +10220,6 @@ export const scenarioData = [
   },
   {
     "scene": "月面",
-    "type": "choice",
-    "text": "手記の内容を確認しますか？",
-    "choices": [
-      {
-        "text": "確認する",
-        "targetLabel": "read_professors_note2"
-      },
-      {
-        "text": "スキップする",
-        "targetLabel": "skip_professors_note2"
-      }
-    ],
-    "hideIllust": [
-      "Nagisa"
-    ]
-  },
-  {
-    "label": "read_professors_note2",
-    "scene": "月面",
     "text": "教授の手記には、研究所の最奥にある『コア』がの発生源であること、そしてそこへ辿り着くには、研究所各地に散らばる《セキュリティ解除コードの断片（フラグメント）》をすべて回収する必要があると書かれていた。",
     "hideIllust": [
       "Nagisa"
@@ -10257,7 +10244,6 @@ export const scenarioData = [
     "text": "『コア停止後、研究所は自壊を開始する。最下層の緊急離脱用ロケットで帰還しなさい』"
   },
   {
-    "label": "skip_professors_note2",
     "scene": "月面",
     "speaker": "凪砂",
     "role": "NAGISA",
@@ -10399,6 +10385,12 @@ export const scenarioData = [
   {
     "action": "FADE_TO_BLACK",
     "duration": 2000
+  },
+  {
+    "scene": "フラグメントコレクト(凪砂)",
+    "bg": "black",
+    "style": "popup",
+    "text": "研究所の隅々に散らばった【フラグメント】を回収し、\nコアが保管されている部屋のゲートを開けましょう。\n\n…【フラグメント】だけではなく、とある”重大な情報”が、\n隠されているかもしれません。\n\n＜操作方法＞\nドラックで移動\n探索したいところをクリックまたはタップ"
   },
   {
     "scene": "フラグメントコレクト(凪砂)",
@@ -10842,8 +10834,9 @@ export const scenarioData = [
       "clear",
       "SHAKE_SCREEN_VERY_LARGE"
     ],
-    "text": "──ドォォォンッ！！",
-    "se": "+bakuhatsu.mp3"
+    "se": "+bakuhatsu.mp3",
+    "hideWindow": true,
+    "bg": "/scene/core_hakai1.png"
   },
   {
     "scene": "研究所の最奥",
@@ -10856,8 +10849,7 @@ export const scenarioData = [
     "hideIllust": [
       "Nagisa"
     ],
-    "action": ["clear"],
-    "bg": "/scene/core_hakai1.png"
+    "action": ["clear"]
   },
   {
     "scene": "研究所の最奥",
@@ -10917,7 +10909,8 @@ export const scenarioData = [
     "text": "「はぁ……はぁ……」",
     "showIllust": [
       "Nagisa_serious3"
-    ]
+    ],
+    "bgm": "stop"
   },
   {
     "scene": "瓦礫裏",
@@ -11088,7 +11081,7 @@ export const scenarioData = [
   //凪砂バッドエンド
   {
     "label": "nagisa_fragment_bad_end",
-    "scene": "瓦礫裏",
+    "scene": "バッド：瓦礫裏",
     "action": "SHAKE_SCREEN",
     "se": "Shock_1.mp3",
     "text": "その時、すぐ近くまで迫っていた黒騎士の足音が、サーバーラックを激しく揺らす。\nその瞬間、凪砂さんの「静寂」を守っていた私の力が押し切られた。"
@@ -11248,7 +11241,7 @@ export const scenarioData = [
   {
     "scene": "研究所の最奥",
     "showIllust": [
-      "BlackKnight4"
+      "BlackKnight3"
     ],
     "text": "目の前に現れた漆黒の姿。けれど、凪砂さんにはもう逃げる力すら残っていなかった。"
   },
@@ -11291,7 +11284,7 @@ export const scenarioData = [
   //凪砂ハッピーエンド
   {
     "label": "nagisa_fragment_happy_end",
-    "scene": "瓦礫裏",
+    "scene": "ハッピー：瓦礫裏",
     "text": "ガレキを踏み砕く黒騎士の足音が、すぐそこまで迫っている。"
   },
   {
@@ -11565,7 +11558,8 @@ export const scenarioData = [
     "scene": "研究所の最奥",
     "speaker": "凪砂",
     "role": "NAGISA",
-    "text": "「……さて。邪魔者はいなくなったし、本来の仕事を片付けようか」"
+    "text": "「……さて。邪魔者はいなくなったし、本来の仕事を片付けようか」",
+    "bgm": "TheSong.mp3"
   },
   {
     "scene": "研究所の最奥",
@@ -11671,7 +11665,6 @@ export const scenarioData = [
       "WHITE_OUT_START"
     ],
     "se": "+window_break.mp3",
-    "bgm": "stop",
     "text": "その瞬間、コアの輝きが限界を迎えた電球のように、一際眩しく爆発的に膨れ上がった。視界が純白の光で埋め尽くされ、何も見えなくなる。",
     "hideIllust": [
       "Nagisa"
@@ -11679,14 +11672,16 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "鼓膜を突き刺すような高音が響き渡り、次の瞬間、世界から全ての音が消えた。"
+    "text": "鼓膜を突き刺すような高音が響き渡り、次の瞬間、世界から全ての音が消えた。",
+    "bgm": "stop"
   },
   {
     "scene": "研究所の最奥",
     "action": [
-      "WHITE_OUT_END"
+      "WHITE_OUT_END_SLOW"
     ],
-    "text": "ゆっくりと光が収束していく。"
+    "text": "ゆっくりと光が収束していく。",
+    "bg": "/scene/core_close_Nothing.png"
   },
   {
     "scene": "研究所の最奥",
@@ -11720,7 +11715,9 @@ export const scenarioData = [
     "text": "凪砂さんは浅い呼吸を繰り返しながら、ゆっくりと目を開いた。そこにあったのは、もう苦しみに歪んだ瞳ではない。穏やかで、初めて見るような素の表情だった。",
     "showIllust": [
       "Nagisa_smile3"
-    ]
+    ],
+    "bgm": "Room_Night.mp3",
+    "bgmVolume": 0.5
   },
   {
     "scene": "研究所の最奥",
@@ -11816,6 +11813,9 @@ export const scenarioData = [
   {
     "scene": "脱出ロケット",
     "se": "+rocket_launch.mp3",
+    "seDuration": 3,
+    "seVolume": 0.4,
+    "seFadeOut": 1000,
     "text": "轟音と共に機体は月面を離れ、遠ざかっていく研究所の向こうで、青い地球がゆっくりと近づいてくる。"
   },
   {
@@ -12210,7 +12210,8 @@ export const scenarioData = [
     "text": "奥から現れたのはヒルミ教授だった。外では【キメラ】や黒い鎧の化け物が暴れ回っているというのに、教授だけは落ち着き払っている。",
     "showIllust": [
       "Hirumi_smile4"
-    ]
+    ],
+    "bgm": "serious_1.mp3"
   },
   {
     "scene": "教授の研究室",
@@ -12368,7 +12369,8 @@ export const scenarioData = [
       "clear"
     ],
     "text": "私は大きく息を吐き、ようやく肩の力を抜く。",
-    "se": "stop"
+    "se": "stop",
+    "seFadeOut": 1000
   },
   {
     "scene": "ロケット内部",
@@ -12495,8 +12497,8 @@ export const scenarioData = [
     "action": [
       "SHAKE_SCREEN_EXTREME"
     ],
-    "text": "ガガガガガッ！！",
-    "se": "Rocket_Shock.mp3"
+    "se": "Rocket_Shock.mp3",
+    "hideWindow": true
   },
   {
     "scene": "ロケット内部",
@@ -12687,11 +12689,11 @@ export const scenarioData = [
   },
   {
     "scene": "夜空（月）",
-    "text": "そう覚悟を決めて、隣のミカくんに声をかけようとした時だった。"
+    "text": "そう覚悟を決めて、隣のミカくんに声をかけようとした時だった。",
+    "bg": "/scene/moon_surface.png"
   },
   {
     "scene": "月面",
-    "bg": "/scene/moon_surface.png",
     "action": [
       "SHAKE_SCREEN_SMALL"
     ],
@@ -12700,7 +12702,8 @@ export const scenarioData = [
     "text": "「っ……う、く……っ」",
     "showIllust": [
       "Mika_serious_injured3"
-    ]
+    ],
+    "action": "SHAKE_SCREEN"
   },
   {
     "scene": "月面",
@@ -12755,25 +12758,6 @@ export const scenarioData = [
     "se": "+paper.mp3"
   },
   {
-    "scene": "月面",
-    "type": "choice",
-    "text": "手記の内容を読みますか？",
-    "choices": [
-      {
-        "text": "読む",
-        "targetLabel": "read_professors_note3"
-      },
-      {
-        "text": "スキップする",
-        "targetLabel": "skip_professors_note3"
-      }
-    ],
-    "hideIllust": [
-      "Mika"
-    ]
-  },
-  {
-    "label": "read_professors_note3",
     "scene": "手記",
     "showItem": "/item/Message.png",
     "text": "教授の手記には、研究所の最奥にある『コア』が【キメラ】の発生源であること、そしてそこへ辿り着くには、研究所各地に散らばる《セキュリティ解除コードの断片（フラグメント）》をすべて回収する必要があると書かれていた。"
@@ -12795,7 +12779,6 @@ export const scenarioData = [
     "text": "『コア停止後、研究所は自壊を開始する。最下層の緊急離脱用ロケットで帰還しなさい』"
   },
   {
-    "label": "skip_professors_note3",
     "scene": "手記",
     "text": "つまり、まずは研究所内に散らばったフラグメントを集めて最奥への道を開き、『コア』を停止させるしかない。それが、この世界を救い、私たちが地球へ帰るための唯一の方法だった。"
   },
@@ -12873,7 +12856,10 @@ export const scenarioData = [
     "scene": "研究所入口",
     "speaker": "ミカ",
     "role": "MIKA",
-    "text": "「ここからは用心して行きましょう」"
+    "text": "「ここからは用心して行きましょう」",
+    "showIllust": [
+      "Mika_serious_injured3"
+    ]
   },
   {
     "scene": "研究所入口",
@@ -12881,8 +12867,13 @@ export const scenarioData = [
   },
   {
     "scene": "フラグメントコレクト",
-    "action": "TRIGGER_FRAGMENT_COLLECT_MIKA",
     "bg": "black",
+    "style": "popup",
+    "text": "研究所の隅々に散らばった【フラグメント】を回収し、\nコアが保管されている部屋のゲートを開けましょう。\n\n…【フラグメント】だけではなく、とある”重大な情報”が、\n隠されているかもしれません。\n\n＜操作方法＞\nドラックで移動\n探索したいところをクリックまたはタップ"
+  },
+  {
+    "scene": "フラグメントコレクト",
+    "action": "TRIGGER_FRAGMENT_COLLECT_MIKA",
     "bgm": "Lab.mp3"
   },
   {
@@ -12891,8 +12882,7 @@ export const scenarioData = [
     "role": "SAKURA",
     "text": "「──よしっ、これで最後のデータチップ、回収完了！」",
     "bg": "/scene/Lab_corridor.png",
-    "bgm": "Lab.mp3",
-    "label": "mika_fragment_happy_end"
+    "bgm": "Lab.mp3"
   },
   {
     "scene": "廊下",
@@ -12930,13 +12920,14 @@ export const scenarioData = [
   },
   {
     "scene": "廊下",
-    "text": "──ゴゴゴゴ……。",
     "se": "+jishin.mp3",
-    "action": "SHAKE_SCREEN_CONTINUOUS_SMALL"
+    "action": "SHAKE_SCREEN_CONTINUOUS_SMALL",
+    "hideWindow": true
   },
   {
     "scene": "廊下",
-    "text": "研究所全体が大きく揺れる。"
+    "text": "研究所全体が大きく揺れる。",
+    "bgm": "stop"
   },
   {
     "scene": "廊下",
@@ -13096,7 +13087,10 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "白い光に照らされた彼の瞳には、決意とも悲しみともつかない色が浮かんでいた。"
+    "text": "白い光に照らされた彼の瞳には、決意とも悲しみともつかない色が浮かんでいた。",
+    "showIllust": [
+      "Mika_serious_injured3"
+    ]
   },
   {
     "scene": "研究所の最奥",
@@ -13187,6 +13181,7 @@ export const scenarioData = [
     "text": "頭上のスピーカーから、歪んだ電子音声が響き渡った。",
     "bgm": "stop",
     "se": "+speaker.mp3",
+    "seVolume": 5.0,
     "hideIllust": [
       "Mika"
     ]
@@ -13285,7 +13280,7 @@ export const scenarioData = [
   //ミカバッドエンド
   {
     "label": "mika_fragment_bad_end",
-    "scene": "研究所の最奥",
+    "scene": "バッド：研究所の最奥",
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「待って……！ 言う通りにするわ。だから……お願い、ミカくんを助けて……！」"
@@ -13296,7 +13291,7 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "背後で, ミカくんがハッと息を呑む。"
+    "text": "背後で、ミカくんがハッと息を呑む。"
   },
   {
     "scene": "研究所の最奥",
@@ -13320,13 +13315,13 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "speaker": "ヒルミ教授",
-    "role": "PROFESSOR",
+    "speaker": "？？？",
     "text": "『──アハハハ！ 賢い選択だね。やっぱり君は、そう言ってくれると思ったよ』"
   },
   {
     "scene": "研究所の最奥",
     "se": "+dengen.mp3",
+    "seVolume": 10.0,
     "text": "カチリ、と機械的な音が響く。"
   },
   {
@@ -13359,7 +13354,9 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "se": "Shoes_Sound.mp3",
+    "se": "yoroi.mp3",
+    "seVolume": 7.0,
+    "seDuration": 0.5,
     "showIllust": [
       "BlackKnight4"
     ],
@@ -13371,12 +13368,11 @@ export const scenarioData = [
   {
     "scene": "研究所の最奥",
     "se": "Crush.mp3",
-    "text": "彼は抵抗する私の両手首に、冷たい拘束具を嵌めていく。"
+    "text": "彼は抵抗する私の両手首に、冷たい拘束具を嵌めていく。",
   },
   {
     "scene": "研究所の最奥",
-    "speaker": "ルキ",
-    "role": "RUKI",
+    "speaker": "？？？",
     "text": "『約束は守るよ。そのノラ犬の命は繋ぎ止めておいてあげる。だけど……君にはこれから、その特別な身体のすべてを捧げてもらう』"
   },
   {
@@ -13413,7 +13409,7 @@ export const scenarioData = [
   //ミカハッピーエンド
   {
     "label": "mika_fragment_happy_end",
-    "scene": "研究所の最奥",
+    "scene": "ハッピー：研究所の最奥",
     "bgm": "stop",
     "text": "その時、ふと頭に浮かんだのは、研究所で見つけた資料の一文だった。",
     "hideIllust": [
@@ -13786,7 +13782,7 @@ export const scenarioData = [
     "scene": "研究所の最奥",
     "text": "やがてその光が、潮を引くように消えていく。",
     "action": "WHITE_OUT_END_SLOW",
-    "bg": "/scene/core_close_Nothing2.png"
+    "bg": "/scene/core_close_Nothing.png"
   },
   {
     "scene": "研究所の最奥",
@@ -14246,7 +14242,8 @@ export const scenarioData = [
     "text": "「……遅かったね」",
     "showIllust": [
       "Hirumi_smile4"
-    ]
+    ],
+    "bgm": "serious_1.mp3"
   },
   {
     "scene": "研究室",
@@ -14432,7 +14429,7 @@ export const scenarioData = [
   },
   {
     "scene": "研究室",
-    "text": "遠くから防壁を叩き割るような凄まじい爆音が響き、研究室全体が大きく揺れた。アイツが、すぐそこまで来ている。",
+    "text": "遠くから防壁を叩き割るような凄まじい爆音が響き、研究室全体が大きく揺れた。",
     "action": "SHAKE_SCREEN",
     "se": "+bakuhatsu.mp3"
   },
@@ -14467,6 +14464,8 @@ export const scenarioData = [
     "scene": "ロケット内部",
     "text": "機械音声と共に機体が激しく震え、ロケットは轟音を上げて人工月へ向かって飛び立った。",
     "se": "+rocket_launch.mp3",
+    "seVolume": 0.4,
+    "seDuration": 3.0,
     "action": "SHAKE_SCREEN_CONTINUOUS_SMALL"
   },
   {
@@ -14541,9 +14540,9 @@ export const scenarioData = [
   },
   {
     "scene": "ロケット内部",
-    "text": "ガガガガガッ！！",
     "action": "SHAKE_SCREEN_EXTREME",
-    "se": "Rocket_Shock.mp3"
+    "se": "Rocket_Shock.mp3",
+    "hideWindow": true
   },
   {
     "scene": "ロケット内部",
@@ -14660,27 +14659,9 @@ export const scenarioData = [
   },
   {
     "scene": "月面",
-    "type": "choice",
-    "text": "手記の内容を読みますか？",
-    "choices": [
-      {
-        "text": "読む",
-        "targetLabel": "read_professors_note4"
-      },
-      {
-        "text": "スキップする",
-        "targetLabel": "skip_professors_note4"
-      }
-    ],
-    "hideIllust": [
-      "Akane"
-    ]
-  },
-  {
-    "label": "read_professors_note4",
-    "scene": "月面",
     "text": "教授の手記には、研究所の最奥にある『コア』が【キメラ】の発生源であること、そしてそこへ辿り着くには、研究所各地に散らばる《セキュリティ解除コードの断片（フラグメント）》をすべて回収する必要があると書かれていた。",
-    "showItem": "/item/Message.png"
+    "showItem": "/item/Message.png",
+    "se": "+paper.mp3"
   },
   {
     "scene": "月面",
@@ -14705,7 +14686,6 @@ export const scenarioData = [
     "text": "つまり、まずは研究所内に散らばったフラグメントを集めて最奥への道を開き、『コア』を停止させるしかない。それが、この世界を救い、私たちが地球へ帰るための唯一の方法だった。"
   },
   {
-    "label": "skip_professors_note4",
     "scene": "月面",
     "speaker": "朔良",
     "role": "SAKURA",
@@ -14800,13 +14780,14 @@ export const scenarioData = [
   },
   {
     "scene": "廊下",
-    "text": "──ゴゴゴゴ……。",
     "se": "+jishin.mp3",
-    "action": "SHAKE_SCREEN_CONTINUOUS_SMALL"
+    "action": "SHAKE_SCREEN_CONTINUOUS_SMALL",
+    "hideWindow": true
   },
   {
     "scene": "廊下",
-    "text": "研究所全体が大きく揺れる。"
+    "text": "研究所全体が大きく揺れる。",
+    "bgm": "stop"
   },
   {
     "scene": "廊下",
@@ -14989,7 +14970,7 @@ export const scenarioData = [
   },
   {
     "scene": "コア部屋",
-    "text": "壁面がガラス張りになっており、そこから差し込む「本当の月の光」を浴びていた。/n心臓のように脈打つそれからは、周囲を震わせるほどの莫大なエネルギーが放たれている。"
+    "text": "壁面がガラス張りになっており、そこから差し込む「本当の月の光」を浴びていた。"
   },
   {
     "scene": "コア部屋",
@@ -15007,7 +14988,10 @@ export const scenarioData = [
   },
   {
     "scene": "コア部屋",
-    "text": "呆然と呟く私の横で、アカネさんはゆっくりとコアへ近づいていく。"
+    "text": "呆然と呟く私の横で、アカネさんはゆっくりとコアへ近づいていく。",
+    "showIllust": [
+      "Akane_serious3"
+    ]
   },
   {
     "scene": "コア部屋",
@@ -15015,7 +14999,10 @@ export const scenarioData = [
   },
   {
     "scene": "コア部屋",
-    "text": "──教授の手記にはこうあった。"
+    "text": "──教授の手記にはこうあった。",
+    "hideIllust": [
+      "Akane"
+    ]
   },
   {
     "scene": "コア部屋",
@@ -15121,7 +15108,8 @@ export const scenarioData = [
     "text": "ゲートの影から、一人の少年がゆっくりと姿を現した。",
     "showIllust": [
       "Ruki_neutral4"
-    ]
+    ],
+    "bgm": "serious_3.mp3"
   },
   {
     "scene": "コア部屋",
@@ -15144,8 +15132,7 @@ export const scenarioData = [
   {
     "scene": "コア部屋",
     "speaker": "少年",
-    "text": "「はは……必死だねぇ。これを破壊するためだけに異能を自分の身体に植え付けるなんて、馬鹿この上ないね」",
-    "bgm": "serious_4.mp3"
+    "text": "「はは……必死だねぇ。これを破壊するためだけに異能を自分の身体に植え付けるなんて、馬鹿この上ないね」"
   },
   {
     "scene": "コア部屋",
@@ -15175,7 +15162,8 @@ export const scenarioData = [
   {
     "scene": "コア部屋",
     "speaker": "少年",
-    "text": "「もっと楽しい話をしようよ」"
+    "text": "「もっと楽しい話をしようよ」",
+    "bgm": "stop"
   },
   {
     "scene": "コア部屋",
@@ -15184,8 +15172,7 @@ export const scenarioData = [
   {
     "scene": "コア部屋",
     "speaker": "少年",
-    "text": "「あんたの母親が、最後に何を言ったか知ってる？」",
-    "bgm": "stop"
+    "text": "「あんたの母親が、最後に何を言ったか知ってる？」"
   },
   {
     "scene": "コア部屋",
@@ -15267,7 +15254,6 @@ export const scenarioData = [
   {
     "scene": "コア部屋",
     "speaker": "少年",
-    "role": "RUKI",
     "text": "「さあ、おいで──僕のボディーガード」"
   },
   {
@@ -15365,7 +15351,7 @@ export const scenarioData = [
   //アカネバッドエンド
   {
     "label": "akane_fragment_bad_end",
-    "scene": "コア部屋",
+    "scene": "バッド：コア部屋",
     "speaker": "朔良",
     "role": "SAKURA",
     "action": "BLACK_AURA_START",
@@ -15420,7 +15406,6 @@ export const scenarioData = [
   {
     "scene": "コア部屋",
     "speaker": "少年",
-    "role": "RUKI",
     "showIllust": [
       "Ruki3"
     ],
@@ -15492,7 +15477,6 @@ export const scenarioData = [
   {
     "scene": "白い部屋",
     "speaker": "少年",
-    "role": "RUKI",
     "text": "「あ、目覚めたんだね。お姉ちゃん」"
   },
   {
@@ -15505,7 +15489,6 @@ export const scenarioData = [
   {
     "scene": "白い部屋",
     "speaker": "少年",
-    "role": "RUKI",
     "text": "「コアを止めた能力、あれ凄かったよ。……安心して。ここは安全な『飼育室』だから。これからは僕の最高のおもちゃとして、ずっと可愛がってあげる」"
   },
   {
@@ -15535,12 +15518,12 @@ export const scenarioData = [
     "text": "よそ見していた私を責めるように、首元の拘束具が引かれ身体をベッドへ引き戻される。涙で滲む視界の中、少年がリードを手にして私を見下ろしていた。",
     "showIllust": [
       "Ruki3"
-    ]
+    ],
+    "se": "kusari.mp3"
   },
   {
     "scene": "白い部屋",
     "speaker": "少年",
-    "role": "RUKI",
     "text": "「大丈夫。僕たちの『実験』は、まだ始まったばかりなんだから」"
   },
   {
@@ -15560,7 +15543,7 @@ export const scenarioData = [
   //アカネハッピーエンド
   {
     "label": "akane_fragment_happy_end",
-    "scene": "コア部屋",
+    "scene": "ハッピー：コア部屋",
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「あ……あああああッ！！」",
@@ -15574,7 +15557,6 @@ export const scenarioData = [
   {
     "scene": "コア部屋",
     "speaker": "少年",
-    "role": "RUKI",
     "text": "「あはは！ 最高だよ！」",
     "showIllust": [
       "Ruki_neutral4"
@@ -15650,7 +15632,6 @@ export const scenarioData = [
   {
     "scene": "コア部屋",
     "speaker": "少年",
-    "role": "RUKI",
     "text": "「……はぁ。めんどくさいことになったな。片づけるよ」",
     "showIllust": [
       "Ruki_neutral3"
@@ -15728,7 +15709,7 @@ export const scenarioData = [
   },
   {
     "scene": "コア近い",
-    "bg": "/scene/core_close2.png",
+    "bg": "/scene/core_close.png",
     "text": "アカネさんは傷だらけの身体を引きずりながら、ゆっくりとコアへ歩み寄る。",
     "hideIllust": [
       "Akane"
@@ -15746,7 +15727,8 @@ export const scenarioData = [
   },
   {
     "scene": "コア近い",
-    "text": "その背中を見つめた瞬間、私は理解した。この人は最初から、こうするつもりだったのだ。自分の命を削ってでも、この力を止めるつもりだった。"
+    "text": "その背中を見つめた瞬間、私は理解した。この人は最初から、こうするつもりだったのだ。自分の命を削ってでも、この力を止めるつもりだった。",
+    "bgm": "TheSong.mp3"
   },
   {
     "scene": "コア近い",
@@ -15758,8 +15740,7 @@ export const scenarioData = [
   },
   {
     "scene": "コア近い",
-    "text": "気づけば、私は声を出していた。静かな研究所に、歌が響き渡る。",
-    "bgm": "ThaSong.mp3"
+    "text": "気づけば、私は声を出していた。静かな研究所に、歌が響き渡る。"
   },
   {
     "scene": "コア近い",
@@ -15831,9 +15812,9 @@ export const scenarioData = [
   },
   {
     "scene": "コア部屋",
-    "bg": "/scene/core_close_Nothing2.png",
+    "bg": "/scene/core_close_Nothing.png",
     "text": "やがてその光が、潮を引くように消えていく。光が消えた瞬間、全身から力が抜け落ちる。",
-    "action": "WHITE_OUT_END"
+    "action": "WHITE_OUT_END_SLOW "
   },
   {
     "scene": "コア部屋",
@@ -16381,7 +16362,7 @@ export const scenarioData = [
     "scene": "空",
     "bg": "/scene/sky.png",
     "text": "拘置所を出た私は、静かに空を見上げる。",
-    "bgm": "serious_3.mp3"
+    "bgm": "Normal_Morning2.mp3"
   },
   {
     "scene": "空",

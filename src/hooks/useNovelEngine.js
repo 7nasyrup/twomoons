@@ -64,7 +64,7 @@ export function useNovelEngine(scenarioData, options = {}) {
     isAdvancingRef.current = false;
     if (currentLine?.text) {
       triggerTypewriter(currentLine.text);
-    } else {
+    } else if (!(typeof currentLine?.action === 'string' && currentLine?.action?.startsWith('EVALUATE_'))) {
       setDisplayedText('');
       setIsTyping(false);
     }
