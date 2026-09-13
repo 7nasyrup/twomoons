@@ -2755,6 +2755,7 @@ export const scenarioData = [
     "scene": "廃倉庫",
     "speaker": "大男",
     "text": "「質問に答えろ」",
+    "bgCrossfade": true,
     "showIllust": [
       "Akane_serious3"
     ]
@@ -3565,6 +3566,7 @@ export const scenarioData = [
     "scene": "廃ビルの一室",
     "text": "それだけ告げると、通話は切れた。",
     "se": "CallOut.mp3",
+    "seVolume": 0.5,
     "bgmVolume": 0.1
   },
   {
