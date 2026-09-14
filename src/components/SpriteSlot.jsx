@@ -86,6 +86,16 @@ const SPEAKER_TO_ROMAJI = {
 };
 
 export default function SpriteSlot({ leftActive, rightActive, focusSlot, currentSpeaker, presentCharacters = [], currentLine, currentStep, scenarioData = [], isPhoneCallRight }) {
+  const [isMobile, setIsMobile] = React.useState(() => typeof window !== 'undefined' && window.innerWidth < 1024);
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const isTransmission = currentLine?.text?.trim().startsWith('『');
 
   const resolvedDisplayMap = {};
@@ -332,6 +342,16 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
             finalScale *= 1.15; // 立ち絵を1.15倍に拡大
           }
 
+          const charBottom = baseCharName.toLowerCase() === 'kimera1'
+            ? '12cqh'
+            : (isKimera
+                ? '28cqh'
+                : (isMachine
+                    ? (isMobile ? '15cqh' : '20cqh')
+                    : (isMobile ? '-16cqh' : '-10cqh')
+                  )
+              );
+
           return (
             <motion.div
               key={baseCharName}
@@ -339,7 +359,7 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
               style={{
                 width: isKimera ? '60%' : '45%',
                 height: isKimera ? '75%' : '95%',
-                bottom: baseCharName.toLowerCase() === 'kimera1' ? '12cqh' : (isKimera ? '28cqh' : (isMachine ? '20cqh' : '-10cqh')),
+                bottom: charBottom,
                 left: isKimera && (!overrideStyle) ? '20%' : undefined,
                 transformOrigin: 'bottom center',
                 ...layoutStyles
