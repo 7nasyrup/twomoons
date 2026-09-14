@@ -10,7 +10,7 @@ const HEAL_COOLDOWN = 12000;
 
 // Damage values
 const ALLY_BASE_DAMAGE = 15;
-const ENEMY_BASE_DAMAGE = 20;
+const ENEMY_BASE_DAMAGE = 10;
 const GUARD_REDUCTION = 0.2;          // 80% damage reduction when holding guard
 const ULTIMATE_DAMAGE = 200;
 const HEAL_AMOUNT = 80;
@@ -1061,8 +1061,8 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
       const attack = attacks[0];
 
       const elapsed = Date.now() - attack.startTime;
-      const parryStart = attack.delay + attack.duration - 450;
-      const parryEnd = attack.delay + attack.duration + 200;
+      const parryStart = attack.delay + attack.duration - 475;
+      const parryEnd = attack.delay + attack.duration + 175;
 
       const timers = parryTutorialTimersRef.current;
       if (timers.glintTimer) clearTimeout(timers.glintTimer);
@@ -1120,8 +1120,8 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
         if (attack.targetId !== allyId || attack.resolved) return false;
         const elapsed = Date.now() - attack.startTime;
         // Loosen parry window: from -450ms to +200ms
-        const parryStart = attack.delay + attack.duration - 450;
-        const parryEnd = attack.delay + attack.duration + 200;
+        const parryStart = attack.delay + attack.duration - 475;
+        const parryEnd = attack.delay + attack.duration + 175;
         return elapsed >= parryStart && elapsed <= parryEnd;
       });
 

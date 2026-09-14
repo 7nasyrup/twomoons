@@ -10,8 +10,8 @@ const TURN_DELAY = 600;             // Delay between turns (ms) (Allows time for
 const HEAL_COOLDOWN = 12000;
 
 // Damage values
-const ALLY_BASE_DAMAGE = 15;
-const ENEMY_BASE_DAMAGE = 20;
+const ALLY_BASE_DAMAGE = 20;
+const ENEMY_BASE_DAMAGE = 30;
 const GUARD_REDUCTION = 0.2;          // 80% damage reduction when holding guard
 const ULTIMATE_DAMAGE = 200;
 const HEAL_AMOUNT = 80;
@@ -53,52 +53,41 @@ const TIMELINE_DISPLAY_COUNT = 10;    // How many turns to show in the timeline
 // INITIAL DATA
 // ═══════════════════════════════════════════════════════════════════════════════
 
+const createAllies = () => [
+  { id: 'mutsunori', name: '睦典', image: '/battle/mutsunori.png', cutinImage: '/character/Mutsunori/Mutsunori_serious.png', hp: 400, maxHp: 400, color: '#34d399', isDead: false, flashTimer: 0, lastDamage: 0 },
+];
+
+const createEnemies = () => [
+  { id: 'enemy1', name: '黒騎士', image: '/battle/blackknight.png', hp: 2000, maxHp: 2000, color: '#ef4444', isStunned: false, isDead: false, flashTimer: 0 },
+];
+
 // ═══════════════════════════════════════════════════════════════════════════════
 // COMPONENT
 // ═══════════════════════════════════════════════════════════════════════════════
-export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, playSE, isMichiruRoute = false }) {
+export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, playSE }) {
   // ─── Core State ───
-  const [allies, setAllies] = useState(() => {
-    if (isMichiruRoute) {
-      return [
-        { id: 'sakura', name: '朔良', image: '/battle/sakura.png', cutinImage: '/character/Sakura/Sakura.png', hp: 300, maxHp: 300, color: '#34d399', isDead: false, flashTimer: 0, lastDamage: 0 },
-      ];
-    }
-    return [
-      { id: 'mutsunori', name: '睦典', image: '/battle/mutsunori.png', cutinImage: '/character/Mutsunori/Mutsunori_serious.png', hp: 300, maxHp: 300, color: '#34d399', isDead: false, flashTimer: 0, lastDamage: 0 },
-    ];
-  });
+  const [allies, setAllies] = useState(createAllies);
 
   // Sakura Speech Bubble State
   const [sakuraSpeech, setSakuraSpeech] = useState(null); // { text, icon, id }
   const speechTimeoutRef = useRef(null);
   const [hasParried, setHasParried] = useState(false); // Track first parry in the battle
 
-  const [enemies, setEnemies] = useState(() => {
-    if (isMichiruRoute) {
-      return [
-        { id: 'enemy1', name: 'ルキ', image: '/battle/ruki.png', hp: 900, maxHp: 900, color: '#ef4444', isStunned: false, isDead: false, flashTimer: 0 },
-      ];
-    }
-    return [
-      { id: 'enemy1', name: '黒騎士', image: '/battle/blackknight.png', hp: 1170, maxHp: 1170, color: '#ef4444', isStunned: false, isDead: false, flashTimer: 0 },
-    ];
-  });
+  const [enemies, setEnemies] = useState(createEnemies);
 
   const turnOrder = useMemo(() => {
-    return isMichiruRoute ? ['sakura', 'enemy1'] : ['mutsunori', 'enemy1'];
-  }, [isMichiruRoute]);
+    return ['mutsunori', 'enemy1'];
+  }, []);
 
   const getCharInfo = useCallback((id) => {
     const map = {
-      sakura: { name: '朔良', image: '/battle/sakura.png', isAlly: true },
       mutsunori: { name: '睦典', image: '/battle/mutsunori.png', isAlly: true },
       nagisa: { name: '凪砂', image: '/battle/nagisa.png', isAlly: true },
-      enemy1: { name: isMichiruRoute ? 'ルキ' : '黒騎士', image: isMichiruRoute ? '/battle/ruki.png' : '/battle/blackknight.png', isAlly: false },
+      enemy1: { name: '黒騎士', image: '/battle/blackknight.png', isAlly: false },
       enemy2: { name: 'キメラβ', image: '/battle/blackknight.png', isAlly: false },
     };
     return map[id] || { name: '？', image: '', isAlly: false };
-  }, [isMichiruRoute]);
+  }, []);
 
   const [syncRate, setSyncRate] = useState(0);          // 0-100
   const [battlePhase, setBattlePhase] = useState('intro');
@@ -120,7 +109,7 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
   const [healCooldown, setHealCooldown] = useState(0);
   const [buffTurnsLeft, setBuffTurnsLeft] = useState(0);
   const [guardCooldownTrigger, setGuardCooldownTrigger] = useState(() => {
-    return isMichiruRoute ? { sakura: 0 } : { mutsunori: 0, nagisa: 0 };
+    return { mutsunori: 0, nagisa: 0 };
   });
 
   // ─── Anomaly State ───
@@ -149,9 +138,7 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
   const gameLoopRef = useRef(null);
   const lastTickRef = useRef(0);
   const hitStopRef = useRef(0);
-  const guardCooldownsRef = useRef(() => {
-    return isMichiruRoute ? { sakura: 0 } : { mutsunori: 0, nagisa: 0 };
-  });
+  const guardCooldownsRef = useRef({ mutsunori: 0, nagisa: 0 });
   const pendingGuardTimeoutsRef = useRef({});
   const stateRef = useRef({ allies, enemies, activeAttacks, guardingAllies, syncRate, battlePhase, turnPhase, currentTurnIndex, counterAttack, buffTurnsLeft, activeFragments, absorbCooldown, corruption });
 
@@ -209,9 +196,9 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
       dmg = Math.floor(dmg * atkMult);
 
       if (qteResult === 'perfect') {
-        dmg = Math.floor(dmg * 1.5);
+        dmg = Math.floor(dmg * 2);
       } else if (qteResult === 'good') {
-        dmg = Math.floor(dmg * 1.2);
+        dmg = Math.floor(dmg * 1.5);
       }
 
       setEnemies(prev => prev.map(e => {
@@ -330,7 +317,7 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
       ]
     };
 
-    const speechMap = isMichiruRoute ? michiruSpeechMap : sakuraSpeechMap;
+    const speechMap = sakuraSpeechMap;
     const candidates = speechMap[type] || [{ text: 'いこう！', icon: '✨' }];
     const selected = candidates[Math.floor(Math.random() * candidates.length)];
 
@@ -343,7 +330,7 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
     speechTimeoutRef.current = setTimeout(() => {
       setSakuraSpeech(null);
     }, 1500); // 1.5 seconds lifespan
-  }, [isMichiruRoute]);
+  }, []);
 
   useEffect(() => {
     return () => {
@@ -357,7 +344,7 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
   useEffect(() => {
     return; // TODO: Temporarily disabled per user request
     let intervalId;
-    if (guardingAllies.has(isMichiruRoute ? 'sakura' : 'mutsunori')) {
+    if (guardingAllies.has('mutsunori')) {
       intervalId = setInterval(() => {
         const symbols = ['♪', '♬', '♫', '♩', '🎶', '🎵'];
         const colors = ['text-blue-300', 'text-blue-400', 'text-blue-300', 'text-cyan-300', 'text-cyan-400', 'text-sky-300', 'text-sky-400', 'text-indigo-300', 'text-violet-300'];
@@ -414,8 +401,8 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
   }, [currentTurnIndex, turnOrder]);
 
   const isAllyTurn = useCallback((id) => {
-    return id === (isMichiruRoute ? 'sakura' : 'mutsunori') || id === 'nagisa';
-  }, [isMichiruRoute]);
+    return id === 'mutsunori' || id === 'nagisa';
+  }, []);
 
   const advanceTurn = useCallback(() => {
     setCurrentTurnIndex(prev => prev + 1);
@@ -500,7 +487,7 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
             const allEnemies = stateRef.current.enemies;
 
             // Skip dead characters
-            const isAlly = turnId === (isMichiruRoute ? 'sakura' : 'mutsunori') || turnId === 'nagisa';
+            const isAlly = turnId === 'mutsunori' || turnId === 'nagisa';
             if (isAlly) {
               const ally = allAllies.find(a => a.id === turnId);
               if (!ally || ally.isDead) {
@@ -765,8 +752,8 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
         const elapsed = Date.now() - attack.startTime;
         // Loosen parry window: from -450ms to +200ms
         // Strict parry window: closer to the allies' red circle (-180ms to +100ms)
-        const parryStart = attack.delay + attack.duration - 120;
-        const parryEnd = attack.delay + attack.duration + 50;
+        const parryStart = attack.delay + attack.duration - 235;
+        const parryEnd = attack.delay + attack.duration - 65;
         return elapsed >= parryStart && elapsed <= parryEnd;
       });
 
@@ -1025,8 +1012,8 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
       spawnDamageNumber(a.id, amount, 'heal');
       return { ...a, hp: Math.min(a.maxHp, a.hp + amount), flashTimer: 0 };
     }));
-    addLog(isMichiruRoute ? `💖 満の応援でサクラの体力が回復！ (+${amount} HP)` : `💖 朔良の歌でパーティ全体が回復！`);
-  }, [healCooldown, isMichiruRoute, addLog, triggerSakuraNote, spawnDamageNumber]);
+    addLog(`💖 朔良の歌でパーティ全体が回復！`);
+  }, [healCooldown, addLog, triggerSakuraNote, spawnDamageNumber]);
 
   const handleBuff = useCallback(() => {
     if (syncRate < SYNC_COST_BUFF || stateRef.current.battlePhase !== 'fighting') return;
@@ -1037,13 +1024,13 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
     setTimeout(() => setHealFlash(false), 300);
     triggerSakuraNote();
 
-    addLog(isMichiruRoute ? `🎵 満がサクラを奮い立たせた！ 味方の攻防力UP (2ターン)` : `🎵 朔良が強化の歌を歌った！ 味方の攻防力UP (2ターン)`);
+    addLog(`🎵 朔良が強化の歌を歌った！ 味方の攻防力UP (2ターン)`);
   }, [syncRate, addLog, triggerSakuraNote]);
 
   const handleMutsunoriUltimate = useCallback(() => {
     if (syncRate < SYNC_COST_ULTIMATE || stateRef.current.battlePhase !== 'fighting') return;
 
-    const mainAllyChar = allies.find(a => a.id === (isMichiruRoute ? 'sakura' : 'mutsunori'));
+    const mainAllyChar = allies.find(a => a.id === 'mutsunori');
     if (!mainAllyChar || mainAllyChar.isDead) return;
 
     setSyncRate(0);
@@ -1075,7 +1062,7 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
         });
       });
       setActiveAttacks([]);
-      addLog(isMichiruRoute ? `★★ サクラの共鳴アーツ！ 美しい歌声と熱い想いが奇跡を紡ぐ！ ★★` : `★★ 睦典の必殺技！ 渾身の一撃が炸裂！ ★★`);
+      addLog(`★★ 睦典の必殺技！ 渾身の一撃が炸裂！ ★★`);
     }, 1500);
 
     setTimeout(() => { setDuetCutin(null); setUltimateFlash(false); setShakeActive(false); }, 2500);
@@ -1195,7 +1182,7 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         {/* Full color bright image */}
-        <img src={isMichiruRoute ? "/battle/room_ruki.png" : "/battle/core_houkai.jpg"} alt="Background" className="absolute inset-0 w-full h-full object-cover -translate-y-[15%]" />
+        <img src="/battle/core_houkai.jpg" alt="Background" className="absolute inset-0 w-full h-full object-cover -translate-y-[15%]" />
 
         {/* Very subtle cyber tech overlays so UI is still readable */}
         <div className="absolute inset-0 bg-[#090e17]/20" />
@@ -1355,7 +1342,7 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
               <div key={ally.id} className="relative flex flex-col items-center w-full">
 
                 {/* ── Ally HP Bar (Chimera-A style) ── */}
-                <div className={`w-20 lg:w-36 mb-1 lg:mb-2 z-20 relative ${isMichiruRoute ? 'translate-y-10 lg:-translate-y-12' : ''}`}>
+                <div className="w-20 lg:w-36 mb-1 lg:mb-2 z-20 relative">
                   <div className="flex flex-col items-center">
                     <div className="flex items-center justify-between w-full mb-0.5 px-1">
                       <div className="flex items-center gap-1.5">
@@ -1403,13 +1390,13 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
                     </motion.div>
                   )}
 
-                  {ally.id === (isMichiruRoute ? 'sakura' : 'mutsunori') && (
+                  {ally.id === 'mutsunori' && (
                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
                       <div className="relative w-[125px] h-[187px] lg:w-48 lg:h-64 lg:-translate-y-3.5 -translate-x-24 lg:-translate-x-40">
                         <img
-                          src={isMichiruRoute ? "/battle/michiru.png" : "/battle/sakura.png"}
-                          alt={isMichiruRoute ? "michiru" : "sakura"}
-                          className={`w-full h-full object-contain drop-shadow-lg opacity-90 ${isMichiruRoute ? 'scale-110 origin-bottom' : ''}`}
+                          src="/battle/sakura.png"
+                          alt="sakura"
+                          className="w-full h-full object-contain drop-shadow-lg opacity-90"
                         />
                         {/* 指示吹き出し (朔良 / 満) */}
                         <AnimatePresence>
@@ -1423,18 +1410,12 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
                               className="absolute z-[60] -top-2 right-[25px] lg:-top-4 lg:right-[60px] pointer-events-none"
                             >
                               {/* 美しい白基調 of セリフ付き吹き出し (右側固定、左へ自動伸縮) */}
-                              <div className={`relative bg-white border-2 text-slate-900 font-bold px-3 py-1.5 rounded-2xl text-[10px] lg:text-xs whitespace-nowrap flex items-center gap-1.5 font-sans ${
-                                isMichiruRoute 
-                                  ? 'border-violet-500 shadow-[0_4px_15px_rgba(139,92,246,0.45)]' 
-                                  : 'border-cyan-400 shadow-[0_4px_15px_rgba(6,182,212,0.35)]'
-                              }`}>
+                              <div className="relative bg-white border-2 text-slate-900 font-bold px-3 py-1.5 rounded-2xl text-[10px] lg:text-xs whitespace-nowrap flex items-center gap-1.5 font-sans border-cyan-400 shadow-[0_4px_15px_rgba(6,182,212,0.35)]">
                                 <span className="text-sm lg:text-base">{sakuraSpeech.icon}</span>
                                 <span>{sakuraSpeech.text}</span>
 
                                 {/* 右側基準で完全に位置が固定されたしっぽ (right-4) */}
-                                <div className={`absolute -bottom-1.5 right-4 -translate-x-1/2 w-2.5 h-2.5 bg-white border-r-2 border-b-2 rotate-45 z-10 ${
-                                  isMichiruRoute ? 'border-violet-500' : 'border-cyan-400'
-                                }`} />
+                                <div className="absolute -bottom-1.5 right-4 -translate-x-1/2 w-2.5 h-2.5 bg-white border-r-2 border-b-2 rotate-45 z-10 border-cyan-400" />
 
                                 {/* つなぎ目の線を完全にカバーするマスク (同じく right-4 に固定) */}
                                 <div className="absolute -bottom-[1px] right-4 -translate-x-1/2 w-3.5 h-[3px] bg-white z-20" />
@@ -1463,7 +1444,7 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
                   <motion.div
                     id={`char-${ally.id}`}
                     className={`relative cursor-pointer touch-none flex items-center justify-center
-                    ${ally.id === 'nagisa' ? 'w-[90px] h-[120px] lg:w-[180px] lg:h-[230px]' : isMichiruRoute ? 'w-[150px] h-[224px] lg:w-56 lg:h-76' : 'w-[125px] h-[187px] lg:w-48 lg:h-64'}
+                    ${ally.id === 'nagisa' ? 'w-[90px] h-[120px] lg:w-[180px] lg:h-[230px]' : 'w-[125px] h-[187px] lg:w-48 lg:h-64'}
                     ${ally.isDead ? 'opacity-40 grayscale' : ''}
                   `}
                     animate={{ x: isCounterDashing ? 150 : (isCurrentTurn ? 30 : 0) }}
@@ -1698,7 +1679,7 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
                       ease: isAttacking ? 'easeOut' : 'easeInOut'
                     }}
                   >
-                    <img src={enemy.image} alt={enemy.name} className={`w-full h-full object-contain ${isMichiruRoute ? 'scale-[0.77] lg:scale-[0.7]' : 'scale-[0.85]'} -translate-y-12 drop-shadow-[0_0_15px_rgba(244,63,94,0.3)]`} />
+                    <img src={enemy.image} alt={enemy.name} className="w-full h-full object-contain scale-[0.85] -translate-y-12 drop-shadow-[0_0_15px_rgba(244,63,94,0.3)]" />
 
                     {/* スタン text removed per user request */}
                   </motion.div>

@@ -10,10 +10,10 @@ const TURN_DELAY = 600;             // Delay between turns (ms) (Allows time for
 const HEAL_COOLDOWN = 12000;
 
 // Damage values
-const ALLY_BASE_DAMAGE = 15;
-const ENEMY_BASE_DAMAGE = 20;
+const ALLY_BASE_DAMAGE = 20;
+const ENEMY_BASE_DAMAGE = 30;
 const GUARD_REDUCTION = 0.2;          // 80% damage reduction when holding guard
-const ULTIMATE_DAMAGE = 200;
+const ULTIMATE_DAMAGE = 350;
 const HEAL_AMOUNT = 80;
 const COUNTER_DAMAGE = 35;            // Parry counter-attack damage
 
@@ -32,7 +32,8 @@ const ATTACK_PATTERNS = [
   { label: '五連続・裂空斬', sequence: [{ hits: 1, duration: 900, interval: 0, delayStart: 0 }, { hits: 1, duration: 220, interval: 0, delayStart: 900 }, { hits: 1, duration: 220, interval: 0, delayStart: 1120 }, { hits: 1, duration: 220, interval: 0, delayStart: 1340 }, { hits: 1, duration: 220, interval: 0, delayStart: 1560 }] },
   { label: '終焉のメトロノーム', sequence: [{ hits: 1, duration: 900, interval: 0, delayStart: 0 }, { hits: 1, duration: 650, interval: 0, delayStart: 900 }, { hits: 1, duration: 650, interval: 0, delayStart: 1550 }, { hits: 1, duration: 650, interval: 0, delayStart: 2200 }] },
   { label: '虚実の多段牙', sequence: [{ hits: 1, duration: 1100, interval: 0, delayStart: 0 }, { hits: 1, duration: 700, interval: 0, delayStart: 1100 }, { hits: 1, duration: 200, interval: 0, delayStart: 1800 }, { hits: 1, duration: 200, interval: 0, delayStart: 2000 }, { hits: 1, duration: 200, interval: 0, delayStart: 2200 }] },
-  { label: '崩壊のクレッシェンド', sequence: [{ hits: 1, duration: 1000, interval: 0, delayStart: 0 }, { hits: 1, duration: 750, interval: 0, delayStart: 1000 }, { hits: 1, duration: 600, interval: 0, delayStart: 1750 }, { hits: 1, duration: 450, interval: 0, delayStart: 2350 }, { hits: 1, duration: 300, interval: 0, delayStart: 2800 }] }
+  { label: '崩壊のクレッシェンド', sequence: [{ hits: 1, duration: 1000, interval: 0, delayStart: 0 }, { hits: 1, duration: 750, interval: 0, delayStart: 1000 }, { hits: 1, duration: 600, interval: 0, delayStart: 1750 }, { hits: 1, duration: 450, interval: 0, delayStart: 2350 }, { hits: 1, duration: 300, interval: 0, delayStart: 2800 }] },
+  { label: '六道輪廻の絶撃', sequence: [{ hits: 1, duration: 1000, interval: 0, delayStart: 0 }, { hits: 1, duration: 500, interval: 0, delayStart: 1000 }, { hits: 1, duration: 400, interval: 0, delayStart: 1500 }, { hits: 1, duration: 300, interval: 0, delayStart: 1900 }, { hits: 1, duration: 200, interval: 0, delayStart: 2200 }, { hits: 1, duration: 200, interval: 0, delayStart: 2400 }] }
 ];
 
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -55,13 +56,13 @@ const TIMELINE_DISPLAY_COUNT = 10;    // How many turns to show in the timeline
 // INITIAL DATA
 // ═══════════════════════════════════════════════════════════════════════════════
 const createAllies = () => [
-  { id: 'akane', name: 'アカネ', image: '/battle/akane.png', cutinImage: '/character/Akane/Akane_serious.png', hp: 300, maxHp: 300, color: '#34d399', isDead: false, flashTimer: 0, lastDamage: 0 },
+  { id: 'akane', name: 'アカネ', image: '/battle/akane.png', cutinImage: '/character/Akane/Akane_serious.png', hp: 400, maxHp: 400, color: '#34d399', isDead: false, flashTimer: 0, lastDamage: 0 },
 ];
 
 const createEnemies = () => [
-  { id: 'enemy1', name: '黒騎士', image: '/battle/blackknight.png', hp: 1170, maxHp: 1170, color: '#ef4444', isStunned: false, isDead: false, flashTimer: 0 },
-  { id: 'enemy2', name: 'キメラ4', image: '/character/kimera4.png', hp: 300, maxHp: 300, color: '#f87171', isStunned: false, isDead: false, flashTimer: 0 },
-  { id: 'enemy3', name: 'キメラ5', image: '/character/kimera5.png', hp: 300, maxHp: 300, color: '#f87171', isStunned: false, isDead: false, flashTimer: 0 },
+  { id: 'enemy1', name: '黒騎士', image: '/battle/blackknight.png', hp: 2000, maxHp: 2000, color: '#ef4444', isStunned: false, isDead: false, flashTimer: 0 },
+  { id: 'enemy2', name: 'キメラ4', image: '/character/kimera4.png', hp: 1200, maxHp: 1200, color: '#f87171', isStunned: false, isDead: false, flashTimer: 0 },
+  { id: 'enemy3', name: 'キメラ5', image: '/character/kimera5.png', hp: 1200, maxHp: 1200, color: '#f87171', isStunned: false, isDead: false, flashTimer: 0 },
 ];
 
 // Helper to get character info for timeline
@@ -193,9 +194,9 @@ export default function BattleFinalAkane({ onComplete, playBGM, stopBGM, playSE 
       dmg = Math.floor(dmg * atkMult);
 
       if (qteResult === 'perfect') {
-        dmg = Math.floor(dmg * 1.5);
+        dmg = Math.floor(dmg * 4);
       } else if (qteResult === 'good') {
-        dmg = Math.floor(dmg * 1.2);
+        dmg = Math.floor(dmg * 2);
       }
 
       setEnemies(prev => prev.map(e => {
@@ -601,7 +602,8 @@ export default function BattleFinalAkane({ onComplete, playBGM, stopBGM, playSE 
               const hasBuff = stateRef.current.buffTurnsLeft > 0;
               const isGuarding = currentGuards.has(attack.targetId);
               const defMult = stateRef.current.activeFragments.some(f => f.id === 'DEF_UP') ? 0.5 : 1.0;
-              let dmg = ENEMY_BASE_DAMAGE + Math.floor(Math.random() * 10);
+              const baseDamage = (attack.enemyId === 'enemy2' || attack.enemyId === 'enemy3') ? 18 : ENEMY_BASE_DAMAGE;
+              let dmg = baseDamage + Math.floor(Math.random() * 10);
 
               if (hasBuff) {
                 dmg = Math.floor(dmg * 0.8);
@@ -728,8 +730,8 @@ export default function BattleFinalAkane({ onComplete, playBGM, stopBGM, playSE 
         const elapsed = Date.now() - attack.startTime;
         // Loosen parry window: from -450ms to +200ms
         // Strict parry window: closer to the allies' red circle (-180ms to +100ms)
-        const parryStart = attack.delay + attack.duration - 180;
-        const parryEnd = attack.delay + attack.duration + 100;
+        const parryStart = attack.delay + attack.duration - 290;
+        const parryEnd = attack.delay + attack.duration - 10;
         return elapsed >= parryStart && elapsed <= parryEnd;
       });
 

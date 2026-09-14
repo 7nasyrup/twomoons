@@ -25,14 +25,14 @@ const SYNC_COST_ULTIMATE = 100;       // Cost to use ultimate
 const SYNC_COST_BUFF = 30;            // Cost to use buff song
 
 const ATTACK_PATTERNS = [
-  { label: '連爪壊撃', sequence: [{ hits: 1, duration: 1000, interval: 0, delayStart: 0 }, { hits: 1, duration: 180, interval: 0, delayStart: 1000 }] },
-  { label: '遅滞と神速', sequence: [{ hits: 1, duration: 1300, interval: 0, delayStart: 0 }, { hits: 1, duration: 220, interval: 0, delayStart: 1300 }] },
   { label: '三位一体の暴風', sequence: [{ hits: 1, duration: 1000, interval: 0, delayStart: 0 }, { hits: 1, duration: 650, interval: 0, delayStart: 1000 }, { hits: 1, duration: 200, interval: 0, delayStart: 1650 }] },
   { label: 'シンコペーション・デス', sequence: [{ hits: 1, duration: 800, interval: 0, delayStart: 0 }, { hits: 1, duration: 200, interval: 0, delayStart: 800 }, { hits: 1, duration: 800, interval: 0, delayStart: 1000 }, { hits: 1, duration: 200, interval: 0, delayStart: 1800 }] },
   { label: '五連続・裂空斬', sequence: [{ hits: 1, duration: 900, interval: 0, delayStart: 0 }, { hits: 1, duration: 220, interval: 0, delayStart: 900 }, { hits: 1, duration: 220, interval: 0, delayStart: 1120 }, { hits: 1, duration: 220, interval: 0, delayStart: 1340 }, { hits: 1, duration: 220, interval: 0, delayStart: 1560 }] },
   { label: '終焉のメトロノーム', sequence: [{ hits: 1, duration: 900, interval: 0, delayStart: 0 }, { hits: 1, duration: 650, interval: 0, delayStart: 900 }, { hits: 1, duration: 650, interval: 0, delayStart: 1550 }, { hits: 1, duration: 650, interval: 0, delayStart: 2200 }] },
   { label: '虚実の多段牙', sequence: [{ hits: 1, duration: 1100, interval: 0, delayStart: 0 }, { hits: 1, duration: 700, interval: 0, delayStart: 1100 }, { hits: 1, duration: 200, interval: 0, delayStart: 1800 }, { hits: 1, duration: 200, interval: 0, delayStart: 2000 }, { hits: 1, duration: 200, interval: 0, delayStart: 2200 }] },
-  { label: '崩壊のクレッシェンド', sequence: [{ hits: 1, duration: 1000, interval: 0, delayStart: 0 }, { hits: 1, duration: 750, interval: 0, delayStart: 1000 }, { hits: 1, duration: 600, interval: 0, delayStart: 1750 }, { hits: 1, duration: 450, interval: 0, delayStart: 2350 }, { hits: 1, duration: 300, interval: 0, delayStart: 2800 }] }
+  { label: '崩壊のクレッシェンド', sequence: [{ hits: 1, duration: 1000, interval: 0, delayStart: 0 }, { hits: 1, duration: 750, interval: 0, delayStart: 1000 }, { hits: 1, duration: 600, interval: 0, delayStart: 1750 }, { hits: 1, duration: 450, interval: 0, delayStart: 2350 }, { hits: 1, duration: 300, interval: 0, delayStart: 2800 }] },
+  { label: '六道輪廻の絶撃', sequence: [{ hits: 1, duration: 1000, interval: 0, delayStart: 0 }, { hits: 1, duration: 500, interval: 0, delayStart: 1000 }, { hits: 1, duration: 400, interval: 0, delayStart: 1500 }, { hits: 1, duration: 300, interval: 0, delayStart: 1900 }, { hits: 1, duration: 200, interval: 0, delayStart: 2200 }, { hits: 1, duration: 200, interval: 0, delayStart: 2400 }] },
+  { label: '七星の審判', sequence: [{ hits: 1, duration: 1000, interval: 0, delayStart: 0 }, { hits: 1, duration: 600, interval: 0, delayStart: 1000 }, { hits: 1, duration: 500, interval: 0, delayStart: 1600 }, { hits: 1, duration: 400, interval: 0, delayStart: 2100 }, { hits: 1, duration: 300, interval: 0, delayStart: 2500 }, { hits: 1, duration: 200, interval: 0, delayStart: 2800 }, { hits: 1, duration: 200, interval: 0, delayStart: 3000 }] }
 ];
 
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -47,36 +47,23 @@ const ANOMALY_FRAGMENTS = {
 };
 const MAX_ANOMALY_SLOTS = 5;
 
-// Turn order
-const TURN_ORDER = ['mika', 'enemy1'];
 const TIMELINE_DISPLAY_COUNT = 10;    // How many turns to show in the timeline
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // INITIAL DATA
 // ═══════════════════════════════════════════════════════════════════════════════
 const createAllies = () => [
-  { id: 'mika', name: 'ミカ', image: '/battle/mika.png', cutinImage: '/character/Mika/Mika_serious.png', hp: 400, maxHp: 400, color: '#34d399', isDead: false, flashTimer: 0, lastDamage: 0 },
+  { id: 'sakura', name: '朔良', image: '/battle/sakura.png', cutinImage: '/character/Sakura/Sakura.png', hp: 400, maxHp: 400, color: '#34d399', isDead: false, flashTimer: 0, lastDamage: 0 },
 ];
 
 const createEnemies = () => [
-  { id: 'enemy1', name: '黒騎士', image: '/battle/blackknight.png', hp: 2000, maxHp: 2000, color: '#ef4444', isStunned: false, isDead: false, flashTimer: 0 },
+  { id: 'enemy1', name: 'ルキ', image: '/battle/ruki.png', hp: 2000, maxHp: 2000, color: '#ef4444', isStunned: false, isDead: false, flashTimer: 0 },
 ];
-
-// Helper to get character info for timeline
-const getCharInfo = (id) => {
-  const map = {
-    mika: { name: 'ミカ', image: '/battle/mika.png', isAlly: true },
-    nagisa: { name: '凪砂', image: '/battle/nagisa.png', isAlly: true },
-    enemy1: { name: '黒騎士', image: '/battle/blackknight.png', isAlly: false },
-    enemy2: { name: 'キメラβ', image: '/battle/blackknight.png', isAlly: false },
-  };
-  return map[id] || { name: '？', image: '', isAlly: false };
-};
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // COMPONENT
 // ═══════════════════════════════════════════════════════════════════════════════
-export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }) {
+export default function BattleFinalMichiru({ onComplete, playBGM, stopBGM, playSE }) {
   // ─── Core State ───
   const [allies, setAllies] = useState(createAllies);
 
@@ -84,7 +71,21 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
   const [sakuraSpeech, setSakuraSpeech] = useState(null); // { text, icon, id }
   const speechTimeoutRef = useRef(null);
   const [hasParried, setHasParried] = useState(false); // Track first parry in the battle
+
   const [enemies, setEnemies] = useState(createEnemies);
+
+  const turnOrder = useMemo(() => {
+    return ['sakura', 'enemy1'];
+  }, []);
+
+  const getCharInfo = useCallback((id) => {
+    const map = {
+      sakura: { name: '朔良', image: '/battle/sakura.png', isAlly: true },
+      enemy1: { name: 'ルキ', image: '/battle/ruki.png', isAlly: false },
+    };
+    return map[id] || { name: '？', image: '', isAlly: false };
+  }, []);
+
   const [syncRate, setSyncRate] = useState(0);          // 0-100
   const [battlePhase, setBattlePhase] = useState('intro');
   const [battleLog, setBattleLog] = useState([]);
@@ -104,7 +105,9 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
   const [guardingAllies, setGuardingAllies] = useState(new Set());
   const [healCooldown, setHealCooldown] = useState(0);
   const [buffTurnsLeft, setBuffTurnsLeft] = useState(0);
-  const [guardCooldownTrigger, setGuardCooldownTrigger] = useState({ mika: 0, nagisa: 0 });
+  const [guardCooldownTrigger, setGuardCooldownTrigger] = useState(() => {
+    return { sakura: 0 };
+  });
 
   // ─── Anomaly State ───
   const [activeFragments, setActiveFragments] = useState([]); // [{ id, turnsLeft }]
@@ -132,7 +135,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
   const gameLoopRef = useRef(null);
   const lastTickRef = useRef(0);
   const hitStopRef = useRef(0);
-  const guardCooldownsRef = useRef({ mika: 0, nagisa: 0 });
+  const guardCooldownsRef = useRef({ sakura: 0 });
   const pendingGuardTimeoutsRef = useRef({});
   const stateRef = useRef({ allies, enemies, activeAttacks, guardingAllies, syncRate, battlePhase, turnPhase, currentTurnIndex, counterAttack, buffTurnsLeft, activeFragments, absorbCooldown, corruption });
 
@@ -158,7 +161,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
   const executeAllyAttack = useCallback((qteResult) => {
     const allAllies = stateRef.current.allies;
     const allEnemies = stateRef.current.enemies;
-    const turnId = TURN_ORDER[stateRef.current.currentTurnIndex % TURN_ORDER.length];
+    const turnId = turnOrder[stateRef.current.currentTurnIndex % turnOrder.length];
 
     const aliveEnemies = allEnemies.filter(e => !e.isDead);
     if (aliveEnemies.length > 0) {
@@ -214,7 +217,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
     setTurnPhase('ally_attack');
     stateRef.current.turnPhase = 'ally_attack';
     setTurnTimer(150);
-  }, [addLog, spawnDamageNumber, addSync, playSE]);
+  }, [addLog, spawnDamageNumber, addSync, playSE, turnOrder]);
 
   const triggerSakuraNote = useCallback((type = 'default') => {
     return; // TODO: Temporarily disabled per user request
@@ -263,7 +266,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
       clearTimeout(speechTimeoutRef.current);
     }
 
-    const speechMap = {
+    const sakuraSpeechMap = {
       attack: [
         { text: '今のうち！攻めて！', icon: '⚔️' },
         { text: '今だよ、仕掛けて！', icon: '⚔️' },
@@ -287,6 +290,31 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
       ]
     };
 
+    const michiruSpeechMap = {
+      attack: [
+        { text: '今だ！一気に攻めろ！', icon: '⚔️' },
+        { text: '隙ありだ！仕掛けろ！', icon: '⚡' },
+        { text: '畳み掛けるぞ！', icon: '🔥' },
+        { text: '押し込むぞ、続け！', icon: '⚔️' }
+      ],
+      guard: [
+        { text: '僕が守る、下がって！', icon: '🛡️' },
+        { text: 'ここは僕に任せて！', icon: '🛡️' },
+        { text: '盾になる、後ろへ！', icon: '🛡️' }
+      ],
+      parry: [
+        { text: '崩したぞ！今がチャンスだ！', icon: '⚡' },
+        { text: '弾き返した！叩き込め！', icon: '✨' },
+        { text: '今だっ！いけ！', icon: '🌀' }
+      ],
+      heal: [
+        { text: '僕の力を使って！', icon: '💜' },
+        { text: '癒えてくれ……っ！', icon: '❇️' },
+        { text: '大丈夫、諦めるな！', icon: '🎵' }
+      ]
+    };
+
+    const speechMap = michiruSpeechMap;
     const candidates = speechMap[type] || [{ text: 'いこう！', icon: '✨' }];
     const selected = candidates[Math.floor(Math.random() * candidates.length)];
 
@@ -313,7 +341,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
   useEffect(() => {
     return; // TODO: Temporarily disabled per user request
     let intervalId;
-    if (guardingAllies.has('mutsunori')) {
+    if (guardingAllies.has('sakura')) {
       intervalId = setInterval(() => {
         const symbols = ['♪', '♬', '♫', '♩', '🎶', '🎵'];
         const colors = ['text-blue-300', 'text-blue-400', 'text-blue-300', 'text-cyan-300', 'text-cyan-400', 'text-sky-300', 'text-sky-400', 'text-indigo-300', 'text-violet-300'];
@@ -358,19 +386,19 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
     const queue = [];
     let idx = currentTurnIndex;
     for (let i = 0; i < TIMELINE_DISPLAY_COUNT; i++) {
-      queue.push({ id: TURN_ORDER[idx % TURN_ORDER.length], turnIndex: idx });
+      queue.push({ id: turnOrder[idx % turnOrder.length], turnIndex: idx });
       idx++;
     }
     return queue;
-  }, [currentTurnIndex]);
+  }, [currentTurnIndex, turnOrder]);
 
   // ─── Turn helpers ───
   const getCurrentTurnId = useCallback(() => {
-    return TURN_ORDER[currentTurnIndex % TURN_ORDER.length];
-  }, [currentTurnIndex]);
+    return turnOrder[currentTurnIndex % turnOrder.length];
+  }, [currentTurnIndex, turnOrder]);
 
   const isAllyTurn = useCallback((id) => {
-    return id === 'mika' || id === 'nagisa';
+    return id === 'sakura';
   }, []);
 
   const advanceTurn = useCallback(() => {
@@ -388,10 +416,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
 
   // ─── BGM ───
   useEffect(() => {
-    if (playBGM) {
-      playBGM(assetPath('/assets/audio/bgm/Battle2.mp3'));
-    }
-    return () => { if (stopBGM) stopBGM(); };
+    // シナリオですでにBGMが流れているため、ここでは新しく再生したり止めたりしない
   }, []);
 
   // ─── Intro -> Fighting ───
@@ -454,12 +479,12 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
           const next = prev - dt;
           if (next <= 0) {
             // Start next turn
-            const turnId = TURN_ORDER[stateRef.current.currentTurnIndex % TURN_ORDER.length];
+            const turnId = turnOrder[stateRef.current.currentTurnIndex % turnOrder.length];
             const allAllies = stateRef.current.allies;
             const allEnemies = stateRef.current.enemies;
 
             // Skip dead characters
-            const isAlly = turnId === 'mika' || turnId === 'nagisa';
+            const isAlly = turnId === 'sakura';
             if (isAlly) {
               const ally = allAllies.find(a => a.id === turnId);
               if (!ally || ally.isDead) {
@@ -486,7 +511,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
               qteSuccessRef.current = false;
               qteResultRef.current = 'miss';
             } else {
-
+              
               setTurnPhase('enemy_windup');
             }
             return 0;
@@ -524,7 +549,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
 
       // ── ENEMY WINDUP ──
       if (phase === 'enemy_windup' && stateRef.current.activeAttacks.length === 0) {
-        const turnId = TURN_ORDER[stateRef.current.currentTurnIndex % TURN_ORDER.length];
+        const turnId = turnOrder[stateRef.current.currentTurnIndex % turnOrder.length];
         const allAllies = stateRef.current.allies;
         const aliveAllies = allAllies.filter(a => !a.isDead);
 
@@ -724,8 +749,8 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
         const elapsed = Date.now() - attack.startTime;
         // Loosen parry window: from -450ms to +200ms
         // Strict parry window: closer to the allies' red circle (-180ms to +100ms)
-        const parryStart = attack.delay + attack.duration - 290;
-        const parryEnd = attack.delay + attack.duration - 10;
+        const parryStart = attack.delay + attack.duration - 235;
+        const parryEnd = attack.delay + attack.duration - 65;
         return elapsed >= parryStart && elapsed <= parryEnd;
       });
 
@@ -816,7 +841,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
       const next = new Set(prev);
       if (next.has(allyId)) {
         next.delete(allyId);
-
+        
         // Normal guard, apply cooldown to prevent spamming
         guardCooldownsRef.current[allyId] = Date.now();
         setGuardCooldownTrigger(prev => ({ ...prev, [allyId]: Date.now() }));
@@ -984,7 +1009,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
       spawnDamageNumber(a.id, amount, 'heal');
       return { ...a, hp: Math.min(a.maxHp, a.hp + amount), flashTimer: 0 };
     }));
-    addLog(`💖 朔良の歌でパーティ全体が回復！`);
+    addLog(`💖 満の応援でサクラの体力が回復！ (+${amount} HP)`);
   }, [healCooldown, addLog, triggerSakuraNote, spawnDamageNumber]);
 
   const handleBuff = useCallback(() => {
@@ -996,17 +1021,17 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
     setTimeout(() => setHealFlash(false), 300);
     triggerSakuraNote();
 
-    addLog(`🎵 朔良が強化の歌を歌った！ 味方の攻防力UP (2ターン)`);
+    addLog(`🎵 満がサクラを奮い立たせた！ 味方の攻防力UP (2ターン)`);
   }, [syncRate, addLog, triggerSakuraNote]);
 
-  const handleMikaUltimate = useCallback(() => {
+  const handleMutsunoriUltimate = useCallback(() => {
     if (syncRate < SYNC_COST_ULTIMATE || stateRef.current.battlePhase !== 'fighting') return;
 
-    const mika = allies.find(a => a.id === 'mika');
-    if (!mika || mika.isDead) return;
+    const mainAllyChar = allies.find(a => a.id === 'sakura');
+    if (!mainAllyChar || mainAllyChar.isDead) return;
 
     setSyncRate(0);
-    setDuetCutin({ allyId: mika.id, name: mika.name, image: mika.cutinImage });
+    setDuetCutin({ allyId: mainAllyChar.id, name: mainAllyChar.name, image: mainAllyChar.cutinImage });
 
     setUltimateFlash(true);
     triggerSakuraNote();
@@ -1034,7 +1059,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
         });
       });
       setActiveAttacks([]);
-      addLog(`★★ ミカの必殺技！ 渾身の一撃が炸裂！ ★★`);
+      addLog(`★★ サクラの共鳴アーツ！ 美しい歌声と熱い想いが奇跡を紡ぐ！ ★★`);
     }, 1500);
 
     setTimeout(() => { setDuetCutin(null); setUltimateFlash(false); setShakeActive(false); }, 2500);
@@ -1069,12 +1094,11 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
       setIsCommandMenuOpen(false);
       setAllyQTEState('none');
       setHitPosition(null);
-      if (playBGM) playBGM();
       return;
     }
-    if (stopBGM) stopBGM();
+    // if (stopBGM) stopBGM();
     onComplete(battlePhase === 'victory' ? 'win' : 'lose');
-  }, [battlePhase, onComplete, stopBGM, playBGM]);
+  }, [battlePhase, onComplete, stopBGM]);
 
 
   // ═══════════════════════════════════════════════════════════════════════════════
@@ -1155,7 +1179,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         {/* Full color bright image */}
-        <img src="/battle/core.png" alt="Background" className="absolute inset-0 w-full h-full object-cover -translate-y-[15%]" />
+        <img src="/battle/room_ruki.png" alt="Background" className="absolute inset-0 w-full h-full object-cover -translate-y-[15%]" />
 
         {/* Very subtle cyber tech overlays so UI is still readable */}
         <div className="absolute inset-0 bg-[#090e17]/20" />
@@ -1308,14 +1332,14 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
             const isTargeted = targetedAllies.has(ally.id);
             const attackInfo = activeAttacksCompat.find(a => a.targetId === ally.id);
             const isGuarding = guardingAllies.has(ally.id);
-            const isCurrentTurn = TURN_ORDER[currentTurnIndex % TURN_ORDER.length] === ally.id && turnPhase === 'ally_attack';
+            const isCurrentTurn = turnOrder[currentTurnIndex % turnOrder.length] === ally.id && turnPhase === 'ally_attack';
             const isCounterDashing = counterAnim && counterAnim.allyId === ally.id;
 
             return (
               <div key={ally.id} className="relative flex flex-col items-center w-full">
 
                 {/* ── Ally HP Bar (Chimera-A style) ── */}
-                <div className="w-20 lg:w-36 mb-1 lg:mb-2 z-20 relative translate-y-10 lg:translate-y-0">
+                <div className="w-20 lg:w-36 mb-1 lg:mb-2 z-20 relative translate-y-10 lg:-translate-y-12">
                   <div className="flex flex-col items-center">
                     <div className="flex items-center justify-between w-full mb-0.5 px-1">
                       <div className="flex items-center gap-1.5">
@@ -1363,15 +1387,15 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
                     </motion.div>
                   )}
 
-                  {ally.id === 'mika' && (
-                    <div className="absolute w-36 h-52 lg:w-48 lg:h-64 flex items-center justify-center pointer-events-none z-0">
-                      <div className="relative w-full h-full lg:-translate-y-3.5 -translate-x-24 lg:-translate-x-40">
+                  {ally.id === 'sakura' && (
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+                      <div className="relative w-[125px] h-[187px] lg:w-48 lg:h-64 lg:-translate-y-3.5 -translate-x-24 lg:-translate-x-40">
                         <img
-                          src="/battle/sakura.png"
-                          alt="sakura"
-                          className="w-full h-full object-contain drop-shadow-lg opacity-90 lg:scale-115 lg:origin-bottom"
+                          src="/battle/michiru.png"
+                          alt="michiru"
+                          className="w-full h-full object-contain drop-shadow-lg opacity-90 scale-110 origin-bottom"
                         />
-                        {/* 朔良の指示吹き出し */}
+                        {/* 指示吹き出し (朔良 / 満) */}
                         <AnimatePresence>
                           {sakuraSpeech && (
                             <motion.div
@@ -1383,12 +1407,12 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
                               className="absolute z-[60] -top-2 right-[25px] lg:-top-4 lg:right-[60px] pointer-events-none"
                             >
                               {/* 美しい白基調 of セリフ付き吹き出し (右側固定、左へ自動伸縮) */}
-                              <div className="relative bg-white border-2 border-cyan-400 text-slate-900 font-bold px-3 py-1.5 rounded-2xl shadow-[0_4px_15px_rgba(6,182,212,0.35)] text-[10px] lg:text-xs whitespace-nowrap flex items-center gap-1.5 font-sans">
+                              <div className="relative bg-white border-2 text-slate-900 font-bold px-3 py-1.5 rounded-2xl text-[10px] lg:text-xs whitespace-nowrap flex items-center gap-1.5 font-sans border-violet-500 shadow-[0_4px_15px_rgba(139,92,246,0.45)]">
                                 <span className="text-sm lg:text-base">{sakuraSpeech.icon}</span>
                                 <span>{sakuraSpeech.text}</span>
 
                                 {/* 右側基準で完全に位置が固定されたしっぽ (right-4) */}
-                                <div className="absolute -bottom-1.5 right-4 -translate-x-1/2 w-2.5 h-2.5 bg-white border-r-2 border-b-2 border-cyan-400 rotate-45 z-10" />
+                                <div className="absolute -bottom-1.5 right-4 -translate-x-1/2 w-2.5 h-2.5 bg-white border-r-2 border-b-2 rotate-45 z-10 border-violet-500" />
 
                                 {/* つなぎ目の線を完全にカバーするマスク (同じく right-4 に固定) */}
                                 <div className="absolute -bottom-[1px] right-4 -translate-x-1/2 w-3.5 h-[3px] bg-white z-20" />
@@ -1416,7 +1440,8 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
 
                   <motion.div
                     id={`char-${ally.id}`}
-                    className={`relative cursor-pointer touch-none flex items-center justify-center w-36 h-48 md:w-48 md:h-64 -translate-y-4
+                    className={`relative cursor-pointer touch-none flex items-center justify-center
+                    ${ally.id === 'nagisa' ? 'w-[90px] h-[120px] lg:w-[180px] lg:h-[230px]' : 'w-[150px] h-[224px] lg:w-56 lg:h-76'}
                     ${ally.isDead ? 'opacity-40 grayscale' : ''}
                   `}
                     animate={{ x: isCounterDashing ? 150 : (isCurrentTurn ? 30 : 0) }}
@@ -1442,7 +1467,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
                       </div>
                     )}
 
-                    {turnPhase === 'ally_windup' && TURN_ORDER[currentTurnIndex % TURN_ORDER.length] === ally.id && !ally.isDead && (
+                    {turnPhase === 'ally_windup' && turnOrder[currentTurnIndex % turnOrder.length] === ally.id && !ally.isDead && (
                       <div
                         className="absolute inset-0 flex flex-col items-center justify-center z-40 pointer-events-auto cursor-pointer"
                         onPointerDown={handleAllyAttack}
@@ -1527,7 +1552,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
                     </AnimatePresence>
 
                     {ally.image ? (
-                      <img src={ally.image} alt={ally.name} className={`w-full h-full object-contain relative z-10 -translate-y-6 scale-90 lg:scale-[1.35] origin-bottom lg:origin-center ${ally.flashTimer > 0 ? 'animate-battle-hit-flash drop-shadow-[0_0_20px_rgba(248,113,113,0.8)]' : 'drop-shadow-lg'}`} />
+                      <img src={ally.image} alt={ally.name} className={`w-full h-full object-contain relative z-10 lg:-translate-y-6 ${ally.flashTimer > 0 ? 'animate-battle-hit-flash drop-shadow-[0_0_20px_rgba(248,113,113,0.8)]' : 'drop-shadow-lg'}`} />
                     ) : (
                       <div className="w-full h-full bg-slate-800/80 border border-slate-600 rounded-2xl flex items-center justify-center">
                         <span className="font-noto font-bold text-slate-300">{ally.name}</span>
@@ -1591,12 +1616,12 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
         <div className="w-1/2 flex flex-col justify-around items-center pl-4 -translate-x-4 lg:-translate-x-8">
           {enemies.map(enemy => {
             const isAttacking = activeAttacksCompat.some(a => a.enemyId === enemy.id);
-            const isCurrentTurn = TURN_ORDER[currentTurnIndex % TURN_ORDER.length] === enemy.id && turnPhase !== 'turn_delay';
+            const isCurrentTurn = turnOrder[currentTurnIndex % turnOrder.length] === enemy.id && turnPhase !== 'turn_delay';
             const hpRatio = enemy.hp / enemy.maxHp;
 
             return (
               <div key={enemy.id} className="relative flex flex-col items-center w-full">
-                <div className="w-20 lg:w-36 z-20 relative -translate-x-6 lg:translate-x-0 translate-y-6 lg:translate-y-6">
+                <div className="w-20 lg:w-36 z-20 relative -translate-x-6 lg:translate-x-0 translate-y-8 lg:translate-y-6">
                   <div className="flex flex-col items-center">
                     <div className="flex items-center justify-between w-full mb-0.5 px-1 lg:mb-1 lg:px-2">
                       <div className="flex items-center gap-2">
@@ -1651,7 +1676,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
                       ease: isAttacking ? 'easeOut' : 'easeInOut'
                     }}
                   >
-                    <img src={enemy.image} alt={enemy.name} className={`w-full h-full object-contain scale-[0.85] -translate-y-12 drop-shadow-[0_0_15px_rgba(244,63,94,0.3)]`} />
+                    <img src={enemy.image} alt={enemy.name} className="w-full h-full object-contain scale-[0.77] lg:scale-[0.7] -translate-y-12 drop-shadow-[0_0_15px_rgba(244,63,94,0.3)]" />
 
                     {/* スタン text removed per user request */}
                   </motion.div>
@@ -1708,7 +1733,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
 
           {/* Left Button - ULTIMATE (Reactor Core) */}
           <motion.button
-            onClick={handleMikaUltimate}
+            onClick={handleMutsunoriUltimate}
             disabled={syncRate < SYNC_COST_ULTIMATE || battlePhase !== 'fighting'}
             className={`relative w-[108px] h-[108px] lg:w-32 lg:h-32 rounded-full flex flex-col items-center justify-center transition-all duration-300 shadow-[0_0_30px_rgba(0,0,0,0.8)] backdrop-blur-md hover:scale-105 active:scale-95 ${syncRate < SYNC_COST_ULTIMATE || battlePhase !== 'fighting'
               ? 'bg-[#0a0a0a]/90 cursor-not-allowed grayscale'
@@ -1718,13 +1743,13 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
             {/* Circular Progress Gauge */}
             <svg className="absolute inset-0 w-full h-full -rotate-90 pointer-events-none" viewBox="0 0 100 100" style={{ overflow: 'visible' }}>
               <circle cx="50" cy="50" r="48" fill="none" className="stroke-amber-900/40" strokeWidth="3" />
-              <circle
-                cx="50"
-                cy="50"
-                r="48"
-                fill="none"
-                className="stroke-amber-400 drop-shadow-[0_0_5px_rgba(251,191,36,0.8)]"
-                strokeWidth="3"
+              <circle 
+                cx="50" 
+                cy="50" 
+                r="48" 
+                fill="none" 
+                className="stroke-amber-400 drop-shadow-[0_0_5px_rgba(251,191,36,0.8)]" 
+                strokeWidth="3" 
                 strokeDasharray="301.59"
                 strokeDashoffset={301.59 - (301.59 * Math.min(syncRate, SYNC_COST_ULTIMATE) / SYNC_COST_ULTIMATE)}
                 strokeLinecap="round"

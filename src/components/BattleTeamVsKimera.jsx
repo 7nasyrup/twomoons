@@ -26,6 +26,11 @@ const SYNC_COST_BUFF = 30;            // Cost to use buff song
 
 const ATTACK_PATTERNS = [
   {
+    label: '通常攻撃', sequence: [
+      { hits: 1, duration: 1200, interval: 0, delayStart: 0 }
+    ]
+  },
+  {
     label: '連爪壊撃', sequence: [
       { hits: 1, duration: 1000, interval: 0, delayStart: 0 },
       { hits: 1, duration: 180, interval: 0, delayStart: 1000 }
@@ -83,12 +88,12 @@ const TIMELINE_DISPLAY_COUNT = 10;    // How many turns to show in the timeline
 // ═══════════════════════════════════════════════════════════════════════════════
 const createAllies = () => [
   { id: 'mutsunori', name: '睦典', image: '/battle/mutsunori.png', cutinImage: '/character/Mutsunori/Mutsunori_serious.png', hp: 300, maxHp: 300, color: '#34d399', isDead: false, flashTimer: 0, lastDamage: 0 },
-  { id: 'nagisa', name: '凪砂', image: '/battle/nagisa.png', cutinImage: '/character/Nagisa/Nagisa_serious.png', hp: 250, maxHp: 250, color: '#60a5fa', isDead: false, flashTimer: 0, lastDamage: 0 },
-  { id: 'mika', name: 'ミカ', image: '/battle/mika.png', cutinImage: '/character/Mika/Mika_serious.png', hp: 200, maxHp: 200, color: '#f472b6', isDead: false, flashTimer: 0, lastDamage: 0 },
+  { id: 'nagisa', name: '凪砂', image: '/battle/nagisa.png', cutinImage: '/character/Nagisa/Nagisa_serious.png', hp: 300, maxHp: 300, color: '#60a5fa', isDead: false, flashTimer: 0, lastDamage: 0 },
+  { id: 'mika', name: 'ミカ', image: '/battle/mika.png', cutinImage: '/character/Mika/Mika_serious.png', hp: 300, maxHp: 300, color: '#f472b6', isDead: false, flashTimer: 0, lastDamage: 0 },
 ];
 
 const createEnemies = () => [
-  { id: 'enemy1', name: 'キメラα', image: '/character/kimera3.png', hp: 1800, maxHp: 1800, color: '#ef4444', isStunned: false, isDead: false, flashTimer: 0 },
+  { id: 'enemy1', name: 'キメラα', image: '/character/kimera3.png', hp: 1500, maxHp: 1500, color: '#ef4444', isStunned: false, isDead: false, flashTimer: 0 },
 ];
 
 // Helper to get character info for timeline
@@ -746,8 +751,8 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
         if (attack.targetId !== allyId || attack.resolved) return false;
         const elapsed = Date.now() - attack.startTime;
         // Lenient parry window: widened for easier timing (-300ms to +150ms)
-        const parryStart = attack.delay + attack.duration - 300;
-        const parryEnd = attack.delay + attack.duration + 150;
+        const parryStart = attack.delay + attack.duration - 375;
+        const parryEnd = attack.delay + attack.duration + 75;
         return elapsed >= parryStart && elapsed <= parryEnd;
       });
 

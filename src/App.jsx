@@ -34,6 +34,7 @@ import BattleMidBossNagisa from './components/BattleMidBossNagisa';
 import BattleMidBossMika from './components/BattleMidBossMika';
 import BattleFinalNagisa from './components/BattleFinalNagisa';
 import BattleFinalMutsunori from './components/BattleFinalMutsunori';
+import BattleFinalMichiru from './components/BattleFinalMichiru';
 import BattleFinalAkane from './components/BattleFinalAkane';
 import BattleMidBossAkane from './components/BattleMidBossAkane';
 import BattleFinalMika from './components/BattleFinalMika';
@@ -2072,8 +2073,7 @@ export default function App() {
               )}
 
               {isBattleFinalBossMichiruActive && (
-                <BattleFinalMutsunori
-                  isMichiruRoute={true}
+                <BattleFinalMichiru
                   onComplete={nextStep}
                   playBGM={playBGM}
                   stopBGM={stopBGM}

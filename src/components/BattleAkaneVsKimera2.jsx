@@ -10,7 +10,7 @@ const HEAL_COOLDOWN = 12000;
 
 // Damage values
 const ALLY_BASE_DAMAGE = 15;
-const ENEMY_BASE_DAMAGE = 20;
+const ENEMY_BASE_DAMAGE = 15;
 const GUARD_REDUCTION = 0.2;          // 80% damage reduction when holding guard
 const ULTIMATE_DAMAGE = 200;
 const HEAL_AMOUNT = 80;
@@ -24,6 +24,11 @@ const SYNC_COST_ULTIMATE = 100;       // Cost to use ultimate
 const SYNC_COST_BUFF = 30;            // Cost to use buff song
 
 const ATTACK_PATTERNS = [
+  {
+    label: '通常攻撃', sequence: [
+      { hits: 1, duration: 1200, interval: 0, delayStart: 0 }
+    ]
+  },
   {
     label: '暴走双爪', sequence: [
       { hits: 1, duration: 1000, interval: 0, delayStart: 0 },
@@ -76,7 +81,7 @@ const createAllies = () => [
 ];
 
 const createEnemies = () => [
-  { id: 'enemy1', name: 'キメラ', image: '/character/kimera2.png', hp: 1500, maxHp: 1500, color: '#ef4444', isStunned: false, isDead: false, flashTimer: 0 },
+  { id: 'enemy1', name: 'キメラ', image: '/character/kimera2.png', hp: 1000, maxHp: 1000, color: '#ef4444', isStunned: false, isDead: false, flashTimer: 0 },
 ];
 
 // Helper to get character info for timeline
@@ -729,8 +734,8 @@ export default function BattleAkaneVsKimera2({ onComplete, playBGM, stopBGM, pla
         if (attack.targetId !== allyId || attack.resolved) return false;
         const elapsed = Date.now() - attack.startTime;
         // Strict parry window: closer to the allies' red circle (-180ms to +100ms)
-        const parryStart = attack.delay + attack.duration - 180;
-        const parryEnd = attack.delay + attack.duration + 100;
+        const parryStart = attack.delay + attack.duration - 290;
+        const parryEnd = attack.delay + attack.duration - 10;
         return elapsed >= parryStart && elapsed <= parryEnd;
       });
 

@@ -10,8 +10,8 @@ const TURN_DELAY = 600;             // Delay between turns (ms) (Allows time for
 const HEAL_COOLDOWN = 12000;
 
 // Damage values
-const ALLY_BASE_DAMAGE = 15;
-const ENEMY_BASE_DAMAGE = 20;
+const ALLY_BASE_DAMAGE = 20;
+const ENEMY_BASE_DAMAGE = 30;
 const GUARD_REDUCTION = 0.2;          // 80% damage reduction when holding guard
 const ULTIMATE_DAMAGE = 200;
 const HEAL_AMOUNT = 80;
@@ -55,11 +55,11 @@ const TIMELINE_DISPLAY_COUNT = 10;    // How many turns to show in the timeline
 // INITIAL DATA
 // ═══════════════════════════════════════════════════════════════════════════════
 const createAllies = () => [
-  { id: 'nagisa', name: '凪砂', image: '/battle/nagisa.png', cutinImage: '/character/Nagisa/Nagisa_serious.png', hp: 300, maxHp: 300, color: '#34d399', isDead: false, flashTimer: 0, lastDamage: 0 },
+  { id: 'nagisa', name: '凪砂', image: '/battle/nagisa.png', cutinImage: '/character/Nagisa/Nagisa_serious.png', hp: 400, maxHp: 400, color: '#34d399', isDead: false, flashTimer: 0, lastDamage: 0 },
 ];
 
 const createEnemies = () => [
-  { id: 'enemy1', name: '黒騎士', image: '/battle/blackknight.png', hp: 1170, maxHp: 1170, color: '#ef4444', isStunned: false, isDead: false, flashTimer: 0 },
+  { id: 'enemy1', name: '黒騎士', image: '/battle/blackknight.png', hp: 2000, maxHp: 2000, color: '#ef4444', isStunned: false, isDead: false, flashTimer: 0 },
 ];
 
 // Helper to get character info for timeline
@@ -190,9 +190,9 @@ export default function BattleFinalNagisa({ onComplete, playBGM, stopBGM, playSE
       dmg = Math.floor(dmg * atkMult);
 
       if (qteResult === 'perfect') {
-        dmg = Math.floor(dmg * 1.5);
+        dmg = Math.floor(dmg * 2);
       } else if (qteResult === 'good') {
-        dmg = Math.floor(dmg * 1.2);
+        dmg = Math.floor(dmg * 1.5);
       }
 
       setEnemies(prev => prev.map(e => {
@@ -724,8 +724,8 @@ export default function BattleFinalNagisa({ onComplete, playBGM, stopBGM, playSE
         const elapsed = Date.now() - attack.startTime;
         // Loosen parry window: from -450ms to +200ms
         // Strict parry window: closer to the allies' red circle (-180ms to +100ms)
-        const parryStart = attack.delay + attack.duration - 180;
-        const parryEnd = attack.delay + attack.duration + 100;
+        const parryStart = attack.delay + attack.duration - 290;
+        const parryEnd = attack.delay + attack.duration - 10;
         return elapsed >= parryStart && elapsed <= parryEnd;
       });
 

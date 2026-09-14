@@ -11,7 +11,7 @@ const HEAL_COOLDOWN = 12000;
 
 // Damage values
 const ALLY_BASE_DAMAGE = 15;
-const ENEMY_BASE_DAMAGE = 20;
+const ENEMY_BASE_DAMAGE = 23;
 const GUARD_REDUCTION = 0.2;          // 80% damage reduction when holding guard
 const ULTIMATE_DAMAGE = 200;
 const HEAL_AMOUNT = 80;
@@ -59,7 +59,7 @@ const createAllies = () => [
 ];
 
 const createEnemies = () => [
-  { id: 'enemy1', name: '機兵', image: '/character/machine.png', hp: 900, maxHp: 900, color: '#ef4444', isStunned: false, isDead: false, flashTimer: 0 },
+  { id: 'enemy1', name: '機兵', image: '/character/machine.png', hp: 1600, maxHp: 1600, color: '#ef4444', isStunned: false, isDead: false, flashTimer: 0 },
 ];
 
 // Helper to get character info for timeline
@@ -719,8 +719,8 @@ export default function BattleMidBossMachine({ onComplete, playBGM, stopBGM, pla
         const elapsed = Date.now() - attack.startTime;
         // Loosen parry window: from -450ms to +200ms
         // Strict parry window: closer to the allies' red circle (-180ms to +100ms)
-        const parryStart = attack.delay + attack.duration - 180;
-        const parryEnd = attack.delay + attack.duration + 100;
+        const parryStart = attack.delay + attack.duration - 290;
+        const parryEnd = attack.delay + attack.duration - 10;
         return elapsed >= parryStart && elapsed <= parryEnd;
       });
 
