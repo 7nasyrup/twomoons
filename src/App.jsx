@@ -88,7 +88,7 @@ function BackgroundRenderer({ bgPath, bgAnimationClass, fadeMode = 'blackout' })
             onError={() => setImageError(true)}
           />
         ) : (
-          <motion.div 
+          <motion.div
             key={bgPath + "-error"}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -96,85 +96,85 @@ function BackgroundRenderer({ bgPath, bgAnimationClass, fadeMode = 'blackout' })
             transition={{ duration: 1.2, ease: "easeInOut" }}
             className={`absolute inset-0 w-full h-full overflow-hidden ${bgAnimationClass || ''}`}
           >
-          {/* Cyberpunk Grid Background */}
-          <div className="absolute inset-0 bg-[#030712]" />
+            {/* Cyberpunk Grid Background */}
+            <div className="absolute inset-0 bg-[#030712]" />
 
-          {isTownDark1 && (
-            <div className="absolute inset-0 bg-gradient-to-b from-[#080d22] via-[#050816] to-[#020308]">
-              {/* Skyline silhouette */}
-              <div className="absolute bottom-0 left-0 right-0 h-48 bg-[#04060c] clip-path-skyline border-t border-cyan-500/20 shadow-[0_-10px_30px_rgba(0,245,255,0.05)]" />
-              {/* Stars / Window lights */}
-              <div className="absolute inset-0 opacity-40 bg-[radial-gradient(rgba(0,245,255,0.15)_1px,transparent_1px)] [background-size:16px_16px]" />
-              <div className="absolute top-[30%] left-[20%] w-20 h-20 rounded-full bg-cyan-950/20 blur-2xl" />
-            </div>
-          )}
-
-          {isTownDark2 && (
-            <div className="absolute inset-0 bg-gradient-to-tr from-[#020308] via-[#050711] to-[#0b071a]">
-              {/* Alleyway perspective lines */}
-              <svg className="absolute inset-0 w-full h-full opacity-10 stroke-cyan-400" xmlns="http://www.w3.org/2000/svg">
-                <line x1="0" y1="1080" x2="800" y2="540" strokeWidth="2" />
-                <line x1="1920" y1="1080" x2="1120" y2="540" strokeWidth="2" />
-                <line x1="0" y1="900" x2="1920" y2="900" strokeWidth="1" />
-              </svg>
-              <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-black via-black/80 to-transparent" />
-            </div>
-          )}
-
-          {isGiantMoon && (
-            <div className="absolute inset-0 bg-gradient-to-b from-[#02040b] via-[#040714] to-[#010205] flex items-center justify-center">
-              {/* Massive artificial cyan moon */}
-              <div className="relative w-80 h-80 rounded-full bg-cyan-400/10 border-4 border-cyan-300/40 shadow-[0_0_100px_rgba(0,245,255,0.4),inset_0_0_40px_rgba(0,245,255,0.2)] animate-pulse">
-                {/* Tech lines inside the artificial moon */}
-                <div className="absolute inset-4 rounded-full border border-cyan-400/20 border-dashed" />
-                <div className="absolute inset-12 rounded-full border border-cyan-400/15" />
-                <div className="absolute top-1/2 left-0 right-0 h-[1px] bg-cyan-300/30" />
-                <div className="absolute left-1/2 top-0 bottom-0 w-[1px] bg-cyan-300/30" />
+            {isTownDark1 && (
+              <div className="absolute inset-0 bg-gradient-to-b from-[#080d22] via-[#050816] to-[#020308]">
+                {/* Skyline silhouette */}
+                <div className="absolute bottom-0 left-0 right-0 h-48 bg-[#04060c] clip-path-skyline border-t border-cyan-500/20 shadow-[0_-10px_30px_rgba(0,245,255,0.05)]" />
+                {/* Stars / Window lights */}
+                <div className="absolute inset-0 opacity-40 bg-[radial-gradient(rgba(0,245,255,0.15)_1px,transparent_1px)] [background-size:16px_16px]" />
+                <div className="absolute top-[30%] left-[20%] w-20 h-20 rounded-full bg-cyan-950/20 blur-2xl" />
               </div>
-              <div className="absolute inset-0 bg-[radial-gradient(rgba(0,245,255,0.05)_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
-            </div>
-          )}
+            )}
 
-          {isClassroom && (
-            <div className="absolute inset-0 bg-gradient-to-b from-[#070b14] via-[#05070f] to-[#020408] flex items-center justify-center">
-              {/* Perspective grid lines */}
-              <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,245,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,245,255,0.03)_1px,transparent_1px)] [background-size:40px_40px]" />
-              {/* Cyber blackboard glow */}
-              <div className="absolute top-[10%] w-[60%] h-[30%] bg-cyan-950/20 border border-cyan-500/20 rounded-md shadow-[0_0_30px_rgba(0,245,255,0.05)] flex flex-col justify-center items-center">
-                <span className="text-cyan-500/40 font-orbitron text-xs tracking-[0.4em] mb-1">LECTURE HALL 07</span>
-                <span className="text-cyan-500/20 font-orbitron text-[10px]">WAVE RESONANCE RATIO: OPTIMAL</span>
+            {isTownDark2 && (
+              <div className="absolute inset-0 bg-gradient-to-tr from-[#020308] via-[#050711] to-[#0b071a]">
+                {/* Alleyway perspective lines */}
+                <svg className="absolute inset-0 w-full h-full opacity-10 stroke-cyan-400" xmlns="http://www.w3.org/2000/svg">
+                  <line x1="0" y1="1080" x2="800" y2="540" strokeWidth="2" />
+                  <line x1="1920" y1="1080" x2="1120" y2="540" strokeWidth="2" />
+                  <line x1="0" y1="900" x2="1920" y2="900" strokeWidth="1" />
+                </svg>
+                <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-black via-black/80 to-transparent" />
               </div>
-            </div>
-          )}
+            )}
 
-          {isSchoolGate && (
-            <div className="absolute inset-0 bg-gradient-to-b from-[#1b0826] via-[#10061e] to-[#04020a]">
-              {/* Sunset orange horizon glow */}
-              <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-[#ff0055]/10 via-transparent to-transparent opacity-60" />
-              {/* Stars */}
-              <div className="absolute inset-0 bg-[radial-gradient(#ffe49e_1px,transparent_1px)] [background-size:32px_32px] opacity-20" />
-              <div className="absolute bottom-0 left-12 w-32 h-64 border-l-2 border-r-2 border-t-2 border-white/5 rounded-t-lg bg-white/2" />
-            </div>
-          )}
-
-          {isRooftop && (
-            <div className="absolute inset-0 bg-gradient-to-b from-[#010206] via-[#050818] to-[#03040c]">
-              {/* Distant skyline with two moons */}
-              <div className="absolute bottom-0 left-0 right-0 h-40 bg-[#020306] border-t border-cyan-500/10" />
-              {/* Handrails */}
-              <div className="absolute bottom-0 left-0 right-0 h-24 border-t-2 border-cyan-500/10 flex justify-around">
-                {[...Array(12)].map((_, i) => (
-                  <div key={i} className="w-[2px] h-full bg-cyan-500/10" />
-                ))}
+            {isGiantMoon && (
+              <div className="absolute inset-0 bg-gradient-to-b from-[#02040b] via-[#040714] to-[#010205] flex items-center justify-center">
+                {/* Massive artificial cyan moon */}
+                <div className="relative w-80 h-80 rounded-full bg-cyan-400/10 border-4 border-cyan-300/40 shadow-[0_0_100px_rgba(0,245,255,0.4),inset_0_0_40px_rgba(0,245,255,0.2)] animate-pulse">
+                  {/* Tech lines inside the artificial moon */}
+                  <div className="absolute inset-4 rounded-full border border-cyan-400/20 border-dashed" />
+                  <div className="absolute inset-12 rounded-full border border-cyan-400/15" />
+                  <div className="absolute top-1/2 left-0 right-0 h-[1px] bg-cyan-300/30" />
+                  <div className="absolute left-1/2 top-0 bottom-0 w-[1px] bg-cyan-300/30" />
+                </div>
+                <div className="absolute inset-0 bg-[radial-gradient(rgba(0,245,255,0.05)_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
               </div>
-              {/* Giant Artificial Moon (Cyan) */}
-              <div className="absolute top-[10%] left-[25%] w-40 h-40 rounded-full bg-cyan-400/5 border-2 border-cyan-400/20 shadow-[0_0_60px_rgba(0,245,255,0.2)]" />
-              {/* Faint Real Moon (Gold) */}
-              <div className="absolute top-[8%] right-[25%] w-24 h-24 rounded-full bg-[#ffe49e]/5 border border-[#ffe49e]/20 shadow-[0_0_40px_rgba(255,228,158,0.15)] animate-pulse" />
-            </div>
-          )}
-        </motion.div>
-      )}
+            )}
+
+            {isClassroom && (
+              <div className="absolute inset-0 bg-gradient-to-b from-[#070b14] via-[#05070f] to-[#020408] flex items-center justify-center">
+                {/* Perspective grid lines */}
+                <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,245,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,245,255,0.03)_1px,transparent_1px)] [background-size:40px_40px]" />
+                {/* Cyber blackboard glow */}
+                <div className="absolute top-[10%] w-[60%] h-[30%] bg-cyan-950/20 border border-cyan-500/20 rounded-md shadow-[0_0_30px_rgba(0,245,255,0.05)] flex flex-col justify-center items-center">
+                  <span className="text-cyan-500/40 font-orbitron text-xs tracking-[0.4em] mb-1">LECTURE HALL 07</span>
+                  <span className="text-cyan-500/20 font-orbitron text-[10px]">WAVE RESONANCE RATIO: OPTIMAL</span>
+                </div>
+              </div>
+            )}
+
+            {isSchoolGate && (
+              <div className="absolute inset-0 bg-gradient-to-b from-[#1b0826] via-[#10061e] to-[#04020a]">
+                {/* Sunset orange horizon glow */}
+                <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-[#ff0055]/10 via-transparent to-transparent opacity-60" />
+                {/* Stars */}
+                <div className="absolute inset-0 bg-[radial-gradient(#ffe49e_1px,transparent_1px)] [background-size:32px_32px] opacity-20" />
+                <div className="absolute bottom-0 left-12 w-32 h-64 border-l-2 border-r-2 border-t-2 border-white/5 rounded-t-lg bg-white/2" />
+              </div>
+            )}
+
+            {isRooftop && (
+              <div className="absolute inset-0 bg-gradient-to-b from-[#010206] via-[#050818] to-[#03040c]">
+                {/* Distant skyline with two moons */}
+                <div className="absolute bottom-0 left-0 right-0 h-40 bg-[#020306] border-t border-cyan-500/10" />
+                {/* Handrails */}
+                <div className="absolute bottom-0 left-0 right-0 h-24 border-t-2 border-cyan-500/10 flex justify-around">
+                  {[...Array(12)].map((_, i) => (
+                    <div key={i} className="w-[2px] h-full bg-cyan-500/10" />
+                  ))}
+                </div>
+                {/* Giant Artificial Moon (Cyan) */}
+                <div className="absolute top-[10%] left-[25%] w-40 h-40 rounded-full bg-cyan-400/5 border-2 border-cyan-400/20 shadow-[0_0_60px_rgba(0,245,255,0.2)]" />
+                {/* Faint Real Moon (Gold) */}
+                <div className="absolute top-[8%] right-[25%] w-24 h-24 rounded-full bg-[#ffe49e]/5 border border-[#ffe49e]/20 shadow-[0_0_40px_rgba(255,228,158,0.15)] animate-pulse" />
+              </div>
+            )}
+          </motion.div>
+        )}
       </AnimatePresence>
 
       {/* Vignette effect */}
@@ -198,7 +198,7 @@ function MutsunoriHealingCutIn() {
         {/* Sci-fi backdrop grids */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,245,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,245,255,0.03)_1px,transparent_1px)] [background-size:24px_24px]" />
         <div className="absolute top-[30%] left-[25%] w-40 h-40 rounded-full bg-cyan-500/10 blur-3xl animate-pulse" />
-        
+
         {/* Torso zoom of Mutsunori */}
         <img
           src={assetPath('/character/Mutsunori/Mutsunori_smile.png')}
@@ -220,7 +220,7 @@ function MutsunoriHealingCutIn() {
           }}
           transition={{ duration: 2.8, ease: "easeInOut", repeat: Infinity }}
         />
-        
+
         {/* Biotech scan overlay lines */}
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-500/5 to-transparent pointer-events-none" />
       </div>
@@ -239,7 +239,7 @@ function MutsunoriHealingCutIn() {
           animate={{ x: ['12vw', '35vw'] }}
           transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
         />
-        
+
         <div className="relative z-10">
           <div className="font-orbitron font-extrabold text-[13px] tracking-[0.25em] text-cyan-600 mb-1 flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-cyan-500 animate-ping" />
@@ -248,7 +248,7 @@ function MutsunoriHealingCutIn() {
           <h2 className="font-noto font-bold text-lg text-slate-800 tracking-wider mb-2">
             細胞超高速自己修復プロセス
           </h2>
-          
+
           <div className="font-noto text-[11px] leading-relaxed text-slate-500 font-light space-y-1">
             <div>対象生体データ: <span className="font-semibold text-slate-700">MUTSUNORI (自我限界値到達)</span></div>
             <div>ダメージ箇所: <span className="font-semibold text-red-600">胸部・大剣による致命的裂傷</span></div>
@@ -656,7 +656,7 @@ export default function App() {
             if (Array.isArray(line.showIllust)) {
               line.showIllust.forEach(charRaw => {
                 let char = charRaw;
-                const match = charRaw.match(/^(.+?_bake\d)([1-6])$/) || charRaw.match(/^((?!.*_bake\d$).+?)([1-6])$/);
+                const match = charRaw.match(/^(.+?_(?:bake|yami)\d)([1-6])$/) || charRaw.match(/^((?!.*_(?:bake|yami)\d$).+?)([1-6])$/);
                 if (match) char = match[1];
                 const rawBase = char.split('_')[0];
                 const baseName = jpToEngBaseLocal[rawBase] || rawBase;
@@ -720,7 +720,7 @@ export default function App() {
             if (line.scene !== currentScene) {
               simulatedOverride = false;
               currentScene = line.scene;
-              
+
               // Clear effects on scene change exactly as the useEffect does
               simEffects.leftActive = false;
               simEffects.rightActive = false;
@@ -884,7 +884,10 @@ export default function App() {
                 // ignore
               } else {
                 simulatedBgm = line.bgm.includes('.') ? line.bgm : `${line.bgm}.mp3`;
-                simulatedVolume = line.bgmVolume !== undefined ? line.bgmVolume : 1.0;
+                let defVol = 1.0;
+                const checkBgm = simulatedBgm.toLowerCase();
+                if (checkBgm.includes('room_night') || checkBgm.includes('normal_morning')) defVol = 0.6;
+                simulatedVolume = line.bgmVolume !== undefined ? line.bgmVolume : defVol;
               }
             } else {
               if (!simulatedOverride) {
@@ -932,7 +935,7 @@ export default function App() {
           setRightActive(simEffects.rightActive);
           setFocusSlot(simEffects.focusSlot);
           setIsPhoneCallRight(simEffects.isPhoneCallRight);
-          
+
           // Clear transient effects that might be running from before the load
           setIsFadingBlack(false);
           setIsWhiteFlashActive(false);
@@ -949,7 +952,7 @@ export default function App() {
           if (simulatedBgm !== "stop" && simulatedBgm) {
             playBGM(assetPath(`/assets/audio/bgm/${simulatedBgm}`), { volume: simulatedVolume, fadeDuration: 500 });
           }
-          
+
           // Restart looping SEs
           simulatedLoopingSEs.forEach((line, seFile) => {
             playSE(
@@ -994,16 +997,16 @@ export default function App() {
   useEffect(() => {
     if (!currentLine) return;
     if (isBgTransitioning) return;
-    
+
     const isPrologue = currentLine.scene === 'PROLOGUE';
     const isSpecialAction = [
-      'FADE_TO_BLACK', 'SLOW_FADE_TO_BLACK', 'WAKE_UP', 'FADE_OUT',
+      'FADE_TO_BLACK', 'SLOW_FADE_TO_BLACK', 'SLOW_FADE_TO_BLACK_NO_SHAKE', 'WAKE_UP', 'FADE_OUT',
       'WAIT_SECONDS', 'WAIT_SECONDS_AND_MOVE_MOON', 'ALL_FADE_OUT', 'WAIT_FADE',
       'WHITE_OUT_END', 'WHITE_OUT_START', 'WHITE_OUT_END_SLOW', 'WHITE_OUT_END_VERY_SLOW',
       'AWAKEN_MICHIRU'
     ].some(a => [].concat(currentLine.action || []).includes(a));
 
-    const isAboutToTransition = 
+    const isAboutToTransition =
       !isPrologue &&
       !isSpecialAction &&
       currentLine.bg &&
@@ -1121,7 +1124,7 @@ export default function App() {
     if (Array.isArray(visualLine.showIllust)) {
       visualLine.showIllust.forEach(charRaw => {
         let char = charRaw;
-        const match = charRaw.match(/^(.+?_bake\d)([1-6])$/) || charRaw.match(/^((?!.*_bake\d$).+?)([1-6])$/);
+        const match = charRaw.match(/^(.+?_(?:bake|yami)\d)([1-6])$/) || charRaw.match(/^((?!.*_(?:bake|yami)\d$).+?)([1-6])$/);
         if (match) {
           char = match[1];
         }
@@ -1179,9 +1182,14 @@ export default function App() {
       } else {
         const bgmFile = currentLine.bgm.includes('.') ? currentLine.bgm : `${currentLine.bgm}.mp3`;
         const playMusic = () => {
+          let vol = currentLine.bgmVolume;
+          if (vol === undefined) {
+             const checkBgm = bgmFile.toLowerCase();
+             if (checkBgm.includes('room_night') || checkBgm.includes('normal_morning')) vol = 0.6;
+          }
           playBGM(assetPath(`/assets/audio/bgm/${bgmFile}`), {
             fadeDuration,
-            volume: currentLine.bgmVolume,
+            volume: vol,
             seek: currentLine.bgmSeek
           });
         };
@@ -1233,7 +1241,7 @@ export default function App() {
     }
 
     const actions = Array.isArray(currentLine.action) ? currentLine.action : (currentLine.action ? [currentLine.action] : []);
-    
+
     actions.forEach(action => {
       if (action === 'clear') {
         setIsBloodActive(false);
@@ -1428,14 +1436,14 @@ export default function App() {
         };
       }
 
-      if (action === 'FADE_TO_BLACK' || action === 'SLOW_FADE_TO_BLACK') {
+      if (action === 'FADE_TO_BLACK' || action === 'SLOW_FADE_TO_BLACK' || action === 'SLOW_FADE_TO_BLACK_NO_SHAKE') {
         setIsFadingBlack(true);
         setIsRedAlertActive(false); // Stop red alert flash when transitioning to black
         setIsMonochromeFlashActive(false);
         setIsBlackAuraActive(false);
-        const fadeDuration = currentLine.duration || (action === 'SLOW_FADE_TO_BLACK' ? 3000 : 2000);
+        const fadeDuration = currentLine.duration || (action.includes('SLOW_FADE_TO_BLACK') ? 3000 : 2000);
         const timer = setTimeout(() => setIsFadingBlack(false), fadeDuration);
-        
+
         let shakeTimer;
         if (action === 'SLOW_FADE_TO_BLACK') {
           setShakeEffect('fadeOut');
@@ -1476,7 +1484,7 @@ export default function App() {
         setWhiteOutDuration(0.8);
         setIsWhiteOut(false);
       } else if (action === 'WHITE_OUT_END_SLOW') {
-        setWhiteOutDuration(3);
+        setWhiteOutDuration(4);
         setIsWhiteOut(false);
       } else if (action === 'WHITE_OUT_END_VERY_SLOW') {
         setWhiteOutDuration(6);
@@ -1544,7 +1552,7 @@ export default function App() {
     if (actions.length === 0) {
       setFocusSlot(null);
     }
-    
+
     return () => {
       cleanupFuncs.forEach(fn => fn());
     };
@@ -1554,7 +1562,7 @@ export default function App() {
   useEffect(() => {
     if (!currentLine || showTitle || battleMode || manualTestMode) return;
     const actions = [].concat(currentLine.action || []);
-    if (currentLine.style === 'cinema' || actions.includes('FADE_TO_BLACK') || actions.includes('SLOW_FADE_TO_BLACK') || actions.includes('WAIT_FADE') || actions.includes('WAIT_SECONDS')) {
+    if (currentLine.style === 'cinema' || actions.includes('FADE_TO_BLACK') || actions.includes('SLOW_FADE_TO_BLACK') || actions.includes('SLOW_FADE_TO_BLACK_NO_SHAKE') || actions.includes('WAIT_FADE') || actions.includes('WAIT_SECONDS')) {
       let delay = 3000;
       if (actions.includes('FADE_IN')) delay = 2500;
       if (actions.includes('FADE_OUT')) delay = 2000;
@@ -1562,7 +1570,7 @@ export default function App() {
       if (actions.includes('SLOW_FADE_IN')) delay = 3500;
       if (actions.includes('WAIT_SECONDS_AND_MOVE_MOON')) delay = 4000;
       if (actions.includes('ALL_FADE_OUT')) delay = 3000;
-      if (actions.includes('FADE_TO_BLACK') || actions.includes('SLOW_FADE_TO_BLACK')) delay = currentLine.duration || (actions.includes('SLOW_FADE_TO_BLACK') ? 3000 : 2000);
+      if (actions.includes('FADE_TO_BLACK') || actions.includes('SLOW_FADE_TO_BLACK') || actions.includes('SLOW_FADE_TO_BLACK_NO_SHAKE')) delay = currentLine.duration || (actions.includes('SLOW_FADE_TO_BLACK') || actions.includes('SLOW_FADE_TO_BLACK_NO_SHAKE') ? 3000 : 2000);
       if (actions.includes('WAIT_FADE')) delay = 1000;
 
       const timer = setTimeout(() => {
@@ -1726,15 +1734,15 @@ export default function App() {
         setSkipMode(false);
       } else {
         const currentActions = [].concat(currentLine?.action || []);
-        const isTransition = currentActions.includes('FADE_TO_BLACK') || currentActions.includes('SLOW_FADE_TO_BLACK') || currentActions.includes('WAIT_FADE') || isBgTransitioning || isBgFadingOut;
-        
+        const isTransition = currentActions.includes('FADE_TO_BLACK') || currentActions.includes('SLOW_FADE_TO_BLACK') || currentActions.includes('SLOW_FADE_TO_BLACK_NO_SHAKE') || currentActions.includes('WAIT_FADE') || isBgTransitioning || isBgFadingOut;
+
         if (!showTitle && !isWaitingForChoice && !alertActive && !backlogOpen && !isMinigameActive && !isAnyEnd && !isEndScreen && !isTransition) {
           nextStep();
         } else if (isMinigameActive) {
           window.dispatchEvent(new Event('minigame-tap'));
         }
       }
-      
+
       if (!isMouse) {
         // Mark as handled so onClick doesn't double-fire
         touchHandledRef.current = true;
@@ -1795,18 +1803,18 @@ export default function App() {
           'TRIGGER_BATTLE_AKANE_VS_KIMERA2',
           'TRIGGER_BATTLE_TEAM_VS_KIMERA',
           'TRIGGER_BATTLE_MIDBOSS_MACHINE',
-            'TRIGGER_BATTLE_MIDBOSS_NAGISA',
-            'TRIGGER_BATTLE_MIDBOSS_MIKA',
-            'TRIGGER_BATTLE_MIDBOSS_AKANE',
-            'TRIGGER_BATTLE_FINAL_MUTSUNORI',
-            'TRIGGER_BATTLE_FINAL_NAGISA',
-            'TRIGGER_BATTLE_FINAL_MIKA',
-            'TRIGGER_BATTLE_FINAL_AKANE',
-            'TRIGGER_BATTLE_FINAL_BOSS_MICHIRU'
-          ].includes(currentLine?.action);
+          'TRIGGER_BATTLE_MIDBOSS_NAGISA',
+          'TRIGGER_BATTLE_MIDBOSS_MIKA',
+          'TRIGGER_BATTLE_MIDBOSS_AKANE',
+          'TRIGGER_BATTLE_FINAL_MUTSUNORI',
+          'TRIGGER_BATTLE_FINAL_NAGISA',
+          'TRIGGER_BATTLE_FINAL_MIKA',
+          'TRIGGER_BATTLE_FINAL_AKANE',
+          'TRIGGER_BATTLE_FINAL_BOSS_MICHIRU'
+        ].includes(currentLine?.action);
 
         const currentActions = [].concat(currentLine?.action || []);
-        const isTransition = currentActions.includes('FADE_TO_BLACK') || currentActions.includes('SLOW_FADE_TO_BLACK') || currentActions.includes('WAIT_FADE') || isBgTransitioning || isBgFadingOut;
+        const isTransition = currentActions.includes('FADE_TO_BLACK') || currentActions.includes('SLOW_FADE_TO_BLACK') || currentActions.includes('SLOW_FADE_TO_BLACK_NO_SHAKE') || currentActions.includes('WAIT_FADE') || isBgTransitioning || isBgFadingOut;
         if (!isWaitingForChoice && !isMinigameActive && !isAnyEnd && !isEndScreen && !isTransition && !isPopup) {
           nextStep();
         }
@@ -1827,7 +1835,7 @@ export default function App() {
   const isHappyEnd = currentLine?.action === 'FADE_TO_HAPPY_END';
   const isBadEnd = currentLine?.action === 'FADE_TO_BAD_END';
   const currentActionsGlobal = [].concat(currentLine?.action || []);
-  const isTransition = currentActionsGlobal.includes('FADE_TO_BLACK') || currentActionsGlobal.includes('SLOW_FADE_TO_BLACK') || currentActionsGlobal.includes('WAIT_FADE') || isBgTransitioning || isBgFadingOut;
+  const isTransition = currentActionsGlobal.includes('FADE_TO_BLACK') || currentActionsGlobal.includes('SLOW_FADE_TO_BLACK') || currentActionsGlobal.includes('SLOW_FADE_TO_BLACK_NO_SHAKE') || currentActionsGlobal.includes('WAIT_FADE') || isBgTransitioning || isBgFadingOut;
   const isDemoEnd = currentLine?.action === 'FADE_TO_DEMO_END';
   const isAnyEnd = isHappyEnd || isBadEnd || isDemoEnd;
   const isFlashbackActive = currentLine?.scene?.startsWith('回想：');
@@ -1851,7 +1859,7 @@ export default function App() {
   const isBattleMidBossMachineActive = currentLine?.action === 'TRIGGER_BATTLE_MIDBOSS_MACHINE';
   const isBattleMidBossNagisaActive = currentLine?.action === 'TRIGGER_BATTLE_MIDBOSS_NAGISA';
   const isBattleMidBossMikaActive = currentLine?.action === 'TRIGGER_BATTLE_MIDBOSS_MIKA';
-    const isBattleMidBossAkaneActive = currentLine?.action === 'TRIGGER_BATTLE_MIDBOSS_AKANE';
+  const isBattleMidBossAkaneActive = currentLine?.action === 'TRIGGER_BATTLE_MIDBOSS_AKANE';
   const isBattleFinalNagisaActive = currentLine?.action === 'TRIGGER_BATTLE_FINAL_NAGISA';
   const isBattleFinalMutsunoriActive = currentLine?.action === 'TRIGGER_BATTLE_FINAL_MUTSUNORI';
   const isBattleFinalBossMichiruActive = currentLine?.action === 'TRIGGER_BATTLE_FINAL_BOSS_MICHIRU';
@@ -1869,7 +1877,7 @@ export default function App() {
       } else if (choice.condition === 'mitsuru_route_enabled') {
         conditionMet = clearedMutsunori && clearedNagisa && clearedMika && clearedAkane;
       }
-      
+
       if (!conditionMet) {
         return { ...choice, text: '？？？', isLocked: true };
       }
@@ -1893,25 +1901,25 @@ export default function App() {
     if (target && (target.closest('button') || target.closest('a') || target.closest('[role="button"]'))) {
       return;
     }
-    
+
     if (touchHandledRef.current) return;
-    
+
     // Simulate touch structure for handleTouchEnd
     const simulatedEvent = {
       ...e,
       target: e.target,
       changedTouches: [{ clientX: e.clientX, clientY: e.clientY }]
     };
-    
+
     // Set start coords to same as end for a tap
     touchStartX.current = e.clientX;
     touchStartY.current = e.clientY;
-    
+
     handleTouchEnd(simulatedEvent, true);
   };
 
   return (
-    <div 
+    <div
       className="w-full h-full relative"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
@@ -1919,141 +1927,141 @@ export default function App() {
     >
       <GameFrame>
         <ShakeLayer shakeEffect={shakeEffect}>
-        {battleMode === 'select' ? (
-          <BattleSelectScreen
-            onSelect={(id) => setBattleMode(id)}
-            onCancel={() => {
-              setBattleMode(null);
-              setShowTitle(true);
-            }}
-          />
-        ) : battleMode === 'proto1' ? (
-          <BattleSystem
-            onComplete={handleBattleComplete}
-            playBGM={playBGM}
-            stopBGM={stopBGM}
-            playSE={playSE}
-          />
-        ) : battleMode === 'proto2' ? (
-          <BattleSystemPlot2
-            onComplete={handleBattleComplete}
-            playBGM={playBGM}
-            stopBGM={stopBGM}
-            playSE={playSE}
-          />
-        ) : battleMode === 'proto3' ? (
-          <BattleStaffRhythm
-            onComplete={handleBattleComplete}
-            playBGM={playBGM}
-            stopBGM={stopBGM}
-            playSE={playSE}
-          />
-        ) : battleMode === 'proto4' ? (
-          <BattleSystemPlot4
-            onComplete={handleBattleComplete}
-            playBGM={playBGM}
-            stopBGM={stopBGM}
-            playSE={playSE}
-          />
-        ) : battleMode === 'proto5' ? (
-          <BattleSystemPlot5
-            onComplete={handleBattleComplete}
-            playBGM={playBGM}
-            stopBGM={stopBGM}
-            playSE={playSE}
-          />
-        ) : showTitle ? (
-          <TitleScreen
-            onStart={handleStartGame}
-            onContinue={handleOpenLoadFromTitle}
-            onBattle={handleStartBattle}
-            hasSave={hasSave}
-            playBGM={playBGM}
-          />
-        ) : (
-          <div className="relative w-full h-full transition-all duration-1000" style={{ filter: isFlashbackActive ? 'sepia(0.5) contrast(1.1) brightness(0.9) grayscale(0.2)' : 'none' }}>
-            {/* Visual Background Fallback & Actual Renderer */}
-            <BackgroundRenderer
-              bgPath={currentBg}
-              fadeMode={currentLine?.bgCrossfade ? 'crossfade' : 'blackout'}
-              bgAnimationClass={
-                [].concat(currentLine?.action || []).includes('WAKE_UP')
-                  ? 'animate-bg-wake-up'
-                  : currentLine?.bgAnimation === 'search_ground'
-                  ? 'animate-search-ground'
-                  : currentLine?.bgAnimation === 'dash' || currentLine?.bgAnimation === 'run_dash'
-                  ? 'animate-run-dash'
-                  : currentLine?.bgAnimation === 'run_light'
-                  ? 'animate-run-light'
-                  : currentLine?.bgAnimation === 'rumble_light'
-                  ? 'animate-rumble-light'
-                  : currentLine?.bgAnimation === 'stumble_zoom' || currentLine?.bgAnimation === 'tilt_zoom'
-                  ? 'animate-stumble-zoom'
-                  : currentLine?.bgAnimation === 'center_zoom'
-                  ? 'animate-center-zoom'
-                  : currentLine?.bgAnimation === 'dodge_left'
-                  ? 'animate-dodge-left'
-                  : currentLine?.bgAnimation === 'dodge_right'
-                  ? 'animate-dodge-right'
-                  : currentLine?.bgAnimation === 'impact_zoom'
-                  ? 'animate-impact-zoom'
-                  : ''
-              }
+          {battleMode === 'select' ? (
+            <BattleSelectScreen
+              onSelect={(id) => setBattleMode(id)}
+              onCancel={() => {
+                setBattleMode(null);
+                setShowTitle(true);
+              }}
             />
-
-            {/* Typing Game Overlay */}
-            {isTypingGameActive && (
-              <TypingGame onComplete={handleTypingGameComplete} />
-            )}
-
-            {/* Search & Learning Overlay */}
-            {isSearchAndLearningActive && (
-              <SearchAndLearning 
-                onComplete={handleSearchAndLearningComplete} 
-                onSave={handleSave}
-                onLoad={handleLoad}
-                onOpenLog={() => setBacklogOpen(true)}
-                onToggleAuto={toggleAuto}
-                onToggleSkip={toggleSkip}
-                setSkipMode={setSkipMode}
-                onExit={handleExitToTitle}
-                autoMode={autoMode}
-                skipMode={skipMode}
+          ) : battleMode === 'proto1' ? (
+            <BattleSystem
+              onComplete={handleBattleComplete}
+              playBGM={playBGM}
+              stopBGM={stopBGM}
+              playSE={playSE}
+            />
+          ) : battleMode === 'proto2' ? (
+            <BattleSystemPlot2
+              onComplete={handleBattleComplete}
+              playBGM={playBGM}
+              stopBGM={stopBGM}
+              playSE={playSE}
+            />
+          ) : battleMode === 'proto3' ? (
+            <BattleStaffRhythm
+              onComplete={handleBattleComplete}
+              playBGM={playBGM}
+              stopBGM={stopBGM}
+              playSE={playSE}
+            />
+          ) : battleMode === 'proto4' ? (
+            <BattleSystemPlot4
+              onComplete={handleBattleComplete}
+              playBGM={playBGM}
+              stopBGM={stopBGM}
+              playSE={playSE}
+            />
+          ) : battleMode === 'proto5' ? (
+            <BattleSystemPlot5
+              onComplete={handleBattleComplete}
+              playBGM={playBGM}
+              stopBGM={stopBGM}
+              playSE={playSE}
+            />
+          ) : showTitle ? (
+            <TitleScreen
+              onStart={handleStartGame}
+              onContinue={handleOpenLoadFromTitle}
+              onBattle={handleStartBattle}
+              hasSave={hasSave}
+              playBGM={playBGM}
+            />
+          ) : (
+            <div className="relative w-full h-full transition-all duration-1000" style={{ filter: isFlashbackActive ? 'sepia(0.5) contrast(1.1) brightness(0.9) grayscale(0.2)' : 'none' }}>
+              {/* Visual Background Fallback & Actual Renderer */}
+              <BackgroundRenderer
+                bgPath={currentBg}
+                fadeMode={currentLine?.bgCrossfade ? 'crossfade' : 'blackout'}
+                bgAnimationClass={
+                  [].concat(currentLine?.action || []).includes('WAKE_UP')
+                    ? 'animate-bg-wake-up'
+                    : currentLine?.bgAnimation === 'search_ground'
+                      ? 'animate-search-ground'
+                      : currentLine?.bgAnimation === 'dash' || currentLine?.bgAnimation === 'run_dash'
+                        ? 'animate-run-dash'
+                        : currentLine?.bgAnimation === 'run_light'
+                          ? 'animate-run-light'
+                          : currentLine?.bgAnimation === 'rumble_light'
+                            ? 'animate-rumble-light'
+                            : currentLine?.bgAnimation === 'stumble_zoom' || currentLine?.bgAnimation === 'tilt_zoom'
+                              ? 'animate-stumble-zoom'
+                              : currentLine?.bgAnimation === 'center_zoom'
+                                ? 'animate-center-zoom'
+                                : currentLine?.bgAnimation === 'dodge_left'
+                                  ? 'animate-dodge-left'
+                                  : currentLine?.bgAnimation === 'dodge_right'
+                                    ? 'animate-dodge-right'
+                                    : currentLine?.bgAnimation === 'impact_zoom'
+                                      ? 'animate-impact-zoom'
+                                      : ''
+                }
               />
-            )}
 
-            {/* Struggle Game Overlay */}
-            {isStruggleGameActive && (
-              <StruggleGame onComplete={handleStruggleComplete} />
-            )}
+              {/* Typing Game Overlay */}
+              {isTypingGameActive && (
+                <TypingGame onComplete={handleTypingGameComplete} />
+              )}
 
-            {/* Warehouse Exploration Overlay */}
-            {isWarehouseExplorationActive && (
-              <WarehouseExploration 
-                onComplete={handleWarehouseComplete} 
-                onSave={handleSave}
-                onLoad={handleLoad}
-                onOpenLog={() => setBacklogOpen(true)}
-                onToggleAuto={toggleAuto}
-                onToggleSkip={toggleSkip}
-                setSkipMode={setSkipMode}
-                onExit={handleExitToTitle}
-                autoMode={autoMode}
-                skipMode={skipMode}
-              />
-            )}
+              {/* Search & Learning Overlay */}
+              {isSearchAndLearningActive && (
+                <SearchAndLearning
+                  onComplete={handleSearchAndLearningComplete}
+                  onSave={handleSave}
+                  onLoad={handleLoad}
+                  onOpenLog={() => setBacklogOpen(true)}
+                  onToggleAuto={toggleAuto}
+                  onToggleSkip={toggleSkip}
+                  setSkipMode={setSkipMode}
+                  onExit={handleExitToTitle}
+                  autoMode={autoMode}
+                  skipMode={skipMode}
+                />
+              )}
 
-            {/* Battle Tutorial Overlay */}
-            {isBattleTutorialActive && (
-              <BattleTutorial 
-                onComplete={nextStep}
-                playBGM={playBGM}
-                stopBGM={stopBGM}
-                playSE={playSE}
-              />
-            )}
+              {/* Struggle Game Overlay */}
+              {isStruggleGameActive && (
+                <StruggleGame onComplete={handleStruggleComplete} />
+              )}
 
-            {isBattleMidBossAkaneActive && (
+              {/* Warehouse Exploration Overlay */}
+              {isWarehouseExplorationActive && (
+                <WarehouseExploration
+                  onComplete={handleWarehouseComplete}
+                  onSave={handleSave}
+                  onLoad={handleLoad}
+                  onOpenLog={() => setBacklogOpen(true)}
+                  onToggleAuto={toggleAuto}
+                  onToggleSkip={toggleSkip}
+                  setSkipMode={setSkipMode}
+                  onExit={handleExitToTitle}
+                  autoMode={autoMode}
+                  skipMode={skipMode}
+                />
+              )}
+
+              {/* Battle Tutorial Overlay */}
+              {isBattleTutorialActive && (
+                <BattleTutorial
+                  onComplete={nextStep}
+                  playBGM={playBGM}
+                  stopBGM={stopBGM}
+                  playSE={playSE}
+                />
+              )}
+
+              {isBattleMidBossAkaneActive && (
                 <BattleMidBossAkane
                   onComplete={nextStep}
                   playBGM={playBGM}
@@ -2099,25 +2107,25 @@ export default function App() {
                 />
               )}
 
-            {isBattleAkaneVsKimera2Active && (
-              <BattleAkaneVsKimera2 
-                onComplete={nextStep}
-                playBGM={playBGM}
-                stopBGM={stopBGM}
-                playSE={playSE}
-              />
-            )}
+              {isBattleAkaneVsKimera2Active && (
+                <BattleAkaneVsKimera2
+                  onComplete={nextStep}
+                  playBGM={playBGM}
+                  stopBGM={stopBGM}
+                  playSE={playSE}
+                />
+              )}
 
-            {isBattleTeamVsKimeraActive && (
-              <BattleTeamVsKimera 
-                onComplete={nextStep}
-                playBGM={playBGM}
-                stopBGM={stopBGM}
-                playSE={playSE}
-              />
-            )}
+              {isBattleTeamVsKimeraActive && (
+                <BattleTeamVsKimera
+                  onComplete={nextStep}
+                  playBGM={playBGM}
+                  stopBGM={stopBGM}
+                  playSE={playSE}
+                />
+              )}
 
-            {isBattleMidBossMachineActive && (
+              {isBattleMidBossMachineActive && (
                 <BattleMidBossMachine
                   onComplete={nextStep}
                   playBGM={playBGM}
@@ -2155,718 +2163,708 @@ export default function App() {
                 />
               )}
 
-            {/* Tap Communication Overlay */}
-            {isTapCommunicationActive && (
-              <TapCommunication onComplete={handleTapCommunicationComplete} />
-            )}
-
-            {/* Eye Of Profiler Overlay */}
-            {isEyeOfProfilerActive && (
-              <EyeOfProfiler onComplete={handleEyeOfProfilerComplete} />
-            )}
-
-            {/* Fragment Collect Overlay */}
-            {isFragmentCollectActive && (
-              <FragmentCollect 
-                onComplete={handleFragmentCollectComplete}
-                onSave={handleSave}
-                onLoad={handleLoad}
-                onOpenLog={() => setBacklogOpen(true)}
-                onToggleAuto={toggleAuto}
-                onToggleSkip={toggleSkip}
-                autoMode={autoMode}
-                skipMode={skipMode}
-              />
-            )}
-
-            {/* Fragment Collect Nagisa Overlay */}
-            {isFragmentCollectNagisaActive && (
-              <FragmentCollectNagisa 
-                onComplete={handleFragmentCollectNagisaComplete}
-                onSave={handleSave}
-                onLoad={handleLoad}
-                onOpenLog={() => setBacklogOpen(true)}
-                onToggleAuto={toggleAuto}
-                onToggleSkip={toggleSkip}
-                autoMode={autoMode}
-                skipMode={skipMode}
-              />
-            )}
-
-            {/* Fragment Collect Mika Overlay */}
-            {isFragmentCollectMikaActive && (
-              <FragmentCollectMika 
-                onComplete={handleFragmentCollectMikaComplete}
-                onSave={handleSave}
-                onLoad={handleLoad}
-                onOpenLog={() => setBacklogOpen(true)}
-                onToggleAuto={toggleAuto}
-                onToggleSkip={toggleSkip}
-                autoMode={autoMode}
-                skipMode={skipMode}
-              />
-            )}
-
-            {/* Fragment Collect Akane Overlay */}
-            {isFragmentCollectAkaneActive && (
-              <FragmentCollectAkane 
-                onComplete={handleFragmentCollectAkaneComplete}
-                onSave={handleSave}
-                onLoad={handleLoad}
-                onOpenLog={() => setBacklogOpen(true)}
-                onToggleAuto={toggleAuto}
-                onToggleSkip={toggleSkip}
-                autoMode={autoMode}
-                skipMode={skipMode}
-              />
-            )}
-
-            {/* Fragment Collect Solo Overlay */}
-            {isFragmentCollectSoloActive && (
-              <FragmentCollectSolo 
-                onComplete={handleFragmentCollectSoloComplete}
-                onSave={handleSave}
-                onLoad={handleLoad}
-                onOpenLog={() => setBacklogOpen(true)}
-                onToggleAuto={toggleAuto}
-                onToggleSkip={toggleSkip}
-                autoMode={autoMode}
-                skipMode={skipMode}
-              />
-            )}
-
-            {/* Silent Score Overlay */}
-            {isSilentScoreActive && (
-              <SilentScore onComplete={handleSilentScoreComplete} />
-            )}
-
-            {isStealthGameActive && (
-              <StealthGame onComplete={handleStealthGameComplete} />
-            )}
-
-            {isExplorationPhaseActive && (
-              <ExplorationPhase
-                flags={flags}
-                setFlags={setFlags}
-                onSelectLocation={(targetLabel) => {
-                  const targetIdx = scenarioData.findIndex(line => line.label === targetLabel);
-                  if (targetIdx !== -1) {
-                    jumpToStep(targetIdx);
-                  }
-                }}
-                onFinishExploration={() => {
-                  const targetIdx = scenarioData.findIndex(line => line.label === 'exploration_end');
-                  if (targetIdx !== -1) {
-                    jumpToStep(targetIdx);
-                  }
-                }}
-              />
-            )}
-
-            {/* Cinematic Black Letterbox Overlay */}
-            <CinemaLayer
-              text={currentLine?.text}
-              isActive={isCinema && !isAnyEnd && !isTypingGameActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isFragmentCollectActive && !isFragmentCollectMikaActive && !isFragmentCollectAkaneActive && !isFragmentCollectSoloActive && !isStealthGameActive && !isExplorationPhaseActive && !isStruggleGameActive && !isWarehouseExplorationActive && !isBattleTutorialActive && !isBattleAkaneVsKimera2Active && !isBattleTeamVsKimeraActive && !isBattleMidBossMachineActive && !isBattleMidBossNagisaActive && !isBattleMidBossMikaActive && !isBattleMidBossAkaneActive && !isBattleMidBossAkaneActive && !isBattleMidBossMikaActive && !isBattleMidBossAkaneActive && !isBattleMidBossAkaneActive && !isBattleFinalMutsunoriActive && !isBattleFinalNagisaActive && !isBattleFinalMikaActive && !isBattleFinalAkaneActive && !isBattleFinalAkaneActive && !isBattleFinalMikaActive && !isBattleFinalAkaneActive && !isBattleFinalAkaneActive && !isBattleFinalBossMichiruActive}
-              isTyping={isTyping}
-              onNext={nextStep}
-            />
-
-            {/* Popup Text Overlay */}
-            <PopupLayer
-              text={displayedText}
-              isActive={isPopup && !isAnyEnd}
-              isTyping={isTyping}
-              onNext={nextStep}
-            />
-
-            {/* Phone Call Right Split Overlay (Background) */}
-            <AnimatePresence>
-              {isPhoneCallRight && !isCinema && !isAnyEnd && (
-                <motion.div
-                  className="absolute inset-0 z-[5] pointer-events-none"
-                  initial={{ opacity: 0, x: 100 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 100 }}
-                  transition={{ duration: 0.5, ease: "easeOut" }}
-                >
-                  <div 
-                    className="absolute inset-0 bg-black shadow-[inset_20px_0_50px_rgba(0,0,0,0.8)]"
-                    style={{ clipPath: 'polygon(70% 0, 100% 0, 100% 100%, 60% 100%)' }}
-                  >
-                    <img src={assetPath('/scene/lab.png')} alt="lab" className="w-full h-full object-cover opacity-80" />
-                    <div className="absolute inset-0 bg-cyan-950/30 mix-blend-color-burn" />
-                  </div>
-                  <svg className="absolute inset-0 w-full h-full pointer-events-none drop-shadow-[0_0_10px_rgba(0,245,255,0.8)]">
-                    <line x1="70%" y1="0" x2="60%" y2="100%" stroke="#22d3ee" strokeWidth="3" />
-                    <line x1="70%" y1="0" x2="60%" y2="100%" stroke="#fff" strokeWidth="1" />
-                  </svg>
-                </motion.div>
+              {/* Tap Communication Overlay */}
+              {isTapCommunicationActive && (
+                <TapCommunication onComplete={handleTapCommunicationComplete} />
               )}
-            </AnimatePresence>
 
-            {/* Character Sprite Overlay */}
-            {!isCinema && !isAnyEnd && (
-              <SpriteSlot
-                leftActive={leftActive}
-                rightActive={rightActive}
-                focusSlot={focusSlot}
-                currentSpeaker={visualLine?.speaker}
-                presentCharacters={presentCharacters}
-                currentLine={visualLine}
-                currentStep={visualStep}
-                scenarioData={scenarioData}
-                isPhoneCallRight={isPhoneCallRight}
-              />
-            )}
-
-            {/* Phone Call Right Scanline Overlay (Over Characters) */}
-            <AnimatePresence>
-              {isPhoneCallRight && !isCinema && !isAnyEnd && (
-                <motion.div
-                  className="absolute inset-0 z-[25] pointer-events-none"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                >
-                  <div 
-                    className="absolute inset-0"
-                    style={{ clipPath: 'polygon(70% 0, 100% 0, 100% 100%, 60% 100%)' }}
-                  >
-                    <div className="absolute inset-0 bg-[linear-gradient(rgba(0,255,255,0.05)_1px,transparent_1px)] [background-size:100%_4px]" />
-                    <div className="absolute inset-0 bg-cyan-500/5 mix-blend-screen" />
-                  </div>
-                </motion.div>
+              {/* Eye Of Profiler Overlay */}
+              {isEyeOfProfilerActive && (
+                <EyeOfProfiler onComplete={handleEyeOfProfilerComplete} />
               )}
-            </AnimatePresence>
 
-            {/* Mutsunori Healing Cut-in Overlay */}
-            <AnimatePresence>
-              {currentLine?.action === 'MUTSUNORI_HEALING_CUTIN' && (
-                <MutsunoriHealingCutIn />
-              )}
-            </AnimatePresence>
-
-            {/* Item Sprite Overlay */}
-            <AnimatePresence>
-              {displayedItem && !isCinema && !isAnyEnd && (() => {
-                const isPhone = displayedItem.includes('phone_');
-                const isMessage = displayedItem.includes('Message.png');
-                const isBottomAligned = isPhone || isMessage;
-                return (
-                  <motion.div
-                    key="item-overlay"
-                    className={`absolute inset-0 flex pointer-events-none z-[15] ${isBottomAligned ? 'items-end justify-center' : 'items-center justify-center'}`}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0, transition: { delay: 0.7 } }}
-                  >
-                    <motion.img
-                      key={displayedItem}
-                      src={assetPath(displayedItem)}
-                      alt="item"
-                      initial={isBottomAligned ? { y: '100%', opacity: 0 } : { opacity: 0, scale: 0.95 }}
-                      animate={isBottomAligned ? { y: '-5%', opacity: 1 } : { opacity: 1, scale: 1 }}
-                      exit={isBottomAligned ? { y: '100%', opacity: 0 } : { opacity: 0, scale: 0.95 }}
-                      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                      className={`object-contain drop-shadow-2xl ${isPhone ? 'w-[20%] max-w-[250px] min-w-[150px]' : isMessage ? 'w-[50%] max-w-[600px] min-w-[300px]' : 'max-w-[40%] max-h-[60%]'}`}
-                    />
-                  </motion.div>
-                );
-              })()}
-            </AnimatePresence>
-
-            {/* Tear Blur Overlay */}
-            <AnimatePresence>
-              {isTearBlurActive && !isCinema && !isAnyEnd && (
-                <motion.div
-                  className="absolute inset-0 pointer-events-none z-[17] backdrop-blur-[6px] bg-white/5"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1, transition: { duration: 1.5, ease: 'easeOut' } }}
-                  exit={{ opacity: 0, transition: { duration: 1.5, ease: 'easeIn' } }}
+              {/* Fragment Collect Overlay */}
+              {isFragmentCollectActive && (
+                <FragmentCollect
+                  onComplete={handleFragmentCollectComplete}
+                  onSave={handleSave}
+                  onLoad={handleLoad}
+                  onOpenLog={() => setBacklogOpen(true)}
+                  onToggleAuto={toggleAuto}
+                  onToggleSkip={toggleSkip}
+                  autoMode={autoMode}
+                  skipMode={skipMode}
                 />
               )}
-            </AnimatePresence>
 
-            {/* Smoke Overlay */}
-            <AnimatePresence>
-              {isSmokeActive && !isCinema && !isAnyEnd && (
-                <motion.div
-                  className="absolute inset-0 pointer-events-none z-[18] overflow-hidden flex items-center justify-center"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1, transition: { duration: 0.5, ease: 'easeOut' } }}
-                  exit={{ opacity: 0, transition: { duration: smokeExitDurationRef.current, ease: 'easeIn' } }}
-                >
-                  {/* Base gray background (Removed expensive backdrop-blur) */}
-                  <div className="absolute inset-0 bg-gray-300" />
-                  
-                  {/* Lighter billowing effect using CSS radial gradients instead of blur/mix-blend */}
-                  {[
-                    { left: '-10%', size: '120vw', dur: 6, delay: 0 },
-                    { left: '10%', size: '140vw', dur: 8, delay: 0.5 },
-                    { left: '50%', size: '130vw', dur: 7, delay: 1 },
-                  ].map((cloud, i) => (
-                    <motion.div
-                      key={i}
-                      className="absolute rounded-full"
-                      style={{
-                        width: cloud.size,
-                        height: cloud.size,
-                        left: cloud.left,
-                        top: '100%',
-                        background: 'radial-gradient(circle, rgba(156,163,175,0.6) 0%, rgba(156,163,175,0) 70%)',
-                      }}
-                      animate={{
-                        y: ['0vh', '-130vh'],
-                        scale: [0.8, 1.3],
-                      }}
-                      transition={{
-                        duration: cloud.dur,
-                        repeat: Infinity,
-                        ease: 'linear',
-                        delay: cloud.delay,
-                      }}
-                    />
-                  ))}
-                </motion.div>
+              {/* Fragment Collect Nagisa Overlay */}
+              {isFragmentCollectNagisaActive && (
+                <FragmentCollectNagisa
+                  onComplete={handleFragmentCollectNagisaComplete}
+                  onSave={handleSave}
+                  onLoad={handleLoad}
+                  onOpenLog={() => setBacklogOpen(true)}
+                  onToggleAuto={toggleAuto}
+                  onToggleSkip={toggleSkip}
+                  autoMode={autoMode}
+                  skipMode={skipMode}
+                />
               )}
-            </AnimatePresence>
 
-            {/* Energy Aura Overlay */}
-            <AnimatePresence>
-              {isEnergyAuraActive && !isCinema && !isAnyEnd && (
-                <motion.div
-                  className="absolute inset-0 pointer-events-none z-[18] overflow-hidden mix-blend-screen"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 1, ease: 'easeOut' }}
-                >
+              {/* Fragment Collect Mika Overlay */}
+              {isFragmentCollectMikaActive && (
+                <FragmentCollectMika
+                  onComplete={handleFragmentCollectMikaComplete}
+                  onSave={handleSave}
+                  onLoad={handleLoad}
+                  onOpenLog={() => setBacklogOpen(true)}
+                  onToggleAuto={toggleAuto}
+                  onToggleSkip={toggleSkip}
+                  autoMode={autoMode}
+                  skipMode={skipMode}
+                />
+              )}
+
+              {/* Fragment Collect Akane Overlay */}
+              {isFragmentCollectAkaneActive && (
+                <FragmentCollectAkane
+                  onComplete={handleFragmentCollectAkaneComplete}
+                  onSave={handleSave}
+                  onLoad={handleLoad}
+                  onOpenLog={() => setBacklogOpen(true)}
+                  onToggleAuto={toggleAuto}
+                  onToggleSkip={toggleSkip}
+                  autoMode={autoMode}
+                  skipMode={skipMode}
+                />
+              )}
+
+              {/* Fragment Collect Solo Overlay */}
+              {isFragmentCollectSoloActive && (
+                <FragmentCollectSolo
+                  onComplete={handleFragmentCollectSoloComplete}
+                  onSave={handleSave}
+                  onLoad={handleLoad}
+                  onOpenLog={() => setBacklogOpen(true)}
+                  onToggleAuto={toggleAuto}
+                  onToggleSkip={toggleSkip}
+                  autoMode={autoMode}
+                  skipMode={skipMode}
+                />
+              )}
+
+              {/* Silent Score Overlay */}
+              {isSilentScoreActive && (
+                <SilentScore onComplete={handleSilentScoreComplete} />
+              )}
+
+              {isStealthGameActive && (
+                <StealthGame onComplete={handleStealthGameComplete} />
+              )}
+
+              {isExplorationPhaseActive && (
+                <ExplorationPhase
+                  flags={flags}
+                  setFlags={setFlags}
+                  onSelectLocation={(targetLabel) => {
+                    const targetIdx = scenarioData.findIndex(line => line.label === targetLabel);
+                    if (targetIdx !== -1) {
+                      jumpToStep(targetIdx);
+                    }
+                  }}
+                  onFinishExploration={() => {
+                    const targetIdx = scenarioData.findIndex(line => line.label === 'exploration_end');
+                    if (targetIdx !== -1) {
+                      jumpToStep(targetIdx);
+                    }
+                  }}
+                />
+              )}
+
+              {/* Cinematic Black Letterbox Overlay */}
+              <CinemaLayer
+                text={currentLine?.text}
+                isActive={isCinema && !isAnyEnd && !isTypingGameActive && !isSearchAndLearningActive && !isSilentScoreActive && !isTapCommunicationActive && !isEyeOfProfilerActive && !isFragmentCollectActive && !isFragmentCollectMikaActive && !isFragmentCollectAkaneActive && !isFragmentCollectSoloActive && !isStealthGameActive && !isExplorationPhaseActive && !isStruggleGameActive && !isWarehouseExplorationActive && !isBattleTutorialActive && !isBattleAkaneVsKimera2Active && !isBattleTeamVsKimeraActive && !isBattleMidBossMachineActive && !isBattleMidBossNagisaActive && !isBattleMidBossMikaActive && !isBattleMidBossAkaneActive && !isBattleMidBossAkaneActive && !isBattleMidBossMikaActive && !isBattleMidBossAkaneActive && !isBattleMidBossAkaneActive && !isBattleFinalMutsunoriActive && !isBattleFinalNagisaActive && !isBattleFinalMikaActive && !isBattleFinalAkaneActive && !isBattleFinalAkaneActive && !isBattleFinalMikaActive && !isBattleFinalAkaneActive && !isBattleFinalAkaneActive && !isBattleFinalBossMichiruActive}
+                isTyping={isTyping}
+                onNext={nextStep}
+              />
+
+              {/* Popup Text Overlay */}
+              <PopupLayer
+                text={displayedText}
+                isActive={isPopup && !isAnyEnd}
+                isTyping={isTyping}
+                onNext={nextStep}
+              />
+
+              {/* Phone Call Right Split Overlay (Background) */}
+              <AnimatePresence>
+                {isPhoneCallRight && !isCinema && !isAnyEnd && (
                   <motion.div
-                    className="absolute inset-0"
-                    animate={{
-                      opacity: [0.6, 1, 0.6],
-                      boxShadow: [
-                        'inset 0 0 100px 30px rgba(0, 245, 255, 0.5), inset 0 0 150px 60px rgba(138, 43, 226, 0.4)',
-                        'inset 0 0 120px 40px rgba(0, 245, 255, 0.7), inset 0 0 200px 80px rgba(138, 43, 226, 0.6)',
-                        'inset 0 0 100px 30px rgba(0, 245, 255, 0.5), inset 0 0 150px 60px rgba(138, 43, 226, 0.4)'
-                      ]
-                    }}
-                    transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-                  />
-                  {/* Energy Flow Particles */}
-                  {[...Array(15)].map((_, i) => {
-                    const isLeft = i % 2 === 0;
-                    return (
-                      <motion.div
-                        key={`energy-${i}`}
-                        className="absolute rounded-full blur-[2px]"
-                        style={{
-                          width: (Math.random() * 8 + 4) + 'px',
-                          height: (Math.random() * 40 + 20) + 'px',
-                          left: isLeft ? `${Math.random() * 10 - 2}%` : `${92 + Math.random() * 10}%`,
-                          top: '110%',
-                          background: Math.random() > 0.5 ? '#00f5ff' : '#8a2be2',
-                        }}
-                        animate={{
-                          y: ['0vh', '-120vh'],
-                          x: isLeft ? [0, Math.random() * 100] : [0, -Math.random() * 100],
-                          opacity: [0, 0.9, 0],
-                          scale: [0.5, 1.5, 0.5]
-                        }}
-                        transition={{
-                          duration: Math.random() * 1.5 + 1.5,
-                          repeat: Infinity,
-                          ease: 'easeIn',
-                          delay: Math.random() * 2
-                        }}
-                      />
-                    );
-                  })}
-                </motion.div>
-              )}
-            </AnimatePresence>
-
-            {/* Speed Effect Overlay */}
-            <AnimatePresence>
-              {isSpeedEffectActive && !isCinema && !isAnyEnd && (
-                <motion.div
-                  className="absolute inset-0 pointer-events-none z-[16] overflow-hidden mix-blend-overlay"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  {[...Array(40)].map((_, i) => (
-                    <motion.div
-                      key={`speed-${i}`}
-                      className="absolute bg-white rounded-full shadow-[0_0_8px_2px_rgba(255,255,255,0.8)]"
-                      style={{
-                        height: Math.random() * 4 + 1 + 'px',
-                        width: Math.random() * 400 + 100 + 'px',
-                        top: Math.random() * 100 + '%',
-                        left: '100%',
-                        opacity: Math.random() * 0.6 + 0.2
-                      }}
-                      animate={{
-                        x: ['0vw', '-150vw']
-                      }}
-                      transition={{
-                        duration: Math.random() * 0.3 + 0.1,
-                        repeat: Infinity,
-                        ease: 'linear',
-                        delay: Math.random() * 0.4
-                      }}
-                    />
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
-
-            {/* Dark Energy Overlay */}
-            <AnimatePresence>
-              {isDarkEnergyActive && !isCinema && !isAnyEnd && (
-                <motion.div
-                  className="absolute inset-0 pointer-events-none z-[5] overflow-hidden flex justify-center items-center"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 1.5, ease: 'easeOut' }}
-                >
-                  <motion.div
-                    className="relative w-[600px] h-[600px] rounded-full"
-                    style={{
-                      background: 'radial-gradient(circle, rgba(0,0,0,0.95) 0%, rgba(30,0,50,0.8) 30%, rgba(0,0,0,0) 70%)',
-                    }}
-                    animate={{
-                      rotate: [0, 90, 180, 360]
-                    }}
-                    transition={{
-                      duration: 3,
-                      repeat: Infinity,
-                      ease: 'linear'
-                    }}
+                    className="absolute inset-0 z-[5] pointer-events-none"
+                    initial={{ opacity: 0, x: 100 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 100 }}
+                    transition={{ duration: 0.5, ease: "easeOut" }}
                   >
-                    {/* Inner core */}
+                    <div
+                      className="absolute inset-0 bg-black shadow-[inset_20px_0_50px_rgba(0,0,0,0.8)]"
+                      style={{ clipPath: 'polygon(70% 0, 100% 0, 100% 100%, 60% 100%)' }}
+                    >
+                      <img src={assetPath('/scene/lab.png')} alt="lab" className="w-full h-full object-cover opacity-80" />
+                      <div className="absolute inset-0 bg-cyan-950/30 mix-blend-color-burn" />
+                    </div>
+                    <svg className="absolute inset-0 w-full h-full pointer-events-none drop-shadow-[0_0_10px_rgba(0,245,255,0.8)]">
+                      <line x1="70%" y1="0" x2="60%" y2="100%" stroke="#22d3ee" strokeWidth="3" />
+                      <line x1="70%" y1="0" x2="60%" y2="100%" stroke="#fff" strokeWidth="1" />
+                    </svg>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              {/* Character Sprite Overlay */}
+              {!isCinema && !isAnyEnd && (
+                <SpriteSlot
+                  leftActive={leftActive}
+                  rightActive={rightActive}
+                  focusSlot={focusSlot}
+                  currentSpeaker={visualLine?.speaker}
+                  presentCharacters={presentCharacters}
+                  currentLine={visualLine}
+                  currentStep={visualStep}
+                  scenarioData={scenarioData}
+                  isPhoneCallRight={isPhoneCallRight}
+                />
+              )}
+
+              {/* Phone Call Right Scanline Overlay (Over Characters) */}
+              <AnimatePresence>
+                {isPhoneCallRight && !isCinema && !isAnyEnd && (
+                  <motion.div
+                    className="absolute inset-0 z-[25] pointer-events-none"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                  >
+                    <div
+                      className="absolute inset-0"
+                      style={{ clipPath: 'polygon(70% 0, 100% 0, 100% 100%, 60% 100%)' }}
+                    >
+                      <div className="absolute inset-0 bg-[linear-gradient(rgba(0,255,255,0.05)_1px,transparent_1px)] [background-size:100%_4px]" />
+                      <div className="absolute inset-0 bg-cyan-500/5 mix-blend-screen" />
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              {/* Mutsunori Healing Cut-in Overlay */}
+              <AnimatePresence>
+                {currentLine?.action === 'MUTSUNORI_HEALING_CUTIN' && (
+                  <MutsunoriHealingCutIn />
+                )}
+              </AnimatePresence>
+
+              {/* Item Sprite Overlay */}
+              <AnimatePresence>
+                {displayedItem && !isCinema && !isAnyEnd && (() => {
+                  const isPhone = displayedItem.includes('phone_');
+                  const isMessage = displayedItem.includes('Message.png');
+                  const isBottomAligned = isPhone || isMessage;
+                  return (
                     <motion.div
-                      className="absolute inset-0 rounded-full mix-blend-multiply"
-                      style={{
-                        background: 'radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(50,0,80,0.6) 40%, transparent 60%)',
-                        filter: 'blur(8px)'
-                      }}
-                      animate={{
-                        rotate: [360, 180, 90, 0]
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        ease: 'linear'
-                      }}
-                    />
-                    
-                    {/* Absorbing particles */}
-                    {[...Array(12)].map((_, i) => (
+                      key="item-overlay"
+                      className={`absolute inset-0 flex pointer-events-none z-[15] ${isBottomAligned ? 'items-end justify-center' : 'items-center justify-center'}`}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0, transition: { delay: 0.7 } }}
+                    >
+                      <motion.img
+                        key={displayedItem}
+                        src={assetPath(displayedItem)}
+                        alt="item"
+                        initial={isBottomAligned ? { y: '100%', opacity: 0 } : { opacity: 0, scale: 0.95 }}
+                        animate={isBottomAligned ? { y: '-5%', opacity: 1 } : { opacity: 1, scale: 1 }}
+                        exit={isBottomAligned ? { y: '100%', opacity: 0 } : { opacity: 0, scale: 0.95 }}
+                        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                        className={`object-contain drop-shadow-2xl ${isPhone ? 'w-[20%] max-w-[250px] min-w-[150px]' : isMessage ? 'w-[50%] max-w-[600px] min-w-[300px]' : 'max-w-[40%] max-h-[60%]'}`}
+                      />
+                    </motion.div>
+                  );
+                })()}
+              </AnimatePresence>
+
+              {/* Tear Blur Overlay */}
+              <AnimatePresence>
+                {isTearBlurActive && !isCinema && !isAnyEnd && (
+                  <motion.div
+                    className="absolute inset-0 pointer-events-none z-[17] backdrop-blur-[6px] bg-white/5"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1, transition: { duration: 1.5, ease: 'easeOut' } }}
+                    exit={{ opacity: 0, transition: { duration: 1.5, ease: 'easeIn' } }}
+                  />
+                )}
+              </AnimatePresence>
+
+              {/* Smoke Overlay */}
+              <AnimatePresence>
+                {isSmokeActive && !isCinema && !isAnyEnd && (
+                  <motion.div
+                    className="absolute inset-0 pointer-events-none z-[18] overflow-hidden flex items-center justify-center"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1, transition: { duration: 0.5, ease: 'easeOut' } }}
+                    exit={{ opacity: 0, transition: { duration: smokeExitDurationRef.current, ease: 'easeIn' } }}
+                  >
+                    {/* Base gray background (Removed expensive backdrop-blur) */}
+                    <div className="absolute inset-0 bg-gray-300" />
+
+                    {/* Lighter billowing effect using CSS radial gradients instead of blur/mix-blend */}
+                    {[
+                      { left: '-10%', size: '120vw', dur: 6, delay: 0 },
+                      { left: '10%', size: '140vw', dur: 8, delay: 0.5 },
+                      { left: '50%', size: '130vw', dur: 7, delay: 1 },
+                    ].map((cloud, i) => (
                       <motion.div
                         key={i}
-                        className="absolute bg-black rounded-full"
+                        className="absolute rounded-full"
                         style={{
-                          width: `${10 + Math.random() * 20}px`,
-                          height: `${10 + Math.random() * 20}px`,
-                          boxShadow: '0 0 15px rgba(100,0,150,0.8)',
-                          left: '50%',
-                          top: '50%',
-                          marginTop: '-15px',
-                          marginLeft: '-15px',
+                          width: cloud.size,
+                          height: cloud.size,
+                          left: cloud.left,
+                          top: '100%',
+                          background: 'radial-gradient(circle, rgba(156,163,175,0.6) 0%, rgba(156,163,175,0) 70%)',
                         }}
                         animate={{
-                          x: [ (Math.random() - 0.5) * 600, 0 ],
-                          y: [ (Math.random() - 0.5) * 600, 0 ],
-                          scale: [0, 1.5, 0],
-                          opacity: [0, 1, 0]
+                          y: ['0vh', '-130vh'],
+                          scale: [0.8, 1.3],
                         }}
                         transition={{
-                          duration: 1 + Math.random() * 1.5,
+                          duration: cloud.dur,
                           repeat: Infinity,
-                          ease: 'easeIn',
-                          delay: Math.random() * 2
+                          ease: 'linear',
+                          delay: cloud.delay,
                         }}
                       />
                     ))}
                   </motion.div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+                )}
+              </AnimatePresence>
 
-            {/* Black Energy Edge Overlay */}
-            <AnimatePresence>
-              {isBlackEnergyEdgeActive && !isCinema && !isAnyEnd && (
-                <motion.div
-                  className="absolute inset-0 pointer-events-none z-[5] mix-blend-multiply"
-                  style={{
-                    boxShadow: 'inset 0 0 120px 60px rgba(20, 0, 40, 0.9), inset 0 0 250px 100px rgba(0, 0, 0, 0.9)',
-                  }}
-                  initial={{ opacity: 0 }}
-                  animate={{ 
-                    opacity: [0.8, 1, 0.8],
-                  }}
-                  exit={{ opacity: 0, transition: { duration: 0.2, ease: 'easeOut', repeat: 0 } }}
-                  transition={{ 
-                    opacity: { duration: 2, repeat: Infinity, ease: 'easeInOut' }
-                  }}
-                />
-              )}
-            </AnimatePresence>
-
-            {/* Light Wave Burst Overlay */}
-            <AnimatePresence>
-              {isLightWaveActive && !isCinema && !isAnyEnd && (
-                <LightWaveBurstOverlay />
-              )}
-            </AnimatePresence>
-
-            {/* Black Aura Overlay */}
-            <AnimatePresence>
-              {isBlackAuraActive && !isCinema && !isAnyEnd && (
-                <motion.div
-                  className="absolute inset-0 pointer-events-none z-[18] overflow-hidden mix-blend-multiply"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 1.5, ease: 'easeOut' }}
-                >
+              {/* Energy Aura Overlay */}
+              <AnimatePresence>
+                {isEnergyAuraActive && !isCinema && !isAnyEnd && (
                   <motion.div
-                    className="absolute inset-0"
-                    animate={{
-                      opacity: [0.5, 0.9, 0.5],
-                      boxShadow: [
-                        'inset 0 0 150px 50px rgba(0, 0, 0, 0.8), inset 0 0 200px 80px rgba(20, 0, 30, 0.6)',
-                        'inset 0 0 180px 60px rgba(0, 0, 0, 0.9), inset 0 0 250px 100px rgba(30, 0, 40, 0.8)',
-                        'inset 0 0 150px 50px rgba(0, 0, 0, 0.8), inset 0 0 200px 80px rgba(20, 0, 30, 0.6)'
-                      ]
-                    }}
-                    transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                  />
-                  {/* Subtle dark particles */}
-                  {[...Array(12)].map((_, i) => {
-                    const isLeft = i % 2 === 0;
-                    return (
+                    className="absolute inset-0 pointer-events-none z-[18] overflow-hidden mix-blend-screen"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 1, ease: 'easeOut' }}
+                  >
+                    <motion.div
+                      className="absolute inset-0"
+                      animate={{
+                        opacity: [0.6, 1, 0.6],
+                        boxShadow: [
+                          'inset 0 0 100px 30px rgba(0, 245, 255, 0.5), inset 0 0 150px 60px rgba(138, 43, 226, 0.4)',
+                          'inset 0 0 120px 40px rgba(0, 245, 255, 0.7), inset 0 0 200px 80px rgba(138, 43, 226, 0.6)',
+                          'inset 0 0 100px 30px rgba(0, 245, 255, 0.5), inset 0 0 150px 60px rgba(138, 43, 226, 0.4)'
+                        ]
+                      }}
+                      transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                    />
+                    {/* Energy Flow Particles */}
+                    {[...Array(15)].map((_, i) => {
+                      const isLeft = i % 2 === 0;
+                      return (
+                        <motion.div
+                          key={`energy-${i}`}
+                          className="absolute rounded-full blur-[2px]"
+                          style={{
+                            width: (Math.random() * 8 + 4) + 'px',
+                            height: (Math.random() * 40 + 20) + 'px',
+                            left: isLeft ? `${Math.random() * 10 - 2}%` : `${92 + Math.random() * 10}%`,
+                            top: '110%',
+                            background: Math.random() > 0.5 ? '#00f5ff' : '#8a2be2',
+                          }}
+                          animate={{
+                            y: ['0vh', '-120vh'],
+                            x: isLeft ? [0, Math.random() * 100] : [0, -Math.random() * 100],
+                            opacity: [0, 0.9, 0],
+                            scale: [0.5, 1.5, 0.5]
+                          }}
+                          transition={{
+                            duration: Math.random() * 1.5 + 1.5,
+                            repeat: Infinity,
+                            ease: 'easeIn',
+                            delay: Math.random() * 2
+                          }}
+                        />
+                      );
+                    })}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              {/* Speed Effect Overlay */}
+              <AnimatePresence>
+                {isSpeedEffectActive && !isCinema && !isAnyEnd && (
+                  <motion.div
+                    className="absolute inset-0 pointer-events-none z-[16] overflow-hidden mix-blend-overlay"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {[...Array(40)].map((_, i) => (
                       <motion.div
-                        key={`dark-${i}`}
-                        className="absolute rounded-full blur-[4px]"
+                        key={`speed-${i}`}
+                        className="absolute bg-white rounded-full shadow-[0_0_8px_2px_rgba(255,255,255,0.8)]"
                         style={{
-                          width: `${Math.random() * 30 + 20}px`,
-                          height: `${Math.random() * 30 + 20}px`,
-                          background: 'rgba(0,0,0,0.85)',
-                          left: isLeft ? `${Math.random() * 15 - 5}%` : `${Math.random() * 15 + 90}%`,
-                          top: '110%'
+                          height: Math.random() * 4 + 1 + 'px',
+                          width: Math.random() * 400 + 100 + 'px',
+                          top: Math.random() * 100 + '%',
+                          left: '100%',
+                          opacity: Math.random() * 0.6 + 0.2
                         }}
                         animate={{
-                          y: ['0vh', '-120vh'],
-                          x: [(Math.random() - 0.5) * 50, (Math.random() - 0.5) * 150],
-                          opacity: [0, 0.7, 0]
+                          x: ['0vw', '-150vw']
                         }}
                         transition={{
-                          duration: Math.random() * 3 + 3,
+                          duration: Math.random() * 0.3 + 0.1,
                           repeat: Infinity,
                           ease: 'linear',
-                          delay: Math.random() * 3
+                          delay: Math.random() * 0.4
                         }}
                       />
-                    );
-                  })}
-                </motion.div>
-              )}
-            </AnimatePresence>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
-            {/* Black Distortion Overlay */}
-            <AnimatePresence>
-              {isBlackDistortActive && !isCinema && !isAnyEnd && (
-                <motion.div
-                  className="absolute inset-0 pointer-events-none z-[19] overflow-hidden"
-                  initial={{ opacity: 0, scale: 1 }}
-                  animate={{
-                    opacity: [0, 0.95, 0.5, 0.9, 0],
-                    scale: [1, 1.04, 0.98, 1.03, 1],
-                    filter: [
-                      'blur(0px) contrast(100%)',
-                      'blur(6px) contrast(170%) brightness(35%)',
-                      'blur(2px) contrast(130%) brightness(60%)',
-                      'blur(5px) contrast(160%) brightness(40%)',
-                      'blur(0px) contrast(100%)'
-                    ]
-                  }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 2, ease: 'easeInOut' }}
-                >
-                  <div className="w-full h-full bg-black/60" />
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_10%,rgba(0,0,0,0.95)_85%)]" />
-                </motion.div>
-              )}
-            </AnimatePresence>
+              {/* Dark Energy Overlay */}
+              <AnimatePresence>
+                {isDarkEnergyActive && !isCinema && !isAnyEnd && (
+                  <motion.div
+                    className="absolute inset-0 pointer-events-none z-[5] overflow-hidden flex justify-center items-center"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 1.5, ease: 'easeOut' }}
+                  >
+                    <motion.div
+                      className="relative w-[600px] h-[600px] rounded-full"
+                      style={{
+                        background: 'radial-gradient(circle, rgba(0,0,0,0.95) 0%, rgba(30,0,50,0.8) 30%, rgba(0,0,0,0) 70%)',
+                      }}
+                      animate={{
+                        rotate: [0, 90, 180, 360]
+                      }}
+                      transition={{
+                        duration: 3,
+                        repeat: Infinity,
+                        ease: 'linear'
+                      }}
+                    >
+                      {/* Inner core */}
+                      <motion.div
+                        className="absolute inset-0 rounded-full mix-blend-multiply"
+                        style={{
+                          background: 'radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(50,0,80,0.6) 40%, transparent 60%)',
+                          filter: 'blur(8px)'
+                        }}
+                        animate={{
+                          rotate: [360, 180, 90, 0]
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          ease: 'linear'
+                        }}
+                      />
 
-            {/* Blood Screen Vignette Overlay */}
-            <AnimatePresence>
-              {isBloodActive && !isCinema && !isAnyEnd && (
-                <motion.div
-                  className="absolute inset-0 pointer-events-none z-[19] overflow-hidden"
-                  initial={{ opacity: 0, scale: 1.05 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, transition: { duration: 1 } }}
-                  transition={{ duration: 0.25, ease: 'easeOut' }}
-                >
-                  <div
-                    className="w-full h-full"
+                      {/* Absorbing particles */}
+                      {[...Array(12)].map((_, i) => (
+                        <motion.div
+                          key={i}
+                          className="absolute bg-black rounded-full"
+                          style={{
+                            width: `${10 + Math.random() * 20}px`,
+                            height: `${10 + Math.random() * 20}px`,
+                            boxShadow: '0 0 15px rgba(100,0,150,0.8)',
+                            left: '50%',
+                            top: '50%',
+                            marginTop: '-15px',
+                            marginLeft: '-15px',
+                          }}
+                          animate={{
+                            x: [(Math.random() - 0.5) * 600, 0],
+                            y: [(Math.random() - 0.5) * 600, 0],
+                            scale: [0, 1.5, 0],
+                            opacity: [0, 1, 0]
+                          }}
+                          transition={{
+                            duration: 1 + Math.random() * 1.5,
+                            repeat: Infinity,
+                            ease: 'easeIn',
+                            delay: Math.random() * 2
+                          }}
+                        />
+                      ))}
+                    </motion.div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              {/* Black Energy Edge Overlay */}
+              <AnimatePresence>
+                {isBlackEnergyEdgeActive && !isCinema && !isAnyEnd && (
+                  <motion.div
+                    className="absolute inset-0 pointer-events-none z-[5] mix-blend-multiply"
                     style={{
-                      background: 'radial-gradient(ellipse at center, transparent 35%, rgba(139, 0, 0, 0.55) 70%, rgba(90, 0, 0, 0.95) 100%)',
-                      boxShadow: 'inset 0 0 80px 40px rgba(180, 0, 0, 0.85)',
+                      boxShadow: 'inset 0 0 120px 60px rgba(20, 0, 40, 0.9), inset 0 0 250px 100px rgba(0, 0, 0, 0.9)',
+                    }}
+                    initial={{ opacity: 0 }}
+                    animate={{
+                      opacity: [0.8, 1, 0.8],
+                    }}
+                    exit={{ opacity: 0, transition: { duration: 0.2, ease: 'easeOut', repeat: 0 } }}
+                    transition={{
+                      opacity: { duration: 2, repeat: Infinity, ease: 'easeInOut' }
                     }}
                   />
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(160,0,0,0.8),transparent_40%),radial-gradient(circle_at_bottom_right,rgba(160,0,0,0.85),transparent_45%)] mix-blend-multiply" />
-                </motion.div>
-              )}
-            </AnimatePresence>
+                )}
+              </AnimatePresence>
 
-            {/* White Vignette Overlay */}
-            <AnimatePresence>
-              {isWhiteVignetteActive && !isCinema && !isAnyEnd && (
-                <motion.div
-                  className="absolute inset-0 pointer-events-none z-[19] overflow-hidden"
-                  initial={{ opacity: 0, scale: 1.05 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, transition: { duration: 1 } }}
-                  transition={{ duration: 0.5, ease: 'easeOut' }}
-                >
-                  <div
-                    className="w-full h-full"
-                    style={{
-                      background: 'radial-gradient(ellipse at center, transparent 35%, rgba(255, 255, 255, 0.6) 70%, rgba(255, 255, 255, 1) 100%)',
-                      boxShadow: 'inset 0 0 80px 40px rgba(255, 255, 255, 0.9)',
+              {/* Light Wave Burst Overlay */}
+              <AnimatePresence>
+                {isLightWaveActive && !isCinema && !isAnyEnd && (
+                  <LightWaveBurstOverlay />
+                )}
+              </AnimatePresence>
+
+              {/* Black Aura Overlay */}
+              <AnimatePresence>
+                {isBlackAuraActive && !isCinema && !isAnyEnd && (
+                  <motion.div
+                    className="absolute inset-0 pointer-events-none z-[18] overflow-hidden mix-blend-multiply"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 1.5, ease: 'easeOut' }}
+                  >
+                    <motion.div
+                      className="absolute inset-0"
+                      animate={{
+                        opacity: [0.5, 0.9, 0.5],
+                        boxShadow: [
+                          'inset 0 0 150px 50px rgba(0, 0, 0, 0.8), inset 0 0 200px 80px rgba(20, 0, 30, 0.6)',
+                          'inset 0 0 180px 60px rgba(0, 0, 0, 0.9), inset 0 0 250px 100px rgba(30, 0, 40, 0.8)',
+                          'inset 0 0 150px 50px rgba(0, 0, 0, 0.8), inset 0 0 200px 80px rgba(20, 0, 30, 0.6)'
+                        ]
+                      }}
+                      transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                    />
+                    {/* Subtle dark particles */}
+                    {[...Array(12)].map((_, i) => {
+                      const isLeft = i % 2 === 0;
+                      return (
+                        <motion.div
+                          key={`dark-${i}`}
+                          className="absolute rounded-full blur-[4px]"
+                          style={{
+                            width: `${Math.random() * 30 + 20}px`,
+                            height: `${Math.random() * 30 + 20}px`,
+                            background: 'rgba(0,0,0,0.85)',
+                            left: isLeft ? `${Math.random() * 15 - 5}%` : `${Math.random() * 15 + 90}%`,
+                            top: '110%'
+                          }}
+                          animate={{
+                            y: ['0vh', '-120vh'],
+                            x: [(Math.random() - 0.5) * 50, (Math.random() - 0.5) * 150],
+                            opacity: [0, 0.7, 0]
+                          }}
+                          transition={{
+                            duration: Math.random() * 3 + 3,
+                            repeat: Infinity,
+                            ease: 'linear',
+                            delay: Math.random() * 3
+                          }}
+                        />
+                      );
+                    })}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              {/* Black Distortion Overlay */}
+              <AnimatePresence>
+                {isBlackDistortActive && !isCinema && !isAnyEnd && (
+                  <motion.div
+                    className="absolute inset-0 pointer-events-none z-[19] overflow-hidden"
+                    initial={{ opacity: 0, scale: 1 }}
+                    animate={{
+                      opacity: [0, 0.95, 0.5, 0.9, 0],
+                      scale: [1, 1.04, 0.98, 1.03, 1],
+                      filter: [
+                        'blur(0px) contrast(100%)',
+                        'blur(6px) contrast(170%) brightness(35%)',
+                        'blur(2px) contrast(130%) brightness(60%)',
+                        'blur(5px) contrast(160%) brightness(40%)',
+                        'blur(0px) contrast(100%)'
+                      ]
                     }}
-                  />
-                </motion.div>
-              )}
-            </AnimatePresence>
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 2, ease: 'easeInOut' }}
+                  >
+                    <div className="w-full h-full bg-black/60" />
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_10%,rgba(0,0,0,0.95)_85%)]" />
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
-            {/* Red Alert Flash Overlay */}
-            <AnimatePresence>
-              {isRedAlertActive && !isCinema && !isAnyEnd && (
-                <motion.div
-                  className="absolute inset-0 pointer-events-none z-[19] overflow-hidden bg-red-600 mix-blend-multiply"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: [0.15, 0.6, 0.15], transition: { duration: 1.0, repeat: Infinity, ease: "easeInOut" } }}
-                  exit={{ opacity: 0, transition: { duration: 0.5 } }}
-                />
-              )}
-            </AnimatePresence>
-
-            {/* Monochrome Flash Overlay */}
-            <AnimatePresence>
-              {isMonochromeFlashActive && !isCinema && !isAnyEnd && (
-                <motion.div
-                  className="absolute inset-0 pointer-events-none z-[19]"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0, transition: { duration: 1 } }}
-                >
+              {/* Blood Screen Vignette Overlay */}
+              <AnimatePresence>
+                {isBloodActive && !isCinema && !isAnyEnd && (
                   <motion.div
-                    className="absolute inset-0"
-                    style={{ boxShadow: "inset 0 0 200px 100px rgba(255,255,255,1)" }}
-                    animate={{ opacity: [0, 0.7, 0] }}
-                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                  />
+                    className="absolute inset-0 pointer-events-none z-[19] overflow-hidden"
+                    initial={{ opacity: 0, scale: 1.05 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, transition: { duration: 1 } }}
+                    transition={{ duration: 0.25, ease: 'easeOut' }}
+                  >
+                    <div
+                      className="w-full h-full"
+                      style={{
+                        background: 'radial-gradient(ellipse at center, transparent 35%, rgba(139, 0, 0, 0.55) 70%, rgba(90, 0, 0, 0.95) 100%)',
+                        boxShadow: 'inset 0 0 80px 40px rgba(180, 0, 0, 0.85)',
+                      }}
+                    />
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(160,0,0,0.8),transparent_40%),radial-gradient(circle_at_bottom_right,rgba(160,0,0,0.85),transparent_45%)] mix-blend-multiply" />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              {/* White Vignette Overlay */}
+              <AnimatePresence>
+                {isWhiteVignetteActive && !isCinema && !isAnyEnd && (
                   <motion.div
-                    className="absolute inset-0"
-                    style={{ boxShadow: "inset 0 0 200px 100px rgba(0,0,0,1)" }}
-                    animate={{ opacity: [0.7, 0, 0.7] }}
-                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute inset-0 pointer-events-none z-[19] overflow-hidden"
+                    initial={{ opacity: 0, scale: 1.05 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, transition: { duration: 1 } }}
+                    transition={{ duration: 0.5, ease: 'easeOut' }}
+                  >
+                    <div
+                      className="w-full h-full"
+                      style={{
+                        background: 'radial-gradient(ellipse at center, transparent 35%, rgba(255, 255, 255, 0.6) 70%, rgba(255, 255, 255, 1) 100%)',
+                        boxShadow: 'inset 0 0 80px 40px rgba(255, 255, 255, 0.9)',
+                      }}
+                    />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              {/* Red Alert Flash Overlay */}
+              <AnimatePresence>
+                {isRedAlertActive && !isCinema && !isAnyEnd && (
+                  <motion.div
+                    className="absolute inset-0 pointer-events-none z-[19] overflow-hidden bg-red-600 mix-blend-multiply"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: [0.15, 0.6, 0.15], transition: { duration: 1.0, repeat: Infinity, ease: "easeInOut" } }}
+                    exit={{ opacity: 0, transition: { duration: 0.5 } }}
                   />
-                </motion.div>
-              )}
-            </AnimatePresence>
+                )}
+              </AnimatePresence>
 
-            {/* Flashback Overlay */}
-            <AnimatePresence>
-              {isFlashbackActive && !isCinema && !isAnyEnd && (
-                <motion.div
-                  className="absolute inset-0 pointer-events-none z-[19] flex flex-col justify-between"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0, transition: { duration: 1.5 } }}
-                >
-                  <div className="w-full h-16 bg-black" />
-                  <div className="w-full h-16 bg-black" />
-                  <div className="absolute inset-0 shadow-[inset_0_0_150px_rgba(0,0,0,0.8)]" />
-                </motion.div>
-              )}
-            </AnimatePresence>
+              {/* Monochrome Flash Overlay */}
+              <AnimatePresence>
+                {isMonochromeFlashActive && !isCinema && !isAnyEnd && (
+                  <motion.div
+                    className="absolute inset-0 pointer-events-none z-[19]"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0, transition: { duration: 1 } }}
+                  >
+                    <motion.div
+                      className="absolute inset-0"
+                      style={{ boxShadow: "inset 0 0 200px 100px rgba(255,255,255,1)" }}
+                      animate={{ opacity: [0, 0.7, 0] }}
+                      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                    />
+                    <motion.div
+                      className="absolute inset-0"
+                      style={{ boxShadow: "inset 0 0 200px 100px rgba(0,0,0,1)" }}
+                      animate={{ opacity: [0.7, 0, 0.7] }}
+                      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                    />
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
-            {/* White Flash 70 Overlay */}
-            <AnimatePresence>
-              {isWhiteFlash70Active && !isCinema && !isAnyEnd && (
-                <motion.div
-                  className="absolute inset-0 pointer-events-none z-[20] bg-white"
-                  initial={{ opacity: 0.7 }}
-                  animate={{ opacity: 0 }}
-                  transition={{ duration: 0.5, ease: "easeOut" }}
-                />
-              )}
-            </AnimatePresence>
+              {/* Flashback Overlay */}
+              <AnimatePresence>
+                {isFlashbackActive && !isCinema && !isAnyEnd && (
+                  <motion.div
+                    className="absolute inset-0 pointer-events-none z-[19] flex flex-col justify-between"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0, transition: { duration: 1.5 } }}
+                  >
+                    <div className="w-full h-16 bg-black" />
+                    <div className="w-full h-16 bg-black" />
+                    <div className="absolute inset-0 shadow-[inset_0_0_150px_rgba(0,0,0,0.8)]" />
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
-            {/* White Flash Overlay */}
-            <AnimatePresence>
-              {isWhiteFlashActive && !isCinema && !isAnyEnd && (
-                <motion.div
-                  className="absolute inset-0 pointer-events-none z-[20] bg-white"
-                  initial={{ opacity: 1 }}
-                  animate={{ opacity: 0 }}
-                  transition={{ duration: 0.5, ease: "easeOut" }}
-                />
-              )}
-            </AnimatePresence>
+              {/* White Flash 70 Overlay */}
+              <AnimatePresence>
+                {isWhiteFlash70Active && !isCinema && !isAnyEnd && (
+                  <motion.div
+                    className="absolute inset-0 pointer-events-none z-[20] bg-white"
+                    initial={{ opacity: 0.7 }}
+                    animate={{ opacity: 0 }}
+                    transition={{ duration: 0.5, ease: "easeOut" }}
+                  />
+                )}
+              </AnimatePresence>
 
-            {/* White Pulse Overlay */}
-            <AnimatePresence>
-              {whitePulseLevel > 0 && !isCinema && !isAnyEnd && (
-                <motion.div
-                  className={`absolute inset-0 pointer-events-none z-[18] bg-white ${whitePulseLevel >= 0.9 ? '' : 'mix-blend-overlay'}`}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: [0, whitePulseLevel, 0] }}
-                  transition={{ duration: 1.2 - whitePulseLevel, repeat: Infinity, ease: 'easeInOut' }}
-                />
-              )}
-            </AnimatePresence>
+              {/* White Flash Overlay */}
+              <AnimatePresence>
+                {isWhiteFlashActive && !isCinema && !isAnyEnd && (
+                  <motion.div
+                    className="absolute inset-0 pointer-events-none z-[20] bg-white"
+                    initial={{ opacity: 1 }}
+                    animate={{ opacity: 0 }}
+                    transition={{ duration: 0.5, ease: "easeOut" }}
+                  />
+                )}
+              </AnimatePresence>
 
-            {/* White Out Overlay */}
-            <AnimatePresence>
-              {isWhiteOut && !isCinema && !isAnyEnd && (
-                <motion.div
-                  className="absolute inset-0 pointer-events-none z-[19] bg-white"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: whiteOutDuration, ease: 'easeInOut' }}
-                />
-              )}
-              {isWhiteOutLight && !isCinema && !isAnyEnd && (
-                <motion.div
-                  className="absolute inset-0 pointer-events-none z-[19] bg-white"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 0.5 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: whiteOutDuration, ease: 'easeInOut' }}
-                />
-              )}
-              {isGrayOut && !isCinema && !isAnyEnd && (
-                <motion.div
-                  className="absolute inset-0 pointer-events-none z-[19] bg-[#777777]"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: grayOutDuration, ease: 'easeInOut' }}
-                />
-              )}
-            </AnimatePresence>
-          </div>
-        )}
+              {/* White Pulse Overlay */}
+              <AnimatePresence>
+                {whitePulseLevel > 0 && !isCinema && !isAnyEnd && (
+                  <motion.div
+                    className={`absolute inset-0 pointer-events-none z-[18] bg-white ${whitePulseLevel >= 0.9 ? '' : 'mix-blend-overlay'}`}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: [0, whitePulseLevel, 0] }}
+                    transition={{ duration: 1.2 - whitePulseLevel, repeat: Infinity, ease: 'easeInOut' }}
+                  />
+                )}
+              </AnimatePresence>
+
+              {/* White Out Overlay */}
+              <motion.div
+                className="absolute inset-0 pointer-events-none z-[19] bg-white"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: (isWhiteOut && !isCinema && !isAnyEnd) ? 1 : 0 }}
+                transition={{ duration: whiteOutDuration, ease: 'easeInOut' }}
+              />
+              <motion.div
+                className="absolute inset-0 pointer-events-none z-[19] bg-white"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: (isWhiteOutLight && !isCinema && !isAnyEnd) ? 0.5 : 0 }}
+                transition={{ duration: whiteOutDuration, ease: 'easeInOut' }}
+              />
+              {/* Gray Out Overlay */}
+              <motion.div
+                className="absolute inset-0 pointer-events-none z-[19] bg-[#777777]"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: (isGrayOut && !isCinema && !isAnyEnd) ? 1 : 0 }}
+                transition={{ duration: grayOutDuration, ease: 'easeInOut' }}
+              />
+            </div>
+          )}
         </ShakeLayer>
 
         {!showTitle && (
@@ -2925,12 +2923,12 @@ export default function App() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  transition={{ 
-                    duration: currentLine?.action === 'SLOW_FADE_TO_BLACK' ? 1.5 
-                            : currentLine?.action === 'SLOW_FADE_IN' ? 1.0 
-                            : currentLine?.action === 'FADE_IN' ? 0.7 
-                            : 0.5, 
-                    ease: "easeInOut" 
+                  transition={{
+                    duration: (currentLine?.action === 'SLOW_FADE_TO_BLACK' || currentLine?.action === 'SLOW_FADE_TO_BLACK_NO_SHAKE') ? 1.5
+                      : currentLine?.action === 'SLOW_FADE_IN' ? 1.0
+                        : currentLine?.action === 'FADE_IN' ? 0.7
+                          : 0.5,
+                    ease: "easeInOut"
                   }}
                 />
               )}
@@ -2959,14 +2957,14 @@ export default function App() {
               <div className="absolute inset-0 bg-black/95 flex flex-col items-center justify-center z-[70] p-8 text-center animate-fadeIn">
                 <div
                   className={`absolute w-[60vh] h-[60vh] rounded-full border pointer-events-none transition-all duration-1000 ${endType === 'bad'
-                      ? 'border-red-500/10 shadow-[0_0_120px_rgba(239,68,68,0.05)]'
-                      : 'border-amber-400/10 shadow-[0_0_120px_rgba(245,158,11,0.05)]'
+                    ? 'border-red-500/10 shadow-[0_0_120px_rgba(239,68,68,0.05)]'
+                    : 'border-amber-400/10 shadow-[0_0_120px_rgba(245,158,11,0.05)]'
                     }`}
                 />
                 <h1
                   className={`text-4xl md:text-5xl font-orbitron font-extrabold tracking-[0.2em] mb-4 ${endType === 'bad'
-                      ? 'text-red-500 drop-shadow-[0_0_20px_rgba(239,68,68,0.6)] animate-pulse'
-                      : 'text-amber-400 drop-shadow-[0_0_20px_rgba(245,158,11,0.6)] animate-pulse'
+                    ? 'text-red-500 drop-shadow-[0_0_20px_rgba(239,68,68,0.6)] animate-pulse'
+                    : 'text-amber-400 drop-shadow-[0_0_20px_rgba(245,158,11,0.6)] animate-pulse'
                     }`}
                 >
                   {endType === 'bad' ? 'BAD END' : 'HAPPY END'}
@@ -2983,8 +2981,8 @@ export default function App() {
                       jumpToStep(0);
                     }}
                     className={`px-8 py-3.5 border font-orbitron text-sm tracking-[0.2em] rounded transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 active:scale-95 ${endType === 'bad'
-                        ? 'bg-red-950/30 border-red-500/30 text-red-300 hover:bg-red-500/20 hover:border-red-400 hover:text-white hover:shadow-[0_0_20px_rgba(239,68,68,0.3)]'
-                        : 'bg-amber-950/30 border-amber-500/30 text-amber-300 hover:bg-amber-500/20 hover:border-amber-400 hover:text-white hover:shadow-[0_0_20px_rgba(245,158,11,0.3)]'
+                      ? 'bg-red-950/30 border-red-500/30 text-red-300 hover:bg-red-500/20 hover:border-red-400 hover:text-white hover:shadow-[0_0_20px_rgba(239,68,68,0.3)]'
+                      : 'bg-amber-950/30 border-amber-500/30 text-amber-300 hover:bg-amber-500/20 hover:border-amber-400 hover:text-white hover:shadow-[0_0_20px_rgba(245,158,11,0.3)]'
                       }`}
                   >
                     タイトルに戻る

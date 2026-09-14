@@ -491,7 +491,7 @@ export default function BattleFinalAkane({ onComplete, playBGM, stopBGM, playSE 
               qteSuccessRef.current = false;
               qteResultRef.current = 'miss';
             } else {
-              
+
               setTurnPhase('enemy_windup');
             }
             return 0;
@@ -1161,7 +1161,7 @@ export default function BattleFinalAkane({ onComplete, playBGM, stopBGM, playSE 
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         {/* Full color bright image */}
-        <img src="/battle/core_houkai2.png" alt="Background" className="absolute inset-0 w-full h-full object-cover -translate-y-[15%]" />
+        <img src="/battle/core.png" alt="Background" className="absolute inset-0 w-full h-full object-cover -translate-y-[15%]" />
 
         {/* Very subtle cyber tech overlays so UI is still readable */}
         <div className="absolute inset-0 bg-[#090e17]/20" />
@@ -1594,7 +1594,7 @@ export default function BattleFinalAkane({ onComplete, playBGM, stopBGM, playSE 
         </div>
 
         {/* ── Enemies (Right Column) ── */}
-        <div className="w-1/2 flex flex-col justify-between items-center pl-4 -translate-x-12 lg:-translate-x-20 relative">
+        <div className="w-1/2 flex flex-col justify-between items-center pl-4 -translate-x-12 lg:translate-x-0 relative">
 
           <div className="relative flex items-center justify-center -top-2 -left-12 lg:top-5 lg:-left-12 w-full h-full">
             {/* キメラ4 (中央・右後ろ。立体配置 - 縦並びの下段) */}
@@ -1844,7 +1844,7 @@ export default function BattleFinalAkane({ onComplete, playBGM, stopBGM, playSE 
               );
             })()}
 
-            
+
           </div>
         </div>
 

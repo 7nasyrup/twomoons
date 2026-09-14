@@ -16,11 +16,11 @@ const ROOMS = [
 const SOLO_CHIP = [
   [
     { speaker: null, role: 'SYSTEM', text: 'フラグメント回収：1/4' },
-    { speaker: '朔良', role: 'SAKURA', text: '（これって……いったいどういうことなんだろう）' },
+    { speaker: '朔良', role: 'SAKURA', text: '（よし、この調子で見つけよう)' },
   ],
   [
     { speaker: null, role: 'SYSTEM', text: 'フラグメント回収：2/4' },
-    { speaker: '朔良', role: 'SAKURA', text: '（……集めるしかない。何かがわかるかもしれないから）' },
+    { speaker: '朔良', role: 'SAKURA', text: '（コアを止めるために、集めるしかない）' },
   ],
   [
     { speaker: null, role: 'SYSTEM', text: 'フラグメント回収：3/4' },
@@ -28,7 +28,7 @@ const SOLO_CHIP = [
   ],
   [
     { speaker: null, role: 'SYSTEM', text: 'フラグメント回収：4/4' },
-    { speaker: '朔良', role: 'SAKURA', text: '「……よし、これで全部揃った。奥のゲートを開けられる」' },
+    { speaker: '朔良', role: 'SAKURA', text: '（これで最後かな……）' },
   ],
 ];
 
@@ -37,7 +37,7 @@ const SOLO_CHIP = [
 
 // ─── ゲート解錠時 ─────────────────────────────────────────────────────────────
 const SOLO_GATE = [
-  { speaker: '朔良', role: 'SAKURA', text: '「──よしっ、これで全部！　ゲートを開けられる」' },
+  { speaker: '朔良', role: 'SAKURA', text: '「──よしっ、これで全部！ゲートを開けられる」' },
 ];
 
 // ─── 各エリアのアイテム配置 ──────────────────────────────────────────────────────

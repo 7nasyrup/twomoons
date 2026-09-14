@@ -66,8 +66,7 @@ export const scenarioData = [
   {
     "scene": "朔良の部屋",
     "text": "まだ眠気の残る頭で時計を見る。午前7時。カーテンの隙間から差し込んでいるのは、凍えるような青白い光だった。 ",
-    "bgm": "Room_Morning.mp3",
-    "bgmVolume": 0.5
+    "bgm": "Room_Morning.mp3"
   },
   {
     "scene": "窓の外",
@@ -1745,7 +1744,7 @@ export const scenarioData = [
   },
   {
     "scene": "朔良の部屋",
-    "text": "その時。"
+    "text": "その時、置いたスマートフォンが小さく震えた。"
   },
   {
     "scene": "朔良の部屋",
@@ -1879,7 +1878,10 @@ export const scenarioData = [
     "scene": "大学の正門前",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「……朔良。この人、知り合い？」"
+    "text": "「……朔良。この人、知り合い？」",
+    "showIllust": [
+      "Mutsunori_surprise"
+    ]
   },
   {
     "scene": "大学の正門前",
@@ -2558,14 +2560,14 @@ export const scenarioData = [
     "scene": "大学の講義室",
     "speaker": "ミカ",
     "role": "MIKA",
-    "text": "「……奇遇ですね、先輩。昨日は、ありがとうございました」",
+    "text": "「……昨日は、ありがとうございました」",
     "showIllust": [
       "Mika_smile"
     ]
   },
   {
     "scene": "大学の講義室",
-    "text": "素っ気なかったけれど、確かに機能のお礼だった。まさかあの少年が、同じ大学の学生だったなんて。私は講義どころではなかった。"
+    "text": "素っ気なかったけれど、確かに昨日のお礼だった。まさかあの少年が、同じ大学の学生だったなんて。私は講義どころではなかった。"
   },
   {
     "label": "insight_mika_end",
@@ -3902,7 +3904,7 @@ export const scenarioData = [
     "role": "SAKURA",
     "text": "「いやあああああっ！！」",
     "bgm": "serious_4.mp3",
-    "bgmVolume": 0.4
+    "bgmVolume": 0.08
   },
   {
     "scene": "崩壊後-大学の敷地内",
@@ -7062,7 +7064,7 @@ export const scenarioData = [
     "speaker": "ヒルミ教授",
     "role": "PROFESSOR",
     "text": "「──ああ、バレてしまったかぁ」",
-    "bgm": "serious3.mp3"
+    "bgm": "serious_3.mp3"
   },
   {
     "scene": "コアあり崩壊部屋",
@@ -7305,7 +7307,8 @@ export const scenarioData = [
     "scene": "コアあり崩壊部屋",
     "text": "突如、建物の奥から空気を震わせるような衝撃音が響いた。教授の眉がピクリと跳ね、私の手首を掴む力がわずかに緩む。",
     "bgm": "stop",
-    "se": "Shock1.mp3",
+    "bgmFade": 0,
+    "se": "Shock_1.mp3",
     "action": "SHAKE_SCREEN",
     "showIllust": [
       "bk_neutral"
@@ -7889,7 +7892,7 @@ export const scenarioData = [
   },
   {
     "scene": "最奥部屋（コア無い感じの別室）",
-    "text": "つまり、この惨状を生んだすべてが、ルキ一人の仕業というわけではない。\\nけれど彼は、それを止めるどころか面白がって利用している。"
+    "text": "つまり、この惨状を生んだすべてが、ルキ一人の仕業というわけではない。\nけれど彼は、それを止めるどころか面白がって利用している。"
   },
   {
     "scene": "最奥部屋（コア無い感じの別室）",
@@ -7938,18 +7941,27 @@ export const scenarioData = [
   },
   {
     "scene": "最奥部屋（コア無い感じの別室）",
-    "text": "圧倒的な力に、抗う術はない。\nルキが右手を掲げると、漆黒のエネルギーがその指先へと集まり始めた。"
+    "text": "圧倒的な力に、抗う術はない。"
+  },
+  {
+    "scene": "最奥部屋（コア無い感じの別室）",
+    "text": "ルキが右手を掲げると、漆黒のエネルギーがその指先へと集まり始めた。",
+    "action": "DARK_ENERGY_GATHER",
+    "se": "ruki_energy.mp3",
+    "seLoop": 3000,
+    "seVolume": 0.8
   },
   {
     "scene": "最奥部屋（コア無い感じの別室）",
     "speaker": "ルキ",
     "role": "RUKI",
-    "text": "「僕をこの暗い研究所に置いて、一人だけ外の世界へ行った姉さんを絶対許さない。\\n——さよなら、朔良」"
+    "text": "「僕をこの暗い研究所に置いて、一人だけ外の世界へ行った姉さんを絶対許さない。\n——さよなら、朔良」"
   },
   {
     "scene": "最奥部屋（コア無い感じの別室）",
     "text": "振り下ろされた手を前に、私は恐怖で目を閉じた。",
-    "action": "CLOSE_EYES"
+    "action": ["clear", "CLOSE_EYES"],
+    "se": "stop"
   },
   {
     "scene": "最奥部屋（コア無い感じの別室）",
@@ -7958,7 +7970,7 @@ export const scenarioData = [
   {
     "scene": "最奥部屋（コア無い感じの別室）",
     "text": "破滅の光が私を飲み込む寸前、静かな部屋に澄んだ音が響いた。次の瞬間、身体を押し潰していた重圧が消え、代わりに温かな風が私を包む。",
-    "se": "Suzu.mp3"
+    "se": "suzu.mp3"
   },
   {
     "scene": "最奥部屋（コア無い感じの別室）",
@@ -8121,7 +8133,10 @@ export const scenarioData = [
     "scene": "公園",
     "text": "──その日は、雲ひとつないよく晴れた日だった。",
     "bg": "/scene/park.png",
-    "bgm": "Nostalgic_Scent_of_Eventide.mp3"
+    "bgm": "Nostalgic_Scent_of_Eventide.mp3",
+    "hideIllust": [
+      "Ruki"
+    ]
   },
   {
     "scene": "公園",
@@ -8522,7 +8537,8 @@ export const scenarioData = [
     "scene": "回想：朔良の部屋前",
     "speaker": "満",
     "role": "MICHIRU",
-    "text": "「すみません。……朔良、いる？」"
+    "text": "「すみません。……朔良、いる？」",
+    "se": "door_chime.mp3"
   },
   {
     "scene": "回想：朔良の部屋前",
@@ -8700,7 +8716,11 @@ export const scenarioData = [
   {
     "scene": "回想：朔良の部屋",
     "text": "僕の身体から、眩い白い光が溢れ出す。",
-    "action": "AWAKEN_MICHIRU"
+    "action": "AWAKEN_MICHIRU",
+    "se": "nami.mp3",
+    "seDuration": 2,
+    "seFadeOut": 1500,
+    "seVolume": 0.5
   },
   {
     "scene": "回想：朔良の部屋",
@@ -8741,7 +8761,10 @@ export const scenarioData = [
     "scene": "最奥部屋（コア無い感じの別室）",
     "speaker": "ルキ",
     "role": "RUKI",
-    "text": "「あはは！ ようやく思い出したかな？ 自分の最愛の幼馴染を自分の手で美味しく頂いちゃってた時の気分はさぁ！」"
+    "text": "「あはは！ ようやく思い出したかな？ 自分の最愛の幼馴染を自分の手で美味しく頂いちゃってた時の気分はさぁ！」",
+    "showIllust": [
+      "Ruki3"
+    ]
   },
   {
     "scene": "最奥部屋（コア無い感じの別室）",
@@ -8770,7 +8793,8 @@ export const scenarioData = [
     "scene": "バッド：最奥部屋（コア無い感じの別室）",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「…………」"
+    "text": "「…………」",
+    "bgm": "stop"
   },
   {
     "scene": "最奥部屋（コア無い感じの別室）",
@@ -8818,6 +8842,17 @@ export const scenarioData = [
   },
   {
     "scene": "最奥部屋（コア無い感じの別室）",
+    "action": "SLOW_FADE_TO_BLACK_NO_SHAKE",
+    "duration": 2000
+  },
+  {
+    "scene": "最奥部屋（コア無い感じの別室）",
+    "action": "WAIT_SECONDS",
+    "duration": 1500
+  },
+  //満視点
+  {
+    "scene": "最奥部屋（コア無い感じの別室）",
     "action": "BLACK_AURA_START",
     "text": "目の前で、朔良が動かない。",
     "showIllust": [
@@ -8848,19 +8883,23 @@ export const scenarioData = [
     "scene": "最奥部屋（コア無い感じの別室）",
     "speaker": "満",
     "role": "MICHIRU",
-    "se": "Shock_1.mp3",
-    "action": [
-      "SHAKE_SCREEN",
-      "BLOOD_SCREEN"
-    ],
     "text": "「僕はここにいる。だから、どうか———————っ！」"
   },
   {
     "scene": "最奥部屋（コア無い感じの別室）",
-    "text": "朔良の身体から、凄まじい力が迸った。避ける暇もなく、僕の身体を鋭い衝撃が貫く。",
+    "se": "Shock_1.mp3",
+    "action": [
+      "SHAKE_SCREEN",
+      "BLOOD_SCREEN",
+    ],
+    "hideWindow": true,
     "showIllust": [
       "Sakura_yami2" //朔良闇2
     ]
+  },
+  {
+    "scene": "最奥部屋（コア無い感じの別室）",
+    "text": "朔良の身体から、凄まじい力が迸った。避ける暇もなく、僕の身体を鋭い衝撃が貫く。"
   },
   {
     "scene": "最奥部屋（コア無い感じの別室）",
@@ -8892,7 +8931,8 @@ export const scenarioData = [
     ],
     "hideIllust": [
       "Sakura" //朔良消す
-    ]
+    ],
+    "bgm": "serious_4.mp3"
   },
   {
     "scene": "最奥部屋（コア無い感じの別室）",
@@ -9008,16 +9048,29 @@ export const scenarioData = [
     "bg": "black",
     "bgm": "stop",
     "action": "clear",
-    "text": "最後に彼女の姿を目に焼き付けながら、僕の意識は暗闇へと沈んでいった。"
+    "text": "最後に彼女の姿を目に焼き付けながら、僕の意識は暗闇へと沈んでいった。",
+    "hideIllust": [
+      "Sakura"
+    ]
   },
   {
     "scene": "最奥部屋（コア無い感じの別室）",
-    "text": "部屋には、もう誰も立っている者はいなかった。"
+    "action": "SLOW_FADE_TO_BLACK_NO_SHAKE",
+    "duration": 2000
   },
   {
     "scene": "最奥部屋（コア無い感じの別室）",
+    "action": "WAIT_SECONDS",
+    "duration": 1500
+  },
+  {
+    "scene": "最奥部屋（コア無い感じの別室）",
+    "text": "部屋には、もう誰も立っている者はいなかった。",
     "bg": "/scene/ruki.png",
-    "action": "BLACK_AURA_START",
+    "action": "clear"
+  },
+  {
+    "scene": "最奥部屋（コア無い感じの別室）",
     "text": "床には仲間たちが倒れ、静まり返った空間の中央で、朔良だけが赤黒い異能を纏って立ち尽くしている。"
   },
   {
@@ -9193,7 +9246,8 @@ export const scenarioData = [
   },
   {
     "scene": "最奥部屋（コア無い感じの別室）",
-    "text": "その姿に、私はかつて公園で一人だった満の姿を重ねた。"
+    "text": "その姿に、私はかつて公園で一人だった満の姿を重ねた。",
+    "bgm": "Nostalgic_Scent_of_Eventide.mp3"
   },
   {
     "scene": "最奥部屋（コア無い感じの別室）",
@@ -9305,7 +9359,8 @@ export const scenarioData = [
   {
     "scene": "コア部屋（崩壊）",
     "text": "最奥の部屋へ飛び込むと、部屋の中心部に置かれたコアが、今にも爆発しそうなほど激しく明滅していた。周囲のエネルギーが、肌をジリジリと焦がすように伝わってくる。",
-    "bg": "/scene/core.png"
+    "bg": "/scene/core.png",
+    "bgm": "CoreBGM.mp3"
   },
   {
     "scene": "コア部屋（崩壊）",
@@ -9393,7 +9448,8 @@ export const scenarioData = [
     "bg": "/scene/core_close2.png",
     "hideIllust": [
       "Michiru"
-    ]
+    ],
+    "action": "ENERGY_AURA_START",
   },
   {
     "scene": "コア（近）",
@@ -9403,7 +9459,8 @@ export const scenarioData = [
   },
   {
     "scene": "コア（近）",
-    "text": "私と満は、握った手に力を込める。二つの光はさらに強く輝き、巨大なコアの中心へと一気に流れ込んでいった。"
+    "text": "私と満は、握った手に力を込める。二つの光はさらに強く輝き、巨大なコアの中心へと一気に流れ込んでいった。",
+    "action": ["WHITE_FLASH_70", "SHAKE_SCREEN_MEDIUM"]
   },
   {
     "scene": "コア（近）",
@@ -9420,7 +9477,7 @@ export const scenarioData = [
   {
     "scene": "コア（近）",
     "text": "コアが激しく明滅し、部屋全体が大きく揺れる。それでも私たちは手を離さず、互いの光を途切れさせないよう、必死に力を送り続けた。",
-    "action": "SHAKE_SCREEN_LARGE"
+    "action": "SHAKE_SCREEN_VERY_LARGE"
   },
   {
     "scene": "コア（近）",
@@ -9431,7 +9488,7 @@ export const scenarioData = [
     "scene": "コア（近）",
     "text": "私たちの絶叫とともに、限界を超えたエネルギーがコアの最深部へと突き刺さった。コアのまばゆい光が部屋中に放たれる。",
     "se": "BrokenWindow_Sound.mp3",
-    "action": "WHITE_OUT_START",
+    "action": ["clear", "WHITE_OUT_START"],
     "bgm": "stop"
   },
   {
@@ -9472,18 +9529,18 @@ export const scenarioData = [
     "scene": "コア部屋（コア無）",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「な……凪沙さん……！？」",
+    "text": "「な……凪砂さん……！？」",
     "showIllust": [
       "Nagisa_smile3"
     ]
   },
   {
     "scene": "コア部屋（コア無）",
-    "text": "そこには、息を切らした凪沙さんが立っていた。"
+    "text": "そこには、息を切らした凪砂さんが立っていた。"
   },
   {
     "scene": "コア部屋（コア無）",
-    "speaker": "凪沙",
+    "speaker": "凪砂",
     "role": "NAGISA",
     "text": "「どうも。ミッション達成でお疲れのところ悪いけど、このままだと崩壊に巻き込まれて死んじゃうよ」"
   },
@@ -9491,11 +9548,11 @@ export const scenarioData = [
     "scene": "コア部屋（コア無）",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「凪沙さん……満……！ 満を知りませんか！？」"
+    "text": "「凪砂さん……満……！ 満を知りませんか！？」"
   },
   {
     "scene": "コア部屋（コア無）",
-    "text": "私は凪沙さんの腕にすがりつき、必死に訴えた。"
+    "text": "私は凪砂さんの腕にすがりつき、必死に訴えた。"
   },
   {
     "scene": "コア部屋（コア無）",
@@ -9505,14 +9562,14 @@ export const scenarioData = [
   },
   {
     "scene": "コア部屋（コア無）",
-    "text": "けれど、凪沙さんは怪訝そうに端末へ目を落とした。",
+    "text": "けれど、凪砂さんは怪訝そうに端末へ目を落とした。",
     "showIllust": [
       "Nagisa_neutral"
     ]
   },
   {
     "scene": "コア部屋（コア無）",
-    "speaker": "凪沙",
+    "speaker": "凪砂",
     "role": "NAGISA",
     "text": "「……誰の話？ ここの生体反応は、最初から5人しかいないはずだけど」"
   },
@@ -9524,7 +9581,7 @@ export const scenarioData = [
   },
   {
     "scene": "コア部屋（コア無）",
-    "text": "私は頭の中で人数を数える。私、凪沙さん、ムッちゃん、ミカくん、アカネさん……。"
+    "text": "私は頭の中で人数を数える。私、凪砂さん、ムッちゃん、ミカくん、アカネさん……。"
   },
   {
     "scene": "コア部屋（コア無）",
@@ -9533,7 +9590,7 @@ export const scenarioData = [
   },
   {
     "scene": "コア部屋（コア無）",
-    "speaker": "凪沙",
+    "speaker": "凪砂",
     "role": "NAGISA",
     "text": "「ほら！ 考えるのは後！ 行くよ！ あのデカマフィアが、脱出用ロケットを準備して待ってる！」"
   },
@@ -9560,7 +9617,7 @@ export const scenarioData = [
   },
   {
     "scene": "空",
-    "text": "ただ、凪沙さんに腕を引かれながら崩壊する月面基地を駆け抜け、脱出用ロケットに4人の仲間たちと飛び乗ったこと。そして、激しい重力に耐えながら、青い地球へと帰還したことだけが、古い映画の断片のように残っている。"
+    "text": "ただ、凪砂さんに腕を引かれながら崩壊する月面基地を駆け抜け、脱出用ロケットに4人の仲間たちと飛び乗ったこと。そして、激しい重力に耐えながら、青い地球へと帰還したことだけが、古い映画の断片のように残っている。"
   },
   {
     "scene": "空",
@@ -9627,7 +9684,9 @@ export const scenarioData = [
   {
     "scene": "街（夜）",
     "text": "その時、静かな裏路地に足音が響いた。",
-    "se": "ShoeSound.mp3"
+    "se": "Shoes_Sound.mp3",
+    "seDuration": 2,
+    "seVolume": 1.8
   },
   {
     "scene": "街（夜）",
@@ -9643,7 +9702,8 @@ export const scenarioData = [
     "scene": "街（夜）",
     "text": "そこに立っていたのは、一人の青年だった。",
     "bgm": "TheSong.mp3",
-    "bg": "/scene/Michiru_CG5.png"
+    "bg": "/character/Michiru/Michiru_CG5.png",
+    "bgCrossfade": true
   },
   {
     "scene": "街（夜）",
@@ -9695,7 +9755,9 @@ export const scenarioData = [
     "scene": "街（夜）",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「……おかえり……っ。おかえり、満……！！」"
+    "text": "「……おかえり……っ。おかえり、満……！！」",
+    "bg": "/character/Michiru/Michiru_CG6.png",
+    "bgCrossfade": true
   },
   {
     "scene": "街（夜）",
@@ -13490,7 +13552,7 @@ export const scenarioData = [
     "scene": "研究所の最奥",
     "speaker": "ミカ",
     "role": "MIKA",
-    "text": "「お父さんが悪くなかったなら……俺は……」"
+    "text": "「父さんが悪くなかったら……」"
   },
   {
     "scene": "研究所の最奥",
@@ -15726,7 +15788,7 @@ export const scenarioData = [
   },
   {
     "scene": "コア近い",
-    "bg": "/scene/core_close.png",
+    "bg": "/scene/core_close2.png",
     "text": "アカネさんは傷だらけの身体を引きずりながら、ゆっくりとコアへ歩み寄る。",
     "hideIllust": [
       "Akane"
@@ -15825,13 +15887,14 @@ export const scenarioData = [
   },
   {
     "scene": "コア近い",
-    "text": "世界を包み込むほどの眩い光。激しく脈動していたコアは、やがて静かにその輝きを失っていった。"
+    "text": "世界を包み込むほどの眩い光。激しく脈動していたコアは、やがて静かにその輝きを失っていった。",
   },
   {
     "scene": "コア部屋",
-    "bg": "/scene/core_close_Nothing.png",
     "text": "やがてその光が、潮を引くように消えていく。光が消えた瞬間、全身から力が抜け落ちる。",
-    "action": "WHITE_OUT_END_SLOW "
+    "action": "WHITE_OUT_END_SLOW",
+    "bg": "/scene/core_close_Nothing2.png",
+    "bgNoFade": true
   },
   {
     "scene": "コア部屋",

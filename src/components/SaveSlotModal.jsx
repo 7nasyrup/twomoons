@@ -17,6 +17,11 @@ const SPEAKER_CONFIGS = {
   "アカネ": { folder: "/character/Akane", baseFileName: "Akane", defaultExpression: "neutral", posX: "22%", width: "45%" },
   "満": { folder: "/character/Michiru", baseFileName: "Michiru", defaultExpression: "smile", posX: "15%", width: "45%" },
   "黒騎士": { folder: "/character/Hirumi", baseFileName: "Hirumi", defaultExpression: "black_knight", posX: "15%", width: "45%" },
+  "ルキ": { folder: "/character/Ruki", baseFileName: "Ruki", defaultExpression: "neutral", posX: "35%", width: "45%" },
+  "少年": { folder: "/character/Ruki", baseFileName: "Ruki", defaultExpression: "neutral", posX: "35%", width: "45%" },
+  "Ruki": { folder: "/character/Ruki", baseFileName: "Ruki", defaultExpression: "neutral", posX: "35%", width: "45%" },
+  "朔良": { folder: "/character/Sakura", baseFileName: "Sakura", defaultExpression: "neutral", posX: "27.5%", width: "45%" },
+  "Sakura": { folder: "/character/Sakura", baseFileName: "Sakura", defaultExpression: "neutral", posX: "27.5%", width: "45%" }
 };
 
 // ─── 全スロット読み込み ───────────────────────────────────────────────────────

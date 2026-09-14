@@ -58,27 +58,38 @@ export function useAudioSystem() {
     if (!src) return;
 
     if (sePool.current[src]) {
+      if (sePool.current[src].loopInterval) clearInterval(sePool.current[src].loopInterval);
       sePool.current[src].stop();
       sePool.current[src].unload();
     }
+
+    const isCustomLoop = typeof loop === 'number' && loop > 0;
 
     const sound = new Howl({
       src: [src],
       html5: false,
       volume: seVolume.current * masterVolume.current * customVolume,
-      loop: loop || false,
+      loop: loop === true,
     });
     sePool.current[src] = sound;
-    const soundId = sound.play();
+    let soundId = sound.play();
+
+    if (isCustomLoop) {
+      sound.loopInterval = setInterval(() => {
+        // 重ねて再生することで自然なループを作る
+        sound.play();
+      }, loop);
+    }
 
     if (duration !== null && duration !== undefined) {
       setTimeout(() => {
         if (sePool.current[src]) {
+          if (sePool.current[src].loopInterval) clearInterval(sePool.current[src].loopInterval);
           const currentVol = sePool.current[src].volume();
-          sePool.current[src].fade(currentVol, 0, fadeOutDuration, soundId);
+          sePool.current[src].fade(currentVol, 0, fadeOutDuration);
           setTimeout(() => {
             if (sePool.current[src]) {
-              sePool.current[src].stop(soundId);
+              sePool.current[src].stop();
             }
           }, fadeOutDuration);
         }
@@ -90,6 +101,7 @@ export function useAudioSystem() {
     if (src) {
       const sound = sePool.current[src];
       if (sound) {
+        if (sound.loopInterval) clearInterval(sound.loopInterval);
         sound.fade(sound.volume(), 0, fadeDuration);
         setTimeout(() => {
           sound.stop();
@@ -98,13 +110,12 @@ export function useAudioSystem() {
         }, fadeDuration + 50);
       }
     } else {
-      const currentSounds = { ...sePool.current };
-      sePool.current = {};
-      Object.values(currentSounds).forEach(h => {
-        h.fade(h.volume(), 0, fadeDuration);
+      Object.values(sePool.current).forEach(sound => {
+        if (sound.loopInterval) clearInterval(sound.loopInterval);
+        sound.fade(sound.volume(), 0, fadeDuration);
         setTimeout(() => {
-          h.stop();
-          h.unload();
+          sound.stop();
+          sound.unload();
         }, fadeDuration + 50);
       });
     }
