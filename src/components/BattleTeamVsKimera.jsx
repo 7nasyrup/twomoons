@@ -53,38 +53,11 @@ const ATTACK_PATTERNS = [
     ]
   },
   {
-    label: '五連続・裂空斬', sequence: [
-      { hits: 1, duration: 900, interval: 0, delayStart: 0 },
-      { hits: 1, duration: 220, interval: 0, delayStart: 900 },
-      { hits: 1, duration: 220, interval: 0, delayStart: 1120 },
-      { hits: 1, duration: 220, interval: 0, delayStart: 1340 },
-      { hits: 1, duration: 220, interval: 0, delayStart: 1560 }
-    ]
-  },
-  {
     label: '終焉のメトロノーム', sequence: [
       { hits: 1, duration: 900, interval: 0, delayStart: 0 },
       { hits: 1, duration: 650, interval: 0, delayStart: 900 },
       { hits: 1, duration: 650, interval: 0, delayStart: 1550 },
       { hits: 1, duration: 650, interval: 0, delayStart: 2200 }
-    ]
-  },
-  {
-    label: '虚実の多段牙', sequence: [
-      { hits: 1, duration: 1100, interval: 0, delayStart: 0 },
-      { hits: 1, duration: 700, interval: 0, delayStart: 1100 },
-      { hits: 1, duration: 200, interval: 0, delayStart: 1800 },
-      { hits: 1, duration: 200, interval: 0, delayStart: 2000 },
-      { hits: 1, duration: 200, interval: 0, delayStart: 2200 }
-    ]
-  },
-  {
-    label: '崩壊のクレッシェンド', sequence: [
-      { hits: 1, duration: 1000, interval: 0, delayStart: 0 },
-      { hits: 1, duration: 750, interval: 0, delayStart: 1000 },
-      { hits: 1, duration: 600, interval: 0, delayStart: 1750 },
-      { hits: 1, duration: 450, interval: 0, delayStart: 2350 },
-      { hits: 1, duration: 300, interval: 0, delayStart: 2800 }
     ]
   }
 ];

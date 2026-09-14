@@ -40,12 +40,6 @@ const ATTACK_PATTERNS = [
     ]
   },
   { label: '三連撃', sequence: [{ hits: 3, duration: 900, interval: 250, delayStart: 0 }] },
-  {
-    label: '乱舞', sequence: [
-      { hits: 2, duration: 800, interval: 150, delayStart: 0 },
-      { hits: 2, duration: 800, interval: 150, delayStart: 900 }
-    ]
-  },
 ];
 
 // ═══════════════════════════════════════════════════════════════════════════════

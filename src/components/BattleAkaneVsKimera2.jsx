@@ -49,40 +49,6 @@ const ATTACK_PATTERNS = [
       { hits: 1, duration: 800, interval: 0, delayStart: 1000 },
       { hits: 1, duration: 200, interval: 0, delayStart: 1800 }
     ]
-  },
-  {
-    label: '神速四連打', sequence: [
-      { hits: 1, duration: 800, interval: 0, delayStart: 0 },
-      { hits: 1, duration: 220, interval: 0, delayStart: 800 },
-      { hits: 1, duration: 220, interval: 0, delayStart: 1020 },
-      { hits: 1, duration: 220, interval: 0, delayStart: 1240 }
-    ]
-  },
-  {
-    label: '終律のメトロノーム', sequence: [
-      { hits: 1, duration: 800, interval: 0, delayStart: 0 },
-      { hits: 1, duration: 600, interval: 0, delayStart: 800 },
-      { hits: 1, duration: 600, interval: 0, delayStart: 1400 },
-      { hits: 1, duration: 600, interval: 0, delayStart: 2000 }
-    ]
-  },
-  {
-    label: '虚実の狂乱爪', sequence: [
-      { hits: 1, duration: 1100, interval: 0, delayStart: 0 },
-      { hits: 1, duration: 700, interval: 0, delayStart: 1100 },
-      { hits: 1, duration: 200, interval: 0, delayStart: 1800 },
-      { hits: 1, duration: 200, interval: 0, delayStart: 2000 },
-      { hits: 1, duration: 200, interval: 0, delayStart: 2200 }
-    ]
-  },
-  {
-    label: '崩壊へのカウントダウン', sequence: [
-      { hits: 1, duration: 1000, interval: 0, delayStart: 0 },
-      { hits: 1, duration: 700, interval: 0, delayStart: 1000 },
-      { hits: 1, duration: 550, interval: 0, delayStart: 1700 },
-      { hits: 1, duration: 400, interval: 0, delayStart: 2250 },
-      { hits: 1, duration: 250, interval: 0, delayStart: 2650 }
-    ]
   }
 ];
 
