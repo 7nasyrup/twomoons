@@ -250,7 +250,7 @@ function FCFileModal({ file, onClose }) {
 }
 
 // ─── メインコンポーネント（朔良ソロ探索） ────────────────────────────────────────
-export default function FragmentCollectSolo({ onComplete, onSave, onLoad, onToggleSkip, onOpenLog, onToggleAuto, skipMode, autoMode }) {
+export default function FragmentCollectSolo({ onComplete, onSave, onLoad, onToggleSkip, onOpenLog, onToggleAuto, skipMode, autoMode, onOpenSettings }) {
   const [roomIndex, setRoomIndex] = useState(0);
   const [collectedChips, setCollectedChips] = useState(new Set());
   const [collectedFiles, setCollectedFiles] = useState(new Set());
@@ -606,6 +606,7 @@ export default function FragmentCollectSolo({ onComplete, onSave, onLoad, onTogg
           onToggleAuto={onToggleAuto}
           skipMode={skipMode}
           autoMode={autoMode}
+          onOpenSettings={onOpenSettings}
         />
       )}
 

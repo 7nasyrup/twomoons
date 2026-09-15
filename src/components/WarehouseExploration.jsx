@@ -109,7 +109,8 @@ export default function WarehouseExploration({
   onExit,
   autoMode,
   skipMode,
-  setSkipMode
+  setSkipMode,
+  onOpenSettings
 }) {
   const [visited, setVisited] = useState({ shelf: false, locker: false, window: false });
   const [visuallyVisited, setVisuallyVisited] = useState({ shelf: false, locker: false, window: false });
@@ -474,6 +475,7 @@ export default function WarehouseExploration({
         onSave={onSave}
         onLoad={onLoad}
         onExit={onExit}
+        onOpenSettings={onOpenSettings}
       />
     </div>
   );

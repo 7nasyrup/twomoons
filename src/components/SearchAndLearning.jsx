@@ -90,7 +90,8 @@ export default function SearchAndLearning({
   onExit,
   autoMode,
   skipMode,
-  setSkipMode
+  setSkipMode,
+  onOpenSettings
 }) {
   const [visited, setVisited] = useState({ bag: false, newspaper: false, photo: false, artificial_moon: false, calendar: false });
   const [visuallyVisited, setVisuallyVisited] = useState({ bag: false, newspaper: false, photo: false, artificial_moon: false, calendar: false });
@@ -583,6 +584,7 @@ export default function SearchAndLearning({
         onSave={onSave}
         onLoad={onLoad}
         onExit={onExit}
+        onOpenSettings={onOpenSettings}
       />
 
       {/* Item Sprite Overlay (showItem) */}

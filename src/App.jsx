@@ -2031,6 +2031,7 @@ export default function App() {
                   onExit={handleExitToTitle}
                   autoMode={autoMode}
                   skipMode={skipMode}
+                  onOpenSettings={() => setShowSettings(true)}
                 />
               )}
 
@@ -2052,6 +2053,7 @@ export default function App() {
                   onExit={handleExitToTitle}
                   autoMode={autoMode}
                   skipMode={skipMode}
+                  onOpenSettings={() => setShowSettings(true)}
                 />
               )}
 
@@ -2188,6 +2190,7 @@ export default function App() {
                   onToggleSkip={toggleSkip}
                   autoMode={autoMode}
                   skipMode={skipMode}
+                  onOpenSettings={() => setShowSettings(true)}
                 />
               )}
 
@@ -2202,6 +2205,7 @@ export default function App() {
                   onToggleSkip={toggleSkip}
                   autoMode={autoMode}
                   skipMode={skipMode}
+                  onOpenSettings={() => setShowSettings(true)}
                 />
               )}
 
@@ -2216,6 +2220,7 @@ export default function App() {
                   onToggleSkip={toggleSkip}
                   autoMode={autoMode}
                   skipMode={skipMode}
+                  onOpenSettings={() => setShowSettings(true)}
                 />
               )}
 
@@ -2230,6 +2235,7 @@ export default function App() {
                   onToggleSkip={toggleSkip}
                   autoMode={autoMode}
                   skipMode={skipMode}
+                  onOpenSettings={() => setShowSettings(true)}
                 />
               )}
 
@@ -2244,6 +2250,7 @@ export default function App() {
                   onToggleSkip={toggleSkip}
                   autoMode={autoMode}
                   skipMode={skipMode}
+                  onOpenSettings={() => setShowSettings(true)}
                 />
               )}
 

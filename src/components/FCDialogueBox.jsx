@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkles, ChevronDown, Save, FolderOpen, SkipForward, BookOpen, FastForward, LogOut } from 'lucide-react';
+import { Sparkles, ChevronDown, Save, FolderOpen, SkipForward, BookOpen, FastForward, LogOut, Settings } from 'lucide-react';
 
 const renderTextWithLinks = (text) => {
   if (!text) return null;
@@ -38,7 +38,8 @@ export default function FCDialogueBox({
   onToggleAuto,
   skipMode,
   autoMode,
-  onExit
+  onExit,
+  onOpenSettings
 }) {
   if (!currentMessage) return null;
   const isSystem = currentMessage.role === 'SYSTEM';
@@ -116,6 +117,7 @@ export default function FCDialogueBox({
 
             {/* HUD Buttons Grouped Together */}
             <div className="dlg-hud-row absolute -bottom-[1.5cqh] right-[6cqw] flex gap-[0.8cqh] z-20">
+              {onOpenSettings && <HudButton icon={<Settings className="dlg-hud-icon w-[2.2cqh] h-[2.2cqh]" />} label="CONFIG" onClick={onOpenSettings} />}
               {onSave && <HudButton icon={<Save className="dlg-hud-icon w-[2.2cqh] h-[2.2cqh]" />} label="SAVE" onClick={onSave} />}
               {onLoad && <HudButton icon={<FolderOpen className="dlg-hud-icon w-[2.2cqh] h-[2.2cqh]" />} label="LOAD" onClick={onLoad} />}
               {onToggleSkip && <HudButton icon={<SkipForward className="dlg-hud-icon w-[2.2cqh] h-[2.2cqh]" />} label="SKIP" onClick={onToggleSkip} active={skipMode} />}

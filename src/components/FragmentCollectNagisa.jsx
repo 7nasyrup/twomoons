@@ -189,7 +189,7 @@ function FCFileModal({ file, onClose }) {
   );
 }
 
-export default function FragmentCollectNagisa({ onComplete, onSave, onLoad, onToggleSkip, onOpenLog, onToggleAuto, skipMode, autoMode }) {
+export default function FragmentCollectNagisa({ onComplete, onSave, onLoad, onToggleSkip, onOpenLog, onToggleAuto, skipMode, autoMode, onOpenSettings }) {
   const [roomIndex, setRoomIndex] = useState(0);
   const [collectedChips, setCollectedChips] = useState(new Set());
   const [collectedFiles, setCollectedFiles] = useState(new Set());
@@ -430,6 +430,7 @@ export default function FragmentCollectNagisa({ onComplete, onSave, onLoad, onTo
         onToggleAuto={onToggleAuto}
         skipMode={skipMode}
         autoMode={autoMode}
+        onOpenSettings={onOpenSettings}
       />}
 
       <AnimatePresence>
