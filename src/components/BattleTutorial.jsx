@@ -148,6 +148,9 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
   const [isParryTutorialActive, setIsParryTutorialActive] = useState(false);
   const [hasCompletedParryTutorial, setHasCompletedParryTutorial] = useState(false);
   const [parryTutorialPage, setParryTutorialPage] = useState(1);
+  const [showGuardHint, setShowGuardHint] = useState(false); // ガードヒント表示フラグ
+  const hasEverGuardedRef = useRef(false); // 1.5秒以上ガードしたら永続的にtrue
+  const freeBattleGuardHoldTimeRef = useRef(0); // フリー戦闘時のガード継続時間計測用
 
   // Sakura Speech Bubble State
   const [sakuraSpeech, setSakuraSpeech] = useState(null); // { text, icon, id }
@@ -167,6 +170,7 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
   const [activeAttacks, setActiveAttacks] = useState([]); // Array of { id, enemyId, targetId, startTime, delay, duration, glintFired, resolved }
   const [counterAttack, setCounterAttack] = useState(null); // { allyId, enemyId }
   const [allyQTEState, setAllyQTEState] = useState('none'); // 'none' | 'waiting' | 'success' | 'fail'
+  const [isAttackTutorialFrozen, setIsAttackTutorialFrozen] = useState(false); // バーが中央に来たとき時間凍結
   const [hitPosition, setHitPosition] = useState(null);
   const qteStartTimeRef = useRef(0);
   const qteSuccessRef = useRef(false);
@@ -205,11 +209,14 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
   const hitStopRef = useRef(0);
   const guardCooldownsRef = useRef({ mutsunori: 0, nagisa: 0 });
   const pendingGuardTimeoutsRef = useRef({});
+  const isAttackTutorialFrozenRef = useRef(false);
   const stateRef = useRef({ allies, enemies, activeAttacks, guardingAllies, syncRate, battlePhase, turnPhase, currentTurnIndex, counterAttack, buffTurnsLeft, activeFragments, absorbCooldown, corruption, turnTimer, hasShownAttackTutorial, hasShownDefendTutorial, hasShownGuardDialogue, hasShownPostDialogueAttack, hasShownHealTutorial, isHealTutorialActive, hasCompletedHealTutorial, isGuardTutorialActive, hasCompletedGuardTutorial, guardTutorialHoldTime: 0, hasShownPostDefendDialogue, hasShownParryDialogue, hasShownPostParryDialogue, isParryTutorialActive, hasCompletedParryTutorial, parryTutorialPage, isParryTutorial, hasShownUltimateDialogue, isUltimateTutorialActive, hasCompletedUltimateTutorial });
 
   useEffect(() => {
     stateRef.current = { allies, enemies, activeAttacks, guardingAllies, syncRate, battlePhase, turnPhase, currentTurnIndex, counterAttack, buffTurnsLeft, activeFragments, absorbCooldown, corruption, turnTimer, hasShownAttackTutorial, hasShownDefendTutorial, hasShownGuardDialogue, hasShownPostDialogueAttack, hasShownHealTutorial, isHealTutorialActive, hasCompletedHealTutorial, isGuardTutorialActive, hasCompletedGuardTutorial, guardTutorialHoldTime: stateRef.current.guardTutorialHoldTime || 0, hasShownPostDefendDialogue, hasShownParryDialogue, hasShownPostParryDialogue, isParryTutorialActive, hasCompletedParryTutorial, parryTutorialPage, isParryTutorial, hasShownUltimateDialogue, isUltimateTutorialActive, hasCompletedUltimateTutorial };
   }, [allies, enemies, activeAttacks, guardingAllies, syncRate, battlePhase, turnPhase, currentTurnIndex, counterAttack, buffTurnsLeft, activeFragments, absorbCooldown, corruption, turnTimer, hasShownAttackTutorial, hasShownDefendTutorial, hasShownGuardDialogue, hasShownPostDialogueAttack, hasShownHealTutorial, isHealTutorialActive, hasCompletedHealTutorial, isGuardTutorialActive, hasCompletedGuardTutorial, hasShownPostDefendDialogue, hasShownParryDialogue, hasShownPostParryDialogue, isParryTutorialActive, hasCompletedParryTutorial, parryTutorialPage, isParryTutorial, hasShownUltimateDialogue, isUltimateTutorialActive, hasCompletedUltimateTutorial]);
+
+  useEffect(() => { isAttackTutorialFrozenRef.current = isAttackTutorialFrozen; }, [isAttackTutorialFrozen]);
 
   // ─── Helpers ───
   const addLog = useCallback((msg) => {
@@ -414,6 +421,26 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
       }
     };
   }, []);
+
+  // ─── ガードヒント：フリー戦闘中に一度もガードを使っていなければ表示 ───
+  useEffect(() => {
+    // 表示条件: POST_DEFEND_DIALOGUE後 かつ パリィ前 かつ バトル中
+    const isHintWindow = hasShownPostDefendDialogue && !hasShownParryDialogue && battlePhase === 'fighting';
+
+    if (!isHintWindow) {
+      setShowGuardHint(false);
+      return;
+    }
+
+    // 1.5秒以上ガードし続けたら永続的にヒントを消す（判定はtick関数内で実行され、このrefが更新される）
+    if (hasEverGuardedRef.current) {
+      setShowGuardHint(false);
+      return;
+    }
+
+    // ヒント表示
+    setShowGuardHint(true);
+  }, [hasShownPostDefendDialogue, hasShownParryDialogue, battlePhase]);
 
   // Continuous notes while guarding
   useEffect(() => {
@@ -661,7 +688,7 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
       if (stateRef.current.isGuardTutorialActive) {
         if (stateRef.current.guardingAllies.has('mutsunori')) {
           stateRef.current.guardTutorialHoldTime = (stateRef.current.guardTutorialHoldTime || 0) + rawDt;
-          if (stateRef.current.guardTutorialHoldTime > 1500) {
+          if (stateRef.current.guardTutorialHoldTime > 800) {
             setIsGuardTutorialActive(false);
             stateRef.current.isGuardTutorialActive = false;
             setHasCompletedGuardTutorial(true);
@@ -669,6 +696,18 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
           }
         } else {
           stateRef.current.guardTutorialHoldTime = 0;
+        }
+      } else if (stateRef.current.hasShownPostDefendDialogue && !stateRef.current.hasShownParryDialogue) {
+        // 対象のフリー戦闘期間のみ、ガード継続時間（1.5秒）を計測
+        if (stateRef.current.guardingAllies.has('mutsunori')) {
+          freeBattleGuardHoldTimeRef.current += rawDt;
+          if (freeBattleGuardHoldTimeRef.current >= 1500 && !hasEverGuardedRef.current) {
+            hasEverGuardedRef.current = true;
+            // state更新をトリガーしてUIからヒントを消すためにダミーでフラグセット
+            setShowGuardHint(false);
+          }
+        } else {
+          freeBattleGuardHoldTimeRef.current = 0;
         }
       }
 
@@ -771,17 +810,21 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
 
       // ── ALLY WINDUP (QTE Window) ──
       else if (phase === 'ally_windup') {
-        let windupDt = dt;
-        // チュートリアル: 青い判定エリア(40%〜60%、turnTimer <= 480)に差し掛かったら超スローモーション (0.5% speed)
+        // チュートリアル: バーが中央（turnTimer = 400ms）に達したら時間凍結
         if (!stateRef.current.hasShownAttackTutorial) {
-          if (stateRef.current.turnTimer <= 480) {
-            windupDt = dt * 0.005;
-          } else {
-            windupDt = dt; // 最初は等速
+          if (stateRef.current.turnTimer <= 400 && !isAttackTutorialFrozenRef.current) {
+            // 凍結開始
+            isAttackTutorialFrozenRef.current = true;
+            setIsAttackTutorialFrozen(true);
+          }
+          if (isAttackTutorialFrozenRef.current) {
+            // 凍結中はdtを0にして時間を止める（ゲームループは動き続ける）
+            gameLoopRef.current = requestAnimationFrame(tick);
+            return;
           }
         }
 
-        stateRef.current.turnTimer -= windupDt;
+        stateRef.current.turnTimer -= dt;
         if (stateRef.current.turnTimer <= 0) {
           if (!stateRef.current.hasShownAttackTutorial) {
             setHasShownAttackTutorial(true);
@@ -1222,11 +1265,20 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
 
     if (qteSuccessRef.current) return;
 
+    // チュートリアル: 凍結中に攻撃ボタンが押されたら凍結解除してバトル継続
+    if (isAttackTutorialFrozenRef.current) {
+      isAttackTutorialFrozenRef.current = false;
+      setIsAttackTutorialFrozen(false);
+      setHasShownAttackTutorial(true);
+      stateRef.current.hasShownAttackTutorial = true;
+    }
+
     if (!stateRef.current.hasShownAttackTutorial) {
       setHasShownAttackTutorial(true);
       stateRef.current.hasShownAttackTutorial = true;
     }
 
+    // 凍結中は turnTimer が 400ms 固定なので elapsed = 400ms → 必ずperfect判定
     const elapsed = 800 - stateRef.current.turnTimer;
 
     // The bar duration is 800ms. The center is hit at 400ms.
@@ -1363,6 +1415,9 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
   // ═══════════════════════════════════════════════════════════════════════════════
 
   const handleHeal = useCallback(() => {
+    // 回復チュートリアルが来るまで回復を完全ブロック（敵の初回攻撃中の誤操作防止）
+    if (!stateRef.current.isHealTutorialActive && !stateRef.current.hasShownHealTutorial) return;
+
     if ((healCooldown > 0 || stateRef.current.battlePhase !== 'fighting') && !stateRef.current.isHealTutorialActive) return;
 
     if (stateRef.current.isHealTutorialActive) {
@@ -1510,7 +1565,7 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
   // RENDER COMPUTATIONS
   // ═══════════════════════════════════════════════════════════════════════════════
 
-  const isBulletTime = !hasShownAttackTutorial && turnPhase === 'ally_windup' && turnTimer <= 550;
+  const isBulletTime = !hasShownAttackTutorial && turnPhase === 'ally_windup' && isAttackTutorialFrozen;
 
   const targetedAllies = useMemo(() => {
     const set = new Set();
@@ -1782,25 +1837,21 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
               exit={{ opacity: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <div className="absolute top-[45%] left-[40%] lg:top-[35%] lg:left-auto flex flex-col items-center">
+              <div className="absolute top-[45%] left-[40%] lg:top-[40%] lg:left-[39%] flex flex-col items-center">
                 <div className="relative p-2 lg:p-4 text-center">
-                  <div className="absolute top-0 left-[-6px] right-[-6px] h-[1px] bg-cyan-400/70" />
-                  <div className="absolute bottom-0 left-[-6px] right-[-6px] h-[1px] bg-cyan-400/70" />
-                  <div className="absolute left-0 top-[-6px] bottom-[-6px] w-[1px] bg-cyan-400/70" />
-                  <div className="absolute right-0 top-[-6px] bottom-[-6px] w-[1px] bg-cyan-400/70" />
+                  <div className="absolute top-0 left-[-6px] right-[-6px] h-[2px] bg-cyan-400/70" />
+                  <div className="absolute bottom-0 left-[-6px] right-[-6px] h-[2px] bg-cyan-400/70" />
+                  <div className="absolute left-0 top-[-6px] bottom-[-6px] w-[2px] bg-cyan-400/70" />
+                  <div className="absolute right-0 top-[-6px] bottom-[-6px] w-[2px] bg-cyan-400/70" />
 
                   {/* パソコン用説明文 (1024px以上のみ表示、PC側のデザイン・余白・サイズを100%完全保護) */}
                   <p className="hidden lg:block font-noto text-[15px] text-white/90 leading-relaxed relative z-10">
                     <span className="relative inline-block my-1 mx-1 z-0">
-                      <span className="relative z-10 text-white font-bold">Spaceキー</span>
+                      <span className="relative z-10 text-white font-bold">スペースキーを長押し</span>
                       <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[10px] bg-cyan-400/70 -rotate-[2deg] rounded-sm -z-10" />
                     </span>
-                    を
-                    <span className="relative inline-block mx-1 z-0">
-                      <span className="relative z-10 text-white font-bold">長押し</span>
-                      <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[10px] bg-cyan-400/70 -rotate-[2deg] rounded-sm -z-10" />
-                    </span><br />
-                    で攻撃を
+                    で<br />
+                    攻撃を
                     <span className="relative inline-block mx-1 z-0">
                       <span className="relative z-10 text-white font-bold">軽減しよう</span>
                       <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[10px] bg-red-400/70 -rotate-[2deg] rounded-sm -z-10" />
@@ -1852,11 +1903,11 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
               }}
             >
               <div className="absolute top-[30%] lg:top-[35%] flex flex-col items-center">
-                <div className="relative p-2 lg:p-4 text-center">
-                  <div className="absolute top-0 left-[-6px] right-[-6px] h-[1px] bg-cyan-400/70" />
-                  <div className="absolute bottom-0 left-[-6px] right-[-6px] h-[1px] bg-cyan-400/70" />
-                  <div className="absolute left-0 top-[-6px] bottom-[-6px] w-[1px] bg-cyan-400/70" />
-                  <div className="absolute right-0 top-[-6px] bottom-[-6px] w-[1px] bg-cyan-400/70" />
+                <div className="relative p-2 pb-4 lg:p-4 lg:pb-6 text-center">
+                  <div className="absolute top-0 left-[-6px] right-[-6px] h-[2px] bg-cyan-400/70" />
+                  <div className="absolute bottom-0 left-[-6px] right-[-6px] h-[2px] bg-cyan-400/70" />
+                  <div className="absolute left-0 top-[-6px] bottom-[-6px] w-[2px] bg-cyan-400/70" />
+                  <div className="absolute right-0 top-[-6px] bottom-[-6px] w-[2px] bg-cyan-400/70" />
 
                   <p className="font-noto text-[11px] lg:text-[15px] text-white/90 leading-relaxed relative z-10">
                     {parryTutorialPage === 1 ? (
@@ -1874,17 +1925,12 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
                     ) : (
                       <>
                         <span className="relative inline-block my-0.5 mx-0.5 z-0">
-                          <span className="relative z-10 text-white font-bold">黄色い円</span>
-                          <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[6px] lg:h-[10px] bg-cyan-400/70 -rotate-[2deg] rounded-sm -z-10" />
-                        </span>
-                        と
-                        <span className="relative inline-block my-0.5 mx-0.5 z-0">
-                          <span className="relative z-10 text-white font-bold">赤い円</span>
+                          <span className="relative z-10 text-white font-bold">黄色い円と赤い円</span>
                           <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[6px] lg:h-[10px] bg-cyan-400/70 -rotate-[2deg] rounded-sm -z-10" />
                         </span>
                         が重なるタイミングで<br />
                         <span className="relative inline-block mx-0.5 z-0">
-                          <span className="relative z-10 text-white font-bold">Spaceキー</span>
+                          <span className="relative z-10 text-white font-bold">スペースキー</span>
                           <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[6px] lg:h-[10px] bg-cyan-400/70 -rotate-[2deg] rounded-sm -z-10" />
                         </span>
                         を押すと
@@ -1898,7 +1944,7 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
                   </p>
 
                   {parryTutorialPage === 1 && (
-                    <span className="absolute bottom-1 right-2 lg:bottom-1.5 lg:right-3 text-[10px] lg:text-[14px] text-cyan-400 font-bold select-none animate-pulse z-20">
+                    <span className="absolute bottom-0 right-2 lg:bottom-1 lg:right-3 text-[10px] lg:text-[14px] text-cyan-400 font-bold select-none animate-pulse z-20">
                       ▶
                     </span>
                   )}
@@ -1918,6 +1964,38 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
               exit={{ opacity: 0 }}
               transition={{ duration: 0.5 }}
             />
+          )}
+        </AnimatePresence>
+
+        {/* ── Guard Hint (free battle, low HP) ── */}
+        <AnimatePresence>
+          {showGuardHint && battlePhase === 'fighting' && (
+            <motion.div
+              className="absolute bottom-[40%] lg:bottom-[49%] left-[34%] lg:left-[35%] z-[55] pointer-events-none"
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 8 }}
+              transition={{ duration: 0.4 }}
+            >
+              <div className="relative px-3 py-1.5 lg:px-4 lg:py-2 text-center bg-white border-2 border-slate-700">
+                {/* PC用 */}
+                <p className="hidden lg:block font-noto text-[13px] text-slate-800 leading-relaxed relative z-10">
+                  <span className="relative inline-block mx-1 z-0">
+                    <span className="relative z-10 text-slate-900 font-bold">スペースキーを長押し</span>
+                    <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[10px] bg-cyan-400/60 -rotate-[2deg] rounded-sm -z-10" />
+                  </span>
+                  で敵の攻撃を防ごう
+                </p>
+                {/* スマホ用 */}
+                <p className="block lg:hidden font-noto text-[11px] text-slate-800 leading-relaxed relative z-10">
+                  <span className="relative inline-block mx-0.5 z-0">
+                    <span className="relative z-10 text-slate-900 font-bold">画面をタップし続けて</span>
+                    <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[6px] bg-cyan-400/60 -rotate-[2deg] rounded-sm -z-10" />
+                  </span>
+                  敵の攻撃を防ごう
+                </p>
+              </div>
+            </motion.div>
           )}
         </AnimatePresence>
 
@@ -2076,7 +2154,10 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
                           className="relative w-full flex flex-col items-center"
                         >
                           {/* Simple Timing Bar */}
-                          <div className="relative w-[100%] max-w-[150px] lg:max-w-[200px] h-3 lg:h-4 bg-black/60 backdrop-blur-sm border border-white/20 rounded-full overflow-hidden shadow-lg">
+                          <div className={`relative w-[100%] max-w-[150px] lg:max-w-[200px] h-3 lg:h-4 backdrop-blur-sm rounded-full overflow-hidden transition-all duration-300 ${isAttackTutorialFrozen
+                            ? 'bg-black/60 border border-cyan-400/80 shadow-[0_0_8px_2px_rgba(34,211,238,0.4)]'
+                            : 'bg-black/60 border border-white/20 shadow-lg'
+                            }`}>
                             {/* Success Zone */}
                             <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[20%] bg-cyan-400/50" />
 
@@ -2095,35 +2176,36 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
                           </div>
 
                           <div className="mt-2 text-center relative">
-                            <span className="block font-orbitron font-bold text-[10px] lg:text-xs text-white/80 tracking-[0.2em] animate-pulse">TAP!</span>
+                            <span className={`block font-orbitron font-bold text-[10px] lg:text-xs tracking-[0.2em] animate-pulse ${isAttackTutorialFrozen ? 'text-cyan-300' : 'text-white/80'
+                              }`}>TAP!</span>
                           </div>
                         </motion.div>
 
                         <AnimatePresence>
                           {!hasShownAttackTutorial && (
                             <motion.div
-                              className="absolute left-[85%] lg:left-[110%] top-[25%] lg:top-[15%] -translate-y-1/2 w-[210px] lg:w-[320px] pointer-events-none"
+                              className="absolute left-[130%] lg:left-[120%] top-[25%] lg:top-[15%] -translate-y-1/2 w-[210px] lg:w-[320px] pointer-events-none"
                               initial={{ opacity: 0, x: -10 }}
                               animate={{ opacity: 1, x: 0 }}
                               exit={{ opacity: 0, x: -10 }}
                             >
                               <div className="relative p-2 lg:p-4 text-center">
                                 {/* Wireframe Crosshair Border */}
-                                <div className="absolute top-0 left-[-6px] right-[-6px] h-[1px] bg-cyan-400/70" />
-                                <div className="absolute bottom-0 left-[-6px] right-[-6px] h-[1px] bg-cyan-400/70" />
-                                <div className="absolute left-0 top-[-6px] bottom-[-6px] w-[1px] bg-cyan-400/70" />
-                                <div className="absolute right-0 top-[-6px] bottom-[-6px] w-[1px] bg-cyan-400/70" />
+                                <div className="absolute top-0 left-[-6px] right-[-6px] h-[2px] bg-cyan-400/70" />
+                                <div className="absolute bottom-0 left-[-6px] right-[-6px] h-[2px] bg-cyan-400/70" />
+                                <div className="absolute left-0 top-[-6px] bottom-[-6px] w-[2px] bg-cyan-400/70" />
+                                <div className="absolute right-0 top-[-6px] bottom-[-6px] w-[2px] bg-cyan-400/70" />
 
                                 {/* パソコン用説明文 (1024px以上のみ表示、PC側のデザイン・余白・サイズを100%完全保護) */}
                                 <p className="hidden lg:block font-noto text-[15px] text-white/90 leading-relaxed relative z-10">
                                   バーが真ん中に来たときに<br />
                                   <span className="relative inline-block my-1 mx-1 z-0">
-                                    <span className="relative z-10 text-white font-bold">Spaceキー</span>
+                                    <span className="relative z-10 text-white font-bold">スペースキー</span>
                                     <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[10px] bg-cyan-400/70 -rotate-[2deg] rounded-sm -z-10" />
                                   </span>
-                                  を押すと
+                                  を押すと<br />
                                   <span className="relative inline-block mx-1 z-0">
-                                    <span className="relative z-10 text-white font-bold">攻撃力がUP</span>
+                                    <span className="relative z-10 text-white font-bold">味方の攻撃力がUP</span>
                                     <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[10px] bg-red-400/70 -rotate-[2deg] rounded-sm -z-10" />
                                   </span>
                                   するよ
@@ -2136,9 +2218,9 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
                                     <span className="relative z-10 text-white font-bold">画面をタップ</span>
                                     <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[6px] bg-cyan-400/70 -rotate-[2deg] rounded-sm -z-10" />
                                   </span>
-                                  すると味方の<br />
+                                  すると<br />
                                   <span className="relative inline-block mx-0.5 z-0">
-                                    <span className="relative z-10 text-white font-bold">攻撃力がUP</span>
+                                    <span className="relative z-10 text-white font-bold">味方の攻撃力がUP</span>
                                     <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[6px] bg-red-400/70 -rotate-[2deg] rounded-sm -z-10" />
                                   </span>
                                   するよ
