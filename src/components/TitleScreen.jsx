@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { assetPath } from '../utils/assetPath';
-import { Settings } from 'lucide-react';
 
-export default function TitleScreen({ onStart, onContinue, onBattle, hasSave, playBGM, onOpenSettings }) {
+export default function TitleScreen({ onStart, onContinue, onBattle, hasSave, playBGM }) {
     const [showCredits, setShowCredits] = useState(false);
 
     // Play title BGM when component mounts
@@ -25,17 +24,8 @@ export default function TitleScreen({ onStart, onContinue, onBattle, hasSave, pl
                     style={{ backgroundImage: `url(${assetPath('/title.png')})` }}
                 />
 
-                {/* CONFIG & Battle Test Buttons in Top-Left */}
+                {/* Battle Test Button in Top-Left */}
                 <div className="absolute top-[4cqh] left-[4cqw] z-20 flex flex-col gap-[2cqh]">
-                    {/* Settings Button */}
-                    <button
-                        onClick={onOpenSettings}
-                        className="hud-btn flex items-center justify-center gap-[0.8cqh] px-[2.5cqw] py-[1.2cqh] rounded-full text-[1.6cqh] font-bold tracking-widest font-noto bg-white text-slate-600 border border-[#4dd0e1] hover:border-[#00e5ff] hover:text-[#00e5ff] hover:-translate-y-0.5 transition-all duration-300 shadow-md"
-                    >
-                        <Settings className="dlg-hud-icon w-[2.2cqh] h-[2.2cqh]" />
-                        <span>CONFIG</span>
-                    </button>
-
                     {/* Battle Test Button */}
                     <button
                         onClick={onBattle}

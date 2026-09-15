@@ -1981,7 +1981,6 @@ export default function App() {
               onBattle={handleStartBattle}
               hasSave={hasSave}
               playBGM={playBGM}
-              onOpenSettings={() => setShowSettings(true)}
             />
           ) : (
             <div className="relative w-full h-full transition-all duration-1000" style={{ filter: isFlashbackActive ? 'sepia(0.5) contrast(1.1) brightness(0.9) grayscale(0.2)' : 'none' }}>
