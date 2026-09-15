@@ -11,6 +11,8 @@ import ConfirmModal from './components/ConfirmModal';
 import DevConsole from './components/DevConsole';
 import BacklogOverlay from './components/BacklogOverlay';
 import TitleScreen from './components/TitleScreen';
+import SettingsModal from './components/SettingsModal';
+import { Settings } from 'lucide-react';
 import TypingGame from './components/TypingGame';
 import SearchAndLearning from './components/SearchAndLearning';
 import SilentScore from './components/SilentScore';
@@ -410,17 +412,19 @@ export default function App() {
     totalSteps,
   } = useNovelEngine(scenarioData, { manualTestMode, endMode: isEndScreen });
 
+  const audioSystem = useAudioSystem();
   const { playBGM, stopBGM, playSE, stopSE,
     toggleMute,
     pauseBGM,
     resumeBGM,
     setMasterVol,
     setBGMVolume
-  } = useAudioSystem();
+  } = audioSystem;
   const lastSceneRef = useRef(null);
   const bgmOverrideRef = useRef(false);
 
   const [showTitle, setShowTitle] = useState(true);
+  const [showSettings, setShowSettings] = useState(false);
   const [hasSave, setHasSave] = useState(false);
   const [backlogOpen, setBacklogOpen] = useState(false);
   const [alertActive, setAlertActive] = useState(false);
@@ -1702,7 +1706,7 @@ export default function App() {
   };
 
   const handleTouchEnd = (e, isMouse = false) => {
-    if (showTitle || battleMode) return;
+    if (showTitle || battleMode || showSettings) return;
 
     // If the touch target is a button or inside a button/link, don't advance the scenario.
     // Let the button's own click handler handle it instead.
@@ -1754,7 +1758,7 @@ export default function App() {
   // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (showTitle || battleMode || alertActive) return;
+      if (showTitle || battleMode || alertActive || showSettings) return;
 
       // Handle backlog closing via keyboard
       if (backlogOpen) {
@@ -1823,7 +1827,7 @@ export default function App() {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [nextStep, prevStep, toggleHud, toggleAuto, isWaitingForChoice, backlogOpen, alertActive, hudVisible, setHudVisible, currentLine, skipMode, setSkipMode, showTitle, battleMode, isBgTransitioning, isBgFadingOut, isEndScreen]);
+  }, [nextStep, prevStep, toggleHud, toggleAuto, isWaitingForChoice, backlogOpen, alertActive, hudVisible, setHudVisible, currentLine, skipMode, setSkipMode, showTitle, battleMode, isBgTransitioning, isBgFadingOut, isEndScreen, showSettings]);
 
   const handleDismissAlert = () => {
     setAlertActive(false);
@@ -1977,6 +1981,7 @@ export default function App() {
               onBattle={handleStartBattle}
               hasSave={hasSave}
               playBGM={playBGM}
+              onOpenSettings={() => setShowSettings(true)}
             />
           ) : (
             <div className="relative w-full h-full transition-all duration-1000" style={{ filter: isFlashbackActive ? 'sepia(0.5) contrast(1.1) brightness(0.9) grayscale(0.2)' : 'none' }}>
@@ -2892,6 +2897,7 @@ export default function App() {
                 onSave={handleSave}
                 onLoad={handleLoad}
                 onExit={handleExitToTitle}
+                onOpenSettings={() => setShowSettings(true)}
                 touchHandledRef={touchHandledRef}
               />
             )}
@@ -3079,6 +3085,13 @@ export default function App() {
 
         {/* Confirmation Modal */}
         <ConfirmModal {...confirmModal} />
+
+        {/* Settings Modal */}
+        <SettingsModal
+          isOpen={showSettings}
+          onClose={() => setShowSettings(false)}
+          audioSystem={audioSystem}
+        />
 
         {/* Backlog overlay */}
         <BacklogOverlay

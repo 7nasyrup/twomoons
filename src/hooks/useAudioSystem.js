@@ -1,198 +1,140 @@
-import { useRef, useCallback, useEffect } from 'react';
+import { useRef, useCallback, useEffect, useState } from 'react';
 import { Howl, Howler } from 'howler';
 
-// HTML5 Audioプールが枯渇する警告を防ぐためにサイズを拡張
 Howler.html5PoolSize = 100;
 
+let globalMaster = parseFloat(localStorage.getItem('volume_master') ?? '0.7');
+let globalBGM = parseFloat(localStorage.getItem('volume_bgm') ?? '0.5');
+let globalSE = parseFloat(localStorage.getItem('volume_se') ?? '0.8');
+let globalMuted = localStorage.getItem('volume_muted') === 'true';
+
+let activeBgm = null;
+let activeBgmSrc = null;
+const sePool = {};
+
 export function useAudioSystem() {
-  const bgmRef = useRef(null);
-  const currentBgmSrc = useRef(null);
-  const sePool = useRef({});
-  const masterVolume = useRef(0.7);
-  const bgmVolume = useRef(0.5);
-  const seVolume = useRef(0.8);
-  const isMuted = useRef(false);
+  const [masterVolume, setMasterVolume] = useState(globalMaster);
+  const [bgmVolume, setBgmVolumeState] = useState(globalBGM);
+  const [seVolume, setSeVolumeState] = useState(globalSE);
+  const [isMuted, setIsMuted] = useState(globalMuted);
+
+  useEffect(() => { Howler.mute(globalMuted); }, []);
 
   const playBGM = useCallback((src, { fadeDuration = 1500, volume, seek = 0 } = {}) => {
     if (!src) return;
-
-    if (src === currentBgmSrc.current) {
-      if (volume !== undefined && bgmRef.current) {
-        bgmVolume.current = volume;
-        const targetVol = volume * masterVolume.current;
-        bgmRef.current.fade(bgmRef.current.volume(), targetVol, fadeDuration);
+    if (src === activeBgmSrc) {
+      if (volume !== undefined && activeBgm) {
+        globalBGM = volume; setBgmVolumeState(volume);
+        activeBgm.fade(activeBgm.volume(), volume * globalMaster, fadeDuration);
       }
       return;
     }
-
     if (volume !== undefined) {
-      bgmVolume.current = volume;
-    } else {
-      bgmVolume.current = 0.5; // デフォルト音量
+      globalBGM = volume; setBgmVolumeState(volume);
     }
-
-    // Fade out current BGM
-    if (bgmRef.current) {
-      const oldBgm = bgmRef.current;
-      oldBgm.fade(oldBgm.volume(), 0, fadeDuration);
-      setTimeout(() => oldBgm.unload(), fadeDuration + 100);
+    if (activeBgm) {
+      const old = activeBgm;
+      old.fade(old.volume(), 0, fadeDuration);
+      setTimeout(() => old.unload(), fadeDuration + 100);
     }
-
-    const newBgm = new Howl({
-      src: [src],
-      loop: true,
-      volume: 0,
-      html5: false
-    });
-
-    newBgm.play();
-    if (seek > 0) {
-      newBgm.seek(seek);
-    }
-    newBgm.fade(0, bgmVolume.current * masterVolume.current, fadeDuration);
-    bgmRef.current = newBgm;
-    currentBgmSrc.current = src;
+    const nb = new Howl({ src: [src], loop: true, volume: 0, html5: false });
+    nb.play();
+    if (seek > 0) nb.seek(seek);
+    nb.fade(0, globalBGM * globalMaster, fadeDuration);
+    activeBgm = nb; activeBgmSrc = src;
   }, []);
 
   const playSE = useCallback((src, duration = null, loop = false, customVolume = 1.0, fadeOutDuration = 300) => {
     if (!src) return;
-
-    if (sePool.current[src]) {
-      if (sePool.current[src].loopInterval) clearInterval(sePool.current[src].loopInterval);
-      sePool.current[src].stop();
-      sePool.current[src].unload();
+    if (sePool[src]) {
+      if (sePool[src].loopInterval) clearInterval(sePool[src].loopInterval);
+      sePool[src].stop(); sePool[src].unload();
     }
-
-    const isCustomLoop = typeof loop === 'number' && loop > 0;
-
     const sound = new Howl({
-      src: [src],
-      html5: false,
-      volume: seVolume.current * masterVolume.current * customVolume,
+      src: [src], html5: false,
+      volume: globalSE * globalMaster * customVolume,
       loop: loop === true,
     });
-    sePool.current[src] = sound;
-    let soundId = sound.play();
+    sePool[src] = sound;
+    sound.play();
 
-    if (isCustomLoop) {
-      sound.loopInterval = setInterval(() => {
-        // 重ねて再生することで自然なループを作る
-        sound.play();
-      }, loop);
+    if (typeof loop === 'number' && loop > 0) {
+      sound.loopInterval = setInterval(() => { sound.play(); }, loop);
     }
-
     if (duration !== null && duration !== undefined) {
       setTimeout(() => {
-        if (sePool.current[src]) {
-          if (sePool.current[src].loopInterval) clearInterval(sePool.current[src].loopInterval);
-          const currentVol = sePool.current[src].volume();
-          sePool.current[src].fade(currentVol, 0, fadeOutDuration);
-          setTimeout(() => {
-            if (sePool.current[src]) {
-              sePool.current[src].stop();
-            }
-          }, fadeOutDuration);
+        const s = sePool[src];
+        if (s) {
+          if (s.loopInterval) clearInterval(s.loopInterval);
+          s.fade(s.volume(), 0, fadeOutDuration);
+          setTimeout(() => { if (sePool[src]) sePool[src].stop(); }, fadeOutDuration);
         }
       }, duration * 1000);
     }
   }, []);
 
   const stopSE = useCallback((src, fadeDuration = 300) => {
+    const stopOne = (s) => {
+      if (!s) return;
+      if (s.loopInterval) clearInterval(s.loopInterval);
+      s.fade(s.volume(), 0, fadeDuration);
+      setTimeout(() => { s.stop(); s.unload(); }, fadeDuration + 50);
+    };
     if (src) {
-      const sound = sePool.current[src];
-      if (sound) {
-        if (sound.loopInterval) clearInterval(sound.loopInterval);
-        sound.fade(sound.volume(), 0, fadeDuration);
-        setTimeout(() => {
-          sound.stop();
-          sound.unload();
-          delete sePool.current[src];
-        }, fadeDuration + 50);
-      }
+      stopOne(sePool[src]); delete sePool[src];
     } else {
-      Object.values(sePool.current).forEach(sound => {
-        if (sound.loopInterval) clearInterval(sound.loopInterval);
-        sound.fade(sound.volume(), 0, fadeDuration);
-        setTimeout(() => {
-          sound.stop();
-          sound.unload();
-        }, fadeDuration + 50);
-      });
+      Object.keys(sePool).forEach(k => { stopOne(sePool[k]); delete sePool[k]; });
     }
   }, []);
 
   const stopBGM = useCallback((fadeDuration = 1000) => {
-    if (bgmRef.current) {
-      const oldBgm = bgmRef.current;
-      oldBgm.fade(oldBgm.volume(), 0, fadeDuration);
-      currentBgmSrc.current = null;
-      setTimeout(() => {
-        oldBgm.unload();
-        if (bgmRef.current === oldBgm) {
-          bgmRef.current = null;
-        }
-      }, fadeDuration + 100);
+    if (activeBgm) {
+      const old = activeBgm; activeBgmSrc = null;
+      old.fade(old.volume(), 0, fadeDuration);
+      setTimeout(() => { old.unload(); if (activeBgm === old) activeBgm = null; }, fadeDuration + 100);
     }
   }, []);
 
   const pauseBGM = useCallback((fadeDuration = 1000) => {
-    if (bgmRef.current) {
-      const currentBgm = bgmRef.current;
-      currentBgm.fade(currentBgm.volume(), 0, fadeDuration);
-      setTimeout(() => {
-        currentBgm.pause();
-      }, fadeDuration + 100);
+    if (activeBgm) {
+      const cur = activeBgm; cur.fade(cur.volume(), 0, fadeDuration);
+      setTimeout(() => { cur.pause(); }, fadeDuration + 100);
     }
   }, []);
 
   const resumeBGM = useCallback((fadeDuration = 1000) => {
-    if (bgmRef.current) {
-      const currentBgm = bgmRef.current;
-      currentBgm.play();
-      currentBgm.fade(0, bgmVolume.current * masterVolume.current, fadeDuration);
+    if (activeBgm) {
+      const cur = activeBgm; cur.play(); cur.fade(0, globalBGM * globalMaster, fadeDuration);
     }
   }, []);
 
-  const setBGMVolume = useCallback((volume, fadeDuration = 1000) => {
-    bgmVolume.current = volume;
-    if (bgmRef.current) {
-      const targetVol = volume * masterVolume.current;
-      bgmRef.current.fade(bgmRef.current.volume(), targetVol, fadeDuration);
+  const setBGMVolume = useCallback((v, fd = 0) => {
+    globalBGM = v; localStorage.setItem('volume_bgm', v.toString()); setBgmVolumeState(v);
+    if (activeBgm) {
+      if (fd > 0) activeBgm.fade(activeBgm.volume(), v * globalMaster, fd);
+      else activeBgm.volume(v * globalMaster);
     }
+  }, []);
+
+  const setSEVolume = useCallback((v) => {
+    globalSE = v; localStorage.setItem('volume_se', v.toString()); setSeVolumeState(v);
+    Object.values(sePool).forEach(s => s.volume(v * globalMaster));
+  }, []);
+
+  const setMasterVol = useCallback((v) => {
+    globalMaster = v; localStorage.setItem('volume_master', v.toString()); setMasterVolume(v);
+    if (activeBgm) activeBgm.volume(globalBGM * v);
+    Object.values(sePool).forEach(s => s.volume(globalSE * v));
   }, []);
 
   const toggleMute = useCallback(() => {
-    isMuted.current = !isMuted.current;
-    if (bgmRef.current) {
-      bgmRef.current.mute(isMuted.current);
-    }
-    return isMuted.current;
-  }, []);
-
-  const setMasterVol = useCallback((val) => {
-    masterVolume.current = val;
-    if (bgmRef.current) {
-      bgmRef.current.volume(bgmVolume.current * val);
-    }
-  }, []);
-
-  // Cleanup on unmount
-  useEffect(() => {
-    return () => {
-      bgmRef.current?.unload();
-      Object.values(sePool.current).forEach(h => h.unload());
-    };
+    const next = !globalMuted; globalMuted = next;
+    localStorage.setItem('volume_muted', next.toString());
+    setIsMuted(next); Howler.mute(next); return next;
   }, []);
 
   return {
-    playBGM,
-    pauseBGM,
-    resumeBGM,
-    playSE,
-    stopSE,
-    stopBGM,
-    toggleMute,
-    setMasterVol,
-    setBGMVolume,
+    playBGM, pauseBGM, resumeBGM, playSE, stopSE, stopBGM, toggleMute,
+    setMasterVol, setBGMVolume, setSEVolume, masterVolume, bgmVolume, seVolume, isMuted,
   };
 }

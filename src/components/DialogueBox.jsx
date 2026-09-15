@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronRight, FastForward, BookOpen, LogOut, SkipForward, Save, FolderOpen, X } from 'lucide-react';
+import { ChevronRight, FastForward, BookOpen, LogOut, SkipForward, Save, FolderOpen, X, Settings } from 'lucide-react';
 import { renderTextWithLinks } from '../utils/textUtils';
 
 const hudGlitchIn = (skipMode) => ({
@@ -34,6 +34,7 @@ export default function DialogueBox({
   onSave,
   onLoad,
   onExit,
+  onOpenSettings,
 }) {
   if (!isVisible) return null;
 
@@ -218,6 +219,7 @@ export default function DialogueBox({
 
             {/* HUD Buttons Grouped Together (Overlapping the bottom cyan border) */}
             <div className="dlg-hud-row absolute -bottom-[1.5cqh] right-[6cqw] flex gap-[0.8cqh] z-20">
+              {onOpenSettings && <HudButton icon={<Settings className="dlg-hud-icon w-[2.2cqh] h-[2.2cqh]" />} label="CONFIG" onClick={onOpenSettings} />}
               <HudButton icon={<Save className="dlg-hud-icon w-[2.2cqh] h-[2.2cqh]" />} label="SAVE" onClick={onSave} />
               <HudButton icon={<FolderOpen className="dlg-hud-icon w-[2.2cqh] h-[2.2cqh]" />} label="LOAD" onClick={onLoad} />
               <HudButton icon={<SkipForward className="dlg-hud-icon w-[2.2cqh] h-[2.2cqh]" />} label="SKIP" onClick={onToggleSkip} active={skipMode} />

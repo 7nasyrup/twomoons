@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { assetPath } from '../utils/assetPath';
+import { Settings } from 'lucide-react';
 
-export default function TitleScreen({ onStart, onContinue, onBattle, hasSave, playBGM }) {
+export default function TitleScreen({ onStart, onContinue, onBattle, hasSave, playBGM, onOpenSettings }) {
     const [showCredits, setShowCredits] = useState(false);
 
     // Play title BGM when component mounts
@@ -24,8 +25,18 @@ export default function TitleScreen({ onStart, onContinue, onBattle, hasSave, pl
                     style={{ backgroundImage: `url(${assetPath('/title.png')})` }}
                 />
 
-                {/* Battle Test Button (Temporarily in Top-Left) */}
-                <div className="absolute top-[4cqh] left-[4cqw] z-20">
+                {/* CONFIG & Battle Test Buttons in Top-Left */}
+                <div className="absolute top-[4cqh] left-[4cqw] z-20 flex flex-col gap-[2cqh]">
+                    {/* Settings Button */}
+                    <button
+                        onClick={onOpenSettings}
+                        className="hud-btn flex items-center justify-center gap-[0.8cqh] px-[2.5cqw] py-[1.2cqh] rounded-full text-[1.6cqh] font-bold tracking-widest font-noto bg-white text-slate-600 border border-[#4dd0e1] hover:border-[#00e5ff] hover:text-[#00e5ff] hover:-translate-y-0.5 transition-all duration-300 shadow-md"
+                    >
+                        <Settings className="dlg-hud-icon w-[2.2cqh] h-[2.2cqh]" />
+                        <span>CONFIG</span>
+                    </button>
+
+                    {/* Battle Test Button */}
                     <button
                         onClick={onBattle}
                         className="px-[2.5cqw] py-[1.2cqh] bg-slate-950/60 border border-slate-800 text-slate-400 hover:text-slate-200 hover:bg-slate-900/60 hover:border-slate-600 rounded font-serif transition-all duration-300 transform hover:-translate-y-[2%] active:translate-y-0 active:scale-95 shadow-[0_0_10px_rgba(0,0,0,0.5)]"

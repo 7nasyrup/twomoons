@@ -396,6 +396,11 @@
   }
 }
 
+.settings-modal-card {
+  width: 90cqw !important;
+  max-width: 520px !important;
+}
+
 /* Mobile layout adjustments */
 @media (max-width: 1023px) {
   html, body {
@@ -471,6 +476,11 @@
     padding-top: 1.4vh !important;
     padding-bottom: 1.4vh !important;
     font-size: 2.2vh !important;
+  }
+
+  .settings-modal-card {
+    width: 72cqw !important;
+    max-width: 320px !important;
   }
 }
 
