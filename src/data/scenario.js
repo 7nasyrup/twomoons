@@ -899,7 +899,8 @@ export const scenarioData = [
     "scene": "夜の帰り道",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「……っ！」"
+    "text": "「……っ！」",
+    "bg": "/character/Akane/Akane_CG0.5.png"
   },
   {
     "scene": "夜の帰り道",
@@ -945,7 +946,8 @@ export const scenarioData = [
   //=============== 戦闘開始(アカネ) ===============
   {
     "scene": "戦闘",
-    "action": "TRIGGER_BATTLE_AKANE_VS_KIMERA2"
+    "action": "TRIGGER_BATTLE_AKANE_VS_KIMERA2",
+    "bg": "/scene/rojiura.png"
   },
   {
     "scene": "夜の帰り道",
@@ -11357,7 +11359,11 @@ export const scenarioData = [
     "scene": "瓦礫裏",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「いやぁぁぁぁぁあああああッッ！！」"
+    "text": "「いやぁぁぁぁぁあああああッッ！！」",
+    "hideIllust": [
+      "Nagisa"
+    ],
+    "bg": "/character/Nagisa/Nagisa_BadCG.png"
   },
   {
     "scene": "瓦礫裏",
@@ -11369,9 +11375,6 @@ export const scenarioData = [
   },
   {
     "scene": "瓦礫裏",
-    "showIllust": [
-      "Nagisa_smile"
-    ],
     "text": "私が止めようと手を伸ばそうとしたところで…彼は力なく笑った。子供みたいな、無邪気な笑み。"
   },
   {
@@ -11384,10 +11387,8 @@ export const scenarioData = [
     "scene": "瓦礫裏",
     "speaker": "凪砂",
     "role": "NAGISA",
-    "showIllust": [
-      "Nagisa_serious"
-    ],
-    "text": "「……なんで……？」"
+    "text": "「…………………………………………なんで……」",
+    "bgm": "stop"
   },
   {
     "scene": "瓦礫裏",
@@ -11401,7 +11402,8 @@ export const scenarioData = [
   },
   {
     "scene": "瓦礫裏",
-    "text": "彼は頭を抱え、苦しそうにその場へうずくまった。"
+    "text": "彼は頭を抱え、苦しそうにその場へうずくまった。",
+    "bg": "/scene/Rubble.png",
   },
   {
     "scene": "瓦礫裏",
