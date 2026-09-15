@@ -1792,7 +1792,7 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
                   {/* パソコン用説明文 (1024px以上のみ表示、PC側のデザイン・余白・サイズを100%完全保護) */}
                   <p className="hidden lg:block font-noto text-[15px] text-white/90 leading-relaxed relative z-10">
                     <span className="relative inline-block my-1 mx-1 z-0">
-                      <span className="relative z-10 text-white font-bold">[Space]/クリック</span>
+                      <span className="relative z-10 text-white font-bold">Spaceキー</span>
                       <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[10px] bg-cyan-400/70 -rotate-[2deg] rounded-sm -z-10" />
                     </span>
                     を
@@ -1884,7 +1884,7 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
                         </span>
                         が重なるタイミングで<br />
                         <span className="relative inline-block mx-0.5 z-0">
-                          <span className="relative z-10 text-white font-bold">[Space]/クリック</span>
+                          <span className="relative z-10 text-white font-bold">Spaceキー</span>
                           <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[6px] lg:h-[10px] bg-cyan-400/70 -rotate-[2deg] rounded-sm -z-10" />
                         </span>
                         を押すと
@@ -2118,15 +2118,10 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
                                 <p className="hidden lg:block font-noto text-[15px] text-white/90 leading-relaxed relative z-10">
                                   バーが真ん中に来たときに<br />
                                   <span className="relative inline-block my-1 mx-1 z-0">
-                                    <span className="relative z-10 text-white font-bold">[Space]</span>
+                                    <span className="relative z-10 text-white font-bold">Spaceキー</span>
                                     <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[10px] bg-cyan-400/70 -rotate-[2deg] rounded-sm -z-10" />
                                   </span>
-                                  または
-                                  <span className="relative inline-block mx-1 z-0">
-                                    <span className="relative z-10 text-white font-bold">クリック</span>
-                                    <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[10px] bg-cyan-400/70 -rotate-[2deg] rounded-sm -z-10" />
-                                  </span><br />
-                                  すると味方の
+                                  を押すと
                                   <span className="relative inline-block mx-1 z-0">
                                     <span className="relative z-10 text-white font-bold">攻撃力がUP</span>
                                     <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[10px] bg-red-400/70 -rotate-[2deg] rounded-sm -z-10" />
