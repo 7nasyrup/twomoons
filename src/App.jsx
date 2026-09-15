@@ -431,6 +431,7 @@ export default function App() {
   const [alertConfig, setAlertConfig] = useState({ title: '', message: '' });
   const [isFadingBlack, setIsFadingBlack] = useState(false);
   const [isWhiteOut, setIsWhiteOut] = useState(false);
+  const [isRedOut, setIsRedOut] = useState(false);
   const [isWhiteOutLight, setIsWhiteOutLight] = useState(false);
   const [whiteOutDuration, setWhiteOutDuration] = useState(0.8);
   const [isGrayOut, setIsGrayOut] = useState(false);
@@ -696,6 +697,7 @@ export default function App() {
             shakeEffect: false,
             isMonochromeFlashActive: false,
             isWhiteOut: false,
+            isRedOut: false,
             isWhiteOutLight: false,
             isEnergyAuraActive: false,
             isBlackAuraActive: false,
@@ -757,6 +759,7 @@ export default function App() {
                 simEffects.shakeEffect = false;
                 simEffects.isMonochromeFlashActive = false;
                 simEffects.isWhiteOut = false;
+                simEffects.isRedOut = false;
                 simEffects.isWhiteOutLight = false;
                 simEffects.isEnergyAuraActive = false;
                 simEffects.isBlackAuraActive = false;
@@ -795,6 +798,7 @@ export default function App() {
                 simEffects.isMonochromeFlashActive = false;
               } else if (action === 'CLEAR_WHITE_OUT_AND_FLASHBACK_END') {
                 simEffects.isWhiteOut = false;
+                simEffects.isRedOut = false;
                 simEffects.isWhiteOutLight = false;
                 simEffects.isEnergyAuraActive = false;
               }
@@ -831,6 +835,11 @@ export default function App() {
               if (action === 'WHITE_OUT_LIGHT_END') {
                 simEffects.isWhiteOutLight = false;
               }
+              if (action === 'RED_OUT_START') {
+                simEffects.isRedOut = true;
+                simEffects.whitePulseLevel = 0;
+                simEffects.shakeEffect = false;
+              }
               if (action === 'WHITE_OUT_START') {
                 simEffects.isWhiteOut = true;
                 simEffects.whitePulseLevel = 0;
@@ -843,6 +852,7 @@ export default function App() {
                 simEffects.whitePulseLevel = 0;
                 simEffects.shakeEffect = false;
               }
+              if (action === 'RED_OUT_END' || action === 'RED_OUT_END_SLOW' || action === 'RED_OUT_END_VERY_SLOW') simEffects.isRedOut = false;
               if (action === 'WHITE_OUT_END' || action === 'WHITE_OUT_END_SLOW' || action === 'WHITE_OUT_END_VERY_SLOW') simEffects.isWhiteOut = false;
               if (action === 'EXPLOSION_WHITEOUT') simEffects.isWhiteOut = true;
 
@@ -921,6 +931,7 @@ export default function App() {
           setShakeEffect(simEffects.shakeEffect);
           setIsMonochromeFlashActive(simEffects.isMonochromeFlashActive);
           setIsWhiteOut(simEffects.isWhiteOut);
+          setIsRedOut(simEffects.isRedOut);
           setIsWhiteOutLight(simEffects.isWhiteOutLight);
           setIsEnergyAuraActive(simEffects.isEnergyAuraActive);
           setIsBlackAuraActive(simEffects.isBlackAuraActive);
@@ -1254,6 +1265,7 @@ export default function App() {
         setShakeEffect(false);
         setIsMonochromeFlashActive(false);
         setIsWhiteOut(false);
+        setIsRedOut(false);
         setIsWhiteOutLight(false);
         setIsEnergyAuraActive(false);
         setIsBlackAuraActive(false);
@@ -1292,6 +1304,7 @@ export default function App() {
         setIsMonochromeFlashActive(false);
       } else if (action === 'CLEAR_WHITE_OUT_AND_FLASHBACK_END') {
         setIsWhiteOut(false);
+        setIsRedOut(false);
         setIsWhiteOutLight(false);
         setIsEnergyAuraActive(false);
       }
@@ -1318,6 +1331,8 @@ export default function App() {
         playSE(assetPath('/assets/audio/se/running.mp3'));
       } else if (action === 'PLAY_FOOTSTEP_SE') {
         playSE(assetPath('/assets/audio/se/footsteps.mp3'));
+      } else if (action === 'PLAY_SHOES_SE') {
+        playSE(assetPath('/assets/audio/bgm/Shoes_Sound.mp3'));
       }
 
       // Shake Screen
@@ -2853,6 +2868,14 @@ export default function App() {
                   />
                 )}
               </AnimatePresence>
+
+              {/* Red Out Overlay */}
+              <motion.div
+                className="absolute inset-0 pointer-events-none z-[19] bg-[#4a0000]"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: (isRedOut && !isCinema && !isAnyEnd) ? 1 : 0 }}
+                transition={{ duration: whiteOutDuration, ease: 'easeInOut' }}
+              />
 
               {/* White Out Overlay */}
               <motion.div

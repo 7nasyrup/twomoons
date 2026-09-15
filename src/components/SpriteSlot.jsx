@@ -82,7 +82,8 @@ const SPEAKER_TO_ROMAJI = {
   "黒騎士": "BlackKnight",
   "ルキ": "Ruki",
   "少年": "Ruki",
-  "朔良": "Sakura"
+  "朔良": "Sakura",
+  "???": "Sakura"
 };
 
 export default function SpriteSlot({ leftActive, rightActive, focusSlot, currentSpeaker, presentCharacters = [], currentLine, currentStep, scenarioData = [], isPhoneCallRight }) {
