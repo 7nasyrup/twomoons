@@ -750,7 +750,7 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
 
           // Check for Ultimate Tutorial
           const enemy = allEnemies[0];
-          if (enemy && !enemy.isDead && (enemy.hp / enemy.maxHp) <= 0.30 && stateRef.current.hasShownPostParryDialogue && !stateRef.current.hasShownUltimateDialogue) {
+          if (enemy && !enemy.isDead && (enemy.hp / enemy.maxHp) <= 0.65 && stateRef.current.hasShownPostParryDialogue && !stateRef.current.hasShownUltimateDialogue) {
             setSyncRate(100);
             setHasShownUltimateDialogue(true);
             stateRef.current.hasShownUltimateDialogue = true;
@@ -843,7 +843,7 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
         stateRef.current.turnTimer -= dt;
         if (stateRef.current.turnTimer <= 0) {
           const enemy = stateRef.current.enemies[0];
-          if (enemy && !enemy.isDead && (enemy.hp / enemy.maxHp) <= 0.80 && !stateRef.current.hasShownParryDialogue) {
+          if (enemy && !enemy.isDead && (enemy.hp / enemy.maxHp) <= 0.90 && !stateRef.current.hasShownParryDialogue) {
             setHasShownParryDialogue(true);
             stateRef.current.hasShownParryDialogue = true;
             setBattlePhase('dialogue');
@@ -1490,7 +1490,7 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
     if (!mutsunori || mutsunori.isDead) return;
 
     setSyncRate(0);
-    setDuetCutin({ allyId: mutsunori.id, name: mutsunori.name, image: mutsunori.cutinImage });
+    setCounterAnim({ id: Date.now(), allyId: mutsunori.id });
 
     setUltimateFlash(true);
     triggerSakuraNote();
@@ -1521,7 +1521,7 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
       addLog(`★★ 睦典の必殺技！ 渾身の一撃が炸裂！ ★★`);
     }, 1500);
 
-    setTimeout(() => { setDuetCutin(null); setUltimateFlash(false); setShakeActive(false); }, 2500);
+    setTimeout(() => { setCounterAnim(null); setUltimateFlash(false); setShakeActive(false); }, 2500);
   }, [syncRate, allies, addLog, triggerSakuraNote, spawnDamageNumber]);
 
   const handleResultClose = useCallback(() => {
@@ -1769,8 +1769,16 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
           </motion.div>
         )}
         {ultimateFlash && (
-          <motion.div className="absolute inset-0 z-[55] pointer-events-none" initial={{ opacity: 0 }} animate={{ opacity: [0, 0.7, 0.3, 0.6, 0] }} transition={{ duration: 2 }}>
+          <motion.div className="absolute inset-0 z-[55] pointer-events-none flex items-center justify-center" initial={{ opacity: 0 }} animate={{ opacity: [0, 0.7, 0.3, 0.6, 0] }} transition={{ duration: 2 }}>
             <div className="absolute inset-0 bg-gradient-to-r from-violet-200/50 via-cyan-100/30 to-violet-200/50" />
+            <motion.div
+              initial={{ scale: 0.5, opacity: 0, x: -50 }}
+              animate={{ scale: 1.2, opacity: [0, 1, 1, 0], x: 0 }}
+              transition={{ duration: 2, times: [0, 0.1, 0.8, 1], ease: "easeOut" }}
+              className="relative z-10 font-orbitron font-black text-5xl lg:text-7xl italic text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 via-violet-100 to-amber-200 drop-shadow-[0_0_25px_rgba(139,92,246,0.9)] tracking-[0.1em] whitespace-nowrap"
+            >
+              ULTIMATE ATTACK
+            </motion.div>
           </motion.div>
         )}
         {counterAnim && (
