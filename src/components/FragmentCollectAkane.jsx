@@ -16,22 +16,22 @@ const ROOMS = [
 const AKANE_CHIP = [
   // 1つ目
   [
-    { speaker: 'アカネ', role: 'アカネ', illust: 'Akane_serious', text: '「……コードの断片だ。手間取るな」' },
-    { speaker: 'アカネ', role: 'アカネ', illust: 'Akane_serious', text: '「さっさと次へ行くぞ。時間を無駄にするな」' },
+    { speaker: 'アカネ', role: 'AKANE', illust: 'Akane_serious', text: '「……コードの断片だ。手間取るな」' },
+    { speaker: 'アカネ', role: 'AKANE', illust: 'Akane_serious', text: '「さっさと次へ行くぞ。時間を無駄にするな」' },
   ],
   // 2つ目
   [
-    { speaker: 'アカネ', role: 'アカネ', illust: 'Akane_serious', text: '「……また一つ。思ったより手こずるな、この研究所は」' },
-    { speaker: 'アカネ', role: 'アカネ', illust: 'Akane_serious', text: '「油断するなよ。まだ終わりじゃない」' },
+    { speaker: 'アカネ', role: 'AKANE', illust: 'Akane_serious', text: '「……また一つ。思ったより手こずるな、この研究所は」' },
+    { speaker: 'アカネ', role: 'AKANE', illust: 'Akane_serious', text: '「油断するなよ。まだ終わりじゃない」' },
   ],
   // 3つ目
   [
-    { speaker: 'アカネ', role: 'アカネ', illust: 'Akane_serious', text: '「……チップ確保。残り一つだ」' },
-    { speaker: 'アカネ', role: 'アカネ', illust: 'Akane_serious', text: '「……余計なものを見るな。先を急げ」' },
+    { speaker: 'アカネ', role: 'AKANE', illust: 'Akane_serious', text: '「……チップ確保。残り一つだ」' },
+    { speaker: 'アカネ', role: 'AKANE', illust: 'Akane_serious', text: '「……余計なものを見るな。先を急げ」' },
   ],
   // 4つ目以降
   [
-    { speaker: 'アカネ', role: 'アカネ', illust: 'Akane_serious', text: '「……。行くぞ」' },
+    { speaker: 'アカネ', role: 'AKANE', illust: 'Akane_serious', text: '「……。行くぞ」' },
   ],
 ];
 
@@ -56,7 +56,7 @@ const AKANE_FILE = [
 
 // ─── ゲート解錠時 ─────────────────────────────────────────────────────────────
 const AKANE_GATE = [
-  { speaker: 'アカネ', role: 'アカネ', illust: 'Akane_serious', text: '「コードが揃った。ゲートを開ける。遅れるな」' },
+  { speaker: 'アカネ', role: 'AKANE', illust: 'Akane_serious', text: '「コードが揃った。ゲートを開ける。遅れるな」' },
 ];
 
 // ─── 各エリアのアイテム配置 ──────────────────────────────────────────────────────

@@ -1082,7 +1082,6 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
       if (playBGM) playBGM();
       return;
     }
-    if (stopBGM) stopBGM();
     onComplete(battlePhase === 'victory' ? 'win' : 'lose');
   }, [battlePhase, onComplete, stopBGM, playBGM]);
 
