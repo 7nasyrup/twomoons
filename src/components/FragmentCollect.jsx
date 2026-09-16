@@ -51,11 +51,11 @@ const MUTSUNORI_FILE = [
     { speaker: '睦典', role: 'MUTSUNORI', text: '「朔良！ 何か手掛かりは見つかったか？」' },
     { speaker: '朔良', role: 'SAKURA', text: '「っ、うわッ！！」' },
     { speaker: '', role: 'SYSTEM', text: '背後から突然声をかけられ、思わず肩が跳ねる。' },
-    { speaker: '睦典', role: 'MUTSUNORI', illust: 'Mutsunori_pout', text: '「あ……ごめん、驚かせちゃったか？」' },
-    { speaker: '朔良', role: 'SAKURA', text: '「え、あ……ううん、大丈夫」' },
-    { speaker: '', role: 'SYSTEM', text: '睦典のいつもの優しい顔を見て、私は咄嗟に手にしていた書類を隠した。' },
-    { speaker: '朔良', role: 'SAKURA', text: '（……なんで、隠したんだろう）' },
-    { speaker: '', role: 'SYSTEM', text: '自分でも理由は分からない。\nただ、この内容を今すぐ彼に見せてはいけない気がした。' },
+    { speaker: '睦典', role: 'MUTSUNORI', illust: 'Mutsunori_surprise', text: '「あ……ごめん、驚かせちゃったか？」' },
+    { speaker: '朔良', role: 'SAKURA', illust: 'Mutsunori_surprise', text: '「え、あ……ううん、大丈夫」' },
+    { speaker: '', role: 'SYSTEM', illust: 'Mutsunori_surprise', text: '睦典のいつもの優しい顔を見て、私は咄嗟に手にしていた書類を隠した。' },
+    { speaker: '朔良', role: 'SAKURA', illust: 'Mutsunori_surprise', text: '（……なんで、隠したんだろう）' },
+    { speaker: '', role: 'SYSTEM', illust: 'Mutsunori_surprise', text: '自分でも理由は分からない。\nただ、この内容を今すぐ彼に見せてはいけない気がした。' },
     { speaker: '睦典', role: 'MUTSUNORI', illust: 'Mutsunori_smile', text: '「……何か見つけた？」' },
     { speaker: '朔良', role: 'SAKURA', text: '「ううん、何も。もう少し探してみよう」' },
     { speaker: '', role: 'SYSTEM', text: '小さな違和感を胸に抱えたまま、私は研究所の奥へと歩き出した。' }
@@ -927,7 +927,7 @@ export default function FragmentCollect({ onComplete, onSave, onLoad, onToggleSk
               <FileText className="w-3.5 h-3.5 lg:w-4 lg:h-4 text-green-500" />
               <span className="text-[11px] lg:text-xs font-orbitron text-slate-600 tracking-widest font-bold">FILE</span>
               <div className="flex items-center gap-1.5 lg:gap-2">
-                {Array.from({ length: 4 }, (_, i) => (
+                {Array.from({ length: 3 }, (_, i) => (
                   <div key={i} className={`w-2.5 h-2.5 lg:w-3 lg:h-3 rounded-full border transition-all duration-500 ${i < fileCount
                     ? 'bg-green-400 border-green-300 shadow-[0_0_8px_rgba(74,222,128,0.8)]'
                     : 'bg-transparent border-white/30'}`}

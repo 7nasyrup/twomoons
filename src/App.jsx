@@ -624,6 +624,33 @@ export default function App() {
         message: showTitle ? 'このデータをロードしますか？' : 'このデータをロードしますか？\n（セーブされていない進行状況は失われます）',
         onConfirm: () => {
           setConfirmModal(prev => ({ ...prev, isActive: false }));
+          
+          // --- インデックスズレの補正 ---
+          let targetStep = slotData.step;
+          const savedLine = scenarioData[targetStep];
+          
+          // セーブ時のテキストやシーン名が現在の scenarioData[targetStep] と一致しない場合、ズレていると判断して検索する
+          if (
+            savedLine && 
+            (savedLine.text !== slotData.currentText || savedLine.scene !== slotData.sceneName)
+          ) {
+            console.warn(`[Load] Step index mismatch detected at step ${targetStep}. Searching for the correct step...`);
+            // 同じシーン名、同じテキスト、同じ話者を持つ行を探す
+            const foundIndex = scenarioData.findIndex(line => 
+              line.scene === slotData.sceneName &&
+              line.text === slotData.currentText &&
+              (line.speaker || '') === (slotData.currentSpeaker || '')
+            );
+            
+            if (foundIndex !== -1) {
+              console.log(`[Load] Correct step found at index ${foundIndex}. Adjusting target step.`);
+              targetStep = foundIndex;
+            } else {
+              console.warn(`[Load] Could not find the exact line. Proceeding with saved step ${targetStep}.`);
+            }
+          }
+          // ----------------------------
+
           if (slotData.fragmentCollectResult !== undefined) setFragmentCollectResult(slotData.fragmentCollectResult);
           if (slotData.learningScore !== undefined) setLearningScore(slotData.learningScore);
           if (slotData.eyeOfProfilerSuccess !== undefined) setEyeOfProfilerSuccess(slotData.eyeOfProfilerSuccess);
@@ -638,7 +665,7 @@ export default function App() {
 
           let simulatedPresentCharacters = [];
           let tempSceneForChars = scenarioData[0]?.scene;
-          for (let i = 0; i <= slotData.step; i++) {
+          for (let i = 0; i <= targetStep; i++) {
             const line = scenarioData[i];
             if (!line) continue;
             if (line.scene && line.scene !== tempSceneForChars) {
@@ -719,7 +746,7 @@ export default function App() {
           };
           let simulatedLoopingSEs = new Map();
 
-          for (let i = 0; i <= slotData.step; i++) {
+          for (let i = 0; i <= targetStep; i++) {
             const line = scenarioData[i];
             if (!line) continue;
 
@@ -957,8 +984,8 @@ export default function App() {
           setAlertActive(false);
 
           // Force update visualLine immediately to prevent old line's useEffect from ruining the state
-          setVisualLine(scenarioData[slotData.step]);
-          setVisualStep(slotData.step);
+          setVisualLine(scenarioData[targetStep]);
+          setVisualStep(targetStep);
 
           // 完全なキャッシュ消去：ロード前に鳴っていた音を全て即座に止める
           stopBGM(0);
@@ -984,7 +1011,7 @@ export default function App() {
           setPrevScene(currentScene);
           // -----------------------------
 
-          jumpToStep(slotData.step, slotData.bgPath);
+          jumpToStep(targetStep, slotData.bgPath);
           setShowTitle(false);
           setSlotModalMode(null);
           setSaveToast('loaded');

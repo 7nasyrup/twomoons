@@ -532,7 +532,7 @@ export default function FragmentCollectSolo({ onComplete, onSave, onLoad, onTogg
               <FileText className="w-3.5 h-3.5 lg:w-4 lg:h-4 text-green-500" />
               <span className="text-[11px] lg:text-xs font-orbitron text-slate-600 tracking-widest font-bold">FILE</span>
               <div className="flex items-center gap-1.5 lg:gap-2">
-                {Array.from({ length: 4 }, (_, i) => (
+                {Array.from({ length: 3 }, (_, i) => (
                   <div key={i} className={`w-2.5 h-2.5 lg:w-3 lg:h-3 rounded-full border transition-all duration-500 ${i < fileCount ? 'bg-green-400 border-green-300 shadow-[0_0_8px_rgba(74,222,128,0.8)]' : 'bg-transparent border-white/30'}`} />
                 ))}
               </div>
