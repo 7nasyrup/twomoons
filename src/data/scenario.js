@@ -5455,6 +5455,8 @@ export const scenarioData = [
     "bg": "/scene/core_hakai1.png",
     "action": "BLACK_AURA_STOP",
     "text": "その先にいたのは、私たちを探していた黒騎士。黒騎士が振り返るより早く、睦典は生身の拳を振り上げた。",
+    "bgm": "Badend.mp3",
+    "bgmVolume": 0.4,
     "showIllust": [
       "BlackKnight4",
       "Mutsunori_bake12"
@@ -5515,7 +5517,6 @@ export const scenarioData = [
       "clear",
       "SHAKE_SCREEN"
     ],
-    "bgm": "stop",
     "text": "やがて黒騎士の大剣すら叩き折られ、形勢不利と判断した黒騎士は壁を破壊して、その場から逃走した。",
     "hideIllust": [
       "Mutsunori_bake4",
@@ -5563,7 +5564,8 @@ export const scenarioData = [
   },
   {
     "scene": "コア部屋_崩壊①",
-    "text": "冷たい身体。もう、人間だった頃の温もりは残っていなかった。"
+    "text": "冷たい身体。もう、人間だった頃の温もりは残っていなかった。",
+    "bgm": "stop"
   },
   {
     "scene": "コア部屋_崩壊①",
