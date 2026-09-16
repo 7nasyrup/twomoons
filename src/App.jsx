@@ -50,6 +50,7 @@ import SaveSlotModal, { SAVE_KEY_PREFIX, loadAllSlots } from './components/SaveS
 import InstallPrompt from './components/InstallPrompt';
 import { useNovelEngine } from './hooks/useNovelEngine';
 import { useAudioSystem } from './hooks/useAudioSystem';
+import { usePreloader } from './hooks/usePreloader';
 import { scenarioData } from './data/scenario';
 import { assetPath } from './utils/assetPath';
 
@@ -411,6 +412,8 @@ export default function App() {
     clearBacklog,
     totalSteps,
   } = useNovelEngine(scenarioData, { manualTestMode, endMode: isEndScreen });
+
+  usePreloader(scenarioData, currentStep);
 
   const audioSystem = useAudioSystem();
   const { playBGM, stopBGM, playSE, stopSE,
