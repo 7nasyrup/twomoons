@@ -77,7 +77,7 @@ function BackgroundRenderer({ bgPath, bgAnimationClass, fadeMode = 'blackout' })
 
   return (
     <div className="absolute inset-0 w-full h-full select-none z-0">
-      <AnimatePresence mode={fadeMode === 'crossfade' ? 'sync' : 'wait'}>
+      <AnimatePresence mode={(fadeMode === 'crossfade' || fadeMode === 'cut' || fadeMode === 'softcut') ? 'sync' : 'wait'}>
         {!imageError ? (
           <motion.img
             key={bgPath}
@@ -87,7 +87,12 @@ function BackgroundRenderer({ bgPath, bgAnimationClass, fadeMode = 'blackout' })
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={fadeMode === 'crossfade' ? { duration: 1.2, ease: "easeInOut" } : { duration: 0.3, ease: "easeInOut" }}
+            transition={
+              fadeMode === 'crossfade' ? { duration: 1.2, ease: "easeInOut" } :
+              fadeMode === 'softcut' ? { duration: 0.4, ease: "easeInOut" } :
+              fadeMode === 'cut' ? { duration: 0 } :
+              { duration: 0.3, ease: "easeInOut" }
+            }
             onError={() => setImageError(true)}
           />
         ) : (
@@ -2032,7 +2037,7 @@ export default function App() {
               {/* Visual Background Fallback & Actual Renderer */}
               <BackgroundRenderer
                 bgPath={currentBg}
-                fadeMode={currentLine?.bgCrossfade ? 'crossfade' : 'blackout'}
+                fadeMode={currentLine?.bgCrossfade ? 'crossfade' : currentLine?.bgSoftCut ? 'softcut' : currentLine?.bgCut ? 'cut' : 'blackout'}
                 bgAnimationClass={
                   [].concat(currentLine?.action || []).includes('WAKE_UP')
                     ? 'animate-bg-wake-up'

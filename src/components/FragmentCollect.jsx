@@ -531,8 +531,9 @@ export default function FragmentCollect({ onComplete, onSave, onLoad, onToggleSk
       lastMousePos.current = { x: e.clientX, y: e.clientY };
 
       // ドラッグ方向と逆にカメラ（lightX/Y）を移動させることで画像を引っ張る感覚にする
-      setLightX(prev => Math.max(0, Math.min(window.innerWidth, prev - deltaX * 1.5)));
-      setLightY(prev => Math.max(0, Math.min(window.innerHeight, prev - deltaY * 1.5)));
+      const sensitivity = e.pointerType === 'touch' ? 9.0 : 1.5;
+      setLightX(prev => Math.max(0, Math.min(window.innerWidth, prev - deltaX * sensitivity)));
+      setLightY(prev => Math.max(0, Math.min(window.innerHeight, prev - deltaY * sensitivity)));
     } else {
       // スキャナー用の既存ロジック
       if (containerRef.current) {

@@ -11,21 +11,21 @@ export const scenarioData = [
     "text": "いつもと変わらない、光景。",
     "bg": "/scene/university_classroom.png",
     "style": "cinema",
-    "action": "FADE_OUT"
+    "bgSoftCut": true
   },
   {
     "scene": "PROLOGUE",
     "text": "いつもと変わらない…",
     "bg": "/scene/university_plaza.png",
     "style": "cinema",
-    "action": "WAIT_SECONDS"
+    "bgSoftCut": true
   },
   {
     "scene": "PROLOGUE",
     "text": "空。",
     "bg": "/scene/university_outside.png",
     "style": "cinema",
-    "action": "SLOW_FADE_IN"
+    "bgSoftCut": true
   },
   {
     "scene": "PROLOGUE",

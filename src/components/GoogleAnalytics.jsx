@@ -5,6 +5,24 @@ export default function GoogleAnalytics() {
     const gaId = import.meta.env.NEXT_PUBLIC_GA_ID;
     if (!gaId) return;
 
+    // 1. URLに ?ignore_ga=true を付けてアクセスした場合、以降そのブラウザではカウントしないようにする
+    if (window.location.search.includes('ignore_ga=true')) {
+      localStorage.setItem('ignore_ga', 'true');
+      alert('【開発者モード】\nこのブラウザからのアクセスは今後Googleアナリティクスでカウントされなくなりました！');
+    }
+
+    // 2. ローカルでのテスト中はカウントしない
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+      console.log('Google Analytics: Localhost detected. Tracking disabled.');
+      return;
+    }
+
+    // すでに除外設定済みのブラウザならカウントしない
+    if (localStorage.getItem('ignore_ga') === 'true') {
+      console.log('Google Analytics: Developer mode detected. Tracking disabled.');
+      return;
+    }
+
     if (document.getElementById('ga-script')) return;
 
     const script = document.createElement('script');

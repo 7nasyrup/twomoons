@@ -483,8 +483,9 @@ export default function FragmentCollectMika({ onComplete, onSave, onLoad, onTogg
     const dx = e.clientX - lastMousePos.current.x;
     const dy = e.clientY - lastMousePos.current.y;
     lastMousePos.current = { x: e.clientX, y: e.clientY };
-    setLightX(prev => Math.max(0, Math.min(window.innerWidth, prev - dx * 1.5)));
-    setLightY(prev => Math.max(0, Math.min(window.innerHeight, prev - dy * 1.5)));
+    const sensitivity = e.pointerType === 'touch' ? 9.0 : 1.5;
+    setLightX(prev => Math.max(0, Math.min(window.innerWidth, prev - dx * sensitivity)));
+    setLightY(prev => Math.max(0, Math.min(window.innerHeight, prev - dy * sensitivity)));
   };
 
   const renderSpot = (item, type, handler) => {
