@@ -11,7 +11,7 @@ const HEAL_COOLDOWN = 12000;
 
 // Damage values
 const ALLY_BASE_DAMAGE = 20;
-const ENEMY_BASE_DAMAGE = 30;
+const ENEMY_BASE_DAMAGE = 40;
 const GUARD_REDUCTION = 0.2;          // 80% damage reduction when holding guard
 const ULTIMATE_DAMAGE = 350;
 const HEAL_AMOUNT = 80;
@@ -603,7 +603,8 @@ export default function BattleFinalAkane({ onComplete, playBGM, stopBGM, playSE 
               const isGuarding = currentGuards.has(attack.targetId);
               const defMult = stateRef.current.activeFragments.some(f => f.id === 'DEF_UP') ? 0.5 : 1.0;
               const baseDamage = (attack.enemyId === 'enemy2' || attack.enemyId === 'enemy3') ? 18 : ENEMY_BASE_DAMAGE;
-              let dmg = baseDamage + Math.floor(Math.random() * 10);
+              const randDmg = (attack.enemyId === 'enemy1') ? Math.floor(Math.random() * 41) : Math.floor(Math.random() * 10);
+              let dmg = baseDamage + randDmg;
 
               if (hasBuff) {
                 dmg = Math.floor(dmg * 0.8);

@@ -1728,7 +1728,7 @@ export const scenarioData = [
   {
     "scene": "朔良の部屋",
     "text": "その時、置いたスマートフォンが小さく震えた。",
-    "se": "Mail_alert.mp3"
+    "se": "Mail.mp3"
   },
   {
     "scene": "朔良の部屋",
@@ -2571,7 +2571,7 @@ export const scenarioData = [
     "scene": "キャンパスの裏手",
     "text": "スマートフォンが短く震えた。",
     "action": "SHAKE_SCREEN",
-    "se": "Mail_alert.mp3"
+    "se": "Mail.mp3"
   },
   {
     "scene": "キャンパスの裏手",
@@ -8501,7 +8501,9 @@ export const scenarioData = [
   {
     "scene": "校門",
     "text": "言葉を上手く紡げない。頭の中には、冷たい無機質な部屋の光景が浮かんでいた。そこに響く、誰かの叫び声。そして、得体の知れない恐怖が胸を締めつける。",
-    "se": "noise.mp3"
+    "se": "noise.mp3",
+    "seVolume": 0.3,
+    "seLoop": true
   },
   {
     "scene": "校門",
@@ -8562,10 +8564,12 @@ export const scenarioData = [
   },
   {
     "scene": "自室（散乱）",
-    "text": "そのあまりの負担に耐えきれず、私は意識を手放した。"
+    "text": "そのあまりの負担に耐えきれず、私は意識を手放した。",
+
   },
   {
     "action": "FADE_TO_BLACK",
+    "stopSe": "noise.mp3",
     "bgm": "stop"
   },
   {

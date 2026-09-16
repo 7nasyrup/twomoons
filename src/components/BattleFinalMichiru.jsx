@@ -11,7 +11,7 @@ const HEAL_COOLDOWN = 12000;
 
 // Damage values
 const ALLY_BASE_DAMAGE = 20;
-const ENEMY_BASE_DAMAGE = 30;
+const ENEMY_BASE_DAMAGE = 100;
 const GUARD_REDUCTION = 0.2;          // 80% damage reduction when holding guard
 const ULTIMATE_DAMAGE = 200;
 const HEAL_AMOUNT = 80;
@@ -622,7 +622,7 @@ export default function BattleFinalMichiru({ onComplete, playBGM, stopBGM, playS
               const hasBuff = stateRef.current.buffTurnsLeft > 0;
               const isGuarding = currentGuards.has(attack.targetId);
               const defMult = stateRef.current.activeFragments.some(f => f.id === 'DEF_UP') ? 0.5 : 1.0;
-              let dmg = ENEMY_BASE_DAMAGE + Math.floor(Math.random() * 10);
+              let dmg = ENEMY_BASE_DAMAGE + Math.floor(Math.random() * 41);
 
               if (hasBuff) {
                 dmg = Math.floor(dmg * 0.8);
