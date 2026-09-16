@@ -514,7 +514,7 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
               qteSuccessRef.current = false;
               qteResultRef.current = 'miss';
             } else {
-              
+
               setTurnPhase('enemy_windup');
             }
             return 0;
@@ -844,7 +844,7 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
       const next = new Set(prev);
       if (next.has(allyId)) {
         next.delete(allyId);
-        
+
         // Normal guard, apply cooldown to prevent spamming
         guardCooldownsRef.current[allyId] = Date.now();
         setGuardCooldownTrigger(prev => ({ ...prev, [allyId]: Date.now() }));
@@ -1342,7 +1342,7 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
               <div key={ally.id} className="relative flex flex-col items-center w-full">
 
                 {/* ── Ally HP Bar (Chimera-A style) ── */}
-                <div className="w-20 lg:w-36 mb-1 lg:mb-2 z-20 relative">
+                <div className="w-20 lg:w-36 mb-1 lg:mb-2 z-20 relative translate-x-2 translate-y-6 lg:translate-x-0 lg:-translate-y-2">
                   <div className="flex flex-col items-center">
                     <div className="flex items-center justify-between w-full mb-0.5 px-1">
                       <div className="flex items-center gap-1.5">
@@ -1746,13 +1746,13 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
             {/* Circular Progress Gauge */}
             <svg className="absolute inset-0 w-full h-full -rotate-90 pointer-events-none" viewBox="0 0 100 100" style={{ overflow: 'visible' }}>
               <circle cx="50" cy="50" r="48" fill="none" className="stroke-amber-900/40" strokeWidth="3" />
-              <circle 
-                cx="50" 
-                cy="50" 
-                r="48" 
-                fill="none" 
-                className="stroke-amber-400 drop-shadow-[0_0_5px_rgba(251,191,36,0.8)]" 
-                strokeWidth="3" 
+              <circle
+                cx="50"
+                cy="50"
+                r="48"
+                fill="none"
+                className="stroke-amber-400 drop-shadow-[0_0_5px_rgba(251,191,36,0.8)]"
+                strokeWidth="3"
                 strokeDasharray="301.59"
                 strokeDashoffset={301.59 - (301.59 * Math.min(syncRate, SYNC_COST_ULTIMATE) / SYNC_COST_ULTIMATE)}
                 strokeLinecap="round"

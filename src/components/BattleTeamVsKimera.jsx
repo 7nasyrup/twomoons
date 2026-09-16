@@ -1322,15 +1322,14 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
 
             return (
               <div key={ally.id} className={`relative flex flex-col items-center ${ally.id === 'mutsunori' ? '-translate-x-2 -translate-y-12 lg:-translate-x-4 lg:-translate-y-32' :
-                ally.id === 'nagisa' ? 'translate-x-2 -translate-y-4 lg:translate-x-4 lg:-translate-y-18' :
+                ally.id === 'nagisa' ? 'translate-x-8 -translate-y-4 lg:translate-x-4 lg:-translate-y-20' :
                   ally.id === 'mika' ? 'translate-x-20 -translate-y-8 lg:translate-x-20 lg:-translate-y-24' : ''
                 }`}>
 
                 {/* ── Ally HP Bar (Chimera-A style) ── */}
-                <div className={`w-20 lg:w-36 mb-1 lg:mb-2 z-20 relative lg:translate-y-0 ${
-                  ally.id === 'nagisa' ? 'translate-y-4 translate-x-4 lg:translate-y-0 lg:translate-x-0' :
-                  ally.id === 'mika' ? 'translate-y-6 translate-x-2 lg:translate-y-0 lg:translate-x-0' : 'translate-y-4 lg:translate-y-0'
-                }`}>
+                <div className={`w-20 lg:w-36 mb-1 lg:mb-2 z-20 relative lg:translate-y-0 ${ally.id === 'nagisa' ? 'translate-y-6 translate-x-0 lg:translate-y-0 lg:translate-x-0' :
+                  ally.id === 'mika' ? 'translate-y-8 translate-x-2 lg:translate-y-0 lg:translate-x-0' : 'translate-y-6 lg:translate-y-0'
+                  }`}>
                   <div className="flex flex-col items-center">
                     <div className="flex items-center justify-between w-full mb-0.5 px-1">
                       <div className="flex items-center gap-1.5">

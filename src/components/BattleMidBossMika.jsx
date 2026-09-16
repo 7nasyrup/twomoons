@@ -1316,7 +1316,7 @@ export default function BattleMidBossMika({ onComplete, playBGM, stopBGM, playSE
               <div key={ally.id} className="relative flex flex-col items-center w-full translate-y-3 lg:translate-y-6">
 
                 {/* ── Ally HP Bar (Chimera-A style) ── */}
-                <div className="w-20 lg:w-36 mb-1 lg:mb-2 z-20 relative">
+                <div className="w-20 lg:w-36 mb-1 lg:mb-2 z-20 relative translate-x-2 lg:translate-x-0 lg:-translate-y-3">
                   <div className="flex flex-col items-center">
                     <div className="flex items-center justify-between w-full mb-0.5 px-1">
                       <div className="flex items-center gap-1.5">
@@ -1596,7 +1596,7 @@ export default function BattleMidBossMika({ onComplete, playBGM, stopBGM, playSE
         </div>
 
         {/* ── Enemies (Right Column) ── */}
-        <div className="w-1/2 flex flex-col justify-around items-center pl-4 -translate-x-4 lg:-translate-x-8">
+        <div className="w-1/2 flex flex-col justify-around items-center pl-4 -translate-x-4 translate-y-3 lg:-translate-x-8">
           {enemies.map(enemy => {
             const isAttacking = activeAttacksCompat.some(a => a.enemyId === enemy.id);
             const isCurrentTurn = TURN_ORDER[currentTurnIndex % TURN_ORDER.length] === enemy.id && turnPhase !== 'turn_delay';
@@ -1624,7 +1624,7 @@ export default function BattleMidBossMika({ onComplete, playBGM, stopBGM, playSE
                     <img src={enemy.image} alt={enemy.name} className={`w-full h-full object-contain drop-shadow-[0_0_15px_rgba(244,63,94,0.3)]`} />
 
                     {/* Enemy HP Bar placed directly as an absolute overlay above her head! */}
-                    <div className="absolute top-10 lg:top-16 left-1/2 -translate-x-1/2 w-16 lg:w-28 z-50 pointer-events-auto">
+                    <div className="absolute left-1/2 -translate-x-1/2 w-16 lg:w-28 z-50 pointer-events-auto top-[40px] mt-[-9px] ml-[0px] lg:top-[64px] lg:mt-0 lg:ml-0">
                       <div className="flex flex-col items-center">
                         <div className="flex items-center justify-between w-full mb-0.5 px-1 lg:mb-0.5 lg:px-1">
                           <div className="flex items-center gap-2">

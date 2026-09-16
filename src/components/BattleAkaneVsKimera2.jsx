@@ -1307,7 +1307,7 @@ export default function BattleAkaneVsKimera2({ onComplete, playBGM, stopBGM, pla
               <div key={ally.id} className="relative flex flex-col items-center w-full">
 
                 {/* ── Ally HP Bar (Chimera-A style) ── */}
-                <div className="w-20 lg:w-36 mb-1 lg:mb-2 z-20 relative">
+                <div className="w-20 lg:w-36 mb-1 lg:mb-2 z-20 relative translate-y-3 translate-x-2 lg:-translate-y-5 lg:translate-x-2">
                   <div className="flex flex-col items-center">
                     <div className="flex items-center justify-between w-full mb-0.5 px-1">
                       <div className="flex items-center gap-1.5">
@@ -1574,7 +1574,7 @@ export default function BattleAkaneVsKimera2({ onComplete, playBGM, stopBGM, pla
         </div>
 
         {/* ── Enemies (Right Column) ── */}
-        <div className="w-1/2 flex flex-col justify-around items-center pl-4 -translate-x-4 lg:-translate-x-8">
+        <div className="w-1/2 flex flex-col justify-around items-center pl-4 -translate-x-7 -translate-y-4 lg:-translate-x-8 lg:-translate-y-7">
           {enemies.map(enemy => {
             const isAttacking = activeAttacksCompat.some(a => a.enemyId === enemy.id);
             const isCurrentTurn = TURN_ORDER[currentTurnIndex % TURN_ORDER.length] === enemy.id && turnPhase !== 'turn_delay';
@@ -1584,7 +1584,7 @@ export default function BattleAkaneVsKimera2({ onComplete, playBGM, stopBGM, pla
             return (
               <div key={enemy.id} className="relative w-full h-[420px] lg:h-[520px] flex flex-col justify-end items-center translate-y-12 lg:translate-y-20">
                 <div
-                  className="absolute z-50 -translate-x-6 lg:translate-x-0 w-20 lg:w-36"
+                  className="absolute z-50 -translate-x-4 translate-y-9 lg:translate-x-0 w-20 lg:w-36"
                   style={{
                     /* 
                      * 【HPバーの上下位置調整】

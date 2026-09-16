@@ -1929,11 +1929,20 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
                           <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[6px] lg:h-[10px] bg-cyan-400/70 -rotate-[2deg] rounded-sm -z-10" />
                         </span>
                         が重なるタイミングで<br />
-                        <span className="relative inline-block mx-0.5 z-0">
-                          <span className="relative z-10 text-white font-bold">スペースキー</span>
-                          <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[6px] lg:h-[10px] bg-cyan-400/70 -rotate-[2deg] rounded-sm -z-10" />
+                        <span className="hidden lg:inline">
+                          <span className="relative inline-block mx-0.5 z-0">
+                            <span className="relative z-10 text-white font-bold">スペースキー</span>
+                            <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[6px] lg:h-[10px] bg-cyan-400/70 -rotate-[2deg] rounded-sm -z-10" />
+                          </span>
+                          を押すと
                         </span>
-                        を押すと
+                        <span className="inline lg:hidden">
+                          <span className="relative inline-block mx-0.5 z-0">
+                            <span className="relative z-10 text-white font-bold">画面をタップ</span>
+                            <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[6px] lg:h-[10px] bg-cyan-400/70 -rotate-[2deg] rounded-sm -z-10" />
+                          </span>
+                          すると
+                        </span>
                         <span className="relative inline-block mx-0.5 z-0">
                           <span className="relative z-10 text-white font-bold">成功</span>
                           <span className="absolute bottom-[1px] left-[-4px] right-[-6px] h-[6px] lg:h-[10px] bg-red-400/70 -rotate-[2deg] rounded-sm -z-10" />
@@ -2015,7 +2024,7 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
               >
 
                 {/* ── Ally HP Bar (Chimera-A style) ── */}
-                <div className="w-20 lg:w-36 mb-1 lg:mb-2 z-20 relative">
+                <div className="w-20 lg:w-36 mb-1 lg:mb-2 z-20 relative translate-y-8 translate-x-2 lg:translate-y-0 lg:translate-x-0">
                   <div className="flex flex-col items-center">
                     <div className="flex items-center justify-between w-full mb-0.5 px-1">
                       <div className="flex items-center gap-1.5">

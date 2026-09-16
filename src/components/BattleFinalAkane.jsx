@@ -1321,7 +1321,7 @@ export default function BattleFinalAkane({ onComplete, playBGM, stopBGM, playSE 
               <div key={ally.id} className="relative flex flex-col items-center w-full">
 
                 {/* ── Ally HP Bar (Chimera-A style) ── */}
-                <div className="w-20 lg:w-36 mb-1 lg:mb-2 z-20 relative translate-y-4 lg:-translate-y-5">
+                <div className="w-20 lg:w-36 mb-1 lg:mb-2 z-20 relative translate-x-2 translate-y-4 lg:-translate-y-5 lg:translate-x-0">
                   <div className="flex flex-col items-center">
                     <div className="flex items-center justify-between w-full mb-0.5 px-1">
                       <div className="flex items-center gap-1.5">
@@ -1775,7 +1775,7 @@ export default function BattleFinalAkane({ onComplete, playBGM, stopBGM, playSE 
               return (
                 <motion.div
                   id={`char-${enemy1.id}`}
-                  className={`absolute ml-40 lg:ml-0 top-16 lg:top-24 w-40 h-52 lg:w-64 lg:h-80 flex items-center justify-center z-40 ${!enemy1.isDead && enemy1.flashTimer > 0 ? 'animate-battle-hit-flash' : ''}`}
+                  className={`absolute ml-40 lg:ml-0 top-[86px] lg:top-[125px] w-40 h-52 lg:w-64 lg:h-80 flex items-center justify-center z-40 ${!enemy1.isDead && enemy1.flashTimer > 0 ? 'animate-battle-hit-flash' : ''}`}
                   animate={{
                     x: isAttacking ? -150 : (isCurrentTurn && turnPhase === 'enemy_resolve' ? -150 : -120), // 攻撃時はさらに左へ踏み込む(-150px)
                     scale: isAttacking ? 1.05 : (enemy1.isDead ? 0.95 : 1),

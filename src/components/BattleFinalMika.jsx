@@ -1315,7 +1315,7 @@ export default function BattleFinalMika({ onComplete, playBGM, stopBGM, playSE }
               <div key={ally.id} className="relative flex flex-col items-center w-full">
 
                 {/* ── Ally HP Bar (Chimera-A style) ── */}
-                <div className="w-20 lg:w-36 mb-1 lg:mb-2 z-20 relative translate-y-10 lg:translate-y-0">
+                <div className="w-20 lg:w-36 mb-1 lg:mb-2 z-20 relative translate-x-2 translate-y-10 lg:-translate-y-6 lg:translate-x-0">
                   <div className="flex flex-col items-center">
                     <div className="flex items-center justify-between w-full mb-0.5 px-1">
                       <div className="flex items-center gap-1.5">

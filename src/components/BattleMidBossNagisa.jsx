@@ -486,7 +486,7 @@ export default function BattleMidBossNagisa({ onComplete, playBGM, stopBGM, play
               qteSuccessRef.current = false;
               qteResultRef.current = 'miss';
             } else {
-              
+
               setTurnPhase('enemy_windup');
             }
             return 0;
@@ -816,7 +816,7 @@ export default function BattleMidBossNagisa({ onComplete, playBGM, stopBGM, play
       const next = new Set(prev);
       if (next.has(allyId)) {
         next.delete(allyId);
-        
+
         // Normal guard, apply cooldown to prevent spamming
         guardCooldownsRef.current[allyId] = Date.now();
         setGuardCooldownTrigger(prev => ({ ...prev, [allyId]: Date.now() }));
@@ -1419,7 +1419,7 @@ export default function BattleMidBossNagisa({ onComplete, playBGM, stopBGM, play
                     className={`relative cursor-pointer touch-none flex items-center justify-center w-28 h-36 lg:w-40 lg:h-56 -translate-y-2
                     ${ally.isDead ? 'opacity-40 grayscale' : ''}
                   `}
-                    animate={{ 
+                    animate={{
                       x: isCounterDashing ? 150 : (isCurrentTurn ? 30 : 0),
                       y: 20,
                       scale: 1.4
@@ -1595,7 +1595,7 @@ export default function BattleMidBossNagisa({ onComplete, playBGM, stopBGM, play
         </div>
 
         {/* ── Enemies (Right Column) ── */}
-        <div className="w-1/2 flex flex-col justify-around items-center pl-4 -translate-x-4 lg:-translate-x-8">
+        <div className="w-1/2 flex flex-col justify-around items-center pl-4 -translate-x-4 translate-y-3 lg:-translate-x-8">
           {enemies.map(enemy => {
             const isAttacking = activeAttacksCompat.some(a => a.enemyId === enemy.id);
             const isCurrentTurn = TURN_ORDER[currentTurnIndex % TURN_ORDER.length] === enemy.id && turnPhase !== 'turn_delay';
@@ -1741,13 +1741,13 @@ export default function BattleMidBossNagisa({ onComplete, playBGM, stopBGM, play
             {/* Circular Progress Gauge */}
             <svg className="absolute inset-0 w-full h-full -rotate-90 pointer-events-none" viewBox="0 0 100 100" style={{ overflow: 'visible' }}>
               <circle cx="50" cy="50" r="48" fill="none" className="stroke-amber-900/40" strokeWidth="3" />
-              <circle 
-                cx="50" 
-                cy="50" 
-                r="48" 
-                fill="none" 
-                className="stroke-amber-400 drop-shadow-[0_0_5px_rgba(251,191,36,0.8)]" 
-                strokeWidth="3" 
+              <circle
+                cx="50"
+                cy="50"
+                r="48"
+                fill="none"
+                className="stroke-amber-400 drop-shadow-[0_0_5px_rgba(251,191,36,0.8)]"
+                strokeWidth="3"
                 strokeDasharray="301.59"
                 strokeDashoffset={301.59 - (301.59 * Math.min(syncRate, SYNC_COST_ULTIMATE) / SYNC_COST_ULTIMATE)}
                 strokeLinecap="round"
