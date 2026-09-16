@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useAudioSystem } from '../hooks/useAudioSystem';
 import { assetPath } from '../utils/assetPath';
@@ -7,12 +7,17 @@ export default function StruggleGame({ onComplete }) {
   const [progress, setProgress] = useState(0);
   const [isCompleted, setIsCompleted] = useState(false);
   const { playSE } = useAudioSystem();
+  const lastSoundTime = useRef(0);
 
   const handleTap = useCallback(() => {
     if (isCompleted) return;
     
-    // Play sound effect
-    playSE(assetPath('/assets/audio/bgm/+struggle.mp3'));
+    // Play sound effect with 1.5s interval
+    const now = Date.now();
+    if (now - lastSoundTime.current > 1500) {
+      playSE(assetPath('/assets/audio/bgm/+struggle.mp3'));
+      lastSoundTime.current = now;
+    }
 
     setProgress((prev) => {
       const next = prev + 5;

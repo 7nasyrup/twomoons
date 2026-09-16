@@ -11,21 +11,21 @@ export const scenarioData = [
     "text": "いつもと変わらない、光景。",
     "bg": "/scene/university_classroom.png",
     "style": "cinema",
-    "bgSoftCut": true
+    "action": "FADE_OUT"
   },
   {
     "scene": "PROLOGUE",
     "text": "いつもと変わらない…",
     "bg": "/scene/university_plaza.png",
     "style": "cinema",
-    "bgSoftCut": true
+    "action": "WAIT_SECONDS"
   },
   {
     "scene": "PROLOGUE",
     "text": "空。",
     "bg": "/scene/university_outside.png",
     "style": "cinema",
-    "bgSoftCut": true
+    "action": "SLOW_FADE_IN"
   },
   {
     "scene": "PROLOGUE",
@@ -87,7 +87,7 @@ export const scenarioData = [
   },
   {
     "scene": "窓の外 ",
-    "text": "そして反対に。月波に適応できなかった生物は、異形―『キメラ』へと変貌した。"
+    "text": "そして反対に。月波に適応できなかった生物は、異形―【キメラ】へと変貌した。"
   },
   {
     "scene": "窓の外",
@@ -126,7 +126,7 @@ export const scenarioData = [
   },
   {
     "scene": "部屋のニュース（朝）",
-    "text": "ニュースでは毎日のように、月波による異常現象が報じられている。人工月の活動周期。能力者の増加。キメラの発生。",
+    "text": "ニュースでは毎日のように、月波による異常現象が報じられている。人工月の活動周期。能力者の増加。【キメラ】の発生。",
     "bg": "/scene/tv.png"
   },
   {
@@ -182,6 +182,8 @@ export const scenarioData = [
     "scene": "街（朝）",
     "text": "その声と同時に―――建物の影から、大きな影が現れた。",
     "action": "SHAKE_SCREEN",
+    "bgm": "serious_2.mp3",
+    "bgmVolume": 0.1,
     "showIllust": [
       "kimera13"
     ]
@@ -189,14 +191,13 @@ export const scenarioData = [
   {
     "scene": "街（朝）",
     "text": "獣。……と呼ぶには、あまりにも異質だった。本来あるはずの形を失った身体。不自然に発達した四肢。歪んだ輪郭。青白い月波を浴び、変貌した生物。",
-    "bgm": "serious_2.mp3",
-    "bgmVolume": 0.1
+
   },
   {
     "scene": "街（朝）",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「キメラ……！？」"
+    "text": "「【キメラ】……！？」"
   },
   {
     "scene": "街（朝）",
@@ -204,7 +205,7 @@ export const scenarioData = [
   },
   {
     "scene": "街（朝）",
-    "text": "キメラがこちらへ顔を向けた。",
+    "text": "【キメラ】がこちらへ顔を向けた。",
     "bgm": "serious_2.mp3",
     "bgmVolume": 0.3
   },
@@ -220,7 +221,7 @@ export const scenarioData = [
   },
   {
     "scene": "街（朝）",
-    "text": "と、思った瞬間、キメラが地面を蹴る。巨大な身体がこちらへ向かって迫る。",
+    "text": "と、思った瞬間、【キメラ】が地面を蹴る。巨大な身体がこちらへ向かって迫る。",
     "bgAnimation": "dash",
     "se": "+kimera1.mp3",
     "showIllust": [
@@ -251,7 +252,7 @@ export const scenarioData = [
   },
   {
     "scene": "街（朝）",
-    "text": "突然、横から強い光が走った。誰かが勢いよくキメラへ体当たりする。鈍い衝撃が辺りに響いた。キメラは数歩よろめき、その隙に私との距離が開く。",
+    "text": "突然、横から強い光が走った。誰かが勢いよく【キメラ】へ体当たりする。鈍い衝撃が辺りに響いた。【キメラ】は数歩よろめき、その隙に私との距離が開く。",
     "action": "CLEAR_ALL_EFFECTS"
   },
   {
@@ -263,7 +264,7 @@ export const scenarioData = [
   },
   {
     "scene": "街（朝）",
-    "text": "目の前に現れたのは、同じ大学に通う友人の睦典だった。彼にとっても、キメラを目の前にするのは初めてのはずだ。それなのに、襲われている私を見るなり、迷わず飛び込んできてくれた。"
+    "text": "目の前に現れたのは、同じ大学に通う友人の睦典だった。彼にとっても、【キメラ】を目の前にするのは初めてのはずだ。それなのに、襲われている私を見るなり、迷わず飛び込んできてくれた。"
   },
   {
     "scene": "街（朝）",
@@ -295,7 +296,7 @@ export const scenarioData = [
   },
   {
     "scene": "街（朝）",
-    "text": "そう言って、睦典は私の前へ踏み出した。キメラを真正面から見据えるその背中は頼もしく見えるはずなのに、どこか危うくも見えた。"
+    "text": "そう言って、睦典は私の前へ踏み出した。【キメラ】を真正面から見据えるその背中は頼もしく見えるはずなのに、どこか危うくも見えた。"
   },
   {
     "scene": "街（朝）",
@@ -316,7 +317,7 @@ export const scenarioData = [
     "scene": "街（朝）",
     "speaker": "父",
     "role": "FATHER",
-    "text": "『朔良。もし迷った時は、自分の声を信じなさい。\n…お前の歌は、きっと誰かを導くから』"
+    "text": "『朔良。もし迷った時は、自分の声を信じなさい。…お前の歌は、きっと誰かを導くから』"
   },
   {
     "scene": "街（朝）",
@@ -347,7 +348,7 @@ export const scenarioData = [
   },
   {
     "scene": "街（朝）",
-    "text": "睦典は地面を蹴り、キメラへ向かって駆け出す。私も歌を止めることなく、その背中を見つめる。",
+    "text": "睦典は地面を蹴り、【キメラ】へ向かって駆け出す。私も歌を止めることなく、その背中を見つめる。",
     "action": "SPEED_EFFECT_START"
   },
   {
@@ -578,7 +579,7 @@ export const scenarioData = [
   },
   {
     "scene": "大学の廊下",
-    "text": "ついさっきまでキメラと戦っていたとは思えないほど、いつもの日常が戻ってきていた。",
+    "text": "ついさっきまで【キメラ】と戦っていたとは思えないほど、いつもの日常が戻ってきていた。",
     "bg": "/scene/university_hallway.png"
   },
   {
@@ -819,7 +820,7 @@ export const scenarioData = [
   },
   {
     "scene": "夜の帰り道",
-    "text": "青白い光を纏ったキメラが、低く唸りながらじりじりと距離を詰めてくる。",
+    "text": "青白い光を纏った【キメラ】が、低く唸りながらじりじりと距離を詰めてくる。",
     "se": "+kimera2.mp3",
     "showIllust": [
       "kimera23"
@@ -848,7 +849,7 @@ export const scenarioData = [
   },
   {
     "scene": "夜の帰り道",
-    "text": "勢いよく振るった一撃はキメラの身体を掠めるものの、ほとんど効いていない。次の瞬間。"
+    "text": "勢いよく振るった一撃は【キメラ】の身体を掠めるものの、ほとんど効いていない。次の瞬間。"
   },
   {
     "scene": "夜の帰り道",
@@ -871,7 +872,7 @@ export const scenarioData = [
   },
   {
     "scene": "夜の帰り道",
-    "text": "痛みで身体が思うように動かない。それでも必死に立ち上がろうとする。だが、キメラは容赦なくこちらへ歩み寄ってくる。",
+    "text": "痛みで身体が思うように動かない。それでも必死に立ち上がろうとする。だが、【キメラ】は容赦なくこちらへ歩み寄ってくる。",
     "showIllust": [
       "kimera23"
     ]
@@ -890,7 +891,7 @@ export const scenarioData = [
     "scene": "夜の帰り道",
     "se": "+sword.mp3",
     "action": ["WHITE_FLASH", "SHAKE_SCREEN"],
-    "text": "鋭い一撃がキメラを弾き飛ばす。",
+    "text": "鋭い一撃が【キメラ】を弾き飛ばす。",
     "hideIllust": [
       "kimera2"
     ]
@@ -951,7 +952,7 @@ export const scenarioData = [
   },
   {
     "scene": "夜の帰り道",
-    "text": "キメラが消滅し、静寂が戻る。"
+    "text": "【キメラ】が消滅し、静寂が戻る。"
   },
   {
     "scene": "夜の帰り道",
@@ -1002,12 +1003,12 @@ export const scenarioData = [
   },
   {
     "scene": "朔良の部屋(夜)",
-    "text": "画面に映し出されたのは、黒い甲冑を身にまとった人物と、その周囲に従う複数のキメラの姿。"
+    "text": "画面に映し出されたのは、黒い甲冑を身にまとった人物と、その周囲に従う複数の【キメラ】の姿。"
   },
   {
     "scene": "朔良の部屋(夜)",
     "speaker": "ニュースキャスター",
-    "text": "『これまでのキメラとは異なり、漆黒の武装を身にまとった正体不明の能力者――ネット上で【黒騎士】と呼ばれている人物によって統率されている可能性が高く、防衛局は最大限の警戒を呼びかけています』"
+    "text": "『これまでの【キメラ】とは異なり、漆黒の武装を身にまとった正体不明の能力者――ネット上で【黒騎士】と呼ばれている人物によって統率されている可能性が高く、防衛局は最大限の警戒を呼びかけています』"
   },
   {
     "scene": "朔良の部屋(夜)",
@@ -1015,7 +1016,7 @@ export const scenarioData = [
   },
   {
     "scene": "朔良の部屋(夜)",
-    "text": "最近、SNSのオカルト掲示板や大学の噂話でも囁かれている、最凶の都市伝説。キメラを従える、正体不明の能力者。"
+    "text": "最近、SNSのオカルト掲示板や大学の噂話でも囁かれている、最凶の都市伝説。【キメラ】を従える、正体不明の能力者。"
   },
   {
     "scene": "朔良の部屋(夜)",
@@ -1150,7 +1151,7 @@ export const scenarioData = [
   {
     "scene": "昼の商店街",
     "speaker": "店員A",
-    "text": "「最近、キメラの動きがおかしいって話だよな」"
+    "text": "「最近、【キメラ】の動きがおかしいって話だよな」"
   },
   {
     "scene": "昼の商店街",
@@ -1624,8 +1625,7 @@ export const scenarioData = [
   },
   {
     "scene": "路地裏(夜)",
-    "speaker": "朔良",
-    "role": "SAKURA",
+    "speaker": "？？？",
     "text": "「……っ」",
     "showIllust": [
       "Nagisa_neutral3"
@@ -1700,12 +1700,12 @@ export const scenarioData = [
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「……疲れた……」",
-    "bgm": "Room_Night.mp3",
-    "bgmVolume": 0.3
   },
   {
     "scene": "朔良の部屋",
-    "text": "部屋に戻ると、私は鞄を置くのもそこそこにベッドへ倒れ込んだ。知らない男――凪砂さんとの出来事。"
+    "text": "部屋に戻ると、私は鞄を置くのもそこそこにベッドへ倒れ込んだ。知らない男――凪砂さんとの出来事。",
+    "bgm": "Room_Night.mp3",
+    "bgmVolume": 0.3
   },
   {
     "scene": "朔良の部屋",
@@ -1727,7 +1727,8 @@ export const scenarioData = [
   },
   {
     "scene": "朔良の部屋",
-    "text": "その時、置いたスマートフォンが小さく震えた。"
+    "text": "その時、置いたスマートフォンが小さく震えた。",
+    "se": "Mail_alert.mp3"
   },
   {
     "scene": "朔良の部屋",
@@ -1854,7 +1855,7 @@ export const scenarioData = [
     "scene": "大学の正門前",
     "text": "私が後ずさると、隣にいた睦典がすぐに異変を察した。",
     "showIllust": [
-      "Mutsunori_serious2"
+      "Mutsunori_surprise2"
     ]
   },
   {
@@ -1862,9 +1863,6 @@ export const scenarioData = [
     "speaker": "睦典",
     "role": "MUTSUNORI",
     "text": "「……朔良。この人、知り合い？」",
-    "showIllust": [
-      "Mutsunori_surprise"
-    ]
   },
   {
     "scene": "大学の正門前",
@@ -1979,18 +1977,18 @@ export const scenarioData = [
   },
   {
     "scene": "大学の正門前",
-    "text": "飄々とした軽い声と共に、長い白衣をなびかせたヒルミ教授がヌッと現れた。教授は二人の間に割って入ると、睦典と凪砂さん、それぞれの肩に手をポン、と置いた。"
-  },
-  {
-    "scene": "大学の正門前",
-    "speaker": "睦典",
-    "role": "MUTSUNORI",
-    "text": "「っうわ！？ 教授！？」",
+    "text": "飄々とした軽い声と共に、長い白衣をなびかせたヒルミ教授がヌッと現れた。教授は二人の間に割って入ると、睦典と凪砂さん、それぞれの肩に手をポン、と置いた。",
     "showIllust": [
       "Mutsunori_surprise2",
       "Hirumi_smile3",
       "Nagisa_neutral"
     ]
+  },
+  {
+    "scene": "大学の正門前",
+    "speaker": "睦典",
+    "role": "MUTSUNORI",
+    "text": "「っうわ！？ 教授！？」"
   },
   {
     "scene": "大学の正門前",
@@ -2083,7 +2081,7 @@ export const scenarioData = [
     "scene": "大学の正門前",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「朔良はそんなやつじゃないです！ アイツが昨日から勝手に付きまとってるだけで……！ 朔良は、うどんの出汁くらい一途で純粋なんです！」"
+    "text": "「朔良はそんなやつじゃないです！ アイツがめちゃくちゃ変な奴なだけで… 朔良は、うどんの出汁くらい一途で純粋なんです！」"
   },
   {
     "scene": "大学の正門前",
@@ -2129,7 +2127,7 @@ export const scenarioData = [
     "scene": "大学の正門前",
     "speaker": "睦典",
     "role": "MUTSUNORI",
-    "text": "「まぁな！ キメラじゃなかったら俺に任せてよ！」"
+    "text": "「まぁな！ 【キメラ】じゃなかったら俺に任せてよ！」"
   },
   {
     "scene": "大学の正門前",
@@ -2572,7 +2570,8 @@ export const scenarioData = [
   {
     "scene": "キャンパスの裏手",
     "text": "スマートフォンが短く震えた。",
-    "action": "SHAKE_SCREEN"
+    "action": "SHAKE_SCREEN",
+    "se": "Mail_alert.mp3"
   },
   {
     "scene": "キャンパスの裏手",
@@ -2694,7 +2693,7 @@ export const scenarioData = [
   },
   {
     "scene": "廃倉庫",
-    "text": "そしてやはりというか、その男は、夜道にキメラに遭遇した時に私に「歌え」と言って助けてくれた男でもあった。"
+    "text": "そしてやはりというか、その男は、夜道に【キメラ】に遭遇した時に私に「歌え」と言って助けてくれた男でもあった。"
   },
   {
     "scene": "廃倉庫",
@@ -2851,7 +2850,7 @@ export const scenarioData = [
   {
     "scene": "廃倉庫",
     "speaker": "大男",
-    "text": "「……チッ。キメラか」"
+    "text": "「……チッ。【キメラ】か」"
   },
   {
     "scene": "廃倉庫",
@@ -3088,7 +3087,7 @@ export const scenarioData = [
   },
   {
     "scene": "崩壊した街",
-    "text": "ミカくんの指示で、私たちはキメラの横をすり抜けようと走り出す。",
+    "text": "ミカくんの指示で、私たちは【キメラ】の横をすり抜けようと走り出す。",
     "bgAnimation": "run_light",
     "hideIllust": [
       "Mika_serious"
@@ -3100,7 +3099,7 @@ export const scenarioData = [
   },
   {
     "scene": "崩壊した街",
-    "text": "キメラの巨大な尾が、凄まじい勢いで振り下ろされる。周囲の空気が震えるほどの勢い。",
+    "text": "【キメラ】の巨大な尾が、凄まじい勢いで振り下ろされる。周囲の空気が震えるほどの勢い。",
     "se": "+wind.mp3",
     "bgAnimation": "rumble_light"
   },
@@ -3148,7 +3147,7 @@ export const scenarioData = [
   },
   {
     "scene": "崩壊した街",
-    "text": "そこにいたのは、あの謎の男だった。\n凪砂さんは私を支えたまま、巨大なキメラを前にしても余裕の笑みを浮かべている。",
+    "text": "そこにいたのは、あの謎の男だった。\n凪砂さんは私を支えたまま、巨大な【キメラ】を前にしても余裕の笑みを浮かべている。",
     "showIllust": [
       "Nagisa_smile4"
     ]
@@ -3410,10 +3409,6 @@ export const scenarioData = [
   },
   {
     "scene": "廃ビルの一室",
-    "text": "睦典が申し訳なさそうに口を開く。"
-  },
-  {
-    "scene": "廃ビルの一室",
     "speaker": "睦典",
     "role": "MUTSUNORI",
     "text": "「大学で別れてから何度連絡しても返事がなくて……嫌な予感がしたんだ。だから、たまたま店に来ていたミカに相談した。アイツが裏のツテを使って、お前のスマートフォンの電波から居場所を割り出してくれたんだよ」",
@@ -3617,7 +3612,7 @@ export const scenarioData = [
   },
   {
     "scene": "廃ビルの一室",
-    "text": "怖い。またキメラや男たちに襲われるかもしれない。\nそれでも、ここで動かなければ後悔する。"
+    "text": "怖い。また【キメラ】や男たちに襲われるかもしれない。\nそれでも、ここで動かなければ後悔する。"
   },
   {
     "scene": "廃ビルの一室",
@@ -3737,7 +3732,7 @@ export const scenarioData = [
   },
   {
     "scene": "崩壊した街",
-    "text": "ある程度のキメラを蹴散らしたところで… ",
+    "text": "ある程度の【キメラ】を蹴散らしたところで… ",
   },
   {
     "scene": "崩壊した街",
@@ -3790,8 +3785,6 @@ export const scenarioData = [
   },
   {
     "scene": "崩壊後-大学の敷地内",
-    "text": "そして、煙が晴れた時。そこに三人の姿はなかった。",
-    "action": "CLEAR_SMOKE",
     "bgm": "stop",
     "bg": "/scene/university_collapse.png",
     "bgCrossfade": true,
@@ -3799,7 +3792,14 @@ export const scenarioData = [
     "hideIllust": [
       "Mutsunori",
       "Mika"
-    ]
+    ],
+    "action": "WAIT_SECONDS",
+    "duration": 1000
+  },
+  {
+    "scene": "崩壊後-大学の敷地内",
+    "text": "そして、煙が晴れた時。そこに三人の姿はなかった。",
+    "action": "CLEAR_SMOKE"
   },
   {
     "scene": "崩壊後-大学の敷地内",
@@ -3838,6 +3838,10 @@ export const scenarioData = [
     "speaker": "満",
     "role": "MICHIRU",
     "text": "「朔良！」"
+  },
+  {
+    "scene": "崩壊後-大学の敷地内",
+    "text": "満が今どうしてここにいるかはわからない。もしかしたら、私を心配しに危険を承知で来てくれたのかもしれない。"
   },
   {
     "scene": "崩壊後-大学の敷地内",
@@ -3887,7 +3891,7 @@ export const scenarioData = [
     "role": "SAKURA",
     "text": "「いやあああああっ！！」",
     "bgm": "serious_4.mp3",
-    "bgmVolume": 0.08
+    "bgmVolume": 0.5
   },
   {
     "scene": "崩壊後-大学の敷地内",
@@ -4042,7 +4046,9 @@ export const scenarioData = [
   },
   {
     "scene": "崩壊後-大学の敷地内",
-    "text": "私は必死に走った。けれど──。"
+    "text": "私は必死に走った。けれど──。",
+    "bgAnimation": "dash",
+    "se": "+dash.mp3"
   },
   {
     "scene": "崩壊後-大学の敷地内",
@@ -4189,7 +4195,7 @@ export const scenarioData = [
   },
   {
     "scene": "研究室",
-    "text": "『……異能力やキメラの発現には、政府が隠ぺいした人工月が関係している』\n『……その中の、研究所によって守られる“コア”が発生源と仮定されており……』"
+    "text": "『……異能力や【キメラ】の発現には、政府が隠ぺいした人工月が関係している』\n『……その中の、研究所によって守られる“コア”が発生源と仮定されており……』"
   },
   {
     "scene": "研究室",
@@ -5131,7 +5137,7 @@ export const scenarioData = [
   {
     "scene": "コア部屋",
     "bgm": "Battle1.mp3",
-    "bgmVolume": 0.5,
+    "bgmVolume": 0.2,
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「……黒騎士……っ」"
@@ -5165,6 +5171,7 @@ export const scenarioData = [
     "se": "attack_3.mp3",
     "bgm": "stop",
     "text": "次の瞬間、私は強い力で突き飛ばされる。床に倒れ込み、顔を上げた先には──。",
+    "action": "SHAKE_SCREEN_VERY_LARGE",
     "hideIllust": [
       "BlackKnight"
     ]
@@ -5679,7 +5686,10 @@ export const scenarioData = [
     "showIllust": [
       "Mutsunori_surprise"
     ],
-    "action": "BLACK_AURA_STOP"
+    "action": [
+      "BLACK_AURA_STOP",
+      "WHITE_OUT_LIGHT_START"
+    ]
   },
   {
     "scene": "瓦礫裏",
@@ -5707,7 +5717,7 @@ export const scenarioData = [
     "speaker": "睦典",
     "role": "MUTSUNORI",
     "text": "「……………お待たせ、朔良。もう、大丈夫」",
-
+    "action": "WHITE_OUT_LIGHT_END"
   },
   {
     "scene": "コア部屋_崩壊①",
@@ -6040,7 +6050,7 @@ export const scenarioData = [
     "se": "+bakuhatsu.mp3",
     "text": "直後、地面が大きく揺れ始めた。",
     "bgm": "+alert.mp3",
-    "action": "SHAKE_SCREEN_EXTREME",
+    "action": "SHAKE_SCREEN_CONTINUOUS_SMALL"
   },
   {
     "scene": "コア部屋_崩壊①",
@@ -6813,7 +6823,7 @@ export const scenarioData = [
   },
   {
     "scene": "月面",
-    "text": "もし私の歌では足りなかったら？もし、ここまで来ても何もできなかったら──。そもそも、キメラと対峙したら太刀打ちできる手段がない。"
+    "text": "もし私の歌では足りなかったら？もし、ここまで来ても何もできなかったら──。そもそも、【キメラ】と対峙したら太刀打ちできる手段がない。"
   },
   {
     "scene": "月面",
@@ -7582,7 +7592,7 @@ export const scenarioData = [
     "scene": "モニター室",
     "speaker": "アカネ",
     "role": "AKANE",
-    "text": "「お前は、研究所から生み出された存在だ。遺伝子を操作され、人工的に作られた……キメラと同じような存在だ」"
+    "text": "「お前は、研究所から生み出された存在だ。遺伝子を操作され、人工的に作られた……【キメラ】と同じような存在だ」"
   },
   {
     "scene": "モニター室",
@@ -7889,7 +7899,7 @@ export const scenarioData = [
     "scene": "最奥部屋（コア無い感じの別室）",
     "speaker": "ルキ",
     "role": "RUKI",
-    "text": "「父さんは世界を壊したがってた。僕はその遺志を継いで、コアを動かしただけ。キメラだって、元々は研究員たちが勝手に生み出して暴走させたものだしね」"
+    "text": "「父さんは世界を壊したがってた。僕はその遺志を継いで、コアを動かしただけ。【キメラ】だって、元々は研究員たちが勝手に生み出して暴走させたものだしね」"
   },
   {
     "scene": "最奥部屋（コア無い感じの別室）",
@@ -7910,7 +7920,6 @@ export const scenarioData = [
   {
     "scene": "最奥部屋（コア無い感じの別室）",
     "text": "ルキの声から、先ほどまでの軽薄さが消えた。",
-    "bgm": "stop"
   },
   {
     "scene": "最奥部屋（コア無い感じの別室）",
@@ -7956,7 +7965,8 @@ export const scenarioData = [
     "scene": "最奥部屋（コア無い感じの別室）",
     "speaker": "ルキ",
     "role": "RUKI",
-    "text": "「僕をこの暗い研究所に置いて、一人だけ外の世界へ行った姉さんを絶対許さない。\n——さよなら、朔良」"
+    "text": "「僕をこの暗い研究所に置いて、一人だけ外の世界へ行った姉さんを絶対許さない。\n——さよなら、朔良」",
+    "bgm": "stop"
   },
   {
     "scene": "最奥部屋（コア無い感じの別室）",
@@ -8171,7 +8181,8 @@ export const scenarioData = [
   },
   {
     "scene": "公園",
-    "text": "その光景に、胸の奥がカッと熱くなった。気づけば私は、いじめっ子たちの前に立ちはだかっていた。"
+    "text": "その光景に、胸の奥がカッと熱くなった。気づけば私は、いじめっ子たちの前に立ちはだかっていた。",
+    "bg": "/character/Sakura/Sakura_CG1.png"
   },
   {
     "scene": "公園",
@@ -8228,7 +8239,8 @@ export const scenarioData = [
     "scene": "公園",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「ふぅ……」"
+    "text": "「ふぅ……」",
+    "bg": "/scene/park.png",
   },
   {
     "scene": "公園",
@@ -8437,7 +8449,7 @@ export const scenarioData = [
     "scene": "校門",
     "speaker": "満",
     "role": "MICHIRU",
-    "text": "「……あ、そういえば朔良、修学旅行のコース――」",
+    "text": "「……あ、そういえば朔良、体育祭のリレーのことなんだけど——―」",
     "showIllust": [
       "Michiru_smile_school3"
     ]
@@ -8488,7 +8500,8 @@ export const scenarioData = [
   },
   {
     "scene": "校門",
-    "text": "言葉を上手く紡げない。頭の中には、冷たい無機質な部屋の光景が浮かんでいた。そこに響く、誰かの叫び声。そして、得体の知れない恐怖が胸を締めつける。"
+    "text": "言葉を上手く紡げない。頭の中には、冷たい無機質な部屋の光景が浮かんでいた。そこに響く、誰かの叫び声。そして、得体の知れない恐怖が胸を締めつける。",
+    "se": "noise.mp3"
   },
   {
     "scene": "校門",
@@ -8552,7 +8565,8 @@ export const scenarioData = [
     "text": "そのあまりの負担に耐えきれず、私は意識を手放した。"
   },
   {
-    "action": "FADE_TO_BLACK"
+    "action": "FADE_TO_BLACK",
+    "bgm": "stop"
   },
   {
     "scene": "回想：朔良の部屋前",
@@ -8640,8 +8654,11 @@ export const scenarioData = [
   },
   {
     "scene": "回想：朔良の部屋",
-    "text": "部屋の中央でうずくまる朔良の身体から、赤黒い光が禍々しい波動となって吹き荒れていた。肌には見たことのない紋様が浮かび、髪も逆立っている。",
-    "action": "BLACK_AURA_START"
+    "text": "部屋の中央で立ち尽くす朔良の身体から、赤黒い光が禍々しい波動となって吹き荒れていた。肌には見たことのない紋様が浮かび、髪も逆立っている。",
+    "action": "BLACK_AURA_START",
+    "showIllust": [
+      "Sakura_yami2b"
+    ]
   },
   {
     "scene": "回想：朔良の部屋",
@@ -8668,6 +8685,9 @@ export const scenarioData = [
   {
     "scene": "回想：朔良の部屋",
     "text": "……けれど、歌い終わっても、朔良の様子は一向に良くならなかった。",
+    "showIllust": [
+      "Sakura_yami1b"
+    ],
     "bgmVolume": 0
   },
   {
@@ -8678,7 +8698,10 @@ export const scenarioData = [
   },
   {
     "scene": "回想：朔良の部屋",
-    "text": "苦しそうにうずくまる朔良を見つめていると、ふと、昔に聞いた彼女のお父さんの言葉が脳裏をよぎった。"
+    "text": "苦しそうな朔良を見つめていると、ふと、昔に聞いた彼女のお父さんの言葉が脳裏をよぎった。",
+    "hideIllust": [
+      "Sakura"
+    ],
   },
   {
     "scene": "回想：朔良の部屋",
@@ -9671,7 +9694,7 @@ export const scenarioData = [
   },
   {
     "scene": "空",
-    "text": "街を恐怖に陥れていたキメラ騒動は、対策本部が開発した中和剤によって急速に収束。異形化した生物たちも次々と元の姿を取り戻し、崩壊しかけていた街も少しずつ復興していった。"
+    "text": "街を恐怖に陥れていた【キメラ】騒動は、対策本部が開発した中和剤によって急速に収束。異形化した生物たちも次々と元の姿を取り戻し、崩壊しかけていた街も少しずつ復興していった。"
   },
   {
     "scene": "空",
@@ -9984,8 +10007,8 @@ export const scenarioData = [
   },
   {
     "scene": "研究室",
-    "speaker": "朔良",
-    "role": "SAKURA",
+    "speaker": "凪砂",
+    "role": "NAGISA",
     "text": "「お言葉ですが、仰っている意味がよく分かりません。もう少し説明して頂かないと、ね」",
     "showIllust": [
       "Nagisa_neutral2"
@@ -10021,7 +10044,7 @@ export const scenarioData = [
   },
   {
     "scene": "研究室",
-    "text": "『……異能力やキメラの発現には、政府が隠ぺいした人工月が関係している』"
+    "text": "『……異能力や【キメラ】の発現には、政府が隠ぺいした人工月が関係している』"
   },
   {
     "scene": "研究室",
@@ -10060,10 +10083,6 @@ export const scenarioData = [
     "action": "SHAKE_SCREEN",
     "se": "+bakuhatsu.mp3",
     "text": "遠くから防壁を叩き割るような凄まじい爆音が響き、研究室全体が大きく揺れた。アイツが、すぐそこまで来ている。"
-  },
-  {
-    "scene": "研究室",
-    "text": "──黒騎士が、ここまで迫っている。"
   },
   {
     "scene": "研究室",
@@ -11316,7 +11335,10 @@ export const scenarioData = [
   },
   {
     "scene": "瓦礫裏",
-    "text": "凪砂さんは頭を抱え、苦しそうに身体を震わせる。"
+    "text": "凪砂さんは頭を抱え、苦しそうに身体を震わせる。",
+    "hideIllust": [
+      "Nagisa"
+    ],
   },
   {
     "scene": "瓦礫裏",
@@ -11342,9 +11364,7 @@ export const scenarioData = [
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「いやぁぁぁぁぁあああああッッ！！」",
-    "hideIllust": [
-      "Nagisa"
-    ],
+
     "bg": "/character/Nagisa/Nagisa_BadCG.png"
   },
   {
@@ -12428,7 +12448,7 @@ export const scenarioData = [
   },
   {
     "scene": "教授の研究室",
-    "text": "『……異能力やキメラの発現には、政府が隠ぺいした人工月が関係している』"
+    "text": "『……異能力や【キメラ】の発現には、政府が隠ぺいした人工月が関係している』"
   },
   {
     "scene": "教授の研究室",
@@ -12537,9 +12557,8 @@ export const scenarioData = [
   {
     "scene": "ロケット内部",
     "se": "+rocket_launch.mp3",
-    "action": [
-      "SHAKE_SCREEN_CONTINUOUS_SMALL"
-    ],
+    "seVolume": 0.5,
+    "action": "SHAKE_SCREEN_CONTINUOUS_SMALL",
     "text": "機械音声と共に機体が激しく震え、ロケットは轟音を上げて人工月へ向かって飛び立った。"
   },
   {
@@ -12553,6 +12572,7 @@ export const scenarioData = [
     ],
     "text": "私は大きく息を吐き、ようやく肩の力を抜く。",
     "se": "stop",
+    "action": "CLEAR_SHAKE",
     "seFadeOut": 1000
   },
   {
@@ -13426,7 +13446,7 @@ export const scenarioData = [
   {
     "scene": "研究所の最奥",
     "speaker": "？？？",
-    "text": "『お前の父親は、この研究所で殺人を犯した大罪人さ。その罪を償わせるため、研究員たちは君の身体にキメラ因子を埋め込んだ。君はただの実験体なんだよ』"
+    "text": "『お前の父親は、この研究所で殺人を犯した大罪人さ。その罪を償わせるため、研究員たちは君の身体に【キメラ】因子を埋め込んだ。君はただの実験体なんだよ』"
   },
   {
     "scene": "研究所の最奥",
@@ -13511,7 +13531,8 @@ export const scenarioData = [
   {
     "scene": "研究所の最奥",
     "action": "TEAR_BLUR_STOP",
-    "text": "天井から緑色の抑制レーザーがミカくんへ照射されると、首元の黒いアザが嘘のように動きを止め、徐々に縮んでいく。"
+    "text": "天井から緑色の抑制レーザーがミカくんへ照射されると、首元の黒いアザが嘘のように動きを止め、徐々に縮んでいく。",
+    "se": "beam.mp3",
   },
   {
     "scene": "研究所の最奥",
@@ -13747,7 +13768,7 @@ export const scenarioData = [
   },
   {
     "scene": "研究所の最奥",
-    "text": "胸の奥で、あの時目覚めた『歌』の力が震える。キメラの力とは違う。"
+    "text": "胸の奥で、あの時目覚めた『歌』の力が震える。【キメラ】の力とは違う。"
   },
   {
     "scene": "研究所の最奥",
@@ -14515,7 +14536,7 @@ export const scenarioData = [
   },
   {
     "scene": "研究室",
-    "text": "『……異能力やキメラの発現には、政府が隠ぺいした人工月が関係している』"
+    "text": "『……異能力や【キメラ】の発現には、政府が隠ぺいした人工月が関係している』"
   },
   {
     "scene": "研究室",
@@ -15659,7 +15680,7 @@ export const scenarioData = [
   {
     "scene": "白い部屋",
     "speaker": "少年",
-    "text": "「あ、目覚めたんだね。お姉ちゃん」"
+    "text": "「あ、目覚めたんだね」"
   },
   {
     "scene": "白い部屋",
@@ -15833,7 +15854,7 @@ export const scenarioData = [
   },
   {
     "scene": "コア部屋",
-    "text": "次の瞬間、研究所全体を揺るがす咆哮と共に、残されたキメラたちが一斉に襲いかかってきた"
+    "text": "次の瞬間、研究所全体を揺るがす咆哮と共に、残された【キメラ】たちが一斉に襲いかかってきた"
   },
   //=============== 戦闘開始(アカネラスボス) ===============
   {
@@ -15851,7 +15872,7 @@ export const scenarioData = [
   },
   {
     "scene": "コア部屋",
-    "text": "崩れ落ちたキメラたちの残骸を見下ろしながら、少年はつまらなそうに肩をすくめた。",
+    "text": "崩れ落ちた【キメラ】たちの残骸を見下ろしながら、少年はつまらなそうに肩をすくめた。",
     "showIllust": [
       "Ruki_neutral3"
     ]
@@ -15918,7 +15939,7 @@ export const scenarioData = [
   },
   {
     "scene": "コア近い",
-    "text": "あの時、キメラに襲われた時。誰かを守りたいと願った時。\n私の歌は、ただ力を与えるだけのものじゃない。誰かの力を繋ぎ、支えるためのものなんだ。"
+    "text": "あの時、【キメラ】に襲われた時。誰かを守りたいと願った時。\n私の歌は、ただ力を与えるだけのものじゃない。誰かの力を繋ぎ、支えるためのものなんだ。"
   },
   {
     "scene": "コア近い",
