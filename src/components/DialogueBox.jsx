@@ -120,7 +120,7 @@ export default function DialogueBox({
                 return (
                     <motion.div
                       key={idx}
-                      className={`relative p-[1px] bg-slate-700 transition-colors group w-[37%] rounded-md ${
+                      className={`relative p-[1px] bg-slate-700 transition-colors group w-fit min-w-[85%] md:min-w-[60%] lg:min-w-[37%] max-w-[95%] rounded-md ${
                         isInteractive ? 'hover:bg-[#00e5ff] cursor-pointer' : 'opacity-60 cursor-default'
                       }`}
                       initial={{ opacity: 0, x: 20 }}
@@ -134,9 +134,9 @@ export default function DialogueBox({
                       }
                     }}
                   >
-                    <div className={`w-full bg-slate-900/95 backdrop-blur-md py-1.5 px-3 lg:py-[2cqh] lg:px-[4cqh] flex items-center border border-slate-700/50 rounded-md ${isInteractive ? '' : 'opacity-60 cursor-default'}`}>
-                      <span className="text-[#00e5ff] font-bold text-[10px] lg:text-[2cqh] mr-2 lg:mr-4 tracking-widest">{String(idx + 1).padStart(2, '0')}</span>
-                      <span className="text-slate-200 font-noto text-[11px] md:text-sm lg:text-[2.5cqh] tracking-wide font-bold flex-1 leading-snug">{choice.text}</span>
+                    <div className={`w-full bg-slate-900/95 backdrop-blur-md py-1.5 px-4 lg:py-[2cqh] lg:px-[4cqh] flex items-center border border-slate-700/50 rounded-md ${isInteractive ? '' : 'opacity-60 cursor-default'}`}>
+                      <span className="text-[#00e5ff] font-bold text-[11px] lg:text-[2cqh] mr-3 lg:mr-4 tracking-widest shrink-0">{String(idx + 1).padStart(2, '0')}</span>
+                      <span className="text-slate-200 font-noto text-[12px] md:text-sm lg:text-[2.5cqh] tracking-wide font-bold flex-1 leading-snug whitespace-nowrap overflow-hidden text-ellipsis">{choice.text}</span>
                     </div>
                   </motion.div>
                 );
