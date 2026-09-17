@@ -37,13 +37,13 @@ export default function GameFrame({ children, shakeEffect }) {
   }
 
   return (
-    <div className="w-screen h-screen bg-[#000000] flex items-center justify-center overflow-hidden">
+    <div className="fixed inset-0 bg-[#000000] flex items-center justify-center overflow-hidden">
       <motion.div
         id="game-canvas-wrapper"
-        className="relative overflow-hidden bg-luna-abyss"
+        className="relative overflow-hidden bg-luna-abyss m-auto"
         style={{
           aspectRatio: '16 / 9',
-          width: '100vw',
+          width: '100%',
           maxHeight: '100dvh',
           maxWidth: '177.78dvh',
         }}
