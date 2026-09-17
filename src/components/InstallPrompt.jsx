@@ -147,26 +147,14 @@ function ChoicePanel({ platform, onInstall, onDismiss }) {
     <div className="p-8 flex flex-col items-center gap-6 text-center">
       {/* アイコン */}
       <div
-        className="w-20 h-20 rounded-2xl flex items-center justify-center"
+        className="w-20 h-20 rounded-full flex items-center justify-center overflow-hidden"
         style={{
           background: 'rgba(0, 229, 255, 0.1)',
           border: '1px solid rgba(0, 229, 255, 0.3)',
+          boxShadow: '0 0 15px rgba(0,229,255,0.4)',
         }}
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-10 w-10"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="#00e5ff"
-          strokeWidth={1.5}
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M12 6.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM12 2v1m0 18v1M4.22 4.22l.7.7m14.14 14.14.7.7M2 12h1m18 0h1M4.22 19.78l.7-.7M18.36 5.64l.7-.7"
-          />
-        </svg>
+        <img src="/icon.jpg" alt="Two Moons Icon" className="w-full h-full object-cover" />
       </div>
 
       <div>

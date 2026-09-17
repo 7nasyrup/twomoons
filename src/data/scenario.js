@@ -1692,7 +1692,8 @@ export const scenarioData = [
   },
   {
     "scene": "路地裏(夜)",
-    "action": "FADE_TO_BLACK"
+    "action": "FADE_TO_BLACK",
+    "bgm": "stop"
   },
   {
     "scene": "朔良の部屋",
@@ -2928,7 +2929,8 @@ export const scenarioData = [
     "scene": "廃倉庫",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「…よし！ほどけた！」"
+    "text": "「…よし！ほどけた！」",
+    "stopSe": "+struggle.mp3"
   },
   {
     "scene": "廃倉庫",
@@ -5451,7 +5453,7 @@ export const scenarioData = [
     ]
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "bg": "/scene/core_hakai1.png",
     "action": "BLACK_AURA_STOP",
     "text": "その先にいたのは、私たちを探していた黒騎士。黒騎士が振り返るより早く、睦典は生身の拳を振り上げた。",
@@ -5463,7 +5465,7 @@ export const scenarioData = [
     ]
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "se": "Shock_1.mp3",
     "action": "SHAKE_SCREEN",
     "text": "凄まじい衝撃音と共に、黒騎士の巨体が壁まで吹き飛ぶ。しかし、黒騎士もすぐに立て直し、大剣を振り下ろした。",
@@ -5473,37 +5475,37 @@ export const scenarioData = [
     ]
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "se": "Slash_Sound.mp3",
     "text": "睦典の腕が斬り落とされる。"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「いやあああああっ！！」"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "text": "けれど、睦典は痛みすら感じていないかのように、その場に立ち尽くしていた。",
     "showIllust": [
       "Mutsunori_bake33"
     ]
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "action": "BLACK_ENERGY",
     "text": "切断面から黒い霧が噴き出し、失われた腕が瞬く間に再生する。そして再生した腕は、元の形を失い、鋭い爪を持つ異形へと変貌していた。"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "speaker": "睦典",
     "role": "MUTSUNORI",
     "action": "SHAKE_SCREEN",
     "text": "「オオオオオオオッ！！」"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "text": "攻撃を受けるたび、睦典の身体はさらに異形へと変わっていく。",
     "showIllust": [
       "Mutsunori_bake42",
@@ -5511,7 +5513,7 @@ export const scenarioData = [
     ]
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "se": "BrokenArmor.mp3",
     "action": [
       "clear",
@@ -5524,37 +5526,37 @@ export const scenarioData = [
     ]
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "text": "その光景を、私はガレキの陰ですくみ上がったまま見つめていた。"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "text": "黒騎士は去った。けれど、少しも嬉しくない。そこにいるのは、私の大切な友人ではなく、ただの「ナニカ」だった。"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "text": "やがて怪物──睦典だったものが、ゆっくりとこちらを振り返る。",
     "showIllust": [
       "Mutsunori_bake53"
     ]
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「ムッ……ちゃん……？」"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "text": "私の声に反応し、四足にも似た不気味な足取りで近づいてくる。その瞳には、もう知性も、私を知っている光もない。"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "action": "SHAKE_SCREEN_SMALL",
     "text": "それでも、彼は私の前で立ち止まると、巨大な腕を伸ばした。そして、驚くほど優しく、私を抱きしめる。"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「……っ」",
@@ -5563,26 +5565,26 @@ export const scenarioData = [
     ]
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "text": "冷たい身体。もう、人間だった頃の温もりは残っていなかった。",
     "bgm": "stop"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「いいよ、ムッちゃん。もう、頑張らなくていいよ……全部忘れちゃってもいい。……私が、ずっとここにいるから」"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "text": "私は震える手でその硬い背中にそっと触れると、怪物は答えるように、小さく喉を鳴らした。"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "text": "――地球へ帰る約束は、もう果たされない。"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "text": "白く輝くコアの前で、私はこの怪物になった友人に寄り添うことしかできなかった。",
     "action": "FADE_TO_BAD_END"
   },
@@ -5722,7 +5724,7 @@ export const scenarioData = [
     "action": "WHITE_OUT_LIGHT_END"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "text": "彼の身体から溢れる力は、先ほどまでの不安定なものとは違う。澄んだ光を纏った、強く穏やかなエネルギーだった。",
     "bg": "/scene/core_hakai1.png",
     "hideIllust": [
@@ -5730,12 +5732,12 @@ export const scenarioData = [
     ]
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "text": "精神の拠り所である私との同調によって、睦典の異能は完全に制御されている。もう、力を使うたびに記憶が削れることはない。"
   },
 
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "speaker": "黒騎士",
     "text": "「ギ……ギギ……」",
     "showIllust": [
@@ -5743,18 +5745,18 @@ export const scenarioData = [
     ]
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "text": "その変化を察知したのか、黒騎士が不気味な音を響かせながら大剣を構える。",
     "showIllust": [
       "BlackKnight_attack"
     ]
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "text": "睦典は私の手を強く握った。"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "speaker": "睦典",
     "role": "MUTSUNORI",
     "text": "「朔良、俺の目になってくれ。——二人で、あいつを倒そう」",
@@ -5763,13 +5765,13 @@ export const scenarioData = [
     ]
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「……うん！」"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "text": "私は頷く。黒騎士との最後の戦いが、始まった。"
   },
   //=============== 戦闘開始(睦典ラスボス) ===============
@@ -5778,11 +5780,11 @@ export const scenarioData = [
     "action": "TRIGGER_BATTLE_FINAL_MUTSUNORI"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "text": "勝負は決した──そう思った、次の瞬間。"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "speaker": "黒騎士",
     "text": "「──チッ」",
     "showIllust": [
@@ -5790,11 +5792,11 @@ export const scenarioData = [
     ]
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "text": "黒騎士は残った力を振り絞り、私たちではなく研究所の巨大な支柱へ拳を叩き込んだ。"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "text": "轟音と共に天井が崩れ落ち、舞い上がった月砂と粉塵が視界を覆う。",
     "action": "SHAKE_AND_SMOKE",
     "se": "+bakuhatsu.mp3",
@@ -5802,24 +5804,24 @@ export const scenarioData = [
     "clearIllust": true
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "speaker": "睦典",
     "role": "MUTSUNORI",
     "text": "「ぐ…っ！朔良、大丈夫か！？」"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "text": "睦典が咄嗟に私を庇う。"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "text": "やがて煙が晴れた時、そこに黒騎士の姿はなかった。残されていたのは、破壊された壁の向こうへ続く不気味な足跡だけ。",
     "bg": "/scene/core_escape.png",
     "action": "CLEAR_SMOKE",
     "bgNoFade": true
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "speaker": "睦典",
     "role": "MUTSUNORI",
     "text": "「逃げたか……でも、今は追ってる場合じゃなさそうだ」",
@@ -5828,11 +5830,11 @@ export const scenarioData = [
     ]
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "text": "睦典が振り返る。その先で、『コア』は制御を失い、狂ったように脈動していた。"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "speaker": "睦典",
     "role": "MUTSUNORI",
     "text": "「……いよいよ、本番だな」",
@@ -5842,35 +5844,35 @@ export const scenarioData = [
     ]
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "text": "睦典が静かに息を吐く。"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "text": "手記にあった通り、コアを止めるには異能の力を限界まで注ぎ込み、強制停止させるしかない。でも、さっきはそれで睦典が壊れかけた。"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「……ムッちゃん」"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "text": "不安が胸をよぎった瞬間、彼は私の手を握る。"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "speaker": "睦典",
     "role": "MUTSUNORI",
     "text": "「大丈夫。さっきは一人だった。でも、今は朔良がいる」"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "text": "睦典はまっすぐ私を見る。"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "speaker": "睦典",
     "role": "MUTSUNORI",
     "text": "「俺の力を全部注ぎ込む。暴走しそうになったら……お前が支えてくれ」",
@@ -5879,17 +5881,17 @@ export const scenarioData = [
     ]
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「……うん！」"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "text": "私は強く頷いた。二人でなら、きっとできる。私たちは光を放つコアへ手を伸ばす。"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "speaker": "睦典",
     "role": "MUTSUNORI",
     "text": "「いくぞ、朔良……！」",
@@ -5899,70 +5901,70 @@ export const scenarioData = [
     ]
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "action": "WHITE_PULSE_START",
     "se": "+CoreCharge_Sound.mp3",
     "hideWindow": true
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "text": "触れた瞬間、眩い光と共に、莫大なエネルギーがコアへ流れ込む。"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "speaker": "睦典",
     "role": "MUTSUNORI",
     "text": "「ぐっ……あああああっ！！」",
     "action": "WHITE_PULSE_MID"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "text": "コアの拒絶反応が、睦典へ逆流する。身体を蝕む負荷に、彼の表情が歪む。"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「させない……！」"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "text": "私は睦典の背中に手を回し、必死に彼を支えた。押し寄せる暴走した力を受け止めながら、私は震える声で歌う。",
     "action": "WHITE_PULSE_HIGH"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "text": "睦典の光と、私の光が重なっていく。"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "speaker": "睦典",
     "role": "MUTSUNORI",
     "text": "「これで……終わりだぁぁぁっ！！」"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "text": "睦典が最後の力を振り絞り、コアの奥へ全ての力を叩き込む。次の瞬間──。"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "se": "+window_break.mp3",
     "action": "WHITE_OUT_START",
     "bgm": "stop"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "text": "コアを形成していたエネルギーが光の粒子となって霧散し、隔離領域を包んでいた不気味な紫色の光が、潮が引くように消えていく。",
     "clearIllust": true
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "text": "視界を覆っていた眩い光がゆっくりと収まっていき、私たちの周りには、柔らかな静寂だけが残されていた。",
     "action": "WHITE_OUT_END_SLOW",
     "bg": "/scene/core_close_Nothing.png"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "speaker": "睦典",
     "role": "MUTSUNORI",
     "text": "「……終わった、んだな」",
@@ -5971,25 +5973,25 @@ export const scenarioData = [
     ]
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "text": "静まり返った部屋の中で、睦典がふらりと私の肩に寄りかかる。"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「ムッちゃん……っ、私のこと、わかる……？」"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "text": "一番怖かった問い。もし、この戦いの代償で私のことまで忘れていたら──。"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "text": "けれど、睦典は少し驚いたように目を瞬かせると、いつもの笑顔を浮かべた。"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "speaker": "睦典",
     "role": "MUTSUNORI",
     "text": "「あったり前だろ。朔良を忘れるわけないじゃん。……それよりさ、なんか急に腹減ってきた」",
@@ -6000,27 +6002,27 @@ export const scenarioData = [
     ]
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「……ムッちゃん……！」"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "text": "その言葉に、張り詰めていたものが一気に溢れ出す。涙を拭う私に、睦典は優しく空を指差した。"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "text": "涙を拭う私に、睦典は優しく空を指差した。"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "speaker": "睦典",
     "role": "MUTSUNORI",
     "text": "「ほら、上見てみろよ」"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "text": "見上げた先には、隔離領域を覆っていた光が消え、本来の姿を取り戻した宇宙が広がっていた。──そして一際輝く、本当の月。",
     "hideIllust": [
       "Mutsunori"
@@ -6028,41 +6030,41 @@ export const scenarioData = [
     "bg": "/scene/Moon_Lab.png"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「綺麗……」"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "speaker": "睦典",
     "role": "MUTSUNORI",
     "text": "「ああ。……これで、やっと帰れるな」"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "text": "その言葉を聞きながら、私はポケットに残っていた教授の手記の最後のページを開く。"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "text": "――『コア停止後、研究所は自壊を開始する。最下層の緊急離脱用ロケットで帰還しなさい』"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "se": "+bakuhatsu.mp3",
     "text": "直後、地面が大きく揺れ始めた。",
     "bgm": "+alert.mp3",
     "action": "SHAKE_SCREEN_CONTINUOUS_SMALL"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "speaker": "朔良",
     "role": "SAKURA",
     "text": "「ムッちゃん、急ごう！ ロケットで脱出するって！」",
     "bg": "/scene/core_close_Nothing.png",
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "speaker": "睦典",
     "role": "MUTSUNORI",
     "text": "「ああ、任せろ！」",
@@ -6072,11 +6074,11 @@ export const scenarioData = [
     "action": "ALL_FADE_OUT"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "text": "崩れ落ちる研究所を背に、私たちは最下層の格納庫へ向かう。"
   },
   {
-    "scene": "コア部屋_崩壊①",
+    "scene": "コア部屋_崩壊",
     "text": "そこにあったのは、地球へ帰るための最後のロケットだった。",
     "bgm": "stop",
     "bg": "/scene/rocket_back.png",

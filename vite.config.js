@@ -16,6 +16,12 @@ export default defineConfig({
             src: "favicon.svg",
             sizes: "any",
             type: "image/svg+xml"
+          },
+          {
+            src: "icon.jpg",
+            sizes: "192x192 512x512",
+            type: "image/jpeg",
+            purpose: "any maskable"
           }
         ],
         start_url: ".",

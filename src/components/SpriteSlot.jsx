@@ -287,7 +287,7 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
                 opacity: 1,
                 y: posY !== undefined ? posY : 0,
                 scale: finalScale,
-                filter: (isSpeaker || isKimera || isMachine) ? "brightness(1) drop-shadow(0 10px 20px rgba(0,0,0,0.5))" : "brightness(0.4) drop-shadow(0 5px 10px rgba(0,0,0,0.3))",
+                filter: (isSpeaker || isKimera || isMachine) ? "brightness(1)" : "brightness(0.4)",
                 zIndex: isSpeaker ? 20 : 10,
               }}
               layout="position"
@@ -298,8 +298,9 @@ export default function SpriteSlot({ leftActive, rightActive, focusSlot, current
                 <img
                   src={imagePath}
                   alt={baseCharName}
-                  className="w-full h-full object-contain object-bottom"
-                  style={{ transition: 'opacity 0.25s ease' }}
+                  decoding="async"
+                  className={`w-full h-full object-contain object-bottom transform-gpu ${(isSpeaker || isKimera || isMachine) ? 'drop-shadow-2xl' : 'drop-shadow-lg'}`}
+                  style={{ transition: 'opacity 0.25s ease', willChange: 'opacity, transform, filter' }}
                 />
               </div>
             </motion.div>
