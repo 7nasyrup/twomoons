@@ -9,7 +9,7 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       manifest: {
-        short_name: "LUNA_REVERSE",
+        short_name: "Behind the blue moon",
         name: "青い月の裏側で - Behind the Blue Moon Demo",
         icons: [
           {
