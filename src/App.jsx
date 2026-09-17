@@ -3185,8 +3185,7 @@ export default function App() {
           backlog={backlog}
         />
 
-        {/* Debug Console (Disabled for release) */}
-        {/*
+        {/* Debug Console */}
         <DevConsole
           currentStep={currentStep}
           totalSteps={totalSteps}
@@ -3217,7 +3216,6 @@ export default function App() {
           }}
           onPrevStep={prevStep}
         />
-        */}
 
         {/* Install Prompt Overlay (iOS/Android) */}
         <InstallPrompt landscapeReady={landscapeReady} />

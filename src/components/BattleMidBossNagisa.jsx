@@ -1324,7 +1324,9 @@ export default function BattleMidBossNagisa({ onComplete, playBGM, stopBGM, play
               <div key={ally.id} className="relative flex flex-col items-center w-full translate-y-3 lg:translate-y-6">
 
                 {/* ── Ally HP Bar (Chimera-A style) ── */}
-                <div className="w-20 lg:w-36 mb-1 lg:mb-2 z-20 relative">
+                <div 
+                  // 味方のHPバーの位置
+                  className="w-20 lg:w-36 mb-1 lg:mb-2 z-20 relative">
                   <div className="flex flex-col items-center">
                     <div className="flex items-center justify-between w-full mb-0.5 px-1">
                       <div className="flex items-center gap-1.5">
@@ -1424,6 +1426,8 @@ export default function BattleMidBossNagisa({ onComplete, playBGM, stopBGM, play
                   )}
 
                   <motion.div
+                    // 味方の立ち絵の位置
+                    // 味方の立ち絵のサイズ
                     id={`char-${ally.id}`}
                     className={`relative cursor-pointer touch-none flex items-center justify-center w-28 h-36 lg:w-40 lg:h-56 -translate-y-2
                     ${ally.isDead ? 'opacity-40 grayscale' : ''}
@@ -1614,6 +1618,8 @@ export default function BattleMidBossNagisa({ onComplete, playBGM, stopBGM, play
               <div key={enemy.id} className="relative flex flex-col items-center w-full">
                 <div className="relative flex items-center justify-center top-12 -left-8 lg:top-5 lg:left-0">
                   <motion.div
+                    // 敵の立ち絵の位置
+                    // 敵の立ち絵のサイズ
                     id={`char-${enemy.id}`}
                     className={`relative w-48 h-64 lg:w-96 lg:h-[30rem] flex items-center justify-center z-40 -translate-y-16 lg:-translate-y-32 ${enemy.isDead ? 'opacity-30 grayscale'
                       : enemy.flashTimer > 0 ? 'animate-battle-hit-flash'

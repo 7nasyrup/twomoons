@@ -1167,6 +1167,8 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
 
                 {/* ── Ally Portrait (Interactable) ── */}
                 <motion.div
+                  // 味方の立ち絵の位置
+                  // 味方の立ち絵のサイズ
                   id={`char-${ally.id}`}
                   className={`relative cursor-pointer touch-none flex items-center justify-center
                     ${ally.id === 'nagisa' ? 'w-[140px] h-[186px] lg:w-[180px] lg:h-[230px]' : 'w-36 h-48 lg:w-48 lg:h-64'}
@@ -1380,7 +1382,9 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
             return (
               <div key={enemy.id} className="relative flex flex-col items-center w-full z-20">
                 {/* ── Enemy Status Panel ── */}
-                <div className="w-40 lg:w-52 mb-2 z-20 relative">
+                <div 
+                  // 敵のHPバーの位置
+                  className="w-40 lg:w-52 mb-2 z-20 relative">
                   <div className="bg-[#090e17]/80 backdrop-blur-sm border border-amber-500/40 fui-clip-basic p-1.5 relative overflow-hidden">
                     <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPjxyZWN0IHdpZHRoPSIyIiBoZWlnaHQ9IjQiIGZpbGw9InJnYmEoMjUxLCAxOTEsIDM2LCAwLjA1KSIvPjwvc3ZnPg==')] z-0 pointer-events-none" />
 
@@ -1412,6 +1416,8 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
 
                 {/* Enemy Body */}
                 <motion.div
+                  // 敵の立ち絵の位置
+                  // 敵の立ち絵のサイズ
                   id={`char-${enemy.id}`}
                   className={`relative w-48 h-60 lg:w-80 lg:h-96 flex items-center justify-center z-40 ${enemy.isDead ? 'opacity-30 grayscale'
                       : enemy.flashTimer > 0 ? 'animate-battle-hit-flash'
@@ -1580,7 +1586,9 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
           const ally = allies[0]; // Active ally
           if (!ally) return null;
           return (
-            <div className="absolute bottom-12 left-12 lg:bottom-16 lg:left-16 pointer-events-auto flex items-end gap-4 lg:gap-5">
+            <div 
+              // 味方のHPバーの位置
+              className="absolute bottom-12 left-12 lg:bottom-16 lg:left-16 pointer-events-auto flex items-end gap-4 lg:gap-5">
               {/* Portrait */}
               <div className="w-20 h-20 lg:w-24 lg:h-24 bg-slate-900 border-2 border-red-500/80 relative overflow-hidden flex-shrink-0 shadow-[0_0_15px_rgba(239,68,68,0.3)]">
                 <img

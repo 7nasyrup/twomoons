@@ -1231,6 +1231,8 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
                   )}
 
                   <motion.div
+                    // 味方の立ち絵の位置
+                    // 味方の立ち絵のサイズ
                     id={`char-${ally.id}`}
                     className={`relative cursor-pointer touch-none flex items-center justify-center
                     ${ally.id === 'nagisa' ? 'w-[90px] h-[120px] lg:w-[180px] lg:h-[230px]' : 'w-[125px] h-[187px] lg:w-48 lg:h-64'}
@@ -1478,6 +1480,8 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
 
 
                   <motion.div
+                    // 敵の立ち絵の位置
+                    // 敵の立ち絵のサイズ
                     id={`char-${enemy.id}`}
                     className={`relative w-[230px] h-[307px] lg:w-80 lg:h-96 flex items-center justify-center z-40 ${enemy.isDead ? 'opacity-30 grayscale'
                       : enemy.flashTimer > 0 ? 'animate-battle-hit-flash'

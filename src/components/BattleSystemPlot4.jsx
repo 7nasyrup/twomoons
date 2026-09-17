@@ -1048,6 +1048,8 @@ export default function BattleSystemPlot4({ onComplete, playBGM, stopBGM, playSE
 
                 {/* ── Ally Portrait (Interactable) ── */}
                 <motion.div
+                  // 味方の立ち絵の位置
+                  // 味方の立ち絵のサイズ
                   id={`char-${ally.id}`}
                   className={`relative cursor-pointer touch-none flex items-center justify-center
                     ${ally.id === 'nagisa' ? 'w-[140px] h-[186px] md:w-[180px] md:h-[230px]' : 'w-36 h-48 md:w-48 md:h-64'}
@@ -1227,7 +1229,9 @@ export default function BattleSystemPlot4({ onComplete, playBGM, stopBGM, playSE
             return (
               <div key={enemy.id} className="relative flex flex-col items-center w-full z-20">
                 {/* ── Enemy Status Panel ── */}
-                <div className="w-40 md:w-52 mb-2 z-20 relative">
+                <div 
+                  // 敵のHPバーの位置
+                  className="w-40 md:w-52 mb-2 z-20 relative">
                   <div className="bg-[#090e17]/80 backdrop-blur-sm border border-amber-500/40 fui-clip-basic p-1.5 relative overflow-hidden">
                     <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPjxyZWN0IHdpZHRoPSIyIiBoZWlnaHQ9IjQiIGZpbGw9InJnYmEoMjUxLCAxOTEsIDM2LCAwLjA1KSIvPjwvc3ZnPg==')] z-0 pointer-events-none" />
 
@@ -1259,6 +1263,8 @@ export default function BattleSystemPlot4({ onComplete, playBGM, stopBGM, playSE
 
                 {/* Enemy Body */}
                 <motion.div
+                  // 敵の立ち絵の位置
+                  // 敵の立ち絵のサイズ
                   id={`char-${enemy.id}`}
                   className={`relative w-48 h-60 md:w-80 md:h-96 flex items-center justify-center z-40 ${enemy.isDead ? 'opacity-30 grayscale'
                     : enemy.flashTimer > 0 ? 'animate-battle-hit-flash'

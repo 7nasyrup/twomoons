@@ -1351,7 +1351,9 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
               <div key={ally.id} className="relative flex flex-col items-center w-full">
 
                 {/* ── Ally HP Bar (Chimera-A style) ── */}
-                <div className="w-20 lg:w-36 mb-1 lg:mb-2 z-20 relative translate-x-2 translate-y-6 lg:translate-x-0 lg:-translate-y-2">
+                <div
+                  // 味方のHPバーの位置
+                  className="w-20 lg:w-36 mb-1 lg:mb-2 z-20 relative translate-x-2 translate-y-6 lg:translate-x-0 lg:-translate-y-2">
                   <div className="flex flex-col items-center">
                     <div className="flex items-center justify-between w-full mb-0.5 px-1">
                       <div className="flex items-center gap-1.5">
@@ -1451,6 +1453,8 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
                   )}
 
                   <motion.div
+                    // 味方の立ち絵の位置
+                    // 味方の立ち絵のサイズ
                     id={`char-${ally.id}`}
                     className={`relative cursor-pointer touch-none flex items-center justify-center
                     ${ally.id === 'nagisa' ? 'w-[90px] h-[120px] lg:w-[180px] lg:h-[230px]' : 'w-[125px] h-[187px] lg:w-48 lg:h-64'}
@@ -1674,6 +1678,8 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
 
 
                   <motion.div
+                    // 敵の立ち絵の位置
+                    // 敵の立ち絵のサイズ
                     id={`char-${enemy.id}`}
                     className={`relative top-16 lg:top-0 w-44 h-56 lg:w-80 lg:h-96 flex items-center justify-center z-40 ${enemy.isDead ? 'opacity-30 grayscale'
                       : enemy.flashTimer > 0 ? 'animate-battle-hit-flash'
@@ -1722,9 +1728,9 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
             {isPaused ? '再開 (RESUME)' : '一時停止 (PAUSE)'}
           </button>
           {(localStorage.getItem('cleared_mutsunori_good_end') === 'true' || localStorage.getItem('cleared_mika_good_end') === 'true' || localStorage.getItem('cleared_nagisa_good_end') === 'true' || localStorage.getItem('cleared_akane_good_end') === 'true') && (
-          <button onClick={handleResultClose} className="px-2 py-1 lg:px-3 lg:py-1.5 bg-[#0a1628]/60 backdrop-blur-sm border border-slate-600/30 text-slate-400 font-noto text-[8px] lg:text-[10px] tracking-[0.2em] rounded hover:border-slate-400/50 hover:text-slate-200 transition-all">
-            EXIT
-          </button>
+            <button onClick={handleResultClose} className="px-2 py-1 lg:px-3 lg:py-1.5 bg-[#0a1628]/60 backdrop-blur-sm border border-slate-600/30 text-slate-400 font-noto text-[8px] lg:text-[10px] tracking-[0.2em] rounded hover:border-slate-400/50 hover:text-slate-200 transition-all">
+              EXIT
+            </button>
           )}
         </div>
       </div>

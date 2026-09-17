@@ -1331,7 +1331,9 @@ export default function BattleFinalAkane({ onComplete, playBGM, stopBGM, playSE 
               <div key={ally.id} className="relative flex flex-col items-center w-full">
 
                 {/* ── Ally HP Bar (Chimera-A style) ── */}
-                <div className="w-20 lg:w-36 mb-1 lg:mb-2 z-20 relative translate-x-2 translate-y-4 lg:-translate-y-5 lg:translate-x-0">
+                <div
+                  // 味方のHPバーの位置
+                  className="w-20 lg:w-36 mb-1 lg:mb-2 z-20 relative translate-x-2 translate-y-4 lg:-translate-y-5 lg:translate-x-0">
                   <div className="flex flex-col items-center">
                     <div className="flex items-center justify-between w-full mb-0.5 px-1">
                       <div className="flex items-center gap-1.5">
@@ -1381,11 +1383,11 @@ export default function BattleFinalAkane({ onComplete, playBGM, stopBGM, playSE 
 
                   {ally.id === 'akane' && (
                     <div className="absolute w-32 h-48 lg:w-44 lg:h-62 flex items-center justify-center pointer-events-none z-0">
-                      <div className="relative w-full h-full -translate-y-8 lg:-translate-y-10 -translate-x-24 lg:-translate-x-32">
+                      <div className="relative w-full h-full -translate-y-8 lg:-translate-y-4 -translate-x-24 lg:-translate-x-32">
                         <img
                           src="/battle/sakura.png"
                           alt="sakura"
-                          className="w-full h-full object-contain drop-shadow-lg opacity-90"
+                          className="w-full h-full object-contain drop-shadow-lg opacity-90 lg:scale-[1.15] lg:origin-bottom"
                         />
                         {/* 朔良の指示吹き出し */}
                         <AnimatePresence>
@@ -1431,6 +1433,8 @@ export default function BattleFinalAkane({ onComplete, playBGM, stopBGM, playSE 
                   )}
 
                   <motion.div
+                    // 味方の立ち絵の位置
+                    // 味方の立ち絵のサイズ
                     id={`char-${ally.id}`}
                     className={`relative cursor-pointer touch-none flex items-center justify-center w-32 h-44 md:w-40 md:h-56 -translate-y-12
                     ${ally.isDead ? 'opacity-40 grayscale' : ''}
@@ -1543,7 +1547,7 @@ export default function BattleFinalAkane({ onComplete, playBGM, stopBGM, playSE 
                     </AnimatePresence>
 
                     {ally.image ? (
-                      <img src={ally.image} alt={ally.name} className={`w-full h-full object-contain relative z-10 -translate-y-16 lg:-translate-y-12 scale-75 lg:scale-100 origin-bottom lg:origin-center ${ally.flashTimer > 0 ? 'animate-battle-hit-flash drop-shadow-[0_0_20px_rgba(248,113,113,0.8)]' : 'drop-shadow-lg'}`} />
+                      <img src={ally.image} alt={ally.name} className={`w-full h-full object-contain relative z-10 -translate-y-[58px] lg:-translate-y-8 scale-75 lg:scale-[1.21] origin-bottom lg:origin-center ${ally.flashTimer > 0 ? 'animate-battle-hit-flash drop-shadow-[0_0_20px_rgba(248,113,113,0.8)]' : 'drop-shadow-lg'}`} />
                     ) : (
                       <div className="w-full h-full bg-slate-800/80 border border-slate-600 rounded-2xl flex items-center justify-center">
                         <span className="font-noto font-bold text-slate-300">{ally.name}</span>
@@ -1617,7 +1621,8 @@ export default function BattleFinalAkane({ onComplete, playBGM, stopBGM, playSE 
               return (
                 <motion.div
                   id={`char-${enemy2.id}`}
-                  className="absolute top-8 lg:top-0 w-64 h-56 lg:w-[500px] lg:h-[620px] flex items-center justify-center z-20 pointer-events-none"
+                  // 敵の立ち絵の位置（キメラ4）
+                  className="absolute top-[70px] lg:-top-[40px] w-64 h-56 lg:w-[500px] lg:h-[620px] flex items-center justify-center z-20 pointer-events-none"
                   animate={{
                     x: isAttacking ? 30 : (isCurrentTurn && turnPhase === 'enemy_resolve' ? 30 : 0) + 110, // 右列縦並び(+110px)、攻撃時は前進距離を短縮(+30px)
                     y: -10, // 下段から少し上に移動！
@@ -1629,7 +1634,9 @@ export default function BattleFinalAkane({ onComplete, playBGM, stopBGM, playSE 
                 >
                   {/* 個別HPバー (立ち絵の上部に固定) */}
                   {!enemy2.isDead && (
-                    <div className="absolute top-14 lg:top-52 left-1/2 -translate-x-1/2 w-20 lg:w-32 z-50 flex flex-col pointer-events-auto">
+                    <div
+                      // 敵のHPバーの位置（キメラ4）
+                      className="absolute top-14 lg:top-52 left-1/2 -translate-x-1/2 w-20 lg:w-32 z-50 flex flex-col pointer-events-auto">
                       <div className="flex items-center justify-between w-full mb-0.5 px-1">
                         <div className="flex items-center gap-1">
                           <div className="w-1 h-1 bg-red-400 shadow-[0_0_8px_#f87171] rotate-45" />
@@ -1701,7 +1708,7 @@ export default function BattleFinalAkane({ onComplete, playBGM, stopBGM, playSE 
               return (
                 <motion.div
                   id={`char-${enemy3.id}`}
-                  className="absolute top-32 lg:top-0 w-64 h-56 lg:w-[500px] lg:h-[620px] flex items-center justify-center z-10 pointer-events-none"
+                  className="absolute top-[180px] lg:top-0 w-64 h-56 lg:w-[500px] lg:h-[620px] flex items-center justify-center z-10 pointer-events-none"
                   animate={{
                     x: isAttacking ? 30 : (isCurrentTurn && turnPhase === 'enemy_resolve' ? 30 : 0) + 110, // 右列縦並び(+110px)、攻撃時は前進距離を短縮(+30px)
                     y: -180, // さらに上に移動！
@@ -1713,7 +1720,9 @@ export default function BattleFinalAkane({ onComplete, playBGM, stopBGM, playSE 
                 >
                   {/* 個別HPバー (立ち絵の上部に固定) */}
                   {!enemy3.isDead && (
-                    <div className="absolute top-2 lg:top-32 left-1/2 -translate-x-1/2 w-20 lg:w-32 z-50 flex flex-col pointer-events-auto">
+                    <div
+                      // 敵のHPバーの位置（キメラ5）
+                      className="absolute top-2 lg:top-32 left-1/2 -translate-x-1/2 w-20 lg:w-32 z-50 flex flex-col pointer-events-auto">
                       <div className="flex items-center justify-between w-full mb-0.5 px-1">
                         <div className="flex items-center gap-1">
                           <div className="w-1 h-1 bg-red-400 shadow-[0_0_8px_#f87171] rotate-45" />
@@ -1796,7 +1805,9 @@ export default function BattleFinalAkane({ onComplete, playBGM, stopBGM, playSE 
                 >
                   {/* 個別HPバー (立ち絵の上部に固定) */}
                   {!enemy1.isDead && (
-                    <div className="absolute -top-10 lg:-top-4 left-1/2 -translate-x-1/2 w-20 lg:w-32 z-50 flex flex-col pointer-events-auto">
+                    <div
+                      // 敵のHPバーの位置（黒騎士）
+                      className="absolute -top-10 lg:-top-[35px] left-1/2 -translate-x-1/2 w-20 lg:w-32 z-50 flex flex-col pointer-events-auto">
                       <div className="flex items-center justify-between w-full mb-0.5 px-1">
                         <div className="flex items-center gap-1">
                           <div className="w-1 h-1 bg-red-400 shadow-[0_0_8px_#f87171] rotate-45" />
@@ -1864,9 +1875,9 @@ export default function BattleFinalAkane({ onComplete, playBGM, stopBGM, playSE 
             {isPaused ? '再開 (RESUME)' : '一時停止 (PAUSE)'}
           </button>
           {(localStorage.getItem('cleared_mutsunori_good_end') === 'true' || localStorage.getItem('cleared_mika_good_end') === 'true' || localStorage.getItem('cleared_nagisa_good_end') === 'true' || localStorage.getItem('cleared_akane_good_end') === 'true') && (
-          <button onClick={handleResultClose} className="px-2 py-1 lg:px-3 lg:py-1.5 bg-[#0a1628]/60 backdrop-blur-sm border border-slate-600/30 text-slate-400 font-noto text-[8px] lg:text-[10px] tracking-[0.2em] rounded hover:border-slate-400/50 hover:text-slate-200 transition-all">
-            EXIT
-          </button>
+            <button onClick={handleResultClose} className="px-2 py-1 lg:px-3 lg:py-1.5 bg-[#0a1628]/60 backdrop-blur-sm border border-slate-600/30 text-slate-400 font-noto text-[8px] lg:text-[10px] tracking-[0.2em] rounded hover:border-slate-400/50 hover:text-slate-200 transition-all">
+              EXIT
+            </button>
           )}
         </div>
       </div>

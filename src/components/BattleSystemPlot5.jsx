@@ -1321,7 +1321,9 @@ export default function BattleSystemPlot5({ onComplete, playBGM, stopBGM, playSE
               <div key={ally.id} className="relative flex flex-col items-center w-full">
 
                 {/* ── Ally HP Bar (Chimera-A style) ── */}
-                <div className="w-20 lg:w-36 mb-1 lg:mb-2 z-20 relative">
+                <div 
+                  // 味方のHPバーの位置
+                  className="w-20 lg:w-36 mb-1 lg:mb-2 z-20 relative">
                   <div className="flex flex-col items-center">
                     <div className="flex items-center justify-between w-full mb-0.5 px-1">
                       <div className="flex items-center gap-1.5">
@@ -1422,6 +1424,8 @@ export default function BattleSystemPlot5({ onComplete, playBGM, stopBGM, playSE
                   )}
 
                   <motion.div
+                    // 味方の立ち絵の位置
+                    // 味方の立ち絵のサイズ
                     id={`char-${ally.id}`}
                     className={`relative cursor-pointer touch-none flex items-center justify-center
                     ${ally.id === 'nagisa' ? 'w-[90px] h-[120px] lg:w-[180px] lg:h-[230px]' : 'w-[125px] h-[187px] lg:w-48 lg:h-64'}
@@ -1637,6 +1641,8 @@ export default function BattleSystemPlot5({ onComplete, playBGM, stopBGM, playSE
 
 
                   <motion.div
+                    // 敵の立ち絵の位置
+                    // 敵の立ち絵のサイズ
                     id={`char-${enemy.id}`}
                     className={`relative w-[230px] h-[307px] lg:w-80 lg:h-96 flex items-center justify-center z-40 ${enemy.isDead ? 'opacity-30 grayscale'
                       : enemy.flashTimer > 0 ? 'animate-battle-hit-flash'

@@ -1438,11 +1438,13 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
                   )}
 
                   <motion.div
+                    // 味方の立ち絵の位置
+                    // 味方の立ち絵のサイズ
                     id={`char-${ally.id}`}
                     className={`relative cursor-pointer touch-none flex items-center justify-center
-                    ${ally.id === 'nagisa' ? 'w-[130px] h-[172px] lg:w-[198px] lg:h-[253px]' :
-                        ally.id === 'mika' ? 'w-[132px] h-[198px] lg:w-[192px] lg:h-[264px]' :
-                          ally.id === 'mutsunori' ? 'w-[113px] h-[168px] lg:w-[173px] lg:h-[230px]' :
+                    ${ally.id === 'nagisa' ? 'w-[130px] h-[172px] lg:w-[198px] lg:h-[283px]' :
+                        ally.id === 'mika' ? 'w-[132px] h-[198px] lg:w-[192px] lg:h-[294px]' :
+                          ally.id === 'mutsunori' ? 'w-[113px] h-[168px] lg:w-[173px] lg:h-[260px]' :
                             'w-[125px] h-[187px] lg:w-48 lg:h-64'}
                     ${ally.isDead ? 'opacity-40 grayscale' : ''}
                   `}
@@ -1660,8 +1662,10 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
 
                 <div className="relative flex items-center justify-center -top-28 -left-8 lg:top-5 lg:left-0">
                   <motion.div
+                    // 敵の立ち絵の位置
+                    // 敵の立ち絵のサイズ
                     id={`char-${enemy.id}`}
-                    className={`relative w-[480px] h-[640px] lg:w-[720px] lg:h-[864px] flex items-center justify-center z-40 ${enemy.isDead ? 'opacity-30 grayscale'
+                    className={`relative w-[480px] h-[680px] lg:w-[720px] lg:h-[900px] flex items-center justify-center z-40 ${enemy.isDead ? 'opacity-30 grayscale'
                       : enemy.flashTimer > 0 ? 'animate-battle-hit-flash'
                         : ''
                       }`}
@@ -1725,9 +1729,9 @@ export default function BattleTeamVsKimera({ onComplete, playBGM, stopBGM, playS
             {isPaused ? '再開 (RESUME)' : '一時停止 (PAUSE)'}
           </button>
           {(localStorage.getItem('cleared_mutsunori_good_end') === 'true' || localStorage.getItem('cleared_mika_good_end') === 'true' || localStorage.getItem('cleared_nagisa_good_end') === 'true' || localStorage.getItem('cleared_akane_good_end') === 'true') && (
-          <button onClick={handleResultClose} className="px-2 py-1 lg:px-3 lg:py-1.5 bg-[#0a1628]/60 backdrop-blur-sm border border-slate-600/30 text-slate-400 font-noto text-[8px] lg:text-[10px] tracking-[0.2em] rounded hover:border-slate-400/50 hover:text-slate-200 transition-all">
-            EXIT
-          </button>
+            <button onClick={handleResultClose} className="px-2 py-1 lg:px-3 lg:py-1.5 bg-[#0a1628]/60 backdrop-blur-sm border border-slate-600/30 text-slate-400 font-noto text-[8px] lg:text-[10px] tracking-[0.2em] rounded hover:border-slate-400/50 hover:text-slate-200 transition-all">
+              EXIT
+            </button>
           )}
         </div>
       </div>
