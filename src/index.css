@@ -17,7 +17,8 @@
     overflow: hidden;
     font-family: "Segoe UI", "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
     user-select: none;
-    touch-action: manipulation;
+    touch-action: none;
+    overscroll-behavior: none;
   }
   #root {
     width: 100%;
