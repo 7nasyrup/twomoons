@@ -51,7 +51,6 @@ import BattleSelectScreen from './components/BattleSelectScreen';
 import SaveSlotModal, { SAVE_KEY_PREFIX, loadAllSlots } from './components/SaveSlotModal';
 import InstallPrompt from './components/InstallPrompt';
 import { useNovelEngine } from './hooks/useNovelEngine';
-import { useAudioSystem } from './hooks/useAudioSystem';
 import { usePreloader } from './hooks/usePreloader';
 import { scenarioData } from './data/scenario';
 import { assetPath } from './utils/assetPath';
