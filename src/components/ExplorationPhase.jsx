@@ -29,7 +29,7 @@ export default function ExplorationPhase({ flags, setFlags, onSelectLocation, on
 
   const handleSelect = (loc) => {
     if (flags[`visited_${loc.id}`] || isSelecting.current) return;
-    
+
     isSelecting.current = true;
     setFlags(prev => ({
       ...prev,
@@ -45,7 +45,7 @@ export default function ExplorationPhase({ flags, setFlags, onSelectLocation, on
 
   return (
     <div className="absolute inset-0 z-40 bg-slate-900/40 backdrop-blur-sm flex flex-col items-center justify-center font-mplus">
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -20 }}
@@ -75,8 +75,8 @@ export default function ExplorationPhase({ flags, setFlags, onSelectLocation, on
                 onClick={() => handleSelect(loc)}
                 disabled={isVisited}
                 className={`relative overflow-hidden group p-6 rounded-lg border-2 text-left transition-all duration-300
-                  ${isVisited 
-                    ? 'border-slate-200 bg-slate-100/50 cursor-not-allowed opacity-50' 
+                  ${isVisited
+                    ? 'border-slate-200 bg-slate-100/50 cursor-not-allowed opacity-50'
                     : 'border-slate-300 bg-white hover:border-sky-500 hover:shadow-md hover:-translate-y-1'
                   }
                 `}

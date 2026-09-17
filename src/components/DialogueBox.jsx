@@ -114,13 +114,13 @@ export default function DialogueBox({
 
           {/* Normal Choices */}
           {!isPopup && isWaitingForChoice && choices && (
-            <div className="flex flex-col items-end gap-2 lg:gap-4 mb-2 lg:mb-4 w-full px-6 md:px-12 lg:px-24 pointer-events-auto">
+            <div className="flex flex-col items-end gap-1.5 lg:gap-4 mb-2 lg:mb-4 translate-y-1.5 lg:translate-y-0 w-full px-6 md:px-12 lg:px-24 pointer-events-auto">
               {choices.map((choice, idx) => {
                 const isInteractive = !choice.isLocked;
                 return (
                     <motion.div
                       key={idx}
-                      className={`relative p-[1px] bg-slate-700 transition-colors group w-fit min-w-[85%] md:min-w-[60%] lg:min-w-[37%] max-w-[95%] rounded-md ${
+                      className={`relative p-[1px] bg-slate-700 transition-colors group w-fit min-w-[55%] md:min-w-[50%] lg:min-w-[37%] max-w-[95%] rounded-md ${
                         isInteractive ? 'hover:bg-[#00e5ff] cursor-pointer' : 'opacity-60 cursor-default'
                       }`}
                       initial={{ opacity: 0, x: 20 }}
@@ -134,7 +134,7 @@ export default function DialogueBox({
                       }
                     }}
                   >
-                    <div className={`w-full bg-slate-900/95 backdrop-blur-md py-1.5 px-4 lg:py-[2cqh] lg:px-[4cqh] flex items-center border border-slate-700/50 rounded-md ${isInteractive ? '' : 'opacity-60 cursor-default'}`}>
+                    <div className={`w-full bg-slate-900/95 backdrop-blur-md py-1 px-3 lg:py-[2cqh] lg:px-[4cqh] flex items-center border border-slate-700/50 rounded-md ${isInteractive ? '' : 'opacity-60 cursor-default'}`}>
                       <span className="text-[#00e5ff] font-bold text-[11px] lg:text-[2cqh] mr-3 lg:mr-4 tracking-widest shrink-0">{String(idx + 1).padStart(2, '0')}</span>
                       <span className="text-slate-200 font-noto text-[12px] md:text-sm lg:text-[2.5cqh] tracking-wide font-bold flex-1 leading-snug whitespace-nowrap overflow-hidden text-ellipsis">{choice.text}</span>
                     </div>
@@ -223,8 +223,8 @@ export default function DialogueBox({
               <HudButton icon={<Save className="dlg-hud-icon w-[2.2cqh] h-[2.2cqh]" />} label="SAVE" onClick={onSave} />
               <HudButton icon={<FolderOpen className="dlg-hud-icon w-[2.2cqh] h-[2.2cqh]" />} label="LOAD" onClick={onLoad} />
               <HudButton icon={<SkipForward className="dlg-hud-icon w-[2.2cqh] h-[2.2cqh]" />} label="SKIP" onClick={onToggleSkip} active={skipMode} />
-              <HudButton icon={<BookOpen className="dlg-hud-icon w-[2.2cqh] h-[2.2cqh]" />} label="LOG" onClick={onOpenLog} />
               <HudButton icon={<FastForward className="dlg-hud-icon w-[2.2cqh] h-[2.2cqh]" />} label="AUTO" onClick={onToggleAuto} active={autoMode} />
+              <HudButton icon={<BookOpen className="dlg-hud-icon w-[2.2cqh] h-[2.2cqh]" />} label="LOG" onClick={onOpenLog} />
             </div>
           </div>
           )}

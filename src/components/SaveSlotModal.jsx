@@ -130,7 +130,7 @@ export default function SaveSlotModal({ mode, onClose, onSelectSlot, slots }) {
       >
         {/* パネル本体：ゲーム本編と同じ白いフロストガラス (モバイル時は一回り小さく、PC大画面(lg)時は元のmax-w-2xl) */}
         <motion.div
-          className="relative w-full max-w-[90%] sm:max-w-[85%] md:max-w-[75%] lg:max-w-2xl mx-auto"
+          className="relative w-full max-w-[75%] sm:max-w-[70%] md:max-w-[65%] lg:max-w-2xl mx-auto"
           style={{
             background: 'rgba(255,255,255,0.92)',
             backdropFilter: 'blur(20px)',
@@ -201,7 +201,7 @@ function SlotCard({ index, data, mode, isHovered, onHover, onLeave, onSelect }) 
 
   return (
     <motion.button
-      className="w-full text-left rounded-xl overflow-hidden flex items-stretch focus:outline-none h-[70px] lg:h-[110px]"
+      className="w-full text-left rounded-xl overflow-hidden flex items-stretch focus:outline-none h-[90px] lg:h-[120px]"
       style={{
         border: isHovered && !isDisabled
           ? `1.5px solid ${isSave ? 'rgba(56,189,248,0.5)' : 'rgba(99,102,241,0.4)'}`
@@ -223,7 +223,7 @@ function SlotCard({ index, data, mode, isHovered, onHover, onLeave, onSelect }) 
     >
       {/* ── サムネイル（背景＋立ち絵＋アイテムの合成表示） ── */}
       <div
-        className="shrink-0 relative overflow-hidden rounded-l-xl w-[110px] lg:w-[176px]"
+        className="shrink-0 relative overflow-hidden rounded-l-xl w-[140px] lg:w-[224px]"
         style={{ background: '#dde3ed' }}
       >
         {data ? (
@@ -259,7 +259,7 @@ function SlotCard({ index, data, mode, isHovered, onHover, onLeave, onSelect }) 
       </div>
 
       {/* ── テキスト情報 ── */}
-      <div className="flex-1 flex flex-col justify-center px-3 py-1 lg:px-5 lg:py-3 min-w-0">
+      <div className="flex-1 flex flex-col justify-center px-3 py-0.5 lg:px-5 lg:py-1.5 min-w-0">
         {isEmpty ? (
           <div>
             <p className="font-noto text-xs lg:text-sm text-slate-400">
@@ -274,14 +274,14 @@ function SlotCard({ index, data, mode, isHovered, onHover, onLeave, onSelect }) 
         ) : (
           <>
             {/* シーン名 */}
-            <div className="flex items-center gap-1 mb-0.5 lg:mb-1.5">
+            <div className="flex items-center gap-1 mb-px lg:mb-1">
               <MapPin size={9} className="text-slate-400 shrink-0 lg:size-[11px]" />
               <p className="text-slate-800 text-[11px] lg:text-sm font-noto font-bold truncate">
                 {data.sceneName || `ステップ ${data.step}`}
               </p>
             </div>
             {/* 日時 */}
-            <div className="flex items-center gap-1 mb-0.5 lg:mb-2">
+            <div className="flex items-center gap-1 mb-px lg:mb-1">
               <Clock size={8} className="text-slate-400 shrink-0 lg:size-[10px]" />
               <p className="text-slate-500 text-[9px] lg:text-[11px] font-orbitron tracking-wider">
                 {formatDate(data.savedAt)}
@@ -289,9 +289,9 @@ function SlotCard({ index, data, mode, isHovered, onHover, onLeave, onSelect }) 
             </div>
             {/* セリフテキスト */}
             {data.currentText && (
-              <div className="mt-0.5 lg:mt-1">
+              <div className="mt-px lg:mt-0.5">
                 {data.currentSpeaker && (
-                  <span className="inline-block text-[8px] lg:text-[10px] text-slate-500 font-noto font-bold mb-px lg:mb-0.5">
+                  <span className="inline-block text-[8px] lg:text-[10px] text-slate-500 font-noto font-bold mb-0 lg:mb-px">
                     {data.currentSpeaker}
                   </span>
                 )}
@@ -302,7 +302,7 @@ function SlotCard({ index, data, mode, isHovered, onHover, onLeave, onSelect }) 
             )}
             {/* 上書きバッジ（SAVEモードのみ） */}
             {isSave && (
-              <div className="mt-0.5 lg:mt-2">
+              <div className="mt-px lg:mt-1">
                 <span
                   className="inline-block text-[8px] lg:text-[10px] font-noto px-1 py-0 lg:px-2 lg:py-0.5 rounded-full"
                   style={{
