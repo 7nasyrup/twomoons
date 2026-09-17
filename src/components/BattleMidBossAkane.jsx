@@ -1010,7 +1010,7 @@ export default function BattleMidBossAkane({ onComplete, playBGM, stopBGM, playS
     setCounterAnim({ id: Date.now(), allyId: akane.id });
 
     setUltimateFlash(true);
-    if (typeof playSE === 'function') playSE(typeof assetPath === 'function' ? assetPath('/assets/audio/bgm/Onoma-Syakiin05-1(Heavy).mp3') : '/assets/audio/bgm/Onoma-Syakiin05-1(Heavy).mp3', null, false, 2.5);
+    if (typeof playSE === 'function') playSE(typeof assetPath === 'function' ? assetPath('/assets/audio/bgm/syakiin_heavy.mp3') : '/assets/audio/bgm/syakiin_heavy.mp3', null, false, 2.5);
     triggerSakuraNote();
 
     // 必殺技中は戦闘時間を2.5秒間完全に停止させる

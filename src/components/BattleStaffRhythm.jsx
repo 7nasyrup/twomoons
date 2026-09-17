@@ -262,7 +262,7 @@ export default function BattleStaffRhythm({ onComplete, playBGM, stopBGM, playSE
   const triggerUltimate = () => {
     if (syncRate < 100 || battlePhase !== 'fighting') return;
     setBattlePhase('ultimate');
-    if (typeof playSE === 'function') playSE('/assets/audio/bgm/Onoma-Syakiin05-1(Heavy).mp3', null, false, 2.5);
+    if (typeof playSE === 'function') playSE('/assets/audio/bgm/syakiin_heavy.mp3', null, false, 2.5);
     if (playSE) playSE('/assets/audio/bgm/+game_skill.mp3');
     setSyncRate(0);
     
