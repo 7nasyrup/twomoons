@@ -61,6 +61,17 @@ export function useAudioSystem() {
       sound.volume(globalSE * globalMaster * customVolume);
       sound.loop(loop === true);
     } else {
+      // Limit pool size to prevent memory leaks on iOS PWA
+      const keys = Object.keys(sePool);
+      if (keys.length > 20) {
+        for (let i = 0; i < 5; i++) {
+          const oldKey = keys[i];
+          if (sePool[oldKey]) {
+            sePool[oldKey].unload();
+            delete sePool[oldKey];
+          }
+        }
+      }
       sound = new Howl({
         src: [src], html5: false,
         volume: globalSE * globalMaster * customVolume,

@@ -8,8 +8,8 @@ export function usePreloader(scenarioData, currentStep) {
   useEffect(() => {
     if (!scenarioData || !Array.isArray(scenarioData) || currentStep === undefined) return;
 
-    // 先読みするステップ数
-    const LOOKAHEAD = 30;
+    // 先読みするステップ数 (メモリリーク・PWAのクラッシュ対策で30->10に削減)
+    const LOOKAHEAD = 10;
     const endStep = Math.min(currentStep + LOOKAHEAD, scenarioData.length);
     
     const urlsToPreload = [];
