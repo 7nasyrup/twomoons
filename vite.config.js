@@ -13,9 +13,9 @@ export default defineConfig({
         name: "青い月の裏側で - Behind the Blue Moon Demo",
         icons: [
           {
-            src: "icon.png",
+            src: "icon.jpg",
             sizes: "192x192 512x512",
-            type: "image/png",
+            type: "image/jpeg",
             purpose: "any maskable"
           }
         ],
