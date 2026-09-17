@@ -9,12 +9,12 @@ const TURN_DELAY = 600;             // Delay between turns (ms) (Allows time for
 const HEAL_COOLDOWN = 12000;
 
 // Damage values
-const ALLY_BASE_DAMAGE = 15;
+const ALLY_BASE_DAMAGE = 24;
 const ENEMY_BASE_DAMAGE = 15;
 const GUARD_REDUCTION = 0.2;          // 80% damage reduction when holding guard
-const ULTIMATE_DAMAGE = 200;
+const ULTIMATE_DAMAGE = 320;
 const HEAL_AMOUNT = 80;
-const COUNTER_DAMAGE = 35;            // Parry counter-attack damage
+const COUNTER_DAMAGE = 56;            // Parry counter-attack damage
 
 // Sync
 const SYNC_PER_HIT = 5;               // Sync points gained on normal attack
@@ -231,7 +231,7 @@ export default function BattleAkaneVsKimera2({ onComplete, playBGM, stopBGM, pla
         if (qteResult === 'perfect') addLog(`⚡ジャスト攻撃！ ${ally.name} が ${target.name} に大ダメージ！`);
         else addLog(`⚔ ${ally.name} が ${target.name} に攻撃！`);
       }
-      if (playSE) playSE('/assets/audio/bgm/+game_sword.mp3');
+      if (playSE) playSE('/assets/audio/bgm/attack3.mp3', null, false, 2.5);
     }
     setTurnPhase('ally_attack');
     stateRef.current.turnPhase = 'ally_attack';
@@ -1020,6 +1020,7 @@ export default function BattleAkaneVsKimera2({ onComplete, playBGM, stopBGM, pla
     setCounterAnim({ id: Date.now(), allyId: akane.id });
 
     setUltimateFlash(true);
+    if (typeof playSE === 'function') playSE(typeof assetPath === 'function' ? assetPath('/assets/audio/bgm/Onoma-Syakiin05-1(Heavy).mp3') : '/assets/audio/bgm/Onoma-Syakiin05-1(Heavy).mp3', null, false, 2.5);
     triggerSakuraNote();
 
     // 必殺技中は戦闘時間を2.5秒間完全に停止させる

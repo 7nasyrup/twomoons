@@ -87,6 +87,7 @@ export default function SearchAndLearning({
   onSave,
   onLoad,
   onOpenLog,
+  onAddBacklog,
   onToggleAuto,
   onToggleSkip,
   onExit,
@@ -157,6 +158,7 @@ export default function SearchAndLearning({
 
   const handleSelectObject = (key, e) => {
     if (isTransitioning || currentMessage) return;
+    if (visited[key]) return;
 
     if (!visited[key]) {
       triggerARScan();
@@ -174,8 +176,10 @@ export default function SearchAndLearning({
     const obj = OBJECT_DETAILS[key];
 
     if (obj.messages) {
+      const firstMsg = obj.messages[0];
       setMessageQueue(obj.messages.slice(1));
-      setCurrentMessage(obj.messages[0]);
+      setCurrentMessage(firstMsg);
+      if (onAddBacklog) onAddBacklog(firstMsg);
       return;
     }
   };
@@ -187,7 +191,9 @@ export default function SearchAndLearning({
       setIsTyping(false);
     } else {
       if (messageQueue.length > 0) {
-        setCurrentMessage(messageQueue[0]);
+        const nextMsg = messageQueue[0];
+        setCurrentMessage(nextMsg);
+        if (onAddBacklog) onAddBacklog(nextMsg);
         setMessageQueue((prev) => prev.slice(1));
         setDisplayedText('');
         setIsTyping(true);
@@ -219,6 +225,7 @@ export default function SearchAndLearning({
 
   const handleOpenWindow = (e) => {
     if (currentMessage) return;
+    if (visited.artificial_moon) return;
 
     // アイテム表示とSE再生
     setDisplayedItem('/item/phone_alert.png');
@@ -245,8 +252,10 @@ export default function SearchAndLearning({
       { role: 'SAKURA', speaker: '朔良', text: `「……気をつけないと」` },
     ];
 
+    const firstMsg = queue[0];
     setMessageQueue(queue.slice(1));
-    setCurrentMessage(queue[0]);
+    setCurrentMessage(firstMsg);
+    if (onAddBacklog) onAddBacklog(firstMsg);
   };
 
   const handleBackToRoom = () => {

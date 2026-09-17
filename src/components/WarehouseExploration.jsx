@@ -104,6 +104,7 @@ export default function WarehouseExploration({
   onSave,
   onLoad,
   onOpenLog,
+  onAddBacklog,
   onToggleAuto,
   onToggleSkip,
   onExit,
@@ -166,6 +167,7 @@ export default function WarehouseExploration({
 
   const handleSelectObject = (key, e) => {
     if (isTransitioning || currentMessage) return;
+    if (visited[key]) return;
 
     if (!visited[key]) {
       triggerARScan();
@@ -183,8 +185,10 @@ export default function WarehouseExploration({
     const obj = OBJECT_DETAILS[key];
 
     if (obj.messages) {
+      const firstMsg = obj.messages[0];
       setMessageQueue(obj.messages.slice(1));
-      setCurrentMessage(obj.messages[0]);
+      setCurrentMessage(firstMsg);
+      if (onAddBacklog) onAddBacklog(firstMsg);
     }
   };
 
@@ -195,7 +199,9 @@ export default function WarehouseExploration({
       setIsTyping(false);
     } else {
       if (messageQueue.length > 0) {
-        setCurrentMessage(messageQueue[0]);
+        const nextMsg = messageQueue[0];
+        setCurrentMessage(nextMsg);
+        if (onAddBacklog) onAddBacklog(nextMsg);
         setMessageQueue((prev) => prev.slice(1));
         setDisplayedText('');
         setIsTyping(true);

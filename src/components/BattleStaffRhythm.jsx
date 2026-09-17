@@ -141,7 +141,7 @@ export default function BattleStaffRhythm({ onComplete, playBGM, stopBGM, playSE
       });
       spawnDamageNumber('enemy', dmg, 'damage');
       spawnHitEffect('slash');
-      if (playSE) playSE('/assets/audio/bgm/+game_sword.mp3');
+      if (playSE) playSE('/assets/audio/bgm/attack3.mp3', null, false, 2.5);
     }
 
     // Enemy Attack Logic
@@ -262,6 +262,7 @@ export default function BattleStaffRhythm({ onComplete, playBGM, stopBGM, playSE
   const triggerUltimate = () => {
     if (syncRate < 100 || battlePhase !== 'fighting') return;
     setBattlePhase('ultimate');
+    if (typeof playSE === 'function') playSE('/assets/audio/bgm/Onoma-Syakiin05-1(Heavy).mp3', null, false, 2.5);
     if (playSE) playSE('/assets/audio/bgm/+game_skill.mp3');
     setSyncRate(0);
     

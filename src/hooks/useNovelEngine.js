@@ -240,6 +240,10 @@ export function useNovelEngine(scenarioData, options = {}) {
     setBacklog(prologue);
   }, [scenarioData]);
 
+  const addToBacklog = useCallback((line) => {
+    setBacklog(prev => [...prev, line]);
+  }, []);
+
   useEffect(() => {
     const actionArr = Array.isArray(currentLine?.action) ? currentLine.action : (currentLine?.action ? [currentLine.action] : []);
     const isMinigame = actionArr.some(a => a.startsWith('TRIGGER_'));
@@ -310,6 +314,7 @@ export function useNovelEngine(scenarioData, options = {}) {
     toggleHud,
     setHudVisible,
     clearBacklog,
+    addToBacklog,
     totalSteps: scenarioData.length,
   };
 }

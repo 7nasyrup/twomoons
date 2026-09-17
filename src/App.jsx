@@ -417,6 +417,7 @@ export default function App() {
     toggleHud,
     setHudVisible,
     clearBacklog,
+    addToBacklog,
     totalSteps,
   } = useNovelEngine(scenarioData, { manualTestMode, endMode: isEndScreen });
 
@@ -1045,6 +1046,7 @@ export default function App() {
 
   const [visualLine, setVisualLine] = useState(null);
   const [visualStep, setVisualStep] = useState(0);
+  const prevVisualBgRef = useRef('');
 
   useEffect(() => {
     if (!currentLine) return;
@@ -1067,8 +1069,19 @@ export default function App() {
       !currentLine.bgNoFade;
 
     if (!isAboutToTransition) {
-      setVisualLine(currentLine);
-      setVisualStep(currentStep);
+      if (currentLine.bg && currentLine.bg !== prevVisualBgRef.current) {
+        prevVisualBgRef.current = currentLine.bg;
+        setTimeout(() => {
+          setVisualLine(currentLine);
+          setVisualStep(currentStep);
+        }, 300);
+      } else {
+        if (currentLine.bg) {
+          prevVisualBgRef.current = currentLine.bg;
+        }
+        setVisualLine(currentLine);
+        setVisualStep(currentStep);
+      }
     }
   }, [currentLine, currentStep, isBgTransitioning, currentBg]);
 
@@ -2099,6 +2112,7 @@ export default function App() {
                   onSave={handleSave}
                   onLoad={handleLoad}
                   onOpenLog={() => setBacklogOpen(true)}
+                  onAddBacklog={addToBacklog}
                   onToggleAuto={toggleAuto}
                   onToggleSkip={toggleSkip}
                   setSkipMode={setSkipMode}
@@ -3166,7 +3180,8 @@ export default function App() {
           backlog={backlog}
         />
 
-        {/* Debug Console */}
+        {/* Debug Console (Disabled for release) */}
+        {/*
         <DevConsole
           currentStep={currentStep}
           totalSteps={totalSteps}
@@ -3197,6 +3212,7 @@ export default function App() {
           }}
           onPrevStep={prevStep}
         />
+        */}
 
         {/* Install Prompt Overlay (iOS/Android) */}
         <InstallPrompt landscapeReady={landscapeReady} />

@@ -216,7 +216,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
         if (qteResult === 'perfect') addLog(`⚡ジャスト攻撃！ ${ally.name} が ${target.name} に大ダメージ！`);
         else addLog(`⚔ ${ally.name} が ${target.name} に攻撃！`);
       }
-      if (playSE) playSE('/assets/audio/bgm/+game_sword.mp3');
+      if (playSE) playSE('/assets/audio/bgm/attack3.mp3', null, false, 2.5);
     }
     setTurnPhase('ally_attack');
     stateRef.current.turnPhase = 'ally_attack';
@@ -908,6 +908,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
     setCounterAnim({ id: Date.now(), allyId: mutsunori.id });
 
     setUltimateFlash(true);
+    if (typeof playSE === 'function') playSE(typeof assetPath === 'function' ? assetPath('/assets/audio/bgm/Onoma-Syakiin05-1(Heavy).mp3') : '/assets/audio/bgm/Onoma-Syakiin05-1(Heavy).mp3', null, false, 2.5);
     triggerSakuraNote();
 
     // 必殺技中は戦闘時間を2.5秒間完全に停止させる

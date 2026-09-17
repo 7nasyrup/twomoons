@@ -312,7 +312,7 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
         }
 
         console.log('[DEBUG] executeAllyAttack: Playing SE...');
-        if (playSE) playSE('/assets/audio/bgm/+game_sword.mp3');
+        if (playSE) playSE('/assets/audio/bgm/attack3.mp3', null, false, 2.5);
       } else {
         console.log('[DEBUG] executeAllyAttack: No alive enemies found!');
       }
@@ -1493,6 +1493,7 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
     setCounterAnim({ id: Date.now(), allyId: mutsunori.id });
 
     setUltimateFlash(true);
+    if (typeof playSE === 'function') playSE(typeof assetPath === 'function' ? assetPath('/assets/audio/bgm/Onoma-Syakiin05-1(Heavy).mp3') : '/assets/audio/bgm/Onoma-Syakiin05-1(Heavy).mp3', null, false, 2.5);
     triggerSakuraNote();
 
     // 必殺技中は戦闘時間を2.5秒間完全に停止させる
