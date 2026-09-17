@@ -154,7 +154,7 @@ function ChoicePanel({ platform, onInstall, onDismiss }) {
           boxShadow: '0 0 15px rgba(0,229,255,0.4)',
         }}
       >
-        <img src="/icon.jpg" alt="Two Moons Icon" className="w-full h-full object-cover" />
+        <img src="/icon.png" alt="Two Moons Icon" className="w-full h-full object-cover" />
       </div>
 
       <div>

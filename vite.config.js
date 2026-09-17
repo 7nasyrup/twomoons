@@ -13,14 +13,9 @@ export default defineConfig({
         name: "青い月の裏側で - Behind the Blue Moon Demo",
         icons: [
           {
-            src: "favicon.svg",
-            sizes: "any",
-            type: "image/svg+xml"
-          },
-          {
-            src: "icon.jpg",
+            src: "icon.png",
             sizes: "192x192 512x512",
-            type: "image/jpeg",
+            type: "image/png",
             purpose: "any maskable"
           }
         ],
