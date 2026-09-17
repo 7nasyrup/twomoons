@@ -44,18 +44,30 @@ export function useAudioSystem() {
     activeBgm = nb; activeBgmSrc = src;
   }, []);
 
+  const preloadSE = useCallback((src) => {
+    if (!src || sePool[src]) return;
+    sePool[src] = new Howl({
+      src: [src], html5: false, preload: true,
+      volume: globalSE * globalMaster
+    });
+  }, []);
+
   const playSE = useCallback((src, duration = null, loop = false, customVolume = 1.0, fadeOutDuration = 300) => {
     if (!src) return;
-    if (sePool[src]) {
-      if (sePool[src].loopInterval) clearInterval(sePool[src].loopInterval);
-      sePool[src].stop(); sePool[src].unload();
+    let sound = sePool[src];
+    if (sound) {
+      if (sound.loopInterval) clearInterval(sound.loopInterval);
+      sound.stop();
+      sound.volume(globalSE * globalMaster * customVolume);
+      sound.loop(loop === true);
+    } else {
+      sound = new Howl({
+        src: [src], html5: false,
+        volume: globalSE * globalMaster * customVolume,
+        loop: loop === true,
+      });
+      sePool[src] = sound;
     }
-    const sound = new Howl({
-      src: [src], html5: false,
-      volume: globalSE * globalMaster * customVolume,
-      loop: loop === true,
-    });
-    sePool[src] = sound;
     sound.play();
 
     if (typeof loop === 'number' && loop > 0) {
@@ -134,7 +146,7 @@ export function useAudioSystem() {
   }, []);
 
   return {
-    playBGM, pauseBGM, resumeBGM, playSE, stopSE, stopBGM, toggleMute,
+    playBGM, pauseBGM, resumeBGM, playSE, preloadSE, stopSE, stopBGM, toggleMute,
     setMasterVol, setBGMVolume, setSEVolume, masterVolume, bgmVolume, seVolume, isMuted,
   };
 }

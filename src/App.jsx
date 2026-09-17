@@ -424,7 +424,7 @@ export default function App() {
   usePreloader(scenarioData, currentStep);
 
   const audioSystem = useAudioSystem();
-  const { playBGM, stopBGM, playSE, stopSE,
+  const { playBGM, stopBGM, playSE, preloadSE, stopSE,
     toggleMute,
     pauseBGM,
     resumeBGM,
@@ -525,6 +525,10 @@ export default function App() {
         Howler.ctx.resume();
       }
     });
+    // 必殺技などのバトル中ハードコードSEを事前にキャッシュさせておく
+    preloadSE(assetPath('/assets/audio/bgm/syakiin_heavy.mp3'));
+    preloadSE(assetPath('/assets/audio/bgm/attack3.mp3'));
+    
     setBattleMode('select');
     setShowTitle(false);
   };
