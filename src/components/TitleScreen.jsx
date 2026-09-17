@@ -24,18 +24,6 @@ export default function TitleScreen({ onStart, onContinue, onBattle, hasSave, pl
                     style={{ backgroundImage: `url(${assetPath('/title.png')})` }}
                 />
 
-                {/* Battle Test Button in Top-Left */}
-                <div className="absolute top-[4cqh] left-[4cqw] z-20 flex flex-col gap-[2cqh]">
-                    {/* Battle Test Button */}
-                    <button
-                        onClick={onBattle}
-                        className="px-[2.5cqw] py-[1.2cqh] bg-slate-950/60 border border-slate-800 text-slate-400 hover:text-slate-200 hover:bg-slate-900/60 hover:border-slate-600 rounded font-serif transition-all duration-300 transform hover:-translate-y-[2%] active:translate-y-0 active:scale-95 shadow-[0_0_10px_rgba(0,0,0,0.5)]"
-                        style={{ fontSize: '0.9cqw', letterSpacing: '0.2em' }}
-                    >
-                        Battle
-                    </button>
-                </div>
-
                 {/* Buttons / Menu */}
                 <div className="w-full text-center z-10 relative mb-[4%] translate-x-[0%] lg:translate-x-0">
                     <div className="flex flex-col items-center justify-center w-[24%] mx-auto" style={{ gap: '3cqh' }}>
