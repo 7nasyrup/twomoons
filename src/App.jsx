@@ -13,6 +13,8 @@ import BacklogOverlay from './components/BacklogOverlay';
 import TitleScreen from './components/TitleScreen';
 import SettingsModal from './components/SettingsModal';
 import { Settings } from 'lucide-react';
+import { useAudioSystem } from './hooks/useAudioSystem';
+// Cache bust: 0.1.1 for mobile devices
 import TypingGame from './components/TypingGame';
 import SearchAndLearning from './components/SearchAndLearning';
 import SilentScore from './components/SilentScore';
