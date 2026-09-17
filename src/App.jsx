@@ -583,6 +583,7 @@ export default function App() {
     });
   };
 
+
   // タイトルの CONTINUE → ロードモーダルを開く
   const handleOpenLoadFromTitle = () => {
     const slots = loadAllSlots();
@@ -607,7 +608,11 @@ export default function App() {
 
   // ─── スロット選択ハンドラ ──────────────────────────────────────────────────
   const handleSelectSlot = (slotIndex, slotData) => {
+    const isAuto = slotIndex === 0;
+    const actualKey = isAuto ? `${SAVE_KEY_PREFIX}auto` : `${SAVE_KEY_PREFIX}${slotIndex - 1}`;
+
     if (slotModalMode === 'save') {
+      if (isAuto) return; // オートセーブ枠には手動セーブできない
       // セーブ実行
       const sceneName = currentLine?.scene || '';
       const saveData = {
@@ -626,7 +631,7 @@ export default function App() {
         silentScoreResult,
         flags,
       };
-      localStorage.setItem(`${SAVE_KEY_PREFIX}${slotIndex}`, JSON.stringify(saveData));
+      localStorage.setItem(actualKey, JSON.stringify(saveData));
       setHasSave(true);
       setSlotModalMode(null);
       setSaveToast('saved');
@@ -1112,6 +1117,44 @@ export default function App() {
   const lastTap = useRef(0);
   // Prevents onClick from firing after onTouchEnd already handled the tap (mobile double-fire fix)
   const touchHandledRef = useRef(false);
+
+  // ─── オートセーブ処理 ──────────────────────────────────────────────────────
+  const lastAutoSavedStep = useRef(-1);
+  useEffect(() => {
+    if (showTitle || !currentLine || currentStep === lastAutoSavedStep.current) return;
+    
+    // 指定の分岐点（テキストで判定）に到達した場合、自動セーブを実行
+    if (currentLine.text === "満のあの光景を思い出して、力が抜けてしまったのかどこかに足を取られてしまい、咄嗟に私は……。") {
+      const sceneName = currentLine.scene || '';
+      const saveData = {
+        step: currentStep,
+        sceneName,
+        savedAt: new Date().toISOString(),
+        bgPath: currentBg || '',
+        currentText: currentLine.text || '',
+        currentSpeaker: currentLine.speaker || '',
+        presentCharacters: [...presentCharacters],
+        displayedItem: displayedItem || null,
+        fragmentCollectResult,
+        learningScore,
+        eyeOfProfilerSuccess,
+        tapCommunicationScores,
+        silentScoreResult,
+        flags,
+      };
+      localStorage.setItem(`${SAVE_KEY_PREFIX}auto`, JSON.stringify(saveData));
+      setHasSave(true); // Continueボタンを有効化
+      lastAutoSavedStep.current = currentStep;
+      
+      // 必要に応じて画面に「オートセーブしました」とトーストを出す
+      setSaveToast('saved');
+      setTimeout(() => setSaveToast(null), 2000);
+    }
+  }, [
+    currentStep, currentLine, showTitle, clearedMutsunori, clearedMika, clearedNagisa, clearedAkane,
+    currentBg, presentCharacters, displayedItem, fragmentCollectResult, learningScore,
+    eyeOfProfilerSuccess, tapCommunicationScores, silentScoreResult, flags
+  ]);
 
   // Clear sprites on scene change
   useEffect(() => {

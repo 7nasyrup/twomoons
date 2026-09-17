@@ -163,6 +163,13 @@ export function useNovelEngine(scenarioData, options = {}) {
   const advanceStep = useCallback(() => {
     if (currentStep < scenarioData.length - 1) {
       if (isAdvancingRef.current) return;
+      if (currentLine?.type === 'choice') return; // Absolutely block auto-advance on choice nodes
+      if (
+        currentLine?.action === 'FADE_TO_HAPPY_END' ||
+        currentLine?.action === 'FADE_TO_BAD_END' ||
+        currentLine?.action === 'FADE_TO_DEMO_END'
+      ) return; // Block on endings
+
       isAdvancingRef.current = true;
 
       // Add to backlog (exclude prologue since it is pre-populated)

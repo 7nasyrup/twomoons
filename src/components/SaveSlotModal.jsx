@@ -26,11 +26,19 @@ const SPEAKER_CONFIGS = {
 
 // ─── 全スロット読み込み ───────────────────────────────────────────────────────
 export function loadAllSlots() {
-  return Array.from({ length: SAVE_SLOT_COUNT }, (_, i) => {
+  const autoRaw = localStorage.getItem(`${SAVE_KEY_PREFIX}auto`);
+  let autoData = null;
+  if (autoRaw) {
+    try { autoData = JSON.parse(autoRaw); } catch { autoData = null; }
+  }
+
+  const normalSlots = Array.from({ length: SAVE_SLOT_COUNT }, (_, i) => {
     const raw = localStorage.getItem(`${SAVE_KEY_PREFIX}${i}`);
     if (!raw) return null;
     try { return JSON.parse(raw); } catch { return null; }
   });
+
+  return [autoData, ...normalSlots];
 }
 
 // ─── 日時フォーマット ─────────────────────────────────────────────────────────
@@ -164,18 +172,21 @@ export default function SaveSlotModal({ mode, onClose, onSelectSlot, slots }) {
 
           {/* スロット一覧（スクロール対応） */}
           <div className="px-5 py-3 lg:px-8 lg:py-5 space-y-3 max-h-[46cqh] lg:max-h-[60cqh] overflow-y-auto scrollbar-thin scrollbar-thumb-slate-300 scrollbar-track-transparent">
-            {slots.map((slot, i) => (
-              <SlotCard
-                key={i}
-                index={i}
-                data={slot}
-                mode={mode}
-                isHovered={hoveredIdx === i}
-                onHover={() => setHoveredIdx(i)}
-                onLeave={() => setHoveredIdx(null)}
-                onSelect={() => onSelectSlot(i, slot)}
-              />
-            ))}
+            {slots.map((slot, i) => {
+              if (i === 0 && !slot) return null; // オートセーブのデータが無い時は非表示
+              return (
+                <SlotCard
+                  key={i}
+                  index={i}
+                  data={slot}
+                  mode={mode}
+                  isHovered={hoveredIdx === i}
+                  onHover={() => setHoveredIdx(i)}
+                  onLeave={() => setHoveredIdx(null)}
+                  onSelect={() => onSelectSlot(i, slot)}
+                />
+              );
+            })}
           </div>
 
           {/* フッター */}
@@ -195,9 +206,10 @@ export default function SaveSlotModal({ mode, onClose, onSelectSlot, slots }) {
 
 // ─── スロットカード ────────────────────────────────────────────────────────────
 function SlotCard({ index, data, mode, isHovered, onHover, onLeave, onSelect }) {
+  const isAuto = index === 0;
   const isEmpty = !data;
   const isSave = mode === 'save';
-  const isDisabled = !isSave && isEmpty;
+  const isDisabled = isAuto ? isSave : (!isSave && isEmpty);
 
   return (
     <motion.button
@@ -243,18 +255,20 @@ function SlotCard({ index, data, mode, isHovered, onHover, onLeave, onSelect }) 
           </div>
         )}
 
-        {/* スロット番号バッジ */}
         <div
-          className="absolute top-1 left-1 lg:top-2 lg:left-2 w-4.5 h-4.5 lg:w-6 lg:h-6 rounded-full flex items-center justify-center font-orbitron font-bold text-[8px] lg:text-[11px] z-10"
+          className="absolute top-1 left-1 lg:top-2 lg:left-2 w-5 h-5 lg:w-7 lg:h-7 rounded-full flex items-center justify-center font-orbitron font-bold text-[7px] lg:text-[9px] z-10"
           style={{
-            background: isEmpty
-              ? 'rgba(100,116,139,0.5)'
-              : isSave ? 'rgba(14,165,233,0.9)' : 'rgba(99,102,241,0.9)',
+            background: isAuto
+              ? 'rgba(234,179,8,0.95)' // Auto Save badge color (yellowish)
+              : isEmpty
+                ? 'rgba(100,116,139,0.5)'
+                : isSave ? 'rgba(14,165,233,0.9)' : 'rgba(99,102,241,0.9)',
             color: 'white',
             backdropFilter: 'blur(4px)',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.2)'
           }}
         >
-          {index + 1}
+          {isAuto ? 'AUTO' : index}
         </div>
       </div>
 
@@ -263,11 +277,16 @@ function SlotCard({ index, data, mode, isHovered, onHover, onLeave, onSelect }) 
         {isEmpty ? (
           <div>
             <p className="font-noto text-xs lg:text-sm text-slate-400">
-              {isSave ? '── 空きスロット ──' : '── データなし ──'}
+              {isAuto ? '── オートセーブ ──' : (isSave ? '── 空きスロット ──' : '── データなし ──')}
             </p>
-            {isSave && (
+            {isSave && !isAuto && (
               <p className="text-[9px] lg:text-[11px] text-slate-400 font-noto mt-0.5 lg:mt-1">
                 ここに新しくセーブできます
+              </p>
+            )}
+            {isAuto && (
+              <p className="text-[9px] lg:text-[11px] text-slate-400 font-noto mt-0.5 lg:mt-1">
+                特定の分岐で自動セーブされます
               </p>
             )}
           </div>

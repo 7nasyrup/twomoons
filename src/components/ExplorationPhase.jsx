@@ -49,22 +49,22 @@ export default function ExplorationPhase({ flags, setFlags, onSelectLocation, on
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -20 }}
-        className="bg-white/95 w-[80%] max-w-2xl rounded-xl shadow-2xl p-8 border border-slate-200"
+        className="bg-white/95 w-[62%] lg:w-[80%] max-w-2xl rounded-xl shadow-2xl p-5 lg:p-8 border border-slate-200"
       >
-        <div className="flex items-center gap-3 mb-8 pb-4 border-b border-slate-200 text-slate-800">
-          <Map className="w-8 h-8 text-sky-600" />
+        <div className="flex items-center gap-2 lg:gap-3 mb-4 lg:mb-8 pb-3 lg:pb-4 border-b border-slate-200 text-slate-800">
+          <Map className="w-6 h-6 lg:w-8 lg:h-8 text-sky-600" />
           <div className="flex-1">
-            <h2 className="text-2xl font-bold tracking-wider flex items-center gap-4">
+            <h2 className="text-lg lg:text-2xl font-bold tracking-wider flex items-center gap-2 lg:gap-4">
               行き先を選択
-              <span className="text-sm font-medium px-3 py-1 bg-sky-100 text-sky-700 rounded-full tracking-normal">
+              <span className="text-[10px] lg:text-sm font-medium px-2 lg:px-3 py-0.5 lg:py-1 bg-sky-100 text-sky-700 rounded-full tracking-normal">
                 残り行動回数: {remainingActions}回
               </span>
             </h2>
-            <p className="text-sm text-slate-500 mt-1">調査したい場所を選んでください</p>
+            <p className="text-xs lg:text-sm text-slate-500 mt-0.5 lg:mt-1">調査したい場所を選んでください</p>
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-2 lg:gap-4">
           {LOCATIONS.map((loc) => {
             const isVisited = flags[`visited_${loc.id}`];
             const Icon = loc.icon;
@@ -74,19 +74,19 @@ export default function ExplorationPhase({ flags, setFlags, onSelectLocation, on
                 key={loc.id}
                 onClick={() => handleSelect(loc)}
                 disabled={isVisited}
-                className={`relative overflow-hidden group p-6 rounded-lg border-2 text-left transition-all duration-300
+                className={`relative overflow-hidden group p-3 lg:p-6 rounded-lg border-2 text-left transition-all duration-300
                   ${isVisited
                     ? 'border-slate-200 bg-slate-100/50 cursor-not-allowed opacity-50'
                     : 'border-slate-300 bg-white hover:border-sky-500 hover:shadow-md hover:-translate-y-1'
                   }
                 `}
               >
-                <div className="flex items-center gap-4 relative z-10">
-                  <div className={`p-3 rounded-full ${isVisited ? 'bg-slate-200 text-slate-400' : 'bg-sky-50 text-sky-600 group-hover:bg-sky-100 group-hover:scale-110 transition-transform'}`}>
-                    <Icon className="w-6 h-6" />
+                <div className="flex items-center gap-2 lg:gap-4 relative z-10">
+                  <div className={`p-2 lg:p-3 rounded-full ${isVisited ? 'bg-slate-200 text-slate-400' : 'bg-sky-50 text-sky-600 group-hover:bg-sky-100 group-hover:scale-110 transition-transform'}`}>
+                    <Icon className="w-4 h-4 lg:w-6 lg:h-6" />
                   </div>
                   <div>
-                    <h3 className={`text-lg font-bold ${isVisited ? 'text-slate-500' : 'text-slate-800'}`}>
+                    <h3 className={`text-sm lg:text-lg font-bold ${isVisited ? 'text-slate-500' : 'text-slate-800'}`}>
                       {loc.title}
                     </h3>
                     {isVisited && (
