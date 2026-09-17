@@ -874,7 +874,7 @@ export default function BattleSystemPlot4({ onComplete, playBGM, stopBGM, playSE
               <h2 className="text-2xl md:text-3xl font-black text-cyan-300 mb-6 border-b border-cyan-500/30 pb-4 text-center tracking-widest">
                 戦闘マニュアル
               </h2>
-              
+
               <div className="space-y-6 text-sm md:text-base text-slate-300 leading-relaxed text-left">
                 {/* 1. 防御 */}
                 <section>
@@ -887,7 +887,7 @@ export default function BattleSystemPlot4({ onComplete, playBGM, stopBGM, playSE
                     敵の攻撃が当たる直前に合わせると<strong>パーフェクト・パリィ</strong>となり、ダメージを無効化しつつ敵に反撃ダメージを与えます。
                   </p>
                 </section>
-                
+
                 {/* 2. 味方の攻撃 */}
                 <section>
                   <h3 className="text-lg font-bold text-emerald-200 mb-2 flex items-center gap-2">
@@ -898,7 +898,7 @@ export default function BattleSystemPlot4({ onComplete, playBGM, stopBGM, playSE
                     味方のターンが回ってくると、<strong>自動で攻撃を行います</strong>。プレイヤーは防御や特殊アクションのタイミングに集中できます。
                   </p>
                 </section>
-                
+
                 {/* 3. シンクロ率と吸収・回復 */}
                 <section>
                   <h3 className="text-lg font-bold text-amber-200 mb-2 flex items-center gap-2">
@@ -911,9 +911,9 @@ export default function BattleSystemPlot4({ onComplete, playBGM, stopBGM, playSE
                   </p>
                 </section>
               </div>
-              
+
               <div className="mt-10 flex justify-center">
-                <button 
+                <button
                   onClick={() => setShowTutorial(false)}
                   className="px-8 py-3 bg-cyan-600 hover:bg-cyan-500 text-white font-bold rounded-full transition-all shadow-[0_0_15px_rgba(8,145,178,0.5)] hover:shadow-[0_0_25px_rgba(34,211,238,0.7)] hover:scale-105 active:scale-95"
                 >
@@ -1229,7 +1229,7 @@ export default function BattleSystemPlot4({ onComplete, playBGM, stopBGM, playSE
             return (
               <div key={enemy.id} className="relative flex flex-col items-center w-full z-20">
                 {/* ── Enemy Status Panel ── */}
-                <div 
+                <div
                   // 敵のHPバーの位置
                   className="w-40 md:w-52 mb-2 z-20 relative">
                   <div className="bg-[#090e17]/80 backdrop-blur-sm border border-amber-500/40 fui-clip-basic p-1.5 relative overflow-hidden">
@@ -1279,7 +1279,7 @@ export default function BattleSystemPlot4({ onComplete, playBGM, stopBGM, playSE
                     ease: isAttacking ? 'easeOut' : 'easeInOut'
                   }}
                 >
-                  <img src={enemy.image} alt={enemy.name} className={`w-full h-full object-contain drop-shadow-[0_0_15px_rgba(244,63,94,0.3)] ${enemy.isStunned ? 'opacity-70 grayscale-[50%]' : ''}`} />
+                  <img src={enemy.image} alt={enemy.name} className={`pointer-events-none select-none w-full h-full object-contain drop-shadow-[0_0_15px_rgba(244,63,94,0.3)] ${enemy.isStunned ? 'opacity-70 grayscale-[50%]' : ''}`} style={{ WebkitTouchCallout: 'none' }} draggable="false" />
 
                   {/* Stun Indicator */}
                   {enemy.isStunned && !enemy.isDead && (
@@ -1308,7 +1308,7 @@ export default function BattleSystemPlot4({ onComplete, playBGM, stopBGM, playSE
             {isPaused ? '再開' : '一時停止'}
           </button>
           {(localStorage.getItem('cleared_mutsunori_good_end') === 'true' || localStorage.getItem('cleared_mika_good_end') === 'true' || localStorage.getItem('cleared_nagisa_good_end') === 'true' || localStorage.getItem('cleared_akane_good_end') === 'true') && (
-          <button onClick={handleResultClose} className="px-3 py-1.5 bg-[#0a1628]/60 backdrop-blur-sm border border-slate-600/30 text-slate-400 font-noto text-[10px] tracking-[0.2em] rounded hover:border-slate-400/50 hover:text-slate-200 transition-all">スキップ</button>
+            <button onClick={handleResultClose} className="px-3 py-1.5 bg-[#0a1628]/60 backdrop-blur-sm border border-slate-600/30 text-slate-400 font-noto text-[10px] tracking-[0.2em] rounded hover:border-slate-400/50 hover:text-slate-200 transition-all">スキップ</button>
           )}
         </div>
       </div>

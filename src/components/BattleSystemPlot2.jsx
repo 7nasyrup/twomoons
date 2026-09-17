@@ -1496,7 +1496,7 @@ export default function BattleSystemPlot2({ onComplete, playBGM, stopBGM, playSE
                       ease: isAttacking ? 'easeOut' : 'easeInOut'
                     }}
                   >
-                    <img src={enemy.image} alt={enemy.name} className={`w-full h-full object-contain drop-shadow-[0_0_15px_rgba(244,63,94,0.3)] ${enemy.isStunned ? 'opacity-70 grayscale-[50%]' : ''}`} />
+                    <img src={enemy.image} alt={enemy.name} className={`pointer-events-none select-none w-full h-full object-contain drop-shadow-[0_0_15px_rgba(244,63,94,0.3)] ${enemy.isStunned ? 'opacity-70 grayscale-[50%]' : ''}`} style={{ WebkitTouchCallout: 'none' }} draggable="false" />
 
                     {enemy.isStunned && !enemy.isDead && (
                       <motion.div className="absolute -top-2 lg:-top-3 font-noto text-[7px] lg:text-[10px] text-amber-200/90 font-bold bg-amber-950/70 backdrop-blur-sm px-1.5 py-0.5 lg:px-3 rounded border border-amber-500/30" animate={{ y: [0, -2, 0] }} transition={{ duration: 0.5, repeat: Infinity }}>

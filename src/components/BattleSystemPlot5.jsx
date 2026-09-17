@@ -1657,7 +1657,7 @@ export default function BattleSystemPlot5({ onComplete, playBGM, stopBGM, playSE
                       ease: isAttacking ? 'easeOut' : 'easeInOut'
                     }}
                   >
-                    <img src={enemy.image} alt={enemy.name} className={`w-full h-full object-contain drop-shadow-[0_0_15px_rgba(244,63,94,0.3)] transition-all duration-150 ${enemy.isStunned ? 'opacity-70 grayscale-[50%]' : ''}`} />
+                    <img src={enemy.image} alt={enemy.name} className={`pointer-events-none select-none w-full h-full object-contain drop-shadow-[0_0_15px_rgba(244,63,94,0.3)] transition-all duration-150 ${enemy.isStunned ? 'opacity-70 grayscale-[50%]' : ''}`} style={{ WebkitTouchCallout: 'none' }} draggable="false" />
                     <AnimatePresence>
                       {enemy.flashTimer > 0 && (
                         <motion.div

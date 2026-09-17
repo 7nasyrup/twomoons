@@ -1860,7 +1860,7 @@ export default function BattleFinalAkane({ onComplete, playBGM, stopBGM, playSE 
                     ))}
                   </AnimatePresence>
 
-                  <img src={enemy1.image} alt={enemy1.name} className={`w-full h-full object-contain scale-[0.85] -translate-y-12 drop-shadow-[0_0_15px_rgba(244,63,94,0.3)]`} />
+                  <img src={enemy1.image} alt={enemy1.name} className={`pointer-events-none select-none w-full h-full object-contain scale-[0.85] -translate-y-12 drop-shadow-[0_0_15px_rgba(244,63,94,0.3)]`} style={{ WebkitTouchCallout: 'none' }} draggable="false" />
                 </motion.div>
               );
             })()}

@@ -1694,7 +1694,7 @@ export default function BattleFinalMutsunori({ onComplete, playBGM, stopBGM, pla
                       ease: isAttacking ? 'easeOut' : 'easeInOut'
                     }}
                   >
-                    <img src={enemy.image} alt={enemy.name} className="w-full h-full object-contain scale-[0.85] -translate-y-12 drop-shadow-[0_0_15px_rgba(244,63,94,0.3)]" />
+                    <img src={enemy.image} alt={enemy.name} className={`pointer-events-none select-none w-full h-full object-contain scale-[0.85] -translate-y-12 drop-shadow-[0_0_15px_rgba(244,63,94,0.3)]`} style={{ WebkitTouchCallout: 'none' }} draggable="false" />
 
                     {/* スタン text removed per user request */}
                   </motion.div>
