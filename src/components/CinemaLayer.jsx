@@ -30,7 +30,7 @@ export default function CinemaLayer({ text, isActive, isTyping, onNext }) {
             <AnimatePresence>
               <motion.p
                 key={text}
-                className="absolute text-center text-cyan-100/90 text-2xl md:text-3xl font-noto font-light tracking-[0.2em] leading-relaxed px-8 max-w-[70%] whitespace-pre-wrap"
+                className="absolute text-center text-cyan-100/90 text-[clamp(12px,4.5vw,30px)] md:text-[clamp(20px,3vw,30px)] font-noto font-light tracking-[0.2em] leading-relaxed px-2 w-[95%] md:max-w-[80%] whitespace-pre-wrap"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
