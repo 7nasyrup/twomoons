@@ -89,6 +89,23 @@ export default function BattleFinalNagisa({ onComplete, playBGM, stopBGM, playSE
   const [battlePhase, setBattlePhase] = useState('intro');
   const [battleLog, setBattleLog] = useState([]);
 
+  // Mobile Approach 2 Scaling State
+  const [mobileScale, setMobileScale] = useState(1);
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setMobileScale(1);
+      } else {
+        const scaleX = window.innerWidth / 852;
+        const scaleY = window.innerHeight / 393;
+        setMobileScale(Math.min(scaleX, scaleY));
+      }
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   // ─── Turn State ───
   const [currentTurnIndex, setCurrentTurnIndex] = useState(0);  // index in TURN_ORDER
   const [turnPhase, setTurnPhase] = useState('waiting');  // 'waiting' | 'ally_windup' | 'ally_attack' | 'enemy_windup' | 'enemy_resolve' | 'counter_attack' | 'turn_delay'
@@ -1133,7 +1150,23 @@ export default function BattleFinalNagisa({ onComplete, playBGM, stopBGM, playSE
   // RENDER
   // ═══════════════════════════════════════════════════════════════════════════════
   return (
-    <div className={`absolute inset-0 w-full h-full bg-[#090e17] overflow-hidden select-none z-50 flex flex-col font-orbitron ${shakeActive ? 'animate-battle-shake' : ''}`}>
+    <div className={`absolute inset-0 w-full h-full bg-[#090e17] overflow-hidden select-none z-50 flex items-center justify-center font-orbitron ${shakeActive ? 'animate-battle-shake' : ''}`}>
+      <div 
+        className="flex flex-col lg:w-full lg:h-full lg:static relative overflow-hidden"
+        style={
+          typeof window !== 'undefined' && window.innerWidth < 1024 
+            ? {
+                width: '852px',
+                height: '393px',
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: `translate(-50%, -50%) scale(${mobileScale})`,
+                transformOrigin: 'center'
+              } 
+            : { width: '100%', height: '100%' }
+        }
+      >
       <style>{`
         @keyframes glint-shrink-anim {
           0% { transform: scale(2.5) rotate(0deg); opacity: 0; }
@@ -1358,7 +1391,7 @@ export default function BattleFinalNagisa({ onComplete, playBGM, stopBGM, playSE
                       animate={{ x: isCounterDashing ? 150 : (isCurrentTurn ? 30 : 0) }}
                       transition={{ duration: isCounterDashing ? 0.05 : 0.1, ease: 'easeOut' }}
                     >
-                      <div className="scale-[0.8] lg:scale-100 flex items-center justify-center w-full h-full">
+                      <div className="scale-100 flex items-center justify-center w-full h-full">
                         <SpriteAnimator
                           src="/battle/戦闘エフェクトアニメ８/320×240/pipo-btleffect071.png"
                           frameWidth={120}
@@ -1380,7 +1413,7 @@ export default function BattleFinalNagisa({ onComplete, playBGM, stopBGM, playSE
                         <img
                           src="/battle/sakura.png"
                           alt="sakura"
-                          className="w-full h-full object-contain drop-shadow-lg opacity-90 scale-[0.85] lg:scale-[1.07] lg:origin-bottom"
+                          className="w-full h-full object-contain drop-shadow-lg opacity-90 scale-[1.07] origin-bottom"
                         />
                         {/* 朔良の指示吹き出し */}
                         <AnimatePresence>
@@ -1541,7 +1574,7 @@ export default function BattleFinalNagisa({ onComplete, playBGM, stopBGM, playSE
                     </AnimatePresence>
 
                     {ally.image ? (
-                      <img src={ally.image} alt={ally.name} className={`w-full h-full object-contain relative z-10 lg:-translate-y-6 ${ally.id === 'nagisa' ? 'scale-90 lg:scale-100 origin-bottom -translate-y-4' : ''} ${ally.flashTimer > 0 ? 'animate-battle-hit-flash drop-shadow-[0_0_20px_rgba(248,113,113,0.8)]' : 'drop-shadow-lg'}`} />
+                      <img src={ally.image} alt={ally.name} className={`w-full h-full object-contain relative z-10 -translate-y-6 ${ally.id === 'nagisa' ? 'scale-100 origin-bottom -translate-y-4' : ''} ${ally.flashTimer > 0 ? 'animate-battle-hit-flash drop-shadow-[0_0_20px_rgba(248,113,113,0.8)]' : 'drop-shadow-lg'}`} />
                     ) : (
                       <div className="w-full h-full bg-slate-800/80 border border-slate-600 rounded-2xl flex items-center justify-center">
                         <span className="font-noto font-bold text-slate-300">{ally.name}</span>
@@ -1678,7 +1711,7 @@ export default function BattleFinalNagisa({ onComplete, playBGM, stopBGM, playSE
 
                   <AnimatePresence>
                     {showDamageNumbers.filter(d => d.targetId === enemy.id && (d.type === 'damage' || d.type === 'critical')).map(d => (
-                      <div key={`fx-wrap-${d.id}`} className="absolute inset-0 flex items-center justify-center pointer-events-none z-50 -top-20 lg:top-0 mix-blend-screen scale-[0.8] lg:scale-100">
+                      <div key={`fx-wrap-${d.id}`} className="absolute inset-0 flex items-center justify-center pointer-events-none z-50 top-0 mix-blend-screen scale-100">
                         <SpriteAnimator
                           src="/battle/戦闘エフェクトアニメ12/320×240/pipo-btleffect084.png"
                           frameWidth={120}
@@ -1851,6 +1884,7 @@ export default function BattleFinalNagisa({ onComplete, playBGM, stopBGM, playSE
           </motion.div>
         )}
       </AnimatePresence>
+      </div>
     </div>
   );
 }

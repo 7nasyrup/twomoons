@@ -93,6 +93,23 @@ export default function BattleFinalAkane({ onComplete, playBGM, stopBGM, playSE 
   const [battlePhase, setBattlePhase] = useState('intro');
   const [battleLog, setBattleLog] = useState([]);
 
+  // Mobile Approach 2 Scaling State
+  const [mobileScale, setMobileScale] = useState(1);
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setMobileScale(1);
+      } else {
+        const scaleX = window.innerWidth / 852;
+        const scaleY = window.innerHeight / 393;
+        setMobileScale(Math.min(scaleX, scaleY));
+      }
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   // ─── Turn State ───
   const [currentTurnIndex, setCurrentTurnIndex] = useState(0);  // index in TURN_ORDER
   const [turnPhase, setTurnPhase] = useState('waiting');  // 'waiting' | 'ally_windup' | 'ally_attack' | 'enemy_windup' | 'enemy_resolve' | 'counter_attack' | 'turn_delay'
@@ -1140,8 +1157,24 @@ export default function BattleFinalAkane({ onComplete, playBGM, stopBGM, playSE 
   // RENDER
   // ═══════════════════════════════════════════════════════════════════════════════
   return (
-    <div className={`absolute inset-0 w-full h-full bg-[#090e17] overflow-hidden select-none z-50 flex flex-col font-orbitron ${shakeActive ? 'animate-battle-shake' : ''}`}>
-      <style>{`
+    <div className={`absolute inset-0 w-full h-full bg-[#090e17] overflow-hidden select-none z-50 flex items-center justify-center font-orbitron ${shakeActive ? 'animate-battle-shake' : ''}`}>
+      <div
+        className="flex flex-col lg:w-full lg:h-full lg:static relative overflow-hidden"
+        style={
+          typeof window !== 'undefined' && window.innerWidth < 1024
+            ? {
+              width: '852px',
+              height: '393px',
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: `translate(-50%, -50%) scale(${mobileScale})`,
+              transformOrigin: 'center'
+            }
+            : { width: '100%', height: '100%' }
+        }
+      >
+        <style>{`
         @keyframes glint-shrink-anim {
           0% { transform: scale(2.5) rotate(0deg); opacity: 0; }
           10% { opacity: 1; }
@@ -1160,868 +1193,869 @@ export default function BattleFinalAkane({ onComplete, playBGM, stopBGM, playSE 
           100% { opacity: 0; transform: scale(0) rotate(90deg); }
         }
       `}</style>
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0">
-        {/* Full color bright image */}
-        <img src="/battle/core.png" alt="Background" className="absolute inset-0 w-full h-full object-cover -translate-y-[15%]" />
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          {/* Full color bright image */}
+          <img src="/battle/core.png" alt="Background" className="absolute inset-0 w-full h-full object-cover -translate-y-[15%]" />
 
-        {/* Very subtle cyber tech overlays so UI is still readable */}
-        <div className="absolute inset-0 bg-[#090e17]/20" />
-        <div className="absolute inset-0 fui-grid-bg opacity-[0.2] mix-blend-overlay" />
-        <div className="absolute bottom-[-10%] left-[-10%] w-[80vh] h-[80vh] rounded-full border border-emerald-500/10 shadow-[0_0_150px_rgba(16,185,129,0.05)] pointer-events-none" />
-      </div>
+          {/* Very subtle cyber tech overlays so UI is still readable */}
+          <div className="absolute inset-0 bg-[#090e17]/20" />
+          <div className="absolute inset-0 fui-grid-bg opacity-[0.2] mix-blend-overlay" />
+          <div className="absolute bottom-[-10%] left-[-10%] w-[80vh] h-[80vh] rounded-full border border-emerald-500/10 shadow-[0_0_150px_rgba(16,185,129,0.05)] pointer-events-none" />
+        </div>
 
-      {/* ── CINEMATIC LETTERBOXING ── */}
-      <motion.div className="absolute top-0 inset-x-0 bg-black z-10 pointer-events-none" initial={{ height: '50vh' }} animate={{ height: battlePhase === 'intro' ? '50vh' : '0vh' }} transition={{ duration: 0.8, ease: 'easeInOut', delay: battlePhase === 'intro' ? 0 : 0.5 }} />
-      <motion.div className="absolute bottom-0 inset-x-0 bg-black z-10 pointer-events-none" initial={{ height: '50vh' }} animate={{ height: battlePhase === 'intro' ? '50vh' : '0vh' }} transition={{ duration: 0.8, ease: 'easeInOut', delay: battlePhase === 'intro' ? 0 : 0.5 }} />
+        {/* ── CINEMATIC LETTERBOXING ── */}
+        <motion.div className="absolute top-0 inset-x-0 bg-black z-10 pointer-events-none" initial={{ height: '50vh' }} animate={{ height: battlePhase === 'intro' ? '50vh' : '0vh' }} transition={{ duration: 0.8, ease: 'easeInOut', delay: battlePhase === 'intro' ? 0 : 0.5 }} />
+        <motion.div className="absolute bottom-0 inset-x-0 bg-black z-10 pointer-events-none" initial={{ height: '50vh' }} animate={{ height: battlePhase === 'intro' ? '50vh' : '0vh' }} transition={{ duration: 0.8, ease: 'easeInOut', delay: battlePhase === 'intro' ? 0 : 0.5 }} />
 
-      {/* ── INTRO ── */}
-      <AnimatePresence>
-        {battlePhase === 'intro' && (
-          <motion.div className="absolute inset-0 z-[60] flex items-center justify-center pointer-events-none" initial={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.8, delay: 0.2 }}>
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(8,145,178,0.15)_0%,_transparent_60%)] mix-blend-screen" />
-            <motion.div className="text-center relative" initial={{ opacity: 0, scale: 0.9, y: 10 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: 0.8, ease: 'easeOut' }}>
-              <h2 className="font-noto text-4xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white via-cyan-100 to-cyan-500 tracking-[0.2em] drop-shadow-[0_0_15px_rgba(34,211,238,0.5)] py-2">
-                戦闘開始
-              </h2>
-              <motion.div className="mt-4 h-[2px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent shadow-[0_0_10px_rgba(34,211,238,0.8)]" initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ delay: 0.4, duration: 0.8, ease: 'easeInOut' }} />
+        {/* ── INTRO ── */}
+        <AnimatePresence>
+          {battlePhase === 'intro' && (
+            <motion.div className="absolute inset-0 z-[60] flex items-center justify-center pointer-events-none" initial={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.8, delay: 0.2 }}>
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(8,145,178,0.15)_0%,_transparent_60%)] mix-blend-screen" />
+              <motion.div className="text-center relative" initial={{ opacity: 0, scale: 0.9, y: 10 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: 0.8, ease: 'easeOut' }}>
+                <h2 className="font-noto text-4xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white via-cyan-100 to-cyan-500 tracking-[0.2em] drop-shadow-[0_0_15px_rgba(34,211,238,0.5)] py-2">
+                  戦闘開始
+                </h2>
+                <motion.div className="mt-4 h-[2px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent shadow-[0_0_10px_rgba(34,211,238,0.8)]" initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ delay: 0.4, duration: 0.8, ease: 'easeInOut' }} />
+              </motion.div>
             </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          )}
+        </AnimatePresence>
 
-      {/* ── TUTORIAL MODAL ── */}
-      <AnimatePresence>
-        {showTutorial && (
-          <motion.div className="absolute inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 lg:p-8" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-            <div className="bg-[#0f172a] border border-cyan-500/50 rounded-xl shadow-[0_0_30px_rgba(34,211,238,0.2)] max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 lg:p-10 relative">
-              <h2 className="text-2xl lg:text-3xl font-black text-cyan-300 mb-6 border-b border-cyan-500/30 pb-4 text-center tracking-widest">
-                戦闘マニュアル
-              </h2>
+        {/* ── TUTORIAL MODAL ── */}
+        <AnimatePresence>
+          {showTutorial && (
+            <motion.div className="absolute inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 lg:p-8" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+              <div className="bg-[#0f172a] border border-cyan-500/50 rounded-xl shadow-[0_0_30px_rgba(34,211,238,0.2)] max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 lg:p-10 relative">
+                <h2 className="text-2xl lg:text-3xl font-black text-cyan-300 mb-6 border-b border-cyan-500/30 pb-4 text-center tracking-widest">
+                  戦闘マニュアル
+                </h2>
 
-              <div className="space-y-6 text-sm lg:text-base text-slate-300 leading-relaxed text-left">
-                {/* 1. 防御 */}
-                <section>
-                  <h3 className="text-lg font-bold text-cyan-200 mb-2 flex items-center gap-2">
-                    <span className="bg-cyan-900/50 px-2 py-0.5 rounded text-cyan-300 border border-cyan-500/30 text-sm">1</span>
-                    防御（ガード＆パリィ）
-                  </h3>
-                  <p>
-                    敵の攻撃に合わせて<strong>「スペースキー」</strong>、<strong>「エンターキー」</strong>、または<strong>「味方の立ち絵をクリック（長押し）」</strong>すると防御ができます。<br />
-                    敵の攻撃が当たる直前に合わせると<strong>パーフェクト・パリィ</strong>となり、ダメージを無効化しつつ敵に反撃ダメージを与えます。
-                  </p>
-                </section>
+                <div className="space-y-6 text-sm lg:text-base text-slate-300 leading-relaxed text-left">
+                  {/* 1. 防御 */}
+                  <section>
+                    <h3 className="text-lg font-bold text-cyan-200 mb-2 flex items-center gap-2">
+                      <span className="bg-cyan-900/50 px-2 py-0.5 rounded text-cyan-300 border border-cyan-500/30 text-sm">1</span>
+                      防御（ガード＆パリィ）
+                    </h3>
+                    <p>
+                      敵の攻撃に合わせて<strong>「スペースキー」</strong>、<strong>「エンターキー」</strong>、または<strong>「味方の立ち絵をクリック（長押し）」</strong>すると防御ができます。<br />
+                      敵の攻撃が当たる直前に合わせると<strong>パーフェクト・パリィ</strong>となり、ダメージを無効化しつつ敵に反撃ダメージを与えます。
+                    </p>
+                  </section>
 
-                {/* 2. 攻撃タイミング */}
-                <section>
-                  <h3 className="text-lg font-bold text-emerald-200 mb-2 flex items-center gap-2">
-                    <span className="bg-emerald-900/50 px-2 py-0.5 rounded text-emerald-300 border border-emerald-500/30 text-sm">2</span>
-                    ジャスト攻撃
-                  </h3>
-                  <p>
-                    味方の攻撃時、画面に表示される丸いタイミングマーカーに合わせて攻撃ボタン（またはキー）を押してください。<br />
-                    タイミングが完璧（ジャスト）だと、<strong>与えるダメージが1.5倍</strong>に増加します。
-                  </p>
-                </section>
+                  {/* 2. 攻撃タイミング */}
+                  <section>
+                    <h3 className="text-lg font-bold text-emerald-200 mb-2 flex items-center gap-2">
+                      <span className="bg-emerald-900/50 px-2 py-0.5 rounded text-emerald-300 border border-emerald-500/30 text-sm">2</span>
+                      ジャスト攻撃
+                    </h3>
+                    <p>
+                      味方の攻撃時、画面に表示される丸いタイミングマーカーに合わせて攻撃ボタン（またはキー）を押してください。<br />
+                      タイミングが完璧（ジャスト）だと、<strong>与えるダメージが1.5倍</strong>に増加します。
+                    </p>
+                  </section>
 
-                {/* 3. シンクロ率と吸収・回復 */}
-                <section>
-                  <h3 className="text-lg font-bold text-amber-200 mb-2 flex items-center gap-2">
-                    <span className="bg-amber-900/50 px-2 py-0.5 rounded text-amber-300 border border-amber-500/30 text-sm">3</span>
-                    シンクロ率ゲージと特殊アクション
-                  </h3>
-                  <p>
-                    攻撃を当てたりパリィを成功させると右下の<strong>シンクロ率</strong>が溜まります。このゲージを消費して必殺技や強化などの強力なアクションが可能です。<br />
-                    また、ターンとターンの間の猶予時間（1.5秒）を活用して、<strong>「吸収」</strong>ボタンなどを押すことで戦況を有利に進められます。
-                  </p>
-                </section>
+                  {/* 3. シンクロ率と吸収・回復 */}
+                  <section>
+                    <h3 className="text-lg font-bold text-amber-200 mb-2 flex items-center gap-2">
+                      <span className="bg-amber-900/50 px-2 py-0.5 rounded text-amber-300 border border-amber-500/30 text-sm">3</span>
+                      シンクロ率ゲージと特殊アクション
+                    </h3>
+                    <p>
+                      攻撃を当てたりパリィを成功させると右下の<strong>シンクロ率</strong>が溜まります。このゲージを消費して必殺技や強化などの強力なアクションが可能です。<br />
+                      また、ターンとターンの間の猶予時間（1.5秒）を活用して、<strong>「吸収」</strong>ボタンなどを押すことで戦況を有利に進められます。
+                    </p>
+                  </section>
+                </div>
+
+                <div className="mt-10 flex justify-center">
+                  <button
+                    onClick={() => setShowTutorial(false)}
+                    className="px-8 py-3 bg-cyan-600 hover:bg-cyan-500 text-white font-bold rounded-full transition-all shadow-[0_0_15px_rgba(8,145,178,0.5)] hover:shadow-[0_0_25px_rgba(34,211,238,0.7)] hover:scale-105 active:scale-95"
+                  >
+                    作戦開始
+                  </button>
+                </div>
               </div>
-
-              <div className="mt-10 flex justify-center">
-                <button
-                  onClick={() => setShowTutorial(false)}
-                  className="px-8 py-3 bg-cyan-600 hover:bg-cyan-500 text-white font-bold rounded-full transition-all shadow-[0_0_15px_rgba(8,145,178,0.5)] hover:shadow-[0_0_25px_rgba(34,211,238,0.7)] hover:scale-105 active:scale-95"
-                >
-                  作戦開始
-                </button>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* ── VISUAL FLASHES ── */}
-      <AnimatePresence>
-        {parryFlash && (
-          <motion.div className="absolute inset-0 z-[65] pointer-events-none flex items-center justify-center" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.15 }}>
-            <div className="absolute inset-0 bg-cyan-100/25" />
-            <motion.div initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: 1.2, opacity: 1 }} exit={{ scale: 2, opacity: 0 }} transition={{ duration: 0.4 }} className="font-noto text-5xl lg:text-7xl font-black text-cyan-100 drop-shadow-[0_0_30px_rgba(255,255,255,1)] z-10 italic tracking-wider">
-              JUST PARRY!!
             </motion.div>
-          </motion.div>
-        )}
-        {healFlash && (
-          <motion.div className="absolute inset-0 z-[54] pointer-events-none" initial={{ opacity: 0 }} animate={{ opacity: [0, 0.4, 0] }} transition={{ duration: 0.5 }}>
-            <div className="absolute inset-0 bg-gradient-to-t from-emerald-200/30 to-transparent" />
-          </motion.div>
-        )}
-        {ultimateFlash && (
-          <motion.div className="absolute inset-0 z-[55] pointer-events-none flex items-center justify-center" initial={{ opacity: 0 }} animate={{ opacity: [0, 0.7, 0.3, 0.6, 0] }} transition={{ duration: 2 }}>
-            <div className="absolute inset-0 bg-gradient-to-r from-violet-200/50 via-cyan-100/30 to-violet-200/50" />
-            <motion.div
-              initial={{ scale: 0.5, opacity: 0, x: -50 }}
-              animate={{ scale: 1.2, opacity: [0, 1, 1, 0], x: 0 }}
-              transition={{ duration: 2, times: [0, 0.1, 0.8, 1], ease: "easeOut" }}
-              className="relative z-10 font-orbitron font-black text-5xl lg:text-7xl italic text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 via-violet-100 to-amber-200 drop-shadow-[0_0_25px_rgba(139,92,246,0.9)] tracking-[0.1em] whitespace-nowrap"
-            >
-              ULTIMATE ATTACK
-            </motion.div>
-          </motion.div>
-        )}
-        {counterAnim && (
-          <motion.div key={counterAnim.id} className="absolute inset-0 z-[70] pointer-events-none flex items-center justify-center overflow-hidden" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.1 }}>
-            <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px]" />
-            <motion.div
-              className="absolute w-[150%] h-1 bg-cyan-50 shadow-[0_0_40px_20px_rgba(165,243,252,0.8)]"
-              style={{ rotate: -15 }}
-              initial={{ scaleX: 0, opacity: 1 }}
-              animate={{ scaleX: [0, 1, 1], opacity: [1, 1, 0] }}
-              transition={{ duration: 0.4, ease: "easeOut", times: [0, 0.2, 1] }}
-            />
-            <motion.div
-              className="absolute w-[150%] h-[1px] bg-white shadow-[0_0_10px_2px_rgba(255,255,255,0.9)]"
-              style={{ rotate: -15 }}
-              initial={{ scaleX: 0, opacity: 1 }}
-              animate={{ scaleX: [0, 1, 1], opacity: [1, 1, 0] }}
-              transition={{ duration: 0.4, ease: "easeOut", times: [0, 0.2, 1] }}
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
+          )}
+        </AnimatePresence>
 
-      {/* ── DUET CUTIN ── */}
-      <AnimatePresence>
-        {duetCutin && (
-          <motion.div className="absolute inset-0 z-[58] pointer-events-none flex items-center justify-center overflow-hidden" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}>
-            <div className="absolute inset-0 bg-slate-900/80 backdrop-blur-sm" />
-            <motion.img src={duetCutin.image} alt={duetCutin.name} className="absolute h-[80%] object-contain z-10 drop-shadow-[0_0_40px_rgba(255,255,255,0.4)]" initial={{ x: '-100%', opacity: 0 }} animate={{ x: '0%', opacity: 1 }} exit={{ x: '100%', opacity: 0 }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} />
-            <motion.div className="absolute bottom-[15%] z-20 text-center" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.5 }}>
-              <div className="font-noto text-xs tracking-[0.5em] text-cyan-100/80 mb-2">ULTIMATE ART</div>
-              <div className="font-noto text-3xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-100 via-violet-100 to-cyan-100 tracking-wider">必殺技</div>
+        {/* ── VISUAL FLASHES ── */}
+        <AnimatePresence>
+          {parryFlash && (
+            <motion.div className="absolute inset-0 z-[65] pointer-events-none flex items-center justify-center" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.15 }}>
+              <div className="absolute inset-0 bg-cyan-100/25" />
+              <motion.div initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: 1.2, opacity: 1 }} exit={{ scale: 2, opacity: 0 }} transition={{ duration: 0.4 }} className="font-noto text-5xl lg:text-7xl font-black text-cyan-100 drop-shadow-[0_0_30px_rgba(255,255,255,1)] z-10 italic tracking-wider">
+                JUST PARRY!!
+              </motion.div>
             </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          )}
+          {healFlash && (
+            <motion.div className="absolute inset-0 z-[54] pointer-events-none" initial={{ opacity: 0 }} animate={{ opacity: [0, 0.4, 0] }} transition={{ duration: 0.5 }}>
+              <div className="absolute inset-0 bg-gradient-to-t from-emerald-200/30 to-transparent" />
+            </motion.div>
+          )}
+          {ultimateFlash && (
+            <motion.div className="absolute inset-0 z-[55] pointer-events-none flex items-center justify-center" initial={{ opacity: 0 }} animate={{ opacity: [0, 0.7, 0.3, 0.6, 0] }} transition={{ duration: 2 }}>
+              <div className="absolute inset-0 bg-gradient-to-r from-violet-200/50 via-cyan-100/30 to-violet-200/50" />
+              <motion.div
+                initial={{ scale: 0.5, opacity: 0, x: -50 }}
+                animate={{ scale: 1.2, opacity: [0, 1, 1, 0], x: 0 }}
+                transition={{ duration: 2, times: [0, 0.1, 0.8, 1], ease: "easeOut" }}
+                className="relative z-10 font-orbitron font-black text-5xl lg:text-7xl italic text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 via-violet-100 to-amber-200 drop-shadow-[0_0_25px_rgba(139,92,246,0.9)] tracking-[0.1em] whitespace-nowrap"
+              >
+                ULTIMATE ATTACK
+              </motion.div>
+            </motion.div>
+          )}
+          {counterAnim && (
+            <motion.div key={counterAnim.id} className="absolute inset-0 z-[70] pointer-events-none flex items-center justify-center overflow-hidden" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.1 }}>
+              <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px]" />
+              <motion.div
+                className="absolute w-[150%] h-1 bg-cyan-50 shadow-[0_0_40px_20px_rgba(165,243,252,0.8)]"
+                style={{ rotate: -15 }}
+                initial={{ scaleX: 0, opacity: 1 }}
+                animate={{ scaleX: [0, 1, 1], opacity: [1, 1, 0] }}
+                transition={{ duration: 0.4, ease: "easeOut", times: [0, 0.2, 1] }}
+              />
+              <motion.div
+                className="absolute w-[150%] h-[1px] bg-white shadow-[0_0_10px_2px_rgba(255,255,255,0.9)]"
+                style={{ rotate: -15 }}
+                initial={{ scaleX: 0, opacity: 1 }}
+                animate={{ scaleX: [0, 1, 1], opacity: [1, 1, 0] }}
+                transition={{ duration: 0.4, ease: "easeOut", times: [0, 0.2, 1] }}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
 
-      {/* ═══════════════════════════════════════════════════════════════
+        {/* ── DUET CUTIN ── */}
+        <AnimatePresence>
+          {duetCutin && (
+            <motion.div className="absolute inset-0 z-[58] pointer-events-none flex items-center justify-center overflow-hidden" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}>
+              <div className="absolute inset-0 bg-slate-900/80 backdrop-blur-sm" />
+              <motion.img src={duetCutin.image} alt={duetCutin.name} className="absolute h-[80%] object-contain z-10 drop-shadow-[0_0_40px_rgba(255,255,255,0.4)]" initial={{ x: '-100%', opacity: 0 }} animate={{ x: '0%', opacity: 1 }} exit={{ x: '100%', opacity: 0 }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }} />
+              <motion.div className="absolute bottom-[15%] z-20 text-center" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.5 }}>
+                <div className="font-noto text-xs tracking-[0.5em] text-cyan-100/80 mb-2">ULTIMATE ART</div>
+                <div className="font-noto text-3xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-100 via-violet-100 to-cyan-100 tracking-wider">必殺技</div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* ═══════════════════════════════════════════════════════════════
            BATTLE FIELD
          ═══════════════════════════════════════════════════════════════ */}
-      <div className="relative flex-1 flex items-stretch px-4 lg:px-12 pt-20 lg:pt-32 pb-16 lg:pb-24 overflow-hidden">
+        <div className="relative flex-1 flex items-stretch px-4 lg:px-12 pt-20 lg:pt-32 pb-16 lg:pb-24 overflow-hidden">
 
-        {/* ── Allies (Left Column) ── */}
-        <div className="w-1/2 flex flex-col justify-around items-center pr-4 translate-x-16 lg:translate-x-8">
-          {allies.map(ally => {
-            const isTargeted = targetedAllies.has(ally.id);
-            const attackInfo = activeAttacksCompat.find(a => a.targetId === ally.id);
-            const isGuarding = guardingAllies.has(ally.id);
-            const isCurrentTurn = TURN_ORDER[currentTurnIndex % TURN_ORDER.length] === ally.id && turnPhase === 'ally_attack';
-            const isCounterDashing = counterAnim && counterAnim.allyId === ally.id;
+          {/* ── Allies (Left Column) ── */}
+          <div className="w-1/2 flex flex-col justify-around items-center pr-4 translate-x-16 lg:translate-x-8">
+            {allies.map(ally => {
+              const isTargeted = targetedAllies.has(ally.id);
+              const attackInfo = activeAttacksCompat.find(a => a.targetId === ally.id);
+              const isGuarding = guardingAllies.has(ally.id);
+              const isCurrentTurn = TURN_ORDER[currentTurnIndex % TURN_ORDER.length] === ally.id && turnPhase === 'ally_attack';
+              const isCounterDashing = counterAnim && counterAnim.allyId === ally.id;
 
-            return (
-              <div key={ally.id} className="relative flex flex-col items-center w-full">
+              return (
+                <div key={ally.id} className="relative flex flex-col items-center w-full">
 
-                {/* ── Ally HP Bar (Chimera-A style) ── */}
-                <div
-                  // 味方のHPバーの位置
-                  className="w-20 lg:w-36 mb-1 lg:mb-2 z-20 relative translate-x-2 translate-y-4 lg:-translate-y-5 lg:translate-x-0">
-                  <div className="flex flex-col items-center">
-                    <div className="flex items-center justify-between w-full mb-0.5 px-1">
-                      <div className="flex items-center gap-1.5">
-                        <div className={`w-1 h-1 rotate-45 ${ally.id === 'nagisa' ? 'bg-blue-400 shadow-[0_0_8px_#60a5fa]' : ally.id === 'mika' ? 'bg-pink-400 shadow-[0_0_8px_#f472b6]' : 'bg-emerald-400 shadow-[0_0_8px_#34d399]'}`} />
-                        <span className={`font-orbitron font-bold text-[8px] lg:text-[12px] tracking-[0.2em] ${ally.id === 'nagisa' ? 'text-blue-300 drop-shadow-[0_0_5px_rgba(59,130,246,0.5)]' : ally.id === 'mika' ? 'text-pink-300 drop-shadow-[0_0_5px_rgba(236,72,153,0.5)]' : 'text-emerald-300 drop-shadow-[0_0_5px_rgba(16,185,129,0.5)]'}`}>
-                          {ally.name.toUpperCase()}
+                  {/* ── Ally HP Bar (Chimera-A style) ── */}
+                  <div
+                    // 味方のHPバーの位置
+                    className="w-20 lg:w-36 mb-1 lg:mb-2 z-20 relative translate-x-2 translate-y-4 lg:-translate-y-5 lg:translate-x-0">
+                    <div className="flex flex-col items-center">
+                      <div className="flex items-center justify-between w-full mb-0.5 px-1">
+                        <div className="flex items-center gap-1.5">
+                          <div className={`w-1 h-1 rotate-45 ${ally.id === 'nagisa' ? 'bg-blue-400 shadow-[0_0_8px_#60a5fa]' : ally.id === 'mika' ? 'bg-pink-400 shadow-[0_0_8px_#f472b6]' : 'bg-emerald-400 shadow-[0_0_8px_#34d399]'}`} />
+                          <span className={`font-orbitron font-bold text-[8px] lg:text-[12px] tracking-[0.2em] ${ally.id === 'nagisa' ? 'text-blue-300 drop-shadow-[0_0_5px_rgba(59,130,246,0.5)]' : ally.id === 'mika' ? 'text-pink-300 drop-shadow-[0_0_5px_rgba(236,72,153,0.5)]' : 'text-emerald-300 drop-shadow-[0_0_5px_rgba(16,185,129,0.5)]'}`}>
+                            {ally.name.toUpperCase()}
+                          </span>
+                        </div>
+                        <span className={`font-orbitron font-bold text-[8px] lg:text-[10px] tabular-nums ${ally.id === 'nagisa' ? 'text-blue-100/90' : ally.id === 'mika' ? 'text-pink-100/90' : 'text-emerald-100/90'}`}>
+                          {Math.ceil((ally.hp / ally.maxHp) * 100)}%
                         </span>
                       </div>
-                      <span className={`font-orbitron font-bold text-[8px] lg:text-[10px] tabular-nums ${ally.id === 'nagisa' ? 'text-blue-100/90' : ally.id === 'mika' ? 'text-pink-100/90' : 'text-emerald-100/90'}`}>
-                        {Math.ceil((ally.hp / ally.maxHp) * 100)}%
-                      </span>
-                    </div>
-                    <div className="w-full mt-0.5 border border-white/80 bg-slate-900/80 p-[1.5px] shadow-[0_0_8px_rgba(255,255,255,0.2)]">
-                      <div className="h-1 lg:h-1.5 w-full bg-transparent">
-                        <motion.div
-                          className="h-full hp-bar-fill-ally"
-                          animate={{ width: `${(ally.hp / ally.maxHp) * 100}%` }}
-                          transition={{ duration: 0.3 }}
-                        />
+                      <div className="w-full mt-0.5 border border-white/80 bg-slate-900/80 p-[1.5px] shadow-[0_0_8px_rgba(255,255,255,0.2)]">
+                        <div className="h-1 lg:h-1.5 w-full bg-transparent">
+                          <motion.div
+                            className="h-full hp-bar-fill-ally"
+                            animate={{ width: `${(ally.hp / ally.maxHp) * 100}%` }}
+                            transition={{ duration: 0.3 }}
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
 
-                <div className={`relative flex items-center justify-center ${ally.id === 'nagisa' ? '' : 'top-2 left-2 lg:top-0 lg:left-0'}`}>
-                  {!ally.isDead && activeFragments.length > 0 && (
+                  <div className={`relative flex items-center justify-center ${ally.id === 'nagisa' ? '' : 'top-2 left-2 lg:top-0 lg:left-0'}`}>
+                    {!ally.isDead && activeFragments.length > 0 && (
+                      <motion.div
+                        className="absolute inset-0 flex items-center justify-center pointer-events-none z-[45] -top-8 lg:-top-0 pb-0 lg:pb-10 opacity-80 mix-blend-screen"
+                        animate={{ x: isCounterDashing ? 150 : (isCurrentTurn ? 30 : 0) }}
+                        transition={{ duration: isCounterDashing ? 0.05 : 0.1, ease: 'easeOut' }}
+                      >
+                        <div className="scale-[0.8] lg:scale-100 flex items-center justify-center w-full h-full">
+                          <SpriteAnimator
+                            src="/battle/戦闘エフェクトアニメ８/320×240/pipo-btleffect071.png"
+                            frameWidth={120}
+                            frameHeight={120}
+                            columns={10}
+                            totalFrames={10}
+                            fps={15}
+                            loop={true}
+                            scale={1.8}
+                            blendMode="normal"
+                          />
+                        </div>
+                      </motion.div>
+                    )}
+
+                    {ally.id === 'akane' && (
+                      <div className="absolute w-32 h-48 lg:w-44 lg:h-62 flex items-center justify-center pointer-events-none z-0">
+                        <div className="relative w-full h-full -translate-y-8 lg:-translate-y-4 -translate-x-24 lg:-translate-x-32">
+                          <img
+                            src="/battle/sakura.png"
+                            alt="sakura"
+                            className="w-full h-full object-contain drop-shadow-lg opacity-90 lg:scale-[1.15] lg:origin-bottom"
+                          />
+                          {/* 朔良の指示吹き出し */}
+                          <AnimatePresence>
+                            {sakuraSpeech && (
+                              <motion.div
+                                key={sakuraSpeech.id}
+                                initial={{ opacity: 0, scale: 0.7, y: 15 }}
+                                animate={{ opacity: 1, scale: 1, y: 0 }}
+                                exit={{ opacity: 0, scale: 0.8, y: -15 }}
+                                transition={{ type: "spring", stiffness: 350, damping: 18 }}
+                                className="absolute z-[60] -top-2 right-[25px] lg:-top-4 lg:right-[60px] pointer-events-none"
+                              >
+                                {/* 美しい白基調 of セリフ付き吹き出し (右側固定、左へ自動伸縮) */}
+                                <div className="relative bg-white border-2 border-cyan-400 text-slate-900 font-bold px-3 py-1.5 rounded-2xl shadow-[0_4px_15px_rgba(6,182,212,0.35)] text-[10px] lg:text-xs whitespace-nowrap flex items-center gap-1.5 font-sans">
+                                  <span className="text-sm lg:text-base">{sakuraSpeech.icon}</span>
+                                  <span>{sakuraSpeech.text}</span>
+
+                                  {/* 右側基準で完全に位置が固定されたしっぽ (right-4) */}
+                                  <div className="absolute -bottom-1.5 right-4 -translate-x-1/2 w-2.5 h-2.5 bg-white border-r-2 border-b-2 border-cyan-400 rotate-45 z-10" />
+
+                                  {/* つなぎ目の線を完全にカバーするマスク (同じく right-4 に固定) */}
+                                  <div className="absolute -bottom-[1px] right-4 -translate-x-1/2 w-3.5 h-[3px] bg-white z-20" />
+                                </div>
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+                          <AnimatePresence>
+                            {sakuraNotes.map(note => (
+                              <motion.div
+                                key={note.id}
+                                className={`absolute top-1/2 left-1/2 text-xl lg:text-3xl font-black ${note.color} drop-shadow-[0_0_8px_currentColor] z-50`}
+                                initial={{ opacity: 0, x: `calc(-50% + ${note.startX || 0}px)`, y: `calc(-50% + ${note.startY || 0}px)`, scale: 0.5 }}
+                                animate={{ opacity: [0, 1, 0], x: `calc(-50% + ${note.endX || note.x}px)`, y: `calc(-50% + ${note.endY || note.y}px)`, scale: note.scale, rotate: ((note.endX || note.x) % 30) }}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: note.duration || 1.5, ease: "easeOut" }}
+                              >
+                                {note.symbol}
+                              </motion.div>
+                            ))}
+                          </AnimatePresence>
+                        </div>
+                      </div>
+                    )}
+
                     <motion.div
-                      className="absolute inset-0 flex items-center justify-center pointer-events-none z-[45] -top-8 lg:-top-0 pb-0 lg:pb-10 opacity-80 mix-blend-screen"
-                      animate={{ x: isCounterDashing ? 150 : (isCurrentTurn ? 30 : 0) }}
-                      transition={{ duration: isCounterDashing ? 0.05 : 0.1, ease: 'easeOut' }}
-                    >
-                      <div className="scale-[0.8] lg:scale-100 flex items-center justify-center w-full h-full">
-                        <SpriteAnimator
-                          src="/battle/戦闘エフェクトアニメ８/320×240/pipo-btleffect071.png"
-                          frameWidth={120}
-                          frameHeight={120}
-                          columns={10}
-                          totalFrames={10}
-                          fps={15}
-                          loop={true}
-                          scale={1.8}
-                          blendMode="normal"
-                        />
-                      </div>
-                    </motion.div>
-                  )}
-
-                  {ally.id === 'akane' && (
-                    <div className="absolute w-32 h-48 lg:w-44 lg:h-62 flex items-center justify-center pointer-events-none z-0">
-                      <div className="relative w-full h-full -translate-y-8 lg:-translate-y-4 -translate-x-24 lg:-translate-x-32">
-                        <img
-                          src="/battle/sakura.png"
-                          alt="sakura"
-                          className="w-full h-full object-contain drop-shadow-lg opacity-90 lg:scale-[1.15] lg:origin-bottom"
-                        />
-                        {/* 朔良の指示吹き出し */}
-                        <AnimatePresence>
-                          {sakuraSpeech && (
-                            <motion.div
-                              key={sakuraSpeech.id}
-                              initial={{ opacity: 0, scale: 0.7, y: 15 }}
-                              animate={{ opacity: 1, scale: 1, y: 0 }}
-                              exit={{ opacity: 0, scale: 0.8, y: -15 }}
-                              transition={{ type: "spring", stiffness: 350, damping: 18 }}
-                              className="absolute z-[60] -top-2 right-[25px] lg:-top-4 lg:right-[60px] pointer-events-none"
-                            >
-                              {/* 美しい白基調 of セリフ付き吹き出し (右側固定、左へ自動伸縮) */}
-                              <div className="relative bg-white border-2 border-cyan-400 text-slate-900 font-bold px-3 py-1.5 rounded-2xl shadow-[0_4px_15px_rgba(6,182,212,0.35)] text-[10px] lg:text-xs whitespace-nowrap flex items-center gap-1.5 font-sans">
-                                <span className="text-sm lg:text-base">{sakuraSpeech.icon}</span>
-                                <span>{sakuraSpeech.text}</span>
-
-                                {/* 右側基準で完全に位置が固定されたしっぽ (right-4) */}
-                                <div className="absolute -bottom-1.5 right-4 -translate-x-1/2 w-2.5 h-2.5 bg-white border-r-2 border-b-2 border-cyan-400 rotate-45 z-10" />
-
-                                {/* つなぎ目の線を完全にカバーするマスク (同じく right-4 に固定) */}
-                                <div className="absolute -bottom-[1px] right-4 -translate-x-1/2 w-3.5 h-[3px] bg-white z-20" />
-                              </div>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                        <AnimatePresence>
-                          {sakuraNotes.map(note => (
-                            <motion.div
-                              key={note.id}
-                              className={`absolute top-1/2 left-1/2 text-xl lg:text-3xl font-black ${note.color} drop-shadow-[0_0_8px_currentColor] z-50`}
-                              initial={{ opacity: 0, x: `calc(-50% + ${note.startX || 0}px)`, y: `calc(-50% + ${note.startY || 0}px)`, scale: 0.5 }}
-                              animate={{ opacity: [0, 1, 0], x: `calc(-50% + ${note.endX || note.x}px)`, y: `calc(-50% + ${note.endY || note.y}px)`, scale: note.scale, rotate: ((note.endX || note.x) % 30) }}
-                              exit={{ opacity: 0 }}
-                              transition={{ duration: note.duration || 1.5, ease: "easeOut" }}
-                            >
-                              {note.symbol}
-                            </motion.div>
-                          ))}
-                        </AnimatePresence>
-                      </div>
-                    </div>
-                  )}
-
-                  <motion.div
-                    // 味方の立ち絵の位置
-                    // 味方の立ち絵のサイズ
-                    id={`char-${ally.id}`}
-                    className={`relative cursor-pointer touch-none flex items-center justify-center w-32 h-44 md:w-40 md:h-56 -translate-y-12
+                      // 味方の立ち絵の位置
+                      // 味方の立ち絵のサイズ
+                      id={`char-${ally.id}`}
+                      className={`relative cursor-pointer touch-none flex items-center justify-center w-32 h-44 md:w-40 md:h-56 -translate-y-12
                     ${ally.isDead ? 'opacity-40 grayscale' : ''}
                   `}
-                    animate={{ x: isCounterDashing ? 150 : (isCurrentTurn ? 30 : 0) }}
-                    transition={{ duration: isCounterDashing ? 0.05 : 0.1, ease: 'easeOut' }}
-                    style={{ WebkitTouchCallout: 'none', WebkitUserSelect: 'none', userSelect: 'none' }}
-                    onPointerDown={(e) => { e.currentTarget.setPointerCapture(e.pointerId); handlePointerDown(ally.id); }}
-                    onPointerUp={(e) => { e.currentTarget.releasePointerCapture(e.pointerId); handlePointerUp(ally.id); }}
-                    onPointerCancel={(e) => { e.currentTarget.releasePointerCapture(e.pointerId); handlePointerUp(ally.id); }}
-                    onPointerLeave={() => handlePointerUp(ally.id)}
-                    onContextMenu={(e) => { e.preventDefault(); e.stopPropagation(); return false; }}
-                  >
+                      animate={{ x: isCounterDashing ? 150 : (isCurrentTurn ? 30 : 0) }}
+                      transition={{ duration: isCounterDashing ? 0.05 : 0.1, ease: 'easeOut' }}
+                      style={{ WebkitTouchCallout: 'none', WebkitUserSelect: 'none', userSelect: 'none' }}
+                      onPointerDown={(e) => { e.currentTarget.setPointerCapture(e.pointerId); handlePointerDown(ally.id); }}
+                      onPointerUp={(e) => { e.currentTarget.releasePointerCapture(e.pointerId); handlePointerUp(ally.id); }}
+                      onPointerCancel={(e) => { e.currentTarget.releasePointerCapture(e.pointerId); handlePointerUp(ally.id); }}
+                      onPointerLeave={() => handlePointerUp(ally.id)}
+                      onContextMenu={(e) => { e.preventDefault(); e.stopPropagation(); return false; }}
+                    >
 
-                    {isTargeted && !ally.isDead && (
-                      <div className="absolute inset-0 pointer-events-none flex items-center justify-center z-40">
-                        {/* Static Target Circle */}
-                        <div className="absolute w-[75px] h-[75px] lg:w-[130px] lg:h-[130px] border-[2.5px] border-amber-400/80 rounded-full shadow-[0_0_15px_rgba(251,191,36,0.5)]" />
+                      {isTargeted && !ally.isDead && (
+                        <div className="absolute inset-0 pointer-events-none flex items-center justify-center z-40">
+                          {/* Static Target Circle */}
+                          <div className="absolute w-[75px] h-[75px] lg:w-[130px] lg:h-[130px] border-[2.5px] border-amber-400/80 rounded-full shadow-[0_0_15px_rgba(251,191,36,0.5)]" />
 
-                        {/* Target Crosshairs */}
-                        <div className="absolute w-[120px] lg:w-[200px] h-[1px] bg-gradient-to-r from-transparent via-amber-500/50 to-transparent" />
-                        <div className="absolute h-[120px] lg:h-[200px] w-[1px] bg-gradient-to-b from-transparent via-amber-500/50 to-transparent" />
+                          {/* Target Crosshairs */}
+                          <div className="absolute w-[120px] lg:w-[200px] h-[1px] bg-gradient-to-r from-transparent via-amber-500/50 to-transparent" />
+                          <div className="absolute h-[120px] lg:h-[200px] w-[1px] bg-gradient-to-b from-transparent via-amber-500/50 to-transparent" />
 
-                        {/* TARGET LOCK label removed per user request */}
-                      </div>
-                    )}
-
-                    {turnPhase === 'ally_windup' && TURN_ORDER[currentTurnIndex % TURN_ORDER.length] === ally.id && !ally.isDead && (
-                      <div
-                        className="absolute inset-0 flex flex-col items-center justify-center z-40 pointer-events-auto cursor-pointer"
-                        onPointerDown={handleAllyAttack}
-                      >
-                        <div className="absolute inset-[-50px] bg-cyan-900/10 rounded-full blur-xl mix-blend-screen" />
-
-                        {/* Simple Timing Bar */}
-                        <div className="relative w-[100%] max-w-[150px] lg:max-w-[200px] h-3 lg:h-4 bg-black/60 backdrop-blur-sm border border-white/20 rounded-full overflow-hidden shadow-lg">
-                          {/* Success Zone */}
-                          <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 bg-cyan-400/50" style={{ width: '15%' }} />
-
-                          {/* Moving Indicator */}
-                          {allyQTEState === 'waiting' ? (
-                            <motion.div
-                              className="absolute top-0 bottom-0 w-[3px] bg-white z-20"
-                              initial={{ left: '0%' }}
-                              animate={{ left: '100%' }}
-                              transition={{ duration: 0.8, ease: "linear" }}
-                            />
-                          ) : (
-                            <div
-                              className="absolute top-0 bottom-0 w-[3px] bg-white z-20"
-                              style={{ left: `${hitPosition}%` }}
-                            />
-                          )}
+                          {/* TARGET LOCK label removed per user request */}
                         </div>
+                      )}
 
-                        <div className="mt-2 text-center">
-                          <span className="block font-orbitron font-bold text-[10px] lg:text-xs text-white/80 tracking-[0.2em] animate-pulse">TAP!</span>
+                      {turnPhase === 'ally_windup' && TURN_ORDER[currentTurnIndex % TURN_ORDER.length] === ally.id && !ally.isDead && (
+                        <div
+                          className="absolute inset-0 flex flex-col items-center justify-center z-40 pointer-events-auto cursor-pointer"
+                          onPointerDown={handleAllyAttack}
+                        >
+                          <div className="absolute inset-[-50px] bg-cyan-900/10 rounded-full blur-xl mix-blend-screen" />
+
+                          {/* Simple Timing Bar */}
+                          <div className="relative w-[100%] max-w-[150px] lg:max-w-[200px] h-3 lg:h-4 bg-black/60 backdrop-blur-sm border border-white/20 rounded-full overflow-hidden shadow-lg">
+                            {/* Success Zone */}
+                            <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 bg-cyan-400/50" style={{ width: '15%' }} />
+
+                            {/* Moving Indicator */}
+                            {allyQTEState === 'waiting' ? (
+                              <motion.div
+                                className="absolute top-0 bottom-0 w-[3px] bg-white z-20"
+                                initial={{ left: '0%' }}
+                                animate={{ left: '100%' }}
+                                transition={{ duration: 0.8, ease: "linear" }}
+                              />
+                            ) : (
+                              <div
+                                className="absolute top-0 bottom-0 w-[3px] bg-white z-20"
+                                style={{ left: `${hitPosition}%` }}
+                              />
+                            )}
+                          </div>
+
+                          <div className="mt-2 text-center">
+                            <span className="block font-orbitron font-bold text-[10px] lg:text-xs text-white/80 tracking-[0.2em] animate-pulse">TAP!</span>
+                          </div>
+
+                          <AnimatePresence>
+                            {(allyQTEState === 'perfect' || allyQTEState === 'good') && (
+                              <motion.div
+                                initial={{ scale: 0.8, opacity: 0, y: 0 }}
+                                animate={{ scale: 1.3, opacity: 1, y: -30 }}
+                                exit={{ opacity: 0, scale: 1.5 }}
+                                className={`absolute font-orbitron font-bold text-[16px] lg:text-[24px] tracking-[0.1em] z-50 italic ${allyQTEState === 'perfect' ? 'text-transparent bg-clip-text bg-gradient-to-b from-amber-100 to-amber-400 drop-shadow-[0_0_10px_rgba(251,191,36,0.6)]' : 'text-transparent bg-clip-text bg-gradient-to-b from-cyan-100 to-cyan-400 drop-shadow-[0_0_10px_rgba(34,211,238,0.6)]'}`}
+                              >
+                                {allyQTEState === 'perfect' ? 'EXCELLENT' : 'GOOD'}
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
                         </div>
+                      )}
 
-                        <AnimatePresence>
-                          {(allyQTEState === 'perfect' || allyQTEState === 'good') && (
-                            <motion.div
-                              initial={{ scale: 0.8, opacity: 0, y: 0 }}
-                              animate={{ scale: 1.3, opacity: 1, y: -30 }}
-                              exit={{ opacity: 0, scale: 1.5 }}
-                              className={`absolute font-orbitron font-bold text-[16px] lg:text-[24px] tracking-[0.1em] z-50 italic ${allyQTEState === 'perfect' ? 'text-transparent bg-clip-text bg-gradient-to-b from-amber-100 to-amber-400 drop-shadow-[0_0_10px_rgba(251,191,36,0.6)]' : 'text-transparent bg-clip-text bg-gradient-to-b from-cyan-100 to-cyan-400 drop-shadow-[0_0_10px_rgba(34,211,238,0.6)]'}`}
-                            >
-                              {allyQTEState === 'perfect' ? 'EXCELLENT' : 'GOOD'}
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </div>
-                    )}
+                      {isGuarding && !ally.isDead && (
+                        <div className={`absolute inset-0 flex items-center justify-center pointer-events-none z-50 ${ally.id === 'nagisa' ? '-translate-y-4' : ''}`}>
+                          <SpriteAnimator
+                            src="/battle/pipo-btleffect111f.png"
+                            frameWidth={192}
+                            frameHeight={192}
+                            columns={5}
+                            totalFrames={10}
+                            fps={15}
+                            loop={false}
+                            holdOnFrame={4}
+                            pulsateOnHold={true}
+                            scale={1.2}
+                          />
+                        </div>
+                      )}
 
-                    {isGuarding && !ally.isDead && (
-                      <div className={`absolute inset-0 flex items-center justify-center pointer-events-none z-50 ${ally.id === 'nagisa' ? '-translate-y-4' : ''}`}>
-                        <SpriteAnimator
-                          src="/battle/pipo-btleffect111f.png"
-                          frameWidth={192}
-                          frameHeight={192}
-                          columns={5}
-                          totalFrames={10}
-                          fps={15}
-                          loop={false}
-                          holdOnFrame={4}
-                          pulsateOnHold={true}
-                          scale={1.2}
-                        />
-                      </div>
-                    )}
-
-                    {buffTurnsLeft > 0 && !ally.isDead && (
-                      <motion.div
-                        className="absolute inset-[-10px] rounded-2xl border border-pink-300/40 pointer-events-none z-10"
-                        animate={{ opacity: [0.3, 0.7, 0.3], boxShadow: ['0 0 8px rgba(244,114,182,0.15)', '0 0 20px rgba(244,114,182,0.4)', '0 0 8px rgba(244,114,182,0.15)'] }}
-                        transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
-                      />
-                    )}
-
-                    <AnimatePresence>
-                      {guardCooldownTrigger[ally.id] && !ally.isDead && (
+                      {buffTurnsLeft > 0 && !ally.isDead && (
                         <motion.div
-                          key={`cd-${guardCooldownTrigger[ally.id]}`}
-                          className="absolute inset-0 bg-slate-900/50 rounded-2xl z-30 pointer-events-none"
-                          initial={{ height: '100%' }}
-                          animate={{ height: 0 }}
-                          transition={{ duration: 0.8, ease: 'linear' }}
+                          className="absolute inset-[-10px] rounded-2xl border border-pink-300/40 pointer-events-none z-10"
+                          animate={{ opacity: [0.3, 0.7, 0.3], boxShadow: ['0 0 8px rgba(244,114,182,0.15)', '0 0 20px rgba(244,114,182,0.4)', '0 0 8px rgba(244,114,182,0.15)'] }}
+                          transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
                         />
                       )}
-                    </AnimatePresence>
 
-                    {ally.image ? (
-                      <img src={ally.image} alt={ally.name} className={`w-full h-full object-contain relative z-10 -translate-y-[58px] lg:-translate-y-8 scale-75 lg:scale-[1.21] origin-bottom lg:origin-center ${ally.flashTimer > 0 ? 'animate-battle-hit-flash drop-shadow-[0_0_20px_rgba(248,113,113,0.8)]' : 'drop-shadow-lg'}`} />
-                    ) : (
-                      <div className="w-full h-full bg-slate-800/80 border border-slate-600 rounded-2xl flex items-center justify-center">
-                        <span className="font-noto font-bold text-slate-300">{ally.name}</span>
+                      <AnimatePresence>
+                        {guardCooldownTrigger[ally.id] && !ally.isDead && (
+                          <motion.div
+                            key={`cd-${guardCooldownTrigger[ally.id]}`}
+                            className="absolute inset-0 bg-slate-900/50 rounded-2xl z-30 pointer-events-none"
+                            initial={{ height: '100%' }}
+                            animate={{ height: 0 }}
+                            transition={{ duration: 0.8, ease: 'linear' }}
+                          />
+                        )}
+                      </AnimatePresence>
+
+                      {ally.image ? (
+                        <img src={ally.image} alt={ally.name} className={`w-full h-full object-contain relative z-10 -translate-y-[58px] lg:-translate-y-8 scale-75 lg:scale-[1.21] origin-bottom lg:origin-center ${ally.flashTimer > 0 ? 'animate-battle-hit-flash drop-shadow-[0_0_20px_rgba(248,113,113,0.8)]' : 'drop-shadow-lg'}`} />
+                      ) : (
+                        <div className="w-full h-full bg-slate-800/80 border border-slate-600 rounded-2xl flex items-center justify-center">
+                          <span className="font-noto font-bold text-slate-300">{ally.name}</span>
+                        </div>
+                      )}
+
+                      {ally.isDead && (
+                        <div className="absolute inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm rounded-2xl z-20">
+                          <span className="font-noto text-[10px] text-red-400/80 font-bold tracking-[0.2em] uppercase">戦闘不能</span>
+                        </div>
+                      )}
+
+                      <AnimatePresence>
+                        {glintEffects.filter(g => g.targetId === ally.id).map(g => (
+                          <motion.div
+                            key={g.id}
+                            className="absolute inset-0 flex items-center justify-center z-50 pointer-events-none"
+                          >
+                            <div
+                              className="absolute w-20 h-20 lg:w-40 lg:h-40 rounded-full border-[3px] border-red-500 border-dashed shadow-[0_0_15px_rgba(239,68,68,0.7)]"
+                              style={{
+                                animation: `glint-shrink-anim 0.6s linear forwards`,
+                                animationPlayState: 'running'
+                              }}
+                            />
+                            <div
+                              className="absolute w-16 h-16 lg:w-36 lg:h-36 rounded-full border-2 border-red-400 shadow-[0_0_10px_rgba(248,113,113,0.5)]"
+                              style={{
+                                animation: `glint-shrink-solid 0.6s linear forwards`,
+                                animationPlayState: 'running'
+                              }}
+                            />
+                            <div
+                              className="absolute w-8 h-8 lg:w-12 lg:h-12 bg-white rounded-sm shadow-[0_0_30px_#fff]"
+                              style={{
+                                animation: `glint-pop 0.3s ease-out forwards`,
+                                animationDelay: '0.6s',
+                                animationPlayState: 'running',
+                                opacity: 0
+                              }}
+                            />
+                          </motion.div>
+                        ))}
+                      </AnimatePresence>
+                    </motion.div>
+                  </div>
+
+                  <AnimatePresence>
+                    {showDamageNumbers.filter(d => d.targetId === ally.id).map(d => (
+                      <motion.div key={d.id} className={`absolute top-0 z-30 font-noto font-black text-lg lg:text-3xl italic ${d.type === 'heal' ? 'text-emerald-300 drop-shadow-[0_0_8px_rgba(52,211,153,0.6)]' : 'text-red-400 drop-shadow-[0_0_8px_rgba(239,68,68,0.6)]'}`} initial={{ opacity: 1, y: 0, scale: 0.8 }} animate={{ opacity: 0, y: -40, scale: 1.2 }} exit={{ opacity: 0 }} transition={{ duration: 1 }}>
+                        {d.type === 'heal' ? `+${d.amount}` : `-${d.amount}`}
+                      </motion.div>
+                    ))}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* ── Enemies (Right Column) ── */}
+          <div className="w-1/2 flex flex-col justify-between items-center pl-4 -translate-x-12 lg:translate-x-0 relative">
+
+            <div className="relative flex items-center justify-center -top-2 -left-12 lg:top-5 lg:-left-12 w-full h-full">
+              {/* キメラ4 (中央・右後ろ。立体配置 - 縦並びの下段) */}
+              {(() => {
+                const enemy2 = enemies.find(e => e.id === 'enemy2');
+                if (!enemy2) return null;
+                const isAttacking = activeAttacksCompat.some(a => a.enemyId === enemy2.id);
+                const isCurrentTurn = TURN_ORDER[currentTurnIndex % TURN_ORDER.length] === enemy2.id && turnPhase !== 'turn_delay';
+                const hpRatio = enemy2.hp / enemy2.maxHp;
+                return (
+                  <motion.div
+                    id={`char-${enemy2.id}`}
+                    // 敵の立ち絵の位置（キメラ4）
+                    className="absolute top-[70px] lg:-top-[40px] w-64 h-56 lg:w-[500px] lg:h-[620px] flex items-center justify-center z-20 pointer-events-none"
+                    animate={{
+                      x: isAttacking ? 30 : (isCurrentTurn && turnPhase === 'enemy_resolve' ? 30 : 0) + 110, // 右列縦並び(+110px)、攻撃時は前進距離を短縮(+30px)
+                      y: -10, // 下段から少し上に移動！
+                      opacity: enemy2.isDead ? 0 : 1,
+                      scale: enemy2.isDead ? 0.95 : 1,
+                      filter: enemy2.isDead ? "blur(4px) grayscale(100%)" : "blur(0px) grayscale(0%)"
+                    }}
+                    transition={{ duration: enemy2.isDead ? 1.5 : 0.2, ease: "easeOut" }}
+                  >
+                    {/* 個別HPバー (立ち絵の上部に固定) */}
+                    {!enemy2.isDead && (
+                      <div
+                        // 敵のHPバーの位置（キメラ4）
+                        className="absolute top-14 lg:top-52 left-1/2 -translate-x-1/2 w-20 lg:w-32 z-50 flex flex-col pointer-events-auto">
+                        <div className="flex items-center justify-between w-full mb-0.5 px-1">
+                          <div className="flex items-center gap-1">
+                            <div className="w-1 h-1 bg-red-400 shadow-[0_0_8px_#f87171] rotate-45" />
+                            <span className="font-orbitron font-bold text-[6px] lg:text-[10px] text-red-400 tracking-[0.1em] drop-shadow-[0_0_5px_rgba(244,63,94,0.5)]">
+                              {enemy2.name.toUpperCase()}
+                            </span>
+                          </div>
+                          <span className="font-orbitron font-bold text-[6px] lg:text-[8px] text-red-100/90 tabular-nums">
+                            {Math.ceil(hpRatio * 100)}%
+                          </span>
+                        </div>
+                        <div className="w-full mt-0.5 border border-white/80 bg-slate-900/80 p-[1.5px] shadow-[0_0_8px_rgba(255,255,255,0.2)]">
+                          <div className="h-1 lg:h-1.5 w-full bg-transparent">
+                            <motion.div
+                              className="h-full hp-bar-fill-enemy float-right"
+                              style={{ transformOrigin: "right" }}
+                              animate={{ width: `${hpRatio * 100}%` }}
+                              transition={{ duration: 0.3 }}
+                            />
+                          </div>
+                        </div>
                       </div>
                     )}
 
-                    {ally.isDead && (
-                      <div className="absolute inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm rounded-2xl z-20">
-                        <span className="font-noto text-[10px] text-red-400/80 font-bold tracking-[0.2em] uppercase">戦闘不能</span>
-                      </div>
-                    )}
-
+                    {/* ダメージ表示ポップアップ */}
                     <AnimatePresence>
-                      {glintEffects.filter(g => g.targetId === ally.id).map(g => (
-                        <motion.div
-                          key={g.id}
-                          className="absolute inset-0 flex items-center justify-center z-50 pointer-events-none"
-                        >
-                          <div
-                            className="absolute w-20 h-20 lg:w-40 lg:h-40 rounded-full border-[3px] border-red-500 border-dashed shadow-[0_0_15px_rgba(239,68,68,0.7)]"
-                            style={{
-                              animation: `glint-shrink-anim 0.6s linear forwards`,
-                              animationPlayState: 'running'
-                            }}
-                          />
-                          <div
-                            className="absolute w-16 h-16 lg:w-36 lg:h-36 rounded-full border-2 border-red-400 shadow-[0_0_10px_rgba(248,113,113,0.5)]"
-                            style={{
-                              animation: `glint-shrink-solid 0.6s linear forwards`,
-                              animationPlayState: 'running'
-                            }}
-                          />
-                          <div
-                            className="absolute w-8 h-8 lg:w-12 lg:h-12 bg-white rounded-sm shadow-[0_0_30px_#fff]"
-                            style={{
-                              animation: `glint-pop 0.3s ease-out forwards`,
-                              animationDelay: '0.6s',
-                              animationPlayState: 'running',
-                              opacity: 0
-                            }}
-                          />
+                      {showDamageNumbers.filter(d => d.targetId === enemy2.id).map(d => (
+                        <motion.div key={d.id} className={`absolute top-10 lg:top-14 left-1/2 -translate-x-1/2 z-50 font-noto font-black text-2xl lg:text-5xl italic ${d.type === 'ultimate' ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 to-violet-300 drop-shadow-[0_0_15px_rgba(139,92,246,0.8)]' : 'text-red-500 drop-shadow-[0_0_12px_rgba(0,0,0,0.9)]'} whitespace-nowrap`} initial={{ opacity: 1, y: 10, scale: 1.5 }} animate={{ opacity: 0, y: -40, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1 }}>
+                          {d.amount}
                         </motion.div>
                       ))}
                     </AnimatePresence>
-                  </motion.div>
-                </div>
 
-                <AnimatePresence>
-                  {showDamageNumbers.filter(d => d.targetId === ally.id).map(d => (
-                    <motion.div key={d.id} className={`absolute top-0 z-30 font-noto font-black text-lg lg:text-3xl italic ${d.type === 'heal' ? 'text-emerald-300 drop-shadow-[0_0_8px_rgba(52,211,153,0.6)]' : 'text-red-400 drop-shadow-[0_0_8px_rgba(239,68,68,0.6)]'}`} initial={{ opacity: 1, y: 0, scale: 0.8 }} animate={{ opacity: 0, y: -40, scale: 1.2 }} exit={{ opacity: 0 }} transition={{ duration: 1 }}>
-                      {d.type === 'heal' ? `+${d.amount}` : `-${d.amount}`}
-                    </motion.div>
-                  ))}
-                </AnimatePresence>
-              </div>
-            );
-          })}
+                    {/* 個別キメラ4斬撃エフェクト (立ち絵の中心に完全同期) */}
+                    <AnimatePresence>
+                      {showDamageNumbers.filter(d => d.targetId === enemy2.id && (d.type === 'damage' || d.type === 'critical')).map(d => (
+                        <div key={`fx-wrap-${d.id}`} className="absolute inset-0 flex items-center justify-center pointer-events-none z-50 mix-blend-screen scale-[1.0] lg:scale-[1.3]">
+                          <SpriteAnimator
+                            src="/battle/戦闘エフェクトアニメ12/320×240/pipo-btleffect084.png"
+                            frameWidth={120}
+                            frameHeight={120}
+                            columns={10}
+                            totalFrames={10}
+                            fps={15}
+                            loop={false}
+                            scale={1.8}
+                            blendMode="normal"
+                          />
+                        </div>
+                      ))}
+                    </AnimatePresence>
+
+                    <img
+                      src="/character/kimera4.png"
+                      alt="kimera4"
+                      className={`w-full h-full object-contain drop-shadow-md ${enemy2.flashTimer > 0 ? 'animate-battle-hit-flash' : ''}`}
+                    />
+                  </motion.div>
+                );
+              })()}
+
+              {/* キメラ5 (右・一番右後ろ。立体配置 - 縦並びの上段) */}
+              {(() => {
+                const enemy3 = enemies.find(e => e.id === 'enemy3');
+                if (!enemy3) return null;
+                const isAttacking = activeAttacksCompat.some(a => a.enemyId === enemy3.id);
+                const isCurrentTurn = TURN_ORDER[currentTurnIndex % TURN_ORDER.length] === enemy3.id && turnPhase !== 'turn_delay';
+                const hpRatio = enemy3.hp / enemy3.maxHp;
+                return (
+                  <motion.div
+                    id={`char-${enemy3.id}`}
+                    className="absolute top-[180px] lg:top-0 w-64 h-56 lg:w-[500px] lg:h-[620px] flex items-center justify-center z-10 pointer-events-none"
+                    animate={{
+                      x: isAttacking ? 30 : (isCurrentTurn && turnPhase === 'enemy_resolve' ? 30 : 0) + 110, // 右列縦並び(+110px)、攻撃時は前進距離を短縮(+30px)
+                      y: -180, // さらに上に移動！
+                      opacity: enemy3.isDead ? 0 : 1,
+                      scale: enemy3.isDead ? 0.95 : 1,
+                      filter: enemy3.isDead ? "blur(4px) grayscale(100%)" : "blur(0px) grayscale(0%)"
+                    }}
+                    transition={{ duration: enemy3.isDead ? 1.5 : 0.2, ease: "easeOut" }}
+                  >
+                    {/* 個別HPバー (立ち絵の上部に固定) */}
+                    {!enemy3.isDead && (
+                      <div
+                        // 敵のHPバーの位置（キメラ5）
+                        className="absolute top-2 lg:top-32 left-1/2 -translate-x-1/2 w-20 lg:w-32 z-50 flex flex-col pointer-events-auto">
+                        <div className="flex items-center justify-between w-full mb-0.5 px-1">
+                          <div className="flex items-center gap-1">
+                            <div className="w-1 h-1 bg-red-400 shadow-[0_0_8px_#f87171] rotate-45" />
+                            <span className="font-orbitron font-bold text-[6px] lg:text-[10px] text-red-400 tracking-[0.1em] drop-shadow-[0_0_5px_rgba(244,63,94,0.5)]">
+                              {enemy3.name.toUpperCase()}
+                            </span>
+                          </div>
+                          <span className="font-orbitron font-bold text-[6px] lg:text-[8px] text-red-100/90 tabular-nums">
+                            {Math.ceil(hpRatio * 100)}%
+                          </span>
+                        </div>
+                        <div className="w-full mt-0.5 border border-white/80 bg-slate-900/80 p-[1.5px] shadow-[0_0_8px_rgba(255,255,255,0.2)]">
+                          <div className="h-1 lg:h-1.5 w-full bg-transparent">
+                            <motion.div
+                              className="h-full hp-bar-fill-enemy float-right"
+                              style={{ transformOrigin: "right" }}
+                              animate={{ width: `${hpRatio * 100}%` }}
+                              transition={{ duration: 0.3 }}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* ダメージ表示ポップアップ */}
+                    <AnimatePresence>
+                      {showDamageNumbers.filter(d => d.targetId === enemy3.id).map(d => (
+                        <motion.div key={d.id} className={`absolute top-10 lg:top-14 left-1/2 -translate-x-1/2 z-50 font-noto font-black text-2xl lg:text-5xl italic ${d.type === 'ultimate' ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 to-violet-300 drop-shadow-[0_0_15px_rgba(139,92,246,0.8)]' : 'text-red-500 drop-shadow-[0_0_12px_rgba(0,0,0,0.9)]'} whitespace-nowrap`} initial={{ opacity: 1, y: 10, scale: 1.5 }} animate={{ opacity: 0, y: -40, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1 }}>
+                          {d.amount}
+                        </motion.div>
+                      ))}
+                    </AnimatePresence>
+
+                    {/* 個別キメラ5斬撃エフェクト (立ち絵の中心に完全同期) */}
+                    <AnimatePresence>
+                      {showDamageNumbers.filter(d => d.targetId === enemy3.id && (d.type === 'damage' || d.type === 'critical')).map(d => (
+                        <div key={`fx-wrap-${d.id}`} className="absolute inset-0 flex items-center justify-center pointer-events-none z-50 mix-blend-screen scale-[1.0] lg:scale-[1.3]">
+                          <SpriteAnimator
+                            src="/battle/戦闘エフェクトアニメ12/320×240/pipo-btleffect084.png"
+                            frameWidth={120}
+                            frameHeight={120}
+                            columns={10}
+                            totalFrames={10}
+                            fps={15}
+                            loop={false}
+                            scale={1.8}
+                            blendMode="normal"
+                          />
+                        </div>
+                      ))}
+                    </  AnimatePresence>
+
+                    <img
+                      src="/character/kimera5.png"
+                      alt="kimera5"
+                      className={`w-full h-full object-contain drop-shadow-md ${enemy3.flashTimer > 0 ? 'animate-battle-hit-flash' : ''}`}
+                    />
+                  </motion.div>
+                );
+              })()}
+
+              {/* 手前の黒騎士 (enemy1 - 左・一番手前) */}
+              {(() => {
+                const enemy1 = enemies.find(e => e.id === 'enemy1');
+                if (!enemy1) return null;
+                const isAttacking = activeAttacksCompat.some(a => a.enemyId === enemy1.id);
+                const isCurrentTurn = TURN_ORDER[currentTurnIndex % TURN_ORDER.length] === enemy1.id && turnPhase !== 'turn_delay';
+                const hpRatio = enemy1.hp / enemy1.maxHp;
+                return (
+                  <motion.div
+                    id={`char-${enemy1.id}`}
+                    className={`absolute ml-40 lg:ml-0 top-[86px] lg:top-[125px] w-40 h-52 lg:w-64 lg:h-80 flex items-center justify-center z-40 ${!enemy1.isDead && enemy1.flashTimer > 0 ? 'animate-battle-hit-flash' : ''}`}
+                    animate={{
+                      x: isAttacking ? -150 : (isCurrentTurn && turnPhase === 'enemy_resolve' ? -150 : -120), // 攻撃時はさらに左へ踏み込む(-150px)
+                      scale: isAttacking ? 1.05 : (enemy1.isDead ? 0.95 : 1),
+                      opacity: enemy1.isDead ? 0 : 1,
+                      filter: enemy1.isDead ? "blur(4px) grayscale(100%)" : "blur(0px) grayscale(0%)"
+                    }}
+                    transition={{ duration: enemy1.isDead ? 1.5 : 0.2, ease: "easeOut" }}
+                  >
+                    {/* 個別HPバー (立ち絵の上部に固定) */}
+                    {!enemy1.isDead && (
+                      <div
+                        // 敵のHPバーの位置（黒騎士）
+                        className="absolute -top-10 lg:-top-[35px] left-1/2 -translate-x-1/2 w-20 lg:w-32 z-50 flex flex-col pointer-events-auto">
+                        <div className="flex items-center justify-between w-full mb-0.5 px-1">
+                          <div className="flex items-center gap-1">
+                            <div className="w-1 h-1 bg-red-400 shadow-[0_0_8px_#f87171] rotate-45" />
+                            <span className="font-orbitron font-bold text-[6px] lg:text-[10px] text-red-400 tracking-[0.1em] drop-shadow-[0_0_5px_rgba(244,63,94,0.5)]">
+                              {enemy1.name.toUpperCase()}
+                            </span>
+                          </div>
+                          <span className="font-orbitron font-bold text-[6px] lg:text-[8px] text-red-100/90 tabular-nums">
+                            {Math.ceil(hpRatio * 100)}%
+                          </span>
+                        </div>
+                        <div className="w-full mt-0.5 border border-white/80 bg-slate-900/80 p-[1.5px] shadow-[0_0_8px_rgba(255,255,255,0.2)]">
+                          <div className="h-1 lg:h-1.5 w-full bg-transparent">
+                            <motion.div
+                              className="h-full hp-bar-fill-enemy float-right"
+                              style={{ transformOrigin: "right" }}
+                              animate={{ width: `${hpRatio * 100}%` }}
+                              transition={{ duration: 0.3 }}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* ダメージ表示ポップアップ */}
+                    <AnimatePresence>
+                      {showDamageNumbers.filter(d => d.targetId === enemy1.id).map(d => (
+                        <motion.div key={d.id} className={`absolute top-8 lg:top-12 left-1/2 -translate-x-1/2 z-50 font-noto font-black text-2xl lg:text-5xl italic ${d.type === 'ultimate' ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 to-violet-300 drop-shadow-[0_0_15px_rgba(139,92,246,0.8)]' : 'text-red-500 drop-shadow-[0_0_12px_rgba(0,0,0,0.9)]'} whitespace-nowrap`} initial={{ opacity: 1, y: 10, scale: 1.5 }} animate={{ opacity: 0, y: -40, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1 }}>
+                          {d.amount}
+                        </motion.div>
+                      ))}
+                    </AnimatePresence>
+
+                    {/* 個別黒騎士斬撃エフェクト (立ち絵の中心に完全同期) */}
+                    <AnimatePresence>
+                      {showDamageNumbers.filter(d => d.targetId === enemy1.id && (d.type === 'damage' || d.type === 'critical')).map(d => (
+                        <div key={`fx-wrap-${d.id}`} className="absolute inset-0 flex items-center justify-center pointer-events-none z-50 mix-blend-screen scale-[1.0] lg:scale-[1.3] -translate-y-12">
+                          <SpriteAnimator
+                            src="/battle/戦闘エフェクトアニメ12/320×240/pipo-btleffect084.png"
+                            frameWidth={120}
+                            frameHeight={120}
+                            columns={10}
+                            totalFrames={10}
+                            fps={15}
+                            loop={false}
+                            scale={1.8}
+                            blendMode="normal"
+                          />
+                        </div>
+                      ))}
+                    </AnimatePresence>
+
+                    <img src={enemy1.image} alt={enemy1.name} className={`pointer-events-none select-none w-full h-full object-contain scale-[0.85] -translate-y-12 drop-shadow-[0_0_15px_rgba(244,63,94,0.3)]`} style={{ WebkitTouchCallout: 'none' }} draggable="false" />
+                  </motion.div>
+                );
+              })()}
+
+
+            </div>
+          </div>
+
+          {/* Top Right Controls */}
+          <div className="absolute top-3 right-6 lg:top-5 lg:right-10 flex gap-2 z-50">
+            <button onClick={() => setIsPaused(!isPaused)} className={`px-2 py-1 lg:px-3 lg:py-1.5 bg-[#0a1628]/60 backdrop-blur-sm border ${isPaused ? 'border-amber-400 text-amber-300 shadow-[0_0_10px_rgba(251,191,36,0.3)]' : 'border-slate-600/30 text-slate-400'} font-noto text-[8px] lg:text-[10px] tracking-[0.2em] rounded hover:border-slate-400/50 hover:text-slate-200 transition-all`}>
+              {isPaused ? '再開' : '一時停止'}
+            </button>
+            {(localStorage.getItem('cleared_mutsunori_good_end') === 'true' || localStorage.getItem('cleared_mika_good_end') === 'true' || localStorage.getItem('cleared_nagisa_good_end') === 'true' || localStorage.getItem('cleared_akane_good_end') === 'true') && (
+              <button onClick={handleResultClose} className="px-2 py-1 lg:px-3 lg:py-1.5 bg-[#0a1628]/60 backdrop-blur-sm border border-slate-600/30 text-slate-400 font-noto text-[8px] lg:text-[10px] tracking-[0.2em] rounded hover:border-slate-400/50 hover:text-slate-200 transition-all">スキップ</button>
+            )}
+          </div>
         </div>
 
-        {/* ── Enemies (Right Column) ── */}
-        <div className="w-1/2 flex flex-col justify-between items-center pl-4 -translate-x-12 lg:translate-x-0 relative">
 
-          <div className="relative flex items-center justify-center -top-2 -left-12 lg:top-5 lg:-left-12 w-full h-full">
-            {/* キメラ4 (中央・右後ろ。立体配置 - 縦並びの下段) */}
-            {(() => {
-              const enemy2 = enemies.find(e => e.id === 'enemy2');
-              if (!enemy2) return null;
-              const isAttacking = activeAttacksCompat.some(a => a.enemyId === enemy2.id);
-              const isCurrentTurn = TURN_ORDER[currentTurnIndex % TURN_ORDER.length] === enemy2.id && turnPhase !== 'turn_delay';
-              const hpRatio = enemy2.hp / enemy2.maxHp;
-              return (
+
+        {/* ═══════════════════════════════════════════════════════════════
+           BOTTOM HUD (Cyber Radar & Sync)
+         ═══════════════════════════════════════════════════════════════ */}
+
+        {/* Dark gradient film at the bottom to make the UI pop */}
+        <div className="absolute bottom-0 inset-x-0 h-[40vh] bg-gradient-to-t from-black via-black/80 to-transparent pointer-events-none z-30" />
+
+        <div className="absolute inset-0 z-40 pointer-events-none">
+
+
+
+
+          {/* ── Action Buttons (Moved below allies) ── */}
+          <div className="absolute bottom-4 left-0 lg:bottom-12 lg:left-8 w-1/2 pointer-events-auto flex items-end justify-center gap-2 lg:gap-8 drop-shadow-[0_0_20px_rgba(34,211,238,0.2)] -translate-x-8 lg:-translate-x-20">
+
+            {/* Left Button - ULTIMATE (Reactor Core) */}
+            <motion.button
+              onClick={handleAkaneUltimate}
+              disabled={syncRate < SYNC_COST_ULTIMATE || battlePhase !== 'fighting'}
+              className={`relative w-[108px] h-[108px] lg:w-32 lg:h-32 rounded-full flex flex-col items-center justify-center transition-all duration-300 shadow-[0_0_30px_rgba(0,0,0,0.8)] backdrop-blur-md hover:scale-105 active:scale-95 ${syncRate < SYNC_COST_ULTIMATE || battlePhase !== 'fighting'
+                ? 'bg-[#0a0a0a]/90 cursor-not-allowed grayscale'
+                : 'bg-[#1a0a03]/80 hover:bg-[#2a1005]/90 hover:shadow-[0_0_30px_rgba(251,191,36,0.5)] cursor-pointer'
+                }`}
+            >
+              {/* Circular Progress Gauge */}
+              <svg className="absolute inset-0 w-full h-full -rotate-90 pointer-events-none" viewBox="0 0 100 100" style={{ overflow: 'visible' }}>
+                <circle cx="50" cy="50" r="48" fill="none" className="stroke-amber-900/40" strokeWidth="3" />
+                <circle
+                  cx="50"
+                  cy="50"
+                  r="48"
+                  fill="none"
+                  className="stroke-amber-400 drop-shadow-[0_0_5px_rgba(251,191,36,0.8)]"
+                  strokeWidth="3"
+                  strokeDasharray="301.59"
+                  strokeDashoffset={301.59 - (301.59 * Math.min(syncRate, SYNC_COST_ULTIMATE) / SYNC_COST_ULTIMATE)}
+                  strokeLinecap="round"
+                  style={{ transition: 'stroke-dashoffset 0.3s ease-out' }}
+                />
+              </svg>
+
+              {/* Sync Rate Glow */}
+              <div
+                className="absolute inset-0 rounded-full blur-xl mix-blend-screen transition-opacity duration-300 pointer-events-none"
+                style={{
+                  background: syncRate >= SYNC_COST_ULTIMATE ? 'radial-gradient(circle, rgba(251,191,36,0.4) 0%, transparent 70%)' : 'none',
+                  opacity: syncRate / 100
+                }}
+              />
+
+              {/* Spinning Rings */}
+              <div className={`absolute inset-0.5 lg:inset-2 rounded-full border border-amber-400/15 ${syncRate >= SYNC_COST_ULTIMATE ? 'animate-[spin_3s_linear_infinite]' : ''}`} />
+              <div className={`absolute inset-1.5 lg:inset-4 rounded-full border border-amber-300/10 border-dashed ${syncRate >= SYNC_COST_ULTIMATE ? 'animate-[spin_4s_linear_infinite_reverse]' : ''}`} />
+
+              <div className="relative z-10 flex flex-col items-center">
+                <div className="font-rajdhani font-bold text-sm lg:text-5xl text-amber-400 drop-shadow-[0_0_8px_rgba(251,191,36,0.7)] leading-none mb-0 lg:mb-1">
+                  {Math.floor(syncRate)}<span className="text-[8px] lg:text-xl opacity-80">%</span>
+                </div>
+                <div className="font-noto font-bold text-[10px] lg:text-xs text-amber-200 tracking-[0.15em] lg:tracking-[0.3em] drop-shadow-[0_0_5px_rgba(251,191,36,0.5)]">
+                  必殺技
+                </div>
+              </div>
+
+              {/* Cost Indicator removed per user request */}
+
+              {/* Fill Level visualization */}
+              {syncRate >= SYNC_COST_ULTIMATE && (
                 <motion.div
-                  id={`char-${enemy2.id}`}
-                  // 敵の立ち絵の位置（キメラ4）
-                  className="absolute top-[70px] lg:-top-[40px] w-64 h-56 lg:w-[500px] lg:h-[620px] flex items-center justify-center z-20 pointer-events-none"
-                  animate={{
-                    x: isAttacking ? 30 : (isCurrentTurn && turnPhase === 'enemy_resolve' ? 30 : 0) + 110, // 右列縦並び(+110px)、攻撃時は前進距離を短縮(+30px)
-                    y: -10, // 下段から少し上に移動！
-                    opacity: enemy2.isDead ? 0 : 1,
-                    scale: enemy2.isDead ? 0.95 : 1,
-                    filter: enemy2.isDead ? "blur(4px) grayscale(100%)" : "blur(0px) grayscale(0%)"
-                  }}
-                  transition={{ duration: enemy2.isDead ? 1.5 : 0.2, ease: "easeOut" }}
-                >
-                  {/* 個別HPバー (立ち絵の上部に固定) */}
-                  {!enemy2.isDead && (
-                    <div
-                      // 敵のHPバーの位置（キメラ4）
-                      className="absolute top-14 lg:top-52 left-1/2 -translate-x-1/2 w-20 lg:w-32 z-50 flex flex-col pointer-events-auto">
-                      <div className="flex items-center justify-between w-full mb-0.5 px-1">
-                        <div className="flex items-center gap-1">
-                          <div className="w-1 h-1 bg-red-400 shadow-[0_0_8px_#f87171] rotate-45" />
-                          <span className="font-orbitron font-bold text-[6px] lg:text-[10px] text-red-400 tracking-[0.1em] drop-shadow-[0_0_5px_rgba(244,63,94,0.5)]">
-                            {enemy2.name.toUpperCase()}
-                          </span>
-                        </div>
-                        <span className="font-orbitron font-bold text-[6px] lg:text-[8px] text-red-100/90 tabular-nums">
-                          {Math.ceil(hpRatio * 100)}%
-                        </span>
-                      </div>
-                      <div className="w-full mt-0.5 border border-white/80 bg-slate-900/80 p-[1.5px] shadow-[0_0_8px_rgba(255,255,255,0.2)]">
-                        <div className="h-1 lg:h-1.5 w-full bg-transparent">
-                          <motion.div
-                            className="h-full hp-bar-fill-enemy float-right"
-                            style={{ transformOrigin: "right" }}
-                            animate={{ width: `${hpRatio * 100}%` }}
-                            transition={{ duration: 0.3 }}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  )}
+                  className="absolute inset-[-10px] rounded-full border border-amber-300/30 pointer-events-none"
+                  animate={{ scale: [1, 1.15, 1], opacity: [0.2, 0, 0.2] }}
+                  transition={{ duration: 2.5, repeat: Infinity, ease: 'easeOut' }}
+                />
+              )}
+            </motion.button>
 
-                  {/* ダメージ表示ポップアップ */}
-                  <AnimatePresence>
-                    {showDamageNumbers.filter(d => d.targetId === enemy2.id).map(d => (
-                      <motion.div key={d.id} className={`absolute top-10 lg:top-14 left-1/2 -translate-x-1/2 z-50 font-noto font-black text-2xl lg:text-5xl italic ${d.type === 'ultimate' ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 to-violet-300 drop-shadow-[0_0_15px_rgba(139,92,246,0.8)]' : 'text-red-500 drop-shadow-[0_0_12px_rgba(0,0,0,0.9)]'} whitespace-nowrap`} initial={{ opacity: 1, y: 10, scale: 1.5 }} animate={{ opacity: 0, y: -40, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1 }}>
-                        {d.amount}
-                      </motion.div>
-                    ))}
-                  </AnimatePresence>
+            {/* Right Button - HEAL */}
+            <motion.button
+              onClick={handleHeal}
+              disabled={healCooldown > 0 || battlePhase !== 'fighting'}
+              className={`w-20 h-20 lg:w-24 lg:h-24 mb-2 lg:mb-4 rounded-full flex flex-col items-center justify-center overflow-hidden group transition-all duration-300 relative border-2 backdrop-blur-md hover:scale-105 active:scale-95 ${healCooldown > 0 || battlePhase !== 'fighting'
+                ? 'bg-[#090e17]/90 border-slate-700/50 cursor-not-allowed'
+                : 'bg-emerald-950/60 border-emerald-400/60 hover:bg-emerald-900/80 hover:border-emerald-300/80 hover:shadow-[0_0_20px_rgba(16,185,129,0.5)] cursor-pointer'
+                }`}
+            >
+              {/* Tech grid bg */}
+              <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPjxwYXRoIGQ9Ik0wLDggTDgsMCBMMCwwIFoiIGZpbGw9InJnYmEoMCwgMCwgMCwgMC4xNSkiLz48L3N2Zz4=')] pointer-events-none mix-blend-overlay" />
 
-                  {/* 個別キメラ4斬撃エフェクト (立ち絵の中心に完全同期) */}
-                  <AnimatePresence>
-                    {showDamageNumbers.filter(d => d.targetId === enemy2.id && (d.type === 'damage' || d.type === 'critical')).map(d => (
-                      <div key={`fx-wrap-${d.id}`} className="absolute inset-0 flex items-center justify-center pointer-events-none z-50 mix-blend-screen scale-[1.0] lg:scale-[1.3]">
-                        <SpriteAnimator
-                          src="/battle/戦闘エフェクトアニメ12/320×240/pipo-btleffect084.png"
-                          frameWidth={120}
-                          frameHeight={120}
-                          columns={10}
-                          totalFrames={10}
-                          fps={15}
-                          loop={false}
-                          scale={1.8}
-                          blendMode="normal"
-                        />
-                      </div>
-                    ))}
-                  </AnimatePresence>
+              <div className="flex flex-col items-center gap-1 z-10">
+                <span className={`font-noto font-bold text-[12px] lg:text-base tracking-[0.1em] lg:tracking-[0.2em] ${healCooldown <= 0 ? 'text-emerald-300 drop-shadow-[0_0_5px_rgba(16,185,129,0.6)]' : 'text-slate-600'}`}>回復</span>
+                {healCooldown > 0 ? (
+                  <span className="font-orbitron font-bold text-[8px] lg:text-[12px] text-emerald-700">CD:{(healCooldown / 1000).toFixed(1)}</span>
+                ) : (
+                  <div className="flex gap-[2px]">
+                    <div className="w-1 h-1 lg:w-1.5 lg:h-1.5 bg-emerald-300 rounded-full shadow-[0_0_5px_rgba(16,185,129,0.6)]" />
+                    <div className="w-1 h-1 lg:w-1.5 lg:h-1.5 bg-emerald-300 rounded-full shadow-[0_0_5px_rgba(16,185,129,0.6)] opacity-70" />
+                    <div className="w-1 h-1 lg:w-1.5 lg:h-1.5 bg-emerald-300 rounded-full shadow-[0_0_5px_rgba(16,185,129,0.6)] opacity-40" />
+                  </div>
+                )}
+              </div>
+            </motion.button>
 
-                  <img
-                    src="/character/kimera4.png"
-                    alt="kimera4"
-                    className={`w-full h-full object-contain drop-shadow-md ${enemy2.flashTimer > 0 ? 'animate-battle-hit-flash' : ''}`}
-                  />
-                </motion.div>
-              );
-            })()}
-
-            {/* キメラ5 (右・一番右後ろ。立体配置 - 縦並びの上段) */}
-            {(() => {
-              const enemy3 = enemies.find(e => e.id === 'enemy3');
-              if (!enemy3) return null;
-              const isAttacking = activeAttacksCompat.some(a => a.enemyId === enemy3.id);
-              const isCurrentTurn = TURN_ORDER[currentTurnIndex % TURN_ORDER.length] === enemy3.id && turnPhase !== 'turn_delay';
-              const hpRatio = enemy3.hp / enemy3.maxHp;
-              return (
-                <motion.div
-                  id={`char-${enemy3.id}`}
-                  className="absolute top-[180px] lg:top-0 w-64 h-56 lg:w-[500px] lg:h-[620px] flex items-center justify-center z-10 pointer-events-none"
-                  animate={{
-                    x: isAttacking ? 30 : (isCurrentTurn && turnPhase === 'enemy_resolve' ? 30 : 0) + 110, // 右列縦並び(+110px)、攻撃時は前進距離を短縮(+30px)
-                    y: -180, // さらに上に移動！
-                    opacity: enemy3.isDead ? 0 : 1,
-                    scale: enemy3.isDead ? 0.95 : 1,
-                    filter: enemy3.isDead ? "blur(4px) grayscale(100%)" : "blur(0px) grayscale(0%)"
-                  }}
-                  transition={{ duration: enemy3.isDead ? 1.5 : 0.2, ease: "easeOut" }}
-                >
-                  {/* 個別HPバー (立ち絵の上部に固定) */}
-                  {!enemy3.isDead && (
-                    <div
-                      // 敵のHPバーの位置（キメラ5）
-                      className="absolute top-2 lg:top-32 left-1/2 -translate-x-1/2 w-20 lg:w-32 z-50 flex flex-col pointer-events-auto">
-                      <div className="flex items-center justify-between w-full mb-0.5 px-1">
-                        <div className="flex items-center gap-1">
-                          <div className="w-1 h-1 bg-red-400 shadow-[0_0_8px_#f87171] rotate-45" />
-                          <span className="font-orbitron font-bold text-[6px] lg:text-[10px] text-red-400 tracking-[0.1em] drop-shadow-[0_0_5px_rgba(244,63,94,0.5)]">
-                            {enemy3.name.toUpperCase()}
-                          </span>
-                        </div>
-                        <span className="font-orbitron font-bold text-[6px] lg:text-[8px] text-red-100/90 tabular-nums">
-                          {Math.ceil(hpRatio * 100)}%
-                        </span>
-                      </div>
-                      <div className="w-full mt-0.5 border border-white/80 bg-slate-900/80 p-[1.5px] shadow-[0_0_8px_rgba(255,255,255,0.2)]">
-                        <div className="h-1 lg:h-1.5 w-full bg-transparent">
-                          <motion.div
-                            className="h-full hp-bar-fill-enemy float-right"
-                            style={{ transformOrigin: "right" }}
-                            animate={{ width: `${hpRatio * 100}%` }}
-                            transition={{ duration: 0.3 }}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* ダメージ表示ポップアップ */}
-                  <AnimatePresence>
-                    {showDamageNumbers.filter(d => d.targetId === enemy3.id).map(d => (
-                      <motion.div key={d.id} className={`absolute top-10 lg:top-14 left-1/2 -translate-x-1/2 z-50 font-noto font-black text-2xl lg:text-5xl italic ${d.type === 'ultimate' ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 to-violet-300 drop-shadow-[0_0_15px_rgba(139,92,246,0.8)]' : 'text-red-500 drop-shadow-[0_0_12px_rgba(0,0,0,0.9)]'} whitespace-nowrap`} initial={{ opacity: 1, y: 10, scale: 1.5 }} animate={{ opacity: 0, y: -40, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1 }}>
-                        {d.amount}
-                      </motion.div>
-                    ))}
-                  </AnimatePresence>
-
-                  {/* 個別キメラ5斬撃エフェクト (立ち絵の中心に完全同期) */}
-                  <AnimatePresence>
-                    {showDamageNumbers.filter(d => d.targetId === enemy3.id && (d.type === 'damage' || d.type === 'critical')).map(d => (
-                      <div key={`fx-wrap-${d.id}`} className="absolute inset-0 flex items-center justify-center pointer-events-none z-50 mix-blend-screen scale-[1.0] lg:scale-[1.3]">
-                        <SpriteAnimator
-                          src="/battle/戦闘エフェクトアニメ12/320×240/pipo-btleffect084.png"
-                          frameWidth={120}
-                          frameHeight={120}
-                          columns={10}
-                          totalFrames={10}
-                          fps={15}
-                          loop={false}
-                          scale={1.8}
-                          blendMode="normal"
-                        />
-                      </div>
-                    ))}
-                  </  AnimatePresence>
-
-                  <img
-                    src="/character/kimera5.png"
-                    alt="kimera5"
-                    className={`w-full h-full object-contain drop-shadow-md ${enemy3.flashTimer > 0 ? 'animate-battle-hit-flash' : ''}`}
-                  />
-                </motion.div>
-              );
-            })()}
-
-            {/* 手前の黒騎士 (enemy1 - 左・一番手前) */}
-            {(() => {
-              const enemy1 = enemies.find(e => e.id === 'enemy1');
-              if (!enemy1) return null;
-              const isAttacking = activeAttacksCompat.some(a => a.enemyId === enemy1.id);
-              const isCurrentTurn = TURN_ORDER[currentTurnIndex % TURN_ORDER.length] === enemy1.id && turnPhase !== 'turn_delay';
-              const hpRatio = enemy1.hp / enemy1.maxHp;
-              return (
-                <motion.div
-                  id={`char-${enemy1.id}`}
-                  className={`absolute ml-40 lg:ml-0 top-[86px] lg:top-[125px] w-40 h-52 lg:w-64 lg:h-80 flex items-center justify-center z-40 ${!enemy1.isDead && enemy1.flashTimer > 0 ? 'animate-battle-hit-flash' : ''}`}
-                  animate={{
-                    x: isAttacking ? -150 : (isCurrentTurn && turnPhase === 'enemy_resolve' ? -150 : -120), // 攻撃時はさらに左へ踏み込む(-150px)
-                    scale: isAttacking ? 1.05 : (enemy1.isDead ? 0.95 : 1),
-                    opacity: enemy1.isDead ? 0 : 1,
-                    filter: enemy1.isDead ? "blur(4px) grayscale(100%)" : "blur(0px) grayscale(0%)"
-                  }}
-                  transition={{ duration: enemy1.isDead ? 1.5 : 0.2, ease: "easeOut" }}
-                >
-                  {/* 個別HPバー (立ち絵の上部に固定) */}
-                  {!enemy1.isDead && (
-                    <div
-                      // 敵のHPバーの位置（黒騎士）
-                      className="absolute -top-10 lg:-top-[35px] left-1/2 -translate-x-1/2 w-20 lg:w-32 z-50 flex flex-col pointer-events-auto">
-                      <div className="flex items-center justify-between w-full mb-0.5 px-1">
-                        <div className="flex items-center gap-1">
-                          <div className="w-1 h-1 bg-red-400 shadow-[0_0_8px_#f87171] rotate-45" />
-                          <span className="font-orbitron font-bold text-[6px] lg:text-[10px] text-red-400 tracking-[0.1em] drop-shadow-[0_0_5px_rgba(244,63,94,0.5)]">
-                            {enemy1.name.toUpperCase()}
-                          </span>
-                        </div>
-                        <span className="font-orbitron font-bold text-[6px] lg:text-[8px] text-red-100/90 tabular-nums">
-                          {Math.ceil(hpRatio * 100)}%
-                        </span>
-                      </div>
-                      <div className="w-full mt-0.5 border border-white/80 bg-slate-900/80 p-[1.5px] shadow-[0_0_8px_rgba(255,255,255,0.2)]">
-                        <div className="h-1 lg:h-1.5 w-full bg-transparent">
-                          <motion.div
-                            className="h-full hp-bar-fill-enemy float-right"
-                            style={{ transformOrigin: "right" }}
-                            animate={{ width: `${hpRatio * 100}%` }}
-                            transition={{ duration: 0.3 }}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* ダメージ表示ポップアップ */}
-                  <AnimatePresence>
-                    {showDamageNumbers.filter(d => d.targetId === enemy1.id).map(d => (
-                      <motion.div key={d.id} className={`absolute top-8 lg:top-12 left-1/2 -translate-x-1/2 z-50 font-noto font-black text-2xl lg:text-5xl italic ${d.type === 'ultimate' ? 'text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 to-violet-300 drop-shadow-[0_0_15px_rgba(139,92,246,0.8)]' : 'text-red-500 drop-shadow-[0_0_12px_rgba(0,0,0,0.9)]'} whitespace-nowrap`} initial={{ opacity: 1, y: 10, scale: 1.5 }} animate={{ opacity: 0, y: -40, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1 }}>
-                        {d.amount}
-                      </motion.div>
-                    ))}
-                  </AnimatePresence>
-
-                  {/* 個別黒騎士斬撃エフェクト (立ち絵の中心に完全同期) */}
-                  <AnimatePresence>
-                    {showDamageNumbers.filter(d => d.targetId === enemy1.id && (d.type === 'damage' || d.type === 'critical')).map(d => (
-                      <div key={`fx-wrap-${d.id}`} className="absolute inset-0 flex items-center justify-center pointer-events-none z-50 mix-blend-screen scale-[1.0] lg:scale-[1.3] -translate-y-12">
-                        <SpriteAnimator
-                          src="/battle/戦闘エフェクトアニメ12/320×240/pipo-btleffect084.png"
-                          frameWidth={120}
-                          frameHeight={120}
-                          columns={10}
-                          totalFrames={10}
-                          fps={15}
-                          loop={false}
-                          scale={1.8}
-                          blendMode="normal"
-                        />
-                      </div>
-                    ))}
-                  </AnimatePresence>
-
-                  <img src={enemy1.image} alt={enemy1.name} className={`pointer-events-none select-none w-full h-full object-contain scale-[0.85] -translate-y-12 drop-shadow-[0_0_15px_rgba(244,63,94,0.3)]`} style={{ WebkitTouchCallout: 'none' }} draggable="false" />
-                </motion.div>
-              );
-            })()}
 
 
           </div>
         </div>
 
-        {/* Top Right Controls */}
-        <div className="absolute top-3 right-6 lg:top-5 lg:right-10 flex gap-2 z-50">
-          <button onClick={() => setIsPaused(!isPaused)} className={`px-2 py-1 lg:px-3 lg:py-1.5 bg-[#0a1628]/60 backdrop-blur-sm border ${isPaused ? 'border-amber-400 text-amber-300 shadow-[0_0_10px_rgba(251,191,36,0.3)]' : 'border-slate-600/30 text-slate-400'} font-noto text-[8px] lg:text-[10px] tracking-[0.2em] rounded hover:border-slate-400/50 hover:text-slate-200 transition-all`}>
-            {isPaused ? '再開' : '一時停止'}
-          </button>
-          {(localStorage.getItem('cleared_mutsunori_good_end') === 'true' || localStorage.getItem('cleared_mika_good_end') === 'true' || localStorage.getItem('cleared_nagisa_good_end') === 'true' || localStorage.getItem('cleared_akane_good_end') === 'true') && (
-            <button onClick={handleResultClose} className="px-2 py-1 lg:px-3 lg:py-1.5 bg-[#0a1628]/60 backdrop-blur-sm border border-slate-600/30 text-slate-400 font-noto text-[8px] lg:text-[10px] tracking-[0.2em] rounded hover:border-slate-400/50 hover:text-slate-200 transition-all">スキップ</button>
-          )}
-        </div>
-      </div>
-
-
-
-      {/* ═══════════════════════════════════════════════════════════════
-           BOTTOM HUD (Cyber Radar & Sync)
-         ═══════════════════════════════════════════════════════════════ */}
-
-      {/* Dark gradient film at the bottom to make the UI pop */}
-      <div className="absolute bottom-0 inset-x-0 h-[40vh] bg-gradient-to-t from-black via-black/80 to-transparent pointer-events-none z-30" />
-
-      <div className="absolute inset-0 z-40 pointer-events-none">
-
-
-
-
-        {/* ── Action Buttons (Moved below allies) ── */}
-        <div className="absolute bottom-4 left-0 lg:bottom-12 lg:left-8 w-1/2 pointer-events-auto flex items-end justify-center gap-2 lg:gap-8 drop-shadow-[0_0_20px_rgba(34,211,238,0.2)] -translate-x-8 lg:-translate-x-20">
-
-          {/* Left Button - ULTIMATE (Reactor Core) */}
-          <motion.button
-            onClick={handleAkaneUltimate}
-            disabled={syncRate < SYNC_COST_ULTIMATE || battlePhase !== 'fighting'}
-            className={`relative w-[108px] h-[108px] lg:w-32 lg:h-32 rounded-full flex flex-col items-center justify-center transition-all duration-300 shadow-[0_0_30px_rgba(0,0,0,0.8)] backdrop-blur-md hover:scale-105 active:scale-95 ${syncRate < SYNC_COST_ULTIMATE || battlePhase !== 'fighting'
-              ? 'bg-[#0a0a0a]/90 cursor-not-allowed grayscale'
-              : 'bg-[#1a0a03]/80 hover:bg-[#2a1005]/90 hover:shadow-[0_0_30px_rgba(251,191,36,0.5)] cursor-pointer'
-              }`}
-          >
-            {/* Circular Progress Gauge */}
-            <svg className="absolute inset-0 w-full h-full -rotate-90 pointer-events-none" viewBox="0 0 100 100" style={{ overflow: 'visible' }}>
-              <circle cx="50" cy="50" r="48" fill="none" className="stroke-amber-900/40" strokeWidth="3" />
-              <circle
-                cx="50"
-                cy="50"
-                r="48"
-                fill="none"
-                className="stroke-amber-400 drop-shadow-[0_0_5px_rgba(251,191,36,0.8)]"
-                strokeWidth="3"
-                strokeDasharray="301.59"
-                strokeDashoffset={301.59 - (301.59 * Math.min(syncRate, SYNC_COST_ULTIMATE) / SYNC_COST_ULTIMATE)}
-                strokeLinecap="round"
-                style={{ transition: 'stroke-dashoffset 0.3s ease-out' }}
-              />
-            </svg>
-
-            {/* Sync Rate Glow */}
-            <div
-              className="absolute inset-0 rounded-full blur-xl mix-blend-screen transition-opacity duration-300 pointer-events-none"
-              style={{
-                background: syncRate >= SYNC_COST_ULTIMATE ? 'radial-gradient(circle, rgba(251,191,36,0.4) 0%, transparent 70%)' : 'none',
-                opacity: syncRate / 100
-              }}
-            />
-
-            {/* Spinning Rings */}
-            <div className={`absolute inset-0.5 lg:inset-2 rounded-full border border-amber-400/15 ${syncRate >= SYNC_COST_ULTIMATE ? 'animate-[spin_3s_linear_infinite]' : ''}`} />
-            <div className={`absolute inset-1.5 lg:inset-4 rounded-full border border-amber-300/10 border-dashed ${syncRate >= SYNC_COST_ULTIMATE ? 'animate-[spin_4s_linear_infinite_reverse]' : ''}`} />
-
-            <div className="relative z-10 flex flex-col items-center">
-              <div className="font-rajdhani font-bold text-sm lg:text-5xl text-amber-400 drop-shadow-[0_0_8px_rgba(251,191,36,0.7)] leading-none mb-0 lg:mb-1">
-                {Math.floor(syncRate)}<span className="text-[8px] lg:text-xl opacity-80">%</span>
-              </div>
-              <div className="font-noto font-bold text-[10px] lg:text-xs text-amber-200 tracking-[0.15em] lg:tracking-[0.3em] drop-shadow-[0_0_5px_rgba(251,191,36,0.5)]">
-                必殺技
-              </div>
-            </div>
-
-            {/* Cost Indicator removed per user request */}
-
-            {/* Fill Level visualization */}
-            {syncRate >= SYNC_COST_ULTIMATE && (
-              <motion.div
-                className="absolute inset-[-10px] rounded-full border border-amber-300/30 pointer-events-none"
-                animate={{ scale: [1, 1.15, 1], opacity: [0.2, 0, 0.2] }}
-                transition={{ duration: 2.5, repeat: Infinity, ease: 'easeOut' }}
-              />
-            )}
-          </motion.button>
-
-          {/* Right Button - HEAL */}
-          <motion.button
-            onClick={handleHeal}
-            disabled={healCooldown > 0 || battlePhase !== 'fighting'}
-            className={`w-20 h-20 lg:w-24 lg:h-24 mb-2 lg:mb-4 rounded-full flex flex-col items-center justify-center overflow-hidden group transition-all duration-300 relative border-2 backdrop-blur-md hover:scale-105 active:scale-95 ${healCooldown > 0 || battlePhase !== 'fighting'
-              ? 'bg-[#090e17]/90 border-slate-700/50 cursor-not-allowed'
-              : 'bg-emerald-950/60 border-emerald-400/60 hover:bg-emerald-900/80 hover:border-emerald-300/80 hover:shadow-[0_0_20px_rgba(16,185,129,0.5)] cursor-pointer'
-              }`}
-          >
-            {/* Tech grid bg */}
-            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPjxwYXRoIGQ9Ik0wLDggTDgsMCBMMCwwIFoiIGZpbGw9InJnYmEoMCwgMCwgMCwgMC4xNSkiLz48L3N2Zz4=')] pointer-events-none mix-blend-overlay" />
-
-            <div className="flex flex-col items-center gap-1 z-10">
-              <span className={`font-noto font-bold text-[12px] lg:text-base tracking-[0.1em] lg:tracking-[0.2em] ${healCooldown <= 0 ? 'text-emerald-300 drop-shadow-[0_0_5px_rgba(16,185,129,0.6)]' : 'text-slate-600'}`}>回復</span>
-              {healCooldown > 0 ? (
-                <span className="font-orbitron font-bold text-[8px] lg:text-[12px] text-emerald-700">CD:{(healCooldown / 1000).toFixed(1)}</span>
-              ) : (
-                <div className="flex gap-[2px]">
-                  <div className="w-1 h-1 lg:w-1.5 lg:h-1.5 bg-emerald-300 rounded-full shadow-[0_0_5px_rgba(16,185,129,0.6)]" />
-                  <div className="w-1 h-1 lg:w-1.5 lg:h-1.5 bg-emerald-300 rounded-full shadow-[0_0_5px_rgba(16,185,129,0.6)] opacity-70" />
-                  <div className="w-1 h-1 lg:w-1.5 lg:h-1.5 bg-emerald-300 rounded-full shadow-[0_0_5px_rgba(16,185,129,0.6)] opacity-40" />
-                </div>
-              )}
-            </div>
-          </motion.button>
-
-
-
-        </div>
-      </div>
-
-      {/* ═══════════════════════════════════════════════════════════════
+        {/* ═══════════════════════════════════════════════════════════════
            VICTORY / DEFEAT
          ═══════════════════════════════════════════════════════════════ */}
-      <AnimatePresence>
-        {(battlePhase === 'victory' || battlePhase === 'defeat') && (
-          <motion.div className="absolute inset-0 z-[100] flex flex-col items-center justify-center pointer-events-auto" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
-            <div className={`absolute inset-0 ${battlePhase === 'victory' ? 'bg-[#030712]/90' : 'bg-[#1e0505]/90'} backdrop-blur-md`} />
+        <AnimatePresence>
+          {(battlePhase === 'victory' || battlePhase === 'defeat') && (
+            <motion.div className="absolute inset-0 z-[100] flex flex-col items-center justify-center pointer-events-auto" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
+              <div className={`absolute inset-0 ${battlePhase === 'victory' ? 'bg-[#030712]/90' : 'bg-[#1e0505]/90'} backdrop-blur-md`} />
 
-            {/* Cinematic light beams */}
-            <motion.div
-              className={`absolute top-1/2 left-0 w-full h-[30vh] -translate-y-1/2 ${battlePhase === 'victory' ? 'bg-gradient-to-r from-transparent via-cyan-900/20 to-transparent' : 'bg-gradient-to-r from-transparent via-red-900/20 to-transparent'} mix-blend-screen skew-y-[-5deg]`}
-              initial={{ scaleY: 0, opacity: 0 }}
-              animate={{ scaleY: 1, opacity: 1 }}
-              transition={{ duration: 1.5, ease: 'easeOut' }}
-            />
+              {/* Cinematic light beams */}
+              <motion.div
+                className={`absolute top-1/2 left-0 w-full h-[30vh] -translate-y-1/2 ${battlePhase === 'victory' ? 'bg-gradient-to-r from-transparent via-cyan-900/20 to-transparent' : 'bg-gradient-to-r from-transparent via-red-900/20 to-transparent'} mix-blend-screen skew-y-[-5deg]`}
+                initial={{ scaleY: 0, opacity: 0 }}
+                animate={{ scaleY: 1, opacity: 1 }}
+                transition={{ duration: 1.5, ease: 'easeOut' }}
+              />
 
-            <motion.div className="relative z-10 text-center flex flex-col items-center" initial={{ scale: 0.8, opacity: 0, y: 20 }} animate={{ scale: 1, opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}>
-              <h2 className={`font-noto text-5xl lg:text-7xl font-black tracking-[0.2em] py-2 drop-shadow-[0_0_15px_rgba(0,0,0,0.8)] ${battlePhase === 'victory' ? 'text-transparent bg-clip-text bg-gradient-to-b from-white via-cyan-100 to-cyan-500' : 'text-transparent bg-clip-text bg-gradient-to-b from-white via-red-100 to-red-600'}`}>
-                {battlePhase === 'victory' ? '勝利' : '敗北'}
-              </h2>
+              <motion.div className="relative z-10 text-center flex flex-col items-center" initial={{ scale: 0.8, opacity: 0, y: 20 }} animate={{ scale: 1, opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}>
+                <h2 className={`font-noto text-5xl lg:text-7xl font-black tracking-[0.2em] py-2 drop-shadow-[0_0_15px_rgba(0,0,0,0.8)] ${battlePhase === 'victory' ? 'text-transparent bg-clip-text bg-gradient-to-b from-white via-cyan-100 to-cyan-500' : 'text-transparent bg-clip-text bg-gradient-to-b from-white via-red-100 to-red-600'}`}>
+                  {battlePhase === 'victory' ? '勝利' : '敗北'}
+                </h2>
 
-              <motion.button
-                onClick={handleResultClose}
-                className={`mt-12 px-12 py-4 font-noto font-bold text-sm tracking-[0.4em] rounded-sm backdrop-blur-md border transition-all duration-300 relative overflow-hidden group ${battlePhase === 'victory' ? 'bg-cyan-950/30 border-cyan-500/50 text-cyan-50 hover:bg-cyan-900/60 hover:border-cyan-300 hover:shadow-[0_0_30px_rgba(34,211,238,0.4)]' : 'bg-red-950/30 border-red-500/50 text-red-50 hover:bg-red-900/60 hover:border-red-300 hover:shadow-[0_0_30px_rgba(239,68,68,0.4)]'}`}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-r from-transparent ${battlePhase === 'victory' ? 'via-cyan-400/20' : 'via-red-400/20'} to-transparent translate-x-[-100%] group-hover:translate-x-[100%]`} style={{ transitionDuration: '1s' }} />
-                <span className="relative z-10">{battlePhase === 'victory' ? '次へ進む' : 'もう一度戦う'}</span>
-              </motion.button>
+                <motion.button
+                  onClick={handleResultClose}
+                  className={`mt-12 px-12 py-4 font-noto font-bold text-sm tracking-[0.4em] rounded-sm backdrop-blur-md border transition-all duration-300 relative overflow-hidden group ${battlePhase === 'victory' ? 'bg-cyan-950/30 border-cyan-500/50 text-cyan-50 hover:bg-cyan-900/60 hover:border-cyan-300 hover:shadow-[0_0_30px_rgba(34,211,238,0.4)]' : 'bg-red-950/30 border-red-500/50 text-red-50 hover:bg-red-900/60 hover:border-red-300 hover:shadow-[0_0_30px_rgba(239,68,68,0.4)]'}`}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-r from-transparent ${battlePhase === 'victory' ? 'via-cyan-400/20' : 'via-red-400/20'} to-transparent translate-x-[-100%] group-hover:translate-x-[100%]`} style={{ transitionDuration: '1s' }} />
+                  <span className="relative z-10">{battlePhase === 'victory' ? '次へ進む' : 'もう一度戦う'}</span>
+                </motion.button>
+              </motion.div>
             </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          )}
+        </AnimatePresence>
+      </div>
     </div>
   );
 }

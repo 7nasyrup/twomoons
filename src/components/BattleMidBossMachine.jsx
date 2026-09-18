@@ -89,6 +89,23 @@ export default function BattleMidBossMachine({ onComplete, playBGM, stopBGM, pla
   const [battlePhase, setBattlePhase] = useState('intro');
   const [battleLog, setBattleLog] = useState([]);
 
+  // Mobile Approach 2 Scaling State
+  const [mobileScale, setMobileScale] = useState(1);
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setMobileScale(1);
+      } else {
+        const scaleX = window.innerWidth / 852;
+        const scaleY = window.innerHeight / 393;
+        setMobileScale(Math.min(scaleX, scaleY));
+      }
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   // ─── Turn State ───
   const [currentTurnIndex, setCurrentTurnIndex] = useState(0);  // index in TURN_ORDER
   const [turnPhase, setTurnPhase] = useState('waiting');  // 'waiting' | 'ally_windup' | 'ally_attack' | 'enemy_windup' | 'enemy_resolve' | 'counter_attack' | 'turn_delay'
@@ -1126,7 +1143,23 @@ export default function BattleMidBossMachine({ onComplete, playBGM, stopBGM, pla
   // RENDER
   // ═══════════════════════════════════════════════════════════════════════════════
   return (
-    <div className={`absolute inset-0 w-full h-full bg-[#090e17] overflow-hidden select-none z-50 flex flex-col font-orbitron ${shakeActive ? 'animate-battle-shake' : ''}`}>
+    <div className={`absolute inset-0 w-full h-full bg-[#090e17] overflow-hidden select-none z-50 flex items-center justify-center font-orbitron ${shakeActive ? 'animate-battle-shake' : ''}`}>
+      <div 
+        className="flex flex-col lg:w-full lg:h-full lg:static relative overflow-hidden"
+        style={
+          typeof window !== 'undefined' && window.innerWidth < 1024 
+            ? {
+                width: '852px',
+                height: '393px',
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: `translate(-50%, -50%) scale(${mobileScale})`,
+                transformOrigin: 'center'
+              } 
+            : { width: '100%', height: '100%' }
+        }
+      >
       <style>{`
         @keyframes glint-shrink-anim {
           0% { transform: scale(2.5) rotate(0deg); opacity: 0; }
@@ -1856,6 +1889,7 @@ export default function BattleMidBossMachine({ onComplete, playBGM, stopBGM, pla
           </motion.div>
         )}
       </AnimatePresence>
+      </div>
     </div>
   );
 }
