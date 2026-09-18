@@ -5,7 +5,7 @@ import DialogueBox from './DialogueBox';
 // ═══════════════════════════════════════════════════════════════════════════════
 // CONSTANTS & TUNING
 // ═══════════════════════════════════════════════════════════════════════════════
-const TURN_DELAY = 600;             // Delay between turns (ms) (Allows time for heal/absorb and reading next action)
+const TURN_DELAY = 396;             // Delay between turns (ms) (Allows time for heal/absorb and reading next action)
 const HEAL_COOLDOWN = 12000;
 
 // Damage values
@@ -337,7 +337,7 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
       console.log('[DEBUG] executeAllyAttack: Setting turnPhase to ally_attack...');
       setTurnPhase('ally_attack');
       stateRef.current.turnPhase = 'ally_attack';
-      setTurnTimer(150);
+      setTurnTimer(100);
       stateRef.current.turnTimer = 150;
       console.log('[DEBUG] executeAllyAttack COMPLETED successfully.');
     } catch (err) {
@@ -1007,7 +1007,7 @@ export default function BattleTutorial({ onComplete, playBGM, stopBGM, playSE })
           stateRef.current.activeAttacks = [];
           setTurnPhase('enemy_resolve');
           stateRef.current.turnPhase = 'enemy_resolve';
-          setTurnTimer(150);
+          setTurnTimer(100);
           stateRef.current.turnTimer = 150;
         }
       }

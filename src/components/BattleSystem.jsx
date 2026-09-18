@@ -5,7 +5,7 @@ import SpriteAnimator from './SpriteAnimator';
 // ═══════════════════════════════════════════════════════════════════════════════
 // CONSTANTS & TUNING
 // ═══════════════════════════════════════════════════════════════════════════════
-const TURN_DELAY = 1500;             // Delay between turns (ms) (Allows time for heal/absorb and reading next action)
+const TURN_DELAY = 990;             // Delay between turns (ms) (Allows time for heal/absorb and reading next action)
 const HEAL_COOLDOWN = 12000;
 
 // Damage values
@@ -207,7 +207,7 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
     }
     setTurnPhase('ally_attack');
     stateRef.current.turnPhase = 'ally_attack';
-    setTurnTimer(150);
+    setTurnTimer(100);
   }, [addLog, spawnDamageNumber, addSync, playSE]);
 
   const triggerSakuraNote = useCallback(() => {
@@ -525,7 +525,7 @@ export default function BattleSystem({ onComplete, playBGM, stopBGM, playSE }) {
           setActiveAttacks([]);
           stateRef.current.activeAttacks = [];
           setTurnPhase('enemy_resolve');
-          setTurnTimer(150); // Visual step forward duration (snappy!)
+          setTurnTimer(100); // Visual step forward duration (snappy!)
         }
       }
 

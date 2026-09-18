@@ -6,7 +6,7 @@ import { assetPath } from '../utils/assetPath';
 // ═══════════════════════════════════════════════════════════════════════════════
 // CONSTANTS & TUNING
 // ═══════════════════════════════════════════════════════════════════════════════
-const TURN_DELAY = 600;             // Delay between turns (ms) (Allows time for heal/absorb and reading next action)
+const TURN_DELAY = 396;             // Delay between turns (ms) (Allows time for heal/absorb and reading next action)
 const HEAL_COOLDOWN = 12000;
 
 // Damage values
@@ -233,7 +233,7 @@ export default function BattleFinalMichiru({ onComplete, playBGM, stopBGM, playS
     }
     setTurnPhase('ally_attack');
     stateRef.current.turnPhase = 'ally_attack';
-    setTurnTimer(150);
+    setTurnTimer(100);
   }, [addLog, spawnDamageNumber, addSync, playSE, turnOrder]);
 
   const triggerSakuraNote = useCallback((type = 'default') => {
@@ -675,7 +675,7 @@ export default function BattleFinalMichiru({ onComplete, playBGM, stopBGM, playS
           setActiveAttacks([]);
           stateRef.current.activeAttacks = [];
           setTurnPhase('enemy_resolve');
-          setTurnTimer(150); // Visual step forward duration (snappy!)
+          setTurnTimer(100); // Visual step forward duration (snappy!)
         }
       }
 

@@ -44,7 +44,6 @@ export const scenarioData = [
   {
     "scene": "朔良の部屋",
     "speaker": "朔良",
-    "role": "SAKURA",
     "text": "「ん……っ……」",
     "bg": "black",
     "style": "novel",
@@ -2559,7 +2558,8 @@ export const scenarioData = [
     "scene": "キャンパスの裏手",
     "text": "昼休み。すぐに姿を消してしまったミカくんが気になり、私はキャンパスの裏手を歩いていた。",
     "bg": "/scene/university_back.png",
-    "bgm": "Normal_Morning.mp3"
+    "bgm": "Normal_Morning.mp3",
+    "se":"+school_bell.mp3"
   },
   {
     "scene": "キャンパスの裏手",
