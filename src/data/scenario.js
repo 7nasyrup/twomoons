@@ -44,6 +44,7 @@ export const scenarioData = [
   {
     "scene": "朔良の部屋",
     "speaker": "朔良",
+    "role": "SAKURA",
     "text": "「ん……っ……」",
     "bg": "black",
     "style": "novel",

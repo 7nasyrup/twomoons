@@ -15,10 +15,7 @@ import SettingsModal from './components/SettingsModal';
 import { Settings } from 'lucide-react';
 import { useAudioSystem } from './hooks/useAudioSystem';
 // Cache bust: 0.1.1 for mobile devices
-import TypingGame from './components/TypingGame';
 import SearchAndLearning from './components/SearchAndLearning';
-import SilentScore from './components/SilentScore';
-import TapCommunication from './components/TapCommunication';
 import EyeOfProfiler from './components/EyeOfProfiler';
 import FragmentCollect from './components/FragmentCollect';
 import FragmentCollectNagisa from './components/FragmentCollectNagisa';
@@ -26,7 +23,6 @@ import FragmentCollectMika from './components/FragmentCollectMika';
 import FragmentCollectAkane from './components/FragmentCollectAkane';
 import FragmentCollectSolo from './components/FragmentCollectSolo';
 import PortraitWarningOverlay from './components/PortraitWarningOverlay';
-import StealthGame from './components/StealthGame';
 import ExplorationPhase from './components/ExplorationPhase';
 import StruggleGame from './components/StruggleGame';
 import WarehouseExploration from './components/WarehouseExploration';
@@ -43,8 +39,6 @@ import BattleFinalAkane from './components/BattleFinalAkane';
 import BattleMidBossAkane from './components/BattleMidBossAkane';
 import BattleFinalMika from './components/BattleFinalMika';
 import BattleSystem from './components/BattleSystem';
-import BattleSystemPlot4 from './components/BattleSystemPlot4';
-import BattleSystemPlot2 from './components/BattleSystemPlot2';
 import BattleSystemPlot5 from './components/BattleSystemPlot5';
 import BattleStaffRhythm from './components/BattleStaffRhythm';
 import BattleSelectScreen from './components/BattleSelectScreen';
@@ -2059,22 +2053,8 @@ export default function App() {
               stopBGM={stopBGM}
               playSE={playSE}
             />
-          ) : battleMode === 'proto2' ? (
-            <BattleSystemPlot2
-              onComplete={handleBattleComplete}
-              playBGM={playBGM}
-              stopBGM={stopBGM}
-              playSE={playSE}
-            />
           ) : battleMode === 'proto3' ? (
             <BattleStaffRhythm
-              onComplete={handleBattleComplete}
-              playBGM={playBGM}
-              stopBGM={stopBGM}
-              playSE={playSE}
-            />
-          ) : battleMode === 'proto4' ? (
-            <BattleSystemPlot4
               onComplete={handleBattleComplete}
               playBGM={playBGM}
               stopBGM={stopBGM}
@@ -2126,10 +2106,7 @@ export default function App() {
                 }
               />
 
-              {/* Typing Game Overlay */}
-              {isTypingGameActive && (
-                <TypingGame onComplete={handleTypingGameComplete} />
-              )}
+              {/* Typing Game Overlay (Removed) */}
 
               {/* Search & Learning Overlay */}
               {isSearchAndLearningActive && (
@@ -2283,10 +2260,7 @@ export default function App() {
                 />
               )}
 
-              {/* Tap Communication Overlay */}
-              {isTapCommunicationActive && (
-                <TapCommunication onComplete={handleTapCommunicationComplete} />
-              )}
+              {/* Tap Communication Overlay (Removed) */}
 
               {/* Eye Of Profiler Overlay */}
               {isEyeOfProfilerActive && (
@@ -2368,14 +2342,9 @@ export default function App() {
                 />
               )}
 
-              {/* Silent Score Overlay */}
-              {isSilentScoreActive && (
-                <SilentScore onComplete={handleSilentScoreComplete} />
-              )}
+              {/* Silent Score Overlay (Removed) */}
 
-              {isStealthGameActive && (
-                <StealthGame onComplete={handleStealthGameComplete} />
-              )}
+              {/* Stealth Game (Removed) */}
 
               {isExplorationPhaseActive && (
                 <ExplorationPhase
