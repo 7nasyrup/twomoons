@@ -2559,13 +2559,13 @@ export const scenarioData = [
     "text": "昼休み。すぐに姿を消してしまったミカくんが気になり、私はキャンパスの裏手を歩いていた。",
     "bg": "/scene/university_back.png",
     "bgm": "Normal_Morning.mp3",
-    "se":"+school_bell.mp3"
   },
   {
     "scene": "キャンパスの裏手",
     "speaker": "朔良",
     "role": "SAKURA",
-    "text": "「ミカくん、どこ行っちゃったんだろ……」"
+    "text": "「ミカくん、どこ行っちゃったんだろ……」",
+
   },
   {
     "scene": "キャンパスの裏手",
