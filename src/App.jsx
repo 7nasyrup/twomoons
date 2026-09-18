@@ -570,6 +570,29 @@ export default function App() {
       onConfirm: () => {
         setConfirmModal(prev => ({ ...prev, isActive: false }));
         setShowTitle(true);
+        // Clear all visual effects to prevent them from showing on the title screen
+        setIsBloodActive(false);
+        setIsWhiteVignetteActive(false);
+        setIsRedAlertActive(false);
+        setIsMonochromeFlashActive(false);
+        setIsLightWaveActive(false);
+        setIsDarkEnergyActive(false);
+        setIsEyesClosed(false);
+        setIsPhoneCallRight(false);
+        setIsSpeedEffectActive(false);
+        setIsSmokeActive(false);
+        setIsBlackDistortActive(false);
+        setIsBlackEnergyEdgeActive(false);
+        setIsBlackAuraActive(false);
+        setIsEnergyAuraActive(false);
+        setIsWhiteOut(false);
+        setIsRedOut(false);
+        setIsWhiteOutLight(false);
+        setIsGrayOut(false);
+        setIsTearBlurActive(false);
+        setIsWhiteFlash70Active(false);
+        setShakeEffect(false);
+        setWhitePulseLevel(0);
       },
       onCancel: () => {
         setConfirmModal(prev => ({ ...prev, isActive: false }));
@@ -782,6 +805,19 @@ export default function App() {
               simEffects.isEyesClosed = false;
               simEffects.isPhoneCallRight = false;
               simEffects.isSpeedEffectActive = false;
+              simEffects.isSmokeActive = false;
+              simEffects.isBlackDistortActive = false;
+              simEffects.isBlackEnergyEdgeActive = false;
+              simEffects.isBlackAuraActive = false;
+              simEffects.isEnergyAuraActive = false;
+              simEffects.isWhiteOut = false;
+              simEffects.isRedOut = false;
+              simEffects.isWhiteOutLight = false;
+              simEffects.isGrayOut = false;
+              simEffects.isTearBlurActive = false;
+              simEffects.isWhiteFlash70Active = false;
+              simEffects.shakeEffect = false;
+              simEffects.whitePulseLevel = 0;
             }
 
             // SE logic
@@ -914,7 +950,8 @@ export default function App() {
               if (action === 'ENERGY_AURA_START') simEffects.isEnergyAuraActive = true;
               if (action === 'BLACK_AURA_START') simEffects.isBlackAuraActive = true;
               if (action === 'DARK_ENERGY_START') simEffects.isDarkEnergyActive = true;
-              if (action === 'BLACK_ENERGY_EDGE_START') simEffects.isBlackEnergyEdgeActive = true;
+              if (action === 'BLACK_ENERGY_EDGE_START' || action === 'BLACK_ENERGY_EDGE') simEffects.isBlackEnergyEdgeActive = true;
+              if (action === 'CLEAR_BLACK_ENERGY_EDGE') simEffects.isBlackEnergyEdgeActive = false;
               if (action === 'CLOSE_EYES') simEffects.isEyesClosed = true;
               if (action === 'OPEN_EYES' || action === 'WAKE_UP') simEffects.isEyesClosed = false;
               if (action === 'TEAR_BLUR_START') simEffects.isTearBlurActive = true;
@@ -1167,6 +1204,20 @@ export default function App() {
       setIsDarkEnergyActive(false);
       setIsEyesClosed(false);
       setIsPhoneCallRight(false);
+      setIsSpeedEffectActive(false);
+      setIsSmokeActive(false);
+      setIsBlackDistortActive(false);
+      setIsBlackEnergyEdgeActive(false);
+      setIsBlackAuraActive(false);
+      setIsEnergyAuraActive(false);
+      setIsWhiteOut(false);
+      setIsRedOut(false);
+      setIsWhiteOutLight(false);
+      setIsGrayOut(false);
+      setIsTearBlurActive(false);
+      setIsWhiteFlash70Active(false);
+      setShakeEffect(false);
+      setWhitePulseLevel(0);
     }
   }, [currentLine?.scene, prevScene]);
 
