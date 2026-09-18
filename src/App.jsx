@@ -492,15 +492,23 @@ export default function App() {
       }
     };
 
+    const handlePopState = (e) => {
+      if (!showTitle) {
+        window.history.pushState(null, '', window.location.href);
+      }
+    };
+
     // Attach native event listeners to document
     document.addEventListener('touchstart', handleNativeTouchOrClick, { passive: true });
     document.addEventListener('click', handleNativeTouchOrClick, { passive: true });
+    window.addEventListener('popstate', handlePopState);
 
     return () => {
       document.removeEventListener('touchstart', handleNativeTouchOrClick);
       document.removeEventListener('click', handleNativeTouchOrClick);
+      window.removeEventListener('popstate', handlePopState);
     };
-  }, []);
+  }, [showTitle]);
 
   const handleStartGame = () => {
     import('howler').then(({ Howler }) => {
@@ -508,6 +516,8 @@ export default function App() {
         Howler.ctx.resume();
       }
     });
+    // Push dummy history to prevent swipe-back exiting
+    window.history.pushState(null, '', window.location.href);
     clearBacklog();
     setShowTitle(false);
     setFlags({});
