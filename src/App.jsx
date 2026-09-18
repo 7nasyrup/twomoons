@@ -1049,9 +1049,9 @@ export default function App() {
           setVisualLine(scenarioData[targetStep]);
           setVisualStep(targetStep);
 
-          // 完全なキャッシュ消去：ロード前に鳴っていた音を全て即座に止める
-          stopBGM(0);
-          stopSE(null, 0);
+          // 完全なキャッシュ消去：ロード前に鳴っていた音を少しだけフェードアウトして止める
+          stopBGM(500);
+          stopSE(null, 500);
 
           if (simulatedBgm !== "stop" && simulatedBgm) {
             playBGM(assetPath(`/assets/audio/bgm/${simulatedBgm}`), { volume: simulatedVolume, fadeDuration: 500 });
