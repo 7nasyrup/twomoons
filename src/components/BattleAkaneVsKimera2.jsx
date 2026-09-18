@@ -1598,7 +1598,7 @@ export default function BattleAkaneVsKimera2({ onComplete, playBGM, stopBGM, pla
               <div key={enemy.id} className="relative w-full h-[420px] lg:h-[520px] flex flex-col justify-end items-center translate-y-12 lg:translate-y-20">
                 <div
                   // 敵のHPバーの位置
-                  className="absolute z-50 -translate-x-4 translate-y-11 lg:translate-x-0 w-20 lg:w-36"
+                  className="absolute z-50 -translate-x-4 translate-y-[30px] lg:translate-x-0 w-20 lg:w-36"
                   style={{
                     /* 
                      * 【HPバーの上下位置調整】
@@ -1639,13 +1639,14 @@ export default function BattleAkaneVsKimera2({ onComplete, playBGM, stopBGM, pla
                     // 敵の立ち絵の位置
                     // 敵の立ち絵のサイズ
                     id={`char-${enemy.id}`}
-                    className={`absolute bottom-0 w-[230px] h-[307px] lg:w-80 lg:h-96 flex items-end justify-center z-40 ${enemy.isDead ? 'opacity-30 grayscale'
+                    className={`absolute bottom-0 w-[230px] h-[290px] lg:w-80 lg:h-96 flex items-end justify-center z-40 ${enemy.isDead ? 'opacity-30 grayscale'
                       : enemy.flashTimer > 0 ? 'animate-battle-hit-flash'
                         : ''
                       }`}
                     animate={{
                       x: isAttacking ? -30 : (isCurrentTurn && turnPhase === 'enemy_resolve' ? -30 : 0),
-                      y: window.innerWidth >= 1024 ? -70 : -10, // パソコン・スマホの双方をさらに上にあげる (PC: -70, スマホ: -10)
+                      // スマホの位置を少し下げるために -60 から -30 に調整します
+                      y: window.innerWidth >= 1024 ? -70 : -0,
                       scale: isAttacking ? 1.05 : 1
                     }}
                     transition={{
