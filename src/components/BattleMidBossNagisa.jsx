@@ -1751,7 +1751,7 @@ export default function BattleMidBossNagisa({ onComplete, playBGM, stopBGM, play
         </div>
 
         {/* Top Right Controls */}
-        <div className="absolute top-3 right-6 lg:top-5 lg:right-10 flex gap-2 z-50">
+        <div className="absolute top-[max(0.75rem,env(safe-area-inset-top))] right-[max(1.5rem,env(safe-area-inset-right))] lg:top-5 lg:right-10 flex gap-2 z-50">
           <button onClick={() => setIsPaused(!isPaused)} className={`px-2 py-1 lg:px-3 lg:py-1.5 bg-[#0a1628]/60 backdrop-blur-sm border ${isPaused ? 'border-amber-400 text-amber-300 shadow-[0_0_10px_rgba(251,191,36,0.3)]' : 'border-slate-600/30 text-slate-400'} font-noto text-[8px] lg:text-[10px] tracking-[0.2em] rounded hover:border-slate-400/50 hover:text-slate-200 transition-all`}>
             {isPaused ? '再開' : '一時停止'}
           </button>
