@@ -88,8 +88,21 @@ export function usePreloader(scenarioData, currentStep) {
     // 実際のプリロード処理
     urlsToPreload.forEach(url => {
       preloadedUrls.current.add(url);
-      const img = new Image();
-      img.src = url;
+      
+      // Use link rel="preload" instead of new Image() to prevent decoded bitmap memory leaks on iOS Safari
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.as = 'image';
+      link.href = url;
+      document.head.appendChild(link);
+
+      // Remove the link tag after it has had time to fetch, preventing DOM bloat.
+      // The browser will keep the file in its HTTP/memory cache natively.
+      setTimeout(() => {
+        if (link.parentNode) {
+          link.parentNode.removeChild(link);
+        }
+      }, 10000);
     });
 
   }, [scenarioData, currentStep]);

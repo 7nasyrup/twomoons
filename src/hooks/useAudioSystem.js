@@ -37,7 +37,7 @@ export function useAudioSystem() {
       old.fade(old.volume(), 0, fadeDuration);
       setTimeout(() => old.unload(), fadeDuration + 100);
     }
-    const nb = new Howl({ src: [src], loop: true, volume: 0, html5: false });
+    const nb = new Howl({ src: [src], loop: true, volume: 0, html5: true });
     nb.play();
     if (seek > 0) nb.seek(seek);
     nb.fade(0, globalBGM * globalMaster, fadeDuration);
